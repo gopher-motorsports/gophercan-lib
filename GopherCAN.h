@@ -10,17 +10,17 @@
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
-#include "GopherStandards.h"
+#include "base_types.h"
 
 // TODO global library of CAN callback functions
 
 // function prototypes
-u8 init_can(u8 module_id);
-u8 request_parameter(u8 priority, u8 dest_module, u16 parameter);
-u8 send_can_command(u8 priority, u8 dest_module, u8 command_id);
-u8 add_custom_can_func(u8 func_id, void* (*func_ptr)(void*), u8 init_state, void* param_ptr, void* return_val_ptr);
-u8 mod_custom_can_func_ptr(u8 func_id, void* (*func_ptr)(void*), void* param_ptr, void* return_val_ptr);
-u8 mod_custom_can_func_state(u8 func_id, u8 state);
+U8 init_can(U8 module_id);
+U8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
+U8 send_can_command(U8 priority, U8 dest_module, U8 command_id);
+U8 add_custom_can_func(U8 func_id, void* (*func_ptr)(void*), U8 init_state, void* param_ptr, void* return_val_ptr);
+U8 mod_custom_can_func_ptr(U8 func_id, void* (*func_ptr)(void*), void* param_ptr, void* return_val_ptr);
+U8 mod_custom_can_func_state(U8 func_id, U8 state);
 
 
 // return messages
@@ -55,9 +55,9 @@ u8 mod_custom_can_func_state(u8 func_id, u8 state);
 // CAN message struct
 typedef struct
 {
-	u32 id;             // only the least significant 29 bits will be used
-	u8  dlc;            // [0, 8]
-	u8  data[8];        // not all of these will matter depending on dlc
+	U32 id;             // only the least significant 29 bits will be used
+	U8  dlc;            // [0, 8]
+	U8  data[8];        // not all of these will matter depending on dlc
 } CAN_MSG;
 
 
@@ -65,7 +65,7 @@ typedef struct
 typedef struct
 {
 	void* (*func_ptr)(void*);
-	u8    func_enabled = DISABLED;
+	U8    func_enabled = DISABLED;
 	void* param_ptr;
 	void* return_val_ptr;
 } CUST_FUNC;
@@ -107,19 +107,19 @@ typedef struct
 typedef struct
 {
 	// ID 2
-	const u8  data_type        = UNSIGNED16;
-	u8        update_enabled   = DISABLED;
-	u8        pending_response = FALSE;
-	u16       data;
+	const U8  data_type        = UNSIGNED16;
+	U8        update_enabled   = DISABLED;
+	U8        pending_response = FALSE;
+	U16       data;
 } RPM_STRUCT;
 
 typedef struct
 {
 	// ID 3
-	const u8  data_type        = UNSIGNED8;
-	u8        update_enabled   = DISABLED;
-	u8        pending_response = FALSE;
-	u8        data;
+	const U8  data_type        = UNSIGNED8;
+	U8        update_enabled   = DISABLED;
+	U8        pending_response = FALSE;
+	U8        data;
 } FAN_CURRENT_STRUCT;
 // TODO maybe include a variable to store the last time it was updated
 

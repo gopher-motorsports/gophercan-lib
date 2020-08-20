@@ -11,10 +11,10 @@
 extern RPM_STRUCT rpm;
 extern FAN_CURRENT_STRUCT fan_current;
 
-u8 can_func_param;
-u8 can_func_ret_val;
+U8 can_func_param;
+U8 can_func_ret_val;
 
-u8 last_fan_current;
+U8 last_fan_current;
 
 
 // init
@@ -89,9 +89,9 @@ void main_loop()
 //  note void pointers are passed in and returned
 void* inc_variable(void* parameter)
 {
-	u8 i, j;
+	U8 i, j;
 
-	i = *(u8*)parameter;
+	i = *(U8*)parameter;
 	j = i + 1;
 
 	return (void*)&j;

@@ -9,7 +9,7 @@
 
 #include "GopherCAN.h"
 
-u8 this_modual_id;
+U8 this_modual_id;
 
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
@@ -31,7 +31,7 @@ volatile FAN_CURRENT_STRUCT fan_current;
 // init_can
 // 	This function will set up the CAN registers with the inputed module_id
 //	as a filter
-u8 init_can(u8 module_id)
+U8 init_can(U8 module_id)
 {
 	this_modual_id = module_id;
 
@@ -47,7 +47,7 @@ u8 init_can(u8 module_id)
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
 //	given by the parameter ID from the module specified by the module ID
-u8 request_parameter(u8 priority, u8 dest_module, u16 parameter)
+U8 request_parameter(U8 priority, U8 dest_module, u16 parameter)
 {
 	// TODO
 	// Build and send a CAN message to request the data
@@ -59,7 +59,7 @@ u8 request_parameter(u8 priority, u8 dest_module, u16 parameter)
 // send_can_command
 //	This function will send a CAN message with a command specified
 //	by command_id to the specified module
-u8 send_can_command(u8 priority, u8 dest_module, u8 command_id)
+U8 send_can_command(U8 priority, U8 dest_module, U8 command_id)
 {
 	// TODO
 	// Build and send a CAN message to issue the command
@@ -72,7 +72,7 @@ u8 send_can_command(u8 priority, u8 dest_module, u8 command_id)
 //  add a user function to the array of functions to check if
 //  a CAN command message is sent. Note the functions must be of type 'void* func(void*)',
 //  so structs and casts are needed to get multiple parame
-u8 add_custom_can_func(u8 func_id, void* (*func_ptr)(void*), u8 init_state, void* param_ptr, void* return_val_ptr)
+U8 add_custom_can_func(U8 func_id, void* (*func_ptr)(void*), U8 init_state, void* param_ptr, void* return_val_ptr)
 {
 	CUST_FUNC* new_cust_func;
 
@@ -97,7 +97,7 @@ u8 add_custom_can_func(u8 func_id, void* (*func_ptr)(void*), u8 init_state, void
 // mod_custom_can_func_ptr
 //  change the function pointer, parameter, and return value pointer
 //  for the specified custom CAN function
-u8 mod_custom_can_func_ptr(u8 func_id, void* (*func_ptr)(void*), void* param_ptr, void* return_val_ptr)
+U8 mod_custom_can_func_ptr(U8 func_id, void* (*func_ptr)(void*), void* param_ptr, void* return_val_ptr)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -118,7 +118,7 @@ u8 mod_custom_can_func_ptr(u8 func_id, void* (*func_ptr)(void*), void* param_ptr
 
 // mod_custom_can_func_state
 //  change the state (enabled or disabled) of the specified custom CAN function
-u8 mod_custom_can_func_state(u8 func_id, u8 state)
+U8 mod_custom_can_func_state(U8 func_id, U8 state)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -137,7 +137,7 @@ u8 mod_custom_can_func_state(u8 func_id, u8 state)
 
 // send_can_message
 //  Takes in a CAN_MSG struct, modifies registers accordingly
-u8 send_can_message(CAN_MSG message)
+U8 send_can_message(CAN_MSG message)
 {
 	// TODO
 
@@ -148,7 +148,7 @@ u8 send_can_message(CAN_MSG message)
 // update_general_target_can
 //  these will mostly be from the EDL constantly
 //  updating variables. This will not be an interrupt
-u8 update_general_target_can()
+U8 update_general_target_can()
 {
 	// TODO
 
