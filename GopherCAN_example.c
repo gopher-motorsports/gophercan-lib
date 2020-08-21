@@ -7,8 +7,8 @@
 
 #include "GopherCAN.h"
 
-extern RPM_STRUCT rpm;
-extern FAN_CURRENT_STRUCT fan_current;
+extern U16_CAN_STRUCT rpm;
+extern U8_CAN_STRUCT fan_current;
 
 U8 can_func_param;
 U8 can_func_ret_val;
