@@ -19,11 +19,18 @@ CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
 // ******** BEGIN AUTO GENERATED ********
 
 // all of the global parameter structs
+volatile REQ_PARAM_STRUCT req_param;
+volatile CAN_COMMAND_STRUCT can_command;
 volatile RPM_STRUCT rpm;
 volatile FAN_CURRENT_STRUCT fan_current;
 
-// TODO array of pointers to each parameter struct
-// TODO lookup table of function pointers for parameters through CAN messages
+static void* all_parameter_structs[NUM_OF_PARAMETERS] =
+{
+		&req_param,
+		&can_command,
+		&rpm,
+		&fan_current
+};
 
 // ******** END AUTO GENERATED ********
 
@@ -37,8 +44,9 @@ U8 init_can(U8 module_id)
 
 	// TODO set the the registers and filters
 
-	// TODO enable the interrupt function
+	// TODO setup the interrupt function
 
+	// TODO init HAL_TICK
 
 	return SUCCESS;
 }
@@ -47,7 +55,7 @@ U8 init_can(U8 module_id)
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
 //	given by the parameter ID from the module specified by the module ID
-U8 request_parameter(U8 priority, U8 dest_module, u16 parameter)
+U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 {
 	// TODO
 	// Build and send a CAN message to request the data
@@ -59,7 +67,7 @@ U8 request_parameter(U8 priority, U8 dest_module, u16 parameter)
 // send_can_command
 //	This function will send a CAN message with a command specified
 //	by command_id to the specified module
-U8 send_can_command(U8 priority, U8 dest_module, U8 command_id)
+U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter)
 {
 	// TODO
 	// Build and send a CAN message to issue the command
@@ -70,8 +78,9 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id)
 
 // add_custum_can_func
 //  add a user function to the array of functions to check if
-//  a CAN command message is sent. Note the functions must be of type 'void* func(void*)',
-//  so structs and casts are needed to get multiple parame
+//  a CAN command message is sent. Note the functions must be of type 'void* func(void*, U8)',
+//  so structs and casts are needed to get multiple params. The second parameter (U8) will be
+//  sent by the module in the CAN command message
 U8 add_custom_can_func(U8 func_id, void* (*func_ptr)(void*), U8 init_state, void* param_ptr, void* return_val_ptr)
 {
 	CUST_FUNC* new_cust_func;
@@ -135,9 +144,9 @@ U8 mod_custom_can_func_state(U8 func_id, U8 state)
 }
 
 
-// send_can_message
+// tx_can_message
 //  Takes in a CAN_MSG struct, modifies registers accordingly
-U8 send_can_message(CAN_MSG message)
+static U8 tx_can_message(CAN_MSG message)
 {
 	// TODO
 
@@ -145,20 +154,16 @@ U8 send_can_message(CAN_MSG message)
 }
 
 
-// update_general_target_can
-//  these will mostly be from the EDL constantly
-//  updating variables. This will not be an interrupt
-U8 update_general_target_can()
+// rx_can_message
+//  TODO DOCS
+static void rx_can_message()
 {
-	// TODO
-
-	return NOT_IMPLEMENTED;
+	// TODO CAN message bus interrupt function
+	// this will update all the global variables
+	// or trigger the CAN functions if needed.
+	// probably some auto-gen stuff in here
+	// Use HAL_GetTick() to set last_rx
 }
 
-
-// TODO CAN message bus interrupt function
-// this will update all the global variables
-// or trigger the CAN functions if needed.
-// probably some auto-gen stuff in here
 
 

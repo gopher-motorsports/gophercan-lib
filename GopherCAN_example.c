@@ -5,7 +5,6 @@
  *      Author: calja
  */
 
-#include "GopherStandards.h"
 #include "GopherCAN.h"
 
 extern RPM_STRUCT rpm;
@@ -34,7 +33,7 @@ void init()
 
 	// add can_callback_function
 	if (add_custom_can_func(INC_VARIABLE, &inc_variable,
-			ENABLED, (void*)&can_func_param, (void*)&can_func_ret_val))
+			TRUE, (void*)&can_func_param, (void*)&can_func_ret_val))
 	{
 		// an error has occurred
 	}
@@ -77,7 +76,7 @@ void main_loop()
 	}
 
 	// send a can command to another module
-	if (send_can_command(PRIO_LOW, PDM_ID, TURN_FAN_OFF))
+	if (send_can_command(PRIO_LOW, PDM_ID, TURN_FAN_OFF, 0))
 	{
 		// error sending command
 	}
@@ -87,7 +86,10 @@ void main_loop()
 // can_callback_function
 //  a custom function that will return the input + 1
 //  note void pointers are passed in and returned
-void* inc_variable(void* parameter)
+//  the command CAN message will also include a U8 to be
+//  used as a parameter for the function. It is not used in
+//  this example
+void* inc_variable(void* parameter, U8 remote_param)
 {
 	U8 i, j;
 

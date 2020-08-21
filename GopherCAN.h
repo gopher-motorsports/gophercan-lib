@@ -17,7 +17,7 @@
 // function prototypes
 U8 init_can(U8 module_id);
 U8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
-U8 send_can_command(U8 priority, U8 dest_module, U8 command_id);
+U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
 U8 add_custom_can_func(U8 func_id, void* (*func_ptr)(void*), U8 init_state, void* param_ptr, void* return_val_ptr);
 U8 mod_custom_can_func_ptr(U8 func_id, void* (*func_ptr)(void*), void* param_ptr, void* return_val_ptr);
 U8 mod_custom_can_func_state(U8 func_id, U8 state);
@@ -35,21 +35,16 @@ U8 mod_custom_can_func_state(U8 func_id, U8 state);
 #define UNSIGNED8  0
 #define UNSIGNED16 1
 #define UNSIGNED32 2
-#define SIGNED8    3
-#define SIGNED16   4
-#define SIGNED32   5
+#define UNSIGNED64 3
+#define SIGNED8    4
+#define SIGNED16   5
+#define SIGNED32   6
+#define SIGNED64   7
 
 
 // priority defines
 #define PRIO_HIGH 0b0
 #define PRIO_LOW  0b1
-
-
-// other defines
-#define ENABLED  1
-#define DISABLED 0
-#define TRUE     1
-#define FALSE    0
 
 
 // CAN message struct
@@ -64,8 +59,8 @@ typedef struct
 // custom function struct
 typedef struct
 {
-	void* (*func_ptr)(void*);
-	U8    func_enabled = DISABLED;
+	void* (*func_ptr)(void*, U8);
+	U8    func_enabled = FALSE;
 	void* param_ptr;
 	void* return_val_ptr;
 } CUST_FUNC;
@@ -75,7 +70,7 @@ typedef struct
 
 // assorted defines
 #define NUM_OF_MODUALS    4
-#define NUM_OF_PARAMETERS 6
+#define NUM_OF_PARAMETERS 4
 #define NUM_OF_COMMANDS   3
 
 
@@ -103,13 +98,31 @@ typedef struct
 #define CUST_COMMAND_2 2
 
 
+// request parameter and custom command structs
+typedef struct
+{
+	// ID 0
+	U32 last_rx;
+	U16 parameter_id;
+} REQ_PARAM_STRUCT;
+
+typedef struct
+{
+	// ID 1
+	U32 last_rx;
+	U8  command_id;
+	U8  command_parameter;
+} CAN_COMMAND_STRUCT;
+
+
 // parameter structs
 typedef struct
 {
 	// ID 2
 	const U8  data_type        = UNSIGNED16;
-	U8        update_enabled   = DISABLED;
+	U8        update_enabled   = FALSE;
 	U8        pending_response = FALSE;
+	U32       last_rx;
 	U16       data;
 } RPM_STRUCT;
 
@@ -117,11 +130,11 @@ typedef struct
 {
 	// ID 3
 	const U8  data_type        = UNSIGNED8;
-	U8        update_enabled   = DISABLED;
+	U8        update_enabled   = FALSE;
 	U8        pending_response = FALSE;
+	U32       last_rx;
 	U8        data;
 } FAN_CURRENT_STRUCT;
-// TODO maybe include a variable to store the last time it was updated
 
 // ******** END AUTO GENERATED ********
 
