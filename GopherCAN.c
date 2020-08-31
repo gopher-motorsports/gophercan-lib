@@ -9,6 +9,14 @@
 
 #include "GopherCAN.h"
 
+// static function prototypes
+static U8 tx_can_message(CAN_MSG message);
+static void rx_can_message();
+static void build_message_id(CAN_MSG* msg, CAN_ID* id);
+static void get_message_id(CAN_ID* id, CAN_MSG* message);
+
+
+// fields
 U8 this_modual_id;
 
 // all of the custom functions and an array to enable or disable
@@ -60,7 +68,7 @@ U8 init_can(U8 module_id)
 
 	// TODO init HAL_TICK
 
-	return SUCCESS;
+	return NOT_IMPLEMENTED;
 }
 
 
@@ -69,8 +77,8 @@ U8 init_can(U8 module_id)
 //	given by the parameter ID from the module specified by the module ID
 U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 {
-	U8 ret_val;
 	CAN_MSG message;
+	CAN_ID id;
 
 	if (dest_module < 0 || dest_module >= NUM_OF_MODUALS)
 	{
@@ -82,9 +90,20 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 		return BAD_PARAMETER_ID;
 	}
 
-	// TODO build the message and send it
+	id.priority = priority;
+	id.dest_module = dest_module;
+	id.source_module = this_modual_id;
+	id.error = FALSE;
+	id.parameter = REQUEST_VALUE_ID;
 
-	return ret_val;
+	build_message_id(&message, &id);
+
+	message.dlc = sizeof(parameter);
+
+    message.data[0] = parameter >> BITS_IN_BYTE;
+	message.data[1] = parameter & U8_MAX;
+
+	return tx_can_message(message);
 }
 
 
@@ -93,8 +112,8 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 //	by command_id to the specified module
 U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter)
 {
-	U8 ret_val;
 	CAN_MSG message;
+	CAN_ID id;
 
 	if (dest_module < 0 || dest_module >= NUM_OF_MODUALS)
 	{
@@ -106,9 +125,20 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 		return BAD_COMMAND_ID;
 	}
 
-	// TODO build the message and send it
+	id.priority = priority;
+	id.dest_module = dest_module;
+	id.source_module = this_modual_id;
+	id.error = FALSE;
+	id.parameter = CAN_COMMAND_ID;
 
-	return ret_val;
+	build_message_id(&message, &id);
+
+	message.dlc = sizeof(command_id) + sizeof(command_parameter);
+
+	message.data[0] = command_id;
+	message.data[1] = command_parameter;
+
+	return tx_can_message(message);
 }
 
 
@@ -197,9 +227,85 @@ static void rx_can_message()
 	// TODO CAN message bus interrupt function
 	// this will update all the global variables
 	// or trigger the CAN functions if needed.
-	// probably some auto-gen stuff in here
 	// Use HAL_GetTick() to set last_rx
+
+	CAN_MSG message;
+	CAN_ID id;
+
+	// TODO build the message from the registers on the STM32
+
+	// TODO everything else
 }
 
 
+// build_can_id
+//  this function will fill in the id of msg when called.
+//  No error checking is preformed in this function besides masking
+static void build_message_id(CAN_MSG* msg, CAN_ID* id)
+{
+	U32 temp;
 
+	// priority bit
+	temp = !!id->priority;
+	temp <<= (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE);
+	temp &= PRIORITY_MASK;
+	msg->id |= temp;
+
+	// destination bits
+	temp = id->dest_module;
+	temp <<= (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+	temp &= DEST_MASK;
+	msg->id |= temp;
+
+    // source bits
+	temp = id->source_module;
+	temp <<= (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE);
+	temp &= SOURCE_MASK;
+	msg->id |= temp;
+
+	// error bit
+	temp = id->error;
+	temp <<= (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE);
+	temp &= ERROR_MASK;
+	msg->id |= temp;
+
+	// parameter bits
+	temp = id->parameter;
+	temp <<= (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE);
+	temp &= PARAM_MASK;
+	msg->id |= temp;
+}
+
+
+// get_message_id
+//  this function will take in a CAN message and convert it to
+//  a CAN id struct. No error checking is performed
+static void get_message_id(CAN_ID* id, CAN_MSG* message)
+{
+	U32 temp;
+
+	// priority bit
+	temp = message->id & PRIORITY_MASK;
+	temp >>= (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE);
+	id->parameter = temp;
+
+	// destination bits
+	temp = message->id & DEST_MASK;
+	temp >>= (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+	id->dest_module = temp;
+
+	// source bits
+	temp = message->id & SOURCE_MASK;
+	temp >>= (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE);
+	id->source_module = temp;
+
+	// error bit
+	temp = message->id & ERROR_MASK;
+	temp >>= (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE);
+	id->error = temp;
+
+	// parameter bits
+	temp = message->id & PARAM_MASK;
+	temp >>= (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE);
+	id->parameter = temp;
+}

@@ -85,13 +85,53 @@ typedef enum
 #define PRIO_LOW  0b1
 
 
+// CAN message ID positions. Sizes are in number of bits
+#define CAN_ID_SIZE   29
+
+#define PRIORITY_MASK 0b00010000000000000000000000000000
+#define PRIORITY_POS  0
+#define PRIORITY_SIZE 1
+
+#define DEST_MASK     0b00001111110000000000000000000000
+#define DEST_POS      1
+#define DEST_SIZE     6
+
+#define SOURCE_MASK   0b00000000001111110000000000000000
+#define SOURCE_POS    7
+#define SOURCE_SIZE   6
+
+#define ERROR_MASK    0b00000000000000001000000000000000
+#define ERROR_POS     13
+#define ERROR_SIZE    1
+
+#define PARAM_MASK    0b00000000000000000111111111111111
+#define PARAM_POS     14
+#define PARAM_SIZE    15
+
+
+// general defines
+#define BITS_IN_BYTE 8
+#define U8_MAX 0xFF
+
+
 // CAN message struct
 typedef struct
 {
-	U32 id;             // only the least significant 29 bits will be used
+	U32 id;             // only the most significant 29 bits will be used
 	U8  dlc;            // [0, 8]
 	U8  data[8];        // not all of these will matter depending on dlc
 } CAN_MSG;
+
+
+// CAN ID struct
+typedef struct
+{
+	U8  priority;
+	U8  dest_module;
+	U8  source_module;
+	U8  error;
+	U16 parameter;
+} CAN_ID;
 
 
 // custom function struct

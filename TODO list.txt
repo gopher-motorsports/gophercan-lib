@@ -1,11 +1,11 @@
 
 GopherCAN TODO list:
- - Tool that will auto-generate code from the XLSX table
+ - Tool that will auto-generate code from the .XLSX table
  - Finish all functions that are currently stubs
- - Last RX value in each struct
  - Split up auto generated sections of .c/.h
  - Possible #ifdefs for what CAN messages/parameters each modual should handle
  - EDL communication
+ - Create and execute test plans
 
 Notes:
  - last_rx will rollover every ~50 days
