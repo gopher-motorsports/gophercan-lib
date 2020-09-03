@@ -4,8 +4,9 @@ GopherCAN TODO list:
  - Finish all functions that are currently stubs
  - Split up auto generated sections of .c/.h
  - Possible #ifdefs for what CAN messages/parameters each modual should handle
- - EDL communication
+ - EDL communication (possibly directly to PDM)
  - Create and execute test plans
+ - Command to constantly request Data
 
 Notes:
  - last_rx will rollover every ~50 days

@@ -27,18 +27,18 @@ CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
 // ******** BEGIN AUTO GENERATED ********
 
 // all of the global parameter structs
-volatile REQ_PARAM_STRUCT req_param;
-volatile CAN_COMMAND_STRUCT can_command;
-volatile U16_CAN_STRUCT rpm;
-volatile U8_CAN_STRUCT fan_current;
+REQ_PARAM_STRUCT req_param;
+CAN_COMMAND_STRUCT can_command;
+U16_CAN_STRUCT rpm;
+U8_CAN_STRUCT fan_current;
 
 // this is the struct that will be used to refrence based on ID
 static void* all_parameter_structs[NUM_OF_PARAMETERS] =
 {
 	&req_param,    // ID 0
-	&can_command,    // ID 2
-	&rpm,    // ID 3
-	&fan_current    // ID 4
+	&can_command,    // ID 1
+	&rpm,    // ID 2
+	&fan_current    // ID 3
 };
 
 // this stores the data_type for each parameter, refrenced by ID
@@ -147,7 +147,7 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 //  a CAN command message is sent. Note the functions must be of type 'void* func(void*, U8)',
 //  so structs and casts are needed to get multiple params. The second parameter (U8) will be
 //  sent by the module in the CAN command message
-U8 add_custom_can_func(U8 command_id, void* (*func_ptr)(void*), U8 init_state, void* param_ptr, void* return_val_ptr)
+U8 add_custom_can_func(U8 command_id, void* (*func_ptr)(void*, U8), U8 init_state, void* param_ptr, void* return_val_ptr)
 {
 	CUST_FUNC* new_cust_func;
 
@@ -172,7 +172,7 @@ U8 add_custom_can_func(U8 command_id, void* (*func_ptr)(void*), U8 init_state, v
 // mod_custom_can_func_ptr
 //  change the function pointer, parameter, and return value pointer
 //  for the specified custom CAN function
-U8 mod_custom_can_func_ptr(U8 command_id, void* (*func_ptr)(void*), void* param_ptr, void* return_val_ptr)
+U8 mod_custom_can_func_ptr(U8 command_id, void* (*func_ptr)(void*, U8), void* param_ptr, void* return_val_ptr)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -234,7 +234,66 @@ static void rx_can_message()
 
 	// TODO build the message from the registers on the STM32
 
-	// TODO everything else
+	get_message_id(&id, &message);
+
+	// error checking on the parameter requested
+	if (id.parameter < 0 || id.parameter >= NUM_OF_PARAMETERS)
+	{
+		return;
+	}
+
+	// this switch will handle all of the different possible data types
+	// that can be sent over CAN
+	switch (parameter_data_types[id.parameter])
+	{
+	case REQ_PARAM:
+		// TODO send the parameter requested
+		break;
+
+	case COMMAND:
+		// TODO run the requested command
+		break;
+
+	case UNSIGNED8:
+		// TODO
+		break;
+
+	case UNSIGNED16:
+		// TODO
+		break;
+
+	case UNSIGNED32:
+		// TODO
+		break;
+
+	case UNSIGNED64:
+		// TODO
+		break;
+
+	case SIGNED8:
+		// TODO
+		break;
+
+	case SIGNED16:
+		// TODO
+		break;
+
+	case SIGNED32:
+		// TODO
+		break;
+
+	case SIGNED64:
+		// TODO
+		break;
+
+	case FLOATING:
+		// TODO
+		break;
+
+	default:
+		// TODO
+		break;
+	}
 }
 
 
@@ -309,3 +368,5 @@ static void get_message_id(CAN_ID* id, CAN_MSG* message)
 	temp >>= (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE);
 	id->parameter = temp;
 }
+
+

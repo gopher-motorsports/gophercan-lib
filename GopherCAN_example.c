@@ -15,6 +15,7 @@ U8 can_func_ret_val;
 
 U8 last_fan_current;
 
+void* inc_variable(void* parameter, U8 remote_param);
 
 // init
 //  examples of things to be called on startup
