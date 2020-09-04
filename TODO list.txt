@@ -7,6 +7,7 @@ GopherCAN TODO list:
  - EDL communication (possibly directly to PDM)
  - Create and execute test plans
  - Command to constantly request Data
+ - CHECK FLOATs
 
 Notes:
  - last_rx will rollover every ~50 days

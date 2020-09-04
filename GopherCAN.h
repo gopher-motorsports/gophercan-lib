@@ -53,6 +53,12 @@ U8 mod_custom_can_func_state(U8 func_id, U8 state);
 #define TURN_FAN_OFF   1
 #define CUST_COMMAND_2 2
 
+
+// error IDs
+#define ID_NOT_FOUND 0
+#define PARAM_NOT_ENABLED 1
+#define SIZE_ERROR 2
+
 // ******** END AUTO GENERATED ********
 
 
@@ -67,7 +73,8 @@ U8 mod_custom_can_func_state(U8 func_id, U8 state);
 
 // Data types
 typedef enum
-{	REQ_PARAM  = 0,
+{
+	REQ_PARAM  = 0,
 	COMMAND    = 1,
 	UNSIGNED8  = 2,
 	UNSIGNED16 = 3,
@@ -79,6 +86,22 @@ typedef enum
 	SIGNED64   = 9,
 	FLOATING   = 10
 } datatypes;
+
+// data type sizes (in bytes)
+typedef enum
+{
+	REQ_PARAM_SIZE  = 2,
+	COMMAND_SIZE    = 2,
+	UNSIGNED8_SIZE  = 1,
+	UNSIGNED16_SIZE = 2,
+	UNSIGNED32_SIZE = 4,
+	UNSIGNED64_SIZE = 8,
+	SIGNED8_SIZE    = 1,
+	SIGNED16_SIZE   = 2,
+	SIGNED32_SIZE   = 4,
+	SIGNED64_SIZE   = 8,
+	FLOATING_SIZE   = 8
+} datatype_size;
 
 
 // priority defines
@@ -113,6 +136,13 @@ typedef enum
 // general defines
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
+
+
+// struct position defines. Add these to the begining of the struct pointer
+#define LAST_RX_POS 0
+#define UPDATE_ENABLED_POS 4
+#define PENDING_RESPONSE_POS 5
+#define DATA_POS 6
 
 
 // CAN message struct
@@ -163,73 +193,73 @@ typedef struct
 // parameter structs
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	U8  data;
 } U8_CAN_STRUCT;
 
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	U16 data;
 } U16_CAN_STRUCT;
 
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	U32 data;
 } U32_CAN_STRUCT;
 
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	U64 data;
 } U64_CAN_STRUCT;
 
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	S8  data;
 } S8_CAN_STRUCT;
 
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	S16 data;
 } S16_CAN_STRUCT;
 
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	S32 data;
 } S32_CAN_STRUCT;
 
 typedef struct
 {
+	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
-	U32 last_rx;
 	S64 data;
 } S64_CAN_STRUCT;
 
 typedef struct
 {
+	U32   last_rx;
 	U8    update_enabled;
 	U8    pending_response;
-	U32   last_rx;
 	float data;
 } FLOAT_CAN_STRUCT;
 

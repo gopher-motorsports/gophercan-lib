@@ -10,10 +10,11 @@
 #include "GopherCAN.h"
 
 // static function prototypes
-static U8 tx_can_message(CAN_MSG message);
+static U8   tx_can_message(CAN_MSG* message);
 static void rx_can_message();
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
+static U8   send_error_message(CAN_ID* id, U8 error_id);
 
 
 // fields
@@ -103,7 +104,7 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
     message.data[0] = parameter >> BITS_IN_BYTE;
 	message.data[1] = parameter & U8_MAX;
 
-	return tx_can_message(message);
+	return tx_can_message(&message);
 }
 
 
@@ -138,7 +139,7 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 	message.data[0] = command_id;
 	message.data[1] = command_parameter;
 
-	return tx_can_message(message);
+	return tx_can_message(&message);
 }
 
 
@@ -212,7 +213,7 @@ U8 mod_custom_can_func_state(U8 command_id, U8 state)
 
 // tx_can_message
 //  Takes in a CAN_MSG struct, modifies registers accordingly
-static U8 tx_can_message(CAN_MSG message)
+static U8 tx_can_message(CAN_MSG* message)
 {
 	// TODO
 
@@ -221,77 +222,176 @@ static U8 tx_can_message(CAN_MSG message)
 
 
 // rx_can_message
-//  TODO DOCS
+//  CAN message bus interrupt function this will update all
+//  the global variables or trigger the CAN functions if needed
 static void rx_can_message()
 {
-	// TODO CAN message bus interrupt function
-	// this will update all the global variables
-	// or trigger the CAN functions if needed.
-	// Use HAL_GetTick() to set last_rx
-
 	CAN_MSG message;
 	CAN_ID id;
+	U64 recieved_data = 0;
+	U8 c;
+	void* data_struct = 0;
 
 	// TODO build the message from the registers on the STM32
 
 	get_message_id(&id, &message);
 
+	// TODO what to do if there is an error in the message
+
 	// error checking on the parameter requested
 	if (id.parameter < 0 || id.parameter >= NUM_OF_PARAMETERS)
 	{
+		send_error_message(&id, ID_NOT_FOUND);
+
 		return;
 	}
+	
+	// get the associated data struct and set last_rx
+	data_struct = all_parameter_structs[id.parameter];
+	*((U32*)data_struct) = HAL_GetTicks();
+
+	// build the data U64 (big endian)
+	for (c = (message.dlc - 1); c >= 0; c--)
+	{
+		recieved_data |= message.data[c] << c;
+	}
+
+	// request parameter and commands are handled differently
+	if (parameter_data_types[id.parameter] == REQ_PARAM)
+	{
+		U16 parameter_requested;
+		CAN_ID return_id;
+		CAN_MSG return_message;
+		U64 return_data;
+
+		if (message.dlc != REQ_PARAM_SIZE)
+		{
+			send_error_message(&id, SIZE_ERROR);
+
+			return;
+		}
+
+		// find what the parameter is from the data
+		parameter_requested = (message.data[0] << BITS_IN_BYTE) | message.data[1];
+		req_param.parameter_id = parameter_requested;
+
+		if (parameter_requested < RPM_ID || parameter_requested >= NUM_OF_PARAMETERS)
+		{
+			send_error_message(&id, ID_NOT_FOUND);
+			
+			return;
+		}
+
+		// build the return message ID
+		return_id.priority = id.priority;
+		return_id.dest_module = id.source_module;
+		return_id.source_module = this_modual_id;
+		return_id.error = FALSE;
+		return_id.parameter = parameter_requested;
+
+		build_message_id(&return_message, &return_id);
+
+		// get the value of the data on this module and build the CAN message
+		if (parameter_data_types[parameter_requested] == UNSIGNED8
+			|| parameter_data_types[parameter_requested] == SIGNED8)
+		{
+			return_data = *((U8*)(all_parameter_structs[parameter_requested] + DATA_POS));
+			return_message.dlc = sizeof(U8);
+		}
+
+		else if (parameter_data_types[parameter_requested] == UNSIGNED16
+			|| parameter_data_types[parameter_requested] == SIGNED16)
+		{
+			return_data = *((U16*)(all_parameter_structs[parameter_requested] + DATA_POS));
+			return_message.dlc = sizeof(U16);
+		}
+
+		else if (parameter_data_types[parameter_requested] == UNSIGNED32
+			|| parameter_data_types[parameter_requested] == SIGNED32)
+		{
+			return_data = *((U32*)(all_parameter_structs[parameter_requested] + DATA_POS));
+			return_message.dlc = sizeof(U32);
+		}
+
+		else if (parameter_data_types[parameter_requested] == UNSIGNED64
+			|| parameter_data_types[parameter_requested] == SIGNED64)
+		{
+			return_data = *((U64*)(all_parameter_structs[parameter_requested] + DATA_POS));
+			return_message.dlc = sizeof(U64);
+		}
+
+		// build the data in the message (big endian)
+		for (c = return_message.dlc - 1; c >= 0; c--)
+		{
+			return_message.data[c] = (U8)(return_data >> c);
+		}
+
+		// send the built CAN message
+		tx_can_message(&return_message);
+
+		return;
+	}
+
+	if (parameter_data_types[id.parameter] == COMMAND)
+	{
+		// TODO
+
+		return;
+	}
+
+	// Check the update_enabled flag
+	if (!((U8*)(data_struct + UPDATE_ENABLED_POS)))
+	{
+		send_error_message(&id, PARAM_NOT_ENABLED);
+		
+		return;
+	}
+
+	// Switch the pending_response flag
+	*((U8*)(data_struct + PENDING_RESPONSE_POS)) = FALSE;
 
 	// this switch will handle all of the different possible data types
 	// that can be sent over CAN
 	switch (parameter_data_types[id.parameter])
 	{
-	case REQ_PARAM:
-		// TODO send the parameter requested
-		break;
-
-	case COMMAND:
-		// TODO run the requested command
-		break;
-
 	case UNSIGNED8:
-		// TODO
-		break;
+		*((U8*)(data_struct + DATA_POS)) = (U8)recieved_data;
+		return;
 
 	case UNSIGNED16:
-		// TODO
-		break;
+		*((U16*)(data_struct + DATA_POS)) = (U16)recieved_data;
+		return;
 
 	case UNSIGNED32:
-		// TODO
-		break;
+		*((U32*)(data_struct + DATA_POS)) = (U32)recieved_data;
+		return;
 
 	case UNSIGNED64:
-		// TODO
-		break;
+		*((U64*)(data_struct + DATA_POS)) = (U64)recieved_data;
+		return;
 
 	case SIGNED8:
-		// TODO
+		*((S8*)(data_struct + DATA_POS)) = (S8)recieved_data;
 		break;
 
 	case SIGNED16:
-		// TODO
+		*((S16*)(data_struct + DATA_POS)) = (S16)recieved_data;
 		break;
 
 	case SIGNED32:
-		// TODO
+		*((S32*)(data_struct + DATA_POS)) = (S32)recieved_data;
 		break;
 
 	case SIGNED64:
-		// TODO
+		*((S64*)(data_struct + DATA_POS)) = (S64)recieved_data;
 		break;
 
 	case FLOATING:
-		// TODO
+		*((float*)(data_struct + DATA_POS)) = (float)recieved_data;
 		break;
 
 	default:
-		// TODO
+		*((U8*)(data_struct + DATA_POS)) = (U8)recieved_data;
 		break;
 	}
 }
@@ -370,3 +470,16 @@ static void get_message_id(CAN_ID* id, CAN_MSG* message)
 }
 
 
+// send_error_message
+//  Sends a return message to the original sender with the ID specified
+static U8 send_error_message(CAN_ID* id, U8 error_id)
+{
+	CAN_MSG message;
+	CAN_ID id;
+
+	// TODO
+
+	return tx_can_message(&message);
+}
+
+// end GopherCAN.c
