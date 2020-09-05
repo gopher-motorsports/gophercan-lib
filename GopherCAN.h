@@ -17,21 +17,21 @@
 U8 init_can(U8 module_id);
 U8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
 U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
-U8 add_custom_can_func(U8 func_id, void* (*func_ptr)(void*, U8), U8 init_state, void* param_ptr, void* return_val_ptr);
-U8 mod_custom_can_func_ptr(U8 func_id, void* (*func_ptr)(void*, U8), void* param_ptr, void* return_val_ptr);
+U8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
+U8 mod_custom_can_func_ptr(U8 func_id, void (*func_ptr)(void*, U8), void* param_ptr);
 U8 mod_custom_can_func_state(U8 func_id, U8 state);
 
 
 // ******** BEGIN AUTO GENERATED ********
 
 // number of each type
-#define NUM_OF_MODUALS    4
+#define NUM_OF_MODULES    4
 #define NUM_OF_PARAMETERS 4
 #define NUM_OF_COMMANDS   3
 
 
 // module IDs
-#define ECM_ID 0
+#define ECU_ID 0
 #define EDL_ID 1
 #define PDM_ID 2
 #define TCM_ID 3
@@ -56,8 +56,11 @@ U8 mod_custom_can_func_state(U8 func_id, U8 state);
 
 // error IDs
 #define ID_NOT_FOUND 0
-#define PARAM_NOT_ENABLED 1
-#define SIZE_ERROR 2
+#define COMMAND_ID_NOT_FOUND 1
+#define PARAM_NOT_ENABLED 2
+#define SIZE_ERROR 3
+#define DATATYPE_NOT_FOUND 4
+#define COMMAND_NOT_ENABLED 5
 
 // ******** END AUTO GENERATED ********
 
@@ -133,6 +136,11 @@ typedef enum
 #define PARAM_SIZE    15
 
 
+// custom function data positions
+#define COMMAND_ID_POS 0
+#define COMMAND_PARAMETER_POS 1
+
+
 // general defines
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
@@ -168,11 +176,20 @@ typedef struct
 // custom function struct
 typedef struct
 {
-	void* (*func_ptr)(void*, U8);
+	void (*func_ptr)(void*, U8);
 	U8    func_enabled;
 	void* param_ptr;
-	void* return_val_ptr;
 } CUST_FUNC;
+
+
+// error message struct
+typedef struct
+{
+	U32 last_rx;
+	U8  source_module;
+	U16 parameter;
+	U8  error_id;
+} ERROR_MSG;
 
 
 // request parameter and custom command structs

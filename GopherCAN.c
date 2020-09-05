@@ -8,21 +8,27 @@
 // this will have some auto generated sections
 
 #include "GopherCAN.h"
+//#include "stm32f0xx_hal.h"
 
 // static function prototypes
 static U8   tx_can_message(CAN_MSG* message);
 static void rx_can_message();
+static void parameter_requested(CAN_MSG* message, CAN_ID* id);
+static void run_can_command(CAN_MSG* message, CAN_ID* id);
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static U8   send_error_message(CAN_ID* id, U8 error_id);
 
 
 // fields
-U8 this_modual_id;
+U8 this_module_id;
 
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
 CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
+
+// a struct to store the last error type message received
+ERROR_MSG last_error;
 
 
 // ******** BEGIN AUTO GENERATED ********
@@ -59,15 +65,13 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 //	as a filter
 U8 init_can(U8 module_id)
 {
-	this_modual_id = module_id;
+	this_module_id = module_id;
 
 	// TODO init each parameter struct to diabled
 
 	// TODO set the the registers and filters
 
 	// TODO setup the interrupt function
-
-	// TODO init HAL_TICK
 
 	return NOT_IMPLEMENTED;
 }
@@ -81,7 +85,7 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 	CAN_MSG message;
 	CAN_ID id;
 
-	if (dest_module < 0 || dest_module >= NUM_OF_MODUALS)
+	if (dest_module < 0 || dest_module >= NUM_OF_MODULES)
 	{
 		return BAD_MODULE_ID;
 	}
@@ -93,7 +97,7 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 
 	id.priority = priority;
 	id.dest_module = dest_module;
-	id.source_module = this_modual_id;
+	id.source_module = this_module_id;
 	id.error = FALSE;
 	id.parameter = REQUEST_VALUE_ID;
 
@@ -116,7 +120,7 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 	CAN_MSG message;
 	CAN_ID id;
 
-	if (dest_module < 0 || dest_module >= NUM_OF_MODUALS)
+	if (dest_module < 0 || dest_module >= NUM_OF_MODULES)
 	{
 		return BAD_MODULE_ID;
 	}
@@ -128,7 +132,7 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 
 	id.priority = priority;
 	id.dest_module = dest_module;
-	id.source_module = this_modual_id;
+	id.source_module = this_module_id;
 	id.error = FALSE;
 	id.parameter = CAN_COMMAND_ID;
 
@@ -145,10 +149,10 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 
 // add_custum_can_func
 //  add a user function to the array of functions to check if
-//  a CAN command message is sent. Note the functions must be of type 'void* func(void*, U8)',
+//  a CAN command message is sent. Note the functions must be of type 'void func(void*, U8)',
 //  so structs and casts are needed to get multiple params. The second parameter (U8) will be
 //  sent by the module in the CAN command message
-U8 add_custom_can_func(U8 command_id, void* (*func_ptr)(void*, U8), U8 init_state, void* param_ptr, void* return_val_ptr)
+U8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr)
 {
 	CUST_FUNC* new_cust_func;
 
@@ -164,7 +168,6 @@ U8 add_custom_can_func(U8 command_id, void* (*func_ptr)(void*, U8), U8 init_stat
 	new_cust_func->func_ptr       = func_ptr;
 	new_cust_func->func_enabled   = !!init_state;
 	new_cust_func->param_ptr      = param_ptr;
-	new_cust_func->return_val_ptr = return_val_ptr;
 
 	return SUCCESS;
 }
@@ -173,7 +176,7 @@ U8 add_custom_can_func(U8 command_id, void* (*func_ptr)(void*, U8), U8 init_stat
 // mod_custom_can_func_ptr
 //  change the function pointer, parameter, and return value pointer
 //  for the specified custom CAN function
-U8 mod_custom_can_func_ptr(U8 command_id, void* (*func_ptr)(void*, U8), void* param_ptr, void* return_val_ptr)
+U8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* param_ptr)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -186,7 +189,6 @@ U8 mod_custom_can_func_ptr(U8 command_id, void* (*func_ptr)(void*, U8), void* pa
 	this_cust_func = &(cust_funcs[command_id]);
 	this_cust_func->func_ptr       = func_ptr;
 	this_cust_func->param_ptr      = param_ptr;
-	this_cust_func->return_val_ptr = return_val_ptr;
 
 	return SUCCESS;
 }
@@ -236,7 +238,20 @@ static void rx_can_message()
 
 	get_message_id(&id, &message);
 
-	// TODO what to do if there is an error in the message
+	// if the message received has the error flag high, put the details into the last_error struct, then return
+	if (id.error)
+	{
+		// this could possibly be changed into a ring buffer
+		last_error.last_rx = HAL_GetTick();
+		last_error.source_module = id.source_module;
+		last_error.parameter = id.parameter;
+		if (message.dlc > 0)
+		{
+			last_error.error_id = message.data[0];
+		}
+
+		return;
+	}
 
 	// error checking on the parameter requested
 	if (id.parameter < 0 || id.parameter >= NUM_OF_PARAMETERS)
@@ -248,7 +263,7 @@ static void rx_can_message()
 	
 	// get the associated data struct and set last_rx
 	data_struct = all_parameter_structs[id.parameter];
-	*((U32*)data_struct) = HAL_GetTicks();
+	*((U32*)data_struct) = HAL_GetTick();
 
 	// build the data U64 (big endian)
 	for (c = (message.dlc - 1); c >= 0; c--)
@@ -256,88 +271,22 @@ static void rx_can_message()
 		recieved_data |= message.data[c] << c;
 	}
 
-	// request parameter and commands are handled differently
+	// request parameter: return a CAN message with the data taken from this module
 	if (parameter_data_types[id.parameter] == REQ_PARAM)
 	{
-		U16 parameter_requested;
-		CAN_ID return_id;
-		CAN_MSG return_message;
-		U64 return_data;
-
-		if (message.dlc != REQ_PARAM_SIZE)
-		{
-			send_error_message(&id, SIZE_ERROR);
-
-			return;
-		}
-
-		// find what the parameter is from the data
-		parameter_requested = (message.data[0] << BITS_IN_BYTE) | message.data[1];
-		req_param.parameter_id = parameter_requested;
-
-		if (parameter_requested < RPM_ID || parameter_requested >= NUM_OF_PARAMETERS)
-		{
-			send_error_message(&id, ID_NOT_FOUND);
-			
-			return;
-		}
-
-		// build the return message ID
-		return_id.priority = id.priority;
-		return_id.dest_module = id.source_module;
-		return_id.source_module = this_modual_id;
-		return_id.error = FALSE;
-		return_id.parameter = parameter_requested;
-
-		build_message_id(&return_message, &return_id);
-
-		// get the value of the data on this module and build the CAN message
-		if (parameter_data_types[parameter_requested] == UNSIGNED8
-			|| parameter_data_types[parameter_requested] == SIGNED8)
-		{
-			return_data = *((U8*)(all_parameter_structs[parameter_requested] + DATA_POS));
-			return_message.dlc = sizeof(U8);
-		}
-
-		else if (parameter_data_types[parameter_requested] == UNSIGNED16
-			|| parameter_data_types[parameter_requested] == SIGNED16)
-		{
-			return_data = *((U16*)(all_parameter_structs[parameter_requested] + DATA_POS));
-			return_message.dlc = sizeof(U16);
-		}
-
-		else if (parameter_data_types[parameter_requested] == UNSIGNED32
-			|| parameter_data_types[parameter_requested] == SIGNED32)
-		{
-			return_data = *((U32*)(all_parameter_structs[parameter_requested] + DATA_POS));
-			return_message.dlc = sizeof(U32);
-		}
-
-		else if (parameter_data_types[parameter_requested] == UNSIGNED64
-			|| parameter_data_types[parameter_requested] == SIGNED64)
-		{
-			return_data = *((U64*)(all_parameter_structs[parameter_requested] + DATA_POS));
-			return_message.dlc = sizeof(U64);
-		}
-
-		// build the data in the message (big endian)
-		for (c = return_message.dlc - 1; c >= 0; c--)
-		{
-			return_message.data[c] = (U8)(return_data >> c);
-		}
-
-		// send the built CAN message
-		tx_can_message(&return_message);
-
+		parameter_requested(&message, &id);
 		return;
 	}
 
+	// run command: run the command specified by the CAN message on this module
 	if (parameter_data_types[id.parameter] == COMMAND)
 	{
-		// TODO
+		run_can_command(&message, &id);
 
 		return;
 	}
+
+	// this code should only be reached if the message is a data message
 
 	// Check the update_enabled flag
 	if (!((U8*)(data_struct + UPDATE_ENABLED_POS)))
@@ -387,13 +336,141 @@ static void rx_can_message()
 		break;
 
 	case FLOATING:
+		// TODO union to get the bitwise data of the float
 		*((float*)(data_struct + DATA_POS)) = (float)recieved_data;
 		break;
 
 	default:
-		*((U8*)(data_struct + DATA_POS)) = (U8)recieved_data;
+		send_error_message(&id, DATATYPE_NOT_FOUND);
 		break;
 	}
+}
+
+
+// parameter_requested
+//  return a CAN message with the data taken from this module
+static void parameter_requested(CAN_MSG* message, CAN_ID* id)
+{
+	U16 parameter_requested;
+	CAN_ID return_id;
+	CAN_MSG return_message;
+	U64 return_data = 0;
+	U8 c;
+
+	if (message->dlc != REQ_PARAM_SIZE)
+	{
+		send_error_message(id, SIZE_ERROR);
+
+		return;
+	}
+
+	// find what the parameter is from the data
+	parameter_requested = (message->data[0] << BITS_IN_BYTE) | message->data[1];
+	req_param.parameter_id = parameter_requested;
+
+	if (parameter_requested < RPM_ID || parameter_requested >= NUM_OF_PARAMETERS)
+	{
+		send_error_message(id, ID_NOT_FOUND);
+
+		return;
+	}
+
+	// build the return message ID
+	return_id.priority = id->priority;
+	return_id.dest_module = id->source_module;
+	return_id.source_module = this_module_id;
+	return_id.error = FALSE;
+	return_id.parameter = parameter_requested;
+
+	build_message_id(&return_message, &return_id);
+
+	// get the value of the data on this module and build the CAN message
+	if (parameter_data_types[parameter_requested] == UNSIGNED8
+		|| parameter_data_types[parameter_requested] == SIGNED8)
+	{
+		return_data |= *((U8*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_message.dlc = sizeof(U8);
+	}
+
+	else if (parameter_data_types[parameter_requested] == UNSIGNED16
+		|| parameter_data_types[parameter_requested] == SIGNED16)
+	{
+		return_data |= *((U16*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_message.dlc = sizeof(U16);
+	}
+
+	else if (parameter_data_types[parameter_requested] == UNSIGNED32
+		|| parameter_data_types[parameter_requested] == SIGNED32)
+	{
+		return_data |= *((U32*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_message.dlc = sizeof(U32);
+	}
+
+	else if (parameter_data_types[parameter_requested] == UNSIGNED64
+		|| parameter_data_types[parameter_requested] == SIGNED64)
+	{
+		return_data |= *((U64*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_message.dlc = sizeof(U64);
+	}
+
+	else if (parameter_data_types[parameter_requested] == FLOATING)
+	{
+		// TODO union to get the bitwise data of the float
+		return_data |= *((float*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_message.dlc = sizeof(float);
+	}
+
+	// build the data in the message (big endian)
+	for (c = return_message.dlc - 1; c >= 0; c--)
+	{
+		return_message.data[c] = (U8)(return_data >> c);
+	}
+
+	// send the built CAN message
+	tx_can_message(&return_message);
+
+	return;
+}
+
+
+// run_can_command
+//  run the command specified by the CAN message on this module
+static void run_can_command(CAN_MSG* message, CAN_ID* id)
+{
+	U8 command_id;
+	CUST_FUNC* this_function;
+
+	// DLC error checking
+	if (message->dlc != COMMAND_SIZE)
+	{
+		send_error_message(id, SIZE_ERROR);
+
+		return;
+	}
+
+	// error checking on the command ID
+	command_id = message->data[COMMAND_ID_POS];
+	if (command_id < 0 || command_id >= NUM_OF_COMMANDS)
+	{
+		send_error_message(id, COMMAND_ID_NOT_FOUND);
+
+		return;
+	}
+
+	this_function = &(cust_funcs[command_id]);
+
+	// check if the function is enabled
+	if (!this_function->func_enabled)
+	{
+		send_error_message(id, COMMAND_NOT_ENABLED);
+
+		return;
+	}
+
+	// run the function
+	(*(this_function->func_ptr))(this_function->param_ptr, message->data[COMMAND_PARAMETER_POS]);
+
+	return;
 }
 
 
@@ -472,13 +549,25 @@ static void get_message_id(CAN_ID* id, CAN_MSG* message)
 
 // send_error_message
 //  Sends a return message to the original sender with the ID specified
-static U8 send_error_message(CAN_ID* id, U8 error_id)
+static U8 send_error_message(CAN_ID* rx_id, U8 error_id)
 {
 	CAN_MSG message;
-	CAN_ID id;
+	CAN_ID tx_id;
 
-	// TODO
+	// create the CAN ID for the error message
+	tx_id.priority = rx_id->priority;
+	tx_id.dest_module = rx_id->source_module;
+	tx_id.source_module = this_module_id;
+	tx_id.error = TRUE;
+	tx_id.parameter = rx_id->parameter;
 
+	build_message_id(&message, &tx_id);
+
+	// set the DLC and data
+	message.dlc = sizeof(error_id);
+	message.data[0] = error_id;
+
+	// send the CAN message
 	return tx_can_message(&message);
 }
 

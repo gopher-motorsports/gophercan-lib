@@ -15,7 +15,7 @@ U8 can_func_ret_val;
 
 U8 last_fan_current;
 
-void* inc_variable(void* parameter, U8 remote_param);
+void inc_variable(void* parameter, U8 remote_param);
 
 // init
 //  examples of things to be called on startup
@@ -34,7 +34,7 @@ void init()
 
 	// add can_callback_function
 	if (add_custom_can_func(INC_VARIABLE, &inc_variable,
-			TRUE, (void*)&can_func_param, (void*)&can_func_ret_val))
+			TRUE, (void*)&can_func_param))
 	{
 		// an error has occurred
 	}
@@ -45,11 +45,7 @@ void init()
 //  a lower priority loop
 void background_loop()
 {
-	// update EDL variables. This is subject to change
-	if (update_general_target_can())
-	{
-		// an error has occurred
-	}
+
 }
 
 
@@ -90,14 +86,14 @@ void main_loop()
 //  the command CAN message will also include a U8 to be
 //  used as a parameter for the function. It is not used in
 //  this example
-void* inc_variable(void* parameter, U8 remote_param)
+void inc_variable(void* parameter, U8 remote_param)
 {
-	U8 i, j;
+	U8 i;
 
 	i = *(U8*)parameter;
-	j = i + 1;
+	i = i + 1;
 
-	return (void*)&j;
+	return;
 }
 
 
