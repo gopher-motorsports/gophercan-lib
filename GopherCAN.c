@@ -336,8 +336,11 @@ static void rx_can_message()
 		break;
 
 	case FLOATING:
-		// TODO union to get the bitwise data of the float
-		*((float*)(data_struct + DATA_POS)) = (float)recieved_data;
+		// Union to get the bitwise data of the float
+		FLOAT_CONVERTER float_con;
+		float_con.u32 = (U32)recieved_data;
+
+		*((float*)(data_struct + DATA_POS)) = float_con.f;
 		break;
 
 	default:
@@ -415,8 +418,11 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 
 	else if (parameter_data_types[parameter_requested] == FLOATING)
 	{
-		// TODO union to get the bitwise data of the float
-		return_data |= *((float*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		// Union to get the bitwise data of the float
+		FLOAT_CONVERTER float_con;
+		float_con.f = *((float*)(all_parameter_structs[parameter_requested] + DATA_POS));
+
+		return_data |= float_con.u32;
 		return_message.dlc = sizeof(float);
 	}
 

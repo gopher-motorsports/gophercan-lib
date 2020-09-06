@@ -153,6 +153,14 @@ typedef enum
 #define DATA_POS 6
 
 
+// float/U32 converter union
+typedef union
+{
+	float f;
+	U32 u32;
+} FLOAT_CONVERTER;
+
+
 // CAN message struct
 typedef struct
 {
