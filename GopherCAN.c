@@ -8,7 +8,7 @@
 // this will have some auto generated sections
 
 #include "GopherCAN.h"
-//#include "stm32f0xx_hal.h"
+#include "stm32f0xx_hal.h"
 
 // static function prototypes
 static U8   tx_can_message(CAN_MSG* message);
@@ -65,9 +65,21 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 //	as a filter
 U8 init_can(U8 module_id)
 {
+	int c;
+	CAN_INFO_STRUCT* data_struct;
+
+	// set the current module
 	this_module_id = module_id;
 
-	// TODO init each parameter struct to diabled
+	// disable each parameter until the user manually enables them
+	for (c = 0; c < NUM_OF_PARAMETERS; c++)
+	{
+		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs + c);
+
+		data_struct->last_rx = 0;
+		data_struct->update_enabled = FALSE;
+		data_struct->pending_response = FALSE;
+	}
 
 	// TODO set the the registers and filters
 
@@ -169,7 +181,7 @@ U8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state
 	new_cust_func->func_enabled   = !!init_state;
 	new_cust_func->param_ptr      = param_ptr;
 
-	return SUCCESS;
+	return CAN_SUCCESS;
 }
 
 
@@ -190,7 +202,7 @@ U8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* par
 	this_cust_func->func_ptr       = func_ptr;
 	this_cust_func->param_ptr      = param_ptr;
 
-	return SUCCESS;
+	return CAN_SUCCESS;
 }
 
 
@@ -209,7 +221,7 @@ U8 mod_custom_can_func_state(U8 command_id, U8 state)
 	this_cust_func = &(cust_funcs[command_id]);
 	this_cust_func->func_enabled = !!state;
 
-	return SUCCESS;
+	return CAN_SUCCESS;
 }
 
 
@@ -232,7 +244,8 @@ static void rx_can_message()
 	CAN_ID id;
 	U64 recieved_data = 0;
 	U8 c;
-	void* data_struct = 0;
+	CAN_INFO_STRUCT* data_struct = 0;
+	FLOAT_CONVERTER float_con;
 
 	// TODO build the message from the registers on the STM32
 
@@ -262,8 +275,8 @@ static void rx_can_message()
 	}
 	
 	// get the associated data struct and set last_rx
-	data_struct = all_parameter_structs[id.parameter];
-	*((U32*)data_struct) = HAL_GetTick();
+	data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[id.parameter]);
+	data_struct->last_rx = HAL_GetTick();
 
 	// build the data U64 (big endian)
 	for (c = (message.dlc - 1); c >= 0; c--)
@@ -282,65 +295,62 @@ static void rx_can_message()
 	if (parameter_data_types[id.parameter] == COMMAND)
 	{
 		run_can_command(&message, &id);
-
 		return;
 	}
 
 	// this code should only be reached if the message is a data message
 
 	// Check the update_enabled flag
-	if (!((U8*)(data_struct + UPDATE_ENABLED_POS)))
+	if (!(data_struct->update_enabled))
 	{
 		send_error_message(&id, PARAM_NOT_ENABLED);
-		
 		return;
 	}
 
 	// Switch the pending_response flag
-	*((U8*)(data_struct + PENDING_RESPONSE_POS)) = FALSE;
+	data_struct->pending_response = FALSE;
 
 	// this switch will handle all of the different possible data types
 	// that can be sent over CAN
 	switch (parameter_data_types[id.parameter])
 	{
 	case UNSIGNED8:
-		*((U8*)(data_struct + DATA_POS)) = (U8)recieved_data;
+		((U8_CAN_STRUCT*)(data_struct))->data = (U8)recieved_data;
 		return;
 
 	case UNSIGNED16:
-		*((U16*)(data_struct + DATA_POS)) = (U16)recieved_data;
+		((U16_CAN_STRUCT*)(data_struct))->data = (U16)recieved_data;
 		return;
 
 	case UNSIGNED32:
-		*((U32*)(data_struct + DATA_POS)) = (U32)recieved_data;
+		((U32_CAN_STRUCT*)(data_struct))->data = (U32)recieved_data;
 		return;
 
 	case UNSIGNED64:
-		*((U64*)(data_struct + DATA_POS)) = (U64)recieved_data;
+		((U64_CAN_STRUCT*)(data_struct))->data = (U64)recieved_data;
 		return;
 
 	case SIGNED8:
-		*((S8*)(data_struct + DATA_POS)) = (S8)recieved_data;
+		((S8_CAN_STRUCT*)(data_struct))->data = (S8)recieved_data;
 		break;
 
 	case SIGNED16:
-		*((S16*)(data_struct + DATA_POS)) = (S16)recieved_data;
+		((S16_CAN_STRUCT*)(data_struct))->data = (S16)recieved_data;
 		break;
 
 	case SIGNED32:
-		*((S32*)(data_struct + DATA_POS)) = (S32)recieved_data;
+		((S32_CAN_STRUCT*)(data_struct))->data = (S32)recieved_data;
 		break;
 
 	case SIGNED64:
-		*((S64*)(data_struct + DATA_POS)) = (S64)recieved_data;
+		((S64_CAN_STRUCT*)(data_struct))->data = (S64)recieved_data;
 		break;
 
 	case FLOATING:
 		// Union to get the bitwise data of the float
-		FLOAT_CONVERTER float_con;
 		float_con.u32 = (U32)recieved_data;
 
-		*((float*)(data_struct + DATA_POS)) = float_con.f;
+		((FLOAT_CAN_STRUCT*)(data_struct))->data = float_con.f;
 		break;
 
 	default:
@@ -359,6 +369,7 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	CAN_MSG return_message;
 	U64 return_data = 0;
 	U8 c;
+	FLOAT_CONVERTER float_con;
 
 	if (message->dlc != REQ_PARAM_SIZE)
 	{
@@ -391,36 +402,35 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	if (parameter_data_types[parameter_requested] == UNSIGNED8
 		|| parameter_data_types[parameter_requested] == SIGNED8)
 	{
-		return_data |= *((U8*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_data |= ((U8_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
 		return_message.dlc = sizeof(U8);
 	}
 
 	else if (parameter_data_types[parameter_requested] == UNSIGNED16
 		|| parameter_data_types[parameter_requested] == SIGNED16)
 	{
-		return_data |= *((U16*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_data |= ((U16_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
 		return_message.dlc = sizeof(U16);
 	}
 
 	else if (parameter_data_types[parameter_requested] == UNSIGNED32
 		|| parameter_data_types[parameter_requested] == SIGNED32)
 	{
-		return_data |= *((U32*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_data |= ((U32_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
 		return_message.dlc = sizeof(U32);
 	}
 
 	else if (parameter_data_types[parameter_requested] == UNSIGNED64
 		|| parameter_data_types[parameter_requested] == SIGNED64)
 	{
-		return_data |= *((U64*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		return_data |= ((U64_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
 		return_message.dlc = sizeof(U64);
 	}
 
 	else if (parameter_data_types[parameter_requested] == FLOATING)
 	{
 		// Union to get the bitwise data of the float
-		FLOAT_CONVERTER float_con;
-		float_con.f = *((float*)(all_parameter_structs[parameter_requested] + DATA_POS));
+		float_con.f = ((FLOAT_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
 
 		return_data |= float_con.u32;
 		return_message.dlc = sizeof(float);
@@ -434,7 +444,6 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 
 	// send the built CAN message
 	tx_can_message(&return_message);
-
 	return;
 }
 

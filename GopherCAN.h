@@ -66,7 +66,7 @@ U8 mod_custom_can_func_state(U8 func_id, U8 state);
 
 
 // return messages
-#define SUCCESS             0
+#define CAN_SUCCESS         0
 #define INIT_FAILED        -1
 #define BAD_MODULE_ID      -2
 #define BAD_PARAMETER_ID   -3
@@ -146,13 +146,6 @@ typedef enum
 #define U8_MAX 0xFF
 
 
-// struct position defines. Add these to the begining of the struct pointer
-#define LAST_RX_POS 0
-#define UPDATE_ENABLED_POS 4
-#define PENDING_RESPONSE_POS 5
-#define DATA_POS 6
-
-
 // float/U32 converter union
 typedef union
 {
@@ -213,6 +206,15 @@ typedef struct
 	U8  command_id;
 	U8  command_parameter;
 } CAN_COMMAND_STRUCT;
+
+
+// a struct with only the information about each CAN struct, without the data
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+} CAN_INFO_STRUCT;
 
 
 // parameter structs
