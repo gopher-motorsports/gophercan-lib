@@ -11,7 +11,6 @@
 #define GOPHERCAN_H_
 
 #include "..\\C-Utils\\base_types.h"
-//#include "base_types.h"
 
 // function prototypes
 U8 init_can(U8 module_id);
@@ -20,6 +19,7 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 U8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 U8 mod_custom_can_func_ptr(U8 func_id, void (*func_ptr)(void*, U8), void* param_ptr);
 U8 mod_custom_can_func_state(U8 func_id, U8 state);
+void HAL_CAN_RxCallback();
 
 
 // ******** BEGIN AUTO GENERATED ********
@@ -71,7 +71,11 @@ U8 mod_custom_can_func_state(U8 func_id, U8 state);
 #define BAD_MODULE_ID      -2
 #define BAD_PARAMETER_ID   -3
 #define BAD_COMMAND_ID     -4
-#define NOT_IMPLEMENTED    -11
+#define FILTER_SET_FAILED  -5
+#define IRQ_SET_FAILED     -6
+#define CAN_START_FAILED   -7
+#define TX_MAILBOXES_FULL  -8
+#define TX_PROBLEM_ADDING  -9
 
 
 // Data types
@@ -144,6 +148,7 @@ typedef enum
 // general defines
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
+#define CAN_INTERRUPT_PRIO 0
 
 
 // float/U32 converter union

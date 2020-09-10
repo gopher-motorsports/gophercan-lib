@@ -9,10 +9,10 @@
 
 #include "GopherCAN.h"
 #include "stm32f0xx_hal.h"
+#include "stm32f0xx_hal_can.h"
 
 // static function prototypes
 static U8   tx_can_message(CAN_MSG* message);
-static void rx_can_message();
 static void parameter_requested(CAN_MSG* message, CAN_ID* id);
 static void run_can_command(CAN_MSG* message, CAN_ID* id);
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
@@ -29,6 +29,9 @@ CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
 
 // a struct to store the last error type message received
 ERROR_MSG last_error;
+
+// the HAL_CAN struct
+extern CAN_HandleTypeDef hcan;
 
 
 // ******** BEGIN AUTO GENERATED ********
@@ -62,11 +65,17 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 
 // init_can
 // 	This function will set up the CAN registers with the inputed module_id
-//	as a filter
+//	as a filter. All parameters that should be enabled should be set after
+//  calling this function
 U8 init_can(U8 module_id)
 {
-	int c;
+	U8 c;
 	CAN_INFO_STRUCT* data_struct;
+	CAN_FilterTypeDef filterConfig;
+	U32 filt_id_low;
+	U32 filt_id_high;
+	U32 filt_mask_high;
+	U32 filt_mask_low;
 
 	// set the current module
 	this_module_id = module_id;
@@ -81,11 +90,46 @@ U8 init_can(U8 module_id)
 		data_struct->pending_response = FALSE;
 	}
 
-	// TODO set the the registers and filters
+	// Define the filter values based on this_module_id
+	// High and low id are the same because the id exclusively must be the module id
+	filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+	filt_id_high = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);;
+	filt_mask_low = DEST_MASK;
+	filt_mask_high = DEST_MASK;
 
-	// TODO setup the interrupt function
+	// Set the the parameters on the filter struct
+	filterConfig.FilterBank = 0;                                      // Modify bank 0
+	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // enable FIFO, don't use a stack
+	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
+	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
+	filterConfig.FilterIdLow = filt_id_low;                           // Low bound of accepted values
+	filterConfig.FilterIdHigh = filt_id_high;                         // High bound of accepted values
+	filterConfig.FilterMaskIdLow = filt_mask_low;                     // Which bits matter when filtering (high)
+	filterConfig.FilterMaskIdHigh = filt_mask_high;                   // Which bits matter when filtering (low)
 
-	return NOT_IMPLEMENTED;
+	if (HAL_CAN_ConfigFilter(&hcan, &filterConfig) != HAL_OK)
+	{
+		return FILTER_SET_FAILED;
+	}
+
+	// Setup the rx interrupt function to interrupt on any pending message
+	// will supposedly call methods following the format HAL_CAN_xxxCallback()
+	HAL_NVIC_SetPriority(CEC_CAN_IRQn, CAN_INTERRUPT_PRIO, 0);
+	HAL_NVIC_EnableIRQ(CEC_CAN_IRQn);
+	HAL_CAN_IRQHandler(&hcan);
+	if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+	{
+		return IRQ_SET_FAILED;
+	}
+
+	// start can!
+	if (HAL_CAN_Start(&hcan) != HAL_OK)
+	{
+		return CAN_START_FAILED;
+	}
+
+	return CAN_SUCCESS;
 }
 
 
@@ -229,25 +273,65 @@ U8 mod_custom_can_func_state(U8 command_id, U8 state)
 //  Takes in a CAN_MSG struct, modifies registers accordingly
 static U8 tx_can_message(CAN_MSG* message)
 {
-	// TODO
+	CAN_TxHeaderTypeDef header;
+	U32 tx_mailbox;
 
-	return NOT_IMPLEMENTED;
+	// configure the settings of the CAN message
+	header.IDE = CAN_ID_EXT;                                          // 29 bit id
+	header.RTR = CAN_RTR_DATA;                                        // sending data
+	header.TransmitGlobalTime = DISABLE;                              // do not send a timestamp
+
+	header.ExtId = message->id;
+	header.DLC = message->dlc;
+
+	// choose the first empty sending mailbox
+	if (!HAL_CAN_IsTxMessagePending(&hcan, CAN_TX_MAILBOX0))
+	{
+		tx_mailbox = CAN_TX_MAILBOX0;
+	}
+	else if (!HAL_CAN_IsTxMessagePending(&hcan, CAN_TX_MAILBOX1))
+	{
+		tx_mailbox = CAN_TX_MAILBOX1;
+	}
+	else if (!HAL_CAN_IsTxMessagePending(&hcan, CAN_TX_MAILBOX2))
+	{
+		tx_mailbox = CAN_TX_MAILBOX2;
+	}
+	else
+	{
+		// all mailboxes are full
+		return TX_MAILBOXES_FULL;
+	}
+
+	// add the message to the sending list
+	if (HAL_CAN_AddTxMessage(&hcan, &header, message->data, &tx_mailbox) != HAL_OK)
+	{
+		return TX_PROBLEM_ADDING;
+	}
+
+	return CAN_SUCCESS;
 }
 
 
-// rx_can_message
+// HAL_CAN_RxCallback
 //  CAN message bus interrupt function this will update all
 //  the global variables or trigger the CAN functions if needed
-static void rx_can_message()
+void HAL_CAN_RxCallback()
 {
 	CAN_MSG message;
 	CAN_ID id;
+	CAN_RxHeaderTypeDef header;
 	U64 recieved_data = 0;
 	U8 c;
 	CAN_INFO_STRUCT* data_struct = 0;
 	FLOAT_CONVERTER float_con;
 
-	// TODO build the message from the registers on the STM32
+	// Build the message from the registers on the STM32
+	HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO1, &header, message.data);
+
+	// convert the data into the GopherCAN id and message
+	message.id = header.ExtId;
+	message.dlc = header.DLC;
 
 	get_message_id(&id, &message);
 
