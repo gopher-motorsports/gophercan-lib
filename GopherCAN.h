@@ -10,7 +10,7 @@
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
-#include "..\\C-Utils\\base_types.h"
+#include "base_types.h"
 
 // function prototypes
 U8 init_can(U8 module_id);
@@ -50,7 +50,7 @@ void HAL_CAN_RxCallback();
 
 // custom command IDs
 #define INC_VARIABLE   0
-#define TURN_FAN_OFF   1
+#define SET_LED_STATE  1
 #define CUST_COMMAND_2 2
 
 

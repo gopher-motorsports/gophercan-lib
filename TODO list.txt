@@ -1,8 +1,9 @@
 
 GopherCAN TODO list:
  - Tool that will auto-generate code from the .XLSX table
- - Split up auto generated sections of .c/.h
+ - Split up auto generated sections of .c/.h ?
  - Possible #ifdefs for what CAN messages/parameters each modual should handle
  - EDL communication (possibly directly to PDM)
  - Create and execute test plans
  - Command to constantly request Data
+ - RX interrupts may not work correcty

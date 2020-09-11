@@ -20,7 +20,7 @@ static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static U8   send_error_message(CAN_ID* id, U8 error_id);
 
 
-// fields
+// what module this is configured to be
 U8 this_module_id;
 
 // all of the custom functions and an array to enable or disable
@@ -67,6 +67,10 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 // 	This function will set up the CAN registers with the inputed module_id
 //	as a filter. All parameters that should be enabled should be set after
 //  calling this function
+// params:
+//  U8 module_id: what module this is (ex. PDM_ID, ACM_ID)
+// returns:
+//  error codes specified in GopherCAN.h
 U8 init_can(U8 module_id)
 {
 	U8 c;
@@ -136,6 +140,12 @@ U8 init_can(U8 module_id)
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
 //	given by the parameter ID from the module specified by the module ID
+// params:
+//  U8 priority:    PRIO_LOW or PRIO_HIGH
+//  U8 dest_module: what module to request the parameter from
+//  U16 parameter:  what parameter to request
+// returns:
+//  error codes specified in GopherCAN.h
 U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 {
 	CAN_MSG message;
@@ -146,7 +156,7 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 		return BAD_MODULE_ID;
 	}
 
-	if (parameter < 0 || parameter >= NUM_OF_PARAMETERS)
+	if (parameter <= CAN_COMMAND_ID || parameter >= NUM_OF_PARAMETERS)
 	{
 		return BAD_PARAMETER_ID;
 	}
@@ -171,6 +181,13 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 // send_can_command
 //	This function will send a CAN message with a command specified
 //	by command_id to the specified module
+// params:
+//  U8 priority:          PRIO_LOW or PRIO_HIGH
+//  U8 dest_module:       what module to send the command to
+//  U8 command_id:        what command the module should run
+//  U8 command_parameter: the parameter to run the function with. May not be used depending on the function
+// returns:
+//  error codes specified in GopherCAN.h
 U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter)
 {
 	CAN_MSG message;
@@ -208,6 +225,14 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 //  a CAN command message is sent. Note the functions must be of type 'void func(void*, U8)',
 //  so structs and casts are needed to get multiple params. The second parameter (U8) will be
 //  sent by the module in the CAN command message
+// params:
+//  U8 command_id:               what command ID is being defined
+//  void (*func_ptr)(void*, U8): the pointer to the function that should be run if this command_id is called
+//  U8 init_state:               TRUE or FALSE, whether to start with the command enabled
+//  void* param_ptr:             pointer to the parameter that should be used. This can point to any
+//                                data type (including nullptr) as long as it is casted correctly
+// returns:
+//  error codes specified in GopherCAN.h
 U8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr)
 {
 	CUST_FUNC* new_cust_func;
@@ -232,6 +257,12 @@ U8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state
 // mod_custom_can_func_ptr
 //  change the function pointer, parameter, and return value pointer
 //  for the specified custom CAN function
+// params:
+//  U8 command_id:               what command should be modified
+//  void (*func_ptr)(void*, U8): changes what function is pointed to by this command ID
+//  void* param_ptr:             changes the parameter pointer
+// returns:
+//  error codes specified in GopherCAN.h
 U8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* param_ptr)
 {
 	CUST_FUNC* this_cust_func;
@@ -252,6 +283,11 @@ U8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* par
 
 // mod_custom_can_func_state
 //  change the state (enabled or disabled) of the specified custom CAN function
+// params:
+//  U8 command_id: what command ID should have its state modified
+//  U8 state:      TRUE or FALSE. what state to set this command to
+// returns:
+//  error codes specified in GopherCAN.h
 U8 mod_custom_can_func_state(U8 command_id, U8 state)
 {
 	CUST_FUNC* this_cust_func;

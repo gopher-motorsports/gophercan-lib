@@ -6,35 +6,47 @@
  */
 
 #include "GopherCAN.h"
+#include "stm32f0xx_hal.h"
 
+
+// each parameter used will need to be pulled from GopherCAN.c
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
 
-U8 can_func_param;
-U8 can_func_ret_val;
 
-U8 last_fan_current;
+// some defines used for examples
+#define MIN_ON_RPM 100
+#define FAN_CURRENT_UPDATE_TIME 1000
 
-void inc_variable(void* parameter, U8 remote_param);
+// some global variables for examples
+U16 led_to_change;
+U32 last_fan_current_rx = 0;
+
+// the CAN callback function used in this example
+void change_led_state(void* parameter, U8 remote_param);
 
 // init
-//  examples of things to be called on startup
+//  What needs to happen on startup in order to run GopherCAN
 void init()
 {
 	// initialize CAN
+	// NOTE: CAN will also need to be added in CubeMX and code must be generated
+	// TODO add a link of a good video showing how to set up CAN (once done successfully)
 	if (init_can(ACM_ID))
 	{
 		// an error has occurred
 	}
 
-	// enable updating the RPM from the EDL
+	// enable updating the RPM and fan_current. Parameters that are not added to this list
+	// will not be updated over can, even if they are requested
 	rpm.update_enabled = TRUE;
+	fan_current.update_enabled = TRUE;
 
-	// TODO define target for what each module needs (conditional defines)
+	// adding can_callback_function
+	led_to_change = 0; // TODO what gpio pin
 
-	// add can_callback_function
-	if (add_custom_can_func(INC_VARIABLE, &inc_variable,
-			TRUE, (void*)&can_func_param))
+	if (add_custom_can_func(SET_LED_STATE, &change_led_state,
+		TRUE, (void*)&led_to_change))
 	{
 		// an error has occurred
 	}
@@ -42,10 +54,15 @@ void init()
 
 
 // backround_loop
-//  a lower priority loop
+//  this loop should request parameters that need to be consistently up to date for
+//  other parts of the program
 void background_loop()
 {
-
+	// always request rpm from the PDM at 1ms intervals
+	if (request_parameter(PRIO_HIGH, PDM_ID, RPM_ID))
+	{
+		// an error has occurred
+	}
 }
 
 
@@ -53,47 +70,68 @@ void background_loop()
 //  a higher priority logic loop
 void main_loop()
 {
-	// Example accessing updating parameters
-	if (rpm.data == 0)
+	U8 button_1_state;
+	U8 button_2_state;
+	U8 foo;
+
+	// Example accessing updating parameters that are requested in another loop
+	if (rpm.data <= MIN_ON_RPM)
 	{
 		// if the engine is off
 	}
 
-	// request a parameter. The associated struct will be updated
-	if (fan_current.pending_response == FALSE)
+	// Example of requesting a parameter in runtime. This example
+	// uses time, but logic could be used as well
+	if (last_fan_current_rx - HAL_GetTick() >= FAN_CURRENT_UPDATE_TIME)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, FAN_CURRENT_ID);
+		// don't send another data request if the request is already pending
+		// A timeout may also be worth including just in case something goes wrong
+		if (fan_current.pending_response == FALSE)
+		{
+			if (request_parameter(PRIO_HIGH, PDM_ID, FAN_CURRENT_ID))
+			{
+				// error handling
+			}
+		}
+
+		// use the fan current for something
+		foo = fan_current.data;
+
+		// update the last time the fan current was received. fan_current.last_rx cannot be
+		// used directly in this case because the code inside the if statement may not be run
+		// if it updates at a bad time
+		last_fan_current_rx = fan_current.last_rx;
 	}
 
-	// access that parameter when the update has been received.
-	// This logic can be done in many different ways
-	if (last_fan_current != fan_current.data)
-	{
-		last_fan_current = fan_current.data;
-	}
+	// If the button is pressed send a can command to another to change the LED state
+	// To on or off depending on the second button
 
-	// send a can command to another module
-	if (send_can_command(PRIO_LOW, PDM_ID, TURN_FAN_OFF, 0))
+	// TODO get button 1 and 2 state
+
+	if (button_1_state
+		&& send_can_command(PRIO_LOW, PDM_ID, SET_LED_STATE, button_2_state))
 	{
 		// error sending command
 	}
 }
 
+// can_callback_function example
 
-// can_callback_function
-//  a custom function that will return the input + 1
-//  note void pointers are passed in and returned
-//  the command CAN message will also include a U8 to be
-//  used as a parameter for the function. It is not used in
-//  this example
-void inc_variable(void* parameter, U8 remote_param)
+// change_led_state
+//  a custom function that will change the state of the LED specified
+//  by parameter to remote_param. In this case parameter is a U16*, but
+//  any data type can be pointed to, as long as it is configured and casted
+//  correctly
+void change_led_state(void* parameter, U8 remote_param)
 {
-	U8 i;
+	// this function will set the LED to high or low, depending on remote_param
+	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))
+	U16 gpio_pin = *((U16*)parameter);
 
-	i = *(U8*)parameter;
-	i = i + 1;
+	HAL_GPIO_WritePin(GPIOA, gpio_pin, !!remote_param);
 
 	return;
 }
 
 
+// end of GopherCAN_example.c
