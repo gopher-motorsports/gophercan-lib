@@ -10,15 +10,16 @@
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
+//#include "..\\C-Utils\\base_types.h"
 #include "base_types.h"
 
 // function prototypes
-U8 init_can(U8 module_id);
-U8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
-U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
-U8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
-U8 mod_custom_can_func_ptr(U8 func_id, void (*func_ptr)(void*, U8), void* param_ptr);
-U8 mod_custom_can_func_state(U8 func_id, U8 state);
+S8 init_can(U8 module_id);
+S8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
+S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
+S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
+S8 mod_custom_can_func_ptr(U8 func_id, void (*func_ptr)(void*, U8), void* param_ptr);
+S8 mod_custom_can_func_state(U8 func_id, U8 state);
 void HAL_CAN_RxCallback();
 
 

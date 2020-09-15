@@ -12,12 +12,12 @@
 #include "stm32f0xx_hal_can.h"
 
 // static function prototypes
-static U8   tx_can_message(CAN_MSG* message);
+static S8   tx_can_message(CAN_MSG* message);
 static void parameter_requested(CAN_MSG* message, CAN_ID* id);
 static void run_can_command(CAN_MSG* message, CAN_ID* id);
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
-static U8   send_error_message(CAN_ID* id, U8 error_id);
+static S8   send_error_message(CAN_ID* id, U8 error_id);
 
 
 // what module this is configured to be
@@ -71,7 +71,7 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 //  U8 module_id: what module this is (ex. PDM_ID, ACM_ID)
 // returns:
 //  error codes specified in GopherCAN.h
-U8 init_can(U8 module_id)
+S8 init_can(U8 module_id)
 {
 	U8 c;
 	CAN_INFO_STRUCT* data_struct;
@@ -146,7 +146,7 @@ U8 init_can(U8 module_id)
 //  U16 parameter:  what parameter to request
 // returns:
 //  error codes specified in GopherCAN.h
-U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
+S8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -188,7 +188,7 @@ U8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 //  U8 command_parameter: the parameter to run the function with. May not be used depending on the function
 // returns:
 //  error codes specified in GopherCAN.h
-U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter)
+S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -233,7 +233,7 @@ U8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 //                                data type (including nullptr) as long as it is casted correctly
 // returns:
 //  error codes specified in GopherCAN.h
-U8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr)
+S8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr)
 {
 	CUST_FUNC* new_cust_func;
 
@@ -263,7 +263,7 @@ U8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state
 //  void* param_ptr:             changes the parameter pointer
 // returns:
 //  error codes specified in GopherCAN.h
-U8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* param_ptr)
+S8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* param_ptr)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -288,7 +288,7 @@ U8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* par
 //  U8 state:      TRUE or FALSE. what state to set this command to
 // returns:
 //  error codes specified in GopherCAN.h
-U8 mod_custom_can_func_state(U8 command_id, U8 state)
+S8 mod_custom_can_func_state(U8 command_id, U8 state)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -307,7 +307,7 @@ U8 mod_custom_can_func_state(U8 command_id, U8 state)
 
 // tx_can_message
 //  Takes in a CAN_MSG struct, modifies registers accordingly
-static U8 tx_can_message(CAN_MSG* message)
+static S8 tx_can_message(CAN_MSG* message)
 {
 	CAN_TxHeaderTypeDef header;
 	U32 tx_mailbox;
@@ -684,7 +684,7 @@ static void get_message_id(CAN_ID* id, CAN_MSG* message)
 
 // send_error_message
 //  Sends a return message to the original sender with the ID specified
-static U8 send_error_message(CAN_ID* rx_id, U8 error_id)
+static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 {
 	CAN_MSG message;
 	CAN_ID tx_id;
