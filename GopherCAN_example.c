@@ -7,16 +7,15 @@
 
 #include "GopherCAN.h"
 #include "stm32f0xx_hal.h"
+#include "GopherCAN_example.h"
 
 
 // each parameter used will need to be pulled from GopherCAN.c
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
 
+extern CAN_HandleTypeDef hcan;
 
-// some defines used for examples
-#define MIN_ON_RPM 100
-#define FAN_CURRENT_UPDATE_TIME 1000
 
 // some global variables for examples
 U16 led_to_change;
@@ -63,6 +62,8 @@ void background_loop()
 	{
 		// an error has occurred
 	}
+
+	//send_can_command(PRIO_LOW, ACM_ID, SET_LED_STATE, 1);
 }
 
 

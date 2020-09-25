@@ -85,26 +85,33 @@ S8 init_can(U8 module_id)
 	this_module_id = module_id;
 
 	// disable each parameter until the user manually enables them
-	for (c = 0; c < NUM_OF_PARAMETERS; c++)
+	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
 	{
-		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs + c);
+		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs + (c * sizeof(void*)));
 
 		data_struct->last_rx = 0;
 		data_struct->update_enabled = FALSE;
 		data_struct->pending_response = FALSE;
 	}
 
+	// start can!
+	if (HAL_CAN_Start(&hcan) != HAL_OK)
+	{
+		return CAN_START_FAILED;
+	}
+
 	// Define the filter values based on this_module_id
 	// High and low id are the same because the id exclusively must be the module id
 	filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
-	filt_id_high = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);;
+	filt_id_high = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
 	filt_mask_low = DEST_MASK;
 	filt_mask_high = DEST_MASK;
 
 	// Set the the parameters on the filter struct
 	filterConfig.FilterBank = 0;                                      // Modify bank 0
-	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // enable FIFO, don't use a stack
+	//filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
+	filterConfig.FilterActivation = CAN_FILTER_DISABLE;
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // enable FIFO, don't use a stack
 	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
 	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
 	filterConfig.FilterIdLow = filt_id_low;                           // Low bound of accepted values
@@ -125,12 +132,6 @@ S8 init_can(U8 module_id)
 	if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
 	{
 		return IRQ_SET_FAILED;
-	}
-
-	// start can!
-	if (HAL_CAN_Start(&hcan) != HAL_OK)
-	{
-		return CAN_START_FAILED;
 	}
 
 	return CAN_SUCCESS;
@@ -166,6 +167,10 @@ S8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 	id.source_module = this_module_id;
 	id.error = FALSE;
 	id.parameter = REQUEST_VALUE_ID;
+
+	// set the pending response to true for this parameter, will be set to true once
+	// the value is recieved from the CAN bus
+	((CAN_INFO_STRUCT*)(all_parameter_structs[parameter]))->pending_response = TRUE;
 
 	build_message_id(&message, &id);
 
@@ -224,7 +229,8 @@ S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 //  add a user function to the array of functions to check if
 //  a CAN command message is sent. Note the functions must be of type 'void func(void*, U8)',
 //  so structs and casts are needed to get multiple params. The second parameter (U8) will be
-//  sent by the module in the CAN command message
+//  sent by the module in the CAN command message. This function can also be called to overwrite
+//  or modify existing custom commands
 // params:
 //  U8 command_id:               what command ID is being defined
 //  void (*func_ptr)(void*, U8): the pointer to the function that should be run if this command_id is called
@@ -249,33 +255,6 @@ S8 add_custom_can_func(U8 command_id, void (*func_ptr)(void*, U8), U8 init_state
 	new_cust_func->func_ptr       = func_ptr;
 	new_cust_func->func_enabled   = !!init_state;
 	new_cust_func->param_ptr      = param_ptr;
-
-	return CAN_SUCCESS;
-}
-
-
-// mod_custom_can_func_ptr
-//  change the function pointer, parameter, and return value pointer
-//  for the specified custom CAN function
-// params:
-//  U8 command_id:               what command should be modified
-//  void (*func_ptr)(void*, U8): changes what function is pointed to by this command ID
-//  void* param_ptr:             changes the parameter pointer
-// returns:
-//  error codes specified in GopherCAN.h
-S8 mod_custom_can_func_ptr(U8 command_id, void (*func_ptr)(void*, U8), void* param_ptr)
-{
-	CUST_FUNC* this_cust_func;
-
-	// make sure the ID is valid
-	if (command_id < 0 || command_id >= NUM_OF_COMMANDS)
-	{
-		return BAD_COMMAND_ID;
-	}
-
-	this_cust_func = &(cust_funcs[command_id]);
-	this_cust_func->func_ptr       = func_ptr;
-	this_cust_func->param_ptr      = param_ptr;
 
 	return CAN_SUCCESS;
 }
@@ -320,24 +299,8 @@ static S8 tx_can_message(CAN_MSG* message)
 	header.ExtId = message->id;
 	header.DLC = message->dlc;
 
-	// choose the first empty sending mailbox
-	if (!HAL_CAN_IsTxMessagePending(&hcan, CAN_TX_MAILBOX0))
-	{
-		tx_mailbox = CAN_TX_MAILBOX0;
-	}
-	else if (!HAL_CAN_IsTxMessagePending(&hcan, CAN_TX_MAILBOX1))
-	{
-		tx_mailbox = CAN_TX_MAILBOX1;
-	}
-	else if (!HAL_CAN_IsTxMessagePending(&hcan, CAN_TX_MAILBOX2))
-	{
-		tx_mailbox = CAN_TX_MAILBOX2;
-	}
-	else
-	{
-		// all mailboxes are full
-		return TX_MAILBOXES_FULL;
-	}
+	// wait until there is a free mailbox (TODO currently no mailboxes are emptied, so once three messages are sent this loops forever)
+	while (!HAL_CAN_GetTxMailboxesFreeLevel(&hcan));
 
 	// add the message to the sending list
 	if (HAL_CAN_AddTxMessage(&hcan, &header, message->data, &tx_mailbox) != HAL_OK)
@@ -352,7 +315,7 @@ static S8 tx_can_message(CAN_MSG* message)
 // HAL_CAN_RxCallback
 //  CAN message bus interrupt function this will update all
 //  the global variables or trigger the CAN functions if needed
-void HAL_CAN_RxCallback()
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -363,13 +326,19 @@ void HAL_CAN_RxCallback()
 	FLOAT_CONVERTER float_con;
 
 	// Build the message from the registers on the STM32
-	HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO1, &header, message.data);
+	if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &header, message.data) != HAL_OK)
+	{
+		// ERROR
+		return;
+	}
 
 	// convert the data into the GopherCAN id and message
 	message.id = header.ExtId;
 	message.dlc = header.DLC;
 
 	get_message_id(&id, &message);
+
+	// TODO HAL hardware error handling (datasheet)
 
 	// if the message received has the error flag high, put the details into the last_error struct, then return
 	if (id.error)
@@ -401,7 +370,7 @@ void HAL_CAN_RxCallback()
 	// build the data U64 (big endian)
 	for (c = (message.dlc - 1); c >= 0; c--)
 	{
-		recieved_data |= message.data[c] << c;
+		recieved_data |= message.data[c] << (c * BITS_IN_BYTE);
 	}
 
 	// request parameter: return a CAN message with the data taken from this module
@@ -502,7 +471,7 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	parameter_requested = (message->data[0] << BITS_IN_BYTE) | message->data[1];
 	req_param.parameter_id = parameter_requested;
 
-	if (parameter_requested < RPM_ID || parameter_requested >= NUM_OF_PARAMETERS)
+	if (parameter_requested <= CAN_COMMAND_ID || parameter_requested >= NUM_OF_PARAMETERS)
 	{
 		send_error_message(id, ID_NOT_FOUND);
 
@@ -559,7 +528,7 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	// build the data in the message (big endian)
 	for (c = return_message.dlc - 1; c >= 0; c--)
 	{
-		return_message.data[c] = (U8)(return_data >> c);
+		return_message.data[c] = (U8)(return_data >> (c * BITS_IN_BYTE));
 	}
 
 	// send the built CAN message
@@ -602,6 +571,7 @@ static void run_can_command(CAN_MSG* message, CAN_ID* id)
 		return;
 	}
 
+	// TODO default "do nothing" for each command just in case something goes very wrong
 	// run the function
 	(*(this_function->func_ptr))(this_function->param_ptr, message->data[COMMAND_PARAMETER_POS]);
 
@@ -615,6 +585,8 @@ static void run_can_command(CAN_MSG* message, CAN_ID* id)
 static void build_message_id(CAN_MSG* msg, CAN_ID* id)
 {
 	U32 temp;
+
+	msg->id = 0;
 
 	// priority bit
 	temp = !!id->priority;
