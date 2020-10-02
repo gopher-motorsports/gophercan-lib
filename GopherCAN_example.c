@@ -57,8 +57,11 @@ void init()
 //  other parts of the program
 void background_loop()
 {
+	// check the RX mailboxes for any new CAN messages, then handle them accordingly
+	poll_can_rx();
+
 	// always request rpm from the PDM at 1ms intervals
-	if (request_parameter(PRIO_HIGH, PDM_ID, RPM_ID))
+	if (request_parameter(PRIO_LOW, PDM_ID, FAN_CURRENT_ID))
 	{
 		// an error has occurred
 	}

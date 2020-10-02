@@ -18,6 +18,7 @@ static void run_can_command(CAN_MSG* message, CAN_ID* id);
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static S8   send_error_message(CAN_ID* id, U8 error_id);
+static void rx_can_message(void);
 
 
 // what module this is configured to be
@@ -94,11 +95,6 @@ S8 init_can(U8 module_id)
 		data_struct->pending_response = FALSE;
 	}
 
-	// start can!
-	if (HAL_CAN_Start(&hcan) != HAL_OK)
-	{
-		return CAN_START_FAILED;
-	}
 
 	// Define the filter values based on this_module_id
 	// High and low id are the same because the id exclusively must be the module id
@@ -109,8 +105,7 @@ S8 init_can(U8 module_id)
 
 	// Set the the parameters on the filter struct
 	filterConfig.FilterBank = 0;                                      // Modify bank 0
-	//filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
-	filterConfig.FilterActivation = CAN_FILTER_DISABLE;
+	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // enable FIFO, don't use a stack
 	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
 	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
@@ -124,6 +119,10 @@ S8 init_can(U8 module_id)
 		return FILTER_SET_FAILED;
 	}
 
+	// CAN interrupts are currently disabled because Calvin can't
+	// figure out how to make them work. poll_can_rx() is used instead
+
+	/*
 	// Setup the rx interrupt function to interrupt on any pending message
 	// will supposedly call methods following the format HAL_CAN_xxxCallback()
 	HAL_NVIC_SetPriority(CEC_CAN_IRQn, CAN_INTERRUPT_PRIO, 0);
@@ -132,6 +131,13 @@ S8 init_can(U8 module_id)
 	if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
 	{
 		return IRQ_SET_FAILED;
+	}
+	*/
+
+	// start can!
+	if (HAL_CAN_Start(&hcan) != HAL_OK)
+	{
+		return CAN_START_FAILED;
 	}
 
 	return CAN_SUCCESS;
@@ -299,8 +305,11 @@ static S8 tx_can_message(CAN_MSG* message)
 	header.ExtId = message->id;
 	header.DLC = message->dlc;
 
-	// wait until there is a free mailbox (TODO currently no mailboxes are emptied, so once three messages are sent this loops forever)
-	while (!HAL_CAN_GetTxMailboxesFreeLevel(&hcan));
+	// wait until there is a free mailbox
+	while (!HAL_CAN_GetTxMailboxesFreeLevel(&hcan))
+	{
+		// TODO add some checking for a TX timeout, or possibly put in a separate CAN-handling loop
+	}
 
 	// add the message to the sending list
 	if (HAL_CAN_AddTxMessage(&hcan, &header, message->data, &tx_mailbox) != HAL_OK)
@@ -312,21 +321,37 @@ static S8 tx_can_message(CAN_MSG* message)
 }
 
 
+// poll_can_rx
+//  TODO docs
+S8 poll_can_rx(void)
+{
+	if (HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
+	{
+		rx_can_message();
+
+		return NEW_MESSAGE;
+	}
+
+	return NO_NEW_MESSAGE;
+}
+
+
 // HAL_CAN_RxCallback
 //  CAN message bus interrupt function this will update all
 //  the global variables or trigger the CAN functions if needed
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
+//void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
+static void rx_can_message(void)
 {
 	CAN_MSG message;
 	CAN_ID id;
 	CAN_RxHeaderTypeDef header;
 	U64 recieved_data = 0;
-	U8 c;
+	S8 c;
 	CAN_INFO_STRUCT* data_struct = 0;
 	FLOAT_CONVERTER float_con;
 
 	// Build the message from the registers on the STM32
-	if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &header, message.data) != HAL_OK)
+	if (HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &header, message.data) != HAL_OK)
 	{
 		// ERROR
 		return;
@@ -457,7 +482,7 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	CAN_ID return_id;
 	CAN_MSG return_message;
 	U64 return_data = 0;
-	U8 c;
+	S8 c;
 	FLOAT_CONVERTER float_con;
 
 	if (message->dlc != REQ_PARAM_SIZE)
@@ -630,7 +655,7 @@ static void get_message_id(CAN_ID* id, CAN_MSG* message)
 	// priority bit
 	temp = message->id & PRIORITY_MASK;
 	temp >>= (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE);
-	id->parameter = temp;
+	id->priority = temp;
 
 	// destination bits
 	temp = message->id & DEST_MASK;

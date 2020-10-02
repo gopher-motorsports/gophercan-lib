@@ -19,7 +19,7 @@ S8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
-//void HAL_CAN_RxFifo0MsgPendingCallback();
+S8 poll_can_rx(void);
 
 
 // ******** BEGIN AUTO GENERATED ********
@@ -67,6 +67,8 @@ S8 mod_custom_can_func_state(U8 func_id, U8 state);
 
 // return messages
 #define CAN_SUCCESS         0
+#define NO_NEW_MESSAGE      1
+#define NEW_MESSAGE         2
 #define INIT_FAILED        -1
 #define BAD_MODULE_ID      -2
 #define BAD_PARAMETER_ID   -3
