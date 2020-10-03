@@ -4,10 +4,17 @@ GopherCAN TODO list:
  - Split up auto generated sections of .c/.h ?
  - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
  - EDL communication (possibly directly to PDM)
- - Create and execute test plans
- - Command to constantly request Data
- - RX interrupts may not work correcty
- - Look into tx tast (in email)
+ - Command to constantly request Data (add another background loop on another module)
  - Move MX_CAN_Init() to library
+ - Check hcan.Init settings to see what they should be
  - Specify most and least significant bytes in comments
- - // COMMENT IC for ians stuff
+ - Handle full bus TX (better than just waiting)
+
+ - TEST all datatypes
+ - TEST more usage of logic based param requests
+ - TEST what happens when the bus is at high load
+ - TEST how the code handles full RX and TX mailboxes
+
+BUGS:
+ - TX messages fill up and RX handling takes a long time when there are many messages to handle
+ - Adding another param breaks everything

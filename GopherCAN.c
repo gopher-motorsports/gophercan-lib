@@ -58,7 +58,8 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 	REQ_PARAM,
 	COMMAND,
 	UNSIGNED16,
-	UNSIGNED8
+	UNSIGNED8,
+	UNSIGNED16
 };
 
 // ******** END AUTO GENERATED ********
@@ -325,14 +326,23 @@ static S8 tx_can_message(CAN_MSG* message)
 //  TODO docs
 S8 poll_can_rx(void)
 {
-	if (HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
+	S8 ret_val = NO_NEW_MESSAGE;
+	U8 num_new_messages = 0;
+
+	while (HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
 	{
 		rx_can_message();
 
-		return NEW_MESSAGE;
+		ret_val = NEW_MESSAGE;
+
+		num_new_messages++;
+		if (num_new_messages > MAX_RX)
+		{
+			return MAX_NEW_MESSAGES;
+		}
 	}
 
-	return NO_NEW_MESSAGE;
+	return ret_val;
 }
 
 

@@ -69,6 +69,7 @@ S8 poll_can_rx(void);
 #define CAN_SUCCESS         0
 #define NO_NEW_MESSAGE      1
 #define NEW_MESSAGE         2
+#define MAX_NEW_MESSAGES    3
 #define INIT_FAILED        -1
 #define BAD_MODULE_ID      -2
 #define BAD_PARAMETER_ID   -3
@@ -151,6 +152,7 @@ typedef enum
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
 #define CAN_INTERRUPT_PRIO 0
+#define MAX_RX 5
 
 
 // float/U32 converter union
