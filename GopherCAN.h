@@ -19,7 +19,8 @@ S8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
-S8 poll_can_rx(void);
+S8 service_can_rx_buffer(void);
+void service_can_hardware(void);
 
 
 // ******** BEGIN AUTO GENERATED ********
@@ -70,6 +71,8 @@ S8 poll_can_rx(void);
 #define NO_NEW_MESSAGE      1
 #define NEW_MESSAGE         2
 #define MAX_NEW_MESSAGES    3
+
+// errors
 #define INIT_FAILED        -1
 #define BAD_MODULE_ID      -2
 #define BAD_PARAMETER_ID   -3
@@ -77,8 +80,14 @@ S8 poll_can_rx(void);
 #define FILTER_SET_FAILED  -5
 #define IRQ_SET_FAILED     -6
 #define CAN_START_FAILED   -7
-#define TX_MAILBOXES_FULL  -8
+#define TX_BUFFER_FULL     -8
 #define TX_PROBLEM_ADDING  -9
+#define MAX_PENDING_TX     -10
+#define NOT_FOUND_ERR      -11
+#define NOT_ENABLED_ERR    -12
+#define SIZE_ERR           -13
+
+#define NOT_IMPLEMENTED    -99
 
 
 // Data types
@@ -153,6 +162,8 @@ typedef enum
 #define U8_MAX 0xFF
 #define CAN_INTERRUPT_PRIO 0
 #define MAX_RX 5
+#define RX_BUFFER_SIZE 10
+#define TX_BUFFER_SIZE 10
 
 
 // float/U32 converter union
@@ -166,7 +177,7 @@ typedef union
 // CAN message struct
 typedef struct
 {
-	U32 id;             // only the most significant 29 bits will be used
+	U32 id;             // only the least significant 29 bits will be used
 	U8  dlc;            // [0, 8]
 	U8  data[8];        // not all of these will matter depending on dlc
 } CAN_MSG;
@@ -301,3 +312,6 @@ typedef struct
 
 
 #endif /* GOPHERCAN_H_ */
+
+
+// end of GopherCAN.h

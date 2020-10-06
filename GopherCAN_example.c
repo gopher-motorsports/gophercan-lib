@@ -76,12 +76,24 @@ void init()
 }
 
 
-// CAN_rx_loop
-//  This loop will handle CAN RX. Should be called every 1ms
-void CAN_rx_loop()
+// can_rx_loop
+//  This loop will handle CAN RX software tasks. Should be called every 1ms
+void can_rx_loop()
 {
-	// check the RX mailboxes for any new CAN messages, then handle them accordingly
-	poll_can_rx();
+	// handle each RX message in the buffer
+	if (service_can_rx_buffer())
+	{
+		// an error has occurred
+	}
+}
+
+
+// can_hardware_handling
+//  this loop handles pulling messages from the RX mailbox and putting messages into the TX mailbox
+//  should be called as fast as possible and is designed to loop many times
+void can_hardware_handling()
+{
+	service_can_hardware();
 }
 
 
@@ -96,7 +108,11 @@ void background_loop()
 		// an error has occurred
 	}
 
-	//send_can_command(priority, other_module, SET_LED_STATE, 1);
+	// send a CAN command to the other module
+	if (send_can_command(priority, other_module, SET_LED_STATE, 1))
+	{
+		// an error has occurred
+	}
 
 	// update this modules parameter to show a change on the can bus
 #ifdef THIS_ACM
@@ -159,6 +175,7 @@ void main_loop()
 	}
 }
 */
+
 
 // can_callback_function example
 

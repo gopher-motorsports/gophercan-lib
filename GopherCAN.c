@@ -13,12 +13,13 @@
 
 // static function prototypes
 static S8   tx_can_message(CAN_MSG* message);
-static void parameter_requested(CAN_MSG* message, CAN_ID* id);
-static void run_can_command(CAN_MSG* message, CAN_ID* id);
+static S8   parameter_requested(CAN_MSG* message, CAN_ID* id);
+static S8   run_can_command(CAN_MSG* message, CAN_ID* id);
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static S8   send_error_message(CAN_ID* id, U8 error_id);
-static void rx_can_message(void);
+static S8   tx_can_message(CAN_MSG* message);
+static S8   service_can_rx_message(CAN_MSG* message);
 
 
 // what module this is configured to be
@@ -34,6 +35,15 @@ ERROR_MSG last_error;
 // the HAL_CAN struct
 extern CAN_HandleTypeDef hcan;
 
+// buffers to store RX and TX messages and some data to handle them correctly
+CAN_MSG rx_message_buffer[RX_BUFFER_SIZE];
+U8 rx_buffer_head = 0;                                                // the position of the "first" element
+U8 rx_buffer_fill_level = 0;                                          // the number of elements after the head that are apart of the buffer
+
+CAN_MSG tx_message_buffer[TX_BUFFER_SIZE];
+U8 tx_buffer_head = 0;                                                // the position of the "first" element
+U8 tx_buffer_fill_level = 0;                                          // the number of elements after the head that are apart of the buffer
+
 
 // ******** BEGIN AUTO GENERATED ********
 
@@ -43,7 +53,7 @@ CAN_COMMAND_STRUCT can_command;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
 
-// this is the struct that will be used to refrence based on ID
+// this is the struct that will be used to reference based on ID
 static void* all_parameter_structs[NUM_OF_PARAMETERS] =
 {
 	&req_param,    // ID 0
@@ -52,14 +62,13 @@ static void* all_parameter_structs[NUM_OF_PARAMETERS] =
 	&fan_current    // ID 3
 };
 
-// this stores the data_type for each parameter, refrenced by ID
+// this stores the data_type for each parameter, referenced by ID
 static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 {
 	REQ_PARAM,
 	COMMAND,
 	UNSIGNED16,
-	UNSIGNED8,
-	UNSIGNED16
+	UNSIGNED8
 };
 
 // ******** END AUTO GENERATED ********
@@ -96,7 +105,6 @@ S8 init_can(U8 module_id)
 		data_struct->pending_response = FALSE;
 	}
 
-
 	// Define the filter values based on this_module_id
 	// High and low id are the same because the id exclusively must be the module id
 	filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
@@ -121,7 +129,7 @@ S8 init_can(U8 module_id)
 	}
 
 	// CAN interrupts are currently disabled because Calvin can't
-	// figure out how to make them work. poll_can_rx() is used instead
+	// figure out how to make them work. service_can_hardware() is used instead
 
 	/*
 	// Setup the rx interrupt function to interrupt on any pending message
@@ -291,89 +299,167 @@ S8 mod_custom_can_func_state(U8 command_id, U8 state)
 }
 
 
-// tx_can_message
-//  Takes in a CAN_MSG struct, modifies registers accordingly
-static S8 tx_can_message(CAN_MSG* message)
+// handle_can_hardware
+//  Method to interact directly with the CAN registers through the HAL_CAN commands.
+//  Will take all messages from CAN_RX_FIFO0 and put them into the rx_message_buffer,
+//  then will fill as many tx mailboxes as possible from the tx_message_buffer
+//
+//  designed to be called as fast as possible
+void service_can_hardware(void)
 {
-	CAN_TxHeaderTypeDef header;
-	U32 tx_mailbox;
+	CAN_RxHeaderTypeDef rx_header;
+	CAN_TxHeaderTypeDef tx_header;
+	CAN_MSG* message;
 
-	// configure the settings of the CAN message
-	header.IDE = CAN_ID_EXT;                                          // 29 bit id
-	header.RTR = CAN_RTR_DATA;                                        // sending data
-	header.TransmitGlobalTime = DISABLE;                              // do not send a timestamp
+	// TODO HAL hardware error handling (datasheet)
 
-	header.ExtId = message->id;
-	header.DLC = message->dlc;
-
-	// wait until there is a free mailbox
-	while (!HAL_CAN_GetTxMailboxesFreeLevel(&hcan))
+	// get all the pending RX messages from the RX mailbox and store into the RX buffer
+	while (rx_buffer_fill_level < RX_BUFFER_SIZE && HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
 	{
-		// TODO add some checking for a TX timeout, or possibly put in a separate CAN-handling loop
+		// set message to the correct pointer from the RX buffer (the "last" message in the buffer)
+		message = rx_message_buffer + ((rx_buffer_head + rx_buffer_fill_level) % RX_BUFFER_SIZE);
+
+		// Build the message from the registers on the STM32
+		switch (HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &rx_header, message->data))
+		{
+		case HAL_OK:
+			// modify the rx_buffer data to reflect the new message
+			rx_buffer_fill_level++;
+
+			// move the header ID and DLC into the GopherCAN message struct
+			message->id = rx_header.ExtId;
+			message->dlc = rx_header.DLC;
+			break;
+
+		default:
+			// this will always be HAL_ERROR. Check hcan.ErrorCode
+
+			// TODO error handling (do not increment the fill level, the newest message is junk)
+			// NOTE: possible infinite loop if this never works
+			break;
+		}
 	}
 
-	// add the message to the sending list
-	if (HAL_CAN_AddTxMessage(&hcan, &header, message->data, &tx_mailbox) != HAL_OK)
+	// add messages to the the TX mailboxes until they are full
+	while (tx_buffer_fill_level > 0 && HAL_CAN_GetTxMailboxesFreeLevel(&hcan))
 	{
-		return TX_PROBLEM_ADDING;
+		// get the next CAN message from the TX buffer (FIFO)
+		message = tx_message_buffer + tx_buffer_head;
+
+		// configure the settings/params of the CAN message
+		tx_header.IDE = CAN_ID_EXT;                                          // 29 bit id
+		tx_header.RTR = CAN_RTR_DATA;                                        // sending data
+		tx_header.TransmitGlobalTime = DISABLE;                              // do not send a timestamp
+		tx_header.ExtId = message->id;
+		tx_header.DLC = message->dlc;
+
+		// add the message to the sending list
+		switch (HAL_CAN_AddTxMessage(&hcan, &tx_header, message->data, NULL))
+		{
+		case HAL_OK:
+			// move the head now that the first element has been removed
+			tx_buffer_head++;
+			if (tx_buffer_head >= TX_BUFFER_SIZE)
+			{
+				tx_buffer_head = 0;
+			}
+
+			// decrement the fill level
+			tx_buffer_fill_level--;
+			break;
+
+		default:
+			// this will always be HAL_ERROR. Check hcan.ErrorCode
+
+			// TODO error handling (do not move the head as the message did not send, try again later)
+			// NOTE: possible infinite loop if this never works
+			break;
+		}
+	}
+
+	return;
+}
+
+
+// service_can_rx_buffer
+//  this method will take all of the messages in rx_message_buffer and run them through
+//  service_can_rx_message to return parameter requests, run CAN commands, and update
+//  parameters.
+//
+//  WARNING: currently this function will not handle a full rx_message_buffer when returning
+//   parameter requests. The request will not be completed and the other module will have to
+//   send a new request
+//
+//  call in a 1 ms loop
+S8 service_can_rx_buffer(void)
+{
+	CAN_MSG* current_message;
+
+	// run through each message in the RX buffer and service it with service_can_rx_message() (FIFO)
+	while (rx_buffer_fill_level)
+	{
+		// get the message at the head of the array
+		current_message = rx_message_buffer + rx_buffer_head;
+
+		// WARNING: errors are not handled in this version. The message is just discarded
+		service_can_rx_message(current_message);
+
+		// move the head now that the first element has been removed
+		rx_buffer_head++;
+		if (rx_buffer_head >= RX_BUFFER_SIZE)
+		{
+			rx_buffer_head = 0;
+		}
+		rx_buffer_fill_level--;
 	}
 
 	return CAN_SUCCESS;
 }
 
 
-// poll_can_rx
-//  TODO docs
-S8 poll_can_rx(void)
+// tx_can_message
+//  Takes in a CAN_MSG struct, adds it to the TX buffer
+static S8 tx_can_message(CAN_MSG* message_to_add)
 {
-	S8 ret_val = NO_NEW_MESSAGE;
-	U8 num_new_messages = 0;
+	CAN_MSG* buffer_message;
+	U8 c;
 
-	while (HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
+	if (tx_buffer_fill_level >= TX_BUFFER_SIZE)
 	{
-		rx_can_message();
-
-		ret_val = NEW_MESSAGE;
-
-		num_new_messages++;
-		if (num_new_messages > MAX_RX)
-		{
-			return MAX_NEW_MESSAGES;
-		}
+		return TX_BUFFER_FULL;
 	}
 
-	return ret_val;
+	// set the message in the next open element in the buffer to message_to_add (by value, not by reference)
+	buffer_message = tx_message_buffer + ((tx_buffer_head + tx_buffer_fill_level) % TX_BUFFER_SIZE);
+	buffer_message->id = message_to_add->id;
+	buffer_message->dlc = message_to_add->dlc;
+
+	for (c = 0; c < buffer_message->dlc; c++)
+	{
+		buffer_message->data[c] = message_to_add->data[c];
+	}
+
+	// adjust the fill_level to reflect the new message added
+	tx_buffer_fill_level++;
+
+	return CAN_SUCCESS;
 }
 
 
-// HAL_CAN_RxCallback
+// service_can_rx_message
 //  CAN message bus interrupt function this will update all
-//  the global variables or trigger the CAN functions if needed
-//void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
-static void rx_can_message(void)
+//  the global variables or trigger the CAN functions if needed.
+//  Designed to be called by service_can_rx_software to loop perform
+//  this task for each pending CAN message
+static S8 service_can_rx_message(CAN_MSG* message)
 {
-	CAN_MSG message;
 	CAN_ID id;
-	CAN_RxHeaderTypeDef header;
-	U64 recieved_data = 0;
-	S8 c;
 	CAN_INFO_STRUCT* data_struct = 0;
 	FLOAT_CONVERTER float_con;
+	U64 recieved_data = 0;
+	S8 c;
 
-	// Build the message from the registers on the STM32
-	if (HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &header, message.data) != HAL_OK)
-	{
-		// ERROR
-		return;
-	}
-
-	// convert the data into the GopherCAN id and message
-	message.id = header.ExtId;
-	message.dlc = header.DLC;
-
-	get_message_id(&id, &message);
-
-	// TODO HAL hardware error handling (datasheet)
+	get_message_id(&id, message);
 
 	// if the message received has the error flag high, put the details into the last_error struct, then return
 	if (id.error)
@@ -382,12 +468,13 @@ static void rx_can_message(void)
 		last_error.last_rx = HAL_GetTick();
 		last_error.source_module = id.source_module;
 		last_error.parameter = id.parameter;
-		if (message.dlc > 0)
+		if (message->dlc > 0)
 		{
-			last_error.error_id = message.data[0];
+			last_error.error_id = message->data[0];
 		}
 
-		return;
+		// return success because the problem is not with the RX
+		return CAN_SUCCESS;
 	}
 
 	// error checking on the parameter requested
@@ -395,7 +482,7 @@ static void rx_can_message(void)
 	{
 		send_error_message(&id, ID_NOT_FOUND);
 
-		return;
+		return NOT_FOUND_ERR;
 	}
 	
 	// get the associated data struct and set last_rx
@@ -403,23 +490,21 @@ static void rx_can_message(void)
 	data_struct->last_rx = HAL_GetTick();
 
 	// build the data U64 (big endian)
-	for (c = (message.dlc - 1); c >= 0; c--)
+	for (c = (message->dlc - 1); c >= 0; c--)
 	{
-		recieved_data |= message.data[c] << (c * BITS_IN_BYTE);
+		recieved_data |= message->data[c] << (c * BITS_IN_BYTE);
 	}
 
 	// request parameter: return a CAN message with the data taken from this module
 	if (parameter_data_types[id.parameter] == REQ_PARAM)
 	{
-		parameter_requested(&message, &id);
-		return;
+		return parameter_requested(message, &id);
 	}
 
 	// run command: run the command specified by the CAN message on this module
 	if (parameter_data_types[id.parameter] == COMMAND)
 	{
-		run_can_command(&message, &id);
-		return;
+		return run_can_command(message, &id);;
 	}
 
 	// this code should only be reached if the message is a data message
@@ -428,7 +513,7 @@ static void rx_can_message(void)
 	if (!(data_struct->update_enabled))
 	{
 		send_error_message(&id, PARAM_NOT_ENABLED);
-		return;
+		return NOT_ENABLED_ERR;
 	}
 
 	// Switch the pending_response flag
@@ -440,53 +525,55 @@ static void rx_can_message(void)
 	{
 	case UNSIGNED8:
 		((U8_CAN_STRUCT*)(data_struct))->data = (U8)recieved_data;
-		return;
+		return CAN_SUCCESS;
 
 	case UNSIGNED16:
 		((U16_CAN_STRUCT*)(data_struct))->data = (U16)recieved_data;
-		return;
+		return CAN_SUCCESS;
 
 	case UNSIGNED32:
 		((U32_CAN_STRUCT*)(data_struct))->data = (U32)recieved_data;
-		return;
+		return CAN_SUCCESS;
 
 	case UNSIGNED64:
 		((U64_CAN_STRUCT*)(data_struct))->data = (U64)recieved_data;
-		return;
+		return CAN_SUCCESS;
 
 	case SIGNED8:
 		((S8_CAN_STRUCT*)(data_struct))->data = (S8)recieved_data;
-		break;
+		return CAN_SUCCESS;
 
 	case SIGNED16:
 		((S16_CAN_STRUCT*)(data_struct))->data = (S16)recieved_data;
-		break;
+		return CAN_SUCCESS;
 
 	case SIGNED32:
 		((S32_CAN_STRUCT*)(data_struct))->data = (S32)recieved_data;
-		break;
+		return CAN_SUCCESS;
 
 	case SIGNED64:
 		((S64_CAN_STRUCT*)(data_struct))->data = (S64)recieved_data;
-		break;
+		return CAN_SUCCESS;
 
 	case FLOATING:
 		// Union to get the bitwise data of the float
 		float_con.u32 = (U32)recieved_data;
 
 		((FLOAT_CAN_STRUCT*)(data_struct))->data = float_con.f;
-		break;
+		return CAN_SUCCESS;
 
 	default:
 		send_error_message(&id, DATATYPE_NOT_FOUND);
-		break;
+		return NOT_FOUND_ERR;
 	}
+
+	return CAN_SUCCESS;
 }
 
 
 // parameter_requested
 //  return a CAN message with the data taken from this module
-static void parameter_requested(CAN_MSG* message, CAN_ID* id)
+static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 {
 	U16 parameter_requested;
 	CAN_ID return_id;
@@ -499,7 +586,7 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	{
 		send_error_message(id, SIZE_ERROR);
 
-		return;
+		return SIZE_ERR;
 	}
 
 	// find what the parameter is from the data
@@ -510,7 +597,7 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	{
 		send_error_message(id, ID_NOT_FOUND);
 
-		return;
+		return NOT_FOUND_ERR;
 	}
 
 	// build the return message ID
@@ -567,14 +654,13 @@ static void parameter_requested(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// send the built CAN message
-	tx_can_message(&return_message);
-	return;
+	return tx_can_message(&return_message);
 }
 
 
 // run_can_command
 //  run the command specified by the CAN message on this module
-static void run_can_command(CAN_MSG* message, CAN_ID* id)
+static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 {
 	U8 command_id;
 	CUST_FUNC* this_function;
@@ -584,7 +670,7 @@ static void run_can_command(CAN_MSG* message, CAN_ID* id)
 	{
 		send_error_message(id, SIZE_ERROR);
 
-		return;
+		return SIZE_ERR;
 	}
 
 	// error checking on the command ID
@@ -593,7 +679,7 @@ static void run_can_command(CAN_MSG* message, CAN_ID* id)
 	{
 		send_error_message(id, COMMAND_ID_NOT_FOUND);
 
-		return;
+		return NOT_FOUND_ERR;
 	}
 
 	this_function = &(cust_funcs[command_id]);
@@ -603,14 +689,14 @@ static void run_can_command(CAN_MSG* message, CAN_ID* id)
 	{
 		send_error_message(id, COMMAND_NOT_ENABLED);
 
-		return;
+		return NOT_ENABLED_ERR;
 	}
 
 	// TODO default "do nothing" for each command just in case something goes very wrong
 	// run the function
 	(*(this_function->func_ptr))(this_function->param_ptr, message->data[COMMAND_PARAMETER_POS]);
 
-	return;
+	return CAN_SUCCESS;
 }
 
 
@@ -713,4 +799,5 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 	return tx_can_message(&message);
 }
 
-// end GopherCAN.c
+
+// end of GopherCAN.c
