@@ -4,6 +4,7 @@
 // some defines used for examples
 #define MIN_ON_RPM 100
 #define FAN_CURRENT_UPDATE_TIME 1000
+#define FAN_CURRENT_UPDATE_TIMEOUT 10000
 
 void init();
 void background_loop();

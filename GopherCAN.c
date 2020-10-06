@@ -105,6 +105,15 @@ S8 init_can(U8 module_id)
 		data_struct->pending_response = FALSE;
 	}
 
+	// set each function pointer to the do_nothing() function
+	for (c = 0; c < NUM_OF_COMMANDS; c++)
+	{
+		cust_funcs[c].func_ptr = &do_nothing;
+		cust_funcs[c].func_enabled = FALSE;
+		cust_funcs[c].param_ptr = NULL;
+
+	}
+
 	// Define the filter values based on this_module_id
 	// High and low id are the same because the id exclusively must be the module id
 	filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
@@ -304,7 +313,7 @@ S8 mod_custom_can_func_state(U8 command_id, U8 state)
 //  Will take all messages from CAN_RX_FIFO0 and put them into the rx_message_buffer,
 //  then will fill as many tx mailboxes as possible from the tx_message_buffer
 //
-//  designed to be called as fast as possible
+//  designed to be called at high priority on 1ms loop
 void service_can_hardware(void)
 {
 	CAN_RxHeaderTypeDef rx_header;
@@ -343,6 +352,8 @@ void service_can_hardware(void)
 	// add messages to the the TX mailboxes until they are full
 	while (tx_buffer_fill_level > 0 && HAL_CAN_GetTxMailboxesFreeLevel(&hcan))
 	{
+		U32 tx_mailbox_num;
+
 		// get the next CAN message from the TX buffer (FIFO)
 		message = tx_message_buffer + tx_buffer_head;
 
@@ -354,7 +365,7 @@ void service_can_hardware(void)
 		tx_header.DLC = message->dlc;
 
 		// add the message to the sending list
-		switch (HAL_CAN_AddTxMessage(&hcan, &tx_header, message->data, NULL))
+		switch (HAL_CAN_AddTxMessage(&hcan, &tx_header, message->data, &tx_mailbox_num))
 		{
 		case HAL_OK:
 			// move the head now that the first element has been removed
@@ -692,7 +703,6 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 		return NOT_ENABLED_ERR;
 	}
 
-	// TODO default "do nothing" for each command just in case something goes very wrong
 	// run the function
 	(*(this_function->func_ptr))(this_function->param_ptr, message->data[COMMAND_PARAMETER_POS]);
 
@@ -797,6 +807,15 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 
 	// send the CAN message
 	return tx_can_message(&message);
+}
+
+
+// do_nothing
+//  this exists to give a default function pointer to all of the CAN commands
+//  to avoid errors from bad function pointers
+void do_nothing(void* param, U8 remote_param)
+{
+	// this function has successfully done nothing
 }
 
 

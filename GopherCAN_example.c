@@ -13,7 +13,6 @@
 // each parameter used will need to be pulled from GopherCAN.c
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
-//extern U16_CAN_STRUCT test_param;
 
 extern CAN_HandleTypeDef hcan;
 
@@ -39,7 +38,7 @@ U16 param = RPM_ID;
 
 // some global variables for examples
 U16 led_to_change;
-U32 last_temp_param_rx = 0;
+U32 last_fan_current_rx = 0;
 
 // the CAN callback function used in this example
 void change_led_state(void* parameter, U8 remote_param);
@@ -50,7 +49,7 @@ void init()
 {
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
-	// TODO add a link of a good video showing how to set up CAN (once done successfully)
+	// TODO add some tutorials on how to do this
 	if (init_can(this_module))
 	{
 		// an error has occurred
@@ -63,10 +62,10 @@ void init()
 	// will not be updated over can, even if they are requested
 	rpm.update_enabled = TRUE;
 	fan_current.update_enabled = TRUE;
-	//test_param.update_enabled = TRUE;
+	//fan_current.update_enabled = TRUE;
 
 	// adding can_callback_function
-	led_to_change = 0; // TODO what gpio pin
+	led_to_change = GPIO_PIN_5; // this is LD2 on the dev board
 
 	if (add_custom_can_func(SET_LED_STATE, &change_led_state,
 		TRUE, (void*)&led_to_change))
@@ -90,7 +89,7 @@ void can_rx_loop()
 
 // can_hardware_handling
 //  this loop handles pulling messages from the RX mailbox and putting messages into the TX mailbox
-//  should be called as fast as possible and is designed to loop many times
+//  should be called on the 1ms loop with high priority
 void can_hardware_handling()
 {
 	service_can_hardware();
@@ -102,17 +101,19 @@ void can_hardware_handling()
 //  other parts of the program, can be called as often as needed (as long as the CAN bus is not overwhelmed)
 void background_loop()
 {
-	// always request rpm from the PDM at 1ms intervals
+	// always request a param from the other module at 1ms intervals
 	if (request_parameter(priority, other_module, param))
 	{
 		// an error has occurred
 	}
 
-	// send a CAN command to the other module
-	if (send_can_command(priority, other_module, SET_LED_STATE, 1))
-	{
-		// an error has occurred
-	}
+	// adding a bunch of can commands to stress the bus. These should return COMMAND_NOT_ENABLED error on the CAN bus
+	/*
+	send_can_command(PRIO_LOW, other_module, CUST_COMMAND_2, 0);
+	send_can_command(PRIO_LOW, other_module, CUST_COMMAND_2, 1);
+	send_can_command(PRIO_HIGH, other_module, CUST_COMMAND_2, 0);
+	send_can_command(PRIO_HIGH, other_module, CUST_COMMAND_2, 1);
+	*/
 
 	// update this modules parameter to show a change on the can bus
 #ifdef THIS_ACM
@@ -125,14 +126,14 @@ void background_loop()
 }
 
 
-/*
 // main_loop
-//  a higher priority logic loop
+//  another loop. This includes logic for a CAN command and conditional parameter requests
 void main_loop()
 {
-	U8 button_1_state;
-	U8 button_2_state;
-	U32 foo;
+	U8 button_state;
+
+#ifdef THIS_ACM
+	U8 foo;
 
 	// Example accessing updating parameters that are requested in another loop
 	if (rpm.data <= MIN_ON_RPM)
@@ -142,39 +143,39 @@ void main_loop()
 
 	// Example of requesting a parameter in runtime. This example
 	// uses time, but other logic could be used as well
-	if (HAL_GetTick() - last_temp_param_rx >= FAN_CURRENT_UPDATE_TIME)
+	if (HAL_GetTick() - last_fan_current_rx >= FAN_CURRENT_UPDATE_TIME)
 	{
 		// don't send another data request if the request is already pending
 		// A timeout may also be worth including just in case something goes wrong
-		if (test_param.pending_response == FALSE)
+		if (fan_current.pending_response == FALSE
+				|| HAL_GetTick() - last_fan_current_rx >= FAN_CURRENT_UPDATE_TIMEOUT)
 		{
-			if (request_parameter(PRIO_HIGH, other_module, TEST_PARAM_ID))
+			if (request_parameter(PRIO_HIGH, other_module, FAN_CURRENT_ID))
 			{
 				// error handling
 			}
 		}
 
 		// use the parameter data for something
-		foo = test_param.data;
+		foo = fan_current.data;
 
-		// update the last time the temp_param was received. temp_param.last_rx cannot be
+		// update the last time the fan_current was received. fan_current.last_rx cannot be
 		// used directly in this case because the code inside the if statement may not be run
 		// if it updates at a bad time
-		last_temp_param_rx = test_param.last_rx;
+		last_fan_current_rx = fan_current.last_rx;
 	}
+#endif
 
 	// If the button is pressed send a can command to another to change the LED state
-	// To on or off depending on the second button
+	// To on or off depending on the button. Make sure to disable any heartbeat before
+	// trying this, they may conflict
+	button_state = !HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
 
-	// TODO get button 1 and 2 state
-
-	if (button_1_state
-		&& send_can_command(PRIO_LOW, PDM_ID, SET_LED_STATE, button_2_state))
+	if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE, button_state))
 	{
 		// error sending command
 	}
 }
-*/
 
 
 // can_callback_function example

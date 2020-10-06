@@ -1,23 +1,30 @@
 
 GopherCAN TODO list:
+ AUTO-GEN TOOL
  - Tool that will auto-generate code from the .XLSX table
  - Split up auto generated sections of .c/.h ?
  - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
 
- - Command to constantly request Data (add another background loop on another module)
+ MAYBE DO
+ - Command to constantly request Data (add a background loop function on another module)
  - Maybe use the second RX FIFO mailbox
 
+ SHOULD DO 
  - Move MX_CAN_Init() to library
  - Check hcan.Init settings to see what they should be
 
- - [_] TEST basic RX and TX of parameters
- - [_] TEST to make sure buffers are working correctly
- - [_] TEST CAN commands
+ TESTS
+ - [x] TEST basic RX and TX of parameters
+ - [x] TEST to make sure buffers are working correctly
+ - [x] TEST CAN commands
  - [_] TEST all datatypes (especially floats)
- - [_] TEST more usage of logic based param requests
- - [_] TEST what happens when the bus is at high load
- - [_] TEST how the code handles full RX and TX mailboxes
+ - [x] TEST more usage of logic based param requests
+ - [x] TEST what happens when the bus is at high load
+ - [x] TEST how the code handles full RX and TX mailboxes
+ - [x] TEST command errors working correctly
+ - [x] TEST request errors working correctly
 
-BUGS:
- - TX messages fill up and RX handling takes a long time when there are many messages to handle
+BUGS / NOTES:
  - Adding another param breaks everything
+ - Requests may not be completed if the other module has a full RX or TX buffer / mailbox. KEEP THE BUS CLEAN
+ - Maximum of 10 TX and RX in buffer (#defines, can be changed)

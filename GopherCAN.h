@@ -21,6 +21,7 @@ S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, v
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
 void service_can_hardware(void);
+void do_nothing(void* param, U8 remote_param);
 
 
 // ******** BEGIN AUTO GENERATED ********
