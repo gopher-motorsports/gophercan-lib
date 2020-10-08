@@ -6,25 +6,40 @@ GopherCAN TODO list:
  - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
 
  MAYBE DO
- - Command to constantly request Data (add a background loop function on another module)
- - Maybe use the second RX FIFO mailbox
+ - Command to constantly request Data (add a background loop function on another module), should be a general ID that all modules will recieve
+ - Use the second RX FIFO mailbox
+ - TCP functionality for important commands
+ - double precision floats
 
  SHOULD DO 
- - Move MX_CAN_Init() to library
+ - Move MX_CAN_Init() to library (maybe, ask other members)
  - Check hcan.Init settings to see what they should be
+ - Handle hardware errors
+ - Add function to send a parameter to another module
+ - figure out the RX interrupts, (would almost garuntee a message that is sent is also recieved)
 
  TESTS
  - [x] TEST basic RX and TX of parameters
  - [x] TEST to make sure buffers are working correctly
  - [x] TEST CAN commands
- - [_] TEST all datatypes (especially floats)
+ - [x] TEST all datatypes (especially floats)
  - [x] TEST more usage of logic based param requests
- - [x] TEST what happens when the bus is at high load
+ - [x] TEST what happens when the bus is at high load (lower priority messages will be lost and be stuck in the TX mailbox, keep it clean)
  - [x] TEST how the code handles full RX and TX mailboxes
  - [x] TEST command errors working correctly
  - [x] TEST request errors working correctly
+ - [_] TEST parameter sending function (add it first)
+ - [x] TEST not adding too many CAN messages into the TX buffer when it is not needed (ignoring duplicates testing)
+ - [_] TEST lots of messages being sent to a single module at once (might need ISR to make this work)
 
-BUGS / NOTES:
- - Adding another param breaks everything
- - Requests may not be completed if the other module has a full RX or TX buffer / mailbox. KEEP THE BUS CLEAN
- - Maximum of 10 TX and RX in buffer (#defines, can be changed)
+BUGS:
+
+
+NOTES:
+ - Last_rx is U32 milliseconds, meaning things may break after ~49.7 days
+ - Requests may not be completed if the other module has a full RX mailbox. KEEP THE BUS CLEAN
+ - Maximum of 32 TX and RX in buffer (#defines, can be changed. Probably could be smaller)
+ - Don't ask for a bunch of params/commands at once. The thread that services the bus will not be happy
+ - If things don't seem to be working correctly, CHECK THE BUS UTILIZATION. The TX mailboxes may be full
+ - Make sure the STM32 and CAN transiever have a common ground
+

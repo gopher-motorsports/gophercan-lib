@@ -52,6 +52,15 @@ REQ_PARAM_STRUCT req_param;
 CAN_COMMAND_STRUCT can_command;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
+U8_CAN_STRUCT u8_tester;
+U16_CAN_STRUCT u16_tester;
+U32_CAN_STRUCT u32_tester;
+U64_CAN_STRUCT u64_tester;
+S8_CAN_STRUCT s8_tester;
+S16_CAN_STRUCT s16_tester;
+S32_CAN_STRUCT s32_tester;
+S64_CAN_STRUCT s64_tester;
+FLOAT_CAN_STRUCT float_tester;
 
 // this is the struct that will be used to reference based on ID
 static void* all_parameter_structs[NUM_OF_PARAMETERS] =
@@ -59,7 +68,16 @@ static void* all_parameter_structs[NUM_OF_PARAMETERS] =
 	&req_param,    // ID 0
 	&can_command,    // ID 1
 	&rpm,    // ID 2
-	&fan_current    // ID 3
+	&fan_current,    // ID 3
+	&u8_tester,    // ID 4
+	&u16_tester,    // ID 5
+	&u32_tester,    // ID 6
+	&u64_tester,    // ID 7
+	&s8_tester,    // ID 8
+	&s16_tester,    // ID 9
+	&s32_tester,    // ID 10
+	&s64_tester,    // ID 11
+	&float_tester    // ID 12
 };
 
 // this stores the data_type for each parameter, referenced by ID
@@ -68,7 +86,16 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 	REQ_PARAM,
 	COMMAND,
 	UNSIGNED16,
-	UNSIGNED8
+	UNSIGNED8,
+	UNSIGNED8,
+	UNSIGNED16,
+	UNSIGNED32,
+	UNSIGNED64,
+	SIGNED8,
+	SIGNED16,
+	SIGNED32,
+	SIGNED64,
+	FLOATING
 };
 
 // ******** END AUTO GENERATED ********
@@ -98,7 +125,7 @@ S8 init_can(U8 module_id)
 	// disable each parameter until the user manually enables them
 	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
 	{
-		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs + (c * sizeof(void*)));
+		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
 
 		data_struct->last_rx = 0;
 		data_struct->update_enabled = FALSE;
@@ -138,11 +165,12 @@ S8 init_can(U8 module_id)
 	}
 
 	// CAN interrupts are currently disabled because Calvin can't
-	// figure out how to make them work. service_can_hardware() is used instead
+	// figure out how to make them work. service_can_rx_hardware() is used instead
 
 	/*
+	// TODO
 	// Setup the rx interrupt function to interrupt on any pending message
-	// will supposedly call methods following the format HAL_CAN_xxxCallback()
+	// will call methods following the format HAL_CAN_xxxCallback()
 	HAL_NVIC_SetPriority(CEC_CAN_IRQn, CAN_INTERRUPT_PRIO, 0);
 	HAL_NVIC_EnableIRQ(CEC_CAN_IRQn);
 	HAL_CAN_IRQHandler(&hcan);
@@ -174,7 +202,9 @@ S8 init_can(U8 module_id)
 S8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 {
 	CAN_MSG message;
+	CAN_MSG* message_to_check;
 	CAN_ID id;
+	U8 c, k;
 
 	if (dest_module < 0 || dest_module >= NUM_OF_MODULES)
 	{
@@ -192,16 +222,16 @@ S8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 	id.error = FALSE;
 	id.parameter = REQUEST_VALUE_ID;
 
-	// set the pending response to true for this parameter, will be set to true once
-	// the value is recieved from the CAN bus
-	((CAN_INFO_STRUCT*)(all_parameter_structs[parameter]))->pending_response = TRUE;
-
 	build_message_id(&message, &id);
 
 	message.dlc = sizeof(parameter);
 
     message.data[0] = parameter >> BITS_IN_BYTE;
 	message.data[1] = parameter & U8_MAX;
+
+	// set the pending response to true for this parameter, will be set to true once
+	// the value is recieved from the CAN bus
+	((CAN_INFO_STRUCT*)(all_parameter_structs[parameter]))->pending_response = TRUE;
 
 	return tx_can_message(&message);
 }
@@ -308,46 +338,17 @@ S8 mod_custom_can_func_state(U8 command_id, U8 state)
 }
 
 
-// handle_can_hardware
+// service_can_tx_hardware
 //  Method to interact directly with the CAN registers through the HAL_CAN commands.
-//  Will take all messages from CAN_RX_FIFO0 and put them into the rx_message_buffer,
 //  then will fill as many tx mailboxes as possible from the tx_message_buffer
 //
 //  designed to be called at high priority on 1ms loop
-void service_can_hardware(void)
+void service_can_tx_hardware(void)
 {
-	CAN_RxHeaderTypeDef rx_header;
 	CAN_TxHeaderTypeDef tx_header;
 	CAN_MSG* message;
 
 	// TODO HAL hardware error handling (datasheet)
-
-	// get all the pending RX messages from the RX mailbox and store into the RX buffer
-	while (rx_buffer_fill_level < RX_BUFFER_SIZE && HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
-	{
-		// set message to the correct pointer from the RX buffer (the "last" message in the buffer)
-		message = rx_message_buffer + ((rx_buffer_head + rx_buffer_fill_level) % RX_BUFFER_SIZE);
-
-		// Build the message from the registers on the STM32
-		switch (HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &rx_header, message->data))
-		{
-		case HAL_OK:
-			// modify the rx_buffer data to reflect the new message
-			rx_buffer_fill_level++;
-
-			// move the header ID and DLC into the GopherCAN message struct
-			message->id = rx_header.ExtId;
-			message->dlc = rx_header.DLC;
-			break;
-
-		default:
-			// this will always be HAL_ERROR. Check hcan.ErrorCode
-
-			// TODO error handling (do not increment the fill level, the newest message is junk)
-			// NOTE: possible infinite loop if this never works
-			break;
-		}
-	}
 
 	// add messages to the the TX mailboxes until they are full
 	while (tx_buffer_fill_level > 0 && HAL_CAN_GetTxMailboxesFreeLevel(&hcan))
@@ -392,6 +393,47 @@ void service_can_hardware(void)
 }
 
 
+// service_can_rx_hardware
+//  Method to interact directly with the CAN registers through the HAL_CAN functions.
+//  Will take all messages from CAN_RX_FIFO0 and put them into the rx_message_buffer,
+//
+//  designed to be called as an ISR whenever there is a message pending in CAN_RX_FIFO0
+void service_can_rx_hardware(void)
+{
+	CAN_RxHeaderTypeDef rx_header;
+	CAN_MSG* message;
+
+	// TODO HAL hardware error handling (datasheet)
+
+	// get all the pending RX messages from the RX mailbox and store into the RX buffer
+	while (rx_buffer_fill_level < RX_BUFFER_SIZE && HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
+	{
+		// set message to the correct pointer from the RX buffer (the "last" message in the buffer)
+		message = rx_message_buffer + ((rx_buffer_head + rx_buffer_fill_level) % RX_BUFFER_SIZE);
+
+		// Build the message from the registers on the STM32
+		switch (HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &rx_header, message->data))
+		{
+		case HAL_OK:
+			// modify the rx_buffer data to reflect the new message
+			rx_buffer_fill_level++;
+
+			// move the header ID and DLC into the GopherCAN message struct
+			message->id = rx_header.ExtId;
+			message->dlc = rx_header.DLC;
+			break;
+
+		default:
+			// this will always be HAL_ERROR. Check hcan.ErrorCode
+
+			// TODO error handling (do not increment the fill level, the newest message is junk)
+			// NOTE: possible infinite loop if this never works
+			break;
+		}
+	}
+}
+
+
 // service_can_rx_buffer
 //  this method will take all of the messages in rx_message_buffer and run them through
 //  service_can_rx_message to return parameter requests, run CAN commands, and update
@@ -433,11 +475,41 @@ S8 service_can_rx_buffer(void)
 static S8 tx_can_message(CAN_MSG* message_to_add)
 {
 	CAN_MSG* buffer_message;
-	U8 c;
+	U8 c, k;
 
 	if (tx_buffer_fill_level >= TX_BUFFER_SIZE)
 	{
 		return TX_BUFFER_FULL;
+	}
+
+	// check to make sure there this message isn't already in the TX buffer
+	for (c = 0; c < tx_buffer_fill_level; c++)
+	{
+		buffer_message = tx_message_buffer + ((tx_buffer_head + c) % TX_BUFFER_SIZE);
+
+		if (message_to_add->id == buffer_message->id
+				&& message_to_add->dlc == buffer_message->dlc)
+		{
+			// check to see if the data is the same too
+			for (k = 0; k < message_to_add->dlc; k++)
+			{
+				if (message_to_add->data[k] != buffer_message->data[k])
+				{
+					// this is a different message with the same id
+					break;
+				}
+
+				if (k == message_to_add->dlc - 1)
+				{
+					// this is the last time through the loop. They are the same message
+					return MESSAGE_ALREADY_PENDING;
+				}
+
+				// check the next data value
+			}
+		}
+
+		// move on to the next message
 	}
 
 	// set the message in the next open element in the buffer to message_to_add (by value, not by reference)

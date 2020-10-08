@@ -20,7 +20,8 @@ S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
-void service_can_hardware(void);
+void service_can_tx_hardware(void);
+void service_can_rx_hardware(void);
 void do_nothing(void* param, U8 remote_param);
 
 
@@ -28,7 +29,7 @@ void do_nothing(void* param, U8 remote_param);
 
 // number of each type
 #define NUM_OF_MODULES    5
-#define NUM_OF_PARAMETERS 4
+#define NUM_OF_PARAMETERS 13
 #define NUM_OF_COMMANDS   3
 
 
@@ -48,6 +49,15 @@ void do_nothing(void* param, U8 remote_param);
 // parameter IDs
 #define RPM_ID 2
 #define FAN_CURRENT_ID 3
+#define U8_TESTER_ID 4
+#define U16_TESTER_ID 5
+#define U32_TESTER_ID 6
+#define U64_TESTER_ID 7
+#define S8_TESTER_ID 8
+#define S16_TESTER_ID 9
+#define S32_TESTER_ID 10
+#define S64_TESTER_ID 11
+#define FLOAT_TESTER_ID 12
 
 
 // custom command IDs
@@ -74,19 +84,20 @@ void do_nothing(void* param, U8 remote_param);
 #define MAX_NEW_MESSAGES    3
 
 // errors
-#define INIT_FAILED        -1
-#define BAD_MODULE_ID      -2
-#define BAD_PARAMETER_ID   -3
-#define BAD_COMMAND_ID     -4
-#define FILTER_SET_FAILED  -5
-#define IRQ_SET_FAILED     -6
-#define CAN_START_FAILED   -7
-#define TX_BUFFER_FULL     -8
-#define TX_PROBLEM_ADDING  -9
-#define MAX_PENDING_TX     -10
-#define NOT_FOUND_ERR      -11
-#define NOT_ENABLED_ERR    -12
-#define SIZE_ERR           -13
+#define INIT_FAILED             -1
+#define BAD_MODULE_ID           -2
+#define BAD_PARAMETER_ID        -3
+#define BAD_COMMAND_ID          -4
+#define FILTER_SET_FAILED       -5
+#define IRQ_SET_FAILED          -6
+#define CAN_START_FAILED        -7
+#define TX_BUFFER_FULL          -8
+#define TX_PROBLEM_ADDING       -9
+#define MAX_PENDING_TX          -10
+#define NOT_FOUND_ERR           -11
+#define NOT_ENABLED_ERR         -12
+#define SIZE_ERR                -13
+#define MESSAGE_ALREADY_PENDING -14
 
 #define NOT_IMPLEMENTED    -99
 
@@ -163,8 +174,8 @@ typedef enum
 #define U8_MAX 0xFF
 #define CAN_INTERRUPT_PRIO 0
 #define MAX_RX 5
-#define RX_BUFFER_SIZE 10
-#define TX_BUFFER_SIZE 10
+#define RX_BUFFER_SIZE 32
+#define TX_BUFFER_SIZE 32
 
 
 // float/U32 converter union
