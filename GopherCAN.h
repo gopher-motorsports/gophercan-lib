@@ -12,6 +12,8 @@
 
 #include "..\\C-Utils\\base_types.h"
 //#include "base_types.h"
+#include "stm32f0xx_hal.h"
+#include "stm32f0xx_hal_can.h"
 
 // function prototypes
 S8 init_can(U8 module_id);
@@ -21,8 +23,11 @@ S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, v
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
 void service_can_tx_hardware(void);
-void service_can_rx_hardware(void);
 void do_nothing(void* param, U8 remote_param);
+
+// ISR functions, do not call these in runtime
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan);
+void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 
 
 // ******** BEGIN AUTO GENERATED ********

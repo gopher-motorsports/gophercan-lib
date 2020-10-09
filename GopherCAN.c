@@ -8,8 +8,6 @@
 // this will have some auto generated sections
 
 #include "GopherCAN.h"
-#include "stm32f0xx_hal.h"
-#include "stm32f0xx_hal_can.h"
 
 // static function prototypes
 static S8   tx_can_message(CAN_MSG* message);
@@ -20,6 +18,7 @@ static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static S8   send_error_message(CAN_ID* id, U8 error_id);
 static S8   tx_can_message(CAN_MSG* message);
 static S8   service_can_rx_message(CAN_MSG* message);
+static void service_can_rx_hardware(U32 rx_mailbox);
 
 
 // what module this is configured to be
@@ -122,6 +121,9 @@ S8 init_can(U8 module_id)
 	// set the current module
 	this_module_id = module_id;
 
+	// init HAL_GetTick()
+	HAL_SetTickFreq(HAL_TICK_FREQ_DEFAULT);
+
 	// disable each parameter until the user manually enables them
 	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
 	{
@@ -148,10 +150,10 @@ S8 init_can(U8 module_id)
 	filt_mask_low = DEST_MASK;
 	filt_mask_high = DEST_MASK;
 
-	// Set the the parameters on the filter struct
-	filterConfig.FilterBank = 0;                                      // Modify bank 0
+	// Set the the parameters on the filter struct (FIFO0)
+	filterConfig.FilterBank = 0;                                      // Modify bank 0 (of 13)
 	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // enable FIFO, don't use a stack
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
 	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
 	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
 	filterConfig.FilterIdLow = filt_id_low;                           // Low bound of accepted values
@@ -164,21 +166,23 @@ S8 init_can(U8 module_id)
 		return FILTER_SET_FAILED;
 	}
 
-	// CAN interrupts are currently disabled because Calvin can't
-	// figure out how to make them work. service_can_rx_hardware() is used instead
+	// Set the the parameters on the filter struct (FIFO1)
+	// all other parameters are the same as FIFO0
+	filterConfig.FilterBank = 1;                                      // Modify bank 1 (of 13)
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
 
-	/*
-	// TODO
+	if (HAL_CAN_ConfigFilter(&hcan, &filterConfig) != HAL_OK)
+	{
+		return FILTER_SET_FAILED;
+	}
+
 	// Setup the rx interrupt function to interrupt on any pending message
 	// will call methods following the format HAL_CAN_xxxCallback()
-	HAL_NVIC_SetPriority(CEC_CAN_IRQn, CAN_INTERRUPT_PRIO, 0);
-	HAL_NVIC_EnableIRQ(CEC_CAN_IRQn);
-	HAL_CAN_IRQHandler(&hcan);
-	if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+	if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK
+			|| HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO1_MSG_PENDING) != HAL_OK)
 	{
 		return IRQ_SET_FAILED;
 	}
-	*/
 
 	// start can!
 	if (HAL_CAN_Start(&hcan) != HAL_OK)
@@ -187,6 +191,22 @@ S8 init_can(U8 module_id)
 	}
 
 	return CAN_SUCCESS;
+}
+
+
+// HAL_CAN_RxFifo0MsgPendingCallback
+//  ISR called when CAN_RX_FIFO0 has a pending message
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
+{
+	service_can_rx_hardware(CAN_RX_FIFO0);
+}
+
+
+// HAL_CAN_RxFifo1MsgPendingCallback
+//  ISR called when CAN_RX_FIFO1 has a pending message
+void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
+{
+	service_can_rx_hardware(CAN_RX_FIFO1);
 }
 
 
@@ -202,9 +222,7 @@ S8 init_can(U8 module_id)
 S8 request_parameter(U8 priority, U8 dest_module, U16 parameter)
 {
 	CAN_MSG message;
-	CAN_MSG* message_to_check;
 	CAN_ID id;
-	U8 c, k;
 
 	if (dest_module < 0 || dest_module >= NUM_OF_MODULES)
 	{
@@ -395,10 +413,14 @@ void service_can_tx_hardware(void)
 
 // service_can_rx_hardware
 //  Method to interact directly with the CAN registers through the HAL_CAN functions.
-//  Will take all messages from CAN_RX_FIFO0 and put them into the rx_message_buffer,
+//  Will take all messages from rx_mailbox (CAN_RX_FIFO0 or CAN_RX_FIFO1)
+//  and put them into the rx_message_buffer
+// params:
+//  U32 rx_mailbox: the mailbox to service (CAN_RX_FIFO0 or CAN_RX_FIFO1)
+//    Make sure this is valid, no error checking is done
 //
-//  designed to be called as an ISR whenever there is a message pending in CAN_RX_FIFO0
-void service_can_rx_hardware(void)
+//  designed to be called as an ISR whenever there is an RX message pending
+static void service_can_rx_hardware(U32 rx_mailbox)
 {
 	CAN_RxHeaderTypeDef rx_header;
 	CAN_MSG* message;
@@ -406,13 +428,14 @@ void service_can_rx_hardware(void)
 	// TODO HAL hardware error handling (datasheet)
 
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
-	while (rx_buffer_fill_level < RX_BUFFER_SIZE && HAL_CAN_GetRxFifoFillLevel(&hcan, CAN_RX_FIFO0))
+	while (rx_buffer_fill_level < RX_BUFFER_SIZE
+			&& HAL_CAN_GetRxFifoFillLevel(&hcan, rx_mailbox))
 	{
 		// set message to the correct pointer from the RX buffer (the "last" message in the buffer)
 		message = rx_message_buffer + ((rx_buffer_head + rx_buffer_fill_level) % RX_BUFFER_SIZE);
 
 		// Build the message from the registers on the STM32
-		switch (HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &rx_header, message->data))
+		switch (HAL_CAN_GetRxMessage(&hcan, rx_mailbox, &rx_header, message->data))
 		{
 		case HAL_OK:
 			// modify the rx_buffer data to reflect the new message
@@ -426,7 +449,7 @@ void service_can_rx_hardware(void)
 		default:
 			// this will always be HAL_ERROR. Check hcan.ErrorCode
 
-			// TODO error handling (do not increment the fill level, the newest message is junk)
+			// TODO error handling (do not increment the fill level, the newest message was not added)
 			// NOTE: possible infinite loop if this never works
 			break;
 		}

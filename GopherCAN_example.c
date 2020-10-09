@@ -27,6 +27,7 @@ extern CAN_HandleTypeDef hcan;
 
 
 // use this section to choose what module this should be (for testing 2 dev boards)
+// and what functionality should be enabled
 #define THIS_ACM
 //#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
@@ -60,8 +61,7 @@ U32 last_float_req = 0;
 
 // some global variables for examples
 U16 led_to_change;
-U32 last_fan_current_rx = 0;
-
+U32 last_fan_current_req = 0;
 U8 last_button_state = 0;
 
 
@@ -80,9 +80,6 @@ void init()
 	{
 		// an error has occurred
 	}
-
-	// init HAL_GetTick()
-	HAL_SetTickFreq(HAL_TICK_FREQ_DEFAULT);
 
 	// enable updating the RPM and fan_current. Parameters that are not added to this list
 	// will not be updated over can, even if they are requested
@@ -113,6 +110,7 @@ void init()
 
 // can_rx_loop
 //  This loop will handle CAN RX software tasks. Should be called every 1ms
+//  or as often as received messages should be handled
 void can_rx_loop()
 {
 	// handle each RX message in the buffer
@@ -124,17 +122,116 @@ void can_rx_loop()
 
 
 // can_hardware_handling
-//  this loop handles pulling messages from the RX mailbox and putting messages into the TX mailbox
+//  this loop handles putting messages into the TX mailbox
 //  should be called on the 1ms loop with high priority
+//  or as often as messages should be sent. Note that service_can_tx_hardware
+//  returns when there is no mailbox slots open, not when there are no more messages to send.
 void can_hardware_handling()
 {
-	service_can_rx_hardware(); // NOTE: this should be an ISR instead
 	service_can_tx_hardware();
 }
 
 
+// backround_loop
+//  Example of a loop that request parameters that need to be consistently up to date for
+//  other parts of the program, can be called as often as needed (as long as the CAN bus is not overwhelmed)
+void background_loop()
+{
+	// always request a param from the other module at 1ms intervals
+	// this is not the best idea as this can cause a lot of bus traffic
+	// logic-based requests are better, but this still works
+	if (request_parameter(PRIO_LOW, other_module, RPM_ID))
+	{
+		// an error has occurred
+	}
+
+	// update this modules parameter to show a change on the can bus
+	rpm.data++;
+}
+
+
+// main_loop
+//  another loop. This includes logic for a CAN command and conditional parameter requests
+void main_loop()
+{
+	U8 button_state;
+
+#ifdef ALLOW_LOGIC_REQ
+	U8 foo;
+
+	// Example accessing updating parameters that are requested in another loop
+	if (rpm.data <= MIN_ON_RPM)
+	{
+		// if the engine is off
+	}
+
+	// Example of requesting a parameter in runtime. This example
+	// uses time, but other logic could be used as well
+	if (HAL_GetTick() - fan_current.last_rx >= FAN_CURRENT_UPDATE_TIME)
+	{
+		// don't send another data request if the request is already pending
+		// A timeout may also be worth including just in case something goes wrong
+		if (fan_current.pending_response == FALSE
+				|| HAL_GetTick() - last_fan_current_req >= PARAM_UPDATE_TIMEOUT)
+		{
+			if (request_parameter(PRIO_HIGH, other_module, FAN_CURRENT_ID))
+			{
+				// error handling
+			}
+		}
+
+		// use the parameter data for something
+		foo = fan_current.data;
+
+		// update the last time the fan_current was received. fan_current.last_rx cannot be
+		// used directly in this case to prevent spamming requests after the timeout is reached
+		last_fan_current_req = fan_current.last_rx;
+	}
+
+	fan_current.data++;
+#endif
+
+#ifdef ENABLE_BUTTON_LED
+	// If the button is pressed send a can command to another to change the LED state
+	// To on or off depending on the button. Make sure to disable any heartbeat before
+	// trying this, they may conflict
+	button_state = !HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+
+	// this is to prevent spamming CAN messages
+	if (button_state != last_button_state)
+	{
+		last_button_state = button_state;
+
+		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE, button_state))
+		{
+			// error sending command
+		}
+	}
+#endif
+}
+
+
+// can_callback_function example
+
+// change_led_state
+//  a custom function that will change the state of the LED specified
+//  by parameter to remote_param. In this case parameter is a U16*, but
+//  any data type can be pointed to, as long as it is configured and casted
+//  correctly
+void change_led_state(void* parameter, U8 remote_param)
+{
+	// this function will set the LED to high or low, depending on remote_param
+	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))
+	U16 gpio_pin = *((U16*)parameter);
+
+	HAL_GPIO_WritePin(GPIOA, gpio_pin, !!remote_param);
+
+	return;
+}
+
+
 // testing_loop
-//  this is used for testing things
+//  this is used for testing things. Everything is better explained in other functions
 void testing_loop()
 {
 	U32 current_tick = HAL_GetTick();
@@ -248,106 +345,6 @@ void testing_loop()
 #endif
 }
 
-
-// backround_loop
-//  Example of a loop that request parameters that need to be consistently up to date for
-//  other parts of the program, can be called as often as needed (as long as the CAN bus is not overwhelmed)
-void background_loop()
-{
-	// always request a param from the other module at 1ms intervals
-	if (request_parameter(PRIO_LOW, other_module, RPM_ID))
-	{
-		// an error has occurred
-	}
-
-	// TODO better logic for constant request
-
-	// update this modules parameter to show a change on the can bus
-	rpm.data++;
-}
-
-
-// main_loop
-//  another loop. This includes logic for a CAN command and conditional parameter requests
-void main_loop()
-{
-	U8 button_state;
-
-#ifdef ALLOW_LOGIC_REQ
-	U8 foo;
-
-	// Example accessing updating parameters that are requested in another loop
-	if (rpm.data <= MIN_ON_RPM)
-	{
-		// if the engine is off
-	}
-
-	// TODO this logic could be a better example, use the logic for the parameter testing
-
-	// Example of requesting a parameter in runtime. This example
-	// uses time, but other logic could be used as well
-	if (HAL_GetTick() - last_fan_current_rx >= FAN_CURRENT_UPDATE_TIME)
-	{
-		// don't send another data request if the request is already pending
-		// A timeout may also be worth including just in case something goes wrong
-		if (fan_current.pending_response == FALSE
-				|| HAL_GetTick() - last_fan_current_rx >= PARAM_UPDATE_TIMEOUT)
-		{
-			if (request_parameter(PRIO_HIGH, other_module, FAN_CURRENT_ID))
-			{
-				// error handling
-			}
-		}
-
-		// use the parameter data for something
-		foo = fan_current.data;
-
-		// update the last time the fan_current was received. fan_current.last_rx cannot be
-		// used directly in this case because the code inside the if statement may not be run
-		// if it updates at a bad time
-		last_fan_current_rx = fan_current.last_rx;
-	}
-
-	fan_current.data++;
-#endif
-
-#ifdef ENABLE_BUTTON_LED
-	// If the button is pressed send a can command to another to change the LED state
-	// To on or off depending on the button. Make sure to disable any heartbeat before
-	// trying this, they may conflict
-	button_state = !HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
-
-	// this is to prevent spamming CAN messages
-	if (button_state != last_button_state)
-	{
-		last_button_state = button_state;
-
-		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE, button_state))
-		{
-			// error sending command
-		}
-	}
-#endif
-}
-
-
-// can_callback_function example
-
-// change_led_state
-//  a custom function that will change the state of the LED specified
-//  by parameter to remote_param. In this case parameter is a U16*, but
-//  any data type can be pointed to, as long as it is configured and casted
-//  correctly
-void change_led_state(void* parameter, U8 remote_param)
-{
-	// this function will set the LED to high or low, depending on remote_param
-	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))
-	U16 gpio_pin = *((U16*)parameter);
-
-	HAL_GPIO_WritePin(GPIOA, gpio_pin, !!remote_param);
-
-	return;
-}
 
 
 // end of GopherCAN_example.c

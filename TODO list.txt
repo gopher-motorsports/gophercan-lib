@@ -6,17 +6,16 @@ GopherCAN TODO list:
  - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
 
  MAYBE DO
- - Command to constantly request Data (add a background loop function on another module), should be a general ID that all modules will recieve
- - Use the second RX FIFO mailbox
+ - Command to constantly request Data (add a background loop function on another module),
+     should send on a general ID that all modules will recieve
  - TCP functionality for important commands
  - double precision floats
+ - Use RX_FIFO1 (maybe is enabled and the other module cant send fast enough to fill up FIFO0)
 
  SHOULD DO 
  - Move MX_CAN_Init() to library (maybe, ask other members)
- - Check hcan.Init settings to see what they should be
  - Handle hardware errors
  - Add function to send a parameter to another module
- - figure out the RX interrupts, (would almost garuntee a message that is sent is also recieved)
 
  TESTS
  - [x] TEST basic RX and TX of parameters
@@ -24,22 +23,26 @@ GopherCAN TODO list:
  - [x] TEST CAN commands
  - [x] TEST all datatypes (especially floats)
  - [x] TEST more usage of logic based param requests
- - [x] TEST what happens when the bus is at high load (lower priority messages will be lost and be stuck in the TX mailbox, keep it clean)
- - [x] TEST how the code handles full RX and TX mailboxes
+ - [x] TEST what happens when the bus is at high load (lower priority messages will be stuck in the TX mailbox, keep the bus clean)
+ - [x] TEST how the code handles full RX and TX mailboxes (TX: Waits until the next 1ms loop to send. RX: Message in position 3 is deleted for the new message)
  - [x] TEST command errors working correctly
  - [x] TEST request errors working correctly
  - [_] TEST parameter sending function (add it first)
- - [x] TEST not adding too many CAN messages into the TX buffer when it is not needed (ignoring duplicates testing)
- - [_] TEST lots of messages being sent to a single module at once (might need ISR to make this work)
+ - [x] TEST not adding too many CAN messages into the TX buffer when it is not needed (ignoring duplicates)
+ - [X] TEST lots of messages being sent to a single module at once (Its pretty good, bus is the limitation)
 
 BUGS:
-
+ - They are all features
 
 NOTES:
- - Last_rx is U32 milliseconds, meaning things may break after ~49.7 days
- - Requests may not be completed if the other module has a full RX mailbox. KEEP THE BUS CLEAN
- - Maximum of 32 TX and RX in buffer (#defines, can be changed. Probably could be smaller)
- - Don't ask for a bunch of params/commands at once. The thread that services the bus will not be happy
- - If things don't seem to be working correctly, CHECK THE BUS UTILIZATION. The TX mailboxes may be full
+ - Last_rx and HAL_GetTick() is U32 milliseconds, meaning things may break after ~49.7 days
+ - If things don't seem to be working correctly, CHECK THE BUS UTILIZATION.
+     Requests may not be completed if the bus is packed, returns have lower priority
+ - Maximum of 32 TX and 32 RX in buffer (#defines, can be changed. Probably could be smaller)
+ - Beware of asking for too many params/commands very quickly:
+     The TX buffer could fill up and new requests will not be serviced (this is hard to do, TX buffer is pretty big)
+     If there is a transmission issue, it is more likely the bus is full (Was not able to fill up the TX buffer under reasonable conditions)
  - Make sure the STM32 and CAN transiever have a common ground
-
+ - Good explanation of all of the HAL CAN settings:
+     https://stackoverflow.com/questions/57094729/what-is-the-meaning-of-canbus-function-mode-initilazing-settings-for-stm32/57097908
+ - Make sure to set the settings correctly when configuring in the CubeMX plugin
