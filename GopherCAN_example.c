@@ -23,14 +23,12 @@ extern S32_CAN_STRUCT s32_tester;
 extern S64_CAN_STRUCT s64_tester;
 extern FLOAT_CAN_STRUCT float_tester;
 
-extern CAN_HandleTypeDef hcan;
-
 
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
 #define THIS_ACM
 //#define THIS_PDM
-//#define ENABLE_LOGIC_REQ
+#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
 
 #ifdef THIS_ACM
@@ -82,7 +80,7 @@ void init()
 	}
 
 	// enable updating the RPM and fan_current. Parameters that are not added to this list
-	// will not be updated over can, even if they are requested
+	// will not be updated over CAN, even if they are requested
 	rpm.update_enabled = TRUE;
 	fan_current.update_enabled = TRUE;
 
@@ -156,7 +154,7 @@ void main_loop()
 {
 	U8 button_state;
 
-#ifdef ALLOW_LOGIC_REQ
+#ifdef ENABLE_LOGIC_REQ
 	U8 foo;
 
 	// Example accessing updating parameters that are requested in another loop

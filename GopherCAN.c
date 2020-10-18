@@ -366,8 +366,6 @@ void service_can_tx_hardware(void)
 	CAN_TxHeaderTypeDef tx_header;
 	CAN_MSG* message;
 
-	// TODO HAL hardware error handling (datasheet)
-
 	// add messages to the the TX mailboxes until they are full
 	while (tx_buffer_fill_level > 0 && HAL_CAN_GetTxMailboxesFreeLevel(&hcan))
 	{
@@ -401,7 +399,7 @@ void service_can_tx_hardware(void)
 		default:
 			// this will always be HAL_ERROR. Check hcan.ErrorCode
 
-			// TODO error handling (do not move the head as the message did not send, try again later)
+			// TODO hardware error handling (do not move the head as the message did not send, try again later)
 			// NOTE: possible infinite loop if this never works
 			break;
 		}
@@ -425,8 +423,6 @@ static void service_can_rx_hardware(U32 rx_mailbox)
 	CAN_RxHeaderTypeDef rx_header;
 	CAN_MSG* message;
 
-	// TODO HAL hardware error handling (datasheet)
-
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
 	while (rx_buffer_fill_level < RX_BUFFER_SIZE
 			&& HAL_CAN_GetRxFifoFillLevel(&hcan, rx_mailbox))
@@ -449,7 +445,7 @@ static void service_can_rx_hardware(U32 rx_mailbox)
 		default:
 			// this will always be HAL_ERROR. Check hcan.ErrorCode
 
-			// TODO error handling (do not increment the fill level, the newest message was not added)
+			// TODO hardware error handling (do not increment the fill level, the newest message was not added)
 			// NOTE: possible infinite loop if this never works
 			break;
 		}
@@ -477,7 +473,7 @@ S8 service_can_rx_buffer(void)
 		// get the message at the head of the array
 		current_message = rx_message_buffer + rx_buffer_head;
 
-		// WARNING: errors are not handled in this version. The message is just discarded
+		// WARNING: CAN errors from other modules are not handled in this version. The message is just discarded
 		service_can_rx_message(current_message);
 
 		// move the head now that the first element has been removed
@@ -595,12 +591,6 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[id.parameter]);
 	data_struct->last_rx = HAL_GetTick();
 
-	// build the data U64 (big endian)
-	for (c = (message->dlc - 1); c >= 0; c--)
-	{
-		recieved_data |= message->data[c] << (c * BITS_IN_BYTE);
-	}
-
 	// request parameter: return a CAN message with the data taken from this module
 	if (parameter_data_types[id.parameter] == REQ_PARAM)
 	{
@@ -614,6 +604,12 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	}
 
 	// this code should only be reached if the message is a data message
+
+	// build the data U64 (big endian)
+	for (c = (message->dlc - 1); c >= 0; c--)
+	{
+		recieved_data |= message->data[c] << (c * BITS_IN_BYTE);
+	}
 
 	// Check the update_enabled flag
 	if (!(data_struct->update_enabled))

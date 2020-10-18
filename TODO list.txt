@@ -3,19 +3,25 @@ GopherCAN TODO list:
  AUTO-GEN TOOL
  - Tool that will auto-generate code from the .XLSX table
  - Split up auto generated sections of .c/.h ?
- - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
 
  MAYBE DO
  - Command to constantly request Data (add a background loop function on another module),
      should send on a general ID that all modules will recieve
  - TCP functionality for important commands
  - double precision floats
- - Use RX_FIFO1 (maybe is enabled and the other module cant send fast enough to fill up FIFO0)
+ - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
+ - Module specific variables (parameter sections, subscribe to different lists)
+ - Module groups (like an email list)
 
- SHOULD DO 
- - Move MX_CAN_Init() to library (maybe, ask other members)
+ SHOULD DO
+ - Quick tutorial of all of the settings needed to run CAN (CubeMX)
  - Handle hardware errors
  - Add function to send a parameter to another module
+ - Requesting a parameter that is not enabled should send an error
+ - Make sure a param is enabled before the request is sent (waste of CAN bus if not enabled)
+ - General module ID for all modules (prob ID 0)
+ - Use the RTR bit or a single bit of the ID of the CAN message for requests. This will change up some things involving requests but the ideas are the same
+ - Use hcan pointer, not extern
 
  TESTS
  - [x] TEST basic RX and TX of parameters
@@ -29,19 +35,23 @@ GopherCAN TODO list:
  - [x] TEST request errors working correctly
  - [_] TEST parameter sending function (add it first)
  - [x] TEST not adding too many CAN messages into the TX buffer when it is not needed (ignoring duplicates)
- - [X] TEST lots of messages being sent to a single module at once (Its pretty good, bus is the limitation)
+ - [x] TEST lots of messages being sent to a single module at once (Its pretty good, bus is the limitation)
+ - [_] TEST FIFO1 (fill up FIFO0 first)
+ - [_] TEST Delta time of request vs recieve for a loaded and unloaded bus
+ - [_] TEST cpu usage with no filter
+ - [_] TEST module requesting data from a disabled param on another module (implement an error)
 
-BUGS:
+KNOWN BUGS:
  - They are all features
 
 NOTES:
  - Last_rx and HAL_GetTick() is U32 milliseconds, meaning things may break after ~49.7 days
  - If things don't seem to be working correctly, CHECK THE BUS UTILIZATION.
-     Requests may not be completed if the bus is packed, returns have lower priority
+     Requests may not be completed if the bus is packed, returns have lower priority (this will change if the RTR bit is used)
  - Maximum of 32 TX and 32 RX in buffer (#defines, can be changed. Probably could be smaller)
  - Beware of asking for too many params/commands very quickly:
      The TX buffer could fill up and new requests will not be serviced (this is hard to do, TX buffer is pretty big)
-     If there is a transmission issue, it is more likely the bus is full (Was not able to fill up the TX buffer under reasonable conditions)
+     If there is a transmission issue, it is more likely the bus is full (Was not able to fill up the TX buffer under reasonable conditions during testing)
  - Make sure the STM32 and CAN transiever have a common ground
  - Good explanation of all of the HAL CAN settings:
      https://stackoverflow.com/questions/57094729/what-is-the-meaning-of-canbus-function-mode-initilazing-settings-for-stm32/57097908
