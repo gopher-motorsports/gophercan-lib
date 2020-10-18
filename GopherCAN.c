@@ -297,6 +297,93 @@ S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_param
 }
 
 
+// send_parameter
+//  function to directly send a CAN message with the specified parameter to
+//  another module
+// params:
+//  U8 priority:    PRIO_LOW or PRIO_HIGH
+//  U8 dest_module: what module to send the parameter to
+//  U16 parameter:  what parameter to send
+// returns:
+//  error codes specified in GopherCAN.h
+S8 send_parameter(U8 priority, U8 dest_module, U16 parameter)
+{
+	CAN_ID id;
+	CAN_MSG message;
+	U64 data = 0;
+	S8 c;
+	FLOAT_CONVERTER float_con;
+
+	// make sure the parameter is valid
+	if (parameter <= CAN_COMMAND_ID || parameter >= NUM_OF_PARAMETERS)
+	{
+		return BAD_PARAMETER_ID;
+	}
+
+	// make sure the parameter is enabled
+	if (!((CAN_INFO_STRUCT*)(all_parameter_structs[parameter]))->update_enabled)
+	{
+		return NOT_ENABLED_ERR;
+	}
+
+	// build the return message ID
+	id.priority = priority;
+	id.dest_module = dest_module;
+	id.source_module = this_module_id;
+	id.error = FALSE;
+	id.parameter = parameter;
+
+	build_message_id(&message, &id);
+
+	// get the value of the data on this module and build the CAN message
+	if (parameter_data_types[parameter] == UNSIGNED8
+		|| parameter_data_types[parameter] == SIGNED8)
+	{
+		data |= ((U8_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
+		message.dlc = sizeof(U8);
+	}
+
+	else if (parameter_data_types[parameter] == UNSIGNED16
+		|| parameter_data_types[parameter] == SIGNED16)
+	{
+		data |= ((U16_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
+		message.dlc = sizeof(U16);
+	}
+
+	else if (parameter_data_types[parameter] == UNSIGNED32
+		|| parameter_data_types[parameter] == SIGNED32)
+	{
+		data |= ((U32_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
+		message.dlc = sizeof(U32);
+	}
+
+	else if (parameter_data_types[parameter] == UNSIGNED64
+		|| parameter_data_types[parameter] == SIGNED64)
+	{
+		data |= ((U64_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
+		message.dlc = sizeof(U64);
+	}
+
+	else if (parameter_data_types[parameter] == FLOATING)
+	{
+		// Union to get the bitwise data of the float
+		float_con.f = ((FLOAT_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
+
+		data |= float_con.u32;
+		message.dlc = sizeof(float);
+	}
+
+	// build the data in the message (big endian)
+	for (c = message.dlc - 1; c >= 0; c--)
+	{
+		message.data[c] = (U8)(data >> (c * BITS_IN_BYTE));
+	}
+
+	// send the built CAN message
+	return tx_can_message(&message);
+}
+
+
 // add_custum_can_func
 //  add a user function to the array of functions to check if
 //  a CAN command message is sent. Note the functions must be of type 'void func(void*, U8)',
@@ -591,16 +678,23 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[id.parameter]);
 	data_struct->last_rx = HAL_GetTick();
 
+    // run command: run the command specified by the CAN message on this module
+	if (parameter_data_types[id.parameter] == COMMAND)
+	{
+		return run_can_command(message, &id);;
+	}
+
+	// Check the update_enabled flag (if it is not a CAN command)
+	if (!(data_struct->update_enabled))
+	{
+		send_error_message(&id, PARAM_NOT_ENABLED);
+		return NOT_ENABLED_ERR;
+	}
+
 	// request parameter: return a CAN message with the data taken from this module
 	if (parameter_data_types[id.parameter] == REQ_PARAM)
 	{
 		return parameter_requested(message, &id);
-	}
-
-	// run command: run the command specified by the CAN message on this module
-	if (parameter_data_types[id.parameter] == COMMAND)
-	{
-		return run_can_command(message, &id);;
 	}
 
 	// this code should only be reached if the message is a data message
@@ -609,13 +703,6 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	for (c = (message->dlc - 1); c >= 0; c--)
 	{
 		recieved_data |= message->data[c] << (c * BITS_IN_BYTE);
-	}
-
-	// Check the update_enabled flag
-	if (!(data_struct->update_enabled))
-	{
-		send_error_message(&id, PARAM_NOT_ENABLED);
-		return NOT_ENABLED_ERR;
 	}
 
 	// Switch the pending_response flag
@@ -677,12 +764,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 //  return a CAN message with the data taken from this module
 static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 {
-	U16 parameter_requested;
-	CAN_ID return_id;
-	CAN_MSG return_message;
-	U64 return_data = 0;
-	S8 c;
-	FLOAT_CONVERTER float_con;
+	U16 requested_param;
 
 	if (message->dlc != REQ_PARAM_SIZE)
 	{
@@ -692,71 +774,18 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// find what the parameter is from the data
-	parameter_requested = (message->data[0] << BITS_IN_BYTE) | message->data[1];
-	req_param.parameter_id = parameter_requested;
+	requested_param = (message->data[0] << BITS_IN_BYTE) | message->data[1];
+	req_param.parameter_id = requested_param;
 
-	if (parameter_requested <= CAN_COMMAND_ID || parameter_requested >= NUM_OF_PARAMETERS)
+	if (requested_param <= CAN_COMMAND_ID || requested_param >= NUM_OF_PARAMETERS)
 	{
 		send_error_message(id, ID_NOT_FOUND);
 
 		return NOT_FOUND_ERR;
 	}
 
-	// build the return message ID
-	return_id.priority = id->priority;
-	return_id.dest_module = id->source_module;
-	return_id.source_module = this_module_id;
-	return_id.error = FALSE;
-	return_id.parameter = parameter_requested;
-
-	build_message_id(&return_message, &return_id);
-
-	// get the value of the data on this module and build the CAN message
-	if (parameter_data_types[parameter_requested] == UNSIGNED8
-		|| parameter_data_types[parameter_requested] == SIGNED8)
-	{
-		return_data |= ((U8_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
-		return_message.dlc = sizeof(U8);
-	}
-
-	else if (parameter_data_types[parameter_requested] == UNSIGNED16
-		|| parameter_data_types[parameter_requested] == SIGNED16)
-	{
-		return_data |= ((U16_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
-		return_message.dlc = sizeof(U16);
-	}
-
-	else if (parameter_data_types[parameter_requested] == UNSIGNED32
-		|| parameter_data_types[parameter_requested] == SIGNED32)
-	{
-		return_data |= ((U32_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
-		return_message.dlc = sizeof(U32);
-	}
-
-	else if (parameter_data_types[parameter_requested] == UNSIGNED64
-		|| parameter_data_types[parameter_requested] == SIGNED64)
-	{
-		return_data |= ((U64_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
-		return_message.dlc = sizeof(U64);
-	}
-
-	else if (parameter_data_types[parameter_requested] == FLOATING)
-	{
-		// Union to get the bitwise data of the float
-		float_con.f = ((FLOAT_CAN_STRUCT*)(all_parameter_structs[parameter_requested]))->data;
-
-		return_data |= float_con.u32;
-		return_message.dlc = sizeof(float);
-	}
-
-	// build the data in the message (big endian)
-	for (c = return_message.dlc - 1; c >= 0; c--)
-	{
-		return_message.data[c] = (U8)(return_data >> (c * BITS_IN_BYTE));
-	}
-
-	// send the built CAN message
-	return tx_can_message(&return_message);
+	// send the parameter data to the module that requested
+	return send_parameter(id->priority, id->source_module, requested_param);
 }
 
 

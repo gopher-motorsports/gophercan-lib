@@ -19,10 +19,13 @@
 S8 init_can(U8 module_id);
 S8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
+S8 send_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
 void service_can_tx_hardware(void);
+
+// function to add to the custom CAN commands by default just in case
 void do_nothing(void* param, U8 remote_param);
 
 // ISR functions, do not call these in runtime
