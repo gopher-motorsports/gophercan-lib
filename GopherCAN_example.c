@@ -31,7 +31,7 @@ extern CAN_HandleTypeDef hcan;
 // and what functionality should be enabled
 #define THIS_ACM
 //#define THIS_PDM
-#define ENABLE_LOGIC_REQ
+//#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
 
 #ifdef THIS_ACM

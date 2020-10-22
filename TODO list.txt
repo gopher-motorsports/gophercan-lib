@@ -15,8 +15,6 @@ GopherCAN TODO list:
  - Quick tutorial of all of the settings needed to run CAN (CubeMX)
  - Handle hardware errors
  - General module ID for all modules (prob ID 0)
- - Use the RTR bit or a single bit of the ID of the CAN message for requests. This will change up some things involving requests but the ideas are the same
- - Requesting a parameter that is not enabled should send an error (RTR bit will fix this)
 
 DAM/ROUTING SPECIFIC IDEAS
  - Use a routing table in service_can_tx_hardware to choose which CAN bus to put the message on (only one RX and TX buffer).
@@ -28,7 +26,7 @@ DAM/ROUTING SPECIFIC IDEAS
  - Service TX hardware very frequently for message routing
 
  TESTS
- - [_] TEST basic RX and TX of parameters (lots of things have been changed at a low level)
+ - [x] TEST basic RX and TX of parameters (lots of things have been changed at a low level)
  - [x] TEST to make sure buffers are working correctly
  - [x] TEST CAN commands
  - [x] TEST all datatypes (especially floats)
