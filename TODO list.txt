@@ -5,8 +5,6 @@ GopherCAN TODO list:
  - Split up auto generated sections of .c/.h ?
 
  MAYBE DO
- - Command to constantly request Data (add a background loop function on another module),
-     should send on a general ID that all modules will recieve
  - TCP functionality for important commands
  - double precision floats
  - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
@@ -18,9 +16,16 @@ GopherCAN TODO list:
  - Handle hardware errors
  - General module ID for all modules (prob ID 0)
  - Use the RTR bit or a single bit of the ID of the CAN message for requests. This will change up some things involving requests but the ideas are the same
- - Requesting a parameter that is not enabled should send an error (RTR will fix this)
- - Use hcan pointer, not extern
- - Modify library to work with multiple CAN busses
+ - Requesting a parameter that is not enabled should send an error (RTR bit will fix this)
+
+DAM/ROUTING SPECIFIC IDEAS
+ - Use a routing table in service_can_tx_hardware to choose which CAN bus to put the message on (only one RX and TX buffer).
+     All messages will be handled as if there is only one CAN bus, the table will choose where they are sent
+ - [OR] use a routing table in tx_can_message, and have multiple TX buffers, one for each bus. Then service_can_tx_hardware
+     must be called for each bus with a pointer to the correct buffer
+ - Routing functionality #define
+ - Have a second TX ring buffer for routing messages, give higher priority
+ - Service TX hardware very frequently for message routing
 
  TESTS
  - [_] TEST basic RX and TX of parameters (lots of things have been changed at a low level)
@@ -40,12 +45,18 @@ GopherCAN TODO list:
  - [_] TEST Delta time of request vs recieve for a loaded and unloaded bus
  - [_] TEST cpu usage with no filter
  - [_] TEST module requesting data from a disabled param on another module (implement an error)
+ - [_] TEST general destination CAN messages
+
+ROUTER TESTS
+ - [_] TEST basic RX and TX on different busses
+ - [_] TEST RX and TX with the DAM
+ - [_] TEST really full bus with lots of routing required
 
 NOTES FOR DEVS:
  - Last_rx and HAL_GetTick() is U32 milliseconds, meaning things may break after ~49.7 days
  - If things don't seem to be working correctly, CHECK THE BUS UTILIZATION.
      Requests may not be completed if the bus is packed, returns have lower priority (this will change if the RTR bit is used)
- - Maximum of 32 TX and 32 RX in buffer (#defines, can be changed. Probably could be smaller)
+ - Set the RX and TX buffer sizes appropriately for the expected RX and TX loads
  - Beware of asking for too many params/commands very quickly:
      The TX buffer could fill up and new requests will not be serviced (this is hard to do, TX buffer is pretty big)
      If there is a transmission issue, it is more likely the bus is full (Was not able to fill up the TX buffer under reasonable conditions during testing)

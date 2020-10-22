@@ -23,6 +23,9 @@ extern S32_CAN_STRUCT s32_tester;
 extern S64_CAN_STRUCT s64_tester;
 extern FLOAT_CAN_STRUCT float_tester;
 
+// the HAL_CAN struct
+extern CAN_HandleTypeDef hcan;
+
 
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
@@ -74,7 +77,7 @@ void init()
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
 	// TODO add some tutorials on how to do this
-	if (init_can(this_module))
+	if (init_can(&hcan, this_module))
 	{
 		// an error has occurred
 	}
@@ -126,7 +129,7 @@ void can_rx_loop()
 //  returns when there is no mailbox slots open, not when there are no more messages to send.
 void can_hardware_handling()
 {
-	service_can_tx_hardware();
+	service_can_tx_hardware(&hcan);
 }
 
 
@@ -180,6 +183,7 @@ void main_loop()
 
 		// use the parameter data for something
 		foo = fan_current.data;
+		foo++;
 
 		// update the last time the fan_current was received. fan_current.last_rx cannot be
 		// used directly in this case to prevent spamming requests after the timeout is reached

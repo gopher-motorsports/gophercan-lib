@@ -16,14 +16,14 @@
 #include "stm32f0xx_hal_can.h"
 
 // function prototypes
-S8 init_can(U8 module_id);
+S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id);
 S8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
 S8 send_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
-void service_can_tx_hardware(void);
+void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 
 // function to add to the custom CAN commands by default just in case
 void do_nothing(void* param, U8 remote_param);
@@ -37,7 +37,7 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 
 // number of each type
 #define NUM_OF_MODULES    5
-#define NUM_OF_PARAMETERS 13
+#define NUM_OF_PARAMETERS 12
 #define NUM_OF_COMMANDS   3
 
 
@@ -49,23 +49,22 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 #define ACM_ID 4
 
 
-// request and custom commands
-#define REQUEST_VALUE_ID 0
-#define CAN_COMMAND_ID   1
+// Custom command
+#define CAN_COMMAND_ID 0
 
 
 // parameter IDs
-#define RPM_ID 2
-#define FAN_CURRENT_ID 3
-#define U8_TESTER_ID 4
-#define U16_TESTER_ID 5
-#define U32_TESTER_ID 6
-#define U64_TESTER_ID 7
-#define S8_TESTER_ID 8
-#define S16_TESTER_ID 9
-#define S32_TESTER_ID 10
-#define S64_TESTER_ID 11
-#define FLOAT_TESTER_ID 12
+#define RPM_ID 1
+#define FAN_CURRENT_ID 2
+#define U8_TESTER_ID 3
+#define U16_TESTER_ID 4
+#define U32_TESTER_ID 5
+#define U64_TESTER_ID 6
+#define S8_TESTER_ID 7
+#define S16_TESTER_ID 8
+#define S32_TESTER_ID 9
+#define S64_TESTER_ID 10
+#define FLOAT_TESTER_ID 11
 
 
 // custom command IDs
@@ -91,6 +90,12 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 #define NEW_MESSAGE         2
 #define MAX_NEW_MESSAGES    3
 
+
+// Data or Request message for the RTR bit
+#define DATA_MESSAGE CAN_RTR_DATA                                     // 0U
+#define REQUEST_DATA CAN_RTR_REMOTE                                   // 2U
+
+
 // errors
 #define INIT_FAILED             -1
 #define BAD_MODULE_ID           -2
@@ -113,23 +118,22 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 // Data types
 typedef enum
 {
-	REQ_PARAM  = 0,
-	COMMAND    = 1,
-	UNSIGNED8  = 2,
-	UNSIGNED16 = 3,
-	UNSIGNED32 = 4,
-	UNSIGNED64 = 5,
-	SIGNED8    = 6,
-	SIGNED16   = 7,
-	SIGNED32   = 8,
-	SIGNED64   = 9,
-	FLOATING   = 10
+	COMMAND    = 0,
+	UNSIGNED8  = 1,
+	UNSIGNED16 = 2,
+	UNSIGNED32 = 3,
+	UNSIGNED64 = 4,
+	SIGNED8    = 5,
+	SIGNED16   = 6,
+	SIGNED32   = 7,
+	SIGNED64   = 8,
+	FLOATING   = 9
 } datatypes;
 
 // data type sizes (in bytes)
 typedef enum
 {
-	REQ_PARAM_SIZE  = 2,
+	REQ_PARAM_SIZE  = 0,
 	COMMAND_SIZE    = 2,
 	UNSIGNED8_SIZE  = 1,
 	UNSIGNED16_SIZE = 2,
@@ -198,6 +202,7 @@ typedef union
 typedef struct
 {
 	U32 id;             // only the least significant 29 bits will be used
+	U8  rtr_bit;        // 0 or 1: DATA_MESSAGE or REQUEST_DATA
 	U8  dlc;            // [0, 8]
 	U8  data[8];        // not all of these will matter depending on dlc
 } CAN_MSG;
