@@ -6,7 +6,6 @@
  */
 
 #include "GopherCAN.h"
-#include "stm32f0xx_hal.h"
 #include "GopherCAN_example.h"
 
 
@@ -24,13 +23,14 @@ extern S64_CAN_STRUCT s64_tester;
 extern FLOAT_CAN_STRUCT float_tester;
 
 // the HAL_CAN struct
-extern CAN_HandleTypeDef hcan;
+CAN_HandleTypeDef* hcan;
 
 
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
-#define THIS_ACM
-//#define THIS_PDM
+#define F7XX
+//#define THIS_ACM
+#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
 
@@ -72,12 +72,14 @@ void change_led_state(void* parameter, U8 remote_param);
 
 // init
 //  What needs to happen on startup in order to run GopherCAN
-void init()
+void init(CAN_HandleTypeDef* hcan_ptr)
 {
+	hcan = hcan_ptr;
+
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
-	// TODO add some tutorials on how to do this
-	if (init_can(&hcan, this_module))
+	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
+	if (init_can(hcan, this_module))
 	{
 		// an error has occurred
 	}
@@ -99,7 +101,11 @@ void init()
 	float_tester.update_enabled = TRUE;
 
 	// adding can_callback_function
+#ifndef F7XX
 	led_to_change = GPIO_PIN_5; // this is LD2 on the dev board
+#else
+	led_to_change = GPIO_PIN_0; // this is LD1 on the dev board
+#endif
 
 	if (add_custom_can_func(SET_LED_STATE, &change_led_state,
 		TRUE, (void*)&led_to_change))
@@ -129,7 +135,7 @@ void can_rx_loop()
 //  returns when there is no mailbox slots open, not when there are no more messages to send.
 void can_hardware_handling()
 {
-	service_can_tx_hardware(&hcan);
+	service_can_tx_hardware(hcan);
 }
 
 
@@ -199,6 +205,10 @@ void main_loop()
 	// trying this, they may conflict
 	button_state = !HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
 
+#ifdef F7XX
+	button_state = !button_state;
+#endif
+
 	// this is to prevent spamming CAN messages
 	if (button_state != last_button_state)
 	{
@@ -226,7 +236,11 @@ void change_led_state(void* parameter, U8 remote_param)
 	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))
 	U16 gpio_pin = *((U16*)parameter);
 
+#ifndef F7XX
 	HAL_GPIO_WritePin(GPIOA, gpio_pin, !!remote_param);
+#else
+	HAL_GPIO_WritePin(GPIOB, gpio_pin, !!remote_param);
+#endif
 
 	return;
 }

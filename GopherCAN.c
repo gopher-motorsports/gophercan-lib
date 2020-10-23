@@ -10,6 +10,7 @@
 #include "GopherCAN.h"
 
 // static function prototypes
+static S8   init_filters(CAN_HandleTypeDef* hcan);
 static S8   tx_can_message(CAN_MSG* message);
 static S8   parameter_requested(CAN_MSG* message, CAN_ID* id);
 static S8   run_can_command(CAN_MSG* message, CAN_ID* id);
@@ -30,6 +31,9 @@ CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
 
 // a struct to store the last error type message received
 ERROR_MSG last_error;
+
+// stores the last hcan error code
+U32 hcan_error = HAL_CAN_ERROR_NONE;
 
 // buffers to store RX and TX messages and some data to handle them correctly
 CAN_MSG rx_message_buffer[RX_BUFFER_SIZE];
@@ -106,11 +110,6 @@ S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id)
 {
 	U8 c;
 	CAN_INFO_STRUCT* data_struct;
-	CAN_FilterTypeDef filterConfig;
-	U32 filt_id_low;
-	U32 filt_id_high;
-	U32 filt_mask_high;
-	U32 filt_mask_low;
 
 	// set the current module
 	this_module_id = module_id;
@@ -136,6 +135,39 @@ S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id)
 		cust_funcs[c].param_ptr = NULL;
 
 	}
+
+	if (init_filters(hcan))
+	{
+		return FILTER_SET_FAILED;
+	}
+
+	// Setup the rx interrupt function to interrupt on any pending message
+	// will call methods following the format HAL_CAN_xxxCallback()
+	if (HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK
+			|| HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING) != HAL_OK)
+	{
+		return IRQ_SET_FAILED;
+	}
+
+	// start can!
+	if (HAL_CAN_Start(hcan) != HAL_OK)
+	{
+		return CAN_START_FAILED;
+	}
+
+	return CAN_SUCCESS;
+}
+
+
+// init_filters
+//  function called within init() that sets up all of the filters
+static S8 init_filters(CAN_HandleTypeDef* hcan)
+{
+	CAN_FilterTypeDef filterConfig;
+	U32 filt_id_low;
+	U32 filt_id_high;
+	U32 filt_mask_high;
+	U32 filt_mask_low;
 
 	// Define the filter values based on this_module_id
 	// High and low id are the same because the id exclusively must be the module id
@@ -170,18 +202,33 @@ S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id)
 		return FILTER_SET_FAILED;
 	}
 
-	// Setup the rx interrupt function to interrupt on any pending message
-	// will call methods following the format HAL_CAN_xxxCallback()
-	if (HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK
-			|| HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING) != HAL_OK)
+	// set the filters for the general module ID
+	filt_id_low = ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+	filt_id_high = ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+	filt_mask_low = DEST_MASK;
+	filt_mask_high = DEST_MASK;
+
+	// Set the the parameters on the filter struct (FIFO0)
+	filterConfig.FilterBank = 2;                                      // Modify bank 2 (of 13)
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
+	filterConfig.FilterIdLow = filt_id_low;                           // Low bound of accepted values
+	filterConfig.FilterIdHigh = filt_id_high;                         // High bound of accepted values
+	filterConfig.FilterMaskIdLow = filt_mask_low;                     // Which bits matter when filtering (high)
+	filterConfig.FilterMaskIdHigh = filt_mask_high;                   // Which bits matter when filtering (low)
+
+	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
-		return IRQ_SET_FAILED;
+		return FILTER_SET_FAILED;
 	}
 
-	// start can!
-	if (HAL_CAN_Start(hcan) != HAL_OK)
+	// Set the the parameters on the filter struct (FIFO1)
+	// all other parameters are the same as FIFO0
+	filterConfig.FilterBank = 3;                                      // Modify bank 3 (of 13)
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
+
+	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
-		return CAN_START_FAILED;
+		return FILTER_SET_FAILED;
 	}
 
 	return CAN_SUCCESS;
@@ -469,27 +516,24 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		tx_header.DLC = message->dlc;
 
 		// add the message to the sending list
-		switch (HAL_CAN_AddTxMessage(hcan, &tx_header, message->data, &tx_mailbox_num))
+		if (HAL_CAN_AddTxMessage(hcan, &tx_header, message->data, &tx_mailbox_num) != HAL_OK)
 		{
-		case HAL_OK:
-			// move the head now that the first element has been removed
-			tx_buffer_head++;
-			if (tx_buffer_head >= TX_BUFFER_SIZE)
-			{
-				tx_buffer_head = 0;
-			}
+			// this will always be HAL_ERROR. Check hcan->ErrorCode
+			// hardware error (do not move the head as the message did not send, try again later)
 
-			// decrement the fill level
-			tx_buffer_fill_level--;
-			break;
-
-		default:
-			// this will always be HAL_ERROR. Check hcan.ErrorCode
-
-			// TODO hardware error handling (do not move the head as the message did not send, try again later)
-			// NOTE: possible infinite loop if this never works
-			break;
+			hcan_error = hcan->ErrorCode;
+			return;
 		}
+
+		// move the head now that the first element has been removed
+		tx_buffer_head++;
+		if (tx_buffer_head >= TX_BUFFER_SIZE)
+		{
+			tx_buffer_head = 0;
+		}
+
+		// decrement the fill level
+		tx_buffer_fill_level--;
 	}
 
 	return;
@@ -518,25 +562,22 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		message = rx_message_buffer + ((rx_buffer_head + rx_buffer_fill_level) % RX_BUFFER_SIZE);
 
 		// Build the message from the registers on the STM32
-		switch (HAL_CAN_GetRxMessage(hcan, rx_mailbox, &rx_header, message->data))
+		if (HAL_CAN_GetRxMessage(hcan, rx_mailbox, &rx_header, message->data) != HAL_OK)
 		{
-		case HAL_OK:
-			// modify the rx_buffer data to reflect the new message
-			rx_buffer_fill_level++;
+			// this will always be HAL_ERROR. Check hcan->ErrorCode
+			// hardware error (do not move the head as the message did not send, try again later)
 
-			// move the header ID, RTR bit, and DLC into the GopherCAN message struct
-			message->rtr_bit = rx_header.RTR;
-			message->id = rx_header.ExtId;
-			message->dlc = rx_header.DLC;
-			break;
-
-		default:
-			// this will always be HAL_ERROR. Check hcan.ErrorCode
-
-			// TODO hardware error handling (do not increment the fill level, the newest message was not added)
-			// NOTE: possible infinite loop if this never works
-			break;
+			hcan_error = hcan->ErrorCode;
+			return;
 		}
+
+		// modify the rx_buffer data to reflect the new message
+		rx_buffer_fill_level++;
+
+		// move the header ID, RTR bit, and DLC into the GopherCAN message struct
+		message->rtr_bit = rx_header.RTR;
+		message->id = rx_header.ExtId;
+		message->dlc = rx_header.DLC;
 	}
 }
 
@@ -562,6 +603,7 @@ S8 service_can_rx_buffer(void)
 		current_message = rx_message_buffer + rx_buffer_head;
 
 		// WARNING: CAN errors from other modules are not handled in this version. The message is just discarded
+		// Use a CAN bus analyzer to see what the message is for debugging
 		service_can_rx_message(current_message);
 
 		// move the head now that the first element has been removed

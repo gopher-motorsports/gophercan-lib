@@ -12,24 +12,22 @@ GopherCAN TODO list:
  - Module groups (like an email list)
 
  SHOULD DO
- - Quick tutorial of all of the settings needed to run CAN (CubeMX)
- - Handle hardware errors
- - General module ID for all modules (prob ID 0)
+ - More elegent way to build on F0 vs F7
 
-DAM/ROUTING SPECIFIC IDEAS
+ DLM/ROUTING SPECIFIC IDEAS
  - Use a routing table in service_can_tx_hardware to choose which CAN bus to put the message on (only one RX and TX buffer).
      All messages will be handled as if there is only one CAN bus, the table will choose where they are sent
  - [OR] use a routing table in tx_can_message, and have multiple TX buffers, one for each bus. Then service_can_tx_hardware
-     must be called for each bus with a pointer to the correct buffer
+     must be called for each bus with a pointer to the correct TX buffer
  - Routing functionality #define
  - Have a second TX ring buffer for routing messages, give higher priority
- - Service TX hardware very frequently for message routing
+ - Service TX hardware very frequently for message routing (TX interrupts?)
 
  TESTS
- - [x] TEST basic RX and TX of parameters (lots of things have been changed at a low level)
+ - [x] TEST basic RX and TX of parameters
  - [x] TEST to make sure buffers are working correctly
  - [x] TEST CAN commands
- - [x] TEST all datatypes (especially floats)
+ - [x] TEST all datatypes
  - [x] TEST more usage of logic based param requests
  - [x] TEST what happens when the bus is at high load (lower priority messages will be stuck in the TX mailbox, keep the bus clean)
  - [x] TEST how the code handles full RX and TX mailboxes (TX: Waits until the next 1ms loop to send. RX: Message in position 3 is deleted for the new message)
@@ -38,16 +36,17 @@ DAM/ROUTING SPECIFIC IDEAS
  - [x] TEST not adding too many CAN messages into the TX buffer when it is not needed (ignoring duplicates)
  - [x] TEST lots of messages being sent to a single module at once (Its pretty good, bus is the limitation)
  - [_] TEST parameter sending function
- - [_] TEST requesting a param that is not enabled (send an error)
+ - [_] TEST requesting a param that is not enabled (should send an error)
  - [_] TEST FIFO1 (fill up FIFO0 first)
  - [_] TEST Delta time of request vs recieve for a loaded and unloaded bus
  - [_] TEST cpu usage with no filter
- - [_] TEST module requesting data from a disabled param on another module (implement an error)
- - [_] TEST general destination CAN messages
+ - [_] TEST module requesting data from a disabled param on another module
+ - [_] TEST general destination CAN messages (ID 0)
+ - [_] TEST filters, including general filter
 
-ROUTER TESTS
+ ROUTER TESTS
  - [_] TEST basic RX and TX on different busses
- - [_] TEST RX and TX with the DAM
+ - [_] TEST RX and TX with the DLM
  - [_] TEST really full bus with lots of routing required
 
 NOTES FOR DEVS:
@@ -61,6 +60,8 @@ NOTES FOR DEVS:
  - Good explanation of all of the HAL CAN settings:
      https://stackoverflow.com/questions/57094729/what-is-the-meaning-of-canbus-function-mode-initilazing-settings-for-stm32/57097908
  - Make sure to set the settings correctly when configuring in the CubeMX plugin
+ - If the DLC on CAN Capture is >=64, then the RTR bit is set on that message
+ - Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
 
 KNOWN BUGS:
- - They are all features
+ - In F7, float conversions are not working correcly

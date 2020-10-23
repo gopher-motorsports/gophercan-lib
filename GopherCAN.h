@@ -12,8 +12,16 @@
 
 #include "..\\C-Utils\\base_types.h"
 //#include "base_types.h"
+
+#define F7XX
+
+#ifndef F7XX
 #include "stm32f0xx_hal.h"
 #include "stm32f0xx_hal_can.h"
+#else
+#include "stm32f7xx_hal.h"
+#include "stm32f7xx_hal_can.h"
+#endif
 
 // function prototypes
 S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id);
@@ -35,25 +43,21 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 
 // ******** BEGIN AUTO GENERATED ********
 
-// number of each type
-#define NUM_OF_MODULES    5
-#define NUM_OF_PARAMETERS 12
-#define NUM_OF_COMMANDS   3
-
 
 // module IDs
-#define ECU_ID 0
-#define EDL_ID 1
-#define PDM_ID 2
-#define TCM_ID 3
-#define ACM_ID 4
+#define ALL_MODULES_ID 0
+#define DLM_ID 1
+#define ECU_ID 2
+#define PDM_ID 3
+#define TCM_ID 4
+#define ACM_ID 5
+#define DISPLAY_ID 6
 
-
-// Custom command
-#define CAN_COMMAND_ID 0
+#define NUM_OF_MODULES 7
 
 
 // parameter IDs
+#define CAN_COMMAND_ID 0
 #define RPM_ID 1
 #define FAN_CURRENT_ID 2
 #define U8_TESTER_ID 3
@@ -66,11 +70,15 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 #define S64_TESTER_ID 10
 #define FLOAT_TESTER_ID 11
 
+#define NUM_OF_PARAMETERS 12
+
 
 // custom command IDs
 #define INC_VARIABLE   0
 #define SET_LED_STATE  1
 #define CUST_COMMAND_2 2
+
+#define NUM_OF_COMMANDS 3
 
 
 // error IDs
