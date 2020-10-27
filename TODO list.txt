@@ -12,7 +12,8 @@ GopherCAN TODO list:
  - Module groups (like an email list)
 
  SHOULD DO
- - More elegent way to build on F0 vs F7
+ - Make CAN routing functionality
+ - Typedefs for modules, parameters, errors, ect
 
  DLM/ROUTING SPECIFIC IDEAS
  - Use a routing table in service_can_tx_hardware to choose which CAN bus to put the message on (only one RX and TX buffer).
@@ -25,7 +26,9 @@ GopherCAN TODO list:
 
  TESTS
  - [x] TEST basic RX and TX of parameters
- - [x] TEST to make sure buffers are working correctly
+ - [_] TEST to make sure buffers are working correctly
+ - [_] TEST adding messages to front of buffer
+ - [_] TEST filling up the buffers gives the correct errors
  - [x] TEST CAN commands
  - [x] TEST all datatypes
  - [x] TEST more usage of logic based param requests
@@ -62,6 +65,7 @@ NOTES FOR DEVS:
  - Make sure to set the settings correctly when configuring in the CubeMX plugin
  - If the DLC on CAN Capture is >=64, then the RTR bit is set on that message
  - Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
+ - Duplicate messages can be added to the buffer
 
 KNOWN BUGS:
  - In F7, float conversions are not working correcly

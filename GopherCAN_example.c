@@ -22,7 +22,7 @@ extern S32_CAN_STRUCT s32_tester;
 extern S64_CAN_STRUCT s64_tester;
 extern FLOAT_CAN_STRUCT float_tester;
 
-// the HAL_CAN struct
+// the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* hcan;
 
 
@@ -205,6 +205,7 @@ void main_loop()
 	// trying this, they may conflict
 	button_state = !HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
 
+	// for some reason the button is the opposite on the F7
 #ifdef F7XX
 	button_state = !button_state;
 #endif

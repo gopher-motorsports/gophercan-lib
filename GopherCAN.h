@@ -118,9 +118,8 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 #define NOT_FOUND_ERR           -11
 #define NOT_ENABLED_ERR         -12
 #define SIZE_ERR                -13
-#define MESSAGE_ALREADY_PENDING -14
 
-#define NOT_IMPLEMENTED    -99
+#define NOT_IMPLEMENTED         -99
 
 
 // Data types
