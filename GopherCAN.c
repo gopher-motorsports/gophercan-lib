@@ -41,6 +41,22 @@ CAN_MSG rx_buffer_mem[RX_BUFFER_SIZE];
 CAN_MSG_RING_BUFFER tx_buffer;
 CAN_MSG tx_buffer_mem[TX_BUFFER_SIZE];
 
+// if there are more than one CAN busses, we need more TX buffers
+// the HAL_CAN handle pointer is for checking which bus that handle is referring to
+// if the pointer is not found, the program will default to bus 0
+#if NUM_OF_BUSSES > 1
+CAN_MSG_RING_BUFFER tx_buffer_1;
+CAN_MSG tx_buffer_mem_1[TX_BUFFER_SIZE];
+CAN_HandleTypeDef* hcan_1;
+U8 can_1_gopher_id;
+#endif
+#if NUM_OF_BUSSES > 2
+CAN_MSG_RING_BUFFER tx_buffer_2;
+CAN_MSG tx_buffer_mem_2[TX_BUFFER_SIZE];
+CAN_HandleTypeDef* hcan_2;
+U8 can_2_gopher_id;
+#endif
+
 // ******** BEGIN AUTO GENERATED ********
 
 // all of the global parameter structs
@@ -91,6 +107,20 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 	FLOATING
 };
 
+// if there are multiple busses, this shows which bus they are on
+#if NUM_OF_BUSSES > 1
+static U8 module_bus_number[NUM_OF_MODULES] =
+{
+	ALL_BUSSES,
+	GCAN0,
+	GCAN0,
+	GCAN0,
+	GCAN1,
+	GCAN1,
+	GCAN2
+};
+#endif
+
 // ******** END AUTO GENERATED ********
 
 
@@ -116,6 +146,14 @@ S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id)
 	// setup the two buffers
 	init_buffer(&rx_buffer, rx_buffer_mem, RX_BUFFER_SIZE);
 	init_buffer(&tx_buffer, tx_buffer_mem, TX_BUFFER_SIZE);
+
+	// if there are more CAN busses, set up the additional TX buffers
+#if NUM_OF_BUSSES > 1
+	init_buffer(&tx_buffer_1, tx_buffer_mem_1, TX_BUFFER_SIZE);
+#endif
+#if NUM_OF_BUSSES > 2
+	init_buffer(&tx_buffer_2, tx_buffer_mem_2, TX_BUFFER_SIZE);
+#endif
 
 	// disable each parameter until the user manually enables them
 	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
@@ -235,11 +273,41 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 }
 
 
+// define_can_bus
+//  TODO DOCS
+void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
+{
+	switch (bus_number)
+	{
+#if NUM_OF_BUSSES > 2
+	case 2:
+		hcan_2 = hcan;
+		can_2_gopher_id = gophercan_bus_id;
+		break;
+#endif
+
+#if NUM_OF_BUSSES > 1
+	case 1:
+		hcan_1 = hcan;
+		can_1_gopher_id = gophercan_bus_id;
+		break;
+#endif
+
+	default:
+		// don't do anything, if the hcan pointer is not found it defaults to bus 0 on the module
+		break;
+	}
+}
+
+
 // HAL_CAN_RxFifo0MsgPendingCallback
 //  ISR called when CAN_RX_FIFO0 has a pending message
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
 	service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+
+	// TODO router specific functionality that directly adds messages that need to be routed
+	//  directly to the correct TX buffer
 }
 
 
@@ -248,7 +316,20 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
 	service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+
+	// TODO router specific functionality that directly adds messages that need to be routed
+	//  directly to the correct TX buffer
 }
+
+
+// the F7xx has ISRs for available TX mailboxes having an opening
+#ifdef F7XX
+
+// TODO tx mailbox opening ISRs
+//  make sure when the appropriate tx_buffer is empty, this ISR is disabled or else there will be
+//  an infinite loop
+
+#endif
 
 
 // request_parameter
@@ -499,14 +580,32 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 {
 	CAN_TxHeaderTypeDef tx_header;
 	CAN_MSG* message;
+	CAN_MSG_RING_BUFFER* buffer;
+
+	// With multiple busses, choose the correct bus buffer to be working with
+#if NUM_OF_BUSSES > 2
+	if (hcan == hcan_2)
+	{
+		buffer = &tx_buffer_2;
+	}
+	else
+#endif
+#if NUM_OF_BUSSES > 1
+	if (hcan == hcan_1)
+	{
+		buffer = &tx_buffer_1;
+	}
+	else
+#endif
+	buffer = &tx_buffer;
 
 	// add messages to the the TX mailboxes until they are full
-	while (!is_empty(&tx_buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
+	while (!is_empty(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
 	{
 		U32 tx_mailbox_num;
 
 		// get the next CAN message from the TX buffer (FIFO)
-		message = get_from_buffer(&tx_buffer, 0);
+		message = get_from_buffer(buffer, 0);
 
 		// configure the settings/params of the CAN message
 		tx_header.IDE = CAN_ID_EXT;                                          // 29 bit id
@@ -526,7 +625,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		}
 
 		// move the head now that the first element has been removed
-		remove_from_front(&tx_buffer);
+		remove_from_front(buffer);
 	}
 
 	return;
@@ -546,6 +645,24 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 {
 	CAN_RxHeaderTypeDef rx_header;
 	CAN_MSG* message;
+
+
+	// With multiple busses, choose the correct bus buffer to be working with
+	#if NUM_OF_BUSSES > 2
+	if (hcan == hcan_2)
+	{
+		buffer = &tx_buffer_2;
+	}
+	else
+#endif
+#if NUM_OF_BUSSES > 1
+	if (hcan == hcan_1)
+	{
+		buffer = &tx_buffer_1;
+	}
+	else
+#endif
+	buffer = &tx_buffer;
 
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
 	while (!is_full(&rx_buffer) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
@@ -612,14 +729,38 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 {
 	CAN_MSG* buffer_message;
 	U8 c;
+	CAN_MSG_RING_BUFFER* buffer;
 
-	if (is_full(&tx_buffer))
+	// If there are multiple busses, choose the correct bus based on the routing table
+#if NUM_OF_BUSSES > 1
+	U8 dest_module;
+	dest_module = (message_to_add->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+#endif
+
+#if NUM_OF_BUSSES > 2
+	if (module_bus_number[dest_module] == can_2_gopher_id)
+	{
+		buffer = &tx_buffer_2;
+	}
+	else
+#endif
+#if NUM_OF_BUSSES > 1
+	if (module_bus_number[dest_module] == can_2_gopher_id)
+	{
+		buffer = &tx_buffer_2;
+	}
+	else
+#endif
+	buffer = &tx_buffer;
+
+	// check to make sure the buffer is not full
+	if (is_full(buffer))
 	{
 		return TX_BUFFER_FULL;
 	}
 
 	// set the message in the next open element in the buffer to message_to_add (by value, not by reference)
-	buffer_message = get_from_buffer(&tx_buffer, tx_buffer.fill_level);
+	buffer_message = get_from_buffer(buffer, buffer->fill_level);
 
 	buffer_message->id = message_to_add->id;
 	buffer_message->dlc = message_to_add->dlc;
@@ -631,7 +772,9 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 	}
 
 	// adjust the fill_level to reflect the new message added
-	tx_buffer.fill_level++;
+	buffer->fill_level++;
+
+	// TODO if F7xx, enable TX mailbox slot open interrupts
 
 	return CAN_SUCCESS;
 }

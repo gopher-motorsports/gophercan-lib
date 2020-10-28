@@ -33,6 +33,7 @@ CAN_HandleTypeDef* hcan;
 #define THIS_PDM
 //#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
+#define TWO_BUS_EXAMPLE // TODO
 
 #ifdef THIS_ACM
 U8 this_module = ACM_ID;

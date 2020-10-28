@@ -10,15 +10,22 @@
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
+// Configuration defines. These are to be modified by the module specific developer
+//#define F0XX
+#define F7XX
+//#define CAN_ROUTER
+#define NUM_OF_BUSSES 3
+
+
 #include "..\\C-Utils\\base_types.h"
 //#include "base_types.h"
 
-#define F7XX
-
-#ifndef F7XX
+#ifdef F0XX
 #include "stm32f0xx_hal.h"
 #include "stm32f0xx_hal_can.h"
-#else
+#endif
+
+#ifdef F7XX
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx_hal_can.h"
 #endif
@@ -31,6 +38,7 @@ S8 send_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
+void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 
 // function to add to the custom CAN commands by default just in case
@@ -90,6 +98,13 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 #define COMMAND_NOT_ENABLED 5
 
 // ******** END AUTO GENERATED ********
+
+
+// CAN bus IDs. There should be one of these for each GopherCAN bus on the car, plus the ALL_BUSSES define
+#define ALL_BUSSES 0xFF
+#define GCAN0 0
+#define GCAN1 1
+#define GCAN2 2
 
 
 // return messages
@@ -245,13 +260,7 @@ typedef struct
 } ERROR_MSG;
 
 
-// request parameter and custom command structs
-typedef struct
-{
-	U32 last_rx;
-	U16 parameter_id;
-} REQ_PARAM_STRUCT;
-
+// custom command struct
 typedef struct
 {
 	U32 last_rx;
