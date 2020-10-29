@@ -23,9 +23,10 @@ GopherCAN TODO list:
      must be called for each bus with a pointer to the correct TX buffer
  - Service TX hardware very frequently for message routing (TX interrupts)
 
- TESTS
+TESTS:
+ GENERAL TESTS
  - [x] TEST basic RX and TX of parameters
- - [_] TEST to make sure buffers are working correctly
+ - [x] TEST to make sure buffers are working correctly
  - [_] TEST adding messages to front of buffer
  - [_] TEST filling up the buffers gives the correct errors
  - [x] TEST CAN commands
@@ -70,3 +71,4 @@ NOTES FOR DEVS:
 
 KNOWN BUGS:
  - In F7, float conversions are not working correcly
+ - Timing was fucked up on the F0 somewhere, CAN does not init

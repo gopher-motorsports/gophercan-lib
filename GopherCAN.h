@@ -11,10 +11,10 @@
 #define GOPHERCAN_H_
 
 // Configuration defines. These are to be modified by the module specific developer
-//#define F0XX
-#define F7XX
+#define F0XX
+//#define F7XX
 //#define CAN_ROUTER
-#define NUM_OF_BUSSES 3
+#define NUM_OF_BUSSES 1
 
 
 #include "..\\C-Utils\\base_types.h"

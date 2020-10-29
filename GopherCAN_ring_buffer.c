@@ -11,7 +11,7 @@
 
 // init_buffer
 //  initialize the buffer with the values passed in as parameters
-void init_buffer(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* buffer_memory_ptr, U8 buffer_size)
+void init_buffer(CAN_MSG_RING_BUFFER* buffer, CAN_MSG buffer_memory_ptr[], U8 buffer_size)
 {
 	buffer->head = 0;
 	buffer->fill_level = 0;
@@ -39,10 +39,10 @@ boolean is_empty(CAN_MSG_RING_BUFFER* buffer)
 {
 	if (buffer->fill_level > 0)
 	{
-		return TRUE;
+		return FALSE;
 	}
 
-	return FALSE;
+	return TRUE;
 }
 
 

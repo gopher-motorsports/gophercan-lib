@@ -29,11 +29,11 @@ CAN_HandleTypeDef* hcan;
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
 #define F7XX
-//#define THIS_ACM
-#define THIS_PDM
+#define THIS_ACM
+//#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
-#define TWO_BUS_EXAMPLE // TODO
+//#define TWO_BUS_EXAMPLE // TODO
 
 #ifdef THIS_ACM
 U8 this_module = ACM_ID;
@@ -82,7 +82,8 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
 	if (init_can(hcan, this_module))
 	{
-		// an error has occurred
+		// an error has occurred, stay here
+		while (1);
 	}
 
 	// enable updating the RPM and fan_current. Parameters that are not added to this list

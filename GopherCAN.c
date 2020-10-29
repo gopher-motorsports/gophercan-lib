@@ -646,24 +646,6 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 	CAN_RxHeaderTypeDef rx_header;
 	CAN_MSG* message;
 
-
-	// With multiple busses, choose the correct bus buffer to be working with
-	#if NUM_OF_BUSSES > 2
-	if (hcan == hcan_2)
-	{
-		buffer = &tx_buffer_2;
-	}
-	else
-#endif
-#if NUM_OF_BUSSES > 1
-	if (hcan == hcan_1)
-	{
-		buffer = &tx_buffer_1;
-	}
-	else
-#endif
-	buffer = &tx_buffer;
-
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
 	while (!is_full(&rx_buffer) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
 	{
