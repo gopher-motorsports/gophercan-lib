@@ -23,12 +23,12 @@ extern S64_CAN_STRUCT s64_tester;
 extern FLOAT_CAN_STRUCT float_tester;
 
 // the HAL_CAN struct. This example only works for a single CAN bus
-CAN_HandleTypeDef* hcan;
+CAN_HandleTypeDef* hcan_example;
 
 
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
-#define F7XX
+//#define F7XX
 #define THIS_ACM
 //#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
@@ -75,12 +75,12 @@ void change_led_state(void* parameter, U8 remote_param);
 //  What needs to happen on startup in order to run GopherCAN
 void init(CAN_HandleTypeDef* hcan_ptr)
 {
-	hcan = hcan_ptr;
+	hcan_example = hcan_ptr;
 
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
 	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
-	if (init_can(hcan, this_module))
+	if (init_can(hcan_example, this_module))
 	{
 		// an error has occurred, stay here
 		while (1);
@@ -137,7 +137,7 @@ void can_rx_loop()
 //  returns when there is no mailbox slots open, not when there are no more messages to send.
 void can_hardware_handling()
 {
-	service_can_tx_hardware(hcan);
+	service_can_tx_hardware(hcan_example);
 }
 
 

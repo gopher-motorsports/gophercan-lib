@@ -44,6 +44,7 @@ CAN_MSG tx_buffer_mem[TX_BUFFER_SIZE];
 // if there are more than one CAN busses, we need more TX buffers
 // the HAL_CAN handle pointer is for checking which bus that handle is referring to
 // if the pointer is not found, the program will default to bus 0
+#ifdef MULTI_BUS
 #if NUM_OF_BUSSES > 1
 CAN_MSG_RING_BUFFER tx_buffer_1;
 CAN_MSG tx_buffer_mem_1[TX_BUFFER_SIZE];
@@ -55,6 +56,7 @@ CAN_MSG_RING_BUFFER tx_buffer_2;
 CAN_MSG tx_buffer_mem_2[TX_BUFFER_SIZE];
 CAN_HandleTypeDef* hcan_2;
 U8 can_2_gopher_id;
+#endif
 #endif
 
 // ******** BEGIN AUTO GENERATED ********
@@ -108,7 +110,7 @@ static U8 parameter_data_types[NUM_OF_PARAMETERS] =
 };
 
 // if there are multiple busses, this shows which bus they are on
-#if NUM_OF_BUSSES > 1
+#ifdef MULTI_BUS
 static U8 module_bus_number[NUM_OF_MODULES] =
 {
 	ALL_BUSSES,
@@ -148,11 +150,13 @@ S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id)
 	init_buffer(&tx_buffer, tx_buffer_mem, TX_BUFFER_SIZE);
 
 	// if there are more CAN busses, set up the additional TX buffers
+#ifdef MULTI_BUS
 #if NUM_OF_BUSSES > 1
 	init_buffer(&tx_buffer_1, tx_buffer_mem_1, TX_BUFFER_SIZE);
 #endif
 #if NUM_OF_BUSSES > 2
 	init_buffer(&tx_buffer_2, tx_buffer_mem_2, TX_BUFFER_SIZE);
+#endif
 #endif
 
 	// disable each parameter until the user manually enables them
@@ -583,6 +587,10 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	CAN_MSG_RING_BUFFER* buffer;
 
 	// With multiple busses, choose the correct bus buffer to be working with
+#ifdef MULTI_BUS
+
+	// TODO turn this into a function to make cleaner code
+
 #if NUM_OF_BUSSES > 2
 	if (hcan == hcan_2)
 	{
@@ -596,8 +604,13 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		buffer = &tx_buffer_1;
 	}
 	else
+	{
+		buffer = &tx_buffer;
+	}
 #endif
+#else
 	buffer = &tx_buffer;
+#endif
 
 	// add messages to the the TX mailboxes until they are full
 	while (!is_empty(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
@@ -714,6 +727,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 	CAN_MSG_RING_BUFFER* buffer;
 
 	// If there are multiple busses, choose the correct bus based on the routing table
+	// TODO make this a function to make the code cleaner
 #if NUM_OF_BUSSES > 1
 	U8 dest_module;
 	dest_module = (message_to_add->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE);

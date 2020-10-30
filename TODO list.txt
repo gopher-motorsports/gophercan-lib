@@ -17,6 +17,7 @@ GopherCAN TODO list:
  - Make sure to handle the special case of the CAN message to all modules with multiple busses
  - Have the user tell which CAN bus they're initing in init, then do a check to make sure that bus is not being inited twice
      Use this to define which bus is which using a counter, sending in the GopherCAN bus ID
+ - Specific functions for routing and multi-bus, will dramatically clean up code
 
  DLM/ROUTING SPECIFIC IDEAS
  - Use a routing table in tx_can_message, and have multiple TX buffers, one for each bus. Then service_can_tx_hardware
