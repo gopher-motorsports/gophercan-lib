@@ -15,14 +15,9 @@ GopherCAN TODO list:
  - Make CAN routing functionality
  - Typedefs for modules, parameters, errors, ect
  - Make sure to handle the special case of the CAN message to all modules with multiple busses
- - Have the user tell which CAN bus they're initing in init, then do a check to make sure that bus is not being inited twice
-     Use this to define which bus is which using a counter, sending in the GopherCAN bus ID
  - Specific functions for routing and multi-bus, will dramatically clean up code
-
- DLM/ROUTING SPECIFIC IDEAS
- - Use a routing table in tx_can_message, and have multiple TX buffers, one for each bus. Then service_can_tx_hardware
-     must be called for each bus with a pointer to the correct TX buffer
- - Service TX hardware very frequently for message routing (TX interrupts)
+ - Fault Parameters
+ - Make multiple CAN busses handled a little bit cleaner
 
 TESTS:
  GENERAL TESTS
@@ -69,7 +64,11 @@ NOTES FOR DEVS:
  - Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
  - For multiple GopherCAN busses, it will act as a single bus to the programmer, with a GopherCAN level routing table
  - Recommended to use Eclipses "highlight disabled code" feature to clearly show the preprocessor options
+ - On the F7xx, the user will need to externally service the TX hardware in order to start the ISRs after a time of no messages being sent, as
+     The interrupts are only called on the TX mailbox becomming open. This means a fuller TX buffer will be more efficient when sending messages
 
 KNOWN BUGS:
- - In F7, float conversions are not working correcly
- - Timing was fucked up on the F0 somewhere, CAN does not init
+ - float conversions do not work between F0 and F7
+ - Filters are not working correctly
+ - Filters completely mess up CAN2 when configuring multiple busses (something about sharing the filter banks)
+ - CAN2 ISRs are broken with multi-bus

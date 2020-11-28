@@ -8,7 +8,7 @@
 #ifndef GOPHERCAN_RING_BUFFER_H_
 #define GOPHERCAN_RING_BUFFER_H_
 
-#include "GopherCAN.h"
+#include "GopherCAN_structs.h"
 
 // the ring buffer struct
 typedef struct
