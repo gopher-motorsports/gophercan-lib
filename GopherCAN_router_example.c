@@ -98,6 +98,13 @@ void router_init(CAN_HandleTypeDef* hcan_ptr0, CAN_HandleTypeDef* hcan_ptr1)
 //  or as often as received messages should be handled
 void router_can_rx_loop()
 {
+	// This is needed to account for a case where the RX buffer fills up, as the ISR is only
+	//  triggered directly on reciving the message
+	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO0);
+	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO1);
+	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO0);
+	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO1);
+
 	// handle each RX message in the buffer
 	if (service_can_rx_buffer())
 	{
@@ -115,13 +122,6 @@ void router_can_hardware_handling()
 {
 	service_can_tx_hardware(example_hcan0);
 	service_can_tx_hardware(example_hcan1);
-
-	// This is needed to account for a case where the RX buffer fills up, as the ISR is only
-	//  triggered directly on reciving the message
-	service_can_rx_hardware(example_hcan0, CAN_RX_FIFO0);
-	service_can_rx_hardware(example_hcan0, CAN_RX_FIFO1);
-	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO0);
-	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO1);
 }
 
 

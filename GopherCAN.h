@@ -145,10 +145,10 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #define CAN_START_FAILED        -7
 #define TX_BUFFER_FULL          -8
 #define TX_PROBLEM_ADDING       -9
-#define MAX_PENDING_TX          -10
-#define NOT_FOUND_ERR           -11
-#define NOT_ENABLED_ERR         -12
-#define SIZE_ERR                -13
+#define NOT_FOUND_ERR           -10
+#define NOT_ENABLED_ERR         -11
+#define SIZE_ERR                -12
+#define WRONG_DEST_ERR          -13
 
 #define NOT_IMPLEMENTED         -99
 
@@ -226,6 +226,17 @@ typedef enum
 #define MAX_RX 5
 #define RX_BUFFER_SIZE 32
 #define TX_BUFFER_SIZE 32
+
+
+// Multi-bus struct
+#ifdef MULTI_BUS
+typedef struct
+{
+	CAN_MSG_RING_BUFFER* tx_buffer;
+	CAN_HandleTypeDef* hcan;
+	U8 gopher_can_id;
+} GCAN_MULTI_BUS_STRUCT;
+#endif
 
 #endif /* GOPHERCAN_H_ */
 

@@ -21,18 +21,17 @@ GopherCAN TODO list:
 
 TESTS:
  GENERAL TESTS
- - [x] TEST basic RX and TX of parameters
- - [x] TEST to make sure buffers are working correctly
+ - [_] TEST basic RX and TX of parameters
+ - [_] TEST to make sure buffers are working correctly
  - [_] TEST adding messages to front of buffer
  - [_] TEST filling up the buffers gives the correct errors
- - [x] TEST CAN commands
+ - [_] TEST CAN commands
  - [x] TEST all datatypes
  - [x] TEST more usage of logic based param requests
  - [x] TEST what happens when the bus is at high load (lower priority messages will be stuck in the TX mailbox, keep the bus clean)
  - [x] TEST how the code handles full RX and TX mailboxes (TX: Waits until the next 1ms loop to send. RX: Message in position 3 is deleted for the new message)
  - [x] TEST command errors working correctly
  - [x] TEST request errors working correctly
- - [x] TEST not adding too many CAN messages into the TX buffer when it is not needed (ignoring duplicates)
  - [x] TEST lots of messages being sent to a single module at once (Its pretty good, bus is the limitation)
  - [_] TEST parameter sending function
  - [_] TEST requesting a param that is not enabled (should send an error)

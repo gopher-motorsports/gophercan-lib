@@ -50,20 +50,17 @@ CAN_MSG tx_buffer_mem[TX_BUFFER_SIZE];
 // if the pointer is not found, the program will default to local bus 0 (hcan0)
 #ifdef MULTI_BUS
 
-CAN_HandleTypeDef* hcan_00;
-U8 can_0_gopher_id;
+GCAN_MULTI_BUS_STRUCT gbus0;
 
 #if NUM_OF_BUSSES > 1
 CAN_MSG_RING_BUFFER tx_buffer_1;
 CAN_MSG tx_buffer_mem_1[TX_BUFFER_SIZE];
-CAN_HandleTypeDef* hcan_01;
-U8 can_1_gopher_id;
+GCAN_MULTI_BUS_STRUCT gbus1;
 #endif
 #if NUM_OF_BUSSES > 2
 CAN_MSG_RING_BUFFER tx_buffer_2;
 CAN_MSG tx_buffer_mem_2[TX_BUFFER_SIZE];
-CAN_HandleTypeDef* hcan_02;
-U8 can_2_gopher_id;
+GCAN_MULTI_BUS_STRUCT gbus2;
 #endif
 #endif
 
@@ -287,7 +284,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
 	*/
 
-	// TODO testing
+	// TODO testing because filters with multiple busses is kinda broken
 	filterConfig.FilterBank = 0;                                      // Modify bank 0 (of 13)
 	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
@@ -749,7 +746,13 @@ static S8 service_can_rx_message(CAN_MSG* message)
 
 	get_message_id(&id, message);
 
-	// TODO a double check to make sure this message is actually for this module (most useful in the CAN router)
+	// A double check to make sure this message is actually for this module (most useful in the CAN router)
+	if (id.dest_module != this_module_id && id.dest_module != ALL_MODULES_ID)
+	{
+		// This is not for this module. Do not process this message
+		//return WRONG_DEST_ERR;
+		// TODO this is for testing
+	}
 
 	// if the message received has the error flag high, put the details into the last_error struct, then return
 	if (id.error)
@@ -1042,6 +1045,8 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 //  U8 gophercan_bus_id:     What GopherCAN bus id this bus will be assigned to. Reference master spreadsheet
 //  U8 bus_number:           [0,2], Which local CAN bus is being assigned. This same value can be used to modify
 //                            This parameter later if needed
+//
+// WARNING: if MULTI_BUS is defined, this function must be called as part of the initialization step
 #ifdef MULTI_BUS
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 {
@@ -1049,21 +1054,24 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 	{
 #if NUM_OF_BUSSES > 2
 	case 2:
-		hcan_02 = hcan;
-		can_2_gopher_id = gophercan_bus_id;
+		gbus2.tx_buffer = &tx_buffer_2;
+		gbus2.hcan = hcan;
+		gbus2.gopher_can_id = gophercan_bus_id;
 		break;
 #endif
 
 #if NUM_OF_BUSSES > 1
 	case 1:
-		hcan_01 = hcan;
-		can_1_gopher_id = gophercan_bus_id;
+		gbus1.tx_buffer = &tx_buffer_1;
+		gbus1.hcan = hcan;
+		gbus1.gopher_can_id = gophercan_bus_id;
 		break;
 #endif
 
 	default:
-		hcan_00 = hcan;
-		can_0_gopher_id = gophercan_bus_id;
+		gbus0.tx_buffer = &tx_buffer;
+		gbus0.hcan = hcan;
+		gbus0.gopher_can_id = gophercan_bus_id;
 		break;
 	}
 }
@@ -1111,18 +1119,18 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan)
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
 {
 #if NUM_OF_BUSSES > 2
-	if (hcan == hcan_02)
+	if (hcan == gbus2.hcan)
 	{
-		return &tx_buffer_2;
+		return gbus2.tx_buffer;
 	}
 #endif
 #if NUM_OF_BUSSES > 1
-	if (hcan == hcan_01)
+	if (hcan == gbus1.hcan)
 	{
-		return &tx_buffer_1;
+		return gbus1.tx_buffer;
 	}
 #endif
-	return &tx_buffer;
+	return gbus0.tx_buffer;
 }
 #endif
 
@@ -1137,20 +1145,20 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 	dest_module = (message_to_add->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
 
 #if NUM_OF_BUSSES > 2
-	if (module_bus_number[dest_module] == can_2_gopher_id)
+	if (module_bus_number[dest_module] == gbus2.gopher_can_id)
 	{
-		return &tx_buffer_2;
+		return gbus2.tx_buffer;
 	}
 	else
 #endif
 #if NUM_OF_BUSSES > 1
-	if (module_bus_number[dest_module] == can_1_gopher_id)
+	if (module_bus_number[dest_module] == gbus1.gopher_can_id)
 	{
-		return &tx_buffer_1;
+		return gbus1.tx_buffer;
 	}
 	else
 #endif
-	return &tx_buffer;
+	return gbus0.tx_buffer;
 }
 #endif
 
@@ -1160,6 +1168,8 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 #ifdef CAN_ROUTER
 static void rout_can_messages(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
+	CAN_MSG_RING_BUFFER* buffer;
+
 	// Determine if this message needs to be routed (if the destination module is on another bus)
 	// TODO
 
@@ -1170,10 +1180,10 @@ static void rout_can_messages(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 	// TODO
 
 	// Remove the message from the RX buffer, it is now on a TX buffer
-	// TODO
+	rx_buffer.fill_level--;
 
-	// try to send that new message immediately. If not, it will be sent as soon as possible (ISR guaranteed)
-	service_can_tx_hardware(/*what bus the routed message should be on*/);
+	// TODO try to send that new message immediately. If not, it will be sent as soon as possible (ISR guaranteed)
+	//service_can_tx_hardware(/*what bus the routed message should be on*/);
 }
 #endif
 
