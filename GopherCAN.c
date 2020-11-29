@@ -1173,7 +1173,8 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 
 
 // rout_can_message
-//  TODO DOCS
+//  Function to be called in service_can_rx_hardware() that will take messages that are
+//  destined for modules on another bus and put that message into the correct TX buffer
 #ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
@@ -1228,9 +1229,6 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 
 	// Remove the message from the RX buffer, it is now on a TX buffer
 	rx_buffer.fill_level--;
-
-	// TODO try to send that new message immediately. If not, it will be sent as soon as possible (ISR guaranteed)
-	//service_can_tx_hardware(/*what bus the routed message should be on*/);
 }
 #endif
 

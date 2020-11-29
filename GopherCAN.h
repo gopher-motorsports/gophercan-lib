@@ -13,9 +13,13 @@
 // Configuration defines. These are to be modified by the module specific developer
 //#define F0XX
 #define F7XX
-#define CAN_ROUTER
+
+// Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
 #define MULTI_BUS
 #ifdef MULTI_BUS
+#define CAN_ROUTER
+
+// up to 3 busses are supported. That is the most available in the STM32 series
 #define NUM_OF_BUSSES 2
 #endif
 
