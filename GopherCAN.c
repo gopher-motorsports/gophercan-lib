@@ -26,6 +26,10 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add);
 #endif
 
+#ifdef CAN_ROUTER
+static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
+#endif
+
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
 CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
@@ -220,12 +224,29 @@ S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id)
 static S8 init_filters(CAN_HandleTypeDef* hcan)
 {
 	CAN_FilterTypeDef filterConfig;
+
+#ifdef CAN_ROUTER
+	// Accept all messages on the CAN router
+	filterConfig.FilterBank = 0;                                      // Modify bank 0 (of 13)
+	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
+	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
+	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
+	filterConfig.FilterIdLow = 0;                                     // Low bound of accepted values
+	filterConfig.FilterIdHigh = 0xFFFF;                               // High bound of accepted values
+	filterConfig.FilterMaskIdLow = 0;                                 // Which bits matter when filtering (high)
+	filterConfig.FilterMaskIdHigh = 0;                                // Which bits matter when filtering (low)
+
+	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	{
+		return FILTER_SET_FAILED;
+	}
+#else
 	U32 filt_id_low;
 	U32 filt_id_high;
 	U32 filt_mask_high;
 	U32 filt_mask_low;
 
-	/*
 	// Define the filter values based on this_module_id
 	// High and low id are the same because the id exclusively must be the module id
 	filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
@@ -282,23 +303,12 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 	// all other parameters are the same as FIFO0
 	filterConfig.FilterBank = 3;                                      // Modify bank 3 (of 13)
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
-	*/
-
-	// TODO testing because filters with multiple busses is kinda broken
-	filterConfig.FilterBank = 0;                                      // Modify bank 0 (of 13)
-	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
-	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
-	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
-	filterConfig.FilterIdLow = 0;                           // Low bound of accepted values
-	filterConfig.FilterIdHigh = 0xFFFF;                         // High bound of accepted values
-	filterConfig.FilterMaskIdLow = 0;                     // Which bits matter when filtering (high)
-	filterConfig.FilterMaskIdHigh = 0;                   // Which bits matter when filtering (low)
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
+#endif
 
 	return CAN_SUCCESS;
 }
@@ -750,8 +760,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	if (id.dest_module != this_module_id && id.dest_module != ALL_MODULES_ID)
 	{
 		// This is not for this module. Do not process this message
-		//return WRONG_DEST_ERR;
-		// TODO this is for testing
+		return WRONG_DEST_ERR;
 	}
 
 	// if the message received has the error flag high, put the details into the last_error struct, then return
@@ -1166,18 +1175,56 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 // rout_can_message
 //  TODO DOCS
 #ifdef CAN_ROUTER
-static void rout_can_messages(CAN_HandleTypeDef* hcan, CAN_MSG* message)
+static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
 	CAN_MSG_RING_BUFFER* buffer;
+	CAN_MSG* buffer_message;
+	U8 dest_module, c;
 
-	// Determine if this message needs to be routed (if the destination module is on another bus)
-	// TODO
-
-	// Figure out which bus the message should be on, then add it to that buffer
-	// TODO
+	// Get the buffer this message should go on if it needs to be routed
+	buffer = choose_tx_buffer_from_dest_module(message);
 
 	// Handle the special case of a message that needs to be sent out to all busses (ID 0)
 	// TODO
+
+	// Make sure this message isn't for the module that is acting as the router
+	dest_module = (message->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+	if (dest_module == this_module_id)
+	{
+		// This message is for the router module. Return and process the message as normal
+		return;
+	}
+
+	// Determine if this message needs to be routed (if the destination module is on another bus)
+	if (buffer == choose_tx_buffer_from_hcan(hcan))
+	{
+		// This message does not need to be routed. It came from the bus it should be on
+		return;
+	}
+
+	// check to make sure the buffer is not full. If it is, the message will be discarded
+	if (is_full(buffer))
+	{
+		rx_buffer.fill_level--;
+		return;
+	}
+
+	// Add the message to the new TX buffer
+
+	// set the message in the next open element in the buffer to message_to_add (by value, not by reference)
+	buffer_message = get_from_buffer(buffer, buffer->fill_level);
+
+	buffer_message->id = message->id;
+	buffer_message->dlc = message->dlc;
+	buffer_message->rtr_bit = message->rtr_bit;
+
+	for (c = 0; c < buffer_message->dlc; c++)
+	{
+		buffer_message->data[c] = message->data[c];
+	}
+
+	// adjust the fill_level to reflect the new message added
+	buffer->fill_level++;
 
 	// Remove the message from the RX buffer, it is now on a TX buffer
 	rx_buffer.fill_level--;

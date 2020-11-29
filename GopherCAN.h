@@ -13,7 +13,7 @@
 // Configuration defines. These are to be modified by the module specific developer
 //#define F0XX
 #define F7XX
-//#define CAN_ROUTER
+#define CAN_ROUTER
 #define MULTI_BUS
 #ifdef MULTI_BUS
 #define NUM_OF_BUSSES 2
