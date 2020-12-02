@@ -8,7 +8,7 @@
 #ifndef GOPHERCAN_RING_BUFFER_H_
 #define GOPHERCAN_RING_BUFFER_H_
 
-#include "GopherCAN.h"
+#include "GopherCAN_structs.h"
 
 // the ring buffer struct
 typedef struct
@@ -21,7 +21,7 @@ typedef struct
 
 
 // function prototypes
-void init_buffer(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* buffer_memory_ptr, U8 buffer_size);
+void init_buffer(CAN_MSG_RING_BUFFER* buffer, CAN_MSG buffer_memory_ptr[], U8 buffer_size);
 boolean is_full(CAN_MSG_RING_BUFFER* buffer);
 boolean is_empty(CAN_MSG_RING_BUFFER* buffer);
 CAN_MSG* get_from_buffer(CAN_MSG_RING_BUFFER* buffer, U8 index);

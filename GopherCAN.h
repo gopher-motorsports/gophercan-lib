@@ -13,11 +13,19 @@
 // Configuration defines. These are to be modified by the module specific developer
 //#define F0XX
 #define F7XX
-//#define CAN_ROUTER
-#define NUM_OF_BUSSES 3
+
+// Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
+#define MULTI_BUS
+#ifdef MULTI_BUS
+#define CAN_ROUTER
+
+// up to 3 busses are supported. That is the most available in the STM32 series
+#define NUM_OF_BUSSES 2
+#endif
 
 
-#include "..\\C-Utils\\base_types.h"
+#include "GopherCAN_structs.h"
+#include "GopherCAN_ring_buffer.h"
 //#include "base_types.h"
 
 #ifdef F0XX
@@ -38,8 +46,12 @@ S8 send_parameter(U8 priority, U8 dest_module, U16 parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
-void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
+void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
+
+#ifdef MULTI_BUS
+void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
+#endif
 
 // function to add to the custom CAN commands by default just in case
 void do_nothing(void* param, U8 remote_param);
@@ -48,6 +60,14 @@ void do_nothing(void* param, U8 remote_param);
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan);
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 
+#ifdef F7XX
+void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan);
+void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan);
+void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan);
+void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan);
+void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan);
+void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
+#endif
 
 // ******** BEGIN AUTO GENERATED ********
 
@@ -129,10 +149,10 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 #define CAN_START_FAILED        -7
 #define TX_BUFFER_FULL          -8
 #define TX_PROBLEM_ADDING       -9
-#define MAX_PENDING_TX          -10
-#define NOT_FOUND_ERR           -11
-#define NOT_ENABLED_ERR         -12
-#define SIZE_ERR                -13
+#define NOT_FOUND_ERR           -10
+#define NOT_ENABLED_ERR         -11
+#define SIZE_ERR                -12
+#define WRONG_DEST_ERR          -13
 
 #define NOT_IMPLEMENTED         -99
 
@@ -212,145 +232,15 @@ typedef enum
 #define TX_BUFFER_SIZE 32
 
 
-// float/U32 converter union
-typedef union
-{
-	float f;
-	U32 u32;
-} FLOAT_CONVERTER;
-
-
-// CAN message struct
+// Multi-bus struct
+#ifdef MULTI_BUS
 typedef struct
 {
-	U32 id;             // only the least significant 29 bits will be used
-	U8  rtr_bit;        // 0 or 1: DATA_MESSAGE or REQUEST_DATA
-	U8  dlc;            // [0, 8]
-	U8  data[8];        // not all of these will matter depending on dlc
-} CAN_MSG;
-
-
-// CAN ID struct
-typedef struct
-{
-	U8  priority;
-	U8  dest_module;
-	U8  source_module;
-	U8  error;
-	U16 parameter;
-} CAN_ID;
-
-
-// custom function struct
-typedef struct
-{
-	void (*func_ptr)(void*, U8);
-	U8    func_enabled;
-	void* param_ptr;
-} CUST_FUNC;
-
-
-// error message struct
-typedef struct
-{
-	U32 last_rx;
-	U8  source_module;
-	U16 parameter;
-	U8  error_id;
-} ERROR_MSG;
-
-
-// custom command struct
-typedef struct
-{
-	U32 last_rx;
-	U8  command_id;
-	U8  command_parameter;
-} CAN_COMMAND_STRUCT;
-
-
-// a struct with only the information about each CAN struct, without the data
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-} CAN_INFO_STRUCT;
-
-
-// parameter structs
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U8  data;
-} U8_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U16 data;
-} U16_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U32 data;
-} U32_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U64 data;
-} U64_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S8  data;
-} S8_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S16 data;
-} S16_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S32 data;
-} S32_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S64 data;
-} S64_CAN_STRUCT;
-
-typedef struct
-{
-	U32   last_rx;
-	U8    update_enabled;
-	U8    pending_response;
-	float data;
-} FLOAT_CAN_STRUCT;
-
+	CAN_MSG_RING_BUFFER* tx_buffer;
+	CAN_HandleTypeDef* hcan;
+	U8 gopher_can_id;
+} GCAN_MULTI_BUS_STRUCT;
+#endif
 
 #endif /* GOPHERCAN_H_ */
 
