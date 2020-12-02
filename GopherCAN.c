@@ -1122,7 +1122,7 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add)
 {
 	U8 dest_module;
-	dest_module = (message_to_add->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+	dest_module = GET_ID_DEST(message_to_add->id);
 
 #if NUM_OF_BUSSES > 2
 	if (module_bus_number[dest_module] == gbus2.gopher_can_id)
@@ -1179,12 +1179,13 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
 	CAN_MSG_RING_BUFFER* buffer;
 	U8 dest_module;
+	dest_module = GET_ID_DEST(message->id);
 
 	// Get the buffer this message should go on if it needs to be routed
 	buffer = choose_tx_buffer_from_dest_module(message);
 
 	// Handle the special case of a message that needs to be sent out to all busses (ID 0)
-	if ((message->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE) == ALL_MODULES_ID)
+	if (dest_module == ALL_MODULES_ID)
 	{
 #if NUM_OF_BUSSES > 2
 		// check to make sure the buffer is not full and the message did not come from this buffer
@@ -1213,7 +1214,6 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 	}
 
 	// Make sure this message isn't for the module that is acting as the router
-	dest_module = (message->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
 	if (dest_module == this_module_id)
 	{
 		// This message is for the router module. Return and process the message as normal

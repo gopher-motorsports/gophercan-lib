@@ -175,8 +175,6 @@ void router_change_led_state(void* parameter, U8 remote_param)
 //  this is used for testing things. Everything is better explained in other functions
 void router_testing_loop()
 {
-	U32 current_tick = HAL_GetTick();
-
 	// update all of the variables
 	u8_tester.data += 1;
 	u16_tester.data += 2;
