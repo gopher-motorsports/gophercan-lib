@@ -72,4 +72,30 @@ void remove_from_front(CAN_MSG_RING_BUFFER* buffer)
 }
 
 
+// add_message_to_back
+//  This function will add message to the first open slot in the ring buffer. Note no
+//  error checking is done in this function, so it will need to be done somewhere else
+//  before calling this function
+void add_message_to_back(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
+{
+	CAN_MSG* buffer_message;
+	U8 c;
+
+	// set the message in the next open element in the buffer to message_to_add (by value, not by reference)
+	buffer_message = get_from_buffer(buffer, buffer->fill_level);
+
+	buffer_message->id = message->id;
+	buffer_message->dlc = message->dlc;
+	buffer_message->rtr_bit = message->rtr_bit;
+
+	for (c = 0; c < buffer_message->dlc; c++)
+	{
+		buffer_message->data[c] = message->data[c];
+	}
+
+	// adjust the fill_level to reflect the new message added
+	buffer->fill_level++;
+}
+
+
 // End of GopherCAN_ring_buffer.c

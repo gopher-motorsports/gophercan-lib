@@ -26,6 +26,7 @@ boolean is_full(CAN_MSG_RING_BUFFER* buffer);
 boolean is_empty(CAN_MSG_RING_BUFFER* buffer);
 CAN_MSG* get_from_buffer(CAN_MSG_RING_BUFFER* buffer, U8 index);
 void remove_from_front(CAN_MSG_RING_BUFFER* buffer);
+void add_message_to_back(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message);
 
 
 #endif
