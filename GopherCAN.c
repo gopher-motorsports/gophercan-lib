@@ -24,6 +24,7 @@ static S8   service_can_rx_message(CAN_MSG* message);
 #ifdef MULTI_BUS
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add);
+static void send_message_to_all_busses(CAN_MSG* message_to_add);
 #endif
 
 #ifdef CAN_ROUTER
@@ -707,28 +708,9 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 
 #ifdef MULTI_BUS
 	// Handle the case of the message being sent to all of the busses (ID 0)
-	if ((message_to_add->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE) == ALL_MODULES_ID)
+	if (GET_ID_DEST(message_to_add->id) == ALL_MODULES_ID)
 	{
-#if NUM_OF_BUSSES > 2
-		// check to make sure the buffer is not full
-		if (!is_full(&tx_buffer_2))
-		{
-			add_message_to_back(&tx_buffer_2, message_to_add);
-		}
-#endif
-#if NUM_OF_BUSSES > 1
-		// check to make sure the buffer is not full
-		if (!is_full(&tx_buffer_1))
-		{
-			add_message_to_back(&tx_buffer_1, message_to_add);
-		}
-#endif
-		// check to make sure the buffer is not full
-		if (!is_full(&tx_buffer))
-		{
-			add_message_to_back(&tx_buffer, message_to_add);
-		}
-
+		send_message_to_all_busses(message_to_add);
 		return CAN_SUCCESS;
 	}
 
@@ -739,8 +721,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 	buffer = &tx_buffer;
 #endif
 
-
-	// check to make sure the buffer is not full
+	// check to make sure the buffer is not full, then add it to the back of the TX buffer
 	if (is_full(buffer))
 	{
 		return TX_BUFFER_FULL;
@@ -995,32 +976,11 @@ static void build_message_id(CAN_MSG* msg, CAN_ID* id)
 //  a CAN id struct. No error checking is performed
 static void get_message_id(CAN_ID* id, CAN_MSG* message)
 {
-	U32 temp;
-
-	// priority bit
-	temp = message->id & PRIORITY_MASK;
-	temp >>= (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE);
-	id->priority = temp;
-
-	// destination bits
-	temp = message->id & DEST_MASK;
-	temp >>= (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
-	id->dest_module = temp;
-
-	// source bits
-	temp = message->id & SOURCE_MASK;
-	temp >>= (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE);
-	id->source_module = temp;
-
-	// error bit
-	temp = message->id & ERROR_MASK;
-	temp >>= (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE);
-	id->error = temp;
-
-	// parameter bits
-	temp = message->id & PARAM_MASK;
-	temp >>= (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE);
-	id->parameter = temp;
+	id->priority = GET_ID_PRIO(message->id);
+	id->dest_module = GET_ID_DEST(message->id);
+	id->source_module = GET_ID_SOURCE(message->id);
+	id->error = GET_ID_ERROR(message->id);
+	id->parameter = GET_ID_PARAM(message->id);
 }
 
 
@@ -1179,6 +1139,34 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 	else
 #endif
 	return gbus0.tx_buffer;
+}
+#endif
+
+
+// send_message_to_all_busses
+//  This function will add the message to all of the TX buffers active
+#ifdef MULTI_BUS
+static void send_message_to_all_busses(CAN_MSG* message_to_add)
+{
+#if NUM_OF_BUSSES > 2
+	// check to make sure the buffer is not full
+	if (!is_full(&tx_buffer_2))
+	{
+		add_message_to_back(&tx_buffer_2, message_to_add);
+	}
+#endif
+#if NUM_OF_BUSSES > 1
+	// check to make sure the buffer is not full
+	if (!is_full(&tx_buffer_1))
+	{
+		add_message_to_back(&tx_buffer_1, message_to_add);
+	}
+#endif
+	// check to make sure the buffer is not full
+	if (!is_full(&tx_buffer))
+	{
+		add_message_to_back(&tx_buffer, message_to_add);
+	}
 }
 #endif
 

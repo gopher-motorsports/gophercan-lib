@@ -232,6 +232,14 @@ typedef enum
 #define TX_BUFFER_SIZE 32
 
 
+// Macro functions to get different parts of an id from the U32
+#define GET_ID_PRIO(id) ((id & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
+#define GET_ID_DEST(id) ((id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
+#define GET_ID_SOURCE(id) ((id & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
+#define GET_ID_ERROR(id) ((id & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
+#define GET_ID_PARAM(id) ((id & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
+
+
 // Multi-bus struct
 #ifdef MULTI_BUS
 typedef struct
