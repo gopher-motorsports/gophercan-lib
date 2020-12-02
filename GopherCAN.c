@@ -703,18 +703,42 @@ S8 service_can_rx_buffer(void)
 //  Takes in a CAN_MSG struct, adds it to the TX buffer
 static S8 tx_can_message(CAN_MSG* message_to_add)
 {
-	CAN_MSG* buffer_message;
-	U8 c;
 	CAN_MSG_RING_BUFFER* buffer;
 
-	// If there are multiple busses, choose the correct bus based on the routing table
 #ifdef MULTI_BUS
+	// Handle the case of the message being sent to all of the busses (ID 0)
+	if ((message_to_add->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE) == ALL_MODULES_ID)
+	{
+#if NUM_OF_BUSSES > 2
+		// check to make sure the buffer is not full
+		if (!is_full(&tx_buffer_2))
+		{
+			add_message_to_back(&tx_buffer_2, message_to_add);
+		}
+#endif
+#if NUM_OF_BUSSES > 1
+		// check to make sure the buffer is not full
+		if (!is_full(&tx_buffer_1))
+		{
+			add_message_to_back(&tx_buffer_1, message_to_add);
+		}
+#endif
+		// check to make sure the buffer is not full
+		if (!is_full(&tx_buffer))
+		{
+			add_message_to_back(&tx_buffer, message_to_add);
+		}
+
+		return CAN_SUCCESS;
+	}
+
+	// If there are multiple busses, choose the correct bus based on the routing table
 	buffer = choose_tx_buffer_from_dest_module(message_to_add);
+
 #else
 	buffer = &tx_buffer;
 #endif
 
-	// TODO handle the case of the message being sent to all of the busses (ID 0)
 
 	// check to make sure the buffer is not full
 	if (is_full(buffer))
@@ -722,20 +746,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 		return TX_BUFFER_FULL;
 	}
 
-	// set the message in the next open element in the buffer to message_to_add (by value, not by reference)
-	buffer_message = get_from_buffer(buffer, buffer->fill_level);
-
-	buffer_message->id = message_to_add->id;
-	buffer_message->dlc = message_to_add->dlc;
-	buffer_message->rtr_bit = message_to_add->rtr_bit;
-
-	for (c = 0; c < buffer_message->dlc; c++)
-	{
-		buffer_message->data[c] = message_to_add->data[c];
-	}
-
-	// adjust the fill_level to reflect the new message added
-	buffer->fill_level++;
+	add_message_to_back(buffer, message_to_add);
 
 	return CAN_SUCCESS;
 }
@@ -1179,14 +1190,39 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
 	CAN_MSG_RING_BUFFER* buffer;
-	CAN_MSG* buffer_message;
-	U8 dest_module, c;
+	U8 dest_module;
 
 	// Get the buffer this message should go on if it needs to be routed
 	buffer = choose_tx_buffer_from_dest_module(message);
 
 	// Handle the special case of a message that needs to be sent out to all busses (ID 0)
-	// TODO
+	if ((message->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE) == ALL_MODULES_ID)
+	{
+#if NUM_OF_BUSSES > 2
+		// check to make sure the buffer is not full and the message did not come from this buffer
+		if (!is_full(&tx_buffer_2)
+				&& &tx_buffer_2 != choose_tx_buffer_from_hcan(hcan))
+		{
+			add_message_to_back(&tx_buffer_2, message);
+		}
+#endif
+#if NUM_OF_BUSSES > 1
+		// check to make sure the buffer is not full and the message did not come from this buffer
+		if (!is_full(&tx_buffer_1)
+				&& &tx_buffer_1 != choose_tx_buffer_from_hcan(hcan))
+		{
+			add_message_to_back(&tx_buffer_1, message);
+		}
+#endif
+		// check to make sure the buffer is not full and the message did not come from this buffer
+		if (!is_full(&tx_buffer)
+				&& &tx_buffer != choose_tx_buffer_from_hcan(hcan))
+		{
+			add_message_to_back(&tx_buffer, message);
+		}
+
+		return;
+	}
 
 	// Make sure this message isn't for the module that is acting as the router
 	dest_module = (message->id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
@@ -1210,22 +1246,8 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 		return;
 	}
 
-	// Add the message to the new TX buffer
-
-	// set the message in the next open element in the buffer to message_to_add (by value, not by reference)
-	buffer_message = get_from_buffer(buffer, buffer->fill_level);
-
-	buffer_message->id = message->id;
-	buffer_message->dlc = message->dlc;
-	buffer_message->rtr_bit = message->rtr_bit;
-
-	for (c = 0; c < buffer_message->dlc; c++)
-	{
-		buffer_message->data[c] = message->data[c];
-	}
-
-	// adjust the fill_level to reflect the new message added
-	buffer->fill_level++;
+	// Add the message to the selected TX buffer
+	add_message_to_back(buffer, message);
 
 	// Remove the message from the RX buffer, it is now on a TX buffer
 	rx_buffer.fill_level--;
