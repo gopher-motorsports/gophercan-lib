@@ -10,30 +10,42 @@
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
+#define F0XX 0
+#define F7XX 7
+#ifndef TRUE
+#define FALSE 0
+#define TRUE 1
+#endif
+
+
 // Configuration defines. These are to be modified by the module specific developer
-//#define F0XX
-#define F7XX
+//#define TARGET F0XX
+#define TARGET F7XX
 
 // Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-#define MULTI_BUS
-#ifdef MULTI_BUS
-#define CAN_ROUTER
+#define MULTI_BUS TRUE
+//#define MULTI_BUS FALSE
+
+#if MULTI_BUS == TRUE
+#define CAN_ROUTER TRUE
+//#define CAN_ROUTER FALSE
 
 // up to 3 busses are supported. That is the most available in the STM32 series
 #define NUM_OF_BUSSES 2
 #endif
+// end Configuration defines
 
 
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
 //#include "base_types.h"
 
-#ifdef F0XX
+#if TARGET == F0XX
 #include "stm32f0xx_hal.h"
 #include "stm32f0xx_hal_can.h"
 #endif
 
-#ifdef F7XX
+#if TARGET == F7XX
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx_hal_can.h"
 #endif
@@ -49,7 +61,7 @@ S8 service_can_rx_buffer(void);
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 
-#ifdef MULTI_BUS
+#if MULTI_BUS == TRUE
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
 #endif
 
@@ -60,7 +72,7 @@ void do_nothing(void* param, U8 remote_param);
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan);
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 
-#ifdef F7XX
+#if TARGET == F7XX
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan);
@@ -139,7 +151,7 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #define REQUEST_DATA CAN_RTR_REMOTE                                   // 2U
 
 
-// errors
+// return errors
 #define INIT_FAILED             -1
 #define BAD_MODULE_ID           -2
 #define BAD_PARAMETER_ID        -3
@@ -241,7 +253,7 @@ typedef enum
 
 
 // Multi-bus struct
-#ifdef MULTI_BUS
+#if MULTI_BUS == TRUE
 typedef struct
 {
 	CAN_MSG_RING_BUFFER* tx_buffer;

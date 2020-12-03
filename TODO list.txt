@@ -5,7 +5,6 @@ GopherCAN TODO list:
  - Split up auto generated sections of .c/.h ?
 
  MAYBE DO
- - TCP functionality for important commands
  - double precision floats
  - Possible #ifdefs for what CAN messages/parameters each modual should handle (spreadsheet based, auto-gen)
  - Module specific variables (parameter sections, subscribe to different lists)
