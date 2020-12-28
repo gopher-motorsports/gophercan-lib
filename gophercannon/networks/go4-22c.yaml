@@ -15,8 +15,9 @@ parameters:
         multiplier: 1
         divisor: 10
         offset: 0
-        frequency: 10
+        frequency: 50
         producer: PDM
+        priority: 0
 
     wheelspeed_front_left:
         name: wheelspeed_front_left
@@ -28,8 +29,9 @@ parameters:
         multiplier: 5
         divisor: 16
         offset: 0
-        frequency: 50
+        frequency: 100
         producer: TCM
+        priority: 0
 
     lateral_acceleration:
         name: lateral_acceleration
@@ -41,8 +43,9 @@ parameters:
         multiplier: 5
         divisor: 16
         offset: 0
-        frequency: 50
+        frequency: 100
         producer: DAM
+        priority: 0
 
     longitudinal_acceleration:
         name: longitudinal_acceleration
@@ -54,8 +57,9 @@ parameters:
         multiplier: 5
         divisor: 16
         offset: 0
-        frequency: 50
+        frequency: 100
         producer: DAM
+        priority: 0
 
     steering_angle:
         name: steering_angle
@@ -67,8 +71,9 @@ parameters:
         multiplier: 2
         divisor: 6
         offset: -30
-        frequency: 50
+        frequency: 100
         producer: DAM
+        priority: 0
 
     yaw_rate:
         name: yaw_rate
@@ -80,8 +85,9 @@ parameters:
         multiplier: 5
         divisor: 16
         offset: 0
-        frequency: 50
+        frequency: 100
         producer: DAM
+        priority: 0
 
     roll_rate:
         name: roll_rate
@@ -93,8 +99,9 @@ parameters:
         multiplier: 2
         divisor: 67
         offset: 2
-        frequency: 50
+        frequency: 100
         producer: DAM
+        priority: 0
 
     wheelspeed_front_right:
         name: wheelspeed_front_right
@@ -106,8 +113,9 @@ parameters:
         multiplier: 5
         divisor: 16
         offset: 0
-        frequency: 50
+        frequency: 100
         producer: DAM
+        priority: 0
 
     airspeed_front:
         name: airspeed_front
@@ -119,8 +127,9 @@ parameters:
         multiplier: 1
         divisor: 1
         offset: 0
-        frequency: 20
+        frequency: 100
         producer: ACM
+        priority: 0
 
     airspeed_rear:
         name: airspeed_rear
@@ -132,8 +141,9 @@ parameters:
         multiplier: 1
         divisor: 1
         offset: 0
-        frequency: 20
+        frequency: 100
         producer: ACM
+        priority: 0
 
     drs_button_state:
         name: drs_button_state
@@ -147,6 +157,7 @@ parameters:
         offset: 0
         frequency: 100
         producer: ACM
+        priority: 0
 
     upshift_button_state:
         name: upshift_button_state
@@ -158,8 +169,65 @@ parameters:
         multiplier: 1
         divisor: 1
         offset: 0
-        frequency: 1000
+        frequency: 100
         producer: TCM
+        priority: 0
+
+    shock_pot_front_left:
+        name: shock_pot_front_left
+        id: 11
+        human_readable_name: "Front Left Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
+
+    shock_pot_front_right:
+        name: shock_pot_front_right
+        id: 12
+        human_readable_name: "Front Right Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
+
+    shock_pot_rear_left:
+        name: shock_pot_rear_left
+        id: 13
+        human_readable_name: "Rear Left Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
+
+    shock_pot_rear_right:
+        name: shock_pot_rear_right
+        id: 14
+        human_readable_name: "Rear Right Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
 
 modules:
     ACM:
@@ -201,6 +269,10 @@ modules:
             - wheelspeed_front_left
         parameters_consumed:
             - wheelspeed_front_right
+            - shock_pot_front_left
+            - shock_pot_front_right
+            - shock_pot_rear_left
+            - shock_pot_rear_right
 
     DAM:
         name: DAM
@@ -215,5 +287,9 @@ modules:
             - longitudinal_acceleration
             - yaw_rate
             - steering_angle
+            - shock_pot_front_left
+            - shock_pot_front_right
+            - shock_pot_rear_left
+            - shock_pot_rear_right
         parameters_consumed:
             - wheelspeed_front_left
