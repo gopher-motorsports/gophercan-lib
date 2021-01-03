@@ -1,0 +1,295 @@
+busses:
+    bus_0:
+        name: bus_0
+        baud_rate: 1000000
+        human_readable_name: "Front Bus"
+
+parameters:
+    batt_volts:
+        name: batt_volts
+        id: 0
+        human_readable_name: "Battery Voltage"
+        unit: "Volts"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 10
+        offset: 0
+        frequency: 50
+        producer: PDM
+        priority: 0
+
+    wheelspeed_front_left:
+        name: wheelspeed_front_left
+        id: 1
+        human_readable_name: "Front Left Wheelspeed"
+        unit: "RPM"
+        type: uint16_t
+        bytes: 2
+        multiplier: 5
+        divisor: 16
+        offset: 0
+        frequency: 100
+        producer: TCM
+        priority: 0
+
+    lateral_acceleration:
+        name: lateral_acceleration
+        id: 2
+        human_readable_name: "Lateral Acceleration"
+        unit: "m/s^2"
+        type: uint16_t
+        bytes: 2
+        multiplier: 5
+        divisor: 16
+        offset: 0
+        frequency: 100
+        producer: DAM
+        priority: 0
+
+    longitudinal_acceleration:
+        name: longitudinal_acceleration
+        id: 3
+        human_readable_name: "Longitudinal Acceleration"
+        unit: "m/s^2"
+        type: uint16_t
+        bytes: 2
+        multiplier: 5
+        divisor: 16
+        offset: 0
+        frequency: 100
+        producer: DAM
+        priority: 0
+
+    steering_angle:
+        name: steering_angle
+        id: 4
+        human_readable_name: "Steering Angle"
+        unit: "degrees"
+        type: uint8_t
+        bytes: 1
+        multiplier: 2
+        divisor: 6
+        offset: -30
+        frequency: 100
+        producer: DAM
+        priority: 0
+
+    yaw_rate:
+        name: yaw_rate
+        id: 5
+        human_readable_name: "Yaw Rate"
+        unit: "degrees/s^2"
+        type: uint16_t
+        bytes: 2
+        multiplier: 5
+        divisor: 16
+        offset: 0
+        frequency: 100
+        producer: DAM
+        priority: 0
+
+    roll_rate:
+        name: roll_rate
+        id: 6
+        human_readable_name: "Roll Rate"
+        unit: "degrees/s^2"
+        type: uint16_t
+        bytes: 2
+        multiplier: 2
+        divisor: 67
+        offset: 2
+        frequency: 100
+        producer: DAM
+        priority: 0
+
+    wheelspeed_front_right:
+        name: wheelspeed_front_right
+        id: 7
+        human_readable_name: "Front Left Wheelspeed"
+        unit: "RPM"
+        type: uint16_t
+        bytes: 2
+        multiplier: 5
+        divisor: 16
+        offset: 0
+        frequency: 100
+        producer: DAM
+        priority: 0
+
+    airspeed_front:
+        name: airspeed_front
+        id: 8
+        human_readable_name: "Front Airspeed"
+        unit: "m/s"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    airspeed_rear:
+        name: airspeed_rear
+        id: 9
+        human_readable_name: "Rear Airspeed"
+        unit: "m/s"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    drs_button_state:
+        name: drs_button_state
+        id: 9
+        human_readable_name: "DRS Button State"
+        unit: "unitless"
+        type: bool
+        bytes: 1
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    upshift_button_state:
+        name: upshift_button_state
+        id: 10
+        human_readable_name: "Upshift Button State"
+        unit: "unitless"
+        type: bool
+        bytes: 1
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: TCM
+        priority: 0
+
+    shock_pot_front_left:
+        name: shock_pot_front_left
+        id: 11
+        human_readable_name: "Front Left Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
+
+    shock_pot_front_right:
+        name: shock_pot_front_right
+        id: 12
+        human_readable_name: "Front Right Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
+
+    shock_pot_rear_left:
+        name: shock_pot_rear_left
+        id: 13
+        human_readable_name: "Rear Left Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
+
+    shock_pot_rear_right:
+        name: shock_pot_rear_right
+        id: 14
+        human_readable_name: "Rear Right Shock Pot"
+        unit: "mm"
+        type: uint16_t
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 500
+        producer: DAM
+        priority: 0
+
+modules:
+    ACM:
+        name: ACM
+        id: 1
+        busses: 
+            - bus_0
+        human_readable_name: "Aerodynamic Control Module"
+        parameters_produced:
+            - airspeed_front
+            - airspeed_rear
+            - drs_button_state
+        parameters_consumed:
+            - lateral_acceleration
+            - longitudinal_acceleration
+            - steering_angle
+            - yaw_rate
+            - roll_rate
+
+    PDM:
+        name: PDM
+        id: 2
+        busses: 
+            - bus_0
+        human_readable_name: "Power Distribution Module"
+        parameters_produced:
+            - batt_volts
+        parameters_consumed:
+            - roll_rate
+
+    TCM:
+        name: TCM
+        id: 3
+        busses: 
+            - bus_0
+        human_readable_name: "Transmission Control Module"
+        parameters_produced:
+            - upshift_button_state
+            - wheelspeed_front_left
+        parameters_consumed:
+            - wheelspeed_front_right
+            - shock_pot_front_left
+            - shock_pot_front_right
+            - shock_pot_rear_left
+            - shock_pot_rear_right
+
+    DAM:
+        name: DAM
+        id: 4
+        busses: 
+            - bus_0
+        human_readable_name: "Data Acquisition Module"
+        parameters_produced:
+            - wheelspeed_front_right
+            - roll_rate
+            - lateral_acceleration
+            - longitudinal_acceleration
+            - yaw_rate
+            - steering_angle
+            - shock_pot_front_left
+            - shock_pot_front_right
+            - shock_pot_rear_left
+            - shock_pot_rear_right
+        parameters_consumed:
+            - wheelspeed_front_left
