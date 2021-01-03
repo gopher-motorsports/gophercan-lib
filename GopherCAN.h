@@ -12,10 +12,6 @@
 
 #define F0XX 0
 #define F7XX 7
-#ifndef TRUE
-#define FALSE 0
-#define TRUE 1
-#endif
 
 
 // Configuration defines. These are to be modified by the module specific developer
@@ -50,11 +46,80 @@
 #include "stm32f7xx_hal_can.h"
 #endif
 
+
+// ******** BEGIN AUTO GENERATED ********
+
+
+// module IDs
+typedef enum
+{
+	ALL_MODULES_ID = 0,
+	DLM_ID = 1,
+	ECU_ID = 2,
+	PDM_ID = 3,
+	TCM_ID = 4,
+	ACM_ID = 5,
+	DISPLAY_ID = 6
+} MODULE_ID;
+
+#define NUM_OF_MODULES 7
+
+
+// parameter IDs
+typedef enum
+{
+	CAN_COMMAND_ID = 0,
+	RPM_ID = 1,
+	FAN_CURRENT_ID = 2,
+	U8_TESTER_ID = 3,
+	U16_TESTER_ID = 4,
+	U32_TESTER_ID = 5,
+	U64_TESTER_ID = 6,
+	S8_TESTER_ID = 7,
+	S16_TESTER_ID = 8,
+	S32_TESTER_ID = 9,
+	S64_TESTER_ID = 10,
+	FLOAT_TESTER_ID = 11
+} GCAN_PARAM;
+
+#define NUM_OF_PARAMETERS 12
+
+
+// custom command IDs
+typedef enum
+{
+	INC_VARIABLE = 0,
+	SET_LED_STATE = 1,
+	CUST_COMMAND_2 = 2
+} GCAN_COMMAND;
+
+#define NUM_OF_COMMANDS 3
+
+
+// error IDs
+#define ID_NOT_FOUND 0
+#define COMMAND_ID_NOT_FOUND 1
+#define PARAM_NOT_ENABLED 2
+#define SIZE_ERROR 3
+#define DATATYPE_NOT_FOUND 4
+#define COMMAND_NOT_ENABLED 5
+
+// ******** END AUTO GENERATED ********
+
+
+// priority enum
+typedef enum
+{
+	PRIO_HIGH = 0b0,
+	PRIO_LOW = 0b1
+} PRIORITY;
+
+
 // function prototypes
-S8 init_can(CAN_HandleTypeDef* hcan, U8 module_id);
-S8 request_parameter(U8 priority, U8 dest_module, U16 parameter);
-S8 send_can_command(U8 priority, U8 dest_module, U8 command_id, U8 command_parameter);
-S8 send_parameter(U8 priority, U8 dest_module, U16 parameter);
+S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
+S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id, U8 command_parameter);
+S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
@@ -80,56 +145,6 @@ void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #endif
-
-// ******** BEGIN AUTO GENERATED ********
-
-
-// module IDs
-#define ALL_MODULES_ID 0
-#define DLM_ID 1
-#define ECU_ID 2
-#define PDM_ID 3
-#define TCM_ID 4
-#define ACM_ID 5
-#define DISPLAY_ID 6
-
-#define NUM_OF_MODULES 7
-
-
-// parameter IDs
-#define CAN_COMMAND_ID 0
-#define RPM_ID 1
-#define FAN_CURRENT_ID 2
-#define U8_TESTER_ID 3
-#define U16_TESTER_ID 4
-#define U32_TESTER_ID 5
-#define U64_TESTER_ID 6
-#define S8_TESTER_ID 7
-#define S16_TESTER_ID 8
-#define S32_TESTER_ID 9
-#define S64_TESTER_ID 10
-#define FLOAT_TESTER_ID 11
-
-#define NUM_OF_PARAMETERS 12
-
-
-// custom command IDs
-#define INC_VARIABLE   0
-#define SET_LED_STATE  1
-#define CUST_COMMAND_2 2
-
-#define NUM_OF_COMMANDS 3
-
-
-// error IDs
-#define ID_NOT_FOUND 0
-#define COMMAND_ID_NOT_FOUND 1
-#define PARAM_NOT_ENABLED 2
-#define SIZE_ERROR 3
-#define DATATYPE_NOT_FOUND 4
-#define COMMAND_NOT_ENABLED 5
-
-// ******** END AUTO GENERATED ********
 
 
 // CAN bus IDs. There should be one of these for each GopherCAN bus on the car, plus the ALL_BUSSES define
@@ -182,7 +197,7 @@ typedef enum
 	SIGNED32   = 7,
 	SIGNED64   = 8,
 	FLOATING   = 9
-} datatypes;
+} DATATYPES;
 
 // data type sizes (in bytes)
 typedef enum
@@ -198,12 +213,7 @@ typedef enum
 	SIGNED32_SIZE   = 4,
 	SIGNED64_SIZE   = 8,
 	FLOATING_SIZE   = 8
-} datatype_size;
-
-
-// priority defines
-#define PRIO_HIGH 0b0
-#define PRIO_LOW  0b1
+} DATATYPES_SIZE;
 
 
 // CAN message ID positions. Sizes are in number of bits
