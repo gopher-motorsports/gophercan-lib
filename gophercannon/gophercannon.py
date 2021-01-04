@@ -6,10 +6,12 @@ import munch
 from jinja2 import Template
 import argparse
 import time
-from tabulate import tabulate
+import tabulate
 from random import random
 import matplotlib.pyplot as plt
 import os
+from json2html import *
+from functools import partial
 
 MICROSECONDS_PER_SECOND = 1000000
 
@@ -36,6 +38,9 @@ parser.add_argument('-n',
 parser.add_argument('-t', 
                     '--transient',
                     required=False,
+                    const=0,
+                    nargs='?',
+                    default=0,
                     type=int,
                     help='conduct transient analysis of bus traffic')
 
@@ -84,6 +89,19 @@ repo_hash = repo.head.object.hexsha[0:HASH_LENGTH]
 
 def get_gophercan_id(priority, destination_node, source_node, id):
     return (priority << 28) | (destination_node << 22) | (source_node << 16) | (id)
+
+def my_html_row_with_attrs(celltag, cell_values, colwidths, colaligns):
+    alignment = { "left":    '',
+                  "right":   ' style="text-align: right;"',
+                  "center":  ' style="text-align: center;"',
+                  "decimal": ' style="text-align: right;"' }
+    values_with_attrs =\
+        ["<{0}{1} class=\"my-cell\">{2}</{0}>"
+            .format(celltag, alignment.get(a, ''), c)
+         for c, a in zip(cell_values, colaligns)]
+    return "<tr class=\"my-row\">" + \
+            "".join(values_with_attrs).rstrip() + \
+            "</tr>"
 
 class Module:
     def __init__(self, name, fifo_mailbox, noise):
@@ -137,15 +155,18 @@ class Bus:
         self.timer = 0
         self.master_timer = 0
         self.idle_timer = 0
+        self.line = []
+        self.arbitrators = []
     
     def add_module(self, module):
         self.modules.append(module)
 
     def simulate(self):
+        competing_modules = [x for x in self.modules if len(x.tx_buffer) > 0]
+        self.arbitrators.append(len(competing_modules))
         if self.timer > 0:
             self.timer -= 1
         else:
-            competing_modules = [x for x in self.modules if len(x.tx_buffer) > 0]
             if len(competing_modules) > 0:
                 competing_modules.sort(key=lambda x: get_gophercan_id(  int(x.tx_buffer[0].priority), 
                                                                         int(x.tx_buffer[0].producer),
@@ -169,6 +190,10 @@ with open(filename) as can_file:
     modules = vehicle.modules
     parameters = vehicle.parameters
     raw_busses = vehicle.busses
+
+    steady_usage = 0
+    transient_usage = 0
+    message_table = []
 
     print("Network definition file \"{0}\" loaded.".format(filename))
     print("\nAnalyzing parameters.")
@@ -239,9 +264,9 @@ with open(filename) as can_file:
                 bits_per_request = REQUEST_PREAMBLE + REQUEST_EPILOGUE + RESPONSE_PREAMBLE + RESPONSE_EPILOGUE + 8 * parameters[parameter]["bytes"]
                 bits_per_second += bits_per_request * parameters[parameter]["frequency"]
             
-            usage = 100 * bits_per_second / bus.baud_rate
+            steady_usage = 100 * bits_per_second / bus.baud_rate
 
-            print("Steady-state bandwidth utilization is {0} bits/second which is {1}% of {2}\'s maximum capacity.".format(bits_per_second, usage, bus.name))
+            print("Steady-state bandwidth utilization is {0} bits/second which is {1}% of {2}\'s maximum capacity.".format(bits_per_second, steady_usage, bus.name))
 
     for buss in busses:
         if args.transient is not None and args.transient > 0:
@@ -283,7 +308,8 @@ with open(filename) as can_file:
                 bus.master_timer += 1
                 if bus.master_timer >= MICROSECONDS_PER_SECOND:
                     i += 1
-                    print("Utilization over the last second: {0}%".format(100 * (MICROSECONDS_PER_SECOND - bus.idle_timer) / bus.master_timer))
+                    transient_usage = 100 * (MICROSECONDS_PER_SECOND - bus.idle_timer) / bus.master_timer
+                    print("Utilization over the last second: {0}%".format(transient_usage))
                     bus.idle_timer = 0
                     bus.master_timer = 0
                     message_table = []
@@ -294,7 +320,7 @@ with open(filename) as can_file:
                                                     min(message.buffer_delays), 
                                                     max(message.buffer_delays), 
                                                     sum(message.buffer_delays) / len(message.buffer_delays)])
-                    print(tabulate(message_table, [ "Parameter", 
+                    print(tabulate.tabulate(message_table, [ "Parameter", 
                                                     "TX Count", 
                                                     "Min Delay (us)", 
                                                     "Max Delay(us)", 
@@ -302,22 +328,19 @@ with open(filename) as can_file:
 
                     if args.reports:
                         os.makedirs('reports', exist_ok=True)
-                        plt.figure(figsize=(20,10))
+                        fig, ax = plt.subplots(2,figsize=(20,10))
+                        ax[0].set_xlabel('Simulation Time (us)')
+                        ax[0].set_ylabel('TX Buffer Wait time (us)')
                         for module in bus.modules:
                             for message in module.messages:
-                                plt.plot([i / message.frequency for i in range(1, len(message.buffer_delays) + 1)], message.buffer_delays, label = "{0}, {1}".format(message.name, module.name['name']))
-                        plt.xlabel("Simulation Time (us)")
-                        plt.ylabel("TX Buffer Wait time (us)")
-                        plt.legend()
+                                ax[0].plot([i / message.frequency for i in range(1, len(message.buffer_delays) + 1)], message.buffer_delays, label = "{0}, {1}".format(message.name, module.name['name']))
+                        ax[1].set_xlabel('Simulation Time (us)')
+                        ax[1].set_ylabel('Modules Waiting for Arbitration')
+                        ax[1].plot([i / bus.baud_rate for i in range(1, len(bus.arbitrators) + 1)], bus.arbitrators)
+                        fig.tight_layout()
+                        ax[0].legend()
                         filename = "{0}_transient_graph.png".format(repo_hash)
                         plt.savefig(os.path.join('reports', filename))
-                        filename = "{0}_transient_report.html".format(repo_hash)
-                        with open(os.path.join('reports', filename), "w") as fh:
-                            fh.write(tabulate(message_table, [  "Parameter", 
-                                                                "TX Count", 
-                                                                "Min Delay (us)", 
-                                                                "Max Delay(us)", 
-                                                                "Avg. Delay(us)"], tablefmt="html"))
 
     if not args.dry_run:
         os.makedirs('outputs', exist_ok=True)
@@ -342,3 +365,34 @@ with open(filename) as can_file:
                 filename = "GopherCAN_{0}.h".format(module["name"])
                 with open(os.path.join('outputs', filename), "w") as fh:
                     fh.write(output)
+
+    if args.reports:
+        network_table = json2html.convert(json = raw_vehicle, table_attributes="id=\"info-table\" class=\"table table-condensed table-bordered table-hover\"")
+        metadata_table = json2html.convert(json = vars(args), table_attributes="id=\"info-table\" class=\"table table-condensed table-bordered table-hover\"")
+        MyHTMLFormat = tabulate.TableFormat(
+            lineabove=tabulate.Line("<table class=\"table table-condensed table-bordered table-hover\">", "", "", ""),
+            linebelowheader=None,
+            linebetweenrows=None,
+            linebelow=tabulate.Line("</table>", "", "", ""),
+            headerrow=partial(my_html_row_with_attrs, "th"),
+            datarow=partial(my_html_row_with_attrs, "td"),
+            padding=0, with_header_hide=None)
+        transient_table = tabulate.tabulate(message_table, [ "Parameter", 
+                                                    "TX Count", 
+                                                    "Min Delay (us)", 
+                                                    "Max Delay(us)", 
+                                                    "Avg. Delay(us)"], tablefmt=MyHTMLFormat)
+        image_file = "{0}_transient_graph.png".format(repo_hash)
+        filename = 'report.html.jinja2'
+        with open(os.path.join('templates', filename)) as file_:
+            template = Template(file_.read())
+            output = template.render(   network_table=network_table, 
+                                        metadata_table=metadata_table, 
+                                        steady_usage=steady_usage, 
+                                        transient_table=transient_table,
+                                        transient_duration=args.transient,
+                                        transient_usage=transient_usage,
+                                        image_file=image_file)
+            filename = "{0}_transient_report.html".format(repo_hash)
+            with open(os.path.join('reports', filename), "w") as fh:
+                fh.write(output)
