@@ -1,0 +1,8 @@
+	Command Name	ID	Comments
+Notes:	"These will mostly be used during debugging, they should not reguarily populate the CAN bus"	Max 255 (U8)	This will show up next to the auto generated code
+	ID_NOT_FOUND	0	
+	COMMAND_ID_NOT_FOUND	1	
+	PARAM_NOT_ENABLED	2	
+	SIZE_ERROR	3	
+	DATATYPE_NOT_FOUND	4	
+	COMMAND_NOT_ENABLED	5	

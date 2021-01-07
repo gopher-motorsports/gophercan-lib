@@ -13,8 +13,8 @@
 #define F0XX 0
 #define F7XX 7
 
-
 // Configuration defines. These are to be modified by the module specific developer
+
 //#define TARGET F0XX
 #define TARGET F7XX
 
@@ -29,8 +29,8 @@
 // up to 3 busses are supported. That is the most available in the STM32 series
 #define NUM_OF_BUSSES 2
 #endif
-// end Configuration defines
 
+// end Configuration defines
 
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
