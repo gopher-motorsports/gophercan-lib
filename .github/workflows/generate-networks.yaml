@@ -1,0 +1,74 @@
+# Builds networks and analyzes steady-state and transient traffic.
+# Archives and uploads results
+
+name: Generate Network Reports
+
+on:
+  push:
+
+jobs:      
+  generate:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup venv
+      working-directory: gophercannon
+      run: python3 -m venv venv
+
+    - name: Activate venv
+      working-directory: gophercannon
+      run: source venv/bin/activate
+
+    - name: Install setuptools
+      working-directory: gophercannon
+      run: pip3 install setuptools
+
+    - name: Install Packages
+      working-directory: gophercannon
+      run: pip3 install -r requirements.txt
+
+    - name: Build Networks
+      working-directory: gophercannon
+      run: ./automation/build_networks.sh
+
+    - name: Archive reports
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{github.sha}}-reports
+        path: gophercannon/reports
+        
+    - name: Archive outputs
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{github.sha}}-outputs
+        path: gophercannon/outputs
+
+    - name: Upload results to S3 bucket
+      if: ${{ always() }}
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read
+      env:
+        SOURCE_DIR: ./gophercannon/reports
+        DEST_DIR: ${{github.sha}}
+        AWS_REGION: 'us-east-1'
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Send Slack notification
+      if: ${{ always() }}
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: firmware-validation
+        SLACK_COLOR: '#3278BD'
+        SLACK_ICON_EMOJI: gun
+        SLACK_TITLE: Network report
+        SLACK_MESSAGE: ${{ secrets.ARTIFACT_ROOT_URL }}/${{github.sha}}/go4-22c_report.html
+        SLACK_USERNAME: gophercannon-bot
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
