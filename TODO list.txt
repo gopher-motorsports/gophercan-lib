@@ -66,7 +66,6 @@ NOTES FOR DEVS:
      The interrupts are only called on the TX mailbox becomming open. This means a fuller TX buffer will be more efficient when sending messages
 
 KNOWN BUGS:
- - float conversions do not work between F0 and F7
  - Filters are not working correctly (started when the general filter was added)
  - Filters completely mess up CAN2 when configuring multiple busses (something about sharing the filter banks)
  - CAN2 ISRs are broken with multi-bus
