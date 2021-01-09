@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import os
 from json2html import *
 from functools import partial
+import ntpath
 
 MICROSECONDS_PER_SECOND = 1000000
 
@@ -182,6 +183,9 @@ print("Welcome to GopherCANnon.")
 
 print("Loading network definition file \"{0}\".".format(filename))
 with open(filename) as can_file:
+
+    pretty_name = ntpath.basename(os.path.splitext(can_file.name)[0])
+
     # Load network definition file
     raw_vehicle = yaml.full_load(can_file)
     vehicle = munch.Munch(raw_vehicle)
@@ -348,7 +352,7 @@ with open(filename) as can_file:
                         ax[1].plot([i / bus.baud_rate for i in range(1, len(bus.arbitrators) + 1)], bus.arbitrators)
                         fig.tight_layout()
                         ax[0].legend()
-                        filename = "{0}_transient_graph.png".format(repo_hash)
+                        filename = "{0}_transient_graph.png".format(pretty_name)
                         plt.savefig(os.path.join('reports', filename))
 
     if not args.dry_run:
@@ -391,7 +395,7 @@ with open(filename) as can_file:
                                                     "Min Delay (us)", 
                                                     "Max Delay(us)", 
                                                     "Avg. Delay(us)"], tablefmt=MyHTMLFormat)
-        image_file = "{0}_transient_graph.png".format(repo_hash)
+        image_file = "{0}_transient_graph.png".format(pretty_name)
         filename = 'report.html.jinja2'
         with open(os.path.join('templates', filename)) as file_:
             template = Template(file_.read())
@@ -402,6 +406,6 @@ with open(filename) as can_file:
                                         transient_duration=args.transient,
                                         transient_usage=transient_usage,
                                         image_file=image_file)
-            filename = "{0}_transient_report.html".format(repo_hash)
+            filename = "{0}_report.html".format(pretty_name)
             with open(os.path.join('reports', filename), "w") as fh:
                 fh.write(output)
