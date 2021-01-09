@@ -387,7 +387,7 @@ with open(filename) as can_file:
                                                     "Max Delay(us)", 
                                                     "Avg. Delay(us)"], tablefmt=MyHTMLFormat)
         image_file = "{0}_transient_graph.png".format(pretty_name)
-        filename = 'report.html.jinja2'
+        filename = 'report_TEMPLATE.html.jinja2'
         with open(os.path.join('templates', filename)) as file_:
             template = Template(file_.read())
             output = template.render(   network_table=network_table, 
@@ -396,7 +396,9 @@ with open(filename) as can_file:
                                         transient_table=transient_table,
                                         transient_duration=args.transient,
                                         transient_usage=transient_usage,
-                                        image_file=image_file)
+                                        image_file=image_file,
+                                        pretty_name=pretty_name,
+                                        repo_hash=repo_hash)
             filename = "{0}_report.html".format(pretty_name)
             with open(os.path.join('reports', filename), "w") as fh:
                 fh.write(output)
