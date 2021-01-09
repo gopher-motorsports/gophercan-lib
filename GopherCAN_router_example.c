@@ -184,7 +184,9 @@ void router_testing_loop()
 	s16_tester.data -= 2;
 	s32_tester.data -= 4;
 	s64_tester.data -= 8;
-	float_tester.data += 0.1;
+	//float_tester.data += 0.1;
+
+	request_parameter(PRIO_HIGH, ACM_ID, FLOAT_TESTER_ID);
 }
 
 
