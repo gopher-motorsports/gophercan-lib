@@ -1,3 +1,5 @@
 
 ~$GopherCAN.xlsx
 base_types.h
+gophercannon/reports/*
+gophercannon/outputs/*

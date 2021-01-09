@@ -1,5 +1,3 @@
-#!./venv/bin/python
-# The shebang on the previous line should be removed if you're using a different interpreter
 import yaml
 import git
 import munch
@@ -198,14 +196,24 @@ with open(filename) as can_file:
     print("Network definition file \"{0}\" loaded.".format(filename))
     print("\nAnalyzing parameters.")
     for module in modules:
-        for parameter in modules[module]['parameters_produced']:
-            if parameters[parameter]['producer'] != module:
-                print("Error: Expected producer of {0} to be {1}, found {2} instead!".format(   parameter, 
-                                                                                                module, 
-                                                                                                parameters[parameter]['producer']))
-                if args.narc:
-                    print("Incoherent parameters. Exiting.")
-                    exit(1)
+        if modules[module]['parameters_produced'] is not None:
+            for parameter in modules[module]['parameters_produced']:
+                if parameters[parameter]['producer'] != module:
+                    print("Error: Expected producer of {0} to be {1}, found {2} instead!".format(   parameter, 
+                                                                                                    module, 
+                                                                                                    parameters[parameter]['producer']))
+                    if args.narc:
+                        print("Incoherent parameters. Exiting.")
+                        exit(1)
+
+        if modules[module]['parameters_consumed'] is not None:
+            for parameter in modules[module]['parameters_consumed']:
+                if parameters[parameter]['producer'] == module:
+                    print("Error: Cannibalism detected! {0} both produces and consumes {1}.".format(module,
+                                                                                                    parameter))
+                    if args.narc:
+                        print("Incoherent parameters. Exiting.")
+                        exit(1)
 
     busses = []
 
@@ -276,16 +284,17 @@ with open(filename) as can_file:
             sim_modules = []
             i = 0
             for module in buss.modules:
-                sim_modules.append(Module(module, True, 10))
-                for parameter in module['parameters_consumed']:
-                    sim_modules[i].add_message(Message( parameter, 
-                                                        parameters[parameter]['bytes'], 
-                                                        parameters[parameter]['priority'], 
-                                                        parameters[parameter]['frequency'],
-                                                        modules[parameters[parameter]['producer']]['id'],
-                                                        module['id'],
-                                                        parameters[parameter]['id']))
-                i += 1
+                if module['parameters_consumed']:
+                    sim_modules.append(Module(module, True, 10))
+                    for parameter in module['parameters_consumed']:
+                        sim_modules[i].add_message(Message( parameter, 
+                                                            parameters[parameter]['bytes'], 
+                                                            parameters[parameter]['priority'], 
+                                                            parameters[parameter]['frequency'],
+                                                            modules[parameters[parameter]['producer']]['id'],
+                                                            module['id'],
+                                                            parameters[parameter]['id']))
+                    i += 1
             for module in sim_modules:
                 bus.add_module(module)
 
