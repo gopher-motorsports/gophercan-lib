@@ -91,6 +91,7 @@ with open(filename) as can_file:
     modules = vehicle.modules
     parameters = vehicle.parameters
     raw_busses = vehicle.busses
+    errors = vehicle.errors
 
     steady_usage = 0
     transient_usage = 0
@@ -268,7 +269,8 @@ with open(filename) as can_file:
             
             output = template.render(modules=modules.values(), 
                                     repo_hash=repo_hash,
-                                    parameters=parameters.values())
+                                    parameters=parameters.values(),
+                                    errors=errors.values())
             filename = "GopherCAN_Common.h"
             with open(os.path.join('outputs', filename), "w") as fh:
                 fh.write(output)

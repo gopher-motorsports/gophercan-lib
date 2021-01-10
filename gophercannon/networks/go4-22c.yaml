@@ -11,6 +11,7 @@ parameters:
         human_readable_name: "Battery Voltage"
         unit: "Volts"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 1
         divisor: 10
@@ -25,6 +26,7 @@ parameters:
         human_readable_name: "Front Left Wheelspeed"
         unit: "RPM"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 5
         divisor: 16
@@ -39,6 +41,7 @@ parameters:
         human_readable_name: "Lateral Acceleration"
         unit: "m/s^2"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 5
         divisor: 16
@@ -53,6 +56,7 @@ parameters:
         human_readable_name: "Longitudinal Acceleration"
         unit: "m/s^2"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 5
         divisor: 16
@@ -67,6 +71,7 @@ parameters:
         human_readable_name: "Steering Angle"
         unit: "degrees"
         type: uint8_t
+        struct: U8_CAN_STRUCT
         bytes: 1
         multiplier: 2
         divisor: 6
@@ -81,6 +86,7 @@ parameters:
         human_readable_name: "Yaw Rate"
         unit: "degrees/s^2"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 5
         divisor: 16
@@ -95,6 +101,7 @@ parameters:
         human_readable_name: "Roll Rate"
         unit: "degrees/s^2"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 2
         divisor: 67
@@ -109,6 +116,7 @@ parameters:
         human_readable_name: "Front Left Wheelspeed"
         unit: "RPM"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 5
         divisor: 16
@@ -123,6 +131,7 @@ parameters:
         human_readable_name: "Front Airspeed"
         unit: "m/s"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 1
         divisor: 1
@@ -137,6 +146,7 @@ parameters:
         human_readable_name: "Rear Airspeed"
         unit: "m/s"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 1
         divisor: 1
@@ -150,7 +160,8 @@ parameters:
         id: 11
         human_readable_name: "DRS Button State"
         unit: "unitless"
-        type: bool
+        type: uint8_t
+        struct: U8_CAN_STRUCT
         bytes: 1
         multiplier: 1
         divisor: 1
@@ -164,7 +175,8 @@ parameters:
         id: 12
         human_readable_name: "Upshift Button State"
         unit: "unitless"
-        type: bool
+        type: uint8_t
+        struct: U8_CAN_STRUCT
         bytes: 1
         multiplier: 1
         divisor: 1
@@ -179,6 +191,7 @@ parameters:
         human_readable_name: "Front Left Shock Pot"
         unit: "mm"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 1
         divisor: 1
@@ -193,6 +206,7 @@ parameters:
         human_readable_name: "Front Right Shock Pot"
         unit: "mm"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 1
         divisor: 1
@@ -207,6 +221,7 @@ parameters:
         human_readable_name: "Rear Left Shock Pot"
         unit: "mm"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 1
         divisor: 1
@@ -221,6 +236,7 @@ parameters:
         human_readable_name: "Rear Right Shock Pot"
         unit: "mm"
         type: uint16_t
+        struct: U16_CAN_STRUCT
         bytes: 2
         multiplier: 1
         divisor: 1
@@ -293,3 +309,28 @@ modules:
             - shock_pot_rear_right
         parameters_consumed:
             - wheelspeed_front_left
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
+    
+    COMMAND_ID_NOT_FOUND:
+        name: COMMAND_ID_NOT_FOUND
+        id: 1
+
+    PARAM_NOT_ENABLED:
+        name: PARAM_NOT_ENABLED
+        id: 2
+
+    SIZE_ERROR:
+        name: SIZE_ERROR
+        id: 3
+
+    DATATYPE_NOT_FOUND:
+        name: DATATYPE_NOT_FOUND
+        id: 4
+
+    COMMAND_NOT_ENABLED:
+        name: COMMAND_NOT_ENABLED
+        id: 5
