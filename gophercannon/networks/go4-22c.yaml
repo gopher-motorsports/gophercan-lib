@@ -7,7 +7,7 @@ busses:
 parameters:
     batt_volts:
         name: batt_volts
-        id: 0
+        id: 1
         human_readable_name: "Battery Voltage"
         unit: "Volts"
         type: uint16_t
@@ -21,7 +21,7 @@ parameters:
 
     wheelspeed_front_left:
         name: wheelspeed_front_left
-        id: 1
+        id: 2
         human_readable_name: "Front Left Wheelspeed"
         unit: "RPM"
         type: uint16_t
@@ -35,7 +35,7 @@ parameters:
 
     lateral_acceleration:
         name: lateral_acceleration
-        id: 2
+        id: 3
         human_readable_name: "Lateral Acceleration"
         unit: "m/s^2"
         type: uint16_t
@@ -49,7 +49,7 @@ parameters:
 
     longitudinal_acceleration:
         name: longitudinal_acceleration
-        id: 3
+        id: 4
         human_readable_name: "Longitudinal Acceleration"
         unit: "m/s^2"
         type: uint16_t
@@ -63,7 +63,7 @@ parameters:
 
     steering_angle:
         name: steering_angle
-        id: 4
+        id: 5
         human_readable_name: "Steering Angle"
         unit: "degrees"
         type: uint8_t
@@ -77,7 +77,7 @@ parameters:
 
     yaw_rate:
         name: yaw_rate
-        id: 5
+        id: 6
         human_readable_name: "Yaw Rate"
         unit: "degrees/s^2"
         type: uint16_t
@@ -91,7 +91,7 @@ parameters:
 
     roll_rate:
         name: roll_rate
-        id: 6
+        id: 7
         human_readable_name: "Roll Rate"
         unit: "degrees/s^2"
         type: uint16_t
@@ -105,7 +105,7 @@ parameters:
 
     wheelspeed_front_right:
         name: wheelspeed_front_right
-        id: 7
+        id: 8
         human_readable_name: "Front Left Wheelspeed"
         unit: "RPM"
         type: uint16_t
@@ -119,7 +119,7 @@ parameters:
 
     airspeed_front:
         name: airspeed_front
-        id: 8
+        id: 9
         human_readable_name: "Front Airspeed"
         unit: "m/s"
         type: uint16_t
@@ -133,7 +133,7 @@ parameters:
 
     airspeed_rear:
         name: airspeed_rear
-        id: 9
+        id: 10
         human_readable_name: "Rear Airspeed"
         unit: "m/s"
         type: uint16_t
@@ -147,7 +147,7 @@ parameters:
 
     drs_button_state:
         name: drs_button_state
-        id: 9
+        id: 11
         human_readable_name: "DRS Button State"
         unit: "unitless"
         type: bool
@@ -161,7 +161,7 @@ parameters:
 
     upshift_button_state:
         name: upshift_button_state
-        id: 10
+        id: 12
         human_readable_name: "Upshift Button State"
         unit: "unitless"
         type: bool
@@ -175,7 +175,7 @@ parameters:
 
     shock_pot_front_left:
         name: shock_pot_front_left
-        id: 11
+        id: 13
         human_readable_name: "Front Left Shock Pot"
         unit: "mm"
         type: uint16_t
@@ -189,7 +189,7 @@ parameters:
 
     shock_pot_front_right:
         name: shock_pot_front_right
-        id: 12
+        id: 14
         human_readable_name: "Front Right Shock Pot"
         unit: "mm"
         type: uint16_t
@@ -203,7 +203,7 @@ parameters:
 
     shock_pot_rear_left:
         name: shock_pot_rear_left
-        id: 13
+        id: 15
         human_readable_name: "Rear Left Shock Pot"
         unit: "mm"
         type: uint16_t
@@ -217,7 +217,7 @@ parameters:
 
     shock_pot_rear_right:
         name: shock_pot_rear_right
-        id: 14
+        id: 16
         human_readable_name: "Rear Right Shock Pot"
         unit: "mm"
         type: uint16_t

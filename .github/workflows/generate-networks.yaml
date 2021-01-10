@@ -65,6 +65,19 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+    - name: Upload outputs to S3 bucket
+      if: ${{ always() }}
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read
+      env:
+        SOURCE_DIR: ./gophercannon/outputs
+        DEST_DIR: ${{github.sha}}
+        AWS_REGION: 'us-east-1'
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
     - name: Send Slack notification
       if: ${{ always() }}
       uses: rtCamp/action-slack-notify@v2
@@ -73,6 +86,6 @@ jobs:
         SLACK_COLOR: '#3278BD'
         SLACK_ICON_EMOJI: gun
         SLACK_TITLE: Network reports
-        SLACK_MESSAGE: ${{ secrets.ARTIFACT_ROOT_URL }}/${{github.sha}}/landing_page.html
+        SLACK_MESSAGE: ${{ secrets.ARTIFACT_ROOT_URL }}/${{github.sha}}/landing_page.html, ${{ secrets.ARTIFACT_ROOT_URL }}/${{github.sha}}/GopherCAN_Common.h
         SLACK_USERNAME: gophercannon-bot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

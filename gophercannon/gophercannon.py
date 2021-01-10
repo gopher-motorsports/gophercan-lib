@@ -266,7 +266,9 @@ with open(filename) as can_file:
         with open(os.path.join('templates', filename)) as file_:
             template = Template(file_.read())
             
-            output = template.render(modules=modules.values(), repo_hash=repo_hash)
+            output = template.render(modules=modules.values(), 
+                                    repo_hash=repo_hash,
+                                    parameters=parameters.values())
             filename = "GopherCAN_Common.h"
             with open(os.path.join('outputs', filename), "w") as fh:
                 fh.write(output)
