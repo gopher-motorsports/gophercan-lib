@@ -203,7 +203,7 @@ typedef enum
 typedef enum
 {
 	REQ_PARAM_SIZE  = 0,
-	COMMAND_SIZE    = 2,
+	COMMAND_SIZE    = 5,
 	UNSIGNED8_SIZE  = 1,
 	UNSIGNED16_SIZE = 2,
 	UNSIGNED32_SIZE = 4,
@@ -242,7 +242,10 @@ typedef enum
 
 // custom function data positions
 #define COMMAND_ID_POS 0
-#define COMMAND_PARAMETER_POS 1
+#define COMMAND_PARAM_0 1
+#define COMMAND_PARAM_1 2
+#define COMMAND_PARAM_2 3
+#define COMMAND_PARAM_3 4
 
 
 // general defines

@@ -66,9 +66,8 @@ U32 last_fan_current_req = 0;
 U8 last_button_state = 0;
 
 
-
 // the CAN callback function used in this example
-void change_led_state(void* parameter, U8 remote_param);
+void change_led_state(MODULE_ID sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
 
 // init
 //  What needs to happen on startup in order to run GopherCAN
@@ -232,7 +231,7 @@ void main_loop()
 //  by parameter to remote_param. In this case parameter is a U16*, but
 //  any data type can be pointed to, as long as it is configured and casted
 //  correctly
-void change_led_state(void* parameter, U8 remote_param)
+void change_led_state(MODULE_ID sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3)
 {
 	// this function will set the LED to high or low, depending on remote_param
 	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))
