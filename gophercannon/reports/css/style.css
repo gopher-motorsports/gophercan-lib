@@ -1,0 +1,8 @@
+# Empty CSS file for your own CSS
+.rounded-circle-mod {
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
