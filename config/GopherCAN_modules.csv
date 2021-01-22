@@ -1,0 +1,9 @@
+,Module Name,ID (Decimal),Bus Id,Comments
+Notes:,The Gopher Motersports internal name of the modual refrecenced,The ID of this modual in decimal format. Max = 64 (6 bits),Which bus this module is on,This will appear in the auto-generated code
+,ALL_MODULES,0,ALL_BUSSES,
+,DLM,1,GCAN0,
+,ECU,2,GCAN0,test comment
+,PDM,3,GCAN0,
+,TCM,4,GCAN1,
+,ACM,5,GCAN1,
+,DISPLAY,6,GCAN2,
