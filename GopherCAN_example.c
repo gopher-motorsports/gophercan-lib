@@ -215,7 +215,7 @@ void main_loop()
 	{
 		last_button_state = button_state;
 
-		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE, button_state))
+		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE, button_state, 0, 0, 0))
 		{
 			// error sending command
 		}

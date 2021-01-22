@@ -383,10 +383,14 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parame
 //  PRIORITY priority:       PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:   what module to send the command to
 //  GCAN_COMMAND command_id: what command the module should run
-//  U8 command_parameter:    the parameter to run the function with. May not be used depending on the function
+//  U8 command_param_0:     parameter 0 to run the function with. May not be used depending on the function
+//  U8 command_param_1:     parameter 1
+//  U8 command_param_2:     parameter 2
+//  U8 command_param_3:     parameter 3
 // returns:
 //  error codes specified in GopherCAN.h
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id, U8 command_parameter)
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -412,10 +416,13 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND comma
 	// set the RTR bit to be a data message
 	message.rtr_bit = DATA_MESSAGE;
 
-	message.dlc = sizeof(command_id) + sizeof(command_parameter);
+	message.dlc = COMMAND_SIZE;
 
 	message.data[0] = command_id;
-	message.data[1] = command_parameter;
+	message.data[1] = command_param_0;
+	message.data[2] = command_param_1;
+	message.data[3] = command_param_2;
+	message.data[4] = command_param_3;
 
 	return tx_can_message(&message);
 }

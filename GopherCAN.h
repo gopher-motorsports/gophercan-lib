@@ -118,7 +118,8 @@ typedef enum
 // function prototypes
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id, U8 command_parameter);
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
 S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
@@ -131,7 +132,8 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 #endif
 
 // function to add to the custom CAN commands by default just in case
-void do_nothing(void* param, U8 remote_param);
+void do_nothing(MODULE_ID sending_module, void* param,
+	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3);
 
 // ISR functions, do not call these in runtime
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan);
