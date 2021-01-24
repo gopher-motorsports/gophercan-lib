@@ -121,7 +121,8 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parame
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
 	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
+S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+	U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
