@@ -13,28 +13,26 @@
 #define F0XX 0
 #define F7XX 7
 
-// Configuration defines. These are to be modified by the module specific developer
+// Begin Configuration defines. These are to be modified by the module specific developer
 
-//#define TARGET F0XX
-#define TARGET F7XX
+#define TARGET F0XX
+//#define TARGET F7XX
 
 // Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-#define MULTI_BUS TRUE
-//#define MULTI_BUS FALSE
+//#define MULTI_BUS
 
-#if MULTI_BUS == TRUE
-#define CAN_ROUTER TRUE
-//#define CAN_ROUTER FALSE
+#ifdef MULTI_BUS
+#define CAN_ROUTER
 
 // up to 3 busses are supported. That is the most available in the STM32 series
 #define NUM_OF_BUSSES 2
 #endif
 
-// end Configuration defines
+// End Configuration defines
 
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
-//#include "base_types.h"
+#include "..//C-Utils//base_types.h"
 
 #if TARGET == F0XX
 #include "stm32f0xx_hal.h"
@@ -128,7 +126,7 @@ S8 service_can_rx_buffer(void);
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
 #endif
 
@@ -269,7 +267,7 @@ typedef enum
 
 
 // Multi-bus struct
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 typedef struct
 {
 	CAN_MSG_RING_BUFFER* tx_buffer;
