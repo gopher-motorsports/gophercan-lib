@@ -38,7 +38,7 @@ typedef struct
 // custom function struct
 typedef struct
 {
-	void (*func_ptr)(void*, U8);
+	void (*func_ptr)(U8, void*, U8, U8, U8, U8);
 	U8    func_enabled;
 	void* param_ptr;
 } CUST_FUNC;

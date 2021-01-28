@@ -21,13 +21,13 @@ static S8   send_error_message(CAN_ID* id, U8 error_id);
 static S8   tx_can_message(CAN_MSG* message);
 static S8   service_can_rx_message(CAN_MSG* message);
 
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add);
 static void send_message_to_all_busses(CAN_MSG* message_to_add);
 #endif
 
-#if CAN_ROUTER == TRUE
+#ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
 #endif
 
@@ -53,7 +53,7 @@ CAN_MSG tx_buffer_mem[TX_BUFFER_SIZE];
 // if there are more than one CAN busses, we need more TX buffers
 // the HAL_CAN handle pointer is for checking which bus that handle is referring to
 // if the pointer is not found, the program will default to local bus 0 (hcan0)
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 
 GCAN_MULTI_BUS_STRUCT gbus0;
 
@@ -121,7 +121,7 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
 };
 
 // if there are multiple busses, this shows which bus they are on
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 U8 module_bus_number[NUM_OF_MODULES] =
 {
 	ALL_BUSSES,
@@ -161,7 +161,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 	init_buffer(&tx_buffer, tx_buffer_mem, TX_BUFFER_SIZE);
 
 	// if there are more CAN busses, set up the additional TX buffers
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 #if NUM_OF_BUSSES > 1
 	init_buffer(&tx_buffer_1, tx_buffer_mem_1, TX_BUFFER_SIZE);
 #endif
@@ -226,7 +226,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 {
 	CAN_FilterTypeDef filterConfig;
 
-#if CAN_ROUTER == TRUE
+#ifdef CAN_ROUTER
 	// Accept all messages on the CAN router
 	filterConfig.FilterBank = 0;                                      // Modify bank 0 (of 13)
 	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
@@ -383,10 +383,14 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parame
 //  PRIORITY priority:       PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:   what module to send the command to
 //  GCAN_COMMAND command_id: what command the module should run
-//  U8 command_parameter:    the parameter to run the function with. May not be used depending on the function
+//  U8 command_param_0:     parameter 0 to run the function with. May not be used depending on the function
+//  U8 command_param_1:     parameter 1
+//  U8 command_param_2:     parameter 2
+//  U8 command_param_3:     parameter 3
 // returns:
 //  error codes specified in GopherCAN.h
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id, U8 command_parameter)
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -412,10 +416,13 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND comma
 	// set the RTR bit to be a data message
 	message.rtr_bit = DATA_MESSAGE;
 
-	message.dlc = sizeof(command_id) + sizeof(command_parameter);
+	message.dlc = COMMAND_SIZE;
 
 	message.data[0] = command_id;
-	message.data[1] = command_parameter;
+	message.data[1] = command_param_0;
+	message.data[2] = command_param_1;
+	message.data[3] = command_param_2;
+	message.data[4] = command_param_3;
 
 	return tx_can_message(&message);
 }
@@ -513,19 +520,20 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter
 
 // add_custum_can_func
 //  add a user function to the array of functions to check if
-//  a CAN command message is sent. Note the functions must be of type 'void func(void*, U8)',
-//  so structs and casts are needed to get multiple params. The second parameter (U8) will be
+//  a CAN command message is sent. Note the functions must be of type 'void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8)',
+//  so structs and casts are needed to get multiple params. The third-sixth parameter (U8, U8, U8, U8) will be
 //  sent by the module in the CAN command message. This function can also be called to overwrite
 //  or modify existing custom commands
 // params:
-//  GCAN_COMMAND command_id:     what command ID is being defined
-//  void (*func_ptr)(void*, U8): the pointer to the function that should be run if this command_id is called
-//  U8 init_state:               TRUE or FALSE, whether to start with the command enabled
-//  void* param_ptr:             pointer to the parameter that should be used. This can point to any
-//                                data type (including nullptr) as long as it is casted correctly
+//  GCAN_COMMAND command_id:                            what command ID is being defined
+//  void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8): the pointer to the function that should be run if this command_id is called
+//  U8 init_state:                                      TRUE or FALSE, whether to start with the command enabled
+//  void* param_ptr:                                    pointer to the parameter that should be used. This can point to any
+//                                                       data type (including NULL) as long as it is casted correctly
 // returns:
 //  error codes specified in GopherCAN.h
-S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr)
+S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+	U8 init_state, void* param_ptr)
 {
 	CUST_FUNC* new_cust_func;
 
@@ -582,7 +590,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	CAN_MSG_RING_BUFFER* buffer;
 
 	// With multiple busses, choose the correct bus buffer to be working with
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 	buffer = choose_tx_buffer_from_hcan(hcan);
 #else
 	buffer = &tx_buffer;
@@ -659,7 +667,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		message->id = rx_header.ExtId;
 		message->dlc = rx_header.DLC;
 
-#if CAN_ROUTER == TRUE
+#ifdef CAN_ROUTER
 		// router specific functionality that directly adds messages that need to be routed
 		//  directly to the correct TX buffer (if needed, that decision is made within the function)
 		rout_can_message(hcan, message);
@@ -706,7 +714,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 {
 	CAN_MSG_RING_BUFFER* buffer;
 
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 	// Handle the case of the message being sent to all of the busses (ID 0)
 	if (GET_ID_DEST(message_to_add->id) == ALL_MODULES_ID)
 	{
@@ -924,7 +932,9 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// run the function
-	(*(this_function->func_ptr))(this_function->param_ptr, message->data[COMMAND_PARAMETER_POS]);
+	(*(this_function->func_ptr))(id->source_module, this_function->param_ptr,
+		message->data[COMMAND_PARAM_0], message->data[COMMAND_PARAM_1],
+		message->data[COMMAND_PARAM_2], message->data[COMMAND_PARAM_3]);
 
 	return CAN_SUCCESS;
 }
@@ -1028,7 +1038,7 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 //
 // WARNING: if MULTI_BUS is defined, this function must be called as part of the initialization step,
 //           right after init() has been called for all active busses
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 {
 	switch (bus_number)
@@ -1096,7 +1106,7 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
 // choose_tx_buffer_from_hcan
 //  Chooses what buffer the hcan pointer inputed is referring to based on the function define_can_bus().
 //  If the hcan pointer is not found, defaults to module bus 0
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
 {
 #if NUM_OF_BUSSES > 2
@@ -1119,7 +1129,7 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
 // choose_tx_buffer_from_dest_module
 //  Chooses which buffer the the dest_module in message_to_add is on
 //  If the module is not found, defaults to module bus 0
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add)
 {
 	MODULE_ID dest_module;
@@ -1146,7 +1156,7 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 
 // send_message_to_all_busses
 //  This function will add the message to all of the TX buffers active
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 static void send_message_to_all_busses(CAN_MSG* message_to_add)
 {
 #if NUM_OF_BUSSES > 2
@@ -1175,7 +1185,7 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add)
 // rout_can_message
 //  Function to be called in service_can_rx_hardware() that will take messages that are
 //  destined for modules on another bus and put that message into the correct TX buffer
-#if CAN_ROUTER == TRUE
+#ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
 	CAN_MSG_RING_BUFFER* buffer;
@@ -1250,7 +1260,8 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 // do_nothing
 //  this exists to give a default function pointer to all of the CAN commands
 //  to avoid errors from bad function pointers
-void do_nothing(void* param, U8 remote_param)
+void do_nothing(U8 sending_module, void* param,
+	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3)
 {
 	// this function has successfully done nothing
 }

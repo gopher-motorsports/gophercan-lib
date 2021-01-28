@@ -41,7 +41,8 @@ U8 last_button_state = 0;
 
 
 // the CAN callback function used in this example
-void router_change_led_state(void* parameter, U8 remote_param);
+void router_change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
+
 
 // router_init
 //  What needs to happen on startup in order to run GopherCAN
@@ -143,7 +144,8 @@ void router_main_loop()
 	{
 		last_button_state = button_state;
 
-		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE, button_state))
+		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE,
+				button_state, button_state, button_state, button_state))
 		{
 			// error sending command
 		}
@@ -159,7 +161,7 @@ void router_main_loop()
 //  by parameter to remote_param. In this case parameter is a U16*, but
 //  any data type can be pointed to, as long as it is configured and casted
 //  correctly
-void router_change_led_state(void* parameter, U8 remote_param)
+void router_change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3)
 {
 	// this function will set the LED to high or low, depending on remote_param
 	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))

@@ -28,7 +28,7 @@ CAN_HandleTypeDef* example_hcan;
 
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
-//#define F7XX_ENABLED                                                          // (F0xx otherwise)
+//#define F7XX_EXAMPLE                                                          // (F0xx otherwise)
 #define THIS_ACM
 //#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
@@ -66,9 +66,8 @@ U32 last_fan_current_req = 0;
 U8 last_button_state = 0;
 
 
-
 // the CAN callback function used in this example
-void change_led_state(void* parameter, U8 remote_param);
+void change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
 
 // init
 //  What needs to happen on startup in order to run GopherCAN
@@ -102,7 +101,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	float_tester.update_enabled = TRUE;
 
 	// adding can_callback_function
-#ifndef F7XX_ENABLED
+#ifndef F7XX_EXAMPLE
 	led_to_change = GPIO_PIN_5; // this is LD2 on the dev board
 #else
 	led_to_change = GPIO_PIN_0; // this is LD1 on the dev board
@@ -207,7 +206,7 @@ void main_loop()
 	button_state = !HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
 
 	// for some reason the button is the opposite on the F7
-#ifdef F7XX_ENABLED
+#ifdef F7XX_EXAMPLE
 	button_state = !button_state;
 #endif
 
@@ -216,7 +215,8 @@ void main_loop()
 	{
 		last_button_state = button_state;
 
-		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE, button_state))
+		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE,
+				button_state, button_state, button_state, button_state))
 		{
 			// error sending command
 		}
@@ -232,13 +232,13 @@ void main_loop()
 //  by parameter to remote_param. In this case parameter is a U16*, but
 //  any data type can be pointed to, as long as it is configured and casted
 //  correctly
-void change_led_state(void* parameter, U8 remote_param)
+void change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3)
 {
 	// this function will set the LED to high or low, depending on remote_param
 	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))
 	U16 gpio_pin = *((U16*)parameter);
 
-#ifndef F7XX_ENABLED
+#ifndef F7XX_EXAMPLE
 	HAL_GPIO_WritePin(GPIOA, gpio_pin, !!remote_param);
 #else
 	HAL_GPIO_WritePin(GPIOB, gpio_pin, !!remote_param);

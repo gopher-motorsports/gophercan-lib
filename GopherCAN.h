@@ -13,28 +13,26 @@
 #define F0XX 0
 #define F7XX 7
 
+// Begin Configuration defines. These are to be modified by the module specific developer
 
-// Configuration defines. These are to be modified by the module specific developer
-//#define TARGET F0XX
-#define TARGET F7XX
+#define TARGET F0XX
+//#define TARGET F7XX
 
 // Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-#define MULTI_BUS TRUE
-//#define MULTI_BUS FALSE
+//#define MULTI_BUS
 
-#if MULTI_BUS == TRUE
-#define CAN_ROUTER TRUE
-//#define CAN_ROUTER FALSE
+#ifdef MULTI_BUS
+#define CAN_ROUTER
 
 // up to 3 busses are supported. That is the most available in the STM32 series
 #define NUM_OF_BUSSES 2
 #endif
-// end Configuration defines
 
+// End Configuration defines
 
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
-//#include "base_types.h"
+#include "..//C-Utils//base_types.h"
 
 #if TARGET == F0XX
 #include "stm32f0xx_hal.h"
@@ -118,20 +116,23 @@ typedef enum
 // function prototypes
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id, U8 command_parameter);
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 add_custom_can_func(U8 func_id, void (*func_ptr)(void*, U8), U8 init_state, void* param_ptr);
+S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+	U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
 #endif
 
 // function to add to the custom CAN commands by default just in case
-void do_nothing(void* param, U8 remote_param);
+void do_nothing(MODULE_ID sending_module, void* param,
+	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3);
 
 // ISR functions, do not call these in runtime
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan);
@@ -203,7 +204,7 @@ typedef enum
 typedef enum
 {
 	REQ_PARAM_SIZE  = 0,
-	COMMAND_SIZE    = 2,
+	COMMAND_SIZE    = 5,
 	UNSIGNED8_SIZE  = 1,
 	UNSIGNED16_SIZE = 2,
 	UNSIGNED32_SIZE = 4,
@@ -242,7 +243,10 @@ typedef enum
 
 // custom function data positions
 #define COMMAND_ID_POS 0
-#define COMMAND_PARAMETER_POS 1
+#define COMMAND_PARAM_0 1
+#define COMMAND_PARAM_1 2
+#define COMMAND_PARAM_2 3
+#define COMMAND_PARAM_3 4
 
 
 // general defines
@@ -263,7 +267,7 @@ typedef enum
 
 
 // Multi-bus struct
-#if MULTI_BUS == TRUE
+#ifdef MULTI_BUS
 typedef struct
 {
 	CAN_MSG_RING_BUFFER* tx_buffer;
