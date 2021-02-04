@@ -15,11 +15,11 @@
 
 // Begin Configuration defines. These are to be modified by the module specific developer
 
-#define TARGET F0XX
-//#define TARGET F7XX
+//#define TARGET F0XX
+#define TARGET F7XX
 
 // Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-//#define MULTI_BUS
+#define MULTI_BUS
 
 #ifdef MULTI_BUS
 #define CAN_ROUTER
@@ -32,7 +32,6 @@
 
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
-#include "..//C-Utils//base_types.h"
 
 #if TARGET == F0XX
 #include "stm32f0xx_hal.h"
@@ -53,7 +52,7 @@ typedef enum
 {
 	ALL_MODULES_ID = 0,
 	DLM_ID = 1,
-	ECU_ID = 2,
+	DAM_ID = 2,
 	PDM_ID = 3,
 	TCM_ID = 4,
 	ACM_ID = 5,
@@ -88,10 +87,14 @@ typedef enum
 {
 	INC_VARIABLE = 0,
 	SET_LED_STATE = 1,
-	CUST_COMMAND_2 = 2
+	CUST_COMMAND_2 = 2,
+	ADD_PARAM_TO_BUCKET = 3,
+	ASSIGN_BUCKET_TO_FRQ = 4,
+	SEND_BUCKET_PARAMS = 5,
+	REQUEST_BUCKET = 6
 } GCAN_COMMAND;
 
-#define NUM_OF_COMMANDS 3
+#define NUM_OF_COMMANDS 7
 
 
 // error IDs

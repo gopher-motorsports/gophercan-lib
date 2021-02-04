@@ -126,7 +126,7 @@ U8 module_bus_number[NUM_OF_MODULES] =
 {
 	ALL_BUSSES,
 	GCAN0,
-	GCAN0,
+	GCAN1,
 	GCAN0,
 	GCAN1,
 	GCAN1,
