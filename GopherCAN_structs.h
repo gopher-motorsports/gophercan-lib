@@ -4,7 +4,7 @@
 #ifndef GOPHERCAN_STRUCT_H
 #define GOPHERCAN_STRUCT_H
 
-#include "..\\C-Utils\\base_types.h"
+#include "base_types.h"
 
 // float/U32 converter union
 typedef union
