@@ -337,10 +337,10 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 // params:
 //  PRIORITY priority:     PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module: what module to request the parameter from
-//  GCAN_PARAM parameter:  what parameter to request
+//  GCAN_PARAM_ID parameter:  what parameter to request
 // returns:
 //  error codes specified in GopherCAN.h
-S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter)
+S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -382,14 +382,14 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parame
 // params:
 //  PRIORITY priority:       PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:   what module to send the command to
-//  GCAN_COMMAND command_id: what command the module should run
+//  GCAN_COMMAND_ID command_id: what command the module should run
 //  U8 command_param_0:     parameter 0 to run the function with. May not be used depending on the function
 //  U8 command_param_1:     parameter 1
 //  U8 command_param_2:     parameter 2
 //  U8 command_param_3:     parameter 3
 // returns:
 //  error codes specified in GopherCAN.h
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3)
 {
 	CAN_MSG message;
@@ -434,10 +434,10 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND comma
 // params:
 //  PRIORITY priority:     PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module: what module to send the parameter to
-//  GCAN_PARAM parameter:  what parameter to send
+//  GCAN_PARAM_ID parameter:  what parameter to send
 // returns:
 //  error codes specified in GopherCAN.h
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter)
+S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter)
 {
 	CAN_ID id;
 	CAN_MSG message;
@@ -525,14 +525,14 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter
 //  sent by the module in the CAN command message. This function can also be called to overwrite
 //  or modify existing custom commands
 // params:
-//  GCAN_COMMAND command_id:                            what command ID is being defined
+//  GCAN_COMMAND_ID command_id:                            what command ID is being defined
 //  void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8): the pointer to the function that should be run if this command_id is called
 //  U8 init_state:                                      TRUE or FALSE, whether to start with the command enabled
 //  void* param_ptr:                                    pointer to the parameter that should be used. This can point to any
 //                                                       data type (including NULL) as long as it is casted correctly
 // returns:
 //  error codes specified in GopherCAN.h
-S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
 	U8 init_state, void* param_ptr)
 {
 	CUST_FUNC* new_cust_func;
@@ -557,11 +557,11 @@ S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void
 // mod_custom_can_func_state
 //  change the state (enabled or disabled) of the specified custom CAN function
 // params:
-//  GCAN_COMMAND command_id: what command ID should have its state modified
+//  GCAN_COMMAND_ID command_id: what command ID should have its state modified
 //  U8 state:                TRUE or FALSE. what state to set this command to
 // returns:
 //  error codes specified in GopherCAN.h
-S8 mod_custom_can_func_state(GCAN_COMMAND command_id, U8 state)
+S8 mod_custom_can_func_state(GCAN_COMMAND_ID command_id, U8 state)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -901,7 +901,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 //  run the command specified by the CAN message on this module
 static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 {
-	GCAN_COMMAND command_id;
+	GCAN_COMMAND_ID command_id;
 	CUST_FUNC* this_function;
 
 	// DLC error checking

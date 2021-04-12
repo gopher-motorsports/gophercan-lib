@@ -77,7 +77,7 @@ typedef enum
 	S32_TESTER_ID = 9,
 	S64_TESTER_ID = 10,
 	FLOAT_TESTER_ID = 11
-} GCAN_PARAM;
+} GCAN_PARAM_ID;
 
 #define NUM_OF_PARAMETERS 12
 
@@ -85,14 +85,14 @@ typedef enum
 // custom command IDs
 typedef enum
 {
-	INC_VARIABLE = 0,
+	INC_VARIABLE = 0, // TODO delete
 	SET_LED_STATE = 1,
-	CUST_COMMAND_2 = 2,
+	CUST_COMMAND_2 = 2, // TODO delete
 	ADD_PARAM_TO_BUCKET = 3,
 	ASSIGN_BUCKET_TO_FRQ = 4,
 	SEND_BUCKET_PARAMS = 5,
 	REQUEST_BUCKET = 6
-} GCAN_COMMAND;
+} GCAN_COMMAND_ID;
 
 #define NUM_OF_COMMANDS 7
 
@@ -118,11 +118,11 @@ typedef enum
 
 // function prototypes
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
-S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
 	U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
