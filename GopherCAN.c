@@ -237,6 +237,25 @@ static void init_all_params(void)
 }
 
 
+// set_all_params_state
+//  Function to set each parameter in gopherCAN to enabled(true) or disabled (false). This
+//  is easier than manually enabling all of them.
+// params:
+//  boolean enabled: the state to set all of the parameters to
+void set_all_params_state(boolean enabled)
+{
+	U16 c;
+	CAN_INFO_STRUCT* data_struct;
+
+	// disable each parameter until the user manually enables them
+	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
+	{
+		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
+		data_struct->pending_response = FALSE;
+	}
+}
+
+
 // init_filters
 //  function called within init() that sets up all of the filters
 static S8 init_filters(CAN_HandleTypeDef* hcan)

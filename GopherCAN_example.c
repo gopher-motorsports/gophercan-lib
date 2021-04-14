@@ -15,13 +15,13 @@ CAN_HandleTypeDef* example_hcan;
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
 //#define F7XX_EXAMPLE                                                          // (F0xx otherwise)
-#define THIS_ACM
+#define THIS_DAM
 //#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
 
-#ifdef THIS_ACM
-U8 this_module = ACM_ID;
+#ifdef THIS_DAM
+U8 this_module = DAM_ID;
 U8 other_module = PDM_ID;
 U8 priority = PRIO_LOW;
 U16 param = FAN_CURRENT_ID;
@@ -34,7 +34,7 @@ U32 last_s64_req = 0;
 
 #ifdef THIS_PDM
 U8 this_module = PDM_ID;
-U8 other_module = ACM_ID;
+U8 other_module = DAM_ID;
 U8 priority = PRIO_HIGH;
 U16 param = RPM_ID;
 
@@ -75,16 +75,8 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	rpm.update_enabled = TRUE;
 	fan_current.update_enabled = TRUE;
 
-	// enable the tester variables
-	u8_tester.update_enabled = TRUE;
-	u16_tester.update_enabled = TRUE;
-	u32_tester.update_enabled = TRUE;
-	u64_tester.update_enabled = TRUE;
-	s8_tester.update_enabled = TRUE;
-	s16_tester.update_enabled = TRUE;
-	s32_tester.update_enabled = TRUE;
-	s64_tester.update_enabled = TRUE;
-	float_tester.update_enabled = TRUE;
+	// enable all of the variables for testing
+	set_all_params_state(TRUE);
 
 	// adding can_callback_function
 #ifndef F7XX_EXAMPLE
@@ -249,9 +241,9 @@ void testing_loop()
 	*/
 
 	// all data type testing
-	// ACM has U8, U32, S8, S32, floating (asks for the others)
+	// DAM has U8, U32, S8, S32, floating (asks for the others)
 	// PDM has U16, U64, S16, S64 (asks for the others)
-#ifdef THIS_ACM
+#ifdef THIS_DAM
 	u8_tester.data += 1;
 	u32_tester.data += 4;
 	s8_tester.data -= 1;
@@ -262,7 +254,7 @@ void testing_loop()
 			&& current_tick - u16_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u16_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, U16_TESTER_ID);
+		request_parameter(PRIO_HIGH, PDM_ID, u16_tester.param_id);
 
 		last_u16_req = current_tick;
 	}
@@ -271,7 +263,7 @@ void testing_loop()
 			&& current_tick - u64_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u64_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, U64_TESTER_ID);
+		request_parameter(PRIO_HIGH, PDM_ID, u32_tester.param_id);
 
 		last_u64_req = current_tick;
 	}
@@ -280,7 +272,7 @@ void testing_loop()
 			&& current_tick - s16_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s16_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, S16_TESTER_ID);
+		request_parameter(PRIO_HIGH, PDM_ID, s16_tester.param_id);
 
 		last_s16_req = current_tick;
 	}
@@ -289,7 +281,7 @@ void testing_loop()
 			&& current_tick - s64_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s64_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, S64_TESTER_ID);
+		request_parameter(PRIO_HIGH, PDM_ID, s64_tester.param_id);
 
 		last_s64_req = current_tick;
 	}
@@ -306,7 +298,7 @@ void testing_loop()
 			&& current_tick - u8_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u8_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, U8_TESTER_ID);
+		request_parameter(PRIO_HIGH, DAM_ID, U8_TESTER_ID);
 
 		last_u8_req = current_tick;
 	}
@@ -315,7 +307,7 @@ void testing_loop()
 			&& current_tick - u32_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u32_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, U32_TESTER_ID);
+		request_parameter(PRIO_HIGH, DAM_ID, U32_TESTER_ID);
 
 		last_u32_req = current_tick;
 	}
@@ -324,7 +316,7 @@ void testing_loop()
 			&& current_tick - s8_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s8_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, S8_TESTER_ID);
+		request_parameter(PRIO_HIGH, DAM_ID, S8_TESTER_ID);
 
 		last_s8_req = current_tick;
 	}
@@ -333,7 +325,7 @@ void testing_loop()
 			&& current_tick - s32_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s32_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, S32_TESTER_ID);
+		request_parameter(PRIO_HIGH, DAM_ID, S32_TESTER_ID);
 
 		last_s32_req = current_tick;
 	}
@@ -342,7 +334,7 @@ void testing_loop()
 			&& current_tick - float_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_float_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, FLOAT_TESTER_ID);
+		request_parameter(PRIO_HIGH, DAM_ID, FLOAT_TESTER_ID);
 
 		last_float_req = current_tick;
 	}

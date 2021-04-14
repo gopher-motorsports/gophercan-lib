@@ -15,11 +15,11 @@
 
 // Begin Configuration defines. These are to be modified by the module specific developer
 
-//#define TARGET F0XX
-#define TARGET F7XX
+#define TARGET F0XX
+//#define TARGET F7XX
 
 // Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-#define MULTI_BUS
+//#define MULTI_BUS
 
 #ifdef MULTI_BUS
 #define CAN_ROUTER
@@ -75,6 +75,7 @@ typedef enum
 
 // function prototypes
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
+void set_all_params_state(boolean enabled);
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
