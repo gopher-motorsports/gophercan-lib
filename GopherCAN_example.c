@@ -8,20 +8,6 @@
 #include "GopherCAN.h"
 #include "GopherCAN_example.h"
 
-
-// each parameter used will need to be pulled from GopherCAN.c
-extern U16_CAN_STRUCT rpm;
-extern U8_CAN_STRUCT fan_current;
-extern U8_CAN_STRUCT u8_tester;
-extern U16_CAN_STRUCT u16_tester;
-extern U32_CAN_STRUCT u32_tester;
-extern U64_CAN_STRUCT u64_tester;
-extern S8_CAN_STRUCT s8_tester;
-extern S16_CAN_STRUCT s16_tester;
-extern S32_CAN_STRUCT s32_tester;
-extern S64_CAN_STRUCT s64_tester;
-extern FLOAT_CAN_STRUCT float_tester;
-
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
 

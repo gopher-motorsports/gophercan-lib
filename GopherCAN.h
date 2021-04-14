@@ -44,6 +44,24 @@
 #endif
 
 
+// define all of the struct types so the auto-gen section can use them
+typedef struct CAN_INFO_STRUCT;
+
+// custom command struct
+typedef struct CAN_COMMAND_STRUCT;
+
+// parameter structs
+typedef struct U8_CAN_STRUCT;
+typedef struct U16_CAN_STRUCT;
+typedef struct U32_CAN_STRUCT;
+typedef struct U64_CAN_STRUCT;
+typedef struct S8_CAN_STRUCT;
+typedef struct S16_CAN_STRUCT;
+typedef struct S32_CAN_STRUCT;
+typedef struct S64_CAN_STRUCT;
+typedef struct FLOAT_CAN_STRUCT;
+
+
 // ******** BEGIN AUTO GENERATED ********
 
 // all of the global parameter structs
@@ -281,6 +299,110 @@ typedef enum
 #define GET_ID_SOURCE(id) ((id & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
 #define GET_ID_ERROR(id) ((id & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
 #define GET_ID_PARAM(id) ((id & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
+
+// structs for each parameter type
+
+// custom command struct
+typedef struct
+{
+	U32 last_rx;
+	U8  command_id;
+	U8  command_parameter;
+	GCAN_PARAM_ID param_id;
+} CAN_COMMAND_STRUCT;
+
+
+// a struct with only the information about each CAN struct, without the data
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+} CAN_INFO_STRUCT;
+
+
+// parameter structs
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	U8  data;
+} U8_CAN_STRUCT;
+
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	U16 data;
+} U16_CAN_STRUCT;
+
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	U32 data;
+} U32_CAN_STRUCT;
+
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	U64 data;
+} U64_CAN_STRUCT;
+
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	S8  data;
+} S8_CAN_STRUCT;
+
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	S16 data;
+} S16_CAN_STRUCT;
+
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	S32 data;
+} S32_CAN_STRUCT;
+
+typedef struct
+{
+	U32 last_rx;
+	U8  update_enabled;
+	U8  pending_response;
+	GCAN_PARAM_ID param_id;
+	S64 data;
+} S64_CAN_STRUCT;
+
+typedef struct
+{
+	U32   last_rx;
+	U8    update_enabled;
+	U8    pending_response;
+	GCAN_PARAM_ID param_id;
+	float data;
+} FLOAT_CAN_STRUCT;
 
 
 // Multi-bus struct

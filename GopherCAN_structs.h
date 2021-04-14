@@ -1,10 +1,12 @@
-
+// GopherCAN_structs.h
+//  structs needed by GopherCAN.c/h and GopherCAN_ring_buffer.c/h
 
 
 #ifndef GOPHERCAN_STRUCT_H
 #define GOPHERCAN_STRUCT_H
 
 #include "base_types.h"
+
 
 // float/U32 converter union
 typedef union
@@ -52,98 +54,6 @@ typedef struct
 	U16 parameter;
 	U8  error_id;
 } ERROR_MSG;
-
-
-// custom command struct
-typedef struct
-{
-	U32 last_rx;
-	U8  command_id;
-	U8  command_parameter;
-} CAN_COMMAND_STRUCT;
-
-
-// a struct with only the information about each CAN struct, without the data
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-} CAN_INFO_STRUCT;
-
-
-// parameter structs
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U8  data;
-} U8_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U16 data;
-} U16_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U32 data;
-} U32_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	U64 data;
-} U64_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S8  data;
-} S8_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S16 data;
-} S16_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S32 data;
-} S32_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	S64 data;
-} S64_CAN_STRUCT;
-
-typedef struct
-{
-	U32   last_rx;
-	U8    update_enabled;
-	U8    pending_response;
-	float data;
-} FLOAT_CAN_STRUCT;
 
 
 #endif

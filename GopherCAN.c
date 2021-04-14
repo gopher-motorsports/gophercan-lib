@@ -11,6 +11,7 @@
 #include "GopherCAN_ring_buffer.h"
 
 // static function prototypes
+static void init_all_params(void)
 static S8   init_filters(CAN_HandleTypeDef* hcan);
 static S8   tx_can_message(CAN_MSG* message);
 static S8   parameter_requested(CAN_MSG* message, CAN_ID* id);
@@ -134,7 +135,6 @@ U8 module_bus_number[NUM_OF_MODULES] =
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 {
 	U8 c;
-	CAN_INFO_STRUCT* data_struct;
 
 	// set the current module
 	this_module_id = module_id;
@@ -156,15 +156,8 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 #endif
 #endif
 
-	// disable each parameter until the user manually enables them
-	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
-	{
-		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
-
-		data_struct->last_rx = 0;
-		data_struct->update_enabled = FALSE;
-		data_struct->pending_response = FALSE;
-	}
+	// init all of the parameter data
+	init_all_params();
 
 	// set each function pointer to the do_nothing() function
 	for (c = 0; c < NUM_OF_COMMANDS; c++)
@@ -203,6 +196,31 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 	}
 
 	return CAN_SUCCESS;
+}
+
+
+// init_all_params
+//  function to run through each parameter and set the default data in the struct
+static void init_all_params(void)
+{
+	U16 c;
+	CAN_INFO_STRUCT data_struct;
+
+	// set the param id for CAN commands
+	can_command.param_id = CAN_COMMAND_ID;
+
+	// disable each parameter until the user manually enables them
+	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
+	{
+		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
+
+		data_struct->last_rx = 0;
+		data_struct->update_enabled = FALSE;
+		data_struct->pending_response = FALSE;
+
+		// set the ID for each parameter
+		data_struct->param_id = c;
+	}
 }
 
 
