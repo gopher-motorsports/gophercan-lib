@@ -72,20 +72,6 @@ GCAN_MULTI_BUS_STRUCT gbus2;
 
 // ******** BEGIN AUTO GENERATED ********
 
-// all of the global parameter structs
-CAN_COMMAND_STRUCT can_command;
-U16_CAN_STRUCT rpm;
-U8_CAN_STRUCT fan_current;
-U8_CAN_STRUCT u8_tester;
-U16_CAN_STRUCT u16_tester;
-U32_CAN_STRUCT u32_tester;
-U64_CAN_STRUCT u64_tester;
-S8_CAN_STRUCT s8_tester;
-S16_CAN_STRUCT s16_tester;
-S32_CAN_STRUCT s32_tester;
-S64_CAN_STRUCT s64_tester;
-FLOAT_CAN_STRUCT float_tester;
-
 // this is the struct that will be used to reference based on ID
 void* all_parameter_structs[NUM_OF_PARAMETERS] =
 {
