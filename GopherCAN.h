@@ -30,6 +30,7 @@
 
 // End Configuration defines
 
+#include "base_types.h"
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
 
@@ -44,98 +45,22 @@
 #endif
 
 
-// define all of the struct types so the auto-gen section can use them
-typedef struct CAN_INFO_STRUCT;
-
-// custom command struct
-typedef struct CAN_COMMAND_STRUCT;
-
-// parameter structs
-typedef struct U8_CAN_STRUCT;
-typedef struct U16_CAN_STRUCT;
-typedef struct U32_CAN_STRUCT;
-typedef struct U64_CAN_STRUCT;
-typedef struct S8_CAN_STRUCT;
-typedef struct S16_CAN_STRUCT;
-typedef struct S32_CAN_STRUCT;
-typedef struct S64_CAN_STRUCT;
-typedef struct FLOAT_CAN_STRUCT;
-
-
 // ******** BEGIN AUTO GENERATED ********
 
-// all of the global parameter structs
-CAN_COMMAND_STRUCT can_command;
-U16_CAN_STRUCT rpm;
-U8_CAN_STRUCT fan_current;
-U8_CAN_STRUCT u8_tester;
-U16_CAN_STRUCT u16_tester;
-U32_CAN_STRUCT u32_tester;
-U64_CAN_STRUCT u64_tester;
-S8_CAN_STRUCT s8_tester;
-S16_CAN_STRUCT s16_tester;
-S32_CAN_STRUCT s32_tester;
-S64_CAN_STRUCT s64_tester;
-FLOAT_CAN_STRUCT float_tester;
-
-
-// module IDs
-typedef enum
-{
-	ALL_MODULES_ID = 0,
-	DLM_ID = 1,
-	DAM_ID = 2,
-	PDM_ID = 3,
-	TCM_ID = 4,
-	ACM_ID = 5,
-	DISPLAY_ID = 6
-} MODULE_ID;
-
-#define NUM_OF_MODULES 7
-
-
-// parameter IDs
-typedef enum
-{
-	CAN_COMMAND_ID = 0,
-	RPM_ID = 1,
-	FAN_CURRENT_ID = 2,
-	U8_TESTER_ID = 3,
-	U16_TESTER_ID = 4,
-	U32_TESTER_ID = 5,
-	U64_TESTER_ID = 6,
-	S8_TESTER_ID = 7,
-	S16_TESTER_ID = 8,
-	S32_TESTER_ID = 9,
-	S64_TESTER_ID = 10,
-	FLOAT_TESTER_ID = 11
-} GCAN_PARAM_ID;
-
-#define NUM_OF_PARAMETERS 12
-
-
-// custom command IDs
-typedef enum
-{
-	INC_VARIABLE = 0, // TODO delete
-	SET_LED_STATE = 1,
-	CUST_COMMAND_2 = 2, // TODO delete
-	ADD_PARAM_TO_BUCKET = 3,
-	ASSIGN_BUCKET_TO_FRQ = 4,
-	SEND_BUCKET_PARAMS = 5,
-	REQUEST_BUCKET = 6
-} GCAN_COMMAND_ID;
-
-#define NUM_OF_COMMANDS 7
-
-
-// error IDs
-#define ID_NOT_FOUND 0
-#define COMMAND_ID_NOT_FOUND 1
-#define PARAM_NOT_ENABLED 2
-#define SIZE_ERROR 3
-#define DATATYPE_NOT_FOUND 4
-#define COMMAND_NOT_ENABLED 5
+// all of the global parameter struct externs so all files including GopherCAN.h
+// have access
+extern CAN_COMMAND_STRUCT can_command;
+extern U16_CAN_STRUCT rpm;
+extern U8_CAN_STRUCT fan_current;
+extern U8_CAN_STRUCT u8_tester;
+extern U16_CAN_STRUCT u16_tester;
+extern U32_CAN_STRUCT u32_tester;
+extern U64_CAN_STRUCT u64_tester;
+extern S8_CAN_STRUCT s8_tester;
+extern S16_CAN_STRUCT s16_tester;
+extern S32_CAN_STRUCT s32_tester;
+extern S64_CAN_STRUCT s64_tester;
+extern FLOAT_CAN_STRUCT float_tester;
 
 // ******** END AUTO GENERATED ********
 
@@ -299,110 +224,6 @@ typedef enum
 #define GET_ID_SOURCE(id) ((id & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
 #define GET_ID_ERROR(id) ((id & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
 #define GET_ID_PARAM(id) ((id & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
-
-// structs for each parameter type
-
-// custom command struct
-typedef struct
-{
-	U32 last_rx;
-	U8  command_id;
-	U8  command_parameter;
-	GCAN_PARAM_ID param_id;
-} CAN_COMMAND_STRUCT;
-
-
-// a struct with only the information about each CAN struct, without the data
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-} CAN_INFO_STRUCT;
-
-
-// parameter structs
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	U8  data;
-} U8_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	U16 data;
-} U16_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	U32 data;
-} U32_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	U64 data;
-} U64_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	S8  data;
-} S8_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	S16 data;
-} S16_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	S32 data;
-} S32_CAN_STRUCT;
-
-typedef struct
-{
-	U32 last_rx;
-	U8  update_enabled;
-	U8  pending_response;
-	GCAN_PARAM_ID param_id;
-	S64 data;
-} S64_CAN_STRUCT;
-
-typedef struct
-{
-	U32   last_rx;
-	U8    update_enabled;
-	U8    pending_response;
-	GCAN_PARAM_ID param_id;
-	float data;
-} FLOAT_CAN_STRUCT;
 
 
 // Multi-bus struct

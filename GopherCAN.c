@@ -11,9 +11,8 @@
 #include "GopherCAN_ring_buffer.h"
 
 // static function prototypes
-static void init_all_params(void)
+static void init_all_params(void);
 static S8   init_filters(CAN_HandleTypeDef* hcan);
-static S8   tx_can_message(CAN_MSG* message);
 static S8   parameter_requested(CAN_MSG* message, CAN_ID* id);
 static S8   run_can_command(CAN_MSG* message, CAN_ID* id);
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
@@ -72,6 +71,20 @@ GCAN_MULTI_BUS_STRUCT gbus2;
 
 
 // ******** BEGIN AUTO GENERATED ********
+
+// all of the global parameter structs
+CAN_COMMAND_STRUCT can_command;
+U16_CAN_STRUCT rpm;
+U8_CAN_STRUCT fan_current;
+U8_CAN_STRUCT u8_tester;
+U16_CAN_STRUCT u16_tester;
+U32_CAN_STRUCT u32_tester;
+U64_CAN_STRUCT u64_tester;
+S8_CAN_STRUCT s8_tester;
+S16_CAN_STRUCT s16_tester;
+S32_CAN_STRUCT s32_tester;
+S64_CAN_STRUCT s64_tester;
+FLOAT_CAN_STRUCT float_tester;
 
 // this is the struct that will be used to reference based on ID
 void* all_parameter_structs[NUM_OF_PARAMETERS] =
@@ -204,7 +217,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 static void init_all_params(void)
 {
 	U16 c;
-	CAN_INFO_STRUCT data_struct;
+	CAN_INFO_STRUCT* data_struct;
 
 	// set the param id for CAN commands
 	can_command.param_id = CAN_COMMAND_ID;
