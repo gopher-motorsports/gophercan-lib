@@ -159,12 +159,11 @@ for row in module_list:
 module_bus_number = module_bus_number + '};\n#endif\n'
 
 
-
+print(global_structs)
 print(module_ids)
 print(parameter_ids)
 print(command_ids)
 print(error_ids)
-print(global_structs)
 print(all_parameter_structs)
 print(parameter_data_types)
 print(module_bus_number)
