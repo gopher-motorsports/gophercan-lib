@@ -11,8 +11,8 @@
 #include "GopherCAN_ring_buffer.h"
 
 // static function prototypes
-static S8   init_filters(CAN_HandleTypeDef* hcan);
-static S8   tx_can_message(CAN_MSG* message);
+static void init_all_params(void);
+static S8   init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type);
 static S8   parameter_requested(CAN_MSG* message, CAN_ID* id);
 static S8   run_can_command(CAN_MSG* message, CAN_ID* id);
 static void build_message_id(CAN_MSG* msg, CAN_ID* id);
@@ -145,10 +145,9 @@ U8 module_bus_number[NUM_OF_MODULES] =
 //  MODULE_ID module_id: what module this is (ex. PDM_ID, ACM_ID)
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
+S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 {
 	U8 c;
-	CAN_INFO_STRUCT* data_struct;
 
 	// set the current module
 	this_module_id = module_id;
@@ -170,15 +169,8 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 #endif
 #endif
 
-	// disable each parameter until the user manually enables them
-	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
-	{
-		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
-
-		data_struct->last_rx = 0;
-		data_struct->update_enabled = FALSE;
-		data_struct->pending_response = FALSE;
-	}
+	// init all of the parameter data
+	init_all_params();
 
 	// set each function pointer to the do_nothing() function
 	for (c = 0; c < NUM_OF_COMMANDS; c++)
@@ -189,7 +181,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 
 	}
 
-	if (init_filters(hcan))
+	if (init_filters(hcan, bx_type))
 	{
 		return FILTER_SET_FAILED;
 	}
@@ -220,15 +212,63 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 }
 
 
+// init_all_params
+//  function to run through each parameter and set the default data in the struct
+static void init_all_params(void)
+{
+	U16 c;
+	CAN_INFO_STRUCT* data_struct;
+
+	// set the param id for CAN commands
+	can_command.param_id = CAN_COMMAND_ID;
+
+	// disable each parameter until the user manually enables them
+	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
+	{
+		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
+
+		data_struct->last_rx = 0;
+		data_struct->update_enabled = FALSE;
+		data_struct->pending_response = FALSE;
+
+		// set the ID for each parameter
+		data_struct->param_id = c;
+	}
+}
+
+
+// set_all_params_state
+//  Function to set each parameter in gopherCAN to enabled(true) or disabled (false). This
+//  is easier than manually enabling all of them.
+// params:
+//  boolean enabled: the state to set all of the parameters to
+void set_all_params_state(boolean enabled)
+{
+	U16 c;
+
+	// disable each parameter until the user manually enables them
+	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
+	{
+		((CAN_INFO_STRUCT*)(all_parameter_structs[c]))->update_enabled = enabled;
+	}
+}
+
+
 // init_filters
 //  function called within init() that sets up all of the filters
-static S8 init_filters(CAN_HandleTypeDef* hcan)
+static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 {
 	CAN_FilterTypeDef filterConfig;
+	U8 banknum = 0;
+
+	if (bx_type == SLAVE)
+	{
+		banknum = SLAVE_FIRST_FILTER;
+	}
 
 #ifdef CAN_ROUTER
 	// Accept all messages on the CAN router
-	filterConfig.FilterBank = 0;                                      // Modify bank 0 (of 13)
+	filterConfig.FilterBank = banknum;                                // Modify bank 0 (of 13)
 	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
 	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
@@ -256,7 +296,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 	filt_mask_high = DEST_MASK;
 
 	// Set the the parameters on the filter struct (FIFO0)
-	filterConfig.FilterBank = 0;                                      // Modify bank 0 (of 13)
+	filterConfig.FilterBank = banknum;                                // Modify bank 0 (of 13)
 	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
 	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
@@ -273,7 +313,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 
 	// Set the the parameters on the filter struct (FIFO1)
 	// all other parameters are the same as FIFO0
-	filterConfig.FilterBank = 1;                                      // Modify bank 1 (of 13)
+	filterConfig.FilterBank = banknum + 1;                            // Modify bank 1 (of 13)
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
@@ -288,7 +328,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 	filt_mask_high = DEST_MASK;
 
 	// Set the the parameters on the filter struct (FIFO0)
-	filterConfig.FilterBank = 2;                                      // Modify bank 2 (of 13)
+	filterConfig.FilterBank = banknum + 2;                            // Modify bank 2 (of 13)
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
 	filterConfig.FilterIdLow = filt_id_low;                           // Low bound of accepted values
 	filterConfig.FilterIdHigh = filt_id_high;                         // High bound of accepted values
@@ -302,7 +342,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 
 	// Set the the parameters on the filter struct (FIFO1)
 	// all other parameters are the same as FIFO0
-	filterConfig.FilterBank = 3;                                      // Modify bank 3 (of 13)
+	filterConfig.FilterBank = banknum + 3;                            // Modify bank 3 (of 13)
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
@@ -337,10 +377,10 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 // params:
 //  PRIORITY priority:     PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module: what module to request the parameter from
-//  GCAN_PARAM parameter:  what parameter to request
+//  GCAN_PARAM_ID parameter:  what parameter to request
 // returns:
 //  error codes specified in GopherCAN.h
-S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter)
+S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -382,14 +422,14 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parame
 // params:
 //  PRIORITY priority:       PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:   what module to send the command to
-//  GCAN_COMMAND command_id: what command the module should run
+//  GCAN_COMMAND_ID command_id: what command the module should run
 //  U8 command_param_0:     parameter 0 to run the function with. May not be used depending on the function
 //  U8 command_param_1:     parameter 1
 //  U8 command_param_2:     parameter 2
 //  U8 command_param_3:     parameter 3
 // returns:
 //  error codes specified in GopherCAN.h
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3)
 {
 	CAN_MSG message;
@@ -434,10 +474,10 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND comma
 // params:
 //  PRIORITY priority:     PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module: what module to send the parameter to
-//  GCAN_PARAM parameter:  what parameter to send
+//  GCAN_PARAM_ID parameter:  what parameter to send
 // returns:
 //  error codes specified in GopherCAN.h
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter)
+S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter)
 {
 	CAN_ID id;
 	CAN_MSG message;
@@ -525,14 +565,14 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter
 //  sent by the module in the CAN command message. This function can also be called to overwrite
 //  or modify existing custom commands
 // params:
-//  GCAN_COMMAND command_id:                            what command ID is being defined
+//  GCAN_COMMAND_ID command_id:                            what command ID is being defined
 //  void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8): the pointer to the function that should be run if this command_id is called
 //  U8 init_state:                                      TRUE or FALSE, whether to start with the command enabled
 //  void* param_ptr:                                    pointer to the parameter that should be used. This can point to any
 //                                                       data type (including NULL) as long as it is casted correctly
 // returns:
 //  error codes specified in GopherCAN.h
-S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
 	U8 init_state, void* param_ptr)
 {
 	CUST_FUNC* new_cust_func;
@@ -557,11 +597,11 @@ S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void
 // mod_custom_can_func_state
 //  change the state (enabled or disabled) of the specified custom CAN function
 // params:
-//  GCAN_COMMAND command_id: what command ID should have its state modified
+//  GCAN_COMMAND_ID command_id: what command ID should have its state modified
 //  U8 state:                TRUE or FALSE. what state to set this command to
 // returns:
 //  error codes specified in GopherCAN.h
-S8 mod_custom_can_func_state(GCAN_COMMAND command_id, U8 state)
+S8 mod_custom_can_func_state(GCAN_COMMAND_ID command_id, U8 state)
 {
 	CUST_FUNC* this_cust_func;
 
@@ -901,7 +941,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 //  run the command specified by the CAN message on this module
 static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 {
-	GCAN_COMMAND command_id;
+	GCAN_COMMAND_ID command_id;
 	CUST_FUNC* this_function;
 
 	// DLC error checking

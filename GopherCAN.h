@@ -30,6 +30,7 @@
 
 // End Configuration defines
 
+#include "base_types.h"
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
 
@@ -46,64 +47,20 @@
 
 // ******** BEGIN AUTO GENERATED ********
 
-
-// module IDs
-typedef enum
-{
-	ALL_MODULES_ID = 0,
-	DLM_ID = 1,
-	DAM_ID = 2,
-	PDM_ID = 3,
-	TCM_ID = 4,
-	ACM_ID = 5,
-	DISPLAY_ID = 6
-} MODULE_ID;
-
-#define NUM_OF_MODULES 7
-
-
-// parameter IDs
-typedef enum
-{
-	CAN_COMMAND_ID = 0,
-	RPM_ID = 1,
-	FAN_CURRENT_ID = 2,
-	U8_TESTER_ID = 3,
-	U16_TESTER_ID = 4,
-	U32_TESTER_ID = 5,
-	U64_TESTER_ID = 6,
-	S8_TESTER_ID = 7,
-	S16_TESTER_ID = 8,
-	S32_TESTER_ID = 9,
-	S64_TESTER_ID = 10,
-	FLOAT_TESTER_ID = 11
-} GCAN_PARAM;
-
-#define NUM_OF_PARAMETERS 12
-
-
-// custom command IDs
-typedef enum
-{
-	INC_VARIABLE = 0,
-	SET_LED_STATE = 1,
-	CUST_COMMAND_2 = 2,
-	ADD_PARAM_TO_BUCKET = 3,
-	ASSIGN_BUCKET_TO_FRQ = 4,
-	SEND_BUCKET_PARAMS = 5,
-	REQUEST_BUCKET = 6
-} GCAN_COMMAND;
-
-#define NUM_OF_COMMANDS 7
-
-
-// error IDs
-#define ID_NOT_FOUND 0
-#define COMMAND_ID_NOT_FOUND 1
-#define PARAM_NOT_ENABLED 2
-#define SIZE_ERROR 3
-#define DATATYPE_NOT_FOUND 4
-#define COMMAND_NOT_ENABLED 5
+// all of the global parameter struct externs so all files including GopherCAN.h
+// have access
+extern CAN_COMMAND_STRUCT can_command;
+extern U16_CAN_STRUCT rpm;
+extern U8_CAN_STRUCT fan_current;
+extern U8_CAN_STRUCT u8_tester;
+extern U16_CAN_STRUCT u16_tester;
+extern U32_CAN_STRUCT u32_tester;
+extern U64_CAN_STRUCT u64_tester;
+extern S8_CAN_STRUCT s8_tester;
+extern S16_CAN_STRUCT s16_tester;
+extern S32_CAN_STRUCT s32_tester;
+extern S64_CAN_STRUCT s64_tester;
+extern FLOAT_CAN_STRUCT float_tester;
 
 // ******** END AUTO GENERATED ********
 
@@ -115,14 +72,22 @@ typedef enum
 	PRIO_LOW = 0b1
 } PRIORITY;
 
+// master or slave BxCAN type
+typedef enum
+{
+	MASTER = 0,
+	SLAVE = 1
+} BXCAN_TYPE;
+
 
 // function prototypes
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
-S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
+void set_all_params_state(boolean enabled);
+S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
 	U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
@@ -219,6 +184,8 @@ typedef enum
 	FLOATING_SIZE   = 8
 } DATATYPES_SIZE;
 
+// bxcan slave first filter bank starts at 14
+#define SLAVE_FIRST_FILTER 14
 
 // CAN message ID positions. Sizes are in number of bits
 #define CAN_ID_SIZE   29
