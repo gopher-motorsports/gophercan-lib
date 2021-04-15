@@ -40,12 +40,8 @@ void router_init(CAN_HandleTypeDef* hcan_ptr0, CAN_HandleTypeDef* hcan_ptr1)
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
 	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
-	if (init_can(example_hcan0, this_module)
-			|| init_can(example_hcan1, this_module))
-	{
-		// an error has occurred, stay here
-		while (1);
-	}
+	if (init_can(example_hcan0, this_module, MASTER)) while (1);
+	if (init_can(example_hcan1, this_module, SLAVE)) while (1);
 
 	// Declare which bus is which using define_can_bus
 	define_can_bus(example_hcan1, GCAN0, 0);
@@ -80,8 +76,8 @@ void router_can_rx_loop()
 	// This is needed to account for a case where the RX buffer fills up, as the ISR is only
 	//  triggered directly on reciving the message
 	// TODO RX does not work on either bus if these are uncommented, figure out why
-	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO0);
-	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO1);
+	service_can_rx_hardware(example_hcan0, CAN_RX_FIFO0);
+	service_can_rx_hardware(example_hcan0, CAN_RX_FIFO1);
 	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO0);
 	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO1);
 
@@ -166,7 +162,7 @@ void router_testing_loop()
 	s64_tester.data -= 8;
 	//float_tester.data += 0.1;
 
-	request_parameter(PRIO_HIGH, ACM_ID, FLOAT_TESTER_ID);
+	request_parameter(PRIO_HIGH, other_module, FLOAT_TESTER_ID);
 }
 
 

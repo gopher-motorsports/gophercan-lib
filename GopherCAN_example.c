@@ -15,8 +15,8 @@ CAN_HandleTypeDef* example_hcan;
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
 //#define F7XX_EXAMPLE                                                          // (F0xx otherwise)
-#define THIS_DAM
-//#define THIS_PDM
+//#define THIS_DAM
+#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
 
@@ -64,7 +64,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
 	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
-	if (init_can(example_hcan, this_module))
+	if (init_can(example_hcan, this_module, MASTER))
 	{
 		// an error has occurred, stay here
 		while (1);
@@ -193,7 +193,7 @@ void main_loop()
 	{
 		last_button_state = button_state;
 
-		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE,
+		if (send_can_command(PRIO_HIGH, ALL_MODULES_ID, SET_LED_STATE,
 				button_state, button_state, button_state, button_state))
 		{
 			// error sending command
@@ -254,7 +254,7 @@ void testing_loop()
 			&& current_tick - u16_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u16_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, u16_tester.param_id);
+		request_parameter(PRIO_HIGH, other_module, u16_tester.param_id);
 
 		last_u16_req = current_tick;
 	}
@@ -263,7 +263,7 @@ void testing_loop()
 			&& current_tick - u64_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u64_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, u32_tester.param_id);
+		request_parameter(PRIO_HIGH, other_module, u64_tester.param_id);
 
 		last_u64_req = current_tick;
 	}
@@ -272,7 +272,7 @@ void testing_loop()
 			&& current_tick - s16_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s16_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, s16_tester.param_id);
+		request_parameter(PRIO_HIGH, other_module, s16_tester.param_id);
 
 		last_s16_req = current_tick;
 	}
@@ -281,7 +281,7 @@ void testing_loop()
 			&& current_tick - s64_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s64_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, s64_tester.param_id);
+		request_parameter(PRIO_HIGH, other_module, s64_tester.param_id);
 
 		last_s64_req = current_tick;
 	}
@@ -298,7 +298,7 @@ void testing_loop()
 			&& current_tick - u8_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u8_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, DAM_ID, U8_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, u8_tester.param_id);
 
 		last_u8_req = current_tick;
 	}
@@ -307,7 +307,7 @@ void testing_loop()
 			&& current_tick - u32_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u32_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, DAM_ID, U32_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, u32_tester.param_id);
 
 		last_u32_req = current_tick;
 	}
@@ -316,7 +316,7 @@ void testing_loop()
 			&& current_tick - s8_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s8_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, DAM_ID, S8_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, s8_tester.param_id);
 
 		last_s8_req = current_tick;
 	}
@@ -325,7 +325,7 @@ void testing_loop()
 			&& current_tick - s32_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s32_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, DAM_ID, S32_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, s32_tester.param_id);
 
 		last_s32_req = current_tick;
 	}
@@ -334,7 +334,7 @@ void testing_loop()
 			&& current_tick - float_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_float_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, DAM_ID, FLOAT_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, float_tester.param_id);
 
 		last_float_req = current_tick;
 	}

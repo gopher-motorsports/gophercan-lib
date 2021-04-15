@@ -15,11 +15,11 @@
 
 // Begin Configuration defines. These are to be modified by the module specific developer
 
-#define TARGET F0XX
-//#define TARGET F7XX
+//#define TARGET F0XX
+#define TARGET F7XX
 
 // Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-//#define MULTI_BUS
+#define MULTI_BUS
 
 #ifdef MULTI_BUS
 #define CAN_ROUTER
@@ -72,9 +72,16 @@ typedef enum
 	PRIO_LOW = 0b1
 } PRIORITY;
 
+// master or slave BxCAN type
+typedef enum
+{
+	MASTER = 0,
+	SLAVE = 1
+} BXCAN_TYPE;
+
 
 // function prototypes
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
+S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
 void set_all_params_state(boolean enabled);
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
@@ -177,6 +184,8 @@ typedef enum
 	FLOATING_SIZE   = 8
 } DATATYPES_SIZE;
 
+// bxcan slave first filter bank starts at 14
+#define SLAVE_FIRST_FILTER 14
 
 // CAN message ID positions. Sizes are in number of bits
 #define CAN_ID_SIZE   29
