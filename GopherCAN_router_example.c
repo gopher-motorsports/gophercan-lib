@@ -76,10 +76,10 @@ void router_can_rx_loop()
 	// This is needed to account for a case where the RX buffer fills up, as the ISR is only
 	//  triggered directly on reciving the message
 	// TODO RX does not work on either bus if these are uncommented, figure out why
-	service_can_rx_hardware(example_hcan0, CAN_RX_FIFO0);
-	service_can_rx_hardware(example_hcan0, CAN_RX_FIFO1);
-	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO0);
-	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO1);
+	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO0);
+	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO1);
+	//service_can_rx_hardware(example_hcan1, CAN_RX_FIFO0);
+	//service_can_rx_hardware(example_hcan1, CAN_RX_FIFO1);
 
 	// handle each RX message in the buffer
 	if (service_can_rx_buffer())
