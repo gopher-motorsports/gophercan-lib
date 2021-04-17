@@ -47,9 +47,9 @@ typedef enum
 // custom command IDs
 typedef enum
 {
-	INC_VARIABLE = 0, // TODO delete
-	SET_LED_STATE = 1,
-	CUST_COMMAND_2 = 2, // TODO delete
+	SET_LED_STATE = 0,
+	SET_RTC_TIME = 1,
+	SET_RTC_DATE = 2,
 	ADD_PARAM_TO_BUCKET = 3,
 	ASSIGN_BUCKET_TO_FRQ = 4,
 	SEND_BUCKET_PARAMS = 5,
