@@ -10,37 +10,38 @@
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
-#define F0XX 0
-#define F7XX 7
+// this file should be module-specific and exist in the module project directory.
+// look at the file "GopherCAN_configs_example.h" for an example
+#include "GopherCAN_config.h"
 
-// Begin Configuration defines. These are to be modified by the module specific developer
-
-#define TARGET F0XX
-//#define TARGET F7XX
-
-// RX and TX buffer sizes. These values should be chosen by the devs
-#define RX_BUFFER_SIZE 32
-#define TX_BUFFER_SIZE 32
-
-// Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-//#define MULTI_BUS
-
-#ifdef MULTI_BUS
-#define CAN_ROUTER
-
-// up to 3 busses are supported. That is the most available in the STM32 series
-#define NUM_OF_BUSSES 2
+#ifndef GOPHERCAN_CONFIG_H
+#error "Problem with GopherCAN_config.h"
 #endif
-
-// End Configuration defines
 
 #include "base_types.h"
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
 
+// make sure the target types are defined even if the dev forgot
+#ifndef F0XX
+#define F0XX -1
+#endif
+#ifndef F4XX
+#define F4XX -4
+#endif
+#ifndef F7XX
+#define F7XX -7
+#endif
+
+// choose the correct libraries to use based on the type of module
 #if TARGET == F0XX
 #include "stm32f0xx_hal.h"
 #include "stm32f0xx_hal_can.h"
+#endif
+
+#if TARGET == F4XX
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_can.h"
 #endif
 
 #if TARGET == F7XX
