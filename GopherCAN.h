@@ -15,11 +15,15 @@
 
 // Begin Configuration defines. These are to be modified by the module specific developer
 
-//#define TARGET F0XX
-#define TARGET F7XX
+#define TARGET F0XX
+//#define TARGET F7XX
+
+// RX and TX buffer sizes. These values should be chosen by the devs
+#define RX_BUFFER_SIZE 32
+#define TX_BUFFER_SIZE 32
 
 // Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-#define MULTI_BUS
+//#define MULTI_BUS
 
 #ifdef MULTI_BUS
 #define CAN_ROUTER
@@ -222,10 +226,6 @@ typedef enum
 // general defines
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
-#define CAN_INTERRUPT_PRIO 0
-#define MAX_RX 5
-#define RX_BUFFER_SIZE 32
-#define TX_BUFFER_SIZE 32
 
 
 // Macro functions to get different parts of an id from the U32
