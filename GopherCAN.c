@@ -195,7 +195,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 	}
 
 	// The F7xx includes interrupts for when a message is complete. Activate them here
-#if TARGET == F7XX
+#if TARGET == F7XX || TARGET == F4XX
 	if (HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY) != HAL_OK)
 	{
 		return IRQ_SET_FAILED;
@@ -1110,7 +1110,7 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 
 
 // the F7xx has ISRs for available TX mailboxes having an opening. All callbacks should service the TX hardware
-#if TARGET == F7XX
+#if TARGET == F7XX || TARGET == F4XX
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef* hcan)
 {
 	service_can_tx_hardware(hcan);
