@@ -5,7 +5,7 @@ busses:
         human_readable_name: "Front Bus"
 
 parameters:
-    ambient_air_pressure:
+    ambient_air_pressure_front:
         name: ambient_air_pressure
         id: 1
         human_readable_name: "ambient_air_pressure"
@@ -20,7 +20,7 @@ parameters:
         producer: ACM
         priority: 0
 
-    ambient_air_temperature:
+    ambient_air_temperature_front:
         name: ambient_air_temperature
         id: 1
         human_readable_name: "ambient_air_temperature"
@@ -2885,10 +2885,10 @@ parameters:
         producer: ACM
         priority: 0
 
-    radiator_left_pressure_drop:
-        name: radiator_left_pressure_drop
+    radiator_left_aerodynamic_pressure_drop:
+        name: radiator_left_aerodynamic_pressure_drop
         id: 1
-        human_readable_name: "radiator_left_pressure_drop"
+        human_readable_name: "radiator_left_aerodynamic_pressure_drop"
         unit: "pa"
         type: float
         struct: FLOAT_CAN_STRUCT
@@ -2900,10 +2900,10 @@ parameters:
         producer: ACM
         priority: 0
 
-    radiator_right_pressure_drop:
-        name: radiator_right_pressure_drop
+    radiator_right_aerodynamic_pressure_drop:
+        name: radiator_right_aerodynamic_pressure_drop
         id: 1
-        human_readable_name: "radiator_right_pressure_drop"
+        human_readable_name: "radiator_right_aerodynamic_pressure_drop"
         unit: "pa"
         type: float
         struct: FLOAT_CAN_STRUCT
@@ -2945,6 +2945,576 @@ parameters:
         producer: ACM
         priority: 0
 
+    steering_angle:
+        name: steering_angule
+        id: 1
+        human_readable_name: "steering_angule"
+        unit: "degrees"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_pressure_inlet:
+        name: radiator_left_water_pressure_inlet
+        id: 1
+        human_readable_name: "radiator_left_water_pressure_inlet"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_pressure_outlet:
+        name: radiator_left_water_pressure_outlet
+        id: 1
+        human_readable_name: "radiator_left_water_pressure_outlet"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_temperature_inlet:
+        name: radiator_left_water_temperature_inlet
+        id: 1
+        human_readable_name: "radiator_left_water_temperature_inlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_temperature_outlet:
+        name: radiator_left_water_temperature_outlet
+        id: 1
+        human_readable_name: "radiator_left_water_temperature_outlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    accelerator_pedal_position:
+        name: accelerator_pedal_position
+        id: 1
+        human_readable_name: "accelerator_pedal_position"
+        unit: "%"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 20
+        producer: ACM
+        priority: 0
+
+    engine_block_water_temperature:
+        name: engine_block_water_temperature
+        id: 1
+        human_readable_name: "engine_block_water_temperature"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_pressure:
+        name: exhaust_pressure
+        id: 1
+        human_readable_name: "exhaust_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    fuel_pressure:
+        name: fuel_pressure
+        id: 1
+        human_readable_name: "fuel_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    manifold_air_pressure:
+        name: manifold_air_pressure
+        id: 1
+        human_readable_name: "manifold_air_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    manifold_air_temperature:
+        name: manifold_air_temperature
+        id: 1
+        human_readable_name: "manifold_air_temperature"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    oil_pressure:
+        name: oil_pressure
+        id: 1
+        human_readable_name: "oil_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    oil_temperature:
+        name: oil_temperature
+        id: 1
+        human_readable_name: "oil_temperature"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    throttle_position:
+        name: throttle_position
+        id: 1
+        human_readable_name: "throttle_position"
+        unit: "%"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    wheel_speed_front_left:
+        name: wheel_speed_front_left
+        id: 1
+        human_readable_name: "wheel_speed_front_left"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    wheel_speed_front_right:
+        name: wheel_speed_front_right
+        id: 1
+        human_readable_name: "wheel_speed_front_right"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    wheel_speed_rear_left:
+        name: wheel_speed_rear_left
+        id: 1
+        human_readable_name: "wheel_speed_rear_left"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    wheel_speed_rear_right:
+        name: wheel_speed_rear_right
+        id: 1
+        human_readable_name: "wheel_speed_rear_right"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_outlet:
+        name: exhaust_temp_outlet
+        id: 1
+        human_readable_name: "exhaust_temp_outlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_1:
+        name: exhaust_temp_cylinder_1
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_2:
+        name: exhaust_temp_cylinder_2
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_3:
+        name: exhaust_temp_cylinder_3
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_4:
+        name: exhaust_temp_cylinder_4
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    lambda_outlet:
+        name: lambda_outlet
+        id: 1
+        human_readable_name: "lambda_outlet"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_1:
+        name: lambda_cylinder_1
+        id: 1
+        human_readable_name: "lambda_cylinder_1"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_2:
+        name: lambda_cylinder_2
+        id: 1
+        human_readable_name: "lambda_cylinder_2"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_3:
+        name: lambda_cylinder_3
+        id: 1
+        human_readable_name: "lambda_cylinder_3"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_4:
+        name: lambda_cylinder_4
+        id: 1
+        human_readable_name: "lambda_cylinder_4"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    brake_overtravel:
+        name: brake_overtravel
+        id: 1
+        human_readable_name: "brake_overtravel"
+        unit: ""
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    clutch_linkage_position:
+        name: clutch_linkage_position
+        id: 1
+        human_readable_name: "clutch_linkage_position"
+        unit: "mm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    transmission_rpm:
+        name: transmission_rpm
+        id: 1
+        human_readable_name: "transmission_rpm"
+        unit: "rpm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    neutral_switch:
+        name: neutral_switch
+        id: 1
+        human_readable_name: "neutral_switch"
+        unit: ""
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    paddle_shifting_tank_pressure:
+        name: paddle_shifting_tank_pressure
+        id: 1
+        human_readable_name: "paddle_shifting_tank_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    paddle_shifting_line_pressure:
+        name: paddle_shifting_line_pressure
+        id: 1
+        human_readable_name: "paddle_shifting_line_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    shift_linkage_position:
+        name: shift_linkage_position
+        id: 1
+        human_readable_name: "shift_linkage_position"
+        unit: "mm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    shift_drum_position:
+        name: shift_drum_position
+        id: 1
+        human_readable_name: "shift_drum_position"
+        unit: "degrees"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    ambient_air_pressure_engine_bay:
+        name: ambient_pressure_engine_bay
+        id: 1
+        human_readable_name: "ambient_pressure_engine_bay"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    ambient_air_temperature_engine_bay:
+        name: ambient_temperature_engine_bay
+        id: 1
+        human_readable_name: "ambient_temperature_engine_bay"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
 modules:
     ACM:
         name: ACM
@@ -2953,8 +3523,8 @@ modules:
             - bus_0
         human_readable_name: "Aerodynamic Control Module"
         parameters_produced:
-            - ambient_air_pressure
-            - ambient_air_temperature
+            - ambient_air_pressure_front
+            - ambient_air_temperature_front
             - airspeed_front
             - airspeed_rear
             - yaw_rate
@@ -3145,10 +3715,48 @@ modules:
             - oil_cooler_pressure_outlet
             - oil_cooler_water_temperature_inlet
             - oil_cooler_water_temperature_outlet
-            - radiator_left_pressure_drop
-            - radiator_right_pressure_drop
+            - radiator_left_aerodynamic_pressure_drop
+            - radiator_right_aerodynamic_pressure_drop
             - ride_height_front
             - ride_height_rear
+            - steering_angle
+            - radiator_left_water_pressure_inlet
+            - radiator_left_water_pressure_outlet
+            - radiator_left_water_temperature_inlet
+            - radiator_left_water_temperature_outlet
+            - accelerator_pedal_position
+            - engine_block_water_temperature
+            - exhaust_pressure
+            - fuel_pressure
+            - manifold_air_pressure
+            - manifold_air_temperature
+            - oil_pressure
+            - oil_temperature
+            - throttle_position
+            - wheel_speed_front_left
+            - wheel_speed_front_right
+            - wheel_speed_rear_left
+            - wheel_speed_rear_right
+            - exhaust_temp_outlet
+            - exhaust_temp_cylinder_1
+            - exhaust_temp_cylinder_2
+            - exhaust_temp_cylinder_3
+            - exhaust_temp_cylinder_4
+            - lambda_outlet
+            - lambda_cylinder_1
+            - lambda_cylinder_2
+            - lambda_cylinder_3
+            - lambda_cylinder_4
+            - brake_overtravel
+            - clutch_linkage_position
+            - transmission_rpm
+            - neutral_switch
+            - paddle_shifting_tank_pressure
+            - paddle_shifting_line_pressure
+            - shift_linkage_position
+            - shift_drum_position
+            - ambient_air_pressure_engine_bay
+            - ambient_air_temperature_engine_bay
         parameters_consumed:
 
     DAM:
@@ -3158,8 +3766,8 @@ modules:
             - bus_0
         human_readable_name: "Dummy Data Acquisition"
         parameters_consumed:
-            - ambient_air_pressure
-            - ambient_air_temperature
+            - ambient_air_pressure_front
+            - ambient_air_temperature_front
             - airspeed_front
             - airspeed_rear
             - yaw_rate
@@ -3350,13 +3958,51 @@ modules:
             - oil_cooler_pressure_outlet
             - oil_cooler_water_temperature_inlet
             - oil_cooler_water_temperature_outlet
-            - radiator_left_pressure_drop
-            - radiator_right_pressure_drop
+            - radiator_left_aerodynamic_pressure_drop
+            - radiator_right_aerodynamic_pressure_drop
+            - ride_height_front
+            - ride_height_rear
+            - steering_angle
+            - radiator_left_water_pressure_inlet
+            - radiator_left_water_pressure_outlet
+            - radiator_left_water_temperature_inlet
+            - radiator_left_water_temperature_outlet
+            - accelerator_pedal_position
+            - engine_block_water_temperature
+            - exhaust_pressure
+            - fuel_pressure
+            - manifold_air_pressure
+            - manifold_air_temperature
+            - oil_pressure
+            - oil_temperature
+            - throttle_position
+            - wheel_speed_front_left
+            - wheel_speed_front_right
+            - wheel_speed_rear_left
+            - wheel_speed_rear_right
+            - exhaust_temp_outlet
+            - exhaust_temp_cylinder_1
+            - exhaust_temp_cylinder_2
+            - exhaust_temp_cylinder_3
+            - exhaust_temp_cylinder_4
+            - lambda_outlet
+            - lambda_cylinder_1
+            - lambda_cylinder_2
+            - lambda_cylinder_3
+            - lambda_cylinder_4
+            - brake_overtravel
+            - clutch_linkage_position
+            - transmission_rpm
+            - neutral_switch
+            - paddle_shifting_tank_pressure
+            - paddle_shifting_line_pressure
+            - shift_linkage_position
+            - shift_drum_position
+            - ambient_air_pressure_engine_bay
+            - ambient_air_temperature_engine_bay
         parameters_produced:
 
 errors:
     ID_NOT_FOUND:
         name: ID_NOT_FOUND
         id: 0
-
-        
