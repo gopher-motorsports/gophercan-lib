@@ -409,7 +409,7 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 	message.dlc = REQ_PARAM_SIZE;
 
 	// set the pending response to true for this parameter, will be set to true once
-	// the value is recieved from the CAN bus
+	// the value is received from the CAN bus
 	((CAN_INFO_STRUCT*)(all_parameter_structs[parameter]))->pending_response = TRUE;
 
 	return tx_can_message(&message);
@@ -753,6 +753,16 @@ S8 service_can_rx_buffer(void)
 static S8 tx_can_message(CAN_MSG* message_to_add)
 {
 	CAN_MSG_RING_BUFFER* buffer;
+	U8 c;
+
+	// remove any trailing zeros in the CAN message. This is done by starting at the
+	// back of the message and decrementing the DLC for each byte in the message that
+	// is zero at the back. RX logic will add zero bytes as needed
+	while (message_to_add->dlc > 0
+			&& message_to_add->data[message_to_add->dlc - 1] == 0)
+	{
+		message_to_add->dlc--;
+	}
 
 #ifdef MULTI_BUS
 	// Handle the case of the message being sent to all of the busses (ID 0)
@@ -791,7 +801,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	CAN_ID id;
 	CAN_INFO_STRUCT* data_struct = 0;
 	FLOAT_CONVERTER float_con;
-	U64 recieved_data = 0;
+	U64 received_data = 0;
 	S8 c;
 
 	get_message_id(&id, message);
@@ -855,7 +865,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	// build the data U64 (big endian)
 	for (c = (message->dlc - 1); c >= 0; c--)
 	{
-		recieved_data |= message->data[c] << (c * BITS_IN_BYTE);
+		received_data |= message->data[c] << (c * BITS_IN_BYTE);
 	}
 
 	// Switch the pending_response flag
@@ -866,40 +876,40 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	switch (parameter_data_types[id.parameter])
 	{
 	case UNSIGNED8:
-		((U8_CAN_STRUCT*)(data_struct))->data = (U8)recieved_data;
+		((U8_CAN_STRUCT*)(data_struct))->data = (U8)received_data;
 		return CAN_SUCCESS;
 
 	case UNSIGNED16:
-		((U16_CAN_STRUCT*)(data_struct))->data = (U16)recieved_data;
+		((U16_CAN_STRUCT*)(data_struct))->data = (U16)received_data;
 		return CAN_SUCCESS;
 
 	case UNSIGNED32:
-		((U32_CAN_STRUCT*)(data_struct))->data = (U32)recieved_data;
+		((U32_CAN_STRUCT*)(data_struct))->data = (U32)received_data;
 		return CAN_SUCCESS;
 
 	case UNSIGNED64:
-		((U64_CAN_STRUCT*)(data_struct))->data = (U64)recieved_data;
+		((U64_CAN_STRUCT*)(data_struct))->data = (U64)received_data;
 		return CAN_SUCCESS;
 
 	case SIGNED8:
-		((S8_CAN_STRUCT*)(data_struct))->data = (S8)recieved_data;
+		((S8_CAN_STRUCT*)(data_struct))->data = (S8)received_data;
 		return CAN_SUCCESS;
 
 	case SIGNED16:
-		((S16_CAN_STRUCT*)(data_struct))->data = (S16)recieved_data;
+		((S16_CAN_STRUCT*)(data_struct))->data = (S16)received_data;
 		return CAN_SUCCESS;
 
 	case SIGNED32:
-		((S32_CAN_STRUCT*)(data_struct))->data = (S32)recieved_data;
+		((S32_CAN_STRUCT*)(data_struct))->data = (S32)received_data;
 		return CAN_SUCCESS;
 
 	case SIGNED64:
-		((S64_CAN_STRUCT*)(data_struct))->data = (S64)recieved_data;
+		((S64_CAN_STRUCT*)(data_struct))->data = (S64)received_data;
 		return CAN_SUCCESS;
 
 	case FLOATING:
 		// Union to get the bitwise data of the float
-		float_con.u32 = (U32)recieved_data;
+		float_con.u32 = (U32)received_data;
 
 		((FLOAT_CAN_STRUCT*)(data_struct))->data = float_con.f;
 		return CAN_SUCCESS;
@@ -943,13 +953,20 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 {
 	GCAN_COMMAND_ID command_id;
 	CUST_FUNC* this_function;
+	U8 c;
 
 	// DLC error checking
-	if (message->dlc != COMMAND_SIZE)
+	if (message->dlc == 0 || message->dlc > COMMAND_SIZE)
 	{
+		// there is either no DLC (no function ID) or too many parameters sent
 		send_error_message(id, SIZE_ERROR);
-
 		return SIZE_ERR;
+	}
+
+	// fill in the extra DLC of the message with zeros
+	for (c = message->dlc; c < COMMAND_SIZE; c++)
+	{
+		message->data[c] = 0;
 	}
 
 	// error checking on the command ID
