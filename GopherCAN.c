@@ -637,12 +637,12 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 #endif
 
 	// add messages to the the TX mailboxes until they are full
-	while (!is_empty(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
+	while (!IS_EMPTY(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
 	{
 		U32 tx_mailbox_num;
 
 		// get the next CAN message from the TX buffer (FIFO)
-		message = get_from_buffer(buffer, 0);
+		message = GET_FROM_BUFFER(buffer, 0);
 
 		// configure the settings/params of the CAN message
 		tx_header.IDE = CAN_ID_EXT;                                          // 29 bit id
@@ -684,10 +684,10 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 	CAN_MSG* message;
 
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
-	while (!is_full(&rx_buffer) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
+	while (!IS_FULL(&rx_buffer) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
 	{
 		// set message to the correct pointer from the RX buffer (the "last" message in the buffer)
-		message = get_from_buffer(&rx_buffer, rx_buffer.fill_level);
+		message = GET_FROM_BUFFER(&rx_buffer, rx_buffer.fill_level);
 
 		// Build the message from the registers on the STM32
 		if (HAL_CAN_GetRxMessage(hcan, rx_mailbox, &rx_header, message->data) != HAL_OK)
@@ -731,10 +731,10 @@ S8 service_can_rx_buffer(void)
 	CAN_MSG* current_message;
 
 	// run through each message in the RX buffer and service it with service_can_rx_message() (FIFO)
-	while (!is_empty(&rx_buffer))
+	while (!IS_EMPTY(&rx_buffer))
 	{
 		// get the message at the head of the array
-		current_message = get_from_buffer(&rx_buffer, 0);
+		current_message = GET_FROM_BUFFER(&rx_buffer, 0);
 
 		// WARNING: CAN errors from other modules are not handled in this version. The message is just discarded
 		// Use a CAN bus analyzer to see what the message is for debugging
@@ -753,7 +753,6 @@ S8 service_can_rx_buffer(void)
 static S8 tx_can_message(CAN_MSG* message_to_add)
 {
 	CAN_MSG_RING_BUFFER* buffer;
-	U8 c;
 
 	// remove any trailing zeros in the CAN message. This is done by starting at the
 	// back of the message and decrementing the DLC for each byte in the message that
@@ -780,7 +779,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 #endif
 
 	// check to make sure the buffer is not full, then add it to the back of the TX buffer
-	if (is_full(buffer))
+	if (IS_FULL(buffer))
 	{
 		return TX_BUFFER_FULL;
 	}
@@ -956,7 +955,7 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 	U8 c;
 
 	// DLC error checking
-	if (message->dlc == 0 || message->dlc > COMMAND_SIZE)
+	if (message->dlc > COMMAND_SIZE)
 	{
 		// there is either no DLC (no function ID) or too many parameters sent
 		send_error_message(id, SIZE_ERROR);
@@ -1218,20 +1217,20 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add)
 {
 #if NUM_OF_BUSSES > 2
 	// check to make sure the buffer is not full
-	if (!is_full(&tx_buffer_2))
+	if (!IS_FULL(&tx_buffer_2))
 	{
 		add_message_by_highest_prio(&tx_buffer_2, message_to_add);
 	}
 #endif
 #if NUM_OF_BUSSES > 1
 	// check to make sure the buffer is not full
-	if (!is_full(&tx_buffer_1))
+	if (!IS_FULL(&tx_buffer_1))
 	{
 		add_message_by_highest_prio(&tx_buffer_1, message_to_add);
 	}
 #endif
 	// check to make sure the buffer is not full
-	if (!is_full(&tx_buffer))
+	if (!IS_FULL(&tx_buffer))
 	{
 		add_message_by_highest_prio(&tx_buffer, message_to_add);
 	}
@@ -1257,7 +1256,7 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 	{
 #if NUM_OF_BUSSES > 2
 		// check to make sure the buffer is not full and the message did not come from this buffer
-		if (!is_full(&tx_buffer_2)
+		if (!IS_FULL(&tx_buffer_2)
 				&& &tx_buffer_2 != choose_tx_buffer_from_hcan(hcan))
 		{
 			add_message_by_highest_prio(&tx_buffer_2, message);
@@ -1265,14 +1264,14 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 #endif
 #if NUM_OF_BUSSES > 1
 		// check to make sure the buffer is not full and the message did not come from this buffer
-		if (!is_full(&tx_buffer_1)
+		if (!IS_FULL(&tx_buffer_1)
 				&& &tx_buffer_1 != choose_tx_buffer_from_hcan(hcan))
 		{
 			add_message_by_highest_prio(&tx_buffer_1, message);
 		}
 #endif
 		// check to make sure the buffer is not full and the message did not come from this buffer
-		if (!is_full(&tx_buffer)
+		if (!IS_FULL(&tx_buffer)
 				&& &tx_buffer != choose_tx_buffer_from_hcan(hcan))
 		{
 			add_message_by_highest_prio(&tx_buffer, message);
@@ -1296,7 +1295,7 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 	}
 
 	// check to make sure the buffer is not full. If it is, the message will be discarded
-	if (is_full(buffer))
+	if (IS_FULL(buffer))
 	{
 		rx_buffer.fill_level--;
 		return;

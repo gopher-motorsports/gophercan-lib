@@ -15,8 +15,8 @@ CAN_HandleTypeDef* example_hcan;
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
 //#define F7XX_EXAMPLE                                                          // (F0xx otherwise)
-//#define THIS_DAM
-#define THIS_PDM
+#define THIS_DAM
+//#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
 
