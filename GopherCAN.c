@@ -23,6 +23,7 @@ static S8   service_can_rx_message(CAN_MSG* message);
 
 #ifdef MULTI_BUS
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
+static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer);
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add);
 static void send_message_to_all_busses(CAN_MSG* message_to_add);
 #endif
@@ -641,6 +642,11 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	{
 		U32 tx_mailbox_num;
 
+		// Turn off the TX interrupt (if applicable)
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+#endif
+
 		// get the next CAN message from the TX buffer (FIFO)
 		message = GET_FROM_BUFFER(buffer, 0);
 
@@ -663,6 +669,11 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 
 		// move the head now that the first element has been removed
 		remove_from_front(buffer);
+
+		// re-enable the RX interrupt
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 	}
 
 	return;
@@ -692,7 +703,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		// Build the message from the registers on the STM32
 		if (HAL_CAN_GetRxMessage(hcan, rx_mailbox, &rx_header, message->data) != HAL_OK)
 		{
-			// this will always be HAL_ERROR. Check hcan->ErrorCode
+			// this will always return HAL_ERROR. Check hcan->ErrorCode
 			// hardware error (do not move the head as the message did not send, try again later)
 
 			hcan_error = hcan->ErrorCode;
@@ -784,7 +795,15 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 		return TX_BUFFER_FULL;
 	}
 
+	// Turn off the TX interrupt (if applicable) and add the message to the buffer
+#if TARGET == F7XX || TARGET == F4XX
+	HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 	add_message_by_highest_prio(buffer, message_to_add);
+
+#if TARGET == F7XX || TARGET == F4XX
+	HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 
 	return CAN_SUCCESS;
 }
@@ -1182,6 +1201,28 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
 #endif
 
 
+// choose_hcan_from_tx_buffer
+//  Returns the correct HCAN from the inputed buffer. Defaults to hcan0
+#ifdef MULTI_BUS
+static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer)
+{
+#if NUM_OF_BUSSES > 2
+	if (buffer == gbus2.tx_buffer)
+	{
+		return gbus2.hcan;
+	}
+#endif
+#if NUM_OF_BUSSES > 1
+	if (buffer == gbus1.tx_buffer)
+	{
+		return gbus1.hcan;
+	}
+#endif
+	return gbus0.hcan;
+}
+#endif
+
+
 // choose_tx_buffer_from_dest_module
 //  Chooses which buffer the the dest_module in message_to_add is on
 //  If the module is not found, defaults to module bus 0
@@ -1219,20 +1260,41 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add)
 	// check to make sure the buffer is not full
 	if (!IS_FULL(&tx_buffer_2))
 	{
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 		add_message_by_highest_prio(&tx_buffer_2, message_to_add);
+
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 	}
 #endif
 #if NUM_OF_BUSSES > 1
 	// check to make sure the buffer is not full
 	if (!IS_FULL(&tx_buffer_1))
 	{
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 		add_message_by_highest_prio(&tx_buffer_1, message_to_add);
+
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 	}
 #endif
 	// check to make sure the buffer is not full
 	if (!IS_FULL(&tx_buffer))
 	{
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 		add_message_by_highest_prio(&tx_buffer, message_to_add);
+
+#if TARGET == F7XX || TARGET == F4XX
+		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 	}
 }
 #endif
@@ -1259,7 +1321,14 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 		if (!IS_FULL(&tx_buffer_2)
 				&& &tx_buffer_2 != choose_tx_buffer_from_hcan(hcan))
 		{
+#if TARGET == F7XX || TARGET == F4XX
+			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 			add_message_by_highest_prio(&tx_buffer_2, message);
+
+#if TARGET == F7XX || TARGET == F4XX
+			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 		}
 #endif
 #if NUM_OF_BUSSES > 1
@@ -1267,14 +1336,28 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 		if (!IS_FULL(&tx_buffer_1)
 				&& &tx_buffer_1 != choose_tx_buffer_from_hcan(hcan))
 		{
+#if TARGET == F7XX || TARGET == F4XX
+			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 			add_message_by_highest_prio(&tx_buffer_1, message);
+
+#if TARGET == F7XX || TARGET == F4XX
+			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 		}
 #endif
 		// check to make sure the buffer is not full and the message did not come from this buffer
 		if (!IS_FULL(&tx_buffer)
 				&& &tx_buffer != choose_tx_buffer_from_hcan(hcan))
 		{
+#if TARGET == F7XX || TARGET == F4XX
+			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 			add_message_by_highest_prio(&tx_buffer, message);
+
+#if TARGET == F7XX || TARGET == F4XX
+			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 		}
 
 		return;
@@ -1294,6 +1377,10 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 		return;
 	}
 
+#if TARGET == F7XX || TARGET == F4XX
+	HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+#endif
+
 	// check to make sure the buffer is not full. If it is, the message will be discarded
 	if (IS_FULL(buffer))
 	{
@@ -1306,6 +1393,10 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 
 	// Remove the message from the RX buffer, it is now on a TX buffer
 	rx_buffer.fill_level--;
+
+#if TARGET == F7XX || TARGET == F4XX
+	HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 }
 #endif
 
