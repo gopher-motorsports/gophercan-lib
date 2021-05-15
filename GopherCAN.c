@@ -26,11 +26,11 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
 static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer);
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add);
 static void send_message_to_all_busses(CAN_MSG* message_to_add);
-#endif
+#endif // MULTI_BUS
 
 #ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
-#endif
+#endif // CAN_ROUTER
 
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
@@ -62,13 +62,13 @@ GCAN_MULTI_BUS_STRUCT gbus0;
 CAN_MSG_RING_BUFFER tx_buffer_1;
 CAN_MSG tx_buffer_mem_1[TX_BUFFER_SIZE];
 GCAN_MULTI_BUS_STRUCT gbus1;
-#endif
+#endif // NUM_OF_BUSSES > 1
 #if NUM_OF_BUSSES > 2
 CAN_MSG_RING_BUFFER tx_buffer_2;
 CAN_MSG tx_buffer_mem_2[TX_BUFFER_SIZE];
 GCAN_MULTI_BUS_STRUCT gbus2;
-#endif
-#endif
+#endif // NUM_OF_BUSSES > 2
+#endif // MULTI_BUS
 
 
 // ******** BEGIN AUTO GENERATED ********
@@ -133,7 +133,7 @@ U8 module_bus_number[NUM_OF_MODULES] =
 	GCAN1,
 	GCAN2
 };
-#endif
+#endif // MULTI_BUS
 
 // ******** END AUTO GENERATED ********
 
@@ -164,11 +164,11 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 #ifdef MULTI_BUS
 #if NUM_OF_BUSSES > 1
 	init_buffer(&tx_buffer_1, tx_buffer_mem_1, TX_BUFFER_SIZE);
-#endif
+#endif // NUM_OF_BUSSES > 1
 #if NUM_OF_BUSSES > 2
 	init_buffer(&tx_buffer_2, tx_buffer_mem_2, TX_BUFFER_SIZE);
-#endif
-#endif
+#endif // NUM_OF_BUSSES > 2
+#endif // MULTI_BUS
 
 	// init all of the parameter data
 	init_all_params();
@@ -201,7 +201,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 	{
 		return IRQ_SET_FAILED;
 	}
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 
 	// start can!
 	if (HAL_CAN_Start(hcan) != HAL_OK)
@@ -350,7 +350,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 	{
 		return FILTER_SET_FAILED;
 	}
-#endif
+#endif // CAN_ROUTER
 
 	return CAN_SUCCESS;
 }
@@ -635,7 +635,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	buffer = choose_tx_buffer_from_hcan(hcan);
 #else
 	buffer = &tx_buffer;
-#endif
+#endif // MULTI_BUS
 
 	// add messages to the the TX mailboxes until they are full
 	while (!IS_EMPTY(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
@@ -645,7 +645,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		// Turn off the TX interrupt (if applicable)
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 
 		// get the next CAN message from the TX buffer (FIFO)
 		message = GET_FROM_BUFFER(buffer, 0);
@@ -673,7 +673,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		// re-enable the RX interrupt
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 	}
 
 	return;
@@ -722,7 +722,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		// router specific functionality that directly adds messages that need to be routed
 		//  directly to the correct TX buffer (if needed, that decision is made within the function)
 		rout_can_message(hcan, message);
-#endif
+#endif // CAN_ROUTER
 	}
 }
 
@@ -787,7 +787,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 
 #else
 	buffer = &tx_buffer;
-#endif
+#endif // MULTI_BUS
 
 	// check to make sure the buffer is not full, then add it to the back of the TX buffer
 	if (IS_FULL(buffer))
@@ -798,12 +798,12 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 	// Turn off the TX interrupt (if applicable) and add the message to the buffer
 #if TARGET == F7XX || TARGET == F4XX
 	HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 	add_message_by_highest_prio(buffer, message_to_add);
 
 #if TARGET == F7XX || TARGET == F4XX
 	HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 
 	return CAN_SUCCESS;
 }
@@ -1124,7 +1124,7 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 		gbus2.hcan = hcan;
 		gbus2.gopher_can_id = gophercan_bus_id;
 		break;
-#endif
+#endif // NUM_OF_BUSSES > 2
 
 #if NUM_OF_BUSSES > 1
 	case 1:
@@ -1132,7 +1132,7 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 		gbus1.hcan = hcan;
 		gbus1.gopher_can_id = gophercan_bus_id;
 		break;
-#endif
+#endif // NUM_OF_BUSSES > 1
 
 	default:
 		gbus0.tx_buffer = &tx_buffer;
@@ -1141,7 +1141,7 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 		break;
 	}
 }
-#endif
+#endif // MULTI_BUS
 
 
 // the F7xx has ISRs for available TX mailboxes having an opening. All callbacks should service the TX hardware
@@ -1175,7 +1175,7 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
 {
 	service_can_tx_hardware(hcan);
 }
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 
 
 // choose_tx_buffer_from_hcan
@@ -1189,16 +1189,16 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
 	{
 		return gbus2.tx_buffer;
 	}
-#endif
+#endif // NUM_OF_BUSSES > 2
 #if NUM_OF_BUSSES > 1
 	if (hcan == gbus1.hcan)
 	{
 		return gbus1.tx_buffer;
 	}
-#endif
+#endif // NUM_OF_BUSSES > 1
 	return gbus0.tx_buffer;
 }
-#endif
+#endif // MULTI_BUS
 
 
 // choose_hcan_from_tx_buffer
@@ -1211,16 +1211,16 @@ static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer
 	{
 		return gbus2.hcan;
 	}
-#endif
+#endif // NUM_OF_BUSSES > 2
 #if NUM_OF_BUSSES > 1
 	if (buffer == gbus1.tx_buffer)
 	{
 		return gbus1.hcan;
 	}
-#endif
+#endif // NUM_OF_BUSSES > 1
 	return gbus0.hcan;
 }
-#endif
+#endif // MULTI_BUS
 
 
 // choose_tx_buffer_from_dest_module
@@ -1238,17 +1238,17 @@ static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_t
 		return gbus2.tx_buffer;
 	}
 	else
-#endif
+#endif // NUM_OF_BUSSES > 2
 #if NUM_OF_BUSSES > 1
 	if (module_bus_number[dest_module] == gbus1.gopher_can_id)
 	{
 		return gbus1.tx_buffer;
 	}
 	else
-#endif
+#endif // NUM_OF_BUSSES > 1
 	return gbus0.tx_buffer;
 }
-#endif
+#endif // MULTI_BUS
 
 
 // send_message_to_all_busses
@@ -1262,42 +1262,42 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add)
 	{
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 		add_message_by_highest_prio(&tx_buffer_2, message_to_add);
 
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 	}
-#endif
+#endif // NUM_OF_BUSSES > 2
 #if NUM_OF_BUSSES > 1
 	// check to make sure the buffer is not full
 	if (!IS_FULL(&tx_buffer_1))
 	{
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 		add_message_by_highest_prio(&tx_buffer_1, message_to_add);
 
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 	}
-#endif
+#endif // NUM_OF_BUSSES > 1
 	// check to make sure the buffer is not full
 	if (!IS_FULL(&tx_buffer))
 	{
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 		add_message_by_highest_prio(&tx_buffer, message_to_add);
 
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 	}
 }
-#endif
+#endif // MULTI_BUS
 
 
 // rout_can_message
@@ -1323,14 +1323,14 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 		{
 #if TARGET == F7XX || TARGET == F4XX
 			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 			add_message_by_highest_prio(&tx_buffer_2, message);
 
 #if TARGET == F7XX || TARGET == F4XX
 			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 		}
-#endif
+#endif // NUM_OF_BUSSES > 2
 #if NUM_OF_BUSSES > 1
 		// check to make sure the buffer is not full and the message did not come from this buffer
 		if (!IS_FULL(&tx_buffer_1)
@@ -1338,26 +1338,26 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 		{
 #if TARGET == F7XX || TARGET == F4XX
 			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 			add_message_by_highest_prio(&tx_buffer_1, message);
 
 #if TARGET == F7XX || TARGET == F4XX
 			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 		}
-#endif
+#endif // NUM_OF_BUSSES > 1
 		// check to make sure the buffer is not full and the message did not come from this buffer
 		if (!IS_FULL(&tx_buffer)
 				&& &tx_buffer != choose_tx_buffer_from_hcan(hcan))
 		{
 #if TARGET == F7XX || TARGET == F4XX
 			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 			add_message_by_highest_prio(&tx_buffer, message);
 
 #if TARGET == F7XX || TARGET == F4XX
 			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 		}
 
 		return;
@@ -1379,7 +1379,7 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 
 #if TARGET == F7XX || TARGET == F4XX
 	HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 
 	// check to make sure the buffer is not full. If it is, the message will be discarded
 	if (IS_FULL(buffer))
@@ -1396,9 +1396,9 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 
 #if TARGET == F7XX || TARGET == F4XX
 	HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif
+#endif // TARGET == F7XX || TARGET == F4XX
 }
-#endif
+#endif // CAN_ROUTER
 
 
 // End ifdefed functions
