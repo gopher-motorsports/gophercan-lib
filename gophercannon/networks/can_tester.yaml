@@ -1,0 +1,254 @@
+busses:
+    bus_0:
+        name: bus_0
+        baud_rate: 1000000
+        human_readable_name: "Front Bus"
+
+parameters:
+    RPM:
+        name: rpm
+        id: 1
+        human_readable_name: "RPM"
+        unit: "RPM"
+        type: u16
+        struct: U16_CAN_STRUCT
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    fan_current:
+        name: fan_current
+        id: 2
+        human_readable_name: "fan current"
+        unit: "A"
+        type: u8
+        struct: U8_CAN_STRUCT
+        bytes: 1
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    u8_tester:
+        name: u8_tester
+        id: 3
+        human_readable_name: "u8 tester"
+        unit: "number"
+        type: u8
+        struct: U8_CAN_STRUCT
+        bytes: 1
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    u16_tester:
+        name: u16_tester
+        id: 4
+        human_readable_name: "u16 tester"
+        unit: "number"
+        type: u16
+        struct: U16_CAN_STRUCT
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    u32_tester:
+        name: u32_tester
+        id: 5
+        human_readable_name: "u32 tester"
+        unit: "number"
+        type: u32
+        struct: U32_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    u64_tester:
+        name: u64_tester
+        id: 6
+        human_readable_name: "u64 tester"
+        unit: "number"
+        type: u64
+        struct: U64_CAN_STRUCT
+        bytes: 8
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    s8_tester:
+        name: s8_tester
+        id: 7
+        human_readable_name: "s8 tester"
+        unit: "number"
+        type: s8
+        struct: S8_CAN_STRUCT
+        bytes: 1
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    s16_tester:
+        name: s16_tester
+        id: 8
+        human_readable_name: "s16 tester"
+        unit: "number"
+        type: s16
+        struct: S16_CAN_STRUCT
+        bytes: 2
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    s32_tester:
+        name: s32_tester
+        id: 9
+        human_readable_name: "s32 tester"
+        unit: "number"
+        type: s32
+        struct: S32_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    s64_tester:
+        name: s64_tester
+        id: 10
+        human_readable_name: "s64 tester"
+        unit: "number"
+        type: s64
+        struct: S64_CAN_STRUCT
+        bytes: 8
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+        
+    float_tester:
+        name: float_tester
+        id: 11
+        human_readable_name: "float tester"
+        unit: "number"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+modules:
+    DLM:
+        name: DLM
+        id: 1
+        busses:
+            - GCAN0
+        human_readable_name: "Data Logging Module"
+        parameters_produced:
+        parameters_consumed:
+
+    DAM:
+        name: DAM
+        id: 2
+        busses:
+            - GCAN1
+        human_readable_name: "Dummy Data Acquisition"
+        parameters_consumed:
+        parameters_produced:
+        
+    PDM:
+        name: PDM
+        id: 3
+        busses:
+            - GCAN0
+        human_readable_name: "Power Distribution Module"
+        parameters_consumed:
+        parameters_produced:
+        
+    TCM:
+        name: TCM
+        id: 4
+        busses:
+            - GCAN1
+        human_readable_name: "Transmission Control Module"
+        parameters_consumed:
+        parameters_produced:
+        
+    ACM:
+        name: ACM
+        id: 5
+        busses:
+            - GCAN1
+        human_readable_name: "Areodynamic Control Module"
+        parameters_consumed:
+        parameters_produced:
+        
+    DISPLAY:
+        name: DISPLAY
+        id: 6
+        busses:
+            - GCAN2
+        human_readable_name: "Display"
+        parameters_consumed:
+        parameters_produced:
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
+        
+    COMMAND_ID_NOT_FOUND:
+        name: COMMAND_ID_NOT_FOUND
+        id: 1
+        
+    PARAM_NOT_ENABLED:
+        name: PARAM_NOT_ENABLED
+        id: 2
+        
+    SIZE_ERROR:
+        name: SIZE_ERROR
+        id: 3
+        
+    DATATYPE_NOT_FOUND:
+        name: DATATYPE_NOT_FOUND
+        id: 4
+        
+    COMMAND_NOT_ENABLED:
+        name: COMMAND_NOT_ENABLED
+        id: 5
+        
+        
+        

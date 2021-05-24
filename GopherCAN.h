@@ -49,26 +49,9 @@
 #include "stm32f7xx_hal_can.h"
 #endif
 
-
-// ******** BEGIN AUTO GENERATED ********
-
-// all of the global parameter struct externs so all files including GopherCAN.h
-// have access
-extern CAN_COMMAND_STRUCT can_command;
-extern U16_CAN_STRUCT rpm;
-extern U8_CAN_STRUCT fan_current;
-extern U8_CAN_STRUCT u8_tester;
-extern U16_CAN_STRUCT u16_tester;
-extern U32_CAN_STRUCT u32_tester;
-extern U64_CAN_STRUCT u64_tester;
-extern S8_CAN_STRUCT s8_tester;
-extern S16_CAN_STRUCT s16_tester;
-extern S32_CAN_STRUCT s32_tester;
-extern S64_CAN_STRUCT s64_tester;
-extern FLOAT_CAN_STRUCT float_tester;
-
-// ******** END AUTO GENERATED ********
-
+// get the externs from the auto-generated file
+#define AUTOGEN_EXTERNS
+#include "GopherCAN_ids.h"
 
 // priority enum
 typedef enum

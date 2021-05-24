@@ -5,125 +5,89 @@ busses:
         human_readable_name: "Front Bus"
 
 parameters:
-    batt_volts:
-        name: batt_volts
-        id: 0
-        human_readable_name: "Battery Voltage"
-        unit: "Volts"
-        type: uint16_t
-        bytes: 2
-        multiplier: 1
-        divisor: 10
-        offset: 0
-        frequency: 50
-        producer: PDM
-        priority: 0
-
-    wheelspeed_front_left:
-        name: wheelspeed_front_left
+    ambient_air_pressure_front:
+        name: ambient_air_pressure
         id: 1
-        human_readable_name: "Front Left Wheelspeed"
-        unit: "RPM"
-        type: uint16_t
-        bytes: 2
-        multiplier: 5
-        divisor: 16
+        human_readable_name: "ambient_air_pressure"
+        unit: "kPa"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
         offset: 0
-        frequency: 100
-        producer: TCM
+        frequency: 10
+        producer: ACM
         priority: 0
 
-    lateral_acceleration:
-        name: lateral_acceleration
-        id: 2
-        human_readable_name: "Lateral Acceleration"
-        unit: "m/s^2"
-        type: uint16_t
-        bytes: 2
-        multiplier: 5
-        divisor: 16
+    ambient_air_temperature_front:
+        name: ambient_air_temperature
+        id: 1
+        human_readable_name: "ambient_air_temperature"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
         offset: 0
-        frequency: 100
-        producer: DAM
+        frequency: 10
+        producer: ACM
         priority: 0
-
-    longitudinal_acceleration:
-        name: longitudinal_acceleration
-        id: 3
-        human_readable_name: "Longitudinal Acceleration"
-        unit: "m/s^2"
-        type: uint16_t
-        bytes: 2
-        multiplier: 5
-        divisor: 16
+    
+    airspeed_front:
+        name: airspeed_front
+        id: 1
+        human_readable_name: "airspeed_front"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
         offset: 0
-        frequency: 100
-        producer: DAM
+        frequency: 10
+        producer: ACM
         priority: 0
-
-    steering_angle:
-        name: steering_angle
-        id: 4
-        human_readable_name: "Steering Angle"
-        unit: "degrees"
-        type: uint8_t
-        bytes: 1
-        multiplier: 2
-        divisor: 6
-        offset: -30
-        frequency: 100
-        producer: DAM
+    
+    airspeed_rear:
+        name: airspeed_rear
+        id: 1
+        human_readable_name: "airspeed_rear"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
         priority: 0
 
     yaw_rate:
         name: yaw_rate
-        id: 5
-        human_readable_name: "Yaw Rate"
-        unit: "degrees/s^2"
-        type: uint16_t
-        bytes: 2
-        multiplier: 5
-        divisor: 16
+        id: 1
+        human_readable_name: "yaw_rate"
+        unit: "degrees/s"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
         offset: 0
         frequency: 100
-        producer: DAM
+        producer: ACM
         priority: 0
 
     roll_rate:
         name: roll_rate
-        id: 6
-        human_readable_name: "Roll Rate"
-        unit: "degrees/s^2"
-        type: uint16_t
-        bytes: 2
-        multiplier: 2
-        divisor: 67
-        offset: 2
-        frequency: 100
-        producer: DAM
-        priority: 0
-
-    wheelspeed_front_right:
-        name: wheelspeed_front_right
-        id: 7
-        human_readable_name: "Front Left Wheelspeed"
-        unit: "RPM"
-        type: uint16_t
-        bytes: 2
-        multiplier: 5
-        divisor: 16
-        offset: 0
-        frequency: 100
-        producer: DAM
-        priority: 0
-
-    airspeed_front:
-        name: airspeed_front
-        id: 8
-        human_readable_name: "Front Airspeed"
-        unit: "m/s"
-        type: uint16_t
-        bytes: 2
+        id: 1
+        human_readable_name: "yaw_rate"
+        unit: "degrees/s"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
@@ -131,13 +95,14 @@ parameters:
         producer: ACM
         priority: 0
 
-    airspeed_rear:
-        name: airspeed_rear
-        id: 9
-        human_readable_name: "Rear Airspeed"
-        unit: "m/s"
-        type: uint16_t
-        bytes: 2
+    longitudinal_acceleration:
+        name: longitudinal_acceleration
+        id: 1
+        human_readable_name: "longitudinal_acceleration"
+        unit: "m/s^2"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
@@ -145,13 +110,14 @@ parameters:
         producer: ACM
         priority: 0
 
-    drs_button_state:
-        name: drs_button_state
-        id: 9
-        human_readable_name: "DRS Button State"
-        unit: "unitless"
-        type: bool
-        bytes: 1
+    lateral_acceleration:
+        name: lateral_acceleration
+        id: 1
+        human_readable_name: "lateral_acceleration"
+        unit: "m/s^2"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
@@ -159,137 +125,3884 @@ parameters:
         producer: ACM
         priority: 0
 
-    upshift_button_state:
-        name: upshift_button_state
-        id: 10
-        human_readable_name: "Upshift Button State"
-        unit: "unitless"
-        type: bool
-        bytes: 1
+    vertical_acceleration:
+        name: vertical_acceleration
+        id: 1
+        human_readable_name: "vertical_acceleration"
+        unit: "m/s^2"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
         frequency: 100
-        producer: TCM
+        producer: ACM
         priority: 0
 
-    shock_pot_front_left:
-        name: shock_pot_front_left
-        id: 11
-        human_readable_name: "Front Left Shock Pot"
+    brake_fluid_temp_front_left:
+        name: brake_fluid_temp_front_left
+        id: 1
+        human_readable_name: "brake_fluid_temp_front_left"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    brake_fluid_temp_front_right:
+        name: brake_fluid_temp_front_right
+        id: 1
+        human_readable_name: "brake_fluid_temp_front_right"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    brake_fluid_temp_rear_left:
+        name: brake_fluid_temp_rear_left
+        id: 1
+        human_readable_name: "brake_fluid_temp_rear_left"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    brake_fluid_temp_rear_right:
+        name: brake_fluid_temp_rear_right
+        id: 1
+        human_readable_name: "brake_fluid_temp_rear_right"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    brake_pressure_front:
+        name: brake_pressure_front
+        id: 1
+        human_readable_name: "brake_pressure_front"
+        unit: "kPa"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 20
+        producer: ACM
+        priority: 0
+
+    brake_pressure_rear:
+        name: brake_pressure_rear
+        id: 1
+        human_readable_name: "brake_pressure_rear"
+        unit: "kPa"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 20
+        producer: ACM
+        priority: 0
+
+    brake_pad_temp_front_left:
+        name: brake_pad_temp_front_left
+        id: 1
+        human_readable_name: "brake_pad_temp_front_left"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_pad_temp_front_right:
+        name: brake_pad_temp_front_right
+        id: 1
+        human_readable_name: "brake_pad_temp_front_right"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_pad_temp_rear_left:
+        name: brake_pad_temp_rear_left
+        id: 1
+        human_readable_name: "brake_pad_temp_rear_left"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_pad_temp_rear_right:
+        name: brake_pad_temp_rear_right
+        id: 1
+        human_readable_name: "brake_pad_temp_rear_right"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_left_sector_1:
+        name: brake_rotor_temp_front_left_sector_1
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_left_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_left_sector_2:
+        name: brake_rotor_temp_front_left_sector_2
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_left_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_left_sector_3:
+        name: brake_rotor_temp_front_left_sector_3
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_left_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_left_sector_4:
+        name: brake_rotor_temp_front_left_sector_4
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_left_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_right_sector_1:
+        name: brake_rotor_temp_front_right_sector_1
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_right_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_right_sector_2:
+        name: brake_rotor_temp_front_right_sector_2
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_right_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_right_sector_3:
+        name: brake_rotor_temp_front_right_sector_3
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_right_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_front_right_sector_4:
+        name: brake_rotor_temp_front_right_sector_4
+        id: 1
+        human_readable_name: "brake_rotor_temp_front_right_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_left_sector_1:
+        name: brake_rotor_temp_rear_left_sector_1
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_left_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_left_sector_2:
+        name: brake_rotor_temp_rear_left_sector_2
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_left_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_left_sector_3:
+        name: brake_rotor_temp_rear_left_sector_3
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_left_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_left_sector_4:
+        name: brake_rotor_temp_rear_left_sector_4
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_left_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_right_sector_1:
+        name: brake_rotor_temp_rear_right_sector_1
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_right_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_right_sector_2:
+        name: brake_rotor_temp_rear_right_sector_2
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_right_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_right_sector_3:
+        name: brake_rotor_temp_rear_right_sector_3
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_right_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    brake_rotor_temp_rear_right_sector_4:
+        name: brake_rotor_temp_rear_right_sector_4
+        id: 1
+        human_readable_name: "brake_rotor_temp_rear_right_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    chassis_slip_angle:
+        name: chassis_slip_angle
+        id: 1
+        human_readable_name: "chassis_slip_angle"
+        unit: "degrees"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_1:
+        name: external_tire_temp_front_left_sector_1
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_2:
+        name: external_tire_temp_front_left_sector_2
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_3:
+        name: external_tire_temp_front_left_sector_3
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_4:
+        name: external_tire_temp_front_left_sector_4
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_5:
+        name: external_tire_temp_front_left_sector_5
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_6:
+        name: external_tire_temp_front_left_sector_6
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_7:
+        name: external_tire_temp_front_left_sector_7
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_8:
+        name: external_tire_temp_front_left_sector_8
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_9:
+        name: external_tire_temp_front_left_sector_9
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_10:
+        name: external_tire_temp_front_left_sector_10
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_11:
+        name: external_tire_temp_front_left_sector_11
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_12:
+        name: external_tire_temp_front_left_sector_12
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_13:
+        name: external_tire_temp_front_left_sector_13
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_14:
+        name: external_tire_temp_front_left_sector_14
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_15:
+        name: external_tire_temp_front_left_sector_15
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_left_sector_16:
+        name: external_tire_temp_front_left_sector_16
+        id: 1
+        human_readable_name: "external_tire_temp_front_left_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_1:
+        name: external_tire_temp_front_right_sector_1
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_2:
+        name: external_tire_temp_front_right_sector_2
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_3:
+        name: external_tire_temp_front_right_sector_3
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_4:
+        name: external_tire_temp_front_right_sector_4
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_5:
+        name: external_tire_temp_front_right_sector_5
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_6:
+        name: external_tire_temp_front_right_sector_6
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_7:
+        name: external_tire_temp_front_right_sector_7
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_8:
+        name: external_tire_temp_front_right_sector_8
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_9:
+        name: external_tire_temp_front_right_sector_9
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_10:
+        name: external_tire_temp_front_right_sector_10
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_11:
+        name: external_tire_temp_front_right_sector_11
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_12:
+        name: external_tire_temp_front_right_sector_12
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_13:
+        name: external_tire_temp_front_right_sector_13
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_14:
+        name: external_tire_temp_front_right_sector_14
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_15:
+        name: external_tire_temp_front_right_sector_15
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_front_right_sector_16:
+        name: external_tire_temp_front_right_sector_16
+        id: 1
+        human_readable_name: "external_tire_temp_front_right_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_1:
+        name: external_tire_temp_rear_left_sector_1
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_2:
+        name: external_tire_temp_rear_left_sector_2
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_3:
+        name: external_tire_temp_rear_left_sector_3
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_4:
+        name: external_tire_temp_rear_left_sector_4
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_5:
+        name: external_tire_temp_rear_left_sector_5
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_6:
+        name: external_tire_temp_rear_left_sector_6
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_7:
+        name: external_tire_temp_rear_left_sector_7
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_8:
+        name: external_tire_temp_rear_left_sector_8
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_9:
+        name: external_tire_temp_rear_left_sector_9
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_10:
+        name: external_tire_temp_rear_left_sector_10
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_11:
+        name: external_tire_temp_rear_left_sector_11
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_12:
+        name: external_tire_temp_rear_left_sector_12
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_13:
+        name: external_tire_temp_rear_left_sector_13
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_14:
+        name: external_tire_temp_rear_left_sector_14
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_15:
+        name: external_tire_temp_rear_left_sector_15
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_left_sector_16:
+        name: external_tire_temp_rear_left_sector_16
+        id: 1
+        human_readable_name: "external_tire_temp_rear_left_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_1:
+        name: external_tire_temp_rear_right_sector_1
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_2:
+        name: external_tire_temp_rear_right_sector_2
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_3:
+        name: external_tire_temp_rear_right_sector_3
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_4:
+        name: external_tire_temp_rear_right_sector_4
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_5:
+        name: external_tire_temp_rear_right_sector_5
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_6:
+        name: external_tire_temp_rear_right_sector_6
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_7:
+        name: external_tire_temp_rear_right_sector_7
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_8:
+        name: external_tire_temp_rear_right_sector_8
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_9:
+        name: external_tire_temp_rear_right_sector_9
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_10:
+        name: external_tire_temp_rear_right_sector_10
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_11:
+        name: external_tire_temp_rear_right_sector_11
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_12:
+        name: external_tire_temp_rear_right_sector_12
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_13:
+        name: external_tire_temp_rear_right_sector_13
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_14:
+        name: external_tire_temp_rear_right_sector_14
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_15:
+        name: external_tire_temp_rear_right_sector_15
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    external_tire_temp_rear_right_sector_16:
+        name: external_tire_temp_rear_right_sector_16
+        id: 1
+        human_readable_name: "external_tire_temp_rear_right_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 100
+        producer: ACM
+        priority: 0
+
+    shock_position_front_left:
+        name: shock_position_front_left
+        id: 1
+        human_readable_name: "shock_position_front_left"
         unit: "mm"
-        type: uint16_t
-        bytes: 2
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
         frequency: 500
-        producer: DAM
+        producer: ACM
         priority: 0
 
-    shock_pot_front_right:
-        name: shock_pot_front_right
-        id: 12
-        human_readable_name: "Front Right Shock Pot"
+    shock_position_front_right:
+        name: shock_position_front_left
+        id: 1
+        human_readable_name: "shock_position_front_left"
         unit: "mm"
-        type: uint16_t
-        bytes: 2
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
         frequency: 500
-        producer: DAM
+        producer: ACM
         priority: 0
 
-    shock_pot_rear_left:
-        name: shock_pot_rear_left
-        id: 13
-        human_readable_name: "Rear Left Shock Pot"
+    shock_position_rear_left:
+        name: shock_position_front_left
+        id: 1
+        human_readable_name: "shock_position_front_left"
         unit: "mm"
-        type: uint16_t
-        bytes: 2
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
         frequency: 500
-        producer: DAM
+        producer: ACM
         priority: 0
 
-    shock_pot_rear_right:
-        name: shock_pot_rear_right
-        id: 14
-        human_readable_name: "Rear Right Shock Pot"
+    shock_position_rear_right:
+        name: shock_position_front_left
+        id: 1
+        human_readable_name: "shock_position_front_left"
         unit: "mm"
-        type: uint16_t
-        bytes: 2
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
         multiplier: 1
         divisor: 1
         offset: 0
         frequency: 500
-        producer: DAM
+        producer: ACM
+        priority: 0
+
+    firewall_temp:
+        name: firewall_temp
+        id: 1
+        human_readable_name: "firewall_temp"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    water_flowrate_main_circuit:
+        name: water_flowrate_main_circuit
+        id: 1
+        human_readable_name: "water_flowrate_main_circuit"
+        unit: "l/min"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 5
+        producer: ACM
+        priority: 0
+
+    steering_angular_velocity:
+        name: steering_angular_velocity
+        id: 1
+        human_readable_name: "steering_angular_velocity"
+        unit: "degrees/s"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+    
+    internal_tire_temp_front_left_sector_1:
+        name: internal_tire_temp_front_left_sector_1
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_2:
+        name: internal_tire_temp_front_left_sector_2
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_3:
+        name: internal_tire_temp_front_left_sector_3
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_4:
+        name: internal_tire_temp_front_left_sector_4
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_5:
+        name: internal_tire_temp_front_left_sector_5
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_6:
+        name: internal_tire_temp_front_left_sector_6
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_7:
+        name: internal_tire_temp_front_left_sector_7
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_8:
+        name: internal_tire_temp_front_left_sector_8
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_9:
+        name: internal_tire_temp_front_left_sector_9
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_10:
+        name: internal_tire_temp_front_left_sector_10
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_11:
+        name: internal_tire_temp_front_left_sector_11
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_12:
+        name: internal_tire_temp_front_left_sector_12
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_13:
+        name: internal_tire_temp_front_left_sector_13
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_14:
+        name: internal_tire_temp_front_left_sector_14
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_15:
+        name: internal_tire_temp_front_left_sector_15
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_left_sector_16:
+        name: internal_tire_temp_front_left_sector_16
+        id: 1
+        human_readable_name: "internal_tire_temp_front_left_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_1:
+        name: internal_tire_temp_front_right_sector_1
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_2:
+        name: internal_tire_temp_front_right_sector_2
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_3:
+        name: internal_tire_temp_front_right_sector_3
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_4:
+        name: internal_tire_temp_front_right_sector_4
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_5:
+        name: internal_tire_temp_front_right_sector_5
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_6:
+        name: internal_tire_temp_front_right_sector_6
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_7:
+        name: internal_tire_temp_front_right_sector_7
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_8:
+        name: internal_tire_temp_front_right_sector_8
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_9:
+        name: internal_tire_temp_front_right_sector_9
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_10:
+        name: internal_tire_temp_front_right_sector_10
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_11:
+        name: internal_tire_temp_front_right_sector_11
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_12:
+        name: internal_tire_temp_front_right_sector_12
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_13:
+        name: internal_tire_temp_front_right_sector_13
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_14:
+        name: internal_tire_temp_front_right_sector_14
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_15:
+        name: internal_tire_temp_front_right_sector_15
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_front_right_sector_16:
+        name: internal_tire_temp_front_right_sector_16
+        id: 1
+        human_readable_name: "internal_tire_temp_front_right_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_1:
+        name: internal_tire_temp_rear_left_sector_1
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_2:
+        name: internal_tire_temp_rear_left_sector_2
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_3:
+        name: internal_tire_temp_rear_left_sector_3
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_4:
+        name: internal_tire_temp_rear_left_sector_4
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_5:
+        name: internal_tire_temp_rear_left_sector_5
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_6:
+        name: internal_tire_temp_rear_left_sector_6
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_7:
+        name: internal_tire_temp_rear_left_sector_7
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_8:
+        name: internal_tire_temp_rear_left_sector_8
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_9:
+        name: internal_tire_temp_rear_left_sector_9
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_10:
+        name: internal_tire_temp_rear_left_sector_10
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_11:
+        name: internal_tire_temp_rear_left_sector_11
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_12:
+        name: internal_tire_temp_rear_left_sector_12
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_13:
+        name: internal_tire_temp_rear_left_sector_13
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_14:
+        name: internal_tire_temp_rear_left_sector_14
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_15:
+        name: internal_tire_temp_rear_left_sector_15
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_left_sector_16:
+        name: internal_tire_temp_rear_left_sector_16
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_left_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_1:
+        name: internal_tire_temp_rear_right_sector_1
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_2:
+        name: internal_tire_temp_rear_right_sector_2
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_3:
+        name: internal_tire_temp_rear_right_sector_3
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_4:
+        name: internal_tire_temp_rear_right_sector_4
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_5:
+        name: internal_tire_temp_rear_right_sector_5
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_5"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_6:
+        name: internal_tire_temp_rear_right_sector_6
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_6"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_7:
+        name: internal_tire_temp_rear_right_sector_7
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_7"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_8:
+        name: internal_tire_temp_rear_right_sector_8
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_8"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_9:
+        name: internal_tire_temp_rear_right_sector_9
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_9"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_10:
+        name: internal_tire_temp_rear_right_sector_10
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_10"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_11:
+        name: internal_tire_temp_rear_right_sector_11
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_11"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_12:
+        name: internal_tire_temp_rear_right_sector_12
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_12"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_13:
+        name: internal_tire_temp_rear_right_sector_13
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_13"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_14:
+        name: internal_tire_temp_rear_right_sector_14
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_14"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_15:
+        name: internal_tire_temp_rear_right_sector_15
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_15"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    internal_tire_temp_rear_right_sector_16:
+        name: internal_tire_temp_rear_right_sector_16
+        id: 1
+        human_readable_name: "internal_tire_temp_rear_right_sector_16"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_front_left_gauge:
+        name: tire_pressure_front_left_gauge
+        id: 1
+        human_readable_name: "tire_pressure_front_left_gauge"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_front_right_gauge:
+        name: tire_pressure_front_right_gauge
+        id: 1
+        human_readable_name: "tire_pressure_front_right_gauge"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_rear_left_gauge:
+        name: tire_pressure_rear_left_gauge
+        id: 1
+        human_readable_name: "tire_pressure_rear_left_gauge"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_rear_right_gauge:
+        name: tire_pressure_rear_right_gauge
+        id: 1
+        human_readable_name: "tire_pressure_rear_right_gauge"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_front_left_absolute:
+        name: tire_pressure_front_left_absolute
+        id: 1
+        human_readable_name: "tire_pressure_front_left_absolute"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_front_right_absolute:
+        name: tire_pressure_front_right_absolute
+        id: 1
+        human_readable_name: "tire_pressure_front_right_absolute"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_rear_left_absolute:
+        name: tire_pressure_rear_left_absolute
+        id: 1
+        human_readable_name: "tire_pressure_rear_left_absolute"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_rear_right_absolute:
+        name: tire_pressure_rear_right_absolute
+        id: 1
+        human_readable_name: "tire_pressure_rear_right_absolute"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_battery_voltage_front_left:
+        name: tire_pressure_sensor_battery_voltage_front_left
+        id: 1
+        human_readable_name: "tire_pressure_sensor_battery_voltage_front_left"
+        unit: "V"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_battery_voltage_front_right:
+        name: tire_pressure_sensor_battery_voltage_front_right
+        id: 1
+        human_readable_name: "tire_pressure_sensor_battery_voltage_front_right"
+        unit: "V"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_battery_voltage_rear_left:
+        name: tire_pressure_sensor_battery_voltage_rear_left
+        id: 1
+        human_readable_name: "tire_pressure_sensor_battery_voltage_rear_left"
+        unit: "V"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_battery_voltage_rear_right:
+        name: tire_pressure_sensor_battery_voltage_rear_right
+        id: 1
+        human_readable_name: "tire_pressure_sensor_battery_voltage_rear_right"
+        unit: "V"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_temperature_front_left:
+        name: tire_pressure_sensor_temperature_front_left
+        id: 1
+        human_readable_name: "tire_pressure_sensor_temperature_front_left"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_temperature_front_right:
+        name: tire_pressure_sensor_temperature_front_right
+        id: 1
+        human_readable_name: "tire_pressure_sensor_temperature_front_right"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_temperature_rear_left:
+        name: tire_pressure_sensor_temperature_rear_left
+        id: 1
+        human_readable_name: "tire_pressure_sensor_temperature_rear_left"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    tire_pressure_sensor_temperature_rear_right:
+        name: tire_pressure_sensor_temperature_rear_right
+        id: 1
+        human_readable_name: "tire_pressure_sensor_temperature_rear_right"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 1
+        producer: ACM
+        priority: 0
+
+    water_flowrate_oil_cooler_circuit:
+        name: water_flowrate_oil_cooler_circuit
+        id: 1
+        human_readable_name: "water_flowrate_oil_cooler_circuit"
+        unit: "l/min"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 5
+        producer: ACM
+        priority: 0
+
+    oil_cooler_pressure_inlet:
+        name: oil_cooler_pressure_inlet
+        id: 1
+        human_readable_name: "oil_cooler_pressure_inlet"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    oil_cooler_pressure_outlet:
+        name: oil_cooler_pressure_outlet
+        id: 1
+        human_readable_name: "oil_cooler_pressure_outlet"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    oil_cooler_water_temperature_inlet:
+        name: oil_cooler_water_temperature_inlet
+        id: 1
+        human_readable_name: "oil_cooler_water_temperature_inlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    oil_cooler_water_temperature_outlet:
+        name: oil_cooler_water_temperature_outlet
+        id: 1
+        human_readable_name: "oil_cooler_water_temperature_outlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    radiator_left_aerodynamic_pressure_drop:
+        name: radiator_left_aerodynamic_pressure_drop
+        id: 1
+        human_readable_name: "radiator_left_aerodynamic_pressure_drop"
+        unit: "pa"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    radiator_right_aerodynamic_pressure_drop:
+        name: radiator_right_aerodynamic_pressure_drop
+        id: 1
+        human_readable_name: "radiator_right_aerodynamic_pressure_drop"
+        unit: "pa"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    ride_height_front:
+        name: ride_height_front
+        id: 1
+        human_readable_name: "ride_height_front"
+        unit: "mm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    ride_height_rear:
+        name: ride_height_rear
+        id: 1
+        human_readable_name: "ride_height_rear"
+        unit: "mm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    steering_angle:
+        name: steering_angule
+        id: 1
+        human_readable_name: "steering_angule"
+        unit: "degrees"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_pressure_inlet:
+        name: radiator_left_water_pressure_inlet
+        id: 1
+        human_readable_name: "radiator_left_water_pressure_inlet"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_pressure_outlet:
+        name: radiator_left_water_pressure_outlet
+        id: 1
+        human_readable_name: "radiator_left_water_pressure_outlet"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_temperature_inlet:
+        name: radiator_left_water_temperature_inlet
+        id: 1
+        human_readable_name: "radiator_left_water_temperature_inlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    radiator_left_water_temperature_outlet:
+        name: radiator_left_water_temperature_outlet
+        id: 1
+        human_readable_name: "radiator_left_water_temperature_outlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    accelerator_pedal_position:
+        name: accelerator_pedal_position
+        id: 1
+        human_readable_name: "accelerator_pedal_position"
+        unit: "%"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 20
+        producer: ACM
+        priority: 0
+
+    engine_block_water_temperature:
+        name: engine_block_water_temperature
+        id: 1
+        human_readable_name: "engine_block_water_temperature"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_pressure:
+        name: exhaust_pressure
+        id: 1
+        human_readable_name: "exhaust_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    fuel_pressure:
+        name: fuel_pressure
+        id: 1
+        human_readable_name: "fuel_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    manifold_air_pressure:
+        name: manifold_air_pressure
+        id: 1
+        human_readable_name: "manifold_air_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    manifold_air_temperature:
+        name: manifold_air_temperature
+        id: 1
+        human_readable_name: "manifold_air_temperature"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    oil_pressure:
+        name: oil_pressure
+        id: 1
+        human_readable_name: "oil_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    oil_temperature:
+        name: oil_temperature
+        id: 1
+        human_readable_name: "oil_temperature"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    throttle_position:
+        name: throttle_position
+        id: 1
+        human_readable_name: "throttle_position"
+        unit: "%"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    wheel_speed_front_left:
+        name: wheel_speed_front_left
+        id: 1
+        human_readable_name: "wheel_speed_front_left"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    wheel_speed_front_right:
+        name: wheel_speed_front_right
+        id: 1
+        human_readable_name: "wheel_speed_front_right"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    wheel_speed_rear_left:
+        name: wheel_speed_rear_left
+        id: 1
+        human_readable_name: "wheel_speed_rear_left"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    wheel_speed_rear_right:
+        name: wheel_speed_rear_right
+        id: 1
+        human_readable_name: "wheel_speed_rear_right"
+        unit: "km/h"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_outlet:
+        name: exhaust_temp_outlet
+        id: 1
+        human_readable_name: "exhaust_temp_outlet"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_1:
+        name: exhaust_temp_cylinder_1
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_1"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_2:
+        name: exhaust_temp_cylinder_2
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_2"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_3:
+        name: exhaust_temp_cylinder_3
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_3"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    exhaust_temp_cylinder_4:
+        name: exhaust_temp_cylinder_4
+        id: 1
+        human_readable_name: "exhaust_temp_cylinder_4"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
+        priority: 0
+
+    lambda_outlet:
+        name: lambda_outlet
+        id: 1
+        human_readable_name: "lambda_outlet"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_1:
+        name: lambda_cylinder_1
+        id: 1
+        human_readable_name: "lambda_cylinder_1"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_2:
+        name: lambda_cylinder_2
+        id: 1
+        human_readable_name: "lambda_cylinder_2"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_3:
+        name: lambda_cylinder_3
+        id: 1
+        human_readable_name: "lambda_cylinder_3"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    lambda_cylinder_4:
+        name: lambda_cylinder_4
+        id: 1
+        human_readable_name: "lambda_cylinder_4"
+        unit: "la"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    brake_overtravel:
+        name: brake_overtravel
+        id: 1
+        human_readable_name: "brake_overtravel"
+        unit: ""
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    clutch_linkage_position:
+        name: clutch_linkage_position
+        id: 1
+        human_readable_name: "clutch_linkage_position"
+        unit: "mm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    transmission_rpm:
+        name: transmission_rpm
+        id: 1
+        human_readable_name: "transmission_rpm"
+        unit: "rpm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    neutral_switch:
+        name: neutral_switch
+        id: 1
+        human_readable_name: "neutral_switch"
+        unit: ""
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    paddle_shifting_tank_pressure:
+        name: paddle_shifting_tank_pressure
+        id: 1
+        human_readable_name: "paddle_shifting_tank_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    paddle_shifting_line_pressure:
+        name: paddle_shifting_line_pressure
+        id: 1
+        human_readable_name: "paddle_shifting_line_pressure"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 2
+        producer: ACM
+        priority: 0
+
+    shift_linkage_position:
+        name: shift_linkage_position
+        id: 1
+        human_readable_name: "shift_linkage_position"
+        unit: "mm"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    shift_drum_position:
+        name: shift_drum_position
+        id: 1
+        human_readable_name: "shift_drum_position"
+        unit: "degrees"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 50
+        producer: ACM
+        priority: 0
+
+    ambient_air_pressure_engine_bay:
+        name: ambient_pressure_engine_bay
+        id: 1
+        human_readable_name: "ambient_pressure_engine_bay"
+        unit: "psi"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: ACM
+        priority: 0
+
+    ambient_air_temperature_engine_bay:
+        name: ambient_temperature_engine_bay
+        id: 1
+        human_readable_name: "ambient_temperature_engine_bay"
+        unit: "C"
+        type: float
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 3
+        producer: ACM
         priority: 0
 
 modules:
     ACM:
         name: ACM
         id: 1
-        busses: 
+        busses:
             - bus_0
         human_readable_name: "Aerodynamic Control Module"
         parameters_produced:
+            - ambient_air_pressure_front
+            - ambient_air_temperature_front
             - airspeed_front
             - airspeed_rear
-            - drs_button_state
-        parameters_consumed:
-            - lateral_acceleration
-            - longitudinal_acceleration
-            - steering_angle
             - yaw_rate
             - roll_rate
-
-    PDM:
-        name: PDM
-        id: 2
-        busses: 
-            - bus_0
-        human_readable_name: "Power Distribution Module"
-        parameters_produced:
-            - batt_volts
+            - longitudinal_acceleration
+            - lateral_acceleration
+            - vertical_acceleration
+            - brake_fluid_temp_front_left
+            - brake_fluid_temp_front_right
+            - brake_fluid_temp_rear_left
+            - brake_fluid_temp_rear_right
+            - brake_pressure_front
+            - brake_pressure_rear
+            - brake_pad_temp_front_left
+            - brake_pad_temp_front_right
+            - brake_pad_temp_rear_left
+            - brake_pad_temp_rear_right
+            - brake_rotor_temp_front_left_sector_1
+            - brake_rotor_temp_front_left_sector_2
+            - brake_rotor_temp_front_left_sector_3
+            - brake_rotor_temp_front_left_sector_4
+            - brake_rotor_temp_front_right_sector_1
+            - brake_rotor_temp_front_right_sector_2
+            - brake_rotor_temp_front_right_sector_3
+            - brake_rotor_temp_front_right_sector_4
+            - brake_rotor_temp_rear_left_sector_1
+            - brake_rotor_temp_rear_left_sector_2
+            - brake_rotor_temp_rear_left_sector_3
+            - brake_rotor_temp_rear_left_sector_4
+            - brake_rotor_temp_rear_right_sector_1
+            - brake_rotor_temp_rear_right_sector_2
+            - brake_rotor_temp_rear_right_sector_3
+            - brake_rotor_temp_rear_right_sector_4
+            - chassis_slip_angle
+            - external_tire_temp_front_left_sector_1
+            - external_tire_temp_front_left_sector_2
+            - external_tire_temp_front_left_sector_3
+            - external_tire_temp_front_left_sector_4
+            - external_tire_temp_front_left_sector_5
+            - external_tire_temp_front_left_sector_6
+            - external_tire_temp_front_left_sector_7
+            - external_tire_temp_front_left_sector_8
+            - external_tire_temp_front_left_sector_9
+            - external_tire_temp_front_left_sector_10
+            - external_tire_temp_front_left_sector_11
+            - external_tire_temp_front_left_sector_12
+            - external_tire_temp_front_left_sector_13
+            - external_tire_temp_front_left_sector_14
+            - external_tire_temp_front_left_sector_15
+            - external_tire_temp_front_left_sector_16
+            - external_tire_temp_front_right_sector_1
+            - external_tire_temp_front_right_sector_2
+            - external_tire_temp_front_right_sector_3
+            - external_tire_temp_front_right_sector_4
+            - external_tire_temp_front_right_sector_5
+            - external_tire_temp_front_right_sector_6
+            - external_tire_temp_front_right_sector_7
+            - external_tire_temp_front_right_sector_8
+            - external_tire_temp_front_right_sector_9
+            - external_tire_temp_front_right_sector_10
+            - external_tire_temp_front_right_sector_11
+            - external_tire_temp_front_right_sector_12
+            - external_tire_temp_front_right_sector_13
+            - external_tire_temp_front_right_sector_14
+            - external_tire_temp_front_right_sector_15
+            - external_tire_temp_front_right_sector_16
+            - external_tire_temp_rear_left_sector_1
+            - external_tire_temp_rear_left_sector_2
+            - external_tire_temp_rear_left_sector_3
+            - external_tire_temp_rear_left_sector_4
+            - external_tire_temp_rear_left_sector_5
+            - external_tire_temp_rear_left_sector_6
+            - external_tire_temp_rear_left_sector_7
+            - external_tire_temp_rear_left_sector_8
+            - external_tire_temp_rear_left_sector_9
+            - external_tire_temp_rear_left_sector_10
+            - external_tire_temp_rear_left_sector_11
+            - external_tire_temp_rear_left_sector_12
+            - external_tire_temp_rear_left_sector_13
+            - external_tire_temp_rear_left_sector_14
+            - external_tire_temp_rear_left_sector_15
+            - external_tire_temp_rear_left_sector_16
+            - external_tire_temp_rear_right_sector_1
+            - external_tire_temp_rear_right_sector_2
+            - external_tire_temp_rear_right_sector_3
+            - external_tire_temp_rear_right_sector_4
+            - external_tire_temp_rear_right_sector_5
+            - external_tire_temp_rear_right_sector_6
+            - external_tire_temp_rear_right_sector_7
+            - external_tire_temp_rear_right_sector_8
+            - external_tire_temp_rear_right_sector_9
+            - external_tire_temp_rear_right_sector_10
+            - external_tire_temp_rear_right_sector_11
+            - external_tire_temp_rear_right_sector_12
+            - external_tire_temp_rear_right_sector_13
+            - external_tire_temp_rear_right_sector_14
+            - external_tire_temp_rear_right_sector_15
+            - external_tire_temp_rear_right_sector_16
+            - shock_position_front_left
+            - shock_position_front_right
+            - shock_position_rear_left
+            - shock_position_rear_right
+            - firewall_temp
+            - water_flowrate_main_circuit
+            - steering_angular_velocity
+            - internal_tire_temp_front_left_sector_1
+            - internal_tire_temp_front_left_sector_2
+            - internal_tire_temp_front_left_sector_3
+            - internal_tire_temp_front_left_sector_4
+            - internal_tire_temp_front_left_sector_5
+            - internal_tire_temp_front_left_sector_6
+            - internal_tire_temp_front_left_sector_7
+            - internal_tire_temp_front_left_sector_8
+            - internal_tire_temp_front_left_sector_9
+            - internal_tire_temp_front_left_sector_10
+            - internal_tire_temp_front_left_sector_11
+            - internal_tire_temp_front_left_sector_12
+            - internal_tire_temp_front_left_sector_13
+            - internal_tire_temp_front_left_sector_14
+            - internal_tire_temp_front_left_sector_15
+            - internal_tire_temp_front_left_sector_16
+            - internal_tire_temp_front_right_sector_1
+            - internal_tire_temp_front_right_sector_2
+            - internal_tire_temp_front_right_sector_3
+            - internal_tire_temp_front_right_sector_4
+            - internal_tire_temp_front_right_sector_5
+            - internal_tire_temp_front_right_sector_6
+            - internal_tire_temp_front_right_sector_7
+            - internal_tire_temp_front_right_sector_8
+            - internal_tire_temp_front_right_sector_9
+            - internal_tire_temp_front_right_sector_10
+            - internal_tire_temp_front_right_sector_11
+            - internal_tire_temp_front_right_sector_12
+            - internal_tire_temp_front_right_sector_13
+            - internal_tire_temp_front_right_sector_14
+            - internal_tire_temp_front_right_sector_15
+            - internal_tire_temp_front_right_sector_16
+            - internal_tire_temp_rear_left_sector_1
+            - internal_tire_temp_rear_left_sector_2
+            - internal_tire_temp_rear_left_sector_3
+            - internal_tire_temp_rear_left_sector_4
+            - internal_tire_temp_rear_left_sector_5
+            - internal_tire_temp_rear_left_sector_6
+            - internal_tire_temp_rear_left_sector_7
+            - internal_tire_temp_rear_left_sector_8
+            - internal_tire_temp_rear_left_sector_9
+            - internal_tire_temp_rear_left_sector_10
+            - internal_tire_temp_rear_left_sector_11
+            - internal_tire_temp_rear_left_sector_12
+            - internal_tire_temp_rear_left_sector_13
+            - internal_tire_temp_rear_left_sector_14
+            - internal_tire_temp_rear_left_sector_15
+            - internal_tire_temp_rear_left_sector_16
+            - internal_tire_temp_rear_right_sector_1
+            - internal_tire_temp_rear_right_sector_2
+            - internal_tire_temp_rear_right_sector_3
+            - internal_tire_temp_rear_right_sector_4
+            - internal_tire_temp_rear_right_sector_5
+            - internal_tire_temp_rear_right_sector_6
+            - internal_tire_temp_rear_right_sector_7
+            - internal_tire_temp_rear_right_sector_8
+            - internal_tire_temp_rear_right_sector_9
+            - internal_tire_temp_rear_right_sector_10
+            - internal_tire_temp_rear_right_sector_11
+            - internal_tire_temp_rear_right_sector_12
+            - internal_tire_temp_rear_right_sector_13
+            - internal_tire_temp_rear_right_sector_14
+            - internal_tire_temp_rear_right_sector_15
+            - internal_tire_temp_rear_right_sector_16
+            - tire_pressure_front_left_gauge
+            - tire_pressure_front_right_gauge
+            - tire_pressure_rear_left_gauge
+            - tire_pressure_rear_right_gauge
+            - tire_pressure_front_left_absolute
+            - tire_pressure_front_right_absolute
+            - tire_pressure_rear_left_absolute
+            - tire_pressure_rear_right_absolute
+            - tire_pressure_sensor_battery_voltage_front_left
+            - tire_pressure_sensor_battery_voltage_front_right
+            - tire_pressure_sensor_battery_voltage_rear_left
+            - tire_pressure_sensor_battery_voltage_rear_right
+            - tire_pressure_sensor_temperature_front_left
+            - tire_pressure_sensor_temperature_front_right
+            - tire_pressure_sensor_temperature_rear_left
+            - tire_pressure_sensor_temperature_rear_right
+            - water_flowrate_oil_cooler_circuit
+            - oil_cooler_pressure_inlet
+            - oil_cooler_pressure_outlet
+            - oil_cooler_water_temperature_inlet
+            - oil_cooler_water_temperature_outlet
+            - radiator_left_aerodynamic_pressure_drop
+            - radiator_right_aerodynamic_pressure_drop
+            - ride_height_front
+            - ride_height_rear
+            - steering_angle
+            - radiator_left_water_pressure_inlet
+            - radiator_left_water_pressure_outlet
+            - radiator_left_water_temperature_inlet
+            - radiator_left_water_temperature_outlet
+            - accelerator_pedal_position
+            - engine_block_water_temperature
+            - exhaust_pressure
+            - fuel_pressure
+            - manifold_air_pressure
+            - manifold_air_temperature
+            - oil_pressure
+            - oil_temperature
+            - throttle_position
+            - wheel_speed_front_left
+            - wheel_speed_front_right
+            - wheel_speed_rear_left
+            - wheel_speed_rear_right
+            - exhaust_temp_outlet
+            - exhaust_temp_cylinder_1
+            - exhaust_temp_cylinder_2
+            - exhaust_temp_cylinder_3
+            - exhaust_temp_cylinder_4
+            - lambda_outlet
+            - lambda_cylinder_1
+            - lambda_cylinder_2
+            - lambda_cylinder_3
+            - lambda_cylinder_4
+            - brake_overtravel
+            - clutch_linkage_position
+            - transmission_rpm
+            - neutral_switch
+            - paddle_shifting_tank_pressure
+            - paddle_shifting_line_pressure
+            - shift_linkage_position
+            - shift_drum_position
+            - ambient_air_pressure_engine_bay
+            - ambient_air_temperature_engine_bay
         parameters_consumed:
-            - roll_rate
-
-    TCM:
-        name: TCM
-        id: 3
-        busses: 
-            - bus_0
-        human_readable_name: "Transmission Control Module"
-        parameters_produced:
-            - upshift_button_state
-            - wheelspeed_front_left
-        parameters_consumed:
-            - wheelspeed_front_right
-            - shock_pot_front_left
-            - shock_pot_front_right
-            - shock_pot_rear_left
-            - shock_pot_rear_right
 
     DAM:
         name: DAM
-        id: 4
-        busses: 
+        id: 2
+        busses:
             - bus_0
-        human_readable_name: "Data Acquisition Module"
-        parameters_produced:
-            - wheelspeed_front_right
-            - roll_rate
-            - lateral_acceleration
-            - longitudinal_acceleration
-            - yaw_rate
-            - steering_angle
-            - shock_pot_front_left
-            - shock_pot_front_right
-            - shock_pot_rear_left
-            - shock_pot_rear_right
+        human_readable_name: "Dummy Data Acquisition"
         parameters_consumed:
-            - wheelspeed_front_left
+            - ambient_air_pressure_front
+            - ambient_air_temperature_front
+            - airspeed_front
+            - airspeed_rear
+            - yaw_rate
+            - roll_rate
+            - longitudinal_acceleration
+            - lateral_acceleration
+            - vertical_acceleration
+            - brake_fluid_temp_front_left
+            - brake_fluid_temp_front_right
+            - brake_fluid_temp_rear_left
+            - brake_fluid_temp_rear_right
+            - brake_pressure_front
+            - brake_pressure_rear
+            - brake_pad_temp_front_left
+            - brake_pad_temp_front_right
+            - brake_pad_temp_rear_left
+            - brake_pad_temp_rear_right
+            - brake_rotor_temp_front_left_sector_1
+            - brake_rotor_temp_front_left_sector_2
+            - brake_rotor_temp_front_left_sector_3
+            - brake_rotor_temp_front_left_sector_4
+            - brake_rotor_temp_front_right_sector_1
+            - brake_rotor_temp_front_right_sector_2
+            - brake_rotor_temp_front_right_sector_3
+            - brake_rotor_temp_front_right_sector_4
+            - brake_rotor_temp_rear_left_sector_1
+            - brake_rotor_temp_rear_left_sector_2
+            - brake_rotor_temp_rear_left_sector_3
+            - brake_rotor_temp_rear_left_sector_4
+            - brake_rotor_temp_rear_right_sector_1
+            - brake_rotor_temp_rear_right_sector_2
+            - brake_rotor_temp_rear_right_sector_3
+            - brake_rotor_temp_rear_right_sector_4
+            - chassis_slip_angle
+            - external_tire_temp_front_left_sector_1
+            - external_tire_temp_front_left_sector_2
+            - external_tire_temp_front_left_sector_3
+            - external_tire_temp_front_left_sector_4
+            - external_tire_temp_front_left_sector_5
+            - external_tire_temp_front_left_sector_6
+            - external_tire_temp_front_left_sector_7
+            - external_tire_temp_front_left_sector_8
+            - external_tire_temp_front_left_sector_9
+            - external_tire_temp_front_left_sector_10
+            - external_tire_temp_front_left_sector_11
+            - external_tire_temp_front_left_sector_12
+            - external_tire_temp_front_left_sector_13
+            - external_tire_temp_front_left_sector_14
+            - external_tire_temp_front_left_sector_15
+            - external_tire_temp_front_left_sector_16
+            - external_tire_temp_front_right_sector_1
+            - external_tire_temp_front_right_sector_2
+            - external_tire_temp_front_right_sector_3
+            - external_tire_temp_front_right_sector_4
+            - external_tire_temp_front_right_sector_5
+            - external_tire_temp_front_right_sector_6
+            - external_tire_temp_front_right_sector_7
+            - external_tire_temp_front_right_sector_8
+            - external_tire_temp_front_right_sector_9
+            - external_tire_temp_front_right_sector_10
+            - external_tire_temp_front_right_sector_11
+            - external_tire_temp_front_right_sector_12
+            - external_tire_temp_front_right_sector_13
+            - external_tire_temp_front_right_sector_14
+            - external_tire_temp_front_right_sector_15
+            - external_tire_temp_front_right_sector_16
+            - external_tire_temp_rear_left_sector_1
+            - external_tire_temp_rear_left_sector_2
+            - external_tire_temp_rear_left_sector_3
+            - external_tire_temp_rear_left_sector_4
+            - external_tire_temp_rear_left_sector_5
+            - external_tire_temp_rear_left_sector_6
+            - external_tire_temp_rear_left_sector_7
+            - external_tire_temp_rear_left_sector_8
+            - external_tire_temp_rear_left_sector_9
+            - external_tire_temp_rear_left_sector_10
+            - external_tire_temp_rear_left_sector_11
+            - external_tire_temp_rear_left_sector_12
+            - external_tire_temp_rear_left_sector_13
+            - external_tire_temp_rear_left_sector_14
+            - external_tire_temp_rear_left_sector_15
+            - external_tire_temp_rear_left_sector_16
+            - external_tire_temp_rear_right_sector_1
+            - external_tire_temp_rear_right_sector_2
+            - external_tire_temp_rear_right_sector_3
+            - external_tire_temp_rear_right_sector_4
+            - external_tire_temp_rear_right_sector_5
+            - external_tire_temp_rear_right_sector_6
+            - external_tire_temp_rear_right_sector_7
+            - external_tire_temp_rear_right_sector_8
+            - external_tire_temp_rear_right_sector_9
+            - external_tire_temp_rear_right_sector_10
+            - external_tire_temp_rear_right_sector_11
+            - external_tire_temp_rear_right_sector_12
+            - external_tire_temp_rear_right_sector_13
+            - external_tire_temp_rear_right_sector_14
+            - external_tire_temp_rear_right_sector_15
+            - external_tire_temp_rear_right_sector_16
+            - shock_position_front_left
+            - shock_position_front_right
+            - shock_position_rear_left
+            - shock_position_rear_right
+            - firewall_temp
+            - water_flowrate_main_circuit
+            - steering_angular_velocity
+            - internal_tire_temp_front_left_sector_1
+            - internal_tire_temp_front_left_sector_2
+            - internal_tire_temp_front_left_sector_3
+            - internal_tire_temp_front_left_sector_4
+            - internal_tire_temp_front_left_sector_5
+            - internal_tire_temp_front_left_sector_6
+            - internal_tire_temp_front_left_sector_7
+            - internal_tire_temp_front_left_sector_8
+            - internal_tire_temp_front_left_sector_9
+            - internal_tire_temp_front_left_sector_10
+            - internal_tire_temp_front_left_sector_11
+            - internal_tire_temp_front_left_sector_12
+            - internal_tire_temp_front_left_sector_13
+            - internal_tire_temp_front_left_sector_14
+            - internal_tire_temp_front_left_sector_15
+            - internal_tire_temp_front_left_sector_16
+            - internal_tire_temp_front_right_sector_1
+            - internal_tire_temp_front_right_sector_2
+            - internal_tire_temp_front_right_sector_3
+            - internal_tire_temp_front_right_sector_4
+            - internal_tire_temp_front_right_sector_5
+            - internal_tire_temp_front_right_sector_6
+            - internal_tire_temp_front_right_sector_7
+            - internal_tire_temp_front_right_sector_8
+            - internal_tire_temp_front_right_sector_9
+            - internal_tire_temp_front_right_sector_10
+            - internal_tire_temp_front_right_sector_11
+            - internal_tire_temp_front_right_sector_12
+            - internal_tire_temp_front_right_sector_13
+            - internal_tire_temp_front_right_sector_14
+            - internal_tire_temp_front_right_sector_15
+            - internal_tire_temp_front_right_sector_16
+            - internal_tire_temp_rear_left_sector_1
+            - internal_tire_temp_rear_left_sector_2
+            - internal_tire_temp_rear_left_sector_3
+            - internal_tire_temp_rear_left_sector_4
+            - internal_tire_temp_rear_left_sector_5
+            - internal_tire_temp_rear_left_sector_6
+            - internal_tire_temp_rear_left_sector_7
+            - internal_tire_temp_rear_left_sector_8
+            - internal_tire_temp_rear_left_sector_9
+            - internal_tire_temp_rear_left_sector_10
+            - internal_tire_temp_rear_left_sector_11
+            - internal_tire_temp_rear_left_sector_12
+            - internal_tire_temp_rear_left_sector_13
+            - internal_tire_temp_rear_left_sector_14
+            - internal_tire_temp_rear_left_sector_15
+            - internal_tire_temp_rear_left_sector_16
+            - internal_tire_temp_rear_right_sector_1
+            - internal_tire_temp_rear_right_sector_2
+            - internal_tire_temp_rear_right_sector_3
+            - internal_tire_temp_rear_right_sector_4
+            - internal_tire_temp_rear_right_sector_5
+            - internal_tire_temp_rear_right_sector_6
+            - internal_tire_temp_rear_right_sector_7
+            - internal_tire_temp_rear_right_sector_8
+            - internal_tire_temp_rear_right_sector_9
+            - internal_tire_temp_rear_right_sector_10
+            - internal_tire_temp_rear_right_sector_11
+            - internal_tire_temp_rear_right_sector_12
+            - internal_tire_temp_rear_right_sector_13
+            - internal_tire_temp_rear_right_sector_14
+            - internal_tire_temp_rear_right_sector_15
+            - internal_tire_temp_rear_right_sector_16
+            - tire_pressure_front_left_gauge
+            - tire_pressure_front_right_gauge
+            - tire_pressure_rear_left_gauge
+            - tire_pressure_rear_right_gauge
+            - tire_pressure_front_left_absolute
+            - tire_pressure_front_right_absolute
+            - tire_pressure_rear_left_absolute
+            - tire_pressure_rear_right_absolute
+            - tire_pressure_sensor_battery_voltage_front_left
+            - tire_pressure_sensor_battery_voltage_front_right
+            - tire_pressure_sensor_battery_voltage_rear_left
+            - tire_pressure_sensor_battery_voltage_rear_right
+            - tire_pressure_sensor_temperature_front_left
+            - tire_pressure_sensor_temperature_front_right
+            - tire_pressure_sensor_temperature_rear_left
+            - tire_pressure_sensor_temperature_rear_right
+            - water_flowrate_oil_cooler_circuit
+            - oil_cooler_pressure_inlet
+            - oil_cooler_pressure_outlet
+            - oil_cooler_water_temperature_inlet
+            - oil_cooler_water_temperature_outlet
+            - radiator_left_aerodynamic_pressure_drop
+            - radiator_right_aerodynamic_pressure_drop
+            - ride_height_front
+            - ride_height_rear
+            - steering_angle
+            - radiator_left_water_pressure_inlet
+            - radiator_left_water_pressure_outlet
+            - radiator_left_water_temperature_inlet
+            - radiator_left_water_temperature_outlet
+            - accelerator_pedal_position
+            - engine_block_water_temperature
+            - exhaust_pressure
+            - fuel_pressure
+            - manifold_air_pressure
+            - manifold_air_temperature
+            - oil_pressure
+            - oil_temperature
+            - throttle_position
+            - wheel_speed_front_left
+            - wheel_speed_front_right
+            - wheel_speed_rear_left
+            - wheel_speed_rear_right
+            - exhaust_temp_outlet
+            - exhaust_temp_cylinder_1
+            - exhaust_temp_cylinder_2
+            - exhaust_temp_cylinder_3
+            - exhaust_temp_cylinder_4
+            - lambda_outlet
+            - lambda_cylinder_1
+            - lambda_cylinder_2
+            - lambda_cylinder_3
+            - lambda_cylinder_4
+            - brake_overtravel
+            - clutch_linkage_position
+            - transmission_rpm
+            - neutral_switch
+            - paddle_shifting_tank_pressure
+            - paddle_shifting_line_pressure
+            - shift_linkage_position
+            - shift_drum_position
+            - ambient_air_pressure_engine_bay
+            - ambient_air_temperature_engine_bay
+        parameters_produced:
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
