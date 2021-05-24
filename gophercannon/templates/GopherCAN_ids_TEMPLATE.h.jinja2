@@ -18,9 +18,8 @@ typedef enum
     {% for module in modules -%}
     {{ module.name }}_ID = {{ module.id }},
     {% endfor %}
+    NUM_OF_MODULES
 } MODULE_ID;
-
-#define NUM_OF_MODULES {{ modules|length + 1 }}
 
 
 // Parameter IDs:
@@ -30,21 +29,33 @@ typedef enum
     {% for parameter in parameters -%}
     {{ parameter.name.upper() }}_ID = {{ parameter.id }},
     {% endfor %}
-} GCAN_PARAM;
+    NUM_OF_PARAMETERS
+} GCAN_PARAM_ID;
 
-#define NUM_OF_PARAMETERS {{ parameters|length + 1 }}
 
-
-// TODO custom command IDs
+// custom command IDs
+typedef enum
+{
+    {% for command in commands -%}
+    {{ command.name.upper() }} = {{ command.id }},
+        // parameter 0: {{ command.param_0 }}
+        // parameter 1: {{ command.param_1 }}
+        // parameter 2: {{ command.param_2 }}
+        // parameter 3: {{ command.param_3 }}
+        // comment: {{ command.comment }}
+        
+    {% endfor %}
+    NUM_OF_COMMANDS
+} GCAN_COMMAND_ID;
 
 
 // Error IDs:
 {% for error in errors -%}
-#define {{ error.name.upper() }}_ID {{ error.id }},
+#define {{ error.name.upper() }} {{ error.id }}
 {% endfor %}
 
-
 #endif // GOPHERCAN_IDS_H
+
 
 // this is so this file can be included again when this part is needed
 #ifdef AUTOGEN_EXTERNS
@@ -55,7 +66,7 @@ typedef enum
 // have access
 CAN_COMMAND_STRUCT CAN_COMMAND;
 {% for parameter in parameters -%}
-extern {{ parameter.struct.upper() }} {{ parameter.name }},
+extern {{ parameter.struct.upper() }} {{ parameter.name }};
 {% endfor %}
 
 #endif // GOPHERCAN_IDS_H_P2
@@ -64,31 +75,3 @@ extern {{ parameter.struct.upper() }} {{ parameter.name }},
 
 // End of GopherCAN_ids.h
 
-
-// start of GopherCAN.c auto-gen
-
-// ******** BEGIN AUTO GENERATED ********
-
-// all of the global parameter structs
-CAN_COMMAND_STRUCT CAN_COMMAND;
-{% for parameter in parameters -%}
-extern {{ parameter.struct.upper() }} {{ parameter.name }},
-{% endfor %}
-
-// this is the struct that will be used to reference based on ID
-void* all_parameter_structs[NUM_OF_PARAMETERS] =
-{
-        &can_command,
-        {% for parameter in parameters -%}
-        &{{ parameter.name }},
-        {% endfor %}
-};
-
-
-// TODO parameter_data_types
-
-// TODO multiple busses defines
-
-// ******** END AUTO GENERATED ********
-
-// End of GopherCAN.c auto-gen

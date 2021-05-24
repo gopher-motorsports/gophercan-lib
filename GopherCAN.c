@@ -87,51 +87,55 @@ S32_CAN_STRUCT s32_tester;
 S64_CAN_STRUCT s64_tester;
 FLOAT_CAN_STRUCT float_tester;
 
+
 // this is the struct that will be used to reference based on ID
 void* all_parameter_structs[NUM_OF_PARAMETERS] =
 {
-	&can_command,    // ID 0
-	&rpm,    // ID 1
-	&fan_current,    // ID 2
-	&u8_tester,    // ID 3
-	&u16_tester,    // ID 4
-	&u32_tester,    // ID 5
-	&u64_tester,    // ID 6
-	&s8_tester,    // ID 7
-	&s16_tester,    // ID 8
-	&s32_tester,    // ID 9
-	&s64_tester,    // ID 10
-	&float_tester    // ID 11
+    &can_command,
+    &rpm,
+    &fan_current,
+    &u8_tester,
+    &u16_tester,
+    &u32_tester,
+    &u64_tester,
+    &s8_tester,
+    &s16_tester,
+    &s32_tester,
+    &s64_tester,
+    &float_tester
+
 };
 
 // this stores the data_type for each parameter, referenced by ID
 U8 parameter_data_types[NUM_OF_PARAMETERS] =
 {
-	COMMAND,
-	UNSIGNED16,
-	UNSIGNED8,
-	UNSIGNED8,
-	UNSIGNED16,
-	UNSIGNED32,
-	UNSIGNED64,
-	SIGNED8,
-	SIGNED16,
-	SIGNED32,
-	SIGNED64,
-	FLOATING
+    COMMAND,
+    UNSIGNED16,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED16,
+    UNSIGNED32,
+    UNSIGNED64,
+    SIGNED8,
+    SIGNED16,
+    SIGNED32,
+    SIGNED64,
+    FLOATING
+
 };
 
 // if there are multiple busses, this shows which bus they are on
 #ifdef MULTI_BUS
 U8 module_bus_number[NUM_OF_MODULES] =
 {
-	ALL_BUSSES,
-	GCAN0,
-	GCAN1,
-	GCAN0,
-	GCAN1,
-	GCAN1,
-	GCAN2
+    ALL_BUSSES,
+    GCAN0,
+    GCAN1,
+    GCAN0,
+    GCAN1,
+    GCAN1,
+    GCAN2
+
 };
 #endif // MULTI_BUS
 

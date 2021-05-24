@@ -84,9 +84,10 @@ with open(filename) as can_file:
     # Load network definition file
     raw_vehicle = yaml.full_load(can_file)
     vehicle = munch.Munch(raw_vehicle)
+    raw_busses = vehicle.busses
     modules = vehicle.modules
     parameters = vehicle.parameters
-    raw_busses = vehicle.busses
+    commands = vehicle.commands
     errors = vehicle.errors
 
     steady_usage = 0
@@ -106,8 +107,24 @@ with open(filename) as can_file:
             output = template.render(modules=modules.values(), 
                                     repo_hash=repo_hash,
                                     parameters=parameters.values(),
+                                    commands=commands.values(),
                                     errors=errors.values())
             filename = "GopherCAN_ids.h"
+            with open(os.path.join('outputs', filename), "w") as fh:
+                fh.write(output)
+                
+                
+        print("Generating common c file.")
+        filename = 'GopherCAN_AUTOGEN_TEMPLATE.c.jinja2'
+        with open(os.path.join('templates', filename)) as file_:
+            template = Template(file_.read())
+            
+            output = template.render(modules=modules.values(), 
+                                    repo_hash=repo_hash,
+                                    parameters=parameters.values(),
+                                    commands=commands.values(),
+                                    errors=errors.values())
+            filename = "GopherCAN_AUTOGEN.c"
             with open(os.path.join('outputs', filename), "w") as fh:
                 fh.write(output)
 

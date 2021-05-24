@@ -22,9 +22,8 @@ typedef enum
     ACM_ID = 5,
     DISPLAY_ID = 6,
     
+    NUM_OF_MODULES
 } MODULE_ID;
-
-#define NUM_OF_MODULES 7
 
 
 // Parameter IDs:
@@ -43,25 +42,92 @@ typedef enum
     S64_TESTER_ID = 10,
     FLOAT_TESTER_ID = 11,
     
-} GCAN_PARAM;
+    NUM_OF_PARAMETERS
+} GCAN_PARAM_ID;
 
-#define NUM_OF_PARAMETERS 12
 
-
-// TODO custom command IDs
+// custom command IDs
+typedef enum
+{
+    SET_LED_STATE = 0,
+        // parameter 0: LED state
+        // parameter 1: LED state (duplicate)
+        // parameter 2: LED state (duplicate)
+        // parameter 3: LED state (duplicate)
+        // comment: Only the first led_state is used, the rest are duplication for testing
+        
+    SET_RTC_TIME = 1,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    SET_RTC_DATE = 2,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    SEND_BUCKET_PARAMS = 3,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    SET_BUCKET_SIZE = 4,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    ADD_PARAM_TO_BUCKET = 5,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    ASSIGN_BUCKET_TO_FRQ = 6,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    BUCKET_OK = 7,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    REQUEST_BUCKET = 8,
+        // parameter 0: TODO
+        // parameter 1: TODO
+        // parameter 2: TODO
+        // parameter 3: TODO
+        // comment: TODO
+        
+    
+    NUM_OF_COMMANDS
+} GCAN_COMMAND_ID;
 
 
 // Error IDs:
-#define ID_NOT_FOUND_ID 0,
-#define COMMAND_ID_NOT_FOUND_ID 1,
-#define PARAM_NOT_ENABLED_ID 2,
-#define SIZE_ERROR_ID 3,
-#define DATATYPE_NOT_FOUND_ID 4,
-#define COMMAND_NOT_ENABLED_ID 5,
-
+#define ID_NOT_FOUND 0
+#define COMMAND_ID_NOT_FOUND 1
+#define PARAM_NOT_ENABLED 2
+#define SIZE_ERROR 3
+#define DATATYPE_NOT_FOUND 4
+#define COMMAND_NOT_ENABLED 5
 
 
 #endif // GOPHERCAN_IDS_H
+
 
 // this is so this file can be included again when this part is needed
 #ifdef AUTOGEN_EXTERNS
@@ -71,17 +137,17 @@ typedef enum
 // all of the global parameter struct externs so all files including GopherCAN.h
 // have access
 CAN_COMMAND_STRUCT CAN_COMMAND;
-extern U16_CAN_STRUCT rpm,
-extern U8_CAN_STRUCT fan_current,
-extern U8_CAN_STRUCT u8_tester,
-extern U16_CAN_STRUCT u16_tester,
-extern U32_CAN_STRUCT u32_tester,
-extern U64_CAN_STRUCT u64_tester,
-extern S8_CAN_STRUCT s8_tester,
-extern S16_CAN_STRUCT s16_tester,
-extern S32_CAN_STRUCT s32_tester,
-extern S64_CAN_STRUCT s64_tester,
-extern FLOAT_CAN_STRUCT float_tester,
+extern U16_CAN_STRUCT rpm;
+extern U8_CAN_STRUCT fan_current;
+extern U8_CAN_STRUCT u8_tester;
+extern U16_CAN_STRUCT u16_tester;
+extern U32_CAN_STRUCT u32_tester;
+extern U64_CAN_STRUCT u64_tester;
+extern S8_CAN_STRUCT s8_tester;
+extern S16_CAN_STRUCT s16_tester;
+extern S32_CAN_STRUCT s32_tester;
+extern S64_CAN_STRUCT s64_tester;
+extern FLOAT_CAN_STRUCT float_tester;
 
 
 #endif // GOPHERCAN_IDS_H_P2
@@ -89,50 +155,3 @@ extern FLOAT_CAN_STRUCT float_tester,
 
 
 // End of GopherCAN_ids.h
-
-
-// start of GopherCAN.c auto-gen
-
-// ******** BEGIN AUTO GENERATED ********
-
-// all of the global parameter structs
-CAN_COMMAND_STRUCT CAN_COMMAND;
-extern U16_CAN_STRUCT rpm,
-extern U8_CAN_STRUCT fan_current,
-extern U8_CAN_STRUCT u8_tester,
-extern U16_CAN_STRUCT u16_tester,
-extern U32_CAN_STRUCT u32_tester,
-extern U64_CAN_STRUCT u64_tester,
-extern S8_CAN_STRUCT s8_tester,
-extern S16_CAN_STRUCT s16_tester,
-extern S32_CAN_STRUCT s32_tester,
-extern S64_CAN_STRUCT s64_tester,
-extern FLOAT_CAN_STRUCT float_tester,
-
-
-// this is the struct that will be used to reference based on ID
-void* all_parameter_structs[NUM_OF_PARAMETERS] =
-{
-        &can_command,
-        &rpm,
-        &fan_current,
-        &u8_tester,
-        &u16_tester,
-        &u32_tester,
-        &u64_tester,
-        &s8_tester,
-        &s16_tester,
-        &s32_tester,
-        &s64_tester,
-        &float_tester,
-        
-};
-
-
-// TODO parameter_data_types
-
-// TODO multiple busses defines
-
-// ******** END AUTO GENERATED ********
-
-// End of GopherCAN.c auto-gen
