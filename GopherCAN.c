@@ -266,7 +266,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 	CAN_FilterTypeDef filterConfig;
 	U8 banknum = 0;
 
-	if (bx_type == SLAVE)
+	if (bx_type == BXTYPE_SLAVE)
 	{
 		banknum = SLAVE_FIRST_FILTER;
 	}
@@ -295,10 +295,16 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 
 	// Define the filter values based on this_module_id
 	// High and low id are the same because the id exclusively must be the module id
-	filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
+    filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
 	filt_id_high = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
 	filt_mask_low = DEST_MASK;
 	filt_mask_high = DEST_MASK;
+
+	// get the correct bits from the id and mask for each part of the ID.
+	filt_id_high = GET_ID_HIGH(filt_id_high);
+	filt_id_low = GET_ID_LOW(filt_id_low);
+	filt_mask_high = GET_ID_HIGH(filt_mask_high);
+    filt_mask_low = GET_ID_LOW(filt_mask_low);
 
 	// Set the the parameters on the filter struct (FIFO0)
 	filterConfig.FilterBank = banknum;                                // Modify bank 0 (of 13)
@@ -331,6 +337,12 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 	filt_id_high = ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
 	filt_mask_low = DEST_MASK;
 	filt_mask_high = DEST_MASK;
+
+	// get the correct bits from the id and mask for each part of the ID
+	filt_id_high = GET_ID_HIGH(filt_id_high);
+	filt_id_low = GET_ID_LOW(filt_id_low);
+	filt_mask_high = GET_ID_HIGH(filt_mask_high);
+	filt_mask_low = GET_ID_LOW(filt_mask_low);
 
 	// Set the the parameters on the filter struct (FIFO0)
 	filterConfig.FilterBank = banknum + 2;                            // Modify bank 2 (of 13)

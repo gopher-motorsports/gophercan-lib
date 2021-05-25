@@ -63,8 +63,8 @@ typedef enum
 // master or slave BxCAN type
 typedef enum
 {
-	MASTER = 0,
-	SLAVE = 1
+	BXTYPE_MASTER = 0,
+	BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
 
 
@@ -213,12 +213,15 @@ typedef enum
 
 
 // Macro functions to get different parts of an id from the U32
-#define GET_ID_PRIO(id) ((id & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
-#define GET_ID_DEST(id) ((id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
-#define GET_ID_SOURCE(id) ((id & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
-#define GET_ID_ERROR(id) ((id & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
-#define GET_ID_PARAM(id) ((id & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
+#define GET_ID_PRIO(id) (((id) & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
+#define GET_ID_DEST(id) (((id) & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
+#define GET_ID_SOURCE(id) (((id) & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
+#define GET_ID_ERROR(id) (((id) & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
+#define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
+// Macro function for dealing with the stupid BxCAN filter config
+#define GET_ID_HIGH(id) (((id) << 3) >> 16) & 0xffff
+#define GET_ID_LOW(id) (((id) << 3) & 0xffff) | CAN_ID_EXT
 
 // Multi-bus struct
 #ifdef MULTI_BUS

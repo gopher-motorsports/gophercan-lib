@@ -57,60 +57,60 @@ typedef enum
         // comment: Only the first led_state is used, the rest are duplication for testing
 
     SET_RTC_TIME = 1,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: hour
+        // parameter 1: minute
+        // parameter 2: second
+        // parameter 3: UNUSED
+        // comment: pass in the hours, minutes, and seconds to set the RTC time. This is in 24 hour format
 
     SET_RTC_DATE = 2,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: year
+        // parameter 1: month
+        // parameter 2: day
+        // parameter 3: weekday
+        // comment: pass in the year, month, date, and day of week to set the RTC date. Year is number of years since 1970. For weekday, mon = 1, teus = 2, ..., sun = 7
 
     SEND_BUCKET_PARAMS = 3,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: UNUSED
+        // parameter 1: UNUSED
+        // parameter 2: UNUSED
+        // parameter 3: UNUSED
+        // comment: Command to start the DLM-DAM initialization process
 
     SET_BUCKET_SIZE = 4,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: bucket ID
+        // parameter 1: number of parameters in that bucket
+        // parameter 2: UNUSED
+        // parameter 3: UNUSED
+        // comment: Sets the number of parameters in the bucket specified by the bucket ID
 
     ADD_PARAM_TO_BUCKET = 5,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: bucket ID
+        // parameter 1: parameter ID - most significan byte
+        // parameter 2: parameter ID - least significan byte
+        // parameter 3: UNUSED
+        // comment: Adds a specified parameter to the specified DLM bucket
 
     ASSIGN_BUCKET_TO_FRQ = 6,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: bucket ID
+        // parameter 1: MS between requests - most significant byte
+        // parameter 2: MS between requests - least significant byte
+        // parameter 3: UNUSED
+        // comment: Sets the wait time between requests of this bucket in milliseconds. A value of 0 will stop requesting this bucket
 
     BUCKET_OK = 7,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: bucket ID
+        // parameter 1: UNUSED
+        // parameter 2: UNUSED
+        // parameter 3: UNUSED
+        // comment: This command is sent when the bucket has the number of parameters it expects
 
     REQUEST_BUCKET = 8,
-        // parameter 0: TODO
-        // parameter 1: TODO
-        // parameter 2: TODO
-        // parameter 3: TODO
-        // comment: TODO
+        // parameter 0: bucket ID
+        // parameter 1: UNUSED
+        // parameter 2: UNUSED
+        // parameter 3: UNUSED
+        // comment: CAN command to send each parameter in the bucket
 
 
     NUM_OF_COMMANDS
