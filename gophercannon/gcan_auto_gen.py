@@ -115,7 +115,7 @@ with open(filename) as can_file:
                 
                 
         print("Generating common c file.")
-        filename = 'GopherCAN_AUTOGEN_TEMPLATE.c.jinja2'
+        filename = 'GopherCAN_ids_TEMPLATE.c.jinja2'
         with open(os.path.join('templates', filename)) as file_:
             template = Template(file_.read())
             
@@ -124,7 +124,7 @@ with open(filename) as can_file:
                                     parameters=parameters.values(),
                                     commands=commands.values(),
                                     errors=errors.values())
-            filename = "GopherCAN_AUTOGEN.c"
+            filename = "GopherCAN_ids.c"
             with open(os.path.join('outputs', filename), "w") as fh:
                 fh.write(output)
 

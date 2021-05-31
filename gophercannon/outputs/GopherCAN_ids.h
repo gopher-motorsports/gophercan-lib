@@ -126,6 +126,7 @@ typedef enum
 #define COMMAND_NOT_ENABLED 5
 
 
+
 #endif // GOPHERCAN_IDS_H
 
 
@@ -136,7 +137,7 @@ typedef enum
 
 // all of the global parameter struct externs so all files including GopherCAN.h
 // have access
-CAN_COMMAND_STRUCT CAN_COMMAND;
+extern CAN_COMMAND_STRUCT can_command;
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
 extern U8_CAN_STRUCT u8_tester;

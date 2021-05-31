@@ -68,6 +68,14 @@ typedef enum
 } BXCAN_TYPE;
 
 
+// externs for arrays in GopherCAN_ids.c
+extern void* all_parameter_structs[NUM_OF_PARAMETERS];
+extern U8 parameter_data_types[NUM_OF_PARAMETERS];
+#ifdef MULTI_BUS
+U8 module_bus_number[NUM_OF_MODULES];
+#endif // MULTI_BUS
+
+
 // function prototypes
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
 void set_all_params_state(boolean enabled);

@@ -54,6 +54,7 @@ typedef enum
 #define {{ error.name.upper() }} {{ error.id }}
 {% endfor %}
 
+
 #endif // GOPHERCAN_IDS_H
 
 
@@ -64,7 +65,7 @@ typedef enum
 
 // all of the global parameter struct externs so all files including GopherCAN.h
 // have access
-CAN_COMMAND_STRUCT CAN_COMMAND;
+extern CAN_COMMAND_STRUCT can_command;
 {% for parameter in parameters -%}
 extern {{ parameter.struct.upper() }} {{ parameter.name }};
 {% endfor %}
