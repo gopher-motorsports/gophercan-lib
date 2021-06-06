@@ -71,73 +71,6 @@ GCAN_MULTI_BUS_STRUCT gbus2;
 #endif // MULTI_BUS
 
 
-// ******** BEGIN AUTO GENERATED ********
-
-// all of the global parameter structs
-CAN_COMMAND_STRUCT can_command;
-U16_CAN_STRUCT rpm;
-U8_CAN_STRUCT fan_current;
-U8_CAN_STRUCT u8_tester;
-U16_CAN_STRUCT u16_tester;
-U32_CAN_STRUCT u32_tester;
-U64_CAN_STRUCT u64_tester;
-S8_CAN_STRUCT s8_tester;
-S16_CAN_STRUCT s16_tester;
-S32_CAN_STRUCT s32_tester;
-S64_CAN_STRUCT s64_tester;
-FLOAT_CAN_STRUCT float_tester;
-
-// this is the struct that will be used to reference based on ID
-void* all_parameter_structs[NUM_OF_PARAMETERS] =
-{
-	&can_command,    // ID 0
-	&rpm,    // ID 1
-	&fan_current,    // ID 2
-	&u8_tester,    // ID 3
-	&u16_tester,    // ID 4
-	&u32_tester,    // ID 5
-	&u64_tester,    // ID 6
-	&s8_tester,    // ID 7
-	&s16_tester,    // ID 8
-	&s32_tester,    // ID 9
-	&s64_tester,    // ID 10
-	&float_tester    // ID 11
-};
-
-// this stores the data_type for each parameter, referenced by ID
-U8 parameter_data_types[NUM_OF_PARAMETERS] =
-{
-	COMMAND,
-	UNSIGNED16,
-	UNSIGNED8,
-	UNSIGNED8,
-	UNSIGNED16,
-	UNSIGNED32,
-	UNSIGNED64,
-	SIGNED8,
-	SIGNED16,
-	SIGNED32,
-	SIGNED64,
-	FLOATING
-};
-
-// if there are multiple busses, this shows which bus they are on
-#ifdef MULTI_BUS
-U8 module_bus_number[NUM_OF_MODULES] =
-{
-	ALL_BUSSES,
-	GCAN0,
-	GCAN1,
-	GCAN0,
-	GCAN1,
-	GCAN1,
-	GCAN2
-};
-#endif // MULTI_BUS
-
-// ******** END AUTO GENERATED ********
-
-
 // init_can
 // 	This function will set up the CAN registers with the inputed module_id
 //	as a filter. All parameters that should be enabled should be set after
@@ -262,7 +195,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 	CAN_FilterTypeDef filterConfig;
 	U8 banknum = 0;
 
-	if (bx_type == SLAVE)
+	if (bx_type == BXTYPE_SLAVE)
 	{
 		banknum = SLAVE_FIRST_FILTER;
 	}
@@ -289,12 +222,11 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 	U32 filt_mask_high;
 	U32 filt_mask_low;
 
-	// Define the filter values based on this_module_id
-	// High and low id are the same because the id exclusively must be the module id
-	filt_id_low = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
-	filt_id_high = this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
-	filt_mask_low = DEST_MASK;
-	filt_mask_high = DEST_MASK;
+	// get the correct bits from the id and mask for each part of the ID.
+	filt_id_high = GET_ID_HIGH(this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+	filt_id_low = GET_ID_LOW(this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+	filt_mask_high = GET_ID_HIGH(DEST_MASK);
+    filt_mask_low = GET_ID_LOW(DEST_MASK);
 
 	// Set the the parameters on the filter struct (FIFO0)
 	filterConfig.FilterBank = banknum;                                // Modify bank 0 (of 13)
@@ -322,11 +254,11 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 		return FILTER_SET_FAILED;
 	}
 
-	// set the filters for the general module ID
-	filt_id_low = ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
-	filt_id_high = ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
-	filt_mask_low = DEST_MASK;
-	filt_mask_high = DEST_MASK;
+	// get the correct bits from the id and mask for each part of the ID for adding the general CAN ID
+	filt_id_high = GET_ID_HIGH(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+	filt_id_low = GET_ID_LOW(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+	filt_mask_high = GET_ID_HIGH(DEST_MASK);
+	filt_mask_low = GET_ID_LOW(DEST_MASK);
 
 	// Set the the parameters on the filter struct (FIFO0)
 	filterConfig.FilterBank = banknum + 2;                            // Modify bank 2 (of 13)

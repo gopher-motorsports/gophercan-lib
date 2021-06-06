@@ -49,26 +49,9 @@
 #include "stm32f7xx_hal_can.h"
 #endif
 
-
-// ******** BEGIN AUTO GENERATED ********
-
-// all of the global parameter struct externs so all files including GopherCAN.h
-// have access
-extern CAN_COMMAND_STRUCT can_command;
-extern U16_CAN_STRUCT rpm;
-extern U8_CAN_STRUCT fan_current;
-extern U8_CAN_STRUCT u8_tester;
-extern U16_CAN_STRUCT u16_tester;
-extern U32_CAN_STRUCT u32_tester;
-extern U64_CAN_STRUCT u64_tester;
-extern S8_CAN_STRUCT s8_tester;
-extern S16_CAN_STRUCT s16_tester;
-extern S32_CAN_STRUCT s32_tester;
-extern S64_CAN_STRUCT s64_tester;
-extern FLOAT_CAN_STRUCT float_tester;
-
-// ******** END AUTO GENERATED ********
-
+// get the externs from the auto-generated file
+#define AUTOGEN_EXTERNS
+#include "GopherCAN_ids.h"
 
 // priority enum
 typedef enum
@@ -80,9 +63,17 @@ typedef enum
 // master or slave BxCAN type
 typedef enum
 {
-	MASTER = 0,
-	SLAVE = 1
+	BXTYPE_MASTER = 0,
+	BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
+
+
+// externs for arrays in GopherCAN_ids.c
+extern void* all_parameter_structs[NUM_OF_PARAMETERS];
+extern U8 parameter_data_types[NUM_OF_PARAMETERS];
+#ifdef MULTI_BUS
+U8 module_bus_number[NUM_OF_MODULES];
+#endif // MULTI_BUS
 
 
 // function prototypes
@@ -230,12 +221,15 @@ typedef enum
 
 
 // Macro functions to get different parts of an id from the U32
-#define GET_ID_PRIO(id) ((id & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
-#define GET_ID_DEST(id) ((id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
-#define GET_ID_SOURCE(id) ((id & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
-#define GET_ID_ERROR(id) ((id & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
-#define GET_ID_PARAM(id) ((id & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
+#define GET_ID_PRIO(id) (((id) & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
+#define GET_ID_DEST(id) (((id) & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
+#define GET_ID_SOURCE(id) (((id) & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
+#define GET_ID_ERROR(id) (((id) & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
+#define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
+// Macro function for dealing with the stupid BxCAN filter config
+#define GET_ID_HIGH(id) ((((id) << 3) >> 16) & 0xffff)
+#define GET_ID_LOW(id) ((((id) << 3) & 0xffff) | CAN_ID_EXT)
 
 // Multi-bus struct
 #ifdef MULTI_BUS

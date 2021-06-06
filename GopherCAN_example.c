@@ -64,7 +64,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
 	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
-	if (init_can(example_hcan, this_module, MASTER))
+	if (init_can(example_hcan, this_module, BXTYPE_MASTER))
 	{
 		// an error has occurred, stay here
 		while (1);
