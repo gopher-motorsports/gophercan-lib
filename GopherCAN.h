@@ -228,8 +228,8 @@ typedef enum
 #define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
 // Macro function for dealing with the stupid BxCAN filter config
-#define GET_ID_HIGH(id) (((id) << 3) >> 16) & 0xffff
-#define GET_ID_LOW(id) (((id) << 3) & 0xffff) | CAN_ID_EXT
+#define GET_ID_HIGH(id) ((((id) << 3) >> 16) & 0xffff)
+#define GET_ID_LOW(id) ((((id) << 3) & 0xffff) | CAN_ID_EXT)
 
 // Multi-bus struct
 #ifdef MULTI_BUS

@@ -1,4 +1,5 @@
 import yaml
+import git
 from jinja2 import Template
 import argparse
 import time
@@ -72,7 +73,9 @@ args = parser.parse_args()
 filename = args.network_file
 
 HASH_LENGTH = 16 # Use as many hexits as will fit in a single message
-repo_hash = 0x0123456789ABCD
+
+repo = git.Repo(search_parent_directories=True)
+repo_hash = repo.head.object.hexsha[0:HASH_LENGTH]
 
 print("Welcome to GopherCANnon.")
 
@@ -99,7 +102,7 @@ with open(filename) as can_file:
     if not args.dry_run:
         os.makedirs('outputs', exist_ok=True)
         # Generate common header file
-        print("\nAnalysis complete. Generating common header file.")
+        print("\nGenerating common header file.")
         filename = 'GopherCAN_ids_TEMPLATE.h.jinja2'
         with open(os.path.join('templates', filename)) as file_:
             template = Template(file_.read())
@@ -112,9 +115,10 @@ with open(filename) as can_file:
             filename = "GopherCAN_ids.h"
             with open(os.path.join('outputs', filename), "w") as fh:
                 fh.write(output)
+                fh.write('\n')
                 
                 
-        print("Generating common c file.")
+        print("Generating common source file.")
         filename = 'GopherCAN_ids_TEMPLATE.c.jinja2'
         with open(os.path.join('templates', filename)) as file_:
             template = Template(file_.read())
@@ -127,5 +131,6 @@ with open(filename) as can_file:
             filename = "GopherCAN_ids.c"
             with open(os.path.join('outputs', filename), "w") as fh:
                 fh.write(output)
+                fh.write('\n')
 
         

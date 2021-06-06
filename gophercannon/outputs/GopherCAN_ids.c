@@ -70,3 +70,4 @@ U8 module_bus_number[NUM_OF_MODULES] =
 #endif // MULTI_BUS
 
 // End of GopherCAN_ids.c
+
