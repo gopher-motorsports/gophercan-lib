@@ -8,20 +8,6 @@
 #include "GopherCAN.h"
 #include "GopherCAN_router_example.h"
 
-
-// each parameter used will need to be pulled from GopherCAN.c
-extern U16_CAN_STRUCT rpm;
-extern U8_CAN_STRUCT fan_current;
-extern U8_CAN_STRUCT u8_tester;
-extern U16_CAN_STRUCT u16_tester;
-extern U32_CAN_STRUCT u32_tester;
-extern U64_CAN_STRUCT u64_tester;
-extern S8_CAN_STRUCT s8_tester;
-extern S16_CAN_STRUCT s16_tester;
-extern S32_CAN_STRUCT s32_tester;
-extern S64_CAN_STRUCT s64_tester;
-extern FLOAT_CAN_STRUCT float_tester;
-
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan0;
 CAN_HandleTypeDef* example_hcan1;
@@ -54,12 +40,8 @@ void router_init(CAN_HandleTypeDef* hcan_ptr0, CAN_HandleTypeDef* hcan_ptr1)
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
 	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
-	if (init_can(example_hcan0, this_module)
-			|| init_can(example_hcan1, this_module))
-	{
-		// an error has occurred, stay here
-		while (1);
-	}
+	if (init_can(example_hcan0, this_module, BXTYPE_MASTER)) while (1);
+	if (init_can(example_hcan1, this_module, BXTYPE_SLAVE)) while (1);
 
 	// Declare which bus is which using define_can_bus
 	define_can_bus(example_hcan1, GCAN0, 0);
@@ -71,16 +53,8 @@ void router_init(CAN_HandleTypeDef* hcan_ptr0, CAN_HandleTypeDef* hcan_ptr1)
 	rpm.update_enabled = TRUE;
 	fan_current.update_enabled = TRUE;
 
-	// enable the tester variables
-	u8_tester.update_enabled = TRUE;
-	u16_tester.update_enabled = TRUE;
-	u32_tester.update_enabled = TRUE;
-	u64_tester.update_enabled = TRUE;
-	s8_tester.update_enabled = TRUE;
-	s16_tester.update_enabled = TRUE;
-	s32_tester.update_enabled = TRUE;
-	s64_tester.update_enabled = TRUE;
-	float_tester.update_enabled = TRUE;
+	// enable all of the variables for testing
+	set_all_params_state(TRUE);
 
 	// adding can_callback_function
 
@@ -100,12 +74,11 @@ void router_init(CAN_HandleTypeDef* hcan_ptr0, CAN_HandleTypeDef* hcan_ptr1)
 void router_can_rx_loop()
 {
 	// This is needed to account for a case where the RX buffer fills up, as the ISR is only
-	//  triggered directly on reciving the message
-	// TODO RX does not work on either bus if these are uncommented, figure out why
+	//  triggered directly on receiving the message
 	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO0);
 	//service_can_rx_hardware(example_hcan0, CAN_RX_FIFO1);
-	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO0);
-	service_can_rx_hardware(example_hcan1, CAN_RX_FIFO1);
+	//service_can_rx_hardware(example_hcan1, CAN_RX_FIFO0);
+	//service_can_rx_hardware(example_hcan1, CAN_RX_FIFO1);
 
 	// handle each RX message in the buffer
 	if (service_can_rx_buffer())
@@ -188,7 +161,7 @@ void router_testing_loop()
 	s64_tester.data -= 8;
 	//float_tester.data += 0.1;
 
-	request_parameter(PRIO_HIGH, ACM_ID, FLOAT_TESTER_ID);
+	request_parameter(PRIO_HIGH, other_module, FLOAT_TESTER_ID);
 }
 
 

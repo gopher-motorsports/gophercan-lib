@@ -10,32 +10,38 @@
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
-#define F0XX 0
-#define F7XX 7
+// this file should be module-specific and exist in the module project directory.
+// look at the file "GopherCAN_configs_example.h" for an example
+#include "GopherCAN_config.h"
 
-// Begin Configuration defines. These are to be modified by the module specific developer
-
-//#define TARGET F0XX
-#define TARGET F7XX
-
-// Note some initialization is different for multi-bus. Check GopherCAN_router_example.c for details
-#define MULTI_BUS
-
-#ifdef MULTI_BUS
-#define CAN_ROUTER
-
-// up to 3 busses are supported. That is the most available in the STM32 series
-#define NUM_OF_BUSSES 2
+#ifndef GOPHERCAN_CONFIG_H
+#error "Problem with GopherCAN_config.h"
 #endif
 
-// End Configuration defines
-
+#include "base_types.h"
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
 
+// make sure the target types are defined even if the dev forgot
+#ifndef F0XX
+#define F0XX -1
+#endif
+#ifndef F4XX
+#define F4XX -4
+#endif
+#ifndef F7XX
+#define F7XX -7
+#endif
+
+// choose the correct libraries to use based on the type of module
 #if TARGET == F0XX
 #include "stm32f0xx_hal.h"
 #include "stm32f0xx_hal_can.h"
+#endif
+
+#if TARGET == F4XX
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_can.h"
 #endif
 
 #if TARGET == F7XX
@@ -43,86 +49,40 @@
 #include "stm32f7xx_hal_can.h"
 #endif
 
-
-// ******** BEGIN AUTO GENERATED ********
-
-
-// module IDs
-typedef enum
-{
-	ALL_MODULES_ID = 0,
-	DLM_ID = 1,
-	DAM_ID = 2,
-	PDM_ID = 3,
-	TCM_ID = 4,
-	ACM_ID = 5,
-	DISPLAY_ID = 6
-} MODULE_ID;
-
-#define NUM_OF_MODULES 7
-
-
-// parameter IDs
-typedef enum
-{
-	CAN_COMMAND_ID = 0,
-	RPM_ID = 1,
-	FAN_CURRENT_ID = 2,
-	U8_TESTER_ID = 3,
-	U16_TESTER_ID = 4,
-	U32_TESTER_ID = 5,
-	U64_TESTER_ID = 6,
-	S8_TESTER_ID = 7,
-	S16_TESTER_ID = 8,
-	S32_TESTER_ID = 9,
-	S64_TESTER_ID = 10,
-	FLOAT_TESTER_ID = 11
-} GCAN_PARAM;
-
-#define NUM_OF_PARAMETERS 12
-
-
-// custom command IDs
-typedef enum
-{
-	INC_VARIABLE = 0,
-	SET_LED_STATE = 1,
-	CUST_COMMAND_2 = 2,
-	ADD_PARAM_TO_BUCKET = 3,
-	ASSIGN_BUCKET_TO_FRQ = 4,
-	SEND_BUCKET_PARAMS = 5,
-	REQUEST_BUCKET = 6
-} GCAN_COMMAND;
-
-#define NUM_OF_COMMANDS 7
-
-
-// error IDs
-#define ID_NOT_FOUND 0
-#define COMMAND_ID_NOT_FOUND 1
-#define PARAM_NOT_ENABLED 2
-#define SIZE_ERROR 3
-#define DATATYPE_NOT_FOUND 4
-#define COMMAND_NOT_ENABLED 5
-
-// ******** END AUTO GENERATED ********
-
+// get the externs from the auto-generated file
+#define AUTOGEN_EXTERNS
+#include "GopherCAN_ids.h"
 
 // priority enum
 typedef enum
-{
 	PRIO_HIGH = 0b0,
 	PRIO_LOW = 0b1
 } PRIORITY;
 
+// master or slave BxCAN type
+typedef enum
+{
+	BXTYPE_MASTER = 0,
+	BXTYPE_SLAVE = 1
+} BXCAN_TYPE;
+
+
+// externs for arrays in GopherCAN_ids.c
+extern void* all_parameter_structs[NUM_OF_PARAMETERS];
+extern U8 parameter_data_types[NUM_OF_PARAMETERS];
+#ifdef MULTI_BUS
+U8 module_bus_number[NUM_OF_MODULES];
+#endif // MULTI_BUS
+
 
 // function prototypes
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id);
-S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND command_id,
+S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
+void set_all_params_state(boolean enabled);
+S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM parameter);
-S8 add_custom_can_func(GCAN_COMMAND command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
+S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
 	U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
@@ -219,6 +179,8 @@ typedef enum
 	FLOATING_SIZE   = 8
 } DATATYPES_SIZE;
 
+// bxcan slave first filter bank starts at 14
+#define SLAVE_FIRST_FILTER 14
 
 // CAN message ID positions. Sizes are in number of bits
 #define CAN_ID_SIZE   29
@@ -255,19 +217,18 @@ typedef enum
 // general defines
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
-#define CAN_INTERRUPT_PRIO 0
-#define MAX_RX 5
-#define RX_BUFFER_SIZE 32
-#define TX_BUFFER_SIZE 32
 
 
 // Macro functions to get different parts of an id from the U32
-#define GET_ID_PRIO(id) ((id & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
-#define GET_ID_DEST(id) ((id & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
-#define GET_ID_SOURCE(id) ((id & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
-#define GET_ID_ERROR(id) ((id & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
-#define GET_ID_PARAM(id) ((id & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
+#define GET_ID_PRIO(id) (((id) & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
+#define GET_ID_DEST(id) (((id) & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
+#define GET_ID_SOURCE(id) (((id) & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
+#define GET_ID_ERROR(id) (((id) & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
+#define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
+// Macro function for dealing with the stupid BxCAN filter config
+#define GET_ID_HIGH(id) ((((id) << 3) >> 16) & 0xffff)
+#define GET_ID_LOW(id) ((((id) << 3) & 0xffff) | CAN_ID_EXT)
 
 // Multi-bus struct
 #ifdef MULTI_BUS

@@ -1,10 +1,13 @@
-
+// GopherCAN_structs.h
+//  structs needed by GopherCAN.c/h and GopherCAN_ring_buffer.c/h
 
 
 #ifndef GOPHERCAN_STRUCT_H
 #define GOPHERCAN_STRUCT_H
 
-#include "..\\C-Utils\\base_types.h"
+#include "base_types.h"
+#include "GopherCAN_ids.h"
+
 
 // float/U32 converter union
 typedef union
@@ -53,6 +56,7 @@ typedef struct
 	U8  error_id;
 } ERROR_MSG;
 
+// structs for each parameter type
 
 // custom command struct
 typedef struct
@@ -60,6 +64,7 @@ typedef struct
 	U32 last_rx;
 	U8  command_id;
 	U8  command_parameter;
+	GCAN_PARAM_ID param_id;
 } CAN_COMMAND_STRUCT;
 
 
@@ -69,6 +74,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 } CAN_INFO_STRUCT;
 
 
@@ -78,6 +84,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	U8  data;
 } U8_CAN_STRUCT;
 
@@ -86,6 +93,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	U16 data;
 } U16_CAN_STRUCT;
 
@@ -94,6 +102,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	U32 data;
 } U32_CAN_STRUCT;
 
@@ -102,6 +111,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	U64 data;
 } U64_CAN_STRUCT;
 
@@ -110,6 +120,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	S8  data;
 } S8_CAN_STRUCT;
 
@@ -118,6 +129,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	S16 data;
 } S16_CAN_STRUCT;
 
@@ -126,6 +138,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	S32 data;
 } S32_CAN_STRUCT;
 
@@ -134,6 +147,7 @@ typedef struct
 	U32 last_rx;
 	U8  update_enabled;
 	U8  pending_response;
+	GCAN_PARAM_ID param_id;
 	S64 data;
 } S64_CAN_STRUCT;
 
@@ -142,8 +156,10 @@ typedef struct
 	U32   last_rx;
 	U8    update_enabled;
 	U8    pending_response;
+	GCAN_PARAM_ID param_id;
 	float data;
 } FLOAT_CAN_STRUCT;
+
 
 
 #endif

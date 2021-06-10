@@ -8,20 +8,6 @@
 #include "GopherCAN.h"
 #include "GopherCAN_example.h"
 
-
-// each parameter used will need to be pulled from GopherCAN.c
-extern U16_CAN_STRUCT rpm;
-extern U8_CAN_STRUCT fan_current;
-extern U8_CAN_STRUCT u8_tester;
-extern U16_CAN_STRUCT u16_tester;
-extern U32_CAN_STRUCT u32_tester;
-extern U64_CAN_STRUCT u64_tester;
-extern S8_CAN_STRUCT s8_tester;
-extern S16_CAN_STRUCT s16_tester;
-extern S32_CAN_STRUCT s32_tester;
-extern S64_CAN_STRUCT s64_tester;
-extern FLOAT_CAN_STRUCT float_tester;
-
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
 
@@ -29,13 +15,13 @@ CAN_HandleTypeDef* example_hcan;
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
 //#define F7XX_EXAMPLE                                                          // (F0xx otherwise)
-#define THIS_ACM
+#define THIS_DAM
 //#define THIS_PDM
 //#define ENABLE_LOGIC_REQ
 #define ENABLE_BUTTON_LED
 
-#ifdef THIS_ACM
-U8 this_module = ACM_ID;
+#ifdef THIS_DAM
+U8 this_module = DAM_ID;
 U8 other_module = PDM_ID;
 U8 priority = PRIO_LOW;
 U16 param = FAN_CURRENT_ID;
@@ -48,7 +34,7 @@ U32 last_s64_req = 0;
 
 #ifdef THIS_PDM
 U8 this_module = PDM_ID;
-U8 other_module = ACM_ID;
+U8 other_module = DAM_ID;
 U8 priority = PRIO_HIGH;
 U16 param = RPM_ID;
 
@@ -78,7 +64,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	// initialize CAN
 	// NOTE: CAN will also need to be added in CubeMX and code must be generated
 	// Check the STM_CAN repo for the file "F0xx CAN Config Settings.pptx" for the correct settings
-	if (init_can(example_hcan, this_module))
+	if (init_can(example_hcan, this_module, BXTYPE_MASTER))
 	{
 		// an error has occurred, stay here
 		while (1);
@@ -89,16 +75,8 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	rpm.update_enabled = TRUE;
 	fan_current.update_enabled = TRUE;
 
-	// enable the tester variables
-	u8_tester.update_enabled = TRUE;
-	u16_tester.update_enabled = TRUE;
-	u32_tester.update_enabled = TRUE;
-	u64_tester.update_enabled = TRUE;
-	s8_tester.update_enabled = TRUE;
-	s16_tester.update_enabled = TRUE;
-	s32_tester.update_enabled = TRUE;
-	s64_tester.update_enabled = TRUE;
-	float_tester.update_enabled = TRUE;
+	// enable all of the variables for testing
+	set_all_params_state(TRUE);
 
 	// adding can_callback_function
 #ifndef F7XX_EXAMPLE
@@ -215,7 +193,7 @@ void main_loop()
 	{
 		last_button_state = button_state;
 
-		if (send_can_command(PRIO_HIGH, other_module, SET_LED_STATE,
+		if (send_can_command(PRIO_HIGH, ALL_MODULES_ID, SET_LED_STATE,
 				button_state, button_state, button_state, button_state))
 		{
 			// error sending command
@@ -263,9 +241,9 @@ void testing_loop()
 	*/
 
 	// all data type testing
-	// ACM has U8, U32, S8, S32, floating (asks for the others)
+	// DAM has U8, U32, S8, S32, floating (asks for the others)
 	// PDM has U16, U64, S16, S64 (asks for the others)
-#ifdef THIS_ACM
+#ifdef THIS_DAM
 	u8_tester.data += 1;
 	u32_tester.data += 4;
 	s8_tester.data -= 1;
@@ -276,7 +254,7 @@ void testing_loop()
 			&& current_tick - u16_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u16_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, U16_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, u16_tester.param_id);
 
 		last_u16_req = current_tick;
 	}
@@ -285,7 +263,7 @@ void testing_loop()
 			&& current_tick - u64_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u64_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, U64_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, u64_tester.param_id);
 
 		last_u64_req = current_tick;
 	}
@@ -294,7 +272,7 @@ void testing_loop()
 			&& current_tick - s16_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s16_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, S16_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, s16_tester.param_id);
 
 		last_s16_req = current_tick;
 	}
@@ -303,7 +281,7 @@ void testing_loop()
 			&& current_tick - s64_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s64_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, PDM_ID, S64_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, s64_tester.param_id);
 
 		last_s64_req = current_tick;
 	}
@@ -320,7 +298,7 @@ void testing_loop()
 			&& current_tick - u8_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u8_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, U8_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, u8_tester.param_id);
 
 		last_u8_req = current_tick;
 	}
@@ -329,7 +307,7 @@ void testing_loop()
 			&& current_tick - u32_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_u32_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, U32_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, u32_tester.param_id);
 
 		last_u32_req = current_tick;
 	}
@@ -338,7 +316,7 @@ void testing_loop()
 			&& current_tick - s8_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s8_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, S8_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, s8_tester.param_id);
 
 		last_s8_req = current_tick;
 	}
@@ -347,7 +325,7 @@ void testing_loop()
 			&& current_tick - s32_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_s32_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, S32_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, s32_tester.param_id);
 
 		last_s32_req = current_tick;
 	}
@@ -356,7 +334,7 @@ void testing_loop()
 			&& current_tick - float_tester.last_rx >= MIN_PARAM_UPDATE_TIME)
 			|| current_tick - last_float_req >= PARAM_UPDATE_TIMEOUT)
 	{
-		request_parameter(PRIO_HIGH, ACM_ID, FLOAT_TESTER_ID);
+		request_parameter(PRIO_HIGH, other_module, float_tester.param_id);
 
 		last_float_req = current_tick;
 	}
