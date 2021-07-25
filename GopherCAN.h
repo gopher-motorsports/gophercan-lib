@@ -14,13 +14,16 @@
 // look at the file "GopherCAN_configs_example.h" for an example
 #include "GopherCAN_config.h"
 
-#ifndef GOPHERCAN_CONFIG_H
-#error "Problem with GopherCAN_config.h"
-#endif
+
+//#ifndef INC_GOPHERCAN_CONFIG_H_
+//#error "Problem with GopherCAN_config.h"
+//#endif
+
 
 #include "base_types.h"
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
+#include "GopherCAN_ids.h"
 
 // make sure the target types are defined even if the dev forgot
 #ifndef F0XX
@@ -53,18 +56,20 @@
 #define AUTOGEN_EXTERNS
 #include "GopherCAN_ids.h"
 
-// priority enum
 typedef enum
-	PRIO_HIGH = 0b0,
-	PRIO_LOW = 0b1
+{
+    PRIO_HIGH = 0b0,
+    PRIO_LOW = 0b1
 } PRIORITY;
 
 // master or slave BxCAN type
 typedef enum
 {
-	BXTYPE_MASTER = 0,
-	BXTYPE_SLAVE = 1
+    BXTYPE_MASTER = 0,
+    BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
+
+
 
 
 // externs for arrays in GopherCAN_ids.c
@@ -80,14 +85,17 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
 void set_all_params_state(boolean enabled);
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
-	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
+    U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
-	U8 init_state, void* param_ptr);
+    U8 init_state, void* param_ptr);
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 S8 service_can_rx_buffer(void);
+
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
+void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
+
 
 #ifdef MULTI_BUS
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);

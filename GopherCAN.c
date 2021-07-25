@@ -293,7 +293,8 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 //  ISR called when CAN_RX_FIFO0 has a pending message
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-	service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+    FIFO0_RX_CALLBACK
+	//service_can_rx_hardware(hcan, CAN_RX_FIFO0);
 }
 
 
@@ -301,7 +302,8 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 //  ISR called when CAN_RX_FIFO1 has a pending message
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-	service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+    FIFO1_RX_CALLBACK
+	//service_can_rx_hardware(hcan, CAN_RX_FIFO1);
 }
 
 
