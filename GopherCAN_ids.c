@@ -16,6 +16,15 @@ S16_CAN_STRUCT s16_tester;
 S32_CAN_STRUCT s32_tester;
 S64_CAN_STRUCT s64_tester;
 FLOAT_CAN_STRUCT float_tester;
+FLOAT_CAN_STRUCT oil_cooler_pressure_in;
+FLOAT_CAN_STRUCT oil_cooler_pressure_in_lowpass_1000;
+FLOAT_CAN_STRUCT oil_cooler_pressure_out;
+FLOAT_CAN_STRUCT oil_cooler_pressure_out_lowpass_1000;
+FLOAT_CAN_STRUCT rad_water_temp_in;
+FLOAT_CAN_STRUCT lateral_acceleration;
+FLOAT_CAN_STRUCT longitudinal_acceleration;
+FLOAT_CAN_STRUCT yaw_rate;
+FLOAT_CAN_STRUCT back_left_tire_temp_channel_1;
 
 
 // this is the struct that will be used to reference based on ID
@@ -32,7 +41,16 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &s16_tester,
     &s32_tester,
     &s64_tester,
-    &float_tester
+    &float_tester,
+    &oil_cooler_pressure_in,
+    &oil_cooler_pressure_in_lowpass_1000,
+    &oil_cooler_pressure_out,
+    &oil_cooler_pressure_out_lowpass_1000,
+    &rad_water_temp_in,
+    &lateral_acceleration,
+    &longitudinal_acceleration,
+    &yaw_rate,
+    &back_left_tire_temp_channel_1
     
 };
 
@@ -50,6 +68,15 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     SIGNED16,
     SIGNED32,
     SIGNED64,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
     FLOATING
     
 };
@@ -70,3 +97,4 @@ U8 module_bus_number[NUM_OF_MODULES] =
 #endif // MULTI_BUS
 
 // End of GopherCAN_ids.c
+

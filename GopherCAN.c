@@ -87,6 +87,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 	// set the current module
 	this_module_id = module_id;
 
+
 	// init HAL_GetTick()
 	HAL_SetTickFreq(HAL_TICK_FREQ_DEFAULT);
 
@@ -730,6 +731,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 		return TX_BUFFER_FULL;
 	}
 
+#ifdef MULTI_BUS
 	// Turn off the TX interrupt (if applicable) and add the message to the buffer
 #if TARGET == F7XX || TARGET == F4XX
 	HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
@@ -742,7 +744,13 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 
 	return CAN_SUCCESS;
 }
+#else
+    add_message_by_highest_prio(buffer, message_to_add);
 
+    return CAN_SUCCESS;
+}
+
+#endif
 
 // service_can_rx_message
 //  CAN message bus interrupt function this will update all

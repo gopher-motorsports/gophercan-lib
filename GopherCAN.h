@@ -22,8 +22,10 @@
 
 #include "base_types.h"
 #include "GopherCAN_structs.h"
+#include "gophercan_params.h"
 #include "GopherCAN_ring_buffer.h"
 #include "GopherCAN_ids.h"
+
 
 // make sure the target types are defined even if the dev forgot
 #ifndef F0XX

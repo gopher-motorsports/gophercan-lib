@@ -235,6 +235,143 @@ parameters:
         producer: ACM
         priority: 0
         
+    oil_cooler_pressure_in:
+        name: oil_cooler_pressure_in
+        id: 12
+        human_readable_name: "oil cooler pressure in"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0
+ 
+    oil_cooler_pressure_in_lowpass_1000:
+        name: oil_cooler_pressure_in_lowpass_1000
+        id: 13
+        human_readable_name: "oil cooler pressure in using 1000hz lopass"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0
+        
+    oil_cooler_pressure_out:
+        name: oil_cooler_pressure_out
+        id: 14
+        human_readable_name: "oil cooler pressure out"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0        
+        
+    oil_cooler_pressure_out_lowpass_1000:
+        name: oil_cooler_pressure_out_lowpass_1000
+        id: 15
+        human_readable_name: "oil cooler pressure out using 1000hz lopass"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0
+
+    rad_water_temp_in:
+        name: rad_water_temp_in
+        id: 16
+        human_readable_name: "radiator water in temp"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0
+    
+    lateral_acceleration:
+        name: lateral_acceleration
+        id: 17
+        human_readable_name: "lateral acceleration"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0
+
+    longitudinal_acceleration:
+        name: longitudinal_acceleration
+        id: 18
+        human_readable_name: "longitudinal acceleration"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0    
+
+    yaw_rate:
+        name: yaw_rate
+        id: 19
+        human_readable_name: "yaw rate"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0    
+
+    back_left_tire_temp_channel_1:
+        name: back_left_tire_temp_channel_1
+        id: 20
+        human_readable_name: "back_left_tire_temp_channel_1"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+        bytes: 4
+        multiplier: 1
+        divisor: 1
+        offset: 0
+        frequency: 10
+        producer: DAM
+        priority: 0    
+
+     
+
 commands:
     SET_LED_STATE:
         name: SET_LED_STATE
