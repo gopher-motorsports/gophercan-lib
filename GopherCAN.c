@@ -76,7 +76,9 @@ GCAN_MULTI_BUS_STRUCT gbus2;
 //	as a filter. All parameters that should be enabled should be set after
 //  calling this function
 // params:
-//  MODULE_ID module_id: what module this is (ex. PDM_ID, ACM_ID)
+//  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
+//  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
+//  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
@@ -308,8 +310,8 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 // 	This function will send out a CAN message requesting the parameter
 //	given by the parameter ID from the module specified by the module ID
 // params:
-//  PRIORITY priority:     PRIO_LOW or PRIO_HIGH
-//  MODULE_ID dest_module: what module to request the parameter from
+//  PRIORITY priority:        PRIO_LOW or PRIO_HIGH
+//  MODULE_ID dest_module:    what module to request the parameter from
 //  GCAN_PARAM_ID parameter:  what parameter to request
 // returns:
 //  error codes specified in GopherCAN.h
@@ -353,13 +355,13 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 //	This function will send a CAN message with a command specified
 //	by command_id to the specified module
 // params:
-//  PRIORITY priority:       PRIO_LOW or PRIO_HIGH
-//  MODULE_ID dest_module:   what module to send the command to
+//  PRIORITY priority:          PRIO_LOW or PRIO_HIGH
+//  MODULE_ID dest_module:      what module to send the command to
 //  GCAN_COMMAND_ID command_id: what command the module should run
-//  U8 command_param_0:     parameter 0 to run the function with. May not be used depending on the function
-//  U8 command_param_1:     parameter 1
-//  U8 command_param_2:     parameter 2
-//  U8 command_param_3:     parameter 3
+//  U8 command_param_0:         parameter 0 to run the function with. May not be used depending on the function
+//  U8 command_param_1:         parameter 1
+//  U8 command_param_2:         parameter 2
+//  U8 command_param_3:         parameter 3
 // returns:
 //  error codes specified in GopherCAN.h
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
@@ -405,8 +407,8 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 //  function to directly send a CAN message with the specified parameter to
 //  another module
 // params:
-//  PRIORITY priority:     PRIO_LOW or PRIO_HIGH
-//  MODULE_ID dest_module: what module to send the parameter to
+//  PRIORITY priority:        PRIO_LOW or PRIO_HIGH
+//  MODULE_ID dest_module:    what module to send the parameter to
 //  GCAN_PARAM_ID parameter:  what parameter to send
 // returns:
 //  error codes specified in GopherCAN.h
@@ -498,7 +500,7 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 //  sent by the module in the CAN command message. This function can also be called to overwrite
 //  or modify existing custom commands
 // params:
-//  GCAN_COMMAND_ID command_id:                            what command ID is being defined
+//  GCAN_COMMAND_ID command_id:                         what command ID is being defined
 //  void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8): the pointer to the function that should be run if this command_id is called
 //  U8 init_state:                                      TRUE or FALSE, whether to start with the command enabled
 //  void* param_ptr:                                    pointer to the parameter that should be used. This can point to any
@@ -531,7 +533,7 @@ S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, v
 //  change the state (enabled or disabled) of the specified custom CAN function
 // params:
 //  GCAN_COMMAND_ID command_id: what command ID should have its state modified
-//  U8 state:                TRUE or FALSE. what state to set this command to
+//  U8 state:                   TRUE or FALSE. what state to set this command to
 // returns:
 //  error codes specified in GopherCAN.h
 S8 mod_custom_can_func_state(GCAN_COMMAND_ID command_id, U8 state)
@@ -617,8 +619,9 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 //  Will take all messages from rx_mailbox (CAN_RX_FIFO0 or CAN_RX_FIFO1)
 //  and put them into the rx_buffer
 // params:
-//  U32 rx_mailbox: the mailbox to service (CAN_RX_FIFO0 or CAN_RX_FIFO1)
-//    Make sure this is valid, no error checking is done
+// CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
+//  U32 rx_mailbox:         the mailbox to service (CAN_RX_FIFO0 or CAN_RX_FIFO1)
+//                           Make sure this is valid, no error checking is done
 //
 //  designed to be called as an ISR whenever there is an RX message pending
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
