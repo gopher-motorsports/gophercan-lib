@@ -15,10 +15,13 @@ CAN_HandleTypeDef* example_hcan;
 // use this section to choose what module this should be (for testing 2 dev boards)
 // and what functionality should be enabled
 //#define F7XX_EXAMPLE                                                          // (F0xx otherwise)
+
+// choose the module ID for this test
 #define THIS_DAM
 //#define THIS_PDM
-//#define ENABLE_LOGIC_REQ
-#define ENABLE_BUTTON_LED
+
+// Enable this to test 
+//#define CAN_TEST_BUS_LOAD
 
 #ifdef THIS_DAM
 U8 this_module = DAM_ID;
@@ -53,7 +56,7 @@ U8 last_button_state = 0;
 
 
 // the CAN callback function used in this example
-void change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
+static void change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
 
 // init
 //  What needs to happen on startup in order to run GopherCAN
@@ -140,8 +143,6 @@ void background_loop()
 void main_loop()
 {
 	U8 button_state;
-
-#ifdef ENABLE_LOGIC_REQ
 	U8 foo;
 
 	// Example accessing updating parameters that are requested in another loop
@@ -175,9 +176,7 @@ void main_loop()
 	}
 
 	fan_current.data++;
-#endif
 
-#ifdef ENABLE_BUTTON_LED
 	// If the button is pressed send a can command to another to change the LED state
 	// To on or off depending on the button. Make sure to disable any heartbeat before
 	// trying this, they may conflict
@@ -199,7 +198,6 @@ void main_loop()
 			// error sending command
 		}
 	}
-#endif
 }
 
 
@@ -210,7 +208,7 @@ void main_loop()
 //  by parameter to remote_param. In this case parameter is a U16*, but
 //  any data type can be pointed to, as long as it is configured and casted
 //  correctly
-void change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3)
+static void change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3)
 {
 	// this function will set the LED to high or low, depending on remote_param
 	// the LED to change is dependent on the parameter stored on this module (*((U16*)parameter))
@@ -227,18 +225,11 @@ void change_led_state(U8 sender, void* parameter, U8 remote_param, U8 UNUSED1, U
 
 
 // testing_loop
-//  this is used for testing things. Everything is better explained in other functions
+//  this is used for testing requests and modifying data. This is better explained in main_loop
+#ifdef CAN_TEST_BUS_LOAD
 void testing_loop()
 {
 	U32 current_tick = HAL_GetTick();
-
-	/*
-	// adding a bunch of can commands to stress the bus. These should return COMMAND_NOT_ENABLED error on the CAN bus
-	send_can_command(PRIO_LOW, other_module, CUST_COMMAND_2, 0);
-	send_can_command(PRIO_LOW, other_module, CUST_COMMAND_2, 1);
-	send_can_command(PRIO_HIGH, other_module, CUST_COMMAND_2, 0);
-	send_can_command(PRIO_HIGH, other_module, CUST_COMMAND_2, 1);
-	*/
 
 	// all data type testing
 	// DAM has U8, U32, S8, S32, floating (asks for the others)
@@ -286,7 +277,7 @@ void testing_loop()
 		last_s64_req = current_tick;
 	}
 
-#endif
+#endif // THIS_ACM
 
 #ifdef THIS_PDM
 	u16_tester.data += 2;
@@ -338,7 +329,8 @@ void testing_loop()
 
 		last_float_req = current_tick;
 	}
-#endif
+#endif //THIS_PDM
+#endif // CAN_TEST_BUS_LOAD
 }
 
 

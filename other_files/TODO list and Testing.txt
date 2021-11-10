@@ -1,8 +1,6 @@
 
 GopherCAN TODO list:
  AUTO-GEN TOOL
- - Tool that will auto-generate code from the .XLSX table
- - Split up auto generated sections of .c/.h ?
 
  MAYBE DO
  - double precision floats
@@ -11,16 +9,15 @@ GopherCAN TODO list:
  - Module groups (like an email list)
 
  SHOULD DO
- - Typedefs for modules, parameters, errors, ect
  - Fault Parameters
 
 TESTS:
  GENERAL TESTS
- - [_] TEST basic RX and TX of parameters
- - [_] TEST to make sure buffers are working correctly
- - [_] TEST adding messages to front of buffer
- - [_] TEST filling up the buffers gives the correct errors
- - [_] TEST CAN commands
+ - [x] TEST basic RX and TX of parameters
+ - [x] TEST to make sure buffers are working correctly
+ - [x] TEST adding messages to front of buffer
+ - [x] TEST filling up the buffers gives the correct errors
+ - [x] TEST CAN commands
  - [x] TEST all datatypes
  - [x] TEST more usage of logic based param requests
  - [x] TEST what happens when the bus is at high load (lower priority messages will be stuck in the TX mailbox, keep the bus clean)
@@ -28,24 +25,24 @@ TESTS:
  - [x] TEST command errors working correctly
  - [x] TEST request errors working correctly
  - [x] TEST lots of messages being sent to a single module at once (Its pretty good, bus is the limitation)
- - [_] TEST parameter sending function
- - [_] TEST requesting a param that is not enabled (should send an error)
+ - [x] TEST parameter sending function
+ - [x] TEST requesting a param that is not enabled (should send an error)
  - [_] TEST FIFO1 (fill up FIFO0 first)
  - [_] TEST Delta time of request vs recieve for a loaded and unloaded bus
  - [_] TEST cpu usage with no filter
- - [_] TEST module requesting data from a disabled param on another module
- - [_] TEST general destination CAN messages (ID 0)
- - [_] TEST filters, including general filter
- - [_] TEST multiple busses on the F7xx (in general, no routing)
+ - [x] TEST module requesting data from a disabled param on another module
+ - [x] TEST general destination CAN messages (ID 0)
+ - [x] TEST filters, including general filter
+ - [x] TEST multiple busses on the F7xx (in general, no routing)
 
  ROUTER TESTS
- - [_] TEST basic RX and TX on different busses
- - [_] TEST RX and TX with the DLM
- - [_] TEST really full bus with lots of routing required
- - [_] TEST step through routing logic to make sure everything is working as expected
- - [_] TEST smart routing functionality
+ - [x] TEST basic RX and TX on different busses
+ - [x] TEST RX and TX with the DLM
+ - [x] TEST really full bus with lots of routing required
+ - [x] TEST step through routing logic to make sure everything is working as expected
+ - [x] TEST smart routing functionality
  - [_] TEST 3 busses
- - [_] TEST Routing general target messages
+ - [x] TEST Routing general target messages
 
 NOTES FOR DEVS:
  - Last_rx and HAL_GetTick() is U32 milliseconds, meaning things may break after ~49.7 days
