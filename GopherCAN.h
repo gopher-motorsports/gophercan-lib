@@ -14,13 +14,18 @@
 // look at the file "GopherCAN_configs_example.h" for an example
 #include "GopherCAN_config.h"
 
-#ifndef GOPHERCAN_CONFIG_H
-#error "Problem with GopherCAN_config.h"
-#endif
+
+//#ifndef INC_GOPHERCAN_CONFIG_H_
+//#error "Problem with GopherCAN_config.h"
+//#endif
+
 
 #include "base_types.h"
 #include "GopherCAN_structs.h"
+#include "gophercan_params.h"
 #include "GopherCAN_ring_buffer.h"
+#include "GopherCAN_ids.h"
+
 
 // make sure the target types are defined even if the dev forgot
 #ifndef F0XX
@@ -53,18 +58,20 @@
 #define AUTOGEN_EXTERNS
 #include "GopherCAN_ids.h"
 
-// priority enum
 typedef enum
-	PRIO_HIGH = 0b0,
-	PRIO_LOW = 0b1
+{
+    PRIO_HIGH = 0b0,
+    PRIO_LOW = 0b1
 } PRIORITY;
 
 // master or slave BxCAN type
 typedef enum
 {
-	BXTYPE_MASTER = 0,
-	BXTYPE_SLAVE = 1
+    BXTYPE_MASTER = 0,
+    BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
+
+
 
 
 // externs for arrays in GopherCAN_ids.c
@@ -121,7 +128,7 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 // returns:
 //  error codes specified in GopherCAN.h
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
-	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
+					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 
 // send_parameter
 //  function to directly send a CAN message with the specified parameter to
@@ -132,6 +139,7 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 //  GCAN_PARAM_ID parameter:  what parameter to send
 // returns:
 //  error codes specified in GopherCAN.h
+
 S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 
 // add_custom_can_func
@@ -149,7 +157,7 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 // returns:
 //  error codes specified in GopherCAN.h
 S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
-	U8 init_state, void* param_ptr);
+					   U8 init_state, void* param_ptr);
 
 // mod_custom_can_func_state
 //  change the state (enabled or disabled) of the specified custom CAN function
@@ -178,6 +186,8 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 //
 //  designed to be called as an ISR whenever there is an RX message pending
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
+void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
+
 
 // service_can_rx_buffer
 //  this method will take all of the messages in rx_message_buffer and run them through
