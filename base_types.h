@@ -35,6 +35,8 @@ typedef signed long         S32;
 typedef signed long long    S64;
 
 // NULL definition
+#ifndef NULL
 #define NULL (void*)(0)
+#endif // NULL
 
 #endif // BASETYPES_H

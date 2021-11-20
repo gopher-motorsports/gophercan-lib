@@ -13,6 +13,11 @@
 #define TARGET F0XX
 //#define TARGET F7XX
 
+// these are defines that only need to be changed if this module needs to interact with
+// non-GopherCAN busses
+#define FIFO0_RX_CALLBACK service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+#define FIFO1_RX_CALLBACK service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+
 // RX and TX buffer sizes. These values should be chosen by the devs
 #define RX_BUFFER_SIZE 32
 #define TX_BUFFER_SIZE 32
