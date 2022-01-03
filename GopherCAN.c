@@ -654,8 +654,8 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 
 		// move the header ID, RTR bit, and DLC into the GopherCAN message struct
 		message->rtr_bit = rx_header.RTR;
-		message->id = rx_header.ExtId;
 		message->dlc = rx_header.DLC;
+		message->id = (rx_header.IDE ? rx_header.ExtId : rx_header.StdId);
 
 #ifdef CAN_ROUTER
 		// router specific functionality that directly adds messages that need to be routed
