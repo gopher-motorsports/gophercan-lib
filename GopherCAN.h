@@ -15,9 +15,9 @@
 #include "GopherCAN_config.h"
 
 
-//#ifndef INC_GOPHERCAN_CONFIG_H_
-//#error "Problem with GopherCAN_config.h"
-//#endif
+#ifndef GOPHERCAN_CONFIG_H
+#error "Problem with GopherCAN_config.h"
+#endif
 
 
 #include "base_types.h"
