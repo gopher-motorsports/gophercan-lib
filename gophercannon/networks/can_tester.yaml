@@ -7,12 +7,12 @@ busses:
     bus_1:
         name: GCAN1
         baud_rate: 1000000
-        human_readable_name: "Front Bus"
+        human_readable_name: "Rear Left Bus"
         
     bus_2:
         name: GCAN2
         baud_rate: 1000000
-        human_readable_name: "Front Bus"
+        human_readable_name: "Rear Right Bus"
         
 modules:
     DLM:
@@ -20,220 +20,148 @@ modules:
         id: 1
         busses:
             - GCAN0
+            - GCAN1
+            - GCAN2
         human_readable_name: "Data Logging Module"
-        parameters_produced:
-        parameters_consumed:
 
-    DAM:
-        name: DAM
+    DAM_FR:
+        name: DAM_FR
         id: 2
         busses:
+            - GCAN0
+        human_readable_name: "Front DAM"
+
+    DAM_RL:
+        name: DAM_RL
+        id: 3
+        busses:
             - GCAN1
-        human_readable_name: "Dummy Data Acquisition"
-        parameters_consumed:
-        parameters_produced:
+        human_readable_name: "Rear Left DAM"
+
+    DAM_RR:
+        name: DAM_RR
+        id: 4
+        busses:
+            - GCAN2
+        human_readable_name: "Rear Right DAM"
         
     PDM:
         name: PDM
-        id: 3
+        id: 5
         busses:
             - GCAN0
         human_readable_name: "Power Distribution Module"
-        parameters_consumed:
-        parameters_produced:
         
     TCM:
         name: TCM
-        id: 4
+        id: 6
         busses:
             - GCAN1
         human_readable_name: "Transmission Control Module"
-        parameters_consumed:
-        parameters_produced:
         
     ACM:
         name: ACM
-        id: 5
+        id: 7
         busses:
-            - GCAN1
+            - GCAN0
         human_readable_name: "Areodynamic Control Module"
-        parameters_consumed:
-        parameters_produced:
-        
-    DISPLAY:
-        name: DISPLAY
-        id: 6
-        busses:
-            - GCAN2
-        human_readable_name: "Display"
-        parameters_consumed:
-        parameters_produced:
 
 parameters:
-    RPM:
-        name: rpm
-        id: 1
-        human_readable_name: "RPM"
-        unit: "RPM"
-        type: UNSIGNED16
-        struct: U16_CAN_STRUCT
-        bytes: 2
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
-        
-    fan_current:
-        name: fan_current
-        id: 2
-        human_readable_name: "fan current"
-        unit: "A"
-        type: UNSIGNED8
-        struct: U8_CAN_STRUCT
-        bytes: 1
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
-        
     u8_tester:
         name: u8_tester
-        id: 3
+        id: 1
         human_readable_name: "u8 tester"
         unit: "number"
         type: UNSIGNED8
         struct: U8_CAN_STRUCT
-        bytes: 1
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     u16_tester:
         name: u16_tester
-        id: 4
+        id: 2
         human_readable_name: "u16 tester"
         unit: "number"
         type: UNSIGNED16
         struct: U16_CAN_STRUCT
-        bytes: 2
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     u32_tester:
         name: u32_tester
-        id: 5
+        id: 3
         human_readable_name: "u32 tester"
         unit: "number"
         type: UNSIGNED32
         struct: U32_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     u64_tester:
         name: u64_tester
-        id: 6
+        id: 4
         human_readable_name: "u64 tester"
         unit: "number"
         type: UNSIGNED64
         struct: U64_CAN_STRUCT
-        bytes: 8
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     s8_tester:
         name: s8_tester
-        id: 7
+        id: 5
         human_readable_name: "s8 tester"
         unit: "number"
         type: SIGNED8
         struct: S8_CAN_STRUCT
-        bytes: 1
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     s16_tester:
         name: s16_tester
-        id: 8
+        id: 6
         human_readable_name: "s16 tester"
         unit: "number"
         type: SIGNED16
         struct: S16_CAN_STRUCT
-        bytes: 2
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     s32_tester:
         name: s32_tester
-        id: 9
+        id: 7
         human_readable_name: "s32 tester"
         unit: "number"
         type: SIGNED32
         struct: S32_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     s64_tester:
         name: s64_tester
-        id: 10
+        id: 8
         human_readable_name: "s64 tester"
         unit: "number"
         type: SIGNED64
         struct: S64_CAN_STRUCT
-        bytes: 8
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
         
     float_tester:
         name: float_tester
-        id: 11
+        id: 9
         human_readable_name: "float tester"
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: ACM
-        priority: 0
+        
+    float_tester_2:
+        name: float_tester_2
+        id: 10
+        human_readable_name: "float tester 2"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+
+    RPM:
+        name: rpm
+        id: 11
+        human_readable_name: "RPM"
+        unit: "RPM"
+        type: UNSIGNED16
+        struct: U16_CAN_STRUCT
+        
+    fan_current:
+        name: fan_current
+        id: 12
+        human_readable_name: "fan current"
+        unit: "A"
+        type: UNSIGNED8
+        struct: U8_CAN_STRUCT
         
     oil_cooler_pressure_in:
         name: oil_cooler_pressure_in
@@ -242,13 +170,6 @@ parameters:
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0
  
     oil_cooler_pressure_in_lowpass_1000:
         name: oil_cooler_pressure_in_lowpass_1000
@@ -257,13 +178,6 @@ parameters:
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0
         
     oil_cooler_pressure_out:
         name: oil_cooler_pressure_out
@@ -271,14 +185,7 @@ parameters:
         human_readable_name: "oil cooler pressure out"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0        
+        struct: FLOAT_CAN_STRUCT   
         
     oil_cooler_pressure_out_lowpass_1000:
         name: oil_cooler_pressure_out_lowpass_1000
@@ -287,13 +194,6 @@ parameters:
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0
 
     rad_water_temp_in:
         name: rad_water_temp_in
@@ -302,13 +202,6 @@ parameters:
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0
     
     lateral_acceleration:
         name: lateral_acceleration
@@ -317,13 +210,6 @@ parameters:
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0
 
     longitudinal_acceleration:
         name: longitudinal_acceleration
@@ -332,13 +218,6 @@ parameters:
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0    
 
     yaw_rate:
         name: yaw_rate
@@ -346,14 +225,7 @@ parameters:
         human_readable_name: "yaw rate"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0    
+        struct: FLOAT_CAN_STRUCT 
 
     back_left_tire_temp_channel_1:
         name: back_left_tire_temp_channel_1
@@ -362,14 +234,6 @@ parameters:
         unit: "number"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT
-        bytes: 4
-        multiplier: 1
-        divisor: 1
-        offset: 0
-        frequency: 10
-        producer: DAM
-        priority: 0    
-
      
 
 commands:

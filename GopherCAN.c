@@ -204,7 +204,9 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 		banknum = SLAVE_FIRST_FILTER;
 	}
 
-#ifdef CAN_ROUTER
+	// DEBUG
+#ifdef FILTER_SET_FAILED
+//#ifdef CAN_ROUTER
 	// Accept all messages on the CAN router
 	filterConfig.FilterBank = banknum;                                // Modify bank 0 (of 13)
 	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
