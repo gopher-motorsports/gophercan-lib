@@ -41,17 +41,12 @@ typedef enum
     S64_TESTER_ID = 8,
     FLOAT_TESTER_ID = 9,
     FLOAT_TESTER_2_ID = 10,
-    RPM_ID = 11,
-    FAN_CURRENT_ID = 12,
-    OIL_COOLER_PRESSURE_IN_ID = 12,
-    OIL_COOLER_PRESSURE_IN_LOWPASS_1000_ID = 13,
-    OIL_COOLER_PRESSURE_OUT_ID = 14,
-    OIL_COOLER_PRESSURE_OUT_LOWPASS_1000_ID = 15,
-    RAD_WATER_TEMP_IN_ID = 16,
-    LATERAL_ACCELERATION_ID = 17,
-    LONGITUDINAL_ACCELERATION_ID = 18,
-    YAW_RATE_ID = 19,
-    BACK_LEFT_TIRE_TEMP_CHANNEL_1_ID = 20,
+    FLOAT_TESTER_3_ID = 11,
+    FLOAT_TESTER_4_ID = 12,
+    FLOAT_TESTER_5_ID = 13,
+    FLOAT_TESTER_6_ID = 14,
+    RPM_ID = 15,
+    FAN_CURRENT_ID = 16,
     
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
@@ -159,17 +154,12 @@ extern S32_CAN_STRUCT s32_tester;
 extern S64_CAN_STRUCT s64_tester;
 extern FLOAT_CAN_STRUCT float_tester;
 extern FLOAT_CAN_STRUCT float_tester_2;
+extern FLOAT_CAN_STRUCT float_tester_3;
+extern FLOAT_CAN_STRUCT float_tester_4;
+extern FLOAT_CAN_STRUCT float_tester_5;
+extern FLOAT_CAN_STRUCT float_tester_6;
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
-extern FLOAT_CAN_STRUCT oil_cooler_pressure_in;
-extern FLOAT_CAN_STRUCT oil_cooler_pressure_in_lowpass_1000;
-extern FLOAT_CAN_STRUCT oil_cooler_pressure_out;
-extern FLOAT_CAN_STRUCT oil_cooler_pressure_out_lowpass_1000;
-extern FLOAT_CAN_STRUCT rad_water_temp_in;
-extern FLOAT_CAN_STRUCT lateral_acceleration;
-extern FLOAT_CAN_STRUCT longitudinal_acceleration;
-extern FLOAT_CAN_STRUCT yaw_rate;
-extern FLOAT_CAN_STRUCT back_left_tire_temp_channel_1;
 
 
 #endif // GOPHERCAN_IDS_H_P2

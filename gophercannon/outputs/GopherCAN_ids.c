@@ -15,17 +15,12 @@ S32_CAN_STRUCT s32_tester;
 S64_CAN_STRUCT s64_tester;
 FLOAT_CAN_STRUCT float_tester;
 FLOAT_CAN_STRUCT float_tester_2;
+FLOAT_CAN_STRUCT float_tester_3;
+FLOAT_CAN_STRUCT float_tester_4;
+FLOAT_CAN_STRUCT float_tester_5;
+FLOAT_CAN_STRUCT float_tester_6;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
-FLOAT_CAN_STRUCT oil_cooler_pressure_in;
-FLOAT_CAN_STRUCT oil_cooler_pressure_in_lowpass_1000;
-FLOAT_CAN_STRUCT oil_cooler_pressure_out;
-FLOAT_CAN_STRUCT oil_cooler_pressure_out_lowpass_1000;
-FLOAT_CAN_STRUCT rad_water_temp_in;
-FLOAT_CAN_STRUCT lateral_acceleration;
-FLOAT_CAN_STRUCT longitudinal_acceleration;
-FLOAT_CAN_STRUCT yaw_rate;
-FLOAT_CAN_STRUCT back_left_tire_temp_channel_1;
 
 
 // this is the struct that will be used to reference based on ID
@@ -42,17 +37,12 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &s64_tester,
     &float_tester,
     &float_tester_2,
+    &float_tester_3,
+    &float_tester_4,
+    &float_tester_5,
+    &float_tester_6,
     &rpm,
-    &fan_current,
-    &oil_cooler_pressure_in,
-    &oil_cooler_pressure_in_lowpass_1000,
-    &oil_cooler_pressure_out,
-    &oil_cooler_pressure_out_lowpass_1000,
-    &rad_water_temp_in,
-    &lateral_acceleration,
-    &longitudinal_acceleration,
-    &yaw_rate,
-    &back_left_tire_temp_channel_1
+    &fan_current
     
 };
 
@@ -70,17 +60,12 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     SIGNED64,
     FLOATING,
     FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
     UNSIGNED16,
-    UNSIGNED8,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING
+    UNSIGNED8
     
 };
 
