@@ -6,7 +6,7 @@
 // all of the global parameter structs
 CAN_COMMAND_STRUCT can_command;
 {% for parameter in parameters -%}
-{{ parameter.struct.upper() }} {{ parameter.name }};
+{{ type_struct[parameter.type] }} {{ parameter.name }};
 {% endfor %}
 
 // this is the struct that will be used to reference based on ID

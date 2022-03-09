@@ -21,6 +21,7 @@ FLOAT_CAN_STRUCT float_tester_5;
 FLOAT_CAN_STRUCT float_tester_6;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
+FLOAT_CAN_STRUCT example_new_param;
 
 
 // this is the struct that will be used to reference based on ID
@@ -42,7 +43,8 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &float_tester_5,
     &float_tester_6,
     &rpm,
-    &fan_current
+    &fan_current,
+    &example_new_param
     
 };
 
@@ -65,7 +67,8 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     UNSIGNED16,
-    UNSIGNED8
+    UNSIGNED8,
+    FLOATING
     
 };
 

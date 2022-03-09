@@ -67,7 +67,7 @@ typedef enum
 // have access
 extern CAN_COMMAND_STRUCT can_command;
 {% for parameter in parameters -%}
-extern {{ parameter.struct.upper() }} {{ parameter.name }};
+extern {{ type_struct[parameter.type] }} {{ parameter.name }};
 {% endfor %}
 
 #endif // GOPHERCAN_IDS_H_P2

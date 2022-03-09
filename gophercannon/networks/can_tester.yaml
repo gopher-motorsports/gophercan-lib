@@ -73,7 +73,6 @@ parameters:
         human_readable_name: "u8 tester"
         unit: "number"
         type: UNSIGNED8
-        struct: U8_CAN_STRUCT
         
     u16_tester:
         name: u16_tester
@@ -81,7 +80,6 @@ parameters:
         human_readable_name: "u16 tester"
         unit: "number"
         type: UNSIGNED16
-        struct: U16_CAN_STRUCT
         
     u32_tester:
         name: u32_tester
@@ -89,7 +87,6 @@ parameters:
         human_readable_name: "u32 tester"
         unit: "number"
         type: UNSIGNED32
-        struct: U32_CAN_STRUCT
         
     u64_tester:
         name: u64_tester
@@ -97,7 +94,6 @@ parameters:
         human_readable_name: "u64 tester"
         unit: "number"
         type: UNSIGNED64
-        struct: U64_CAN_STRUCT
         
     s8_tester:
         name: s8_tester
@@ -105,7 +101,6 @@ parameters:
         human_readable_name: "s8 tester"
         unit: "number"
         type: SIGNED8
-        struct: S8_CAN_STRUCT
         
     s16_tester:
         name: s16_tester
@@ -113,7 +108,6 @@ parameters:
         human_readable_name: "s16 tester"
         unit: "number"
         type: SIGNED16
-        struct: S16_CAN_STRUCT
         
     s32_tester:
         name: s32_tester
@@ -121,7 +115,6 @@ parameters:
         human_readable_name: "s32 tester"
         unit: "number"
         type: SIGNED32
-        struct: S32_CAN_STRUCT
         
     s64_tester:
         name: s64_tester
@@ -129,7 +122,6 @@ parameters:
         human_readable_name: "s64 tester"
         unit: "number"
         type: SIGNED64
-        struct: S64_CAN_STRUCT
         
     float_tester:
         name: float_tester
@@ -137,7 +129,6 @@ parameters:
         human_readable_name: "float tester"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
         
     float_tester_2:
         name: float_tester_2
@@ -145,7 +136,6 @@ parameters:
         human_readable_name: "float tester 2"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
         
     float_tester_3:
         name: float_tester_3
@@ -153,7 +143,6 @@ parameters:
         human_readable_name: "float tester 3"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
         
     float_tester_4:
         name: float_tester_4
@@ -161,7 +150,6 @@ parameters:
         human_readable_name: "float tester 4"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
         
     float_tester_5:
         name: float_tester_5
@@ -169,7 +157,6 @@ parameters:
         human_readable_name: "float tester 5"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
         
     float_tester_6:
         name: float_tester_6
@@ -177,7 +164,6 @@ parameters:
         human_readable_name: "float tester 6"
         unit: "number"
         type: FLOATING
-        struct: FLOAT_CAN_STRUCT
 
     RPM:
         name: rpm
@@ -185,7 +171,6 @@ parameters:
         human_readable_name: "RPM"
         unit: "RPM"
         type: UNSIGNED16
-        struct: U16_CAN_STRUCT
         
     fan_current:
         name: fan_current
@@ -193,7 +178,13 @@ parameters:
         human_readable_name: "fan current"
         unit: "A"
         type: UNSIGNED8
-        struct: U8_CAN_STRUCT
+        
+    example_new_param:
+        name: example_new_param
+        id: 17
+        human_readable_name: "New parameter for the tutorial code"
+        unit: "Example Unit"
+        type: FLOATING
      
 
 commands:

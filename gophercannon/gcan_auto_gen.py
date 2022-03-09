@@ -44,6 +44,19 @@ with open(filename) as can_file:
     message_table = []
 
     print("Network definition file \"{0}\" loaded.".format(filename))
+    
+    # Dictionary to convert the param type to the correct param struct
+    type_to_struct = {
+        "UNSIGNED8" : "U8_CAN_STRUCT",
+        "UNSIGNED16" : "U16_CAN_STRUCT",
+        "UNSIGNED32" : "U32_CAN_STRUCT",
+        "UNSIGNED64" : "U64_CAN_STRUCT",
+        "SIGNED8" : "S8_CAN_STRUCT",
+        "SIGNED16" : "S16_CAN_STRUCT",
+        "SIGNED32" : "S32_CAN_STRUCT",
+        "SIGNED64" : "S64_CAN_STRUCT",
+        "FLOATING" : "FLOAT_CAN_STRUCT"
+    }
 
     os.makedirs('outputs', exist_ok=True)
     # Generate common header file
@@ -56,7 +69,8 @@ with open(filename) as can_file:
                                 repo_hash=repo_hash,
                                 parameters=parameters.values(),
                                 commands=commands.values(),
-                                errors=errors.values())
+                                errors=errors.values(),
+                                type_struct=type_to_struct)
         filename = "GopherCAN_ids.h"
         with open(os.path.join('outputs', filename), "w") as fh:
             fh.write(output)
@@ -72,7 +86,8 @@ with open(filename) as can_file:
                                 repo_hash=repo_hash,
                                 parameters=parameters.values(),
                                 commands=commands.values(),
-                                errors=errors.values())
+                                errors=errors.values(),
+                                type_struct=type_to_struct)
         filename = "GopherCAN_ids.c"
         with open(os.path.join('outputs', filename), "w") as fh:
             fh.write(output)

@@ -47,6 +47,7 @@ typedef enum
     FLOAT_TESTER_6_ID = 14,
     RPM_ID = 15,
     FAN_CURRENT_ID = 16,
+    EXAMPLE_NEW_PARAM_ID = 17,
     
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
@@ -141,8 +142,6 @@ typedef enum
 #ifndef GOPHERCAN_IDS_H_P2
 #define GOPHERCAN_IDS_H_P2
 
-#include "GopherCAN_structs.h"
-
 // all of the global parameter struct externs so all files including GopherCAN.h
 // have access
 extern CAN_COMMAND_STRUCT can_command;
@@ -162,6 +161,7 @@ extern FLOAT_CAN_STRUCT float_tester_5;
 extern FLOAT_CAN_STRUCT float_tester_6;
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
+extern FLOAT_CAN_STRUCT example_new_param;
 
 
 #endif // GOPHERCAN_IDS_H_P2
