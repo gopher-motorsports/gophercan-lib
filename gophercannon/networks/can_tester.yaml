@@ -185,7 +185,6 @@ parameters:
         human_readable_name: "New parameter for the tutorial code"
         unit: "Example Unit"
         type: FLOATING
-     
 
 commands:
     SET_LED_STATE:

@@ -5,6 +5,16 @@ import os
 import ntpath
 from jinja2 import Template
 
+def check_ids(dict_with_id):
+    temp_list = list(dict_with_id.values())
+    for index, item1 in enumerate(temp_list):
+        for item2 in temp_list[index+1:]:
+            if item1['id'] == item2['id']:
+                print()
+                print("ERROR:", item1['name'], "has the same GCAN ID as", item2['name'])
+                print("Exiting...")
+                quit()
+
 parser = argparse.ArgumentParser(prog='gophercannon.py',
     description='Program to generate GopherCAN configuration files and perform static network validation.')
 
@@ -33,7 +43,6 @@ with open(filename) as can_file:
     # Load network definition file
     raw_vehicle = yaml.full_load(can_file)
     vehicle = munch.Munch(raw_vehicle)
-    raw_busses = vehicle.busses
     modules = vehicle.modules
     parameters = vehicle.parameters
     commands = vehicle.commands
@@ -57,6 +66,12 @@ with open(filename) as can_file:
         "SIGNED64" : "S64_CAN_STRUCT",
         "FLOATING" : "FLOAT_CAN_STRUCT"
     }
+    
+    # check to make sure there are no duplicates in the IDs
+    check_ids(modules)
+    check_ids(parameters)
+    check_ids(commands)
+    check_ids(errors)
 
     os.makedirs('outputs', exist_ok=True)
     # Generate common header file
@@ -92,5 +107,3 @@ with open(filename) as can_file:
         with open(os.path.join('outputs', filename), "w") as fh:
             fh.write(output)
             fh.write('\n')
-
-        
