@@ -47,7 +47,34 @@ typedef enum
     FLOAT_TESTER_6_ID = 14,
     RPM_ID = 15,
     FAN_CURRENT_ID = 16,
-    EXAMPLE_NEW_PARAM_ID = 17,
+    FLOAT_TESTER_7_ID = 17,
+    ADC1_TESTER_0_ID = 18,
+    ADC1_TESTER_1_ID = 19,
+    ADC1_TESTER_2_ID = 20,
+    ADC1_TESTER_3_ID = 21,
+    ADC1_TESTER_4_ID = 22,
+    ADC1_TESTER_5_ID = 23,
+    ADC1_TESTER_6_ID = 24,
+    ADC2_TESTER_0_ID = 25,
+    ADC2_TESTER_1_ID = 26,
+    ADC2_TESTER_2_ID = 27,
+    ADC2_TESTER_3_ID = 28,
+    ADC2_TESTER_4_ID = 29,
+    ADC2_TESTER_5_ID = 30,
+    ADC2_TESTER_6_ID = 31,
+    ADC3_TESTER_0_ID = 32,
+    ADC3_TESTER_1_ID = 33,
+    ADC3_TESTER_2_ID = 34,
+    ADC3_TESTER_3_ID = 35,
+    ADC3_TESTER_4_ID = 36,
+    ADC3_TESTER_5_ID = 37,
+    ADC3_TESTER_6_ID = 38,
+    ADC3_TESTER_7_ID = 39,
+    ADC3_TESTER_8_ID = 40,
+    ADC3_TESTER_9_ID = 41,
+    ADC3_TESTER_10_ID = 42,
+    ADC3_TESTER_11_ID = 43,
+    EXAMPLE_NEW_PARAM_ID = 44,
     
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
@@ -161,6 +188,33 @@ extern FLOAT_CAN_STRUCT float_tester_5;
 extern FLOAT_CAN_STRUCT float_tester_6;
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
+extern FLOAT_CAN_STRUCT float_tester_7;
+extern FLOAT_CAN_STRUCT adc1_tester_0;
+extern FLOAT_CAN_STRUCT adc1_tester_1;
+extern FLOAT_CAN_STRUCT adc1_tester_2;
+extern FLOAT_CAN_STRUCT adc1_tester_3;
+extern FLOAT_CAN_STRUCT adc1_tester_4;
+extern FLOAT_CAN_STRUCT adc1_tester_5;
+extern FLOAT_CAN_STRUCT adc1_tester_6;
+extern FLOAT_CAN_STRUCT adc2_tester_0;
+extern FLOAT_CAN_STRUCT adc2_tester_1;
+extern FLOAT_CAN_STRUCT adc2_tester_2;
+extern FLOAT_CAN_STRUCT adc2_tester_3;
+extern FLOAT_CAN_STRUCT adc2_tester_4;
+extern FLOAT_CAN_STRUCT adc2_tester_5;
+extern FLOAT_CAN_STRUCT adc2_tester_6;
+extern FLOAT_CAN_STRUCT adc3_tester_0;
+extern FLOAT_CAN_STRUCT adc3_tester_1;
+extern FLOAT_CAN_STRUCT adc3_tester_2;
+extern FLOAT_CAN_STRUCT adc3_tester_3;
+extern FLOAT_CAN_STRUCT adc3_tester_4;
+extern FLOAT_CAN_STRUCT adc3_tester_5;
+extern FLOAT_CAN_STRUCT adc3_tester_6;
+extern FLOAT_CAN_STRUCT adc3_tester_7;
+extern FLOAT_CAN_STRUCT adc3_tester_8;
+extern FLOAT_CAN_STRUCT adc3_tester_9;
+extern FLOAT_CAN_STRUCT adc3_tester_10;
+extern FLOAT_CAN_STRUCT adc3_tester_11;
 extern FLOAT_CAN_STRUCT example_new_param;
 
 

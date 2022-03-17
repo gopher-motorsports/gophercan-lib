@@ -21,6 +21,33 @@ FLOAT_CAN_STRUCT float_tester_5;
 FLOAT_CAN_STRUCT float_tester_6;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
+FLOAT_CAN_STRUCT float_tester_7;
+FLOAT_CAN_STRUCT adc1_tester_0;
+FLOAT_CAN_STRUCT adc1_tester_1;
+FLOAT_CAN_STRUCT adc1_tester_2;
+FLOAT_CAN_STRUCT adc1_tester_3;
+FLOAT_CAN_STRUCT adc1_tester_4;
+FLOAT_CAN_STRUCT adc1_tester_5;
+FLOAT_CAN_STRUCT adc1_tester_6;
+FLOAT_CAN_STRUCT adc2_tester_0;
+FLOAT_CAN_STRUCT adc2_tester_1;
+FLOAT_CAN_STRUCT adc2_tester_2;
+FLOAT_CAN_STRUCT adc2_tester_3;
+FLOAT_CAN_STRUCT adc2_tester_4;
+FLOAT_CAN_STRUCT adc2_tester_5;
+FLOAT_CAN_STRUCT adc2_tester_6;
+FLOAT_CAN_STRUCT adc3_tester_0;
+FLOAT_CAN_STRUCT adc3_tester_1;
+FLOAT_CAN_STRUCT adc3_tester_2;
+FLOAT_CAN_STRUCT adc3_tester_3;
+FLOAT_CAN_STRUCT adc3_tester_4;
+FLOAT_CAN_STRUCT adc3_tester_5;
+FLOAT_CAN_STRUCT adc3_tester_6;
+FLOAT_CAN_STRUCT adc3_tester_7;
+FLOAT_CAN_STRUCT adc3_tester_8;
+FLOAT_CAN_STRUCT adc3_tester_9;
+FLOAT_CAN_STRUCT adc3_tester_10;
+FLOAT_CAN_STRUCT adc3_tester_11;
 FLOAT_CAN_STRUCT example_new_param;
 
 
@@ -44,6 +71,33 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &float_tester_6,
     &rpm,
     &fan_current,
+    &float_tester_7,
+    &adc1_tester_0,
+    &adc1_tester_1,
+    &adc1_tester_2,
+    &adc1_tester_3,
+    &adc1_tester_4,
+    &adc1_tester_5,
+    &adc1_tester_6,
+    &adc2_tester_0,
+    &adc2_tester_1,
+    &adc2_tester_2,
+    &adc2_tester_3,
+    &adc2_tester_4,
+    &adc2_tester_5,
+    &adc2_tester_6,
+    &adc3_tester_0,
+    &adc3_tester_1,
+    &adc3_tester_2,
+    &adc3_tester_3,
+    &adc3_tester_4,
+    &adc3_tester_5,
+    &adc3_tester_6,
+    &adc3_tester_7,
+    &adc3_tester_8,
+    &adc3_tester_9,
+    &adc3_tester_10,
+    &adc3_tester_11,
     &example_new_param
     
 };
@@ -68,6 +122,33 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     UNSIGNED16,
     UNSIGNED8,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
     FLOATING
     
 };

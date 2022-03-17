@@ -179,12 +179,208 @@ parameters:
         unit: "A"
         type: UNSIGNED8
         
+    float_tester_7:
+        name: float_tester_7
+        id: 17
+        human_readable_name: "float tester 7"
+        unit: "number"
+        type: FLOATING
+
+
+    adc1_tester_0:
+        name: adc1_tester_0
+        id: 18
+        human_readable_name: "ADC1 Tester 0"
+        unit: "number"
+        type: FLOATING
+        
+    adc1_tester_1:
+        name: adc1_tester_1
+        id: 19
+        human_readable_name: "ADC1 Tester 1"
+        unit: "number"
+        type: FLOATING
+        
+    adc1_tester_2:
+        name: adc1_tester_2
+        id: 20
+        human_readable_name: "ADC1 Tester 2"
+        unit: "number"
+        type: FLOATING
+        
+    adc1_tester_3:
+        name: adc1_tester_3
+        id: 21
+        human_readable_name: "ADC1 Tester 3"
+        unit: "number"
+        type: FLOATING
+        
+    adc1_tester_4:
+        name: adc1_tester_4
+        id: 22
+        human_readable_name: "ADC1 Tester 4"
+        unit: "number"
+        type: FLOATING
+        
+    adc1_tester_5:
+        name: adc1_tester_5
+        id: 23
+        human_readable_name: "ADC1 Tester 5"
+        unit: "number"
+        type: FLOATING
+        
+    adc1_tester_6:
+        name: adc1_tester_6
+        id: 24
+        human_readable_name: "ADC1 Tester 6"
+        unit: "number"
+        type: FLOATING
+        
+        
+    adc2_tester_0:
+        name: adc2_tester_0
+        id: 25
+        human_readable_name: "ADC2 Tester 0"
+        unit: "number"
+        type: FLOATING
+        
+    adc2_tester_1:
+        name: adc2_tester_1
+        id: 26
+        human_readable_name: "ADC2 Tester 1"
+        unit: "number"
+        type: FLOATING
+        
+    adc2_tester_2:
+        name: adc2_tester_2
+        id: 27
+        human_readable_name: "ADC2 Tester 2"
+        unit: "number"
+        type: FLOATING
+        
+    adc2_tester_3:
+        name: adc2_tester_3
+        id: 28
+        human_readable_name: "ADC2 Tester 3"
+        unit: "number"
+        type: FLOATING
+        
+    adc2_tester_4:
+        name: adc2_tester_4
+        id: 29
+        human_readable_name: "ADC2 Tester 4"
+        unit: "number"
+        type: FLOATING
+        
+    adc2_tester_5:
+        name: adc2_tester_5
+        id: 30
+        human_readable_name: "ADC2 Tester 5"
+        unit: "number"
+        type: FLOATING
+        
+    adc2_tester_6:
+        name: adc2_tester_6
+        id: 31
+        human_readable_name: "ADC2 Tester 6"
+        unit: "number"
+        type: FLOATING
+        
+        
+        
+    adc3_tester_0:
+        name: adc3_tester_0
+        id: 32
+        human_readable_name: "ADC3 Tester 0"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_1:
+        name: adc3_tester_1
+        id: 33
+        human_readable_name: "ADC3 Tester 1"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_2:
+        name: adc3_tester_2
+        id: 34
+        human_readable_name: "ADC3 Tester 2"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_3:
+        name: adc3_tester_3
+        id: 35
+        human_readable_name: "ADC3 Tester 3"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_4:
+        name: adc3_tester_4
+        id: 36
+        human_readable_name: "ADC3 Tester 4"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_5:
+        name: adc3_tester_5
+        id: 37
+        human_readable_name: "ADC3 Tester 5"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_6:
+        name: adc3_tester_6
+        id: 38
+        human_readable_name: "ADC3 Tester 6"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_7:
+        name: adc3_tester_7
+        id: 39
+        human_readable_name: "ADC3 Tester 7"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_8:
+        name: adc3_tester_8
+        id: 40
+        human_readable_name: "ADC3 Tester 8"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_9:
+        name: adc3_tester_9
+        id: 41
+        human_readable_name: "ADC3 Tester 9"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_10:
+        name: adc3_tester_10
+        id: 42
+        human_readable_name: "ADC3 Tester 10"
+        unit: "number"
+        type: FLOATING
+        
+    adc3_tester_11:
+        name: adc3_tester_11
+        id: 43
+        human_readable_name: "ADC3 Tester 11"
+        unit: "number"
+        type: FLOATING
+        
+        
     example_new_param:
         name: example_new_param
-        id: 17
+        id: 44
         human_readable_name: "New parameter for the tutorial code"
         unit: "Example Unit"
         type: FLOATING
+        
+
 
 commands:
     SET_LED_STATE:
