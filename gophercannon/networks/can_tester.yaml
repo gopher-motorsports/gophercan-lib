@@ -178,7 +178,6 @@ parameters:
         human_readable_name: "fan current"
         unit: "A"
         type: UNSIGNED8
-<<<<<<< Updated upstream
         
     float_tester_7:
         name: float_tester_7
@@ -373,7 +372,7 @@ parameters:
 
     brake_pressure:
         name: brake_pressure
-        id: 17
+        id: 44
         human_readable_name: "brake_pressure"
         unit: "PSI"
         type: FLOATING
@@ -381,7 +380,7 @@ parameters:
 
     steering_angle:
         name: steering_anglels
-        id: 18
+        id: 45
         human_readable_name: "steering_angle"
         unit: "degrees"
         type: FLOATING
@@ -389,7 +388,7 @@ parameters:
 
     yaw_rate:
         name: yaw_rate
-        id: 19
+        id: 46
         human_readable_name: "yaw_rate"
         unit: "degrees per second"
         type: FLOATING
@@ -397,7 +396,7 @@ parameters:
 
     throttle_position:
         name: throttle_position
-        id: 20
+        id: 47
         human_readable_name: "throttle_position"
         unit: "number"
         type: FLOATING
@@ -405,7 +404,7 @@ parameters:
 
     acceleration:
         name: acceleration
-        id: 21
+        id: 48
         human_readable_name: "acceleration"
         unit: "m/s^2"
         type: FLOATING
@@ -413,56 +412,12 @@ parameters:
         
     example_new_param:
         name: example_new_param
-        id: 44
+        id: 49
         human_readable_name: "New parameter for the tutorial code"
         unit: "Example Unit"
         type: FLOATING
         
 
-=======
-        struct: U8_CAN_STRUCT
-
-    brake_pressure:
-        name: brake_pressure
-        id: 17
-        human_readable_name: "brake_pressure"
-        unit: "PSI"
-        type: FLOATING
-        struct: FLOAT_CAN_STRUCT
-
-    steering_angle:
-        name: steering_angle
-        id: 18
-        human_readable_name: "steering_angle"
-        unit: "degrees"
-        type: FLOATING
-        struct: FLOAT_CAN_STRUCT
-
-    yaw_rate:
-        name: yaw_rate
-        id: 19
-        human_readable_name: "yaw_rate"
-        unit: "degrees per second"
-        type: FLOATING
-        struct: FLOAT_CAN_STRUCT
-
-    throttle_position:
-        name: throttle_position
-        id: 20
-        human_readable_name: "throttle_position"
-        unit: "number"
-        type: FLOATING
-        struct: FLOAT_CAN_STRUCT
-
-    acceleration:
-        name: acceleration
-        id: 21
-        human_readable_name: "acceleration"
-        unit: "m/s^2"
-        type: FLOATING
-        struct: FLOAT_CAN_STRUCT
-     
->>>>>>> Stashed changes
 
 commands:
     SET_LED_STATE:
