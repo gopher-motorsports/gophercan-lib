@@ -21,7 +21,6 @@ FLOAT_CAN_STRUCT float_tester_5;
 FLOAT_CAN_STRUCT float_tester_6;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
-<<<<<<< Updated upstream
 FLOAT_CAN_STRUCT float_tester_7;
 FLOAT_CAN_STRUCT adc1_tester_0;
 FLOAT_CAN_STRUCT adc1_tester_1;
@@ -50,13 +49,11 @@ FLOAT_CAN_STRUCT adc3_tester_9;
 FLOAT_CAN_STRUCT adc3_tester_10;
 FLOAT_CAN_STRUCT adc3_tester_11;
 FLOAT_CAN_STRUCT example_new_param;
-=======
 FLOAT_CAN_STRUCT brake_pressure;
 FLOAT_CAN_STRUCT steering_angle;
 FLOAT_CAN_STRUCT yaw_rate;
 FLOAT_CAN_STRUCT throttle_position;
 FLOAT_CAN_STRUCT acceleration;
->>>>>>> Stashed changes
 
 
 // this is the struct that will be used to reference based on ID
@@ -79,7 +76,6 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &float_tester_6,
     &rpm,
     &fan_current,
-<<<<<<< Updated upstream
     &float_tester_7,
     &adc1_tester_0,
     &adc1_tester_1,
@@ -108,14 +104,11 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &adc3_tester_10,
     &adc3_tester_11,
     &example_new_param
-=======
     &brake_pressure,
     &steering_angle,
     &yaw_rate,
     &throttle_position,
     &acceleration
->>>>>>> Stashed changes
-    
 };
 
 // this stores the data_type for each parameter, referenced by ID
@@ -142,7 +135,6 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-<<<<<<< Updated upstream
     FLOATING,
     FLOATING,
     FLOATING,
@@ -166,8 +158,6 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-=======
->>>>>>> Stashed changes
     FLOATING
     
 };
