@@ -60,7 +60,7 @@ FLOAT_CAN_STRUCT acceleration;
 
 
 // this is the struct that will be used to reference based on ID
-void* all_parameter_structs[NUM_OF_PARAMETERS]
+void* all_parameter_structs[NUM_OF_PARAMETERS] =
 {
     &can_command,
     &u8_tester,
@@ -107,13 +107,11 @@ void* all_parameter_structs[NUM_OF_PARAMETERS]
     &adc3_tester_10,
     &adc3_tester_11,
     &example_new_param
-
     &brake_pressure,
     &steering_angle,
     &yaw_rate,
     &throttle_position,
-    &acceleration
-    
+    &acceleration,
 };
 
 // this stores the data_type for each parameter, referenced by ID
@@ -140,7 +138,6 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-
     FLOATING,
     FLOATING,
     FLOATING,
@@ -164,8 +161,7 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-    FLOATING
-    
+    FLOATING,
 };
 
 // if there are multiple busses, this shows which bus they are on
@@ -179,9 +175,9 @@ U8 module_bus_number[NUM_OF_MODULES] =
     GCAN2,
     GCAN0,
     GCAN1,
-    GCAN0
+    GCAN0,
     
-};
+}
 #endif // MULTI_BUS
 
 // End of GopherCAN_ids.c
