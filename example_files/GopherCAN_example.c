@@ -160,7 +160,7 @@ void main_loop()
 		if (fan_current.pending_response == FALSE
 				|| HAL_GetTick() - last_fan_current_req >= PARAM_UPDATE_TIMEOUT)
 		{
-			if (request_parameter(PRIO_HIGH, other_module, FAN_CURRENT_ID))
+			if (request_parameter(PRIO_HIGH, other_module, fan_current.param_id))
 			{
 				// error handling
 			}
