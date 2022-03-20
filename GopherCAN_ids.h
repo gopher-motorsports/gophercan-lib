@@ -47,7 +47,6 @@ typedef enum
     FLOAT_TESTER_6_ID = 14,
     RPM_ID = 15,
     FAN_CURRENT_ID = 16,
-<<<<<<< Updated upstream
     FLOAT_TESTER_7_ID = 17,
     ADC1_TESTER_0_ID = 18,
     ADC1_TESTER_1_ID = 19,
@@ -76,14 +75,11 @@ typedef enum
     ADC3_TESTER_10_ID = 42,
     ADC3_TESTER_11_ID = 43,
     EXAMPLE_NEW_PARAM_ID = 44,
-=======
     BRAKE_PRESSURE_ID = 17,
     STEERING_ANGLE_ID = 18,
     YAW_RATE_ID = 19,
     THROTTLE_POSITION_ID = 20,
     ACCELERATION_ID = 21,
->>>>>>> Stashed changes
-    
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
 
@@ -196,7 +192,6 @@ extern FLOAT_CAN_STRUCT float_tester_5;
 extern FLOAT_CAN_STRUCT float_tester_6;
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
-<<<<<<< Updated upstream
 extern FLOAT_CAN_STRUCT float_tester_7;
 extern FLOAT_CAN_STRUCT adc1_tester_0;
 extern FLOAT_CAN_STRUCT adc1_tester_1;
@@ -225,13 +220,11 @@ extern FLOAT_CAN_STRUCT adc3_tester_9;
 extern FLOAT_CAN_STRUCT adc3_tester_10;
 extern FLOAT_CAN_STRUCT adc3_tester_11;
 extern FLOAT_CAN_STRUCT example_new_param;
-=======
 extern FLOAT_CAN_STRUCT brake_pressure;
 extern FLOAT_CAN_STRUCT steering_angle;
 extern FLOAT_CAN_STRUCT yaw_rate;
 extern FLOAT_CAN_STRUCT throttle_position;
 extern FLOAT_CAN_STRUCT acceleration;
->>>>>>> Stashed changes
 
 
 #endif // GOPHERCAN_IDS_H_P2
