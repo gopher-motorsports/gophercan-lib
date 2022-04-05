@@ -52,6 +52,11 @@ char* name_strings[NUM_OF_PARAMETERS] =
     "ADC3 Tester 9",
     "ADC3 Tester 10",
     "ADC3 Tester 11",
+    "brake_pressure",
+    "steering_angle",
+    "yaw_rate",
+    "throttle_position",
+    "acceleration",
     "New parameter for the tutorial code"
     
 };
@@ -103,6 +108,11 @@ char* unit_strings[NUM_OF_PARAMETERS] =
     "number",
     "number",
     "number",
+    "PSI",
+    "degrees",
+    "degrees per second",
+    "number",
+    "m/s^2",
     "Example Unit"
     
 };

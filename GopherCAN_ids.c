@@ -22,7 +22,6 @@ FLOAT_CAN_STRUCT float_tester_5;
 FLOAT_CAN_STRUCT float_tester_6;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
-
 FLOAT_CAN_STRUCT float_tester_7;
 FLOAT_CAN_STRUCT adc1_tester_0;
 FLOAT_CAN_STRUCT adc1_tester_1;
@@ -50,14 +49,12 @@ FLOAT_CAN_STRUCT adc3_tester_8;
 FLOAT_CAN_STRUCT adc3_tester_9;
 FLOAT_CAN_STRUCT adc3_tester_10;
 FLOAT_CAN_STRUCT adc3_tester_11;
-FLOAT_CAN_STRUCT example_new_param;
-
 FLOAT_CAN_STRUCT brake_pressure;
-FLOAT_CAN_STRUCT steering_angle;
+FLOAT_CAN_STRUCT steering_anglels;
 FLOAT_CAN_STRUCT yaw_rate;
 FLOAT_CAN_STRUCT throttle_position;
 FLOAT_CAN_STRUCT acceleration;
-
+FLOAT_CAN_STRUCT example_new_param;
 
 
 // this is the struct that will be used to reference based on ID
@@ -107,12 +104,13 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &adc3_tester_9,
     &adc3_tester_10,
     &adc3_tester_11,
-    &example_new_param
     &brake_pressure,
-    &steering_angle,
+    &steering_anglels,
     &yaw_rate,
     &throttle_position,
     &acceleration,
+    &example_new_param
+    
 };
 
 // this stores the data_type for each parameter, referenced by ID
@@ -163,6 +161,12 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING
+    
 };
 
 // if there are multiple busses, this shows which bus they are on
@@ -176,9 +180,9 @@ U8 module_bus_number[NUM_OF_MODULES] =
     GCAN2,
     GCAN0,
     GCAN1,
-    GCAN0,
+    GCAN0
     
-}
+};
 #endif // MULTI_BUS
 
 // End of GopherCAN_ids.c
