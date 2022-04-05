@@ -49,6 +49,11 @@ FLOAT_CAN_STRUCT adc3_tester_8;
 FLOAT_CAN_STRUCT adc3_tester_9;
 FLOAT_CAN_STRUCT adc3_tester_10;
 FLOAT_CAN_STRUCT adc3_tester_11;
+FLOAT_CAN_STRUCT brake_pressure;
+FLOAT_CAN_STRUCT steering_anglels;
+FLOAT_CAN_STRUCT yaw_rate;
+FLOAT_CAN_STRUCT throttle_position;
+FLOAT_CAN_STRUCT acceleration;
 FLOAT_CAN_STRUCT example_new_param;
 
 
@@ -99,6 +104,11 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &adc3_tester_9,
     &adc3_tester_10,
     &adc3_tester_11,
+    &brake_pressure,
+    &steering_anglels,
+    &yaw_rate,
+    &throttle_position,
+    &acceleration,
     &example_new_param
     
 };
@@ -123,6 +133,11 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     UNSIGNED16,
     UNSIGNED8,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
     FLOATING,
     FLOATING,
     FLOATING,

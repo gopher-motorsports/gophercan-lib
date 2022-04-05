@@ -75,8 +75,12 @@ typedef enum
     ADC3_TESTER_9_ID = 41,
     ADC3_TESTER_10_ID = 42,
     ADC3_TESTER_11_ID = 43,
-    EXAMPLE_NEW_PARAM_ID = 44,
-    
+    EXAMPLE_NEW_PARAM_ID = 49,
+    BRAKE_PRESSURE_ID = 44,
+    STEERING_ANGLE_ID = 45,
+    YAW_RATE_ID = 46,
+    THROTTLE_POSITION_ID = 47,
+    ACCELERATION_ID = 48,
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
 
@@ -217,6 +221,11 @@ extern FLOAT_CAN_STRUCT adc3_tester_9;
 extern FLOAT_CAN_STRUCT adc3_tester_10;
 extern FLOAT_CAN_STRUCT adc3_tester_11;
 extern FLOAT_CAN_STRUCT example_new_param;
+extern FLOAT_CAN_STRUCT brake_pressure;
+extern FLOAT_CAN_STRUCT steering_angle;
+extern FLOAT_CAN_STRUCT yaw_rate;
+extern FLOAT_CAN_STRUCT throttle_position;
+extern FLOAT_CAN_STRUCT acceleration;
 
 
 #endif // GOPHERCAN_IDS_H_P2

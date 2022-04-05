@@ -285,9 +285,7 @@ parameters:
         human_readable_name: "ADC2 Tester 6"
         unit: "number"
         type: FLOATING
-        
-        
-        
+         
     adc3_tester_0:
         name: adc3_tester_0
         id: 32
@@ -371,11 +369,50 @@ parameters:
         human_readable_name: "ADC3 Tester 11"
         unit: "number"
         type: FLOATING
-        
+
+    brake_pressure:
+        name: brake_pressure
+        id: 44
+        human_readable_name: "brake_pressure"
+        unit: "PSI"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+
+    steering_angle:
+        name: steering_anglels
+        id: 45
+        human_readable_name: "steering_angle"
+        unit: "degrees"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+
+    yaw_rate:
+        name: yaw_rate
+        id: 46
+        human_readable_name: "yaw_rate"
+        unit: "degrees per second"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+
+    throttle_position:
+        name: throttle_position
+        id: 47
+        human_readable_name: "throttle_position"
+        unit: "number"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT
+
+    acceleration:
+        name: acceleration
+        id: 48
+        human_readable_name: "acceleration"
+        unit: "m/s^2"
+        type: FLOATING
+        struct: FLOAT_CAN_STRUCT   
         
     example_new_param:
         name: example_new_param
-        id: 44
+        id: 49
         human_readable_name: "New parameter for the tutorial code"
         unit: "Example Unit"
         type: FLOATING
