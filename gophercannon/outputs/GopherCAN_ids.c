@@ -1,4 +1,5 @@
 // start of GopherCAN_ids.c
+//  (auto-generated)
 //  These files are used in GopherCAN.c using an extern in GopherCAN_ids.h
 
 #include "GopherCAN.h"

@@ -1,6 +1,8 @@
 #ifndef BASETYPES_H
 #define BASETYPES_H
 
+#include <stdint.h>
+
 // Buffers will be of size 2 ^ RING_BUFFER_POWER.
 // Increasing leads to heavier low-pass filtering of
 // average but takes longer to calculate. Suggested value is 8
@@ -25,14 +27,14 @@ typedef enum {
 } boolean;
 
 // Type Definitions
-typedef unsigned char       U8 ;
-typedef unsigned short      U16;
-typedef unsigned long       U32;
-typedef unsigned long long  U64;
-typedef signed char         S8 ;
-typedef signed short        S16;
-typedef signed long         S32;
-typedef signed long long    S64;
+typedef uint8_t   U8 ;
+typedef uint16_t  U16;
+typedef uint32_t  U32;
+typedef uint64_t  U64;
+typedef int8_t    S8 ;
+typedef int16_t   S16;
+typedef int32_t   S32;
+typedef int64_t   S64;
 
 // NULL definition
 #ifndef NULL

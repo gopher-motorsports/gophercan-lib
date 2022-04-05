@@ -107,3 +107,28 @@ with open(filename) as can_file:
         with open(os.path.join('outputs', filename), "w") as fh:
             fh.write(output)
             fh.write('\n')
+            
+            
+    print("Generating names source file.")
+    filename = 'GopherCAN_names_TEMPLATE.c.jinja2'
+    with open(os.path.join('templates', filename)) as file_:
+        template = Template(file_.read())
+        
+        output = template.render(parameters=parameters.values())
+        filename = "GopherCAN_names.c"
+        with open(os.path.join('outputs', filename), "w") as fh:
+            fh.write(output)
+            fh.write('\n')
+    
+    
+    print("Generating names header file.")
+    filename = 'GopherCAN_names_TEMPLATE.h.jinja2'
+    with open(os.path.join('templates', filename)) as file_:
+        template = Template(file_.read())
+        
+        output = template.render(param_count=len(parameters) + 1,
+                                 parameters=parameters.values())
+        filename = "GopherCAN_names.h"
+        with open(os.path.join('outputs', filename), "w") as fh:
+            fh.write(output)
+            fh.write('\n')

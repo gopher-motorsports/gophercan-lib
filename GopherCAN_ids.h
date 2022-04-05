@@ -1,4 +1,5 @@
 // GopherCAN_ids.h
+//  (auto-generated)
 //  This header file houses all of the auto-generated IDs for modules, parameters, and CAN
 //  command IDs. This file can be completely auto-generated
 
