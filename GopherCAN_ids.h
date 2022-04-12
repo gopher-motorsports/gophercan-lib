@@ -49,38 +49,36 @@ typedef enum
     RPM_ID = 15,
     FAN_CURRENT_ID = 16,
     FLOAT_TESTER_7_ID = 17,
-    ADC1_TESTER_0_ID = 18,
-    ADC1_TESTER_1_ID = 19,
-    ADC1_TESTER_2_ID = 20,
-    ADC1_TESTER_3_ID = 21,
-    ADC1_TESTER_4_ID = 22,
-    ADC1_TESTER_5_ID = 23,
-    ADC1_TESTER_6_ID = 24,
-    ADC2_TESTER_0_ID = 25,
-    ADC2_TESTER_1_ID = 26,
-    ADC2_TESTER_2_ID = 27,
-    ADC2_TESTER_3_ID = 28,
-    ADC2_TESTER_4_ID = 29,
-    ADC2_TESTER_5_ID = 30,
-    ADC2_TESTER_6_ID = 31,
-    ADC3_TESTER_0_ID = 32,
-    ADC3_TESTER_1_ID = 33,
-    ADC3_TESTER_2_ID = 34,
-    ADC3_TESTER_3_ID = 35,
-    ADC3_TESTER_4_ID = 36,
-    ADC3_TESTER_5_ID = 37,
-    ADC3_TESTER_6_ID = 38,
-    ADC3_TESTER_7_ID = 39,
-    ADC3_TESTER_8_ID = 40,
-    ADC3_TESTER_9_ID = 41,
-    ADC3_TESTER_10_ID = 42,
-    ADC3_TESTER_11_ID = 43,
-    BRAKE_PRESSURE_ID = 44,
-    STEERING_ANGLELS_ID = 45,
-    YAW_RATE_ID = 46,
-    THROTTLE_POSITION_ID = 47,
-    ACCELERATION_ID = 48,
-    EXAMPLE_NEW_PARAM_ID = 49,
+    DAM_CHAN_1_ID = 18,
+    DAM_CHAN_2_ID = 19,
+    DAM_CHAN_3_ID = 20,
+    DAM_CHAN_4_ID = 21,
+    DAM_CHAN_5_ID = 22,
+    DAM_CHAN_6_ID = 23,
+    DAM_CHAN_7_ID = 24,
+    DAM_CHAN_8_ID = 25,
+    DAM_CHAN_9_ID = 26,
+    DAM_CHAN_10_ID = 27,
+    DAM_CHAN_11_ID = 28,
+    DAM_CHAN_12_ID = 29,
+    DAM_CHAN_13_ID = 30,
+    DAM_CHAN_14_ID = 31,
+    DAM_CHAN_15_ID = 32,
+    DAM_CHAN_16_ID = 33,
+    DAM_CHAN_17_ID = 34,
+    DAM_CHAN_18_ID = 35,
+    DAM_CHAN_19_ID = 36,
+    DAM_CHAN_20_ID = 37,
+    DAM_CHAN_21_ID = 38,
+    DAM_CHAN_22_ID = 39,
+    DAM_CHAN_23_ID = 40,
+    DAM_CHAN_24_ID = 41,
+    BRAKE_PRESSURE_ID = 42,
+    STEERING_ANGLELS_ID = 43,
+    YAW_RATE_ID = 44,
+    THROTTLE_POSITION_ID = 45,
+    ACCELERATION_ID = 46,
+    EXAMPLE_NEW_PARAM_ID = 47,
     
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
@@ -195,32 +193,30 @@ extern FLOAT_CAN_STRUCT float_tester_6;
 extern U16_CAN_STRUCT rpm;
 extern U8_CAN_STRUCT fan_current;
 extern FLOAT_CAN_STRUCT float_tester_7;
-extern FLOAT_CAN_STRUCT adc1_tester_0;
-extern FLOAT_CAN_STRUCT adc1_tester_1;
-extern FLOAT_CAN_STRUCT adc1_tester_2;
-extern FLOAT_CAN_STRUCT adc1_tester_3;
-extern FLOAT_CAN_STRUCT adc1_tester_4;
-extern FLOAT_CAN_STRUCT adc1_tester_5;
-extern FLOAT_CAN_STRUCT adc1_tester_6;
-extern FLOAT_CAN_STRUCT adc2_tester_0;
-extern FLOAT_CAN_STRUCT adc2_tester_1;
-extern FLOAT_CAN_STRUCT adc2_tester_2;
-extern FLOAT_CAN_STRUCT adc2_tester_3;
-extern FLOAT_CAN_STRUCT adc2_tester_4;
-extern FLOAT_CAN_STRUCT adc2_tester_5;
-extern FLOAT_CAN_STRUCT adc2_tester_6;
-extern FLOAT_CAN_STRUCT adc3_tester_0;
-extern FLOAT_CAN_STRUCT adc3_tester_1;
-extern FLOAT_CAN_STRUCT adc3_tester_2;
-extern FLOAT_CAN_STRUCT adc3_tester_3;
-extern FLOAT_CAN_STRUCT adc3_tester_4;
-extern FLOAT_CAN_STRUCT adc3_tester_5;
-extern FLOAT_CAN_STRUCT adc3_tester_6;
-extern FLOAT_CAN_STRUCT adc3_tester_7;
-extern FLOAT_CAN_STRUCT adc3_tester_8;
-extern FLOAT_CAN_STRUCT adc3_tester_9;
-extern FLOAT_CAN_STRUCT adc3_tester_10;
-extern FLOAT_CAN_STRUCT adc3_tester_11;
+extern FLOAT_CAN_STRUCT dam_chan_1;
+extern FLOAT_CAN_STRUCT dam_chan_2;
+extern FLOAT_CAN_STRUCT dam_chan_3;
+extern FLOAT_CAN_STRUCT dam_chan_4;
+extern FLOAT_CAN_STRUCT dam_chan_5;
+extern FLOAT_CAN_STRUCT dam_chan_6;
+extern FLOAT_CAN_STRUCT dam_chan_7;
+extern FLOAT_CAN_STRUCT dam_chan_8;
+extern FLOAT_CAN_STRUCT dam_chan_9;
+extern FLOAT_CAN_STRUCT dam_chan_10;
+extern FLOAT_CAN_STRUCT dam_chan_11;
+extern FLOAT_CAN_STRUCT dam_chan_12;
+extern FLOAT_CAN_STRUCT dam_chan_13;
+extern FLOAT_CAN_STRUCT dam_chan_14;
+extern FLOAT_CAN_STRUCT dam_chan_15;
+extern FLOAT_CAN_STRUCT dam_chan_16;
+extern FLOAT_CAN_STRUCT dam_chan_17;
+extern FLOAT_CAN_STRUCT dam_chan_18;
+extern FLOAT_CAN_STRUCT dam_chan_19;
+extern FLOAT_CAN_STRUCT dam_chan_20;
+extern FLOAT_CAN_STRUCT dam_chan_21;
+extern FLOAT_CAN_STRUCT dam_chan_22;
+extern FLOAT_CAN_STRUCT dam_chan_23;
+extern FLOAT_CAN_STRUCT dam_chan_24;
 extern FLOAT_CAN_STRUCT brake_pressure;
 extern FLOAT_CAN_STRUCT steering_anglels;
 extern FLOAT_CAN_STRUCT yaw_rate;

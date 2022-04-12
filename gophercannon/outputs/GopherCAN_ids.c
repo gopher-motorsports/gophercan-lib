@@ -23,32 +23,30 @@ FLOAT_CAN_STRUCT float_tester_6;
 U16_CAN_STRUCT rpm;
 U8_CAN_STRUCT fan_current;
 FLOAT_CAN_STRUCT float_tester_7;
-FLOAT_CAN_STRUCT adc1_tester_0;
-FLOAT_CAN_STRUCT adc1_tester_1;
-FLOAT_CAN_STRUCT adc1_tester_2;
-FLOAT_CAN_STRUCT adc1_tester_3;
-FLOAT_CAN_STRUCT adc1_tester_4;
-FLOAT_CAN_STRUCT adc1_tester_5;
-FLOAT_CAN_STRUCT adc1_tester_6;
-FLOAT_CAN_STRUCT adc2_tester_0;
-FLOAT_CAN_STRUCT adc2_tester_1;
-FLOAT_CAN_STRUCT adc2_tester_2;
-FLOAT_CAN_STRUCT adc2_tester_3;
-FLOAT_CAN_STRUCT adc2_tester_4;
-FLOAT_CAN_STRUCT adc2_tester_5;
-FLOAT_CAN_STRUCT adc2_tester_6;
-FLOAT_CAN_STRUCT adc3_tester_0;
-FLOAT_CAN_STRUCT adc3_tester_1;
-FLOAT_CAN_STRUCT adc3_tester_2;
-FLOAT_CAN_STRUCT adc3_tester_3;
-FLOAT_CAN_STRUCT adc3_tester_4;
-FLOAT_CAN_STRUCT adc3_tester_5;
-FLOAT_CAN_STRUCT adc3_tester_6;
-FLOAT_CAN_STRUCT adc3_tester_7;
-FLOAT_CAN_STRUCT adc3_tester_8;
-FLOAT_CAN_STRUCT adc3_tester_9;
-FLOAT_CAN_STRUCT adc3_tester_10;
-FLOAT_CAN_STRUCT adc3_tester_11;
+FLOAT_CAN_STRUCT dam_chan_1;
+FLOAT_CAN_STRUCT dam_chan_2;
+FLOAT_CAN_STRUCT dam_chan_3;
+FLOAT_CAN_STRUCT dam_chan_4;
+FLOAT_CAN_STRUCT dam_chan_5;
+FLOAT_CAN_STRUCT dam_chan_6;
+FLOAT_CAN_STRUCT dam_chan_7;
+FLOAT_CAN_STRUCT dam_chan_8;
+FLOAT_CAN_STRUCT dam_chan_9;
+FLOAT_CAN_STRUCT dam_chan_10;
+FLOAT_CAN_STRUCT dam_chan_11;
+FLOAT_CAN_STRUCT dam_chan_12;
+FLOAT_CAN_STRUCT dam_chan_13;
+FLOAT_CAN_STRUCT dam_chan_14;
+FLOAT_CAN_STRUCT dam_chan_15;
+FLOAT_CAN_STRUCT dam_chan_16;
+FLOAT_CAN_STRUCT dam_chan_17;
+FLOAT_CAN_STRUCT dam_chan_18;
+FLOAT_CAN_STRUCT dam_chan_19;
+FLOAT_CAN_STRUCT dam_chan_20;
+FLOAT_CAN_STRUCT dam_chan_21;
+FLOAT_CAN_STRUCT dam_chan_22;
+FLOAT_CAN_STRUCT dam_chan_23;
+FLOAT_CAN_STRUCT dam_chan_24;
 FLOAT_CAN_STRUCT brake_pressure;
 FLOAT_CAN_STRUCT steering_anglels;
 FLOAT_CAN_STRUCT yaw_rate;
@@ -78,32 +76,30 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &rpm,
     &fan_current,
     &float_tester_7,
-    &adc1_tester_0,
-    &adc1_tester_1,
-    &adc1_tester_2,
-    &adc1_tester_3,
-    &adc1_tester_4,
-    &adc1_tester_5,
-    &adc1_tester_6,
-    &adc2_tester_0,
-    &adc2_tester_1,
-    &adc2_tester_2,
-    &adc2_tester_3,
-    &adc2_tester_4,
-    &adc2_tester_5,
-    &adc2_tester_6,
-    &adc3_tester_0,
-    &adc3_tester_1,
-    &adc3_tester_2,
-    &adc3_tester_3,
-    &adc3_tester_4,
-    &adc3_tester_5,
-    &adc3_tester_6,
-    &adc3_tester_7,
-    &adc3_tester_8,
-    &adc3_tester_9,
-    &adc3_tester_10,
-    &adc3_tester_11,
+    &dam_chan_1,
+    &dam_chan_2,
+    &dam_chan_3,
+    &dam_chan_4,
+    &dam_chan_5,
+    &dam_chan_6,
+    &dam_chan_7,
+    &dam_chan_8,
+    &dam_chan_9,
+    &dam_chan_10,
+    &dam_chan_11,
+    &dam_chan_12,
+    &dam_chan_13,
+    &dam_chan_14,
+    &dam_chan_15,
+    &dam_chan_16,
+    &dam_chan_17,
+    &dam_chan_18,
+    &dam_chan_19,
+    &dam_chan_20,
+    &dam_chan_21,
+    &dam_chan_22,
+    &dam_chan_23,
+    &dam_chan_24,
     &brake_pressure,
     &steering_anglels,
     &yaw_rate,
@@ -133,8 +129,6 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     UNSIGNED16,
     UNSIGNED8,
-    FLOATING,
-    FLOATING,
     FLOATING,
     FLOATING,
     FLOATING,

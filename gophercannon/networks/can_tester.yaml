@@ -187,192 +187,177 @@ parameters:
         type: FLOATING
 
 
-    adc1_tester_0:
-        name: adc1_tester_0
+    dam_chan_1:
+        name: dam_chan_1
         id: 18
-        human_readable_name: "ADC1 Tester 0"
+        human_readable_name: "DAM Channel 1"
         unit: "number"
         type: FLOATING
         
-    adc1_tester_1:
-        name: adc1_tester_1
+    dam_chan_2:
+        name: dam_chan_2
         id: 19
-        human_readable_name: "ADC1 Tester 1"
+        human_readable_name: "DAM Channel 2"
         unit: "number"
         type: FLOATING
         
-    adc1_tester_2:
-        name: adc1_tester_2
+    dam_chan_3:
+        name: dam_chan_3
         id: 20
-        human_readable_name: "ADC1 Tester 2"
+        human_readable_name: "DAM Channel 3"
         unit: "number"
         type: FLOATING
         
-    adc1_tester_3:
-        name: adc1_tester_3
+    dam_chan_4:
+        name: dam_chan_4
         id: 21
-        human_readable_name: "ADC1 Tester 3"
+        human_readable_name: "DAM Channel 4"
         unit: "number"
         type: FLOATING
         
-    adc1_tester_4:
-        name: adc1_tester_4
+    dam_chan_5:
+        name: dam_chan_5
         id: 22
-        human_readable_name: "ADC1 Tester 4"
+        human_readable_name: "DAM Channel 5"
         unit: "number"
         type: FLOATING
-        
-    adc1_tester_5:
-        name: adc1_tester_5
+    
+    dam_chan_6:
+        name: dam_chan_6
         id: 23
-        human_readable_name: "ADC1 Tester 5"
+        human_readable_name: "DAM Channel 6"
         unit: "number"
         type: FLOATING
         
-    adc1_tester_6:
-        name: adc1_tester_6
+    dam_chan_7:
+        name: dam_chan_7
         id: 24
-        human_readable_name: "ADC1 Tester 6"
+        human_readable_name: "DAM Channel 7"
         unit: "number"
         type: FLOATING
         
-        
-    adc2_tester_0:
-        name: adc2_tester_0
+    dam_chan_8:
+        name: dam_chan_8
         id: 25
-        human_readable_name: "ADC2 Tester 0"
+        human_readable_name: "DAM Channel 8"
         unit: "number"
         type: FLOATING
         
-    adc2_tester_1:
-        name: adc2_tester_1
+    dam_chan_9:
+        name: dam_chan_9
         id: 26
-        human_readable_name: "ADC2 Tester 1"
+        human_readable_name: "DAM Channel 9"
         unit: "number"
         type: FLOATING
         
-    adc2_tester_2:
-        name: adc2_tester_2
+    dam_chan_10:
+        name: dam_chan_10
         id: 27
-        human_readable_name: "ADC2 Tester 2"
+        human_readable_name: "DAM Channel 10"
         unit: "number"
         type: FLOATING
         
-    adc2_tester_3:
-        name: adc2_tester_3
+    dam_chan_11:
+        name: dam_chan_11
         id: 28
-        human_readable_name: "ADC2 Tester 3"
+        human_readable_name: "DAM Channel 11"
         unit: "number"
         type: FLOATING
         
-    adc2_tester_4:
-        name: adc2_tester_4
+    dam_chan_12:
+        name: dam_chan_12
         id: 29
-        human_readable_name: "ADC2 Tester 4"
+        human_readable_name: "DAM Channel 12"
         unit: "number"
         type: FLOATING
         
-    adc2_tester_5:
-        name: adc2_tester_5
+    dam_chan_13:
+        name: dam_chan_13
         id: 30
-        human_readable_name: "ADC2 Tester 5"
+        human_readable_name: "DAM Channel 13"
         unit: "number"
         type: FLOATING
         
-    adc2_tester_6:
-        name: adc2_tester_6
+    dam_chan_14:
+        name: dam_chan_14
         id: 31
-        human_readable_name: "ADC2 Tester 6"
+        human_readable_name: "DAM Channel 14"
         unit: "number"
         type: FLOATING
-         
-    adc3_tester_0:
-        name: adc3_tester_0
+        
+    dam_chan_15:
+        name: dam_chan_15
         id: 32
-        human_readable_name: "ADC3 Tester 0"
+        human_readable_name: "DAM Channel 15"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_1:
-        name: adc3_tester_1
+    dam_chan_16:
+        name: dam_chan_16
         id: 33
-        human_readable_name: "ADC3 Tester 1"
+        human_readable_name: "DAM Channel 16"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_2:
-        name: adc3_tester_2
+    dam_chan_17:
+        name: dam_chan_17
         id: 34
-        human_readable_name: "ADC3 Tester 2"
+        human_readable_name: "DAM Channel 17"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_3:
-        name: adc3_tester_3
+    dam_chan_18:
+        name: dam_chan_18
         id: 35
-        human_readable_name: "ADC3 Tester 3"
+        human_readable_name: "DAM Channel 18"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_4:
-        name: adc3_tester_4
+    dam_chan_19:
+        name: dam_chan_19
         id: 36
-        human_readable_name: "ADC3 Tester 4"
+        human_readable_name: "DAM Channel 19"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_5:
-        name: adc3_tester_5
+    dam_chan_20:
+        name: dam_chan_20
         id: 37
-        human_readable_name: "ADC3 Tester 5"
+        human_readable_name: "DAM Channel 20"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_6:
-        name: adc3_tester_6
+    dam_chan_21:
+        name: dam_chan_21
         id: 38
-        human_readable_name: "ADC3 Tester 6"
+        human_readable_name: "DAM Channel 21"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_7:
-        name: adc3_tester_7
+    dam_chan_22:
+        name: dam_chan_22
         id: 39
-        human_readable_name: "ADC3 Tester 7"
+        human_readable_name: "DAM Channel 22"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_8:
-        name: adc3_tester_8
+    dam_chan_23:
+        name: dam_chan_23
         id: 40
-        human_readable_name: "ADC3 Tester 8"
+        human_readable_name: "DAM Channel 23"
         unit: "number"
         type: FLOATING
         
-    adc3_tester_9:
-        name: adc3_tester_9
+    dam_chan_24:
+        name: dam_chan_24
         id: 41
-        human_readable_name: "ADC3 Tester 9"
-        unit: "number"
-        type: FLOATING
-        
-    adc3_tester_10:
-        name: adc3_tester_10
-        id: 42
-        human_readable_name: "ADC3 Tester 10"
-        unit: "number"
-        type: FLOATING
-        
-    adc3_tester_11:
-        name: adc3_tester_11
-        id: 43
-        human_readable_name: "ADC3 Tester 11"
+        human_readable_name: "DAM Channel 24"
         unit: "number"
         type: FLOATING
 
     brake_pressure:
         name: brake_pressure
-        id: 44
+        id: 42
         human_readable_name: "brake_pressure"
         unit: "PSI"
         type: FLOATING
@@ -380,7 +365,7 @@ parameters:
 
     steering_angle:
         name: steering_anglels
-        id: 45
+        id: 43
         human_readable_name: "steering_angle"
         unit: "degrees"
         type: FLOATING
@@ -388,7 +373,7 @@ parameters:
 
     yaw_rate:
         name: yaw_rate
-        id: 46
+        id: 44
         human_readable_name: "yaw_rate"
         unit: "degrees per second"
         type: FLOATING
@@ -396,7 +381,7 @@ parameters:
 
     throttle_position:
         name: throttle_position
-        id: 47
+        id: 45
         human_readable_name: "throttle_position"
         unit: "number"
         type: FLOATING
@@ -404,7 +389,7 @@ parameters:
 
     acceleration:
         name: acceleration
-        id: 48
+        id: 46
         human_readable_name: "acceleration"
         unit: "m/s^2"
         type: FLOATING
@@ -412,7 +397,7 @@ parameters:
         
     example_new_param:
         name: example_new_param
-        id: 49
+        id: 47
         human_readable_name: "New parameter for the tutorial code"
         unit: "Example Unit"
         type: FLOATING
