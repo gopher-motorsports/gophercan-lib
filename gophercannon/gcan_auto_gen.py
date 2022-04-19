@@ -73,7 +73,6 @@ with open(filename) as can_file:
     check_ids(commands)
     check_ids(errors)
 
-    os.makedirs('outputs', exist_ok=True)
     # Generate common header file
     print("\nGenerating common header file.")
     filename = 'GopherCAN_ids_TEMPLATE.h.jinja2'
@@ -87,7 +86,7 @@ with open(filename) as can_file:
                                 errors=errors.values(),
                                 type_struct=type_to_struct)
         filename = "GopherCAN_ids.h"
-        with open(os.path.join('outputs', filename), "w") as fh:
+        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
             
@@ -104,7 +103,7 @@ with open(filename) as can_file:
                                 errors=errors.values(),
                                 type_struct=type_to_struct)
         filename = "GopherCAN_ids.c"
-        with open(os.path.join('outputs', filename), "w") as fh:
+        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
             
@@ -116,7 +115,7 @@ with open(filename) as can_file:
         
         output = template.render(parameters=parameters.values())
         filename = "GopherCAN_names.c"
-        with open(os.path.join('outputs', filename), "w") as fh:
+        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
     
@@ -129,6 +128,6 @@ with open(filename) as can_file:
         output = template.render(param_count=len(parameters) + 1,
                                  parameters=parameters.values())
         filename = "GopherCAN_names.h"
-        with open(os.path.join('outputs', filename), "w") as fh:
+        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
