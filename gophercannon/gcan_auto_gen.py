@@ -47,6 +47,15 @@ with open(filename) as can_file:
     parameters = vehicle.parameters
     commands = vehicle.commands
     errors = vehicle.errors
+    
+    # get the yaml string and convert it to a byte string
+    ascii_values = []
+    concat = ", "
+    yamlStr = open(filename)
+    yamlStr = yamlStr.read()
+    for char in yamlStr:
+        ascii_values.append(hex(ord(char)))
+    yamlStr = concat.join(ascii_values)
 
     steady_usage = 0
     transient_usage = 0
@@ -101,7 +110,8 @@ with open(filename) as can_file:
                                 parameters=parameters.values(),
                                 commands=commands.values(),
                                 errors=errors.values(),
-                                type_struct=type_to_struct)
+                                type_struct=type_to_struct,
+                                yamlStr=yamlStr)
         filename = "GopherCAN_ids.c"
         with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
             fh.write(output)
