@@ -95,7 +95,7 @@ with open(filename) as can_file:
                                 errors=errors.values(),
                                 type_struct=type_to_struct)
         filename = "GopherCAN_ids.h"
-        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
+        with open('../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
             
@@ -113,7 +113,7 @@ with open(filename) as can_file:
                                 type_struct=type_to_struct,
                                 yamlStr=yamlStr)
         filename = "GopherCAN_ids.c"
-        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
+        with open('../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
             
@@ -125,7 +125,7 @@ with open(filename) as can_file:
         
         output = template.render(parameters=parameters.values())
         filename = "GopherCAN_names.c"
-        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
+        with open('../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
     
@@ -138,6 +138,6 @@ with open(filename) as can_file:
         output = template.render(param_count=len(parameters) + 1,
                                  parameters=parameters.values())
         filename = "GopherCAN_names.h"
-        with open(os.path.dirname(__file__) + '../' + filename, "w") as fh:
+        with open('../' + filename, "w") as fh:
             fh.write(output)
             fh.write('\n')
