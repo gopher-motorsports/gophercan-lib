@@ -113,6 +113,60 @@ char* unit_strings[NUM_OF_PARAMETERS] =
     
 };
 
+// parameter types
+PARAM_TYPE_t param_types[NUM_OF_PARAMETERS] = 
+{
+	CMD,
+    UINT_8,
+    UINT_16,
+    UINT_32,
+    UINT_64,
+    SINT_8,
+    SINT_16,
+    SINT_32,
+    SINT_64,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    UINT_16,
+    UINT_8,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT
+    
+};
+
 
 // End of GopherCAN_names.c
 

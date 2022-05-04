@@ -75,6 +75,17 @@ with open(filename) as can_file:
         "SIGNED64" : "S64_CAN_STRUCT",
         "FLOATING" : "FLOAT_CAN_STRUCT"
     }
+    type_to_name_type = {
+        "UNSIGNED8" : "UINT_8",
+        "UNSIGNED16" : "UINT_16",
+        "UNSIGNED32" : "UINT_32",
+        "UNSIGNED64" : "UINT_64",
+        "SIGNED8" : "SINT_8",
+        "SIGNED16" : "SINT_16",
+        "SIGNED32" : "SINT_32",
+        "SIGNED64" : "SINT_64",
+        "FLOATING" : "FLOAT"
+    }
     
     # check to make sure there are no duplicates in the IDs
     check_ids(modules)
@@ -123,7 +134,8 @@ with open(filename) as can_file:
     with open(os.path.join('templates', filename)) as file_:
         template = Template(file_.read())
         
-        output = template.render(parameters=parameters.values())
+        output = template.render(parameters=parameters.values(),
+                                 type_name=type_to_name_type)
         filename = "GopherCAN_names.c"
         with open('../' + filename, "w") as fh:
             fh.write(output)

@@ -23,6 +23,15 @@ char* unit_strings[NUM_OF_PARAMETERS] =
     {% endfor %}
 };
 
+// parameter types
+PARAM_TYPE_t param_types[NUM_OF_PARAMETERS] = 
+{
+	CMD,
+    {% for parameter in parameters -%}
+	{{ type_name[parameter.type] }}{% if not loop.last %},{% endif %}
+    {% endfor %}
+};
+
 
 // End of GopherCAN_names.c
 

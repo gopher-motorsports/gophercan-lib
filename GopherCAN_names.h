@@ -12,8 +12,23 @@
 #define NUM_OF_PARAMETERS 48
 #endif // NUM_OF_PARAMETERS
 
+typedef enum
+{
+	CMD = 0,
+	UINT_8 = 1,
+	UINT_16 = 2,
+	UINT_32 = 3,
+	UINT_64 = 4,
+	SINT_8 = 5,
+	SINT_16 = 6,
+	SINT_32 = 7,
+	SINT_64 = 8,
+	FLOAT = 9
+} PARAM_TYPE_t;
+
 extern char* name_strings[NUM_OF_PARAMETERS];
 extern char* unit_strings[NUM_OF_PARAMETERS];
+extern PARAM_TYPE_t param_types[NUM_OF_PARAMETERS];
 
 #endif // GOPHERCAN_NAMES_H
 
