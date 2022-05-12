@@ -21,54 +21,6 @@ parser.add_argument('network_file',
                     type=str,
                     help='the network description file')
 
-parser.add_argument('-n',
-                    '--narc',
-                    required=False,
-                    action='store_true',
-                    help='enforce strict rules compliance')
-
-parser.add_argument('-t', 
-                    '--transient',
-                    required=False,
-                    const=0,
-                    nargs='?',
-                    default=0,
-                    type=int,
-                    help='conduct transient analysis of bus traffic')
-
-parser.add_argument('-s', 
-                    '--steady_state',
-                    required=False,
-                    action='store_true',
-                    help='conduct steady-state analysis of bus traffic')
-
-parser.add_argument('-r', 
-                    '--reports',
-                    required=False,
-                    action='store_true',
-                    help='generate reports')
-
-parser.add_argument('-d', 
-                    '--dry_run',
-                    required=False,
-                    action='store_true',
-                    help='don\'t generate header files')
-
-parser.add_argument('-f', 
-                    '--fifo',
-                    required=False,
-                    action='store_true',
-                    help='use fifo mailboxes for transient simulation')
-
-parser.add_argument('-w', 
-                    '--wobble',
-                    required=False,
-                    const=0,
-                    nargs='?',
-                    default=0,
-                    type=int,
-                    help='simulate random wobble in the enqueuing of messages to a module\'s tx buffer')
-
 args = parser.parse_args()
 
 filename = args.network_file
