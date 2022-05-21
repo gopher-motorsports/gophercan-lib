@@ -1,14 +1,14 @@
 busses:
     bus_0:
-        name: GCAN1
+        name: GCAN0
         baud_rate: 1000000
         human_readable_name: TCM and PDM
     bus_1:
-        name: GCAN2
+        name: GCAN1
         baud_rate: 1000000
         human_readable_name: Rear DAM Bus
     bus_2:
-        name: GCAN3
+        name: GCAN2
         baud_rate: 1000000
         human_readable_name: Front Bus
 modules:
@@ -16,41 +16,41 @@ modules:
         name: DLM
         id: 1
         busses:
+          - GCAN0
           - GCAN1
           - GCAN2
-          - GCAN3
         human_readable_name: Data Logging Module
 
     DAM_F:
         name: DAM_F
         id: 2
         busses:
-          - GCAN3
+          - GCAN2
         human_readable_name: Front DAM
 
     DAM_R:
         name: DAM_R
         id: 3
         busses:
-          - GCAN2
+          - GCAN1
         human_readable_name: Rear DAM
     PDM:
         name: PDM
         id: 4
         busses:
-          - GCAN1
+          - GCAN0
         human_readable_name: Power Distribution Module
     TCM:
         name: TCM
         id: 5
         busses:
-          - GCAN1
+          - GCAN0
         human_readable_name: Transmission Control Module
     ACM:
         name: ACM
         id: 6
         busses:
-          - GCAN3
+          - GCAN2
         human_readable_name: Areodynamic Control Module
 
 parameters:
@@ -88,7 +88,7 @@ parameters:
         name: wsfl_ecu
         id: 5
         human_readable_name: Wheel Speed Front Left (ECU)
-        unit: rpm
+        unit: kph
         type: FLOATING
 
     wsfr_ecu:
@@ -312,9 +312,9 @@ parameters:
         type: FLOATING
 
     steering_angle:
-        name: steering_anglels
+        name: steering_angle
         id: 37
-        human_readable_name: steering_angle
+        human_readable_name: Steering Angle
         unit: degrees
         type: FLOATING
 
@@ -598,227 +598,255 @@ parameters:
         unit: Gs
         type: FLOATING
 
+    brake_temp_fl:
+        name: brake_temp_fl
+        id: 78
+        human_readable_name: Brake Temp Front Left
+        unit: C
+        type: FLOATING
+
+    brake_temp_fr:
+        name: brake_temp_fr
+        id: 79
+        human_readable_name: Brake Temp Front Right
+        unit: C
+        type: FLOATING
+
+    brake_temp_rl:
+        name: brake_temp_rl
+        id: 80
+        human_readable_name: Brake Temp Rear Left
+        unit: C
+        type: FLOATING
+
+    brake_temp_rr:
+        name: brake_temp_rr
+        id: 81
+        human_readable_name: Brake Temp Rear Right
+        unit: C
+        type: FLOATING
+
 # Tire temps
     tire_temp_rr_1:
         name: tire_temp_rr_1
-        id: 78
+        id: 82
         human_readable_name: Tire Temp Rear Right Channel 1
         unit: C
         type: FLOATING
 
     tire_temp_rr_2:
         name: tire_temp_rr_2
-        id: 79
+        id: 83
         human_readable_name: Tire Temp Rear Right Channel 2
         unit: C
         type: FLOATING
 
     tire_temp_rr_3:
         name: tire_temp_rr_3
-        id: 80
+        id: 84
         human_readable_name: Tire Temp Rear Right Channel 3
         unit: C
         type: FLOATING
 
     tire_temp_rr_4:
         name: tire_temp_rr_4
-        id: 81
+        id: 85
         human_readable_name: Tire Temp Rear Right Channel 4
         unit: C
         type: FLOATING
 
     tire_temp_rr_5:
         name: tire_temp_rr_5
-        id: 82
+        id: 86
         human_readable_name: Tire Temp Rear Right Channel 5
         unit: C
         type: FLOATING
 
     tire_temp_rr_6:
         name: tire_temp_rr_6
-        id: 83
+        id: 87
         human_readable_name: Tire Temp Rear Right Channel 6
         unit: C
         type: FLOATING
 
     tire_temp_rr_7:
         name: tire_temp_rr_7
-        id: 84
+        id: 88
         human_readable_name: Tire Temp Rear Right Channel 7
         unit: C
         type: FLOATING
 
     tire_temp_rr_8:
         name: tire_temp_rr_8
-        id: 85
+        id: 89
         human_readable_name: Tire Temp Rear Right Channel 8
         unit: C
         type: FLOATING
 
     tire_temp_rr_9:
         name: tire_temp_rr_9
-        id: 86
+        id: 90
         human_readable_name: Tire Temp Rear Right Channel 9
         unit: C
         type: FLOATING
 
     tire_temp_rr_10:
         name: tire_temp_rr_10
-        id: 87
+        id: 91
         human_readable_name: Tire Temp Rear Right Channel 10
         unit: C
         type: FLOATING
 
     tire_temp_rr_11:
         name: tire_temp_rr_11
-        id: 88
+        id: 92
         human_readable_name: Tire Temp Rear Right Channel 11
         unit: C
         type: FLOATING
 
     tire_temp_rr_12:
         name: tire_temp_rr_12
-        id: 89
+        id: 93
         human_readable_name: Tire Temp Rear Right Channel 12
         unit: C
         type: FLOATING
 
     tire_temp_rr_13:
         name: tire_temp_rr_13
-        id: 90
+        id: 94
         human_readable_name: Tire Temp Rear Right Channel 13
         unit: C
         type: FLOATING
 
     tire_temp_rr_14:
         name: tire_temp_rr_14
-        id: 91
+        id: 95
         human_readable_name: Tire Temp Rear Right Channel 14
         unit: C
         type: FLOATING
 
     tire_temp_rr_15:
         name: tire_temp_rr_15
-        id: 92
+        id: 96
         human_readable_name: Tire Temp Rear Right Channel 15
         unit: C
         type: FLOATING
 
     tire_temp_rr_16:
         name: tire_temp_rr_16
-        id: 93
+        id: 97
         human_readable_name: Tire Temp Rear Right Channel 16
         unit: C
         type: FLOATING
 
     tire_temp_rl_1:
         name: tire_temp_rl_1
-        id: 94
+        id: 98
         human_readable_name: Tire Temp Rear Left Channel 1
         unit: C
         type: FLOATING
 
     tire_temp_rl_2:
         name: tire_temp_rl_2
-        id: 95
+        id: 99
         human_readable_name: Tire Temp Rear Left Channel 2
         unit: C
         type: FLOATING
 
     tire_temp_rl_3:
         name: tire_temp_rl_3
-        id: 96
+        id: 100
         human_readable_name: Tire Temp Rear Left Channel 3
         unit: C
         type: FLOATING
 
     tire_temp_rl_4:
         name: tire_temp_rl_4
-        id: 97
+        id: 101
         human_readable_name: Tire Temp Rear Left Channel 4
         unit: C
         type: FLOATING
 
     tire_temp_rl_5:
         name: tire_temp_rl_5
-        id: 98
+        id: 102
         human_readable_name: Tire Temp Rear Left Channel 5
         unit: C
         type: FLOATING
 
     tire_temp_rl_6:
         name: tire_temp_rl_6
-        id: 99
+        id: 103
         human_readable_name: Tire Temp Rear Left Channel 6
         unit: C
         type: FLOATING
 
     tire_temp_rl_7:
         name: tire_temp_rl_7
-        id: 100
+        id: 104
         human_readable_name: Tire Temp Rear Left Channel 7
         unit: C
         type: FLOATING
 
     tire_temp_rl_8:
         name: tire_temp_rl_8
-        id: 101
+        id: 105
         human_readable_name: Tire Temp Rear Left Channel 8
         unit: C
         type: FLOATING
 
     tire_temp_rl_9:
         name: tire_temp_rl_9
-        id: 102
+        id: 106
         human_readable_name: Tire Temp Rear Left Channel 9
         unit: C
         type: FLOATING
 
     tire_temp_rl_10:
         name: tire_temp_rl_10
-        id: 103
+        id: 107
         human_readable_name: Tire Temp Rear Left Channel 10
         unit: C
         type: FLOATING
 
     tire_temp_rl_11:
         name: tire_temp_rl_11
-        id: 104
+        id: 108
         human_readable_name: Tire Temp Rear Left Channel 11
         unit: C
         type: FLOATING
 
     tire_temp_rl_12:
         name: tire_temp_rl_12
-        id: 105
+        id: 109
         human_readable_name: Tire Temp Rear Left Channel 12
         unit: C
         type: FLOATING
 
     tire_temp_rl_13:
         name: tire_temp_rl_13
-        id: 106
+        id: 110
         human_readable_name: Tire Temp Rear Left Channel 13
         unit: C
         type: FLOATING
 
     tire_temp_rl_14:
         name: tire_temp_rl_14
-        id: 107
+        id: 111
         human_readable_name: Tire Temp Rear Left Channel 14
         unit: C
         type: FLOATING
 
     tire_temp_rl_15:
         name: tire_temp_rl_15
-        id: 108
+        id: 112
         human_readable_name: Tire Temp Rear Left Channel 15
         unit: C
         type: FLOATING
 
     tire_temp_rl_16:
         name: tire_temp_rl_16
-        id: 109
+        id: 113
         human_readable_name: Tire Temp Rear Left Channel 16
         unit: C
         type: FLOATING
@@ -826,224 +854,224 @@ parameters:
 
     tire_temp_fl_1:
         name: tire_temp_fl_1
-        id: 110
+        id: 114
         human_readable_name: Tire Temp Front Left Channel 1
         unit: C
         type: FLOATING
 
     tire_temp_fl_2:
         name: tire_temp_fl_2
-        id: 111
+        id: 115
         human_readable_name: Tire Temp Front Left Channel 2
         unit: C
         type: FLOATING
 
     tire_temp_fl_3:
         name: tire_temp_fl_3
-        id: 112
+        id: 116
         human_readable_name: Tire Temp Front Left Channel 3
         unit: C
         type: FLOATING
 
     tire_temp_fl_4:
         name: tire_temp_fl_4
-        id: 113
+        id: 117
         human_readable_name: Tire Temp Front Left Channel 4
         unit: C
         type: FLOATING
 
     tire_temp_fl_5:
         name: tire_temp_fl_5
-        id: 114
+        id: 118
         human_readable_name: Tire Temp Front Left Channel 5
         unit: C
         type: FLOATING
 
     tire_temp_fl_6:
         name: tire_temp_fl_6
-        id: 115
+        id: 119
         human_readable_name: Tire Temp Front Left Channel 6
         unit: C
         type: FLOATING
 
     tire_temp_fl_7:
         name: tire_temp_fl_7
-        id: 116
+        id: 120
         human_readable_name: Tire Temp Front Left Channel 7
         unit: C
         type: FLOATING
 
     tire_temp_fl_8:
         name: tire_temp_fl_8
-        id: 117
+        id: 121
         human_readable_name: Tire Temp Front Left Channel 8
         unit: C
         type: FLOATING
 
     tire_temp_fl_9:
         name: tire_temp_fl_9
-        id: 118
+        id: 122
         human_readable_name: Tire Temp Front Left Channel 9
         unit: C
         type: FLOATING
 
     tire_temp_fl_10:
         name: tire_temp_fl_10
-        id: 119
+        id: 123
         human_readable_name: Tire Temp Front Left Channel 10
         unit: C
         type: FLOATING
 
     tire_temp_fl_11:
         name: tire_temp_fl_11
-        id: 120
+        id: 124
         human_readable_name: Tire Temp Front Left Channel 11
         unit: C
         type: FLOATING
 
     tire_temp_fl_12:
         name: tire_temp_fl_12
-        id: 121
+        id: 125
         human_readable_name: Tire Temp Front Left Channel 12
         unit: C
         type: FLOATING
 
     tire_temp_fl_13:
         name: tire_temp_fl_13
-        id: 122
+        id: 126
         human_readable_name: Tire Temp Front Left Channel 13
         unit: C
         type: FLOATING
 
     tire_temp_fl_14:
         name: tire_temp_fl_14
-        id: 123
+        id: 127
         human_readable_name: Tire Temp Front Left Channel 14
         unit: C
         type: FLOATING
 
     tire_temp_fl_15:
         name: tire_temp_fl_15
-        id: 124
+        id: 128
         human_readable_name: Tire Temp Front Left Channel 15
         unit: C
         type: FLOATING
 
     tire_temp_fl_16:
         name: tire_temp_fl_16
-        id: 125
+        id: 129
         human_readable_name: Tire Temp Front Left Channel 16
         unit: C
         type: FLOATING
 
     tire_temp_fr_1:
         name: tire_temp_fr_1
-        id: 126
+        id: 130
         human_readable_name: Tire Temp Front Right Channel 1
         unit: C
         type: FLOATING
 
     tire_temp_fr_2:
         name: tire_temp_fr_2
-        id: 127
+        id: 131
         human_readable_name: Tire Temp Front Right Channel 2
         unit: C
         type: FLOATING
 
     tire_temp_fr_3:
         name: tire_temp_fr_3
-        id: 128
+        id: 132
         human_readable_name: Tire Temp Front Right Channel 3
         unit: C
         type: FLOATING
 
     tire_temp_fr_4:
         name: tire_temp_fr_4
-        id: 129
+        id: 133
         human_readable_name: Tire Temp Front Right Channel 4
         unit: C
         type: FLOATING
 
     tire_temp_fr_5:
         name: tire_temp_fr_5
-        id: 130
+        id: 134
         human_readable_name: Tire Temp Front Right Channel 5
         unit: C
         type: FLOATING
 
     tire_temp_fr_6:
         name: tire_temp_fr_6
-        id: 131
+        id: 135
         human_readable_name: Tire Temp Front Right Channel 6
         unit: C
         type: FLOATING
 
     tire_temp_fr_7:
         name: tire_temp_fr_7
-        id: 132
+        id: 136
         human_readable_name: Tire Temp Front Right Channel 7
         unit: C
         type: FLOATING
 
     tire_temp_fr_8:
         name: tire_temp_fr_8
-        id: 133
+        id: 137
         human_readable_name: Tire Temp Front Right Channel 8
         unit: C
         type: FLOATING
 
     tire_temp_fr_9:
         name: tire_temp_fr_9
-        id: 134
+        id: 138
         human_readable_name: Tire Temp Front Right Channel 9
         unit: C
         type: FLOATING
 
     tire_temp_fr_10:
         name: tire_temp_fr_10
-        id: 135
+        id: 139
         human_readable_name: Tire Temp Front Right Channel 10
         unit: C
         type: FLOATING
 
     tire_temp_fr_11:
         name: tire_temp_fr_11
-        id: 136
+        id: 140
         human_readable_name: Tire Temp Front Right Channel 11
         unit: C
         type: FLOATING
 
     tire_temp_fr_12:
         name: tire_temp_fr_12
-        id: 137
+        id: 141
         human_readable_name: Tire Temp Front Right Channel 12
         unit: C
         type: FLOATING
 
     tire_temp_fr_13:
         name: tire_temp_fr_13
-        id: 138
+        id: 142
         human_readable_name: Tire Temp Front Right Channel 13
         unit: C
         type: FLOATING
 
     tire_temp_fr_14:
         name: tire_temp_fr_14
-        id: 139
+        id: 143
         human_readable_name: Tire Temp Front Right Channel 14
         unit: C
         type: FLOATING
 
     tire_temp_fr_15:
         name: tire_temp_fr_15
-        id: 140
+        id: 144
         human_readable_name: Tire Temp Front Right Channel 15
         unit: C
         type: FLOATING
 
     tire_temp_fr_16:
         name: tire_temp_fr_16
-        id: 141
+        id: 145
         human_readable_name: Tire Temp Front Right Channel 16
         unit: C
         type: FLOATING
@@ -1052,126 +1080,126 @@ parameters:
     # Parameters from the TCM:
     sw_upshift:
         name: sw_upshift
-        id: 142
+        id: 146
         human_readable_name: Upshift button from steering wheel
         unit: bool
         type: UNSIGNED8
 
     sw_downshift:
         name: sw_downshift
-        id: 143
+        id: 147
         human_readable_name: Downshift button from steering wheel
         unit: bool
         type: UNSIGNED8
 
-    sw_clutch:
-        name: sw_clutch
-        id: 144
-        human_readable_name: Clutch button from steering wheel
+    sw_clutch_fast:
+        name: sw_clutch_fast
+        id: 148
+        human_readable_name: Clutch button (fast)
         unit: bool
         type: UNSIGNED8
 
-    sw_drs:
-        name: sw_drs
-        id: 145
-        human_readable_name: DRS button from steering wheel
+    sw_clutch_slow:
+        name: sw_clutch_slow
+        id: 149
+        human_readable_name: Clutch button (slow)
         unit: bool
         type: UNSIGNED8
 
-    sw_aux2:
-        name: sw_aux2
-        id: 146
-        human_readable_name: Aux2 button from steering wheel
+    sw_aero_front:
+        name: sw_aero_front
+        id: 150
+        human_readable_name: Front aero button
         unit: bool
         type: UNSIGNED8
 
-    sw_aux3:
-        name: sw_aux3
-        id: 147
-        human_readable_name: Aux3 button from steering wheel
+    sw_aero_rear:
+        name: sw_aero_rear
+        id: 151
+        human_readable_name: Rear aero button
         unit: bool
         type: UNSIGNED8
 
     tcm_neutral:
         name: tcm_neutral
-        id: 148
+        id: 152
         human_readable_name: Neutral signal
         unit: bool
         type: UNSIGNED8
 
     tcm_shifter_position:
         name: tcm_shifter_position
-        id: 149
+        id: 153
         human_readable_name: Shifter Position
         unit: mm
         type: FLOATING
 
     tcm_clutch_position:
         name: tcm_clutch_position
-        id: 150
+        id: 154
         human_readable_name: Clutch Position
         unit: mm
         type: FLOATING
 
     tcm_target_rpm:
         name: tcm_target_rpm
-        id: 151
+        id: 155
         human_readable_name: Target RPM during a shift
         unit: rpm
         type: UNSIGNED32
 
     tcm_trans_rpm:
         name: tcm_trans_rpm
-        id: 152
+        id: 156
         human_readable_name: Transmission speed, measured at the clutch
         unit: rpm
         type: UNSIGNED32
 
     tcm_current_gear:
         name: tcm_current_gear
-        id: 153
+        id: 157
         human_readable_name: Current Gear
         unit: gear
         type: UNSIGNED8
 
     tcm_target_gear:
         name: tcm_target_gear
-        id: 154
+        id: 158
         human_readable_name: Target Gear During a shift
         unit: gear
         type: UNSIGNED8
 
     tcm_currently_moving:
         name: tcm_currently_moving
-        id: 155
+        id: 159
         human_readable_name: True if we are Currently moving
         unit: bool
         type: UNSIGNED8
 
     tcm_throttle_blip:
         name: tcm_throttle_blip
-        id: 156
+        id: 160
         human_readable_name: True if we are Currently blipping the ECU
         unit: bool
         type: UNSIGNED8
 
     tcm_using_clutch:
         name: tcm_using_clutch
-        id: 157
+        id: 161
         human_readable_name: True if we are using the clutch during a shift
         unit: bool
         type: UNSIGNED8
 
     tcm_successful_shift:
         name: tcm_successful_shift
-        id: 158
+        id: 162
         human_readable_name: True if a shift is successful
         unit: bool
         type: UNSIGNED8
 
     tcm_anti_stall:
         name: tcm_anti_stall
-        id: 159
+        id: 163
         human_readable_name: Anti stall active
         unit: bool
         type: UNSIGNED8
@@ -1179,21 +1207,21 @@ parameters:
     # Parameters from the ACM:
     acm_fl_wing_angle:
         name: acm_fl_wing_angle
-        id: 160
+        id: 164
         human_readable_name: Front Right Wing Angle
         unit: duty
         type: UNSIGNED32
 
     acm_fr_wing_angle:
         name: acm_fr_wing_angle
-        id: 161
+        id: 165
         human_readable_name: Front Left Wing Angle
         unit: duty
         type: UNSIGNED32
 
     acm_rear_wing_angle:
         name: acm_rear_wing_angle
-        id: 162
+        id: 166
         human_readable_name: Rear Wing Angle
         unit: duty
         type: UNSIGNED32
@@ -1201,154 +1229,154 @@ parameters:
     # Parameters from the PDM: TODO what data type?
     pdm_1_current:
         name: pdm_1_current
-        id: 163
+        id: 167
         human_readable_name: Current from PDM channel 1
         unit: mA
         type: FLOATING
 
     pdm_2_current:
         name: pdm_2_current
-        id: 164
+        id: 168
         human_readable_name: Current from PDM channel 2
         unit: mA
         type: FLOATING
 
     pdm_3_current:
         name: pdm_3_current
-        id: 165
+        id: 169
         human_readable_name: Current from PDM channel 3
         unit: mA
         type: FLOATING
 
     pdm_4_current:
         name: pdm_4_current
-        id: 166
+        id: 170
         human_readable_name: Current from PDM channel 4
         unit: mA
         type: FLOATING
 
     pdm_5_current:
         name: pdm_5_current
-        id: 167
+        id: 171
         human_readable_name: Current from PDM channel 5
         unit: mA
         type: FLOATING
 
     pdm_6_current:
         name: pdm_6_current
-        id: 168
+        id: 172
         human_readable_name: Current from PDM channel 6
         unit: mA
         type: FLOATING
 
     pdm_7_current:
         name: pdm_7_current
-        id: 169
+        id: 173
         human_readable_name: Current from PDM channel 7
         unit: mA
         type: FLOATING
 
     pdm_8_current:
         name: pdm_8_current
-        id: 170
+        id: 174
         human_readable_name: Current from PDM channel 8
         unit: mA
         type: FLOATING
 
     pdm_9_current:
         name: pdm_9_current
-        id: 171
+        id: 175
         human_readable_name: Current from PDM channel 9
         unit: mA
         type: FLOATING
 
     pdm_10_current:
         name: pdm_10_current
-        id: 172
+        id: 176
         human_readable_name: Current from PDM channel 10
         unit: mA
         type: FLOATING
 
     pdm_11_current:
         name: pdm_11_current
-        id: 173
+        id: 177
         human_readable_name: Current from PDM channel 11
         unit: mA
         type: FLOATING
 
     pdm_12_current:
         name: pdm_12_current
-        id: 174
+        id: 178
         human_readable_name: Current from PDM channel 12
         unit: mA
         type: FLOATING
 
     pdm_13_current:
         name: pdm_13_current
-        id: 175
+        id: 179
         human_readable_name: Current from PDM channel 13
         unit: mA
         type: FLOATING
 
     pdm_14_current:
         name: pdm_14_current
-        id: 176
+        id: 180
         human_readable_name: Current from PDM channel 14
         unit: mA
         type: FLOATING
 
     pdm_15_current:
         name: pdm_15_current
-        id: 177
+        id: 181
         human_readable_name: Current from PDM channel 15
         unit: mA
         type: FLOATING
 
     pdm_16_current:
         name: pdm_16_current
-        id: 178
+        id: 182
         human_readable_name: Current from PDM channel 16
         unit: mA
         type: FLOATING
 
     pdm_17_current:
         name: pdm_17_current
-        id: 179
+        id: 183
         human_readable_name: Current from PDM channel 17
         unit: mA
         type: FLOATING
 
     pdm_18_current:
         name: pdm_18_current
-        id: 180
+        id: 184
         human_readable_name: Current from PDM channel 18
         unit: mA
         type: FLOATING
 
     pdm_19_current:
         name: pdm_19_current
-        id: 181
+        id: 185
         human_readable_name: Current from PDM channel 19
         unit: mA
         type: FLOATING
 
     pdm_20_current:
         name: pdm_20_current
-        id: 182
+        id: 186
         human_readable_name: Current from PDM channel 20
         unit: mA
         type: FLOATING
 
     pdm_voltage:
         name: pdm_voltage
-        id: 183
+        id: 187
         human_readable_name: Switch Voltage
         unit: Volts
         type: FLOATING
 
     pdm_temp:
         name: pdm_temp
-        id: 184
+        id: 188
         human_readable_name: Switch Temperature
         unit: C
         type: FLOATING
