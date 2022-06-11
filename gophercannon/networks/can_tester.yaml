@@ -475,7 +475,7 @@ commands:
         param_1: "UNUSED"
         param_2: "UNUSED"
         param_3: "UNUSED"
-        comment: "Sent each time the DLM finishes logging all parameters"
+        comment: "Sent by the DLM after completing a write to storage"
 
 errors:
     ID_NOT_FOUND:
