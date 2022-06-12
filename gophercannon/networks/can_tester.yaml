@@ -458,33 +458,24 @@ commands:
         param_2: "parameter ID - least significan byte"
         param_3: "UNUSED"
         comment: "Adds a specified parameter to the specified DLM bucket"
-        
-    ASSIGN_BUCKET_TO_FRQ:
-        name: ASSIGN_BUCKET_TO_FRQ
-        id: 6
-        param_0: "bucket ID"
-        param_1: "MS between requests - most significant byte"
-        param_2: "MS between requests - least significant byte"
-        param_3: "UNUSED"
-        comment: "Sets the wait time between requests of this bucket in milliseconds. A value of 0 will stop requesting this bucket"
    
     BUCKET_OK:
         name: BUCKET_OK
-        id: 7
+        id: 6
         param_0: "bucket ID"
         param_1: "UNUSED"
         param_2: "UNUSED"
         param_3: "UNUSED"
         comment: "This command is sent when the bucket has the number of parameters it expects"
-        
-    REQUEST_BUCKET:
-        name: REQUEST_BUCKET
-        id: 8
-        param_0: "bucket ID"
+
+    LOG_COMPLETE:
+        name: LOG_COMPLETE
+        id: 7
+        param_0: "UNUSED"
         param_1: "UNUSED"
         param_2: "UNUSED"
         param_3: "UNUSED"
-        comment: "CAN command to send each parameter in the bucket"
+        comment: "Sent by the DLM after completing a write to storage"
 
 errors:
     ID_NOT_FOUND:
