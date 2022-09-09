@@ -8,9 +8,9 @@ char gcan_config_yaml[] = { {{yamlStr}} };
 #include "GopherCAN.h"
 
 // all of the global parameter structs
-CAN_COMMAND_STRUCT can_command;
+CAN_COMMAND_STRUCT can_command = {0};
 {% for parameter in parameters -%}
-{{ type_struct[parameter.type] }} {{ parameter.name }};
+{{ type_struct[parameter.type] }} {{ parameter.name }} = {0};
 {% endfor %}
 
 // this is the struct that will be used to reference based on ID

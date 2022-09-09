@@ -77,7 +77,7 @@ typedef enum
 extern void* all_parameter_structs[NUM_OF_PARAMETERS];
 extern U8 parameter_data_types[NUM_OF_PARAMETERS];
 #ifdef MULTI_BUS
-U8 module_bus_number[NUM_OF_MODULES];
+extern U8 module_bus_number[NUM_OF_MODULES];
 #endif // MULTI_BUS
 
 

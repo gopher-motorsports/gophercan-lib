@@ -73,8 +73,8 @@ parameters:
     wheel_slip_target_ecu:
         name: wheel_slip_target_ecu
         id: 3
-        motec_name: Wheel Slip (ECU)
-        unit: kph
+        motec_name: Wheel Slip Target (ECU)
+        unit: percent
         type: FLOATING
 
     aim_rpm_ecu:
@@ -131,14 +131,14 @@ parameters:
         name: engine_temp_ecu
         id: 11
         motec_name: Engine Temp
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     inlet_air_temp_ecu:
         name: inlet_air_temp_ecu
         id: 12
         motec_name: Air Temp Inlet
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     lambda_1_ecu:
@@ -194,7 +194,7 @@ parameters:
         name: ign_advance_ecu
         id: 20
         motec_name: Ignition Advance
-        unit: "\u00B0"dbtdc
+        unit: dbtdc
         type: FLOATING
 
     oil_pressure_ecu:
@@ -208,7 +208,7 @@ parameters:
         name: oil_temp_ecu
         id: 22
         motec_name: Eng Oil Temp
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     fuel_pressure_ecu:
@@ -292,14 +292,14 @@ parameters:
         name: gps_lat_ecu
         id: 34
         motec_name: GPS Latitude
-        unit: "\u00B0"
+        unit: degrees
         type: FLOATING
 
     gps_long_ecu:
         name: gps_long_ecu
         id: 35
         motec_name: GPS Longitude
-        unit: "\u00B0"
+        unit: degrees
         type: FLOATING
 
 
@@ -315,7 +315,7 @@ parameters:
         name: steering_angle
         id: 37
         motec_name: Steering Angle
-        unit: "\u00B0"
+        unit: °
         type: FLOATING
 
     throttle_position:
@@ -461,7 +461,7 @@ parameters:
     water_pump_pressure_in:
         name: water_pump_pressure_in
         id: 58
-        motec_name: Water Pump Inlet Pressure 
+        motec_name: Water Pump Inlet Pressure
         unit: psi
         type: FLOATING
 
@@ -483,14 +483,14 @@ parameters:
         name: exhaust_temp_1
         id: 61
         motec_name: Exhaust Temp
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     exhaust_temp_2:
         name: exhaust_temp_2
         id: 62
         motec_name: Exhaust Temp 2
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     exhaust_temp_3:
@@ -567,13 +567,13 @@ parameters:
         name: yaw_rate
         id: 73
         motec_name: Yaw Rate
-        unit: "\u00B0"/s
+        unit: degrees/s
         type: FLOATING
 
     y_axis_accel:
         name: y_axis_accel
         id: 74
-        motec_name: Longitudinal Acceleration    
+        motec_name: Longitudinal Acceleration
         unit: G
         type: FLOATING
 
@@ -581,7 +581,7 @@ parameters:
         name: roll_rate
         id: 75
         motec_name: Roll Rate
-        unit: degrees per second
+        unit: degrees/s
         type: FLOATING
 
     x_axis_accel:
@@ -602,28 +602,28 @@ parameters:
         name: brake_temp_fl
         id: 78
         motec_name: Brake Temp Front Left
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     brake_temp_fr:
         name: brake_temp_fr
         id: 79
         motec_name: Brake Temp Front Right
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     brake_temp_rl:
         name: brake_temp_rl
         id: 80
         motec_name: Brake Temp Rear Left
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     brake_temp_rr:
         name: brake_temp_rr
         id: 81
         motec_name: Brake Temp Rear Right
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
 # Tire temps
@@ -631,224 +631,224 @@ parameters:
         name: tire_temp_rr_1
         id: 82
         motec_name: Tire Temp Rear Right Channel 1
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_2:
         name: tire_temp_rr_2
         id: 83
         motec_name: Tire Temp Rear Right Channel 2
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_3:
         name: tire_temp_rr_3
         id: 84
         motec_name: Tire Temp Rear Right Channel 3
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_4:
         name: tire_temp_rr_4
         id: 85
         motec_name: Tire Temp Rear Right Channel 4
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_5:
         name: tire_temp_rr_5
         id: 86
         motec_name: Tire Temp Rear Right Channel 5
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_6:
         name: tire_temp_rr_6
         id: 87
         motec_name: Tire Temp Rear Right Channel 6
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_7:
         name: tire_temp_rr_7
         id: 88
         motec_name: Tire Temp Rear Right Channel 7
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_8:
         name: tire_temp_rr_8
         id: 89
         motec_name: Tire Temp Rear Right Channel 8
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_9:
         name: tire_temp_rr_9
         id: 90
         motec_name: Tire Temp Rear Right Channel 9
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_10:
         name: tire_temp_rr_10
         id: 91
         motec_name: Tire Temp Rear Right Channel 10
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_11:
         name: tire_temp_rr_11
         id: 92
         motec_name: Tire Temp Rear Right Channel 11
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_12:
         name: tire_temp_rr_12
         id: 93
         motec_name: Tire Temp Rear Right Channel 12
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_13:
         name: tire_temp_rr_13
         id: 94
         motec_name: Tire Temp Rear Right Channel 13
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_14:
         name: tire_temp_rr_14
         id: 95
         motec_name: Tire Temp Rear Right Channel 14
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_15:
         name: tire_temp_rr_15
         id: 96
         motec_name: Tire Temp Rear Right Channel 15
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rr_16:
         name: tire_temp_rr_16
         id: 97
         motec_name: Tire Temp Rear Right Channel 16
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_1:
         name: tire_temp_rl_1
         id: 98
         motec_name: Tire Temp Rear Left Channel 1
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_2:
         name: tire_temp_rl_2
         id: 99
         motec_name: Tire Temp Rear Left Channel 2
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_3:
         name: tire_temp_rl_3
         id: 100
         motec_name: Tire Temp Rear Left Channel 3
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_4:
         name: tire_temp_rl_4
         id: 101
         motec_name: Tire Temp Rear Left Channel 4
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_5:
         name: tire_temp_rl_5
         id: 102
         motec_name: Tire Temp Rear Left Channel 5
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_6:
         name: tire_temp_rl_6
         id: 103
         motec_name: Tire Temp Rear Left Channel 6
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_7:
         name: tire_temp_rl_7
         id: 104
         motec_name: Tire Temp Rear Left Channel 7
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_8:
         name: tire_temp_rl_8
         id: 105
         motec_name: Tire Temp Rear Left Channel 8
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_9:
         name: tire_temp_rl_9
         id: 106
         motec_name: Tire Temp Rear Left Channel 9
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_10:
         name: tire_temp_rl_10
         id: 107
         motec_name: Tire Temp Rear Left Channel 10
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_11:
         name: tire_temp_rl_11
         id: 108
         motec_name: Tire Temp Rear Left Channel 11
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_12:
         name: tire_temp_rl_12
         id: 109
         motec_name: Tire Temp Rear Left Channel 12
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_13:
         name: tire_temp_rl_13
         id: 110
         motec_name: Tire Temp Rear Left Channel 13
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_14:
         name: tire_temp_rl_14
         id: 111
         motec_name: Tire Temp Rear Left Channel 14
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_15:
         name: tire_temp_rl_15
         id: 112
         motec_name: Tire Temp Rear Left Channel 15
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_rl_16:
         name: tire_temp_rl_16
         id: 113
         motec_name: Tire Temp Rear Left Channel 16
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
 
@@ -856,224 +856,224 @@ parameters:
         name: tire_temp_fl_1
         id: 114
         motec_name: Tire Temp Front Left Channel 1
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_2:
         name: tire_temp_fl_2
         id: 115
         motec_name: Tire Temp Front Left Channel 2
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_3:
         name: tire_temp_fl_3
         id: 116
         motec_name: Tire Temp Front Left Channel 3
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_4:
         name: tire_temp_fl_4
         id: 117
         motec_name: Tire Temp Front Left Channel 4
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_5:
         name: tire_temp_fl_5
         id: 118
         motec_name: Tire Temp Front Left Channel 5
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_6:
         name: tire_temp_fl_6
         id: 119
         motec_name: Tire Temp Front Left Channel 6
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_7:
         name: tire_temp_fl_7
         id: 120
         motec_name: Tire Temp Front Left Channel 7
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_8:
         name: tire_temp_fl_8
         id: 121
         motec_name: Tire Temp Front Left Channel 8
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_9:
         name: tire_temp_fl_9
         id: 122
         motec_name: Tire Temp Front Left Channel 9
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_10:
         name: tire_temp_fl_10
         id: 123
         motec_name: Tire Temp Front Left Channel 10
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_11:
         name: tire_temp_fl_11
         id: 124
         motec_name: Tire Temp Front Left Channel 11
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_12:
         name: tire_temp_fl_12
         id: 125
         motec_name: Tire Temp Front Left Channel 12
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_13:
         name: tire_temp_fl_13
         id: 126
         motec_name: Tire Temp Front Left Channel 13
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_14:
         name: tire_temp_fl_14
         id: 127
         motec_name: Tire Temp Front Left Channel 14
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_15:
         name: tire_temp_fl_15
         id: 128
         motec_name: Tire Temp Front Left Channel 15
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fl_16:
         name: tire_temp_fl_16
         id: 129
         motec_name: Tire Temp Front Left Channel 16
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_1:
         name: tire_temp_fr_1
         id: 130
         motec_name: Tire Temp Front Right Channel 1
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_2:
         name: tire_temp_fr_2
         id: 131
         motec_name: Tire Temp Front Right Channel 2
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_3:
         name: tire_temp_fr_3
         id: 132
         motec_name: Tire Temp Front Right Channel 3
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_4:
         name: tire_temp_fr_4
         id: 133
         motec_name: Tire Temp Front Right Channel 4
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_5:
         name: tire_temp_fr_5
         id: 134
         motec_name: Tire Temp Front Right Channel 5
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_6:
         name: tire_temp_fr_6
         id: 135
         motec_name: Tire Temp Front Right Channel 6
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_7:
         name: tire_temp_fr_7
         id: 136
         motec_name: Tire Temp Front Right Channel 7
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_8:
         name: tire_temp_fr_8
         id: 137
         motec_name: Tire Temp Front Right Channel 8
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_9:
         name: tire_temp_fr_9
         id: 138
         motec_name: Tire Temp Front Right Channel 9
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_10:
         name: tire_temp_fr_10
         id: 139
         motec_name: Tire Temp Front Right Channel 10
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_11:
         name: tire_temp_fr_11
         id: 140
         motec_name: Tire Temp Front Right Channel 11
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_12:
         name: tire_temp_fr_12
         id: 141
         motec_name: Tire Temp Front Right Channel 12
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_13:
         name: tire_temp_fr_13
         id: 142
         motec_name: Tire Temp Front Right Channel 13
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_14:
         name: tire_temp_fr_14
         id: 143
         motec_name: Tire Temp Front Right Channel 14
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_15:
         name: tire_temp_fr_15
         id: 144
         motec_name: Tire Temp Front Right Channel 15
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 
     tire_temp_fr_16:
         name: tire_temp_fr_16
         id: 145
         motec_name: Tire Temp Front Right Channel 16
-        unit: "\u2103"
+        unit: C
         type: FLOATING
 # end tire temps
 
@@ -1151,7 +1151,7 @@ parameters:
     tcm_trans_rpm:
         name: tcm_trans_rpm
         id: 156
-        motec_name: Transmission speed, measured at the clutch
+        motec_name: Transmission speed
         unit: rpm
         type: UNSIGNED32
 
@@ -1172,28 +1172,28 @@ parameters:
     tcm_currently_moving:
         name: tcm_currently_moving
         id: 159
-        motec_name: True if we are Currently moving
+        motec_name: Currently moving
         unit: bool
         type: UNSIGNED8
 
     tcm_throttle_blip:
         name: tcm_throttle_blip
         id: 160
-        motec_name: True if we are Currently blipping the ECU
+        motec_name: Blip Active
         unit: bool
         type: UNSIGNED8
 
     tcm_using_clutch:
         name: tcm_using_clutch
         id: 161
-        motec_name: True if we are using the clutch during a shift
+        motec_name: Clutch Shifting
         unit: bool
         type: UNSIGNED8
 
     tcm_successful_shift:
         name: tcm_successful_shift
         id: 162
-        motec_name: True if a shift is successful
+        motec_name: Shift Success
         unit: bool
         type: UNSIGNED8
 
@@ -1435,32 +1435,24 @@ commands:
         param_2: parameter ID - least significan byte
         param_3: UNUSED
         comment: Adds a specified parameter to the specified DLM bucket
-    ASSIGN_BUCKET_TO_FRQ:
-        name: ASSIGN_BUCKET_TO_FRQ
-        id: 6
-        param_0: bucket ID
-        param_1: MS between requests - most significant byte
-        param_2: MS between requests - least significant byte
-        param_3: UNUSED
-        comment: Sets the wait time between requests of this bucket in milliseconds.
-            A value of 0 will stop requesting this bucket
     BUCKET_OK:
         name: BUCKET_OK
-        id: 7
+        id: 6
         param_0: bucket ID
         param_1: UNUSED
         param_2: UNUSED
         param_3: UNUSED
         comment: This command is sent when the bucket has the number of parameters
             it expects
-    REQUEST_BUCKET:
-        name: REQUEST_BUCKET
-        id: 8
-        param_0: bucket ID
+
+    LOG_COMPLETE:
+        name: LOG_COMPLETE
+        id: 7
+        param_0: UNUSED
         param_1: UNUSED
         param_2: UNUSED
         param_3: UNUSED
-        comment: CAN command to send each parameter in the bucket
+        comment: Sent by the DLM after completing a write to storage
 
 errors:
     ID_NOT_FOUND:
