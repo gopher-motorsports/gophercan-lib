@@ -67,7 +67,7 @@ parameters:
         name: wheel_slip_ecu
         id: 2
         motec_name: Wheel Slip (Percent)
-        unit: %
+        unit: percent
         type: FLOATING
 
     wheel_slip_target_ecu:
