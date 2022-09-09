@@ -2,15 +2,15 @@ busses:
     bus_0:
         name: GCAN0
         baud_rate: 1000000
-        human_readable_name: TCM and PDM
+        motec_name: TCM and PDM
     bus_1:
         name: GCAN1
         baud_rate: 1000000
-        human_readable_name: Rear DAM Bus
+        motec_name: Rear DAM Bus
     bus_2:
         name: GCAN2
         baud_rate: 1000000
-        human_readable_name: Front Bus
+        motec_name: Front Bus
 modules:
     DLM:
         name: DLM
@@ -19,39 +19,39 @@ modules:
           - GCAN0
           - GCAN1
           - GCAN2
-        human_readable_name: Data Logging Module
+        motec_name: Data Logging Module
 
     DAM_F:
         name: DAM_F
         id: 2
         busses:
           - GCAN2
-        human_readable_name: Front DAM
+        motec_name: Front DAM
 
     DAM_R:
         name: DAM_R
         id: 3
         busses:
           - GCAN1
-        human_readable_name: Rear DAM
+        motec_name: Rear DAM
     PDM:
         name: PDM
         id: 4
         busses:
           - GCAN0
-        human_readable_name: Power Distribution Module
+        motec_name: Power Distribution Module
     TCM:
         name: TCM
         id: 5
         busses:
           - GCAN0
-        human_readable_name: Transmission Control Module
+        motec_name: Transmission Control Module
     ACM:
         name: ACM
         id: 6
         busses:
           - GCAN2
-        human_readable_name: Areodynamic Control Module
+        motec_name: Areodynamic Control Module
 
 parameters:
     # parameters generated on the ECU
@@ -59,63 +59,63 @@ parameters:
     rpm_ecu:
         name: rpm_ecu
         id: 1
-        human_readable_name: Engine RPM
+        motec_name: Engine RPM
         unit: rpm
         type: UNSIGNED16
 
     wheel_slip_ecu:
         name: wheel_slip_ecu
         id: 2
-        human_readable_name: Wheel Slip (Percent)
+        motec_name: Wheel Slip (Percent)
         unit: %
         type: FLOATING
 
     wheel_slip_target_ecu:
         name: wheel_slip_target_ecu
         id: 3
-        human_readable_name: Wheel Slip (ECU)
+        motec_name: Wheel Slip (ECU)
         unit: kph
         type: FLOATING
 
     aim_rpm_ecu:
         name: aim_rpm_ecu
         id: 4
-        human_readable_name: Engine RPM Target (ECU)
+        motec_name: Engine RPM Target (ECU)
         unit: rpm
         type: FLOATING
 
     wsfl_ecu:
         name: wsfl_ecu
         id: 5
-        human_readable_name: Wheel Speed FL
+        motec_name: Wheel Speed FL
         unit: km/h
         type: FLOATING
 
     wsfr_ecu:
         name: wsfr_ecu
         id: 6
-        human_readable_name: Wheel Speed FR
+        motec_name: Wheel Speed FR
         unit: km/h
         type: FLOATING
 
     wsrl_ecu:
         name: wsrl_ecu
         id: 7
-        human_readable_name: Wheel Speed RL
+        motec_name: Wheel Speed RL
         unit: km/h
         type: FLOATING
 
     wsrr_ecu:
         name: wsrr_ecu
         id: 8
-        human_readable_name: Wheel Speed RR
+        motec_name: Wheel Speed RR
         unit: km/h
         type: FLOATING
 
     ign_cut_level_ecu:
         name: ign_cut_level_ecu
         id: 9
-        human_readable_name: Ign Cut Level Total
+        motec_name: Ign Cut Level Total
         unit: percent
         type: FLOATING
 
@@ -123,182 +123,182 @@ parameters:
     bat_volts_ecu:
         name: bat_volts_ecu
         id: 10
-        human_readable_name: Bat Volts ECU
+        motec_name: Bat Volts ECU
         unit: V
         type: FLOATING
 
     engine_temp_ecu:
         name: engine_temp_ecu
         id: 11
-        human_readable_name: Engine Temp
+        motec_name: Engine Temp
         unit: "\u2103"
         type: FLOATING
 
     inlet_air_temp_ecu:
         name: inlet_air_temp_ecu
         id: 12
-        human_readable_name: Air Temp Inlet
+        motec_name: Air Temp Inlet
         unit: "\u2103"
         type: FLOATING
 
     lambda_1_ecu:
         name: lambda_1_ecu
         id: 13
-        human_readable_name: Lambda 1
+        motec_name: Lambda 1
         unit: LA
         type: FLOATING
 
     throttle_pos_1_ecu:
         name: throttle_pos_1_ecu
         id: 14
-        human_readable_name: Throttle Pos
+        motec_name: Throttle Pos
         unit: percent
         type: FLOATING
 
     throttle_pos_2_ecu:
         name: throttle_pos_2_ecu
         id: 15
-        human_readable_name: Throttle Pos 2
+        motec_name: Throttle Pos 2
         unit: percent
         type: FLOATING
 
     pedal_pos_1_ecu:
         name: pedal_pos_1_ecu
         id: 16
-        human_readable_name: Pedal Position 1
+        motec_name: Pedal Position 1
         unit: percent
         type: FLOATING
 
     pedal_pos_2_ecu:
         name: pedal_pos_2_ecu
         id: 17
-        human_readable_name: Pedal Position 2
+        motec_name: Pedal Position 2
         unit: percent
         type: FLOATING
 
     man_pressure_ecu:
         name: man_pressure_ecu
         id: 18
-        human_readable_name: Manifold Pres
+        motec_name: Manifold Pres
         unit: kPa
         type: FLOATING
 
     fuel_cut_lvl_ecu:
         name: fuel_cut_lvl_ecu
         id: 19
-        human_readable_name: Fuel Cut Level Total
+        motec_name: Fuel Cut Level Total
         unit: percent
         type: FLOATING
 
     ign_advance_ecu:
         name: ign_advance_ecu
         id: 20
-        human_readable_name: Ignition Advance
+        motec_name: Ignition Advance
         unit: "\u00B0"dbtdc
         type: FLOATING
 
     oil_pressure_ecu:
         name: oil_pressure_ecu
         id: 21
-        human_readable_name: Eng Oil Pres
+        motec_name: Eng Oil Pres
         unit: kPa
         type: FLOATING
 
     oil_temp_ecu:
         name: oil_temp_ecu
         id: 22
-        human_readable_name: Eng Oil Temp
+        motec_name: Eng Oil Temp
         unit: "\u2103"
         type: FLOATING
 
     fuel_pressure_ecu:
         name: fuel_pressure_ecu
         id: 23
-        human_readable_name: Fuel Pres
+        motec_name: Fuel Pres
         unit: kPa
         type: FLOATING
 
     throttle_pos_required_ecu:
         name: throttle_pos_required_ecu
         id: 24
-        human_readable_name: Throttle Position Required
+        motec_name: Throttle Position Required
         unit: percent
         type: FLOATING
 
     brake_pressure_front_ecu:
         name: brake_pressure_front_ecu
         id: 25
-        human_readable_name: Brake Pressure Front
+        motec_name: Brake Pressure Front
         unit: psi
         type: FLOATING
 
     etc_duty_ecu:
         name: etc_duty_ecu
         id: 26
-        human_readable_name: ETC Duty Cycle (ECU)
+        motec_name: ETC Duty Cycle (ECU)
         unit: percent
         type: FLOATING
 
     fan_duty_ecu:
         name: fan_duty_ecu
         id: 27
-        human_readable_name: Fan Duty Cycle (ECU)
+        motec_name: Fan Duty Cycle (ECU)
         unit: percent
         type: FLOATING
 
     fanoil_duty_ecu:
         name: fanoil_duty_ecu
         id: 28
-        human_readable_name: Fan Oil Duty Cycle (ECU)
+        motec_name: Fan Oil Duty Cycle (ECU)
         unit: percent
         type: FLOATING
 
     wpump_duty_ecu:
         name: wpump_duty_ecu
         id: 29
-        human_readable_name: Water Pump Duty Cycle (ECU)
+        motec_name: Water Pump Duty Cycle (ECU)
         unit: percent
         type: FLOATING
 
     brake_light_duty_ecu:
         name: brake_light_duty_ecu
         id: 30
-        human_readable_name: Brake Light Duty Cycle (ECU)
+        motec_name: Brake Light Duty Cycle (ECU)
         unit: percent
         type: FLOATING
 
     warning_light_duty_ecu:
         name: warning_light_duty_ecu
         id: 31
-        human_readable_name: Warning Light Duty Cycle (ECU)
+        motec_name: Warning Light Duty Cycle (ECU)
         unit: percent
         type: FLOATING
 
     aux_5v_ecu:
         name: aux_5v_ecu
         id: 32
-        human_readable_name: 5V Aux Supply
+        motec_name: 5V Aux Supply
         unit: V
         type: FLOATING
 
     eng_5v_ecu:
         name: eng_5v_ecu
         id: 33
-        human_readable_name: 5V Eng Voltage
+        motec_name: 5V Eng Voltage
         unit: V
         type: FLOATING
 
     gps_lat_ecu:
         name: gps_lat_ecu
         id: 34
-        human_readable_name: GPS Latitude
+        motec_name: GPS Latitude
         unit: "\u00B0"
         type: FLOATING
 
     gps_long_ecu:
         name: gps_long_ecu
         id: 35
-        human_readable_name: GPS Longitude
+        motec_name: GPS Longitude
         unit: "\u00B0"
         type: FLOATING
 
@@ -307,322 +307,322 @@ parameters:
     brake_pressure_rear:
         name: brake_pressure_rear
         id: 36
-        human_readable_name: Brake Pressure Rear
+        motec_name: Brake Pressure Rear
         unit: psi
         type: FLOATING
 
     steering_angle:
         name: steering_angle
         id: 37
-        human_readable_name: Steering Angle
+        motec_name: Steering Angle
         unit: "\u00B0"
         type: FLOATING
 
     throttle_position:
         name: throttle_position
         id: 38
-        human_readable_name: throttle_position
+        motec_name: throttle_position
         unit: number
         type: FLOATING
 
     acceleration:
         name: acceleration
         id: 39
-        human_readable_name: acceleration
+        motec_name: acceleration
         unit: m/s^2
         type: FLOATING
 
     ride_height_rear:
         name: ride_height_rear
         id: 40
-        human_readable_name: Ride Height Rear
+        motec_name: Ride Height Rear
         unit: mm
         type: FLOATING
 
     ride_height_front:
         name: ride_height_front
         id: 41
-        human_readable_name: Ride Height Front
+        motec_name: Ride Height Front
         unit: mm
         type: FLOATING
 
     rear_right_shock_pot:
         name: rear_right_shock_pot
         id: 42
-        human_readable_name: Shock Pot Rear Right
+        motec_name: Shock Pot Rear Right
         unit: in
         type: FLOATING
 
     rear_left_shock_pot:
         name: rear_left_shock_pot
         id: 43
-        human_readable_name: Shock Pot Rear Left
+        motec_name: Shock Pot Rear Left
         unit: in
         type: FLOATING
 
     front_left_shock_pot:
         name: front_left_shock_pot
         id: 44
-        human_readable_name: Shock Pot Front Left
+        motec_name: Shock Pot Front Left
         unit: in
         type: FLOATING
 
     front_right_shock_pot:
         name: front_right_shock_pot
         id: 45
-        human_readable_name: Shock Pot Front Right
+        motec_name: Shock Pot Front Right
         unit: in
         type: FLOATING
 
     right_rad_pressure_in:
         name: right_rad_pressure_in
         id: 46
-        human_readable_name: Right Radiator Pressure In
+        motec_name: Right Radiator Pressure In
         unit: PSI
         type: FLOATING
 
     right_rad_pressure_out:
         name: right_rad_pressure_out
         id: 47
-        human_readable_name: Right Radiator Pressure Out
+        motec_name: Right Radiator Pressure Out
         unit: PSI
         type: FLOATING
 
     right_rad_pressure_drop:
         name: right_rad_pressure_drop
         id: 48
-        human_readable_name: Right Radiator Pressure Drop
+        motec_name: Right Radiator Pressure Drop
         unit: PSI
         type: FLOATING
 
     right_rad_temp_in:
         name: right_rad_temp_in
         id: 49
-        human_readable_name: Right Radiator in Temperature
+        motec_name: Right Radiator in Temperature
         unit: C
         type: FLOATING
 
     right_rad_temp_out:
         name: right_rad_temp_out
         id: 50
-        human_readable_name: Right Radiator out Temperature
+        motec_name: Right Radiator out Temperature
         unit: C
         type: FLOATING
 
     left_rad_pressure_in:
         name: left_rad_pressure_in
         id: 51
-        human_readable_name: Left Radiator Pressure In
+        motec_name: Left Radiator Pressure In
         unit: PSI
         type: FLOATING
 
     left_rad_pressure_out:
         name: left_rad_pressure_out
         id: 52
-        human_readable_name: Left Radiator Pressure Out
+        motec_name: Left Radiator Pressure Out
         unit: PSI
         type: FLOATING
 
     left_rad_pressure_drop:
         name: left_rad_pressure_drop
         id: 53
-        human_readable_name: Left Radiator Pressure Drop
+        motec_name: Left Radiator Pressure Drop
         unit: PSI
         type: FLOATING
 
     left_rad_temp_in:
         name: left_rad_temp_in
         id: 54
-        human_readable_name: Left Radiator in Temperature
+        motec_name: Left Radiator in Temperature
         unit: C
         type: FLOATING
 
     left_rad_temp_out:
         name: left_rad_temp_out
         id: 55
-        human_readable_name: Left Radiator out Temperature
+        motec_name: Left Radiator out Temperature
         unit: C
         type: FLOATING
 
     air_tank_pressure:
         name: air_tank_pressure
         id: 56
-        human_readable_name: Air Tank Pressure
+        motec_name: Air Tank Pressure
         unit: psi
         type: FLOATING
 
     pnumatic_line_pressure:
         name: pnumatic_line_pressure
         id: 57
-        human_readable_name: Pnumatic Line Pressure
+        motec_name: Pnumatic Line Pressure
         unit: psi
         type: FLOATING
 
     water_pump_pressure_in:
         name: water_pump_pressure_in
         id: 58
-        human_readable_name: Water Pump Inlet Pressure 
+        motec_name: Water Pump Inlet Pressure 
         unit: psi
         type: FLOATING
 
     water_pump_pressure_out:
         name: water_pump_pressure_out
         id: 59
-        human_readable_name: Water Pump Outlet Pressure
+        motec_name: Water Pump Outlet Pressure
         unit: psi
         type: FLOATING
 
     main_circuit_flow_rate:
         name: main_circuit_flow_rate
         id: 60
-        human_readable_name: Main Circuit Flow Rate
+        motec_name: Main Circuit Flow Rate
         unit: Liters/Minute
         type: FLOATING
 
     exhaust_temp_1:
         name: exhaust_temp_1
         id: 61
-        human_readable_name: Exhaust Temp
+        motec_name: Exhaust Temp
         unit: "\u2103"
         type: FLOATING
 
     exhaust_temp_2:
         name: exhaust_temp_2
         id: 62
-        human_readable_name: Exhaust Temp 2
+        motec_name: Exhaust Temp 2
         unit: "\u2103"
         type: FLOATING
 
     exhaust_temp_3:
         name: exhaust_temp_3
         id: 63
-        human_readable_name: Exhaust Temp 3
+        motec_name: Exhaust Temp 3
         unit: C
         type: FLOATING
 
     exhaust_temp_4:
         name: exhaust_temp_4
         id: 64
-        human_readable_name: Exhaust Temp 4
+        motec_name: Exhaust Temp 4
         unit: C
         type: FLOATING
 
     exhaust_temp_5:
         name: exhaust_temp_5
         id: 65
-        human_readable_name: Exhaust Temp 5
+        motec_name: Exhaust Temp 5
         unit: C
         type: FLOATING
 
     lambda_header_1:
         name: lambda_header_1
         id: 66
-        human_readable_name: Lambda Header 1
+        motec_name: Lambda Header 1
         unit: lam
         type: FLOATING
 
     lambda_header_2:
         name: lambda_header_2
         id: 67
-        human_readable_name: Lambda Header 2
+        motec_name: Lambda Header 2
         unit: lam
         type: FLOATING
 
     oil_cooler_temp_in:
         name: oil_cooler_temp_in
         id: 68
-        human_readable_name: Oil Cooler Temp In
+        motec_name: Oil Cooler Temp In
         unit: C
         type: FLOATING
 
     oil_cooler_temp_out:
         name: oil_cooler_temp_out
         id: 69
-        human_readable_name: Oil Cooler Temp Out
+        motec_name: Oil Cooler Temp Out
         unit: C
         type: FLOATING
 
     oil_cooler_pressure_in:
         name: oil_cooler_pressure_in
         id: 70
-        human_readable_name: Oil Cooler Pressure In
+        motec_name: Oil Cooler Pressure In
         unit: C
         type: FLOATING
 
     oil_cooler_pressure_out:
         name: oil_cooler_pressure_out
         id: 71
-        human_readable_name: Oil Cooler Pressure Out
+        motec_name: Oil Cooler Pressure Out
         unit: C
         type: FLOATING
 
     firewall_temp:
         name: firewall_temp
         id: 72
-        human_readable_name: Fire Wall Temp
+        motec_name: Fire Wall Temp
         unit: C
         type: FLOATING
 
     yaw_rate:
         name: yaw_rate
         id: 73
-        human_readable_name: Yaw Rate
+        motec_name: Yaw Rate
         unit: "\u00B0"/s
         type: FLOATING
 
     y_axis_accel:
         name: y_axis_accel
         id: 74
-        human_readable_name: Longitudinal Acceleration    
+        motec_name: Longitudinal Acceleration    
         unit: G
         type: FLOATING
 
     roll_rate:
         name: roll_rate
         id: 75
-        human_readable_name: Roll Rate
+        motec_name: Roll Rate
         unit: degrees per second
         type: FLOATING
 
     x_axis_accel:
         name: x_axis_accel
         id: 76
-        human_readable_name: Lateral Acceleration
+        motec_name: Lateral Acceleration
         unit: G
         type: FLOATING
 
     z_axis_accel:
         name: z_axis_accel
         id: 77
-        human_readable_name: Vertical Acceleration
+        motec_name: Vertical Acceleration
         unit: G
         type: FLOATING
 
     brake_temp_fl:
         name: brake_temp_fl
         id: 78
-        human_readable_name: Brake Temp Front Left
+        motec_name: Brake Temp Front Left
         unit: "\u2103"
         type: FLOATING
 
     brake_temp_fr:
         name: brake_temp_fr
         id: 79
-        human_readable_name: Brake Temp Front Right
+        motec_name: Brake Temp Front Right
         unit: "\u2103"
         type: FLOATING
 
     brake_temp_rl:
         name: brake_temp_rl
         id: 80
-        human_readable_name: Brake Temp Rear Left
+        motec_name: Brake Temp Rear Left
         unit: "\u2103"
         type: FLOATING
 
     brake_temp_rr:
         name: brake_temp_rr
         id: 81
-        human_readable_name: Brake Temp Rear Right
+        motec_name: Brake Temp Rear Right
         unit: "\u2103"
         type: FLOATING
 
@@ -630,224 +630,224 @@ parameters:
     tire_temp_rr_1:
         name: tire_temp_rr_1
         id: 82
-        human_readable_name: Tire Temp Rear Right Channel 1
+        motec_name: Tire Temp Rear Right Channel 1
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_2:
         name: tire_temp_rr_2
         id: 83
-        human_readable_name: Tire Temp Rear Right Channel 2
+        motec_name: Tire Temp Rear Right Channel 2
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_3:
         name: tire_temp_rr_3
         id: 84
-        human_readable_name: Tire Temp Rear Right Channel 3
+        motec_name: Tire Temp Rear Right Channel 3
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_4:
         name: tire_temp_rr_4
         id: 85
-        human_readable_name: Tire Temp Rear Right Channel 4
+        motec_name: Tire Temp Rear Right Channel 4
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_5:
         name: tire_temp_rr_5
         id: 86
-        human_readable_name: Tire Temp Rear Right Channel 5
+        motec_name: Tire Temp Rear Right Channel 5
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_6:
         name: tire_temp_rr_6
         id: 87
-        human_readable_name: Tire Temp Rear Right Channel 6
+        motec_name: Tire Temp Rear Right Channel 6
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_7:
         name: tire_temp_rr_7
         id: 88
-        human_readable_name: Tire Temp Rear Right Channel 7
+        motec_name: Tire Temp Rear Right Channel 7
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_8:
         name: tire_temp_rr_8
         id: 89
-        human_readable_name: Tire Temp Rear Right Channel 8
+        motec_name: Tire Temp Rear Right Channel 8
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_9:
         name: tire_temp_rr_9
         id: 90
-        human_readable_name: Tire Temp Rear Right Channel 9
+        motec_name: Tire Temp Rear Right Channel 9
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_10:
         name: tire_temp_rr_10
         id: 91
-        human_readable_name: Tire Temp Rear Right Channel 10
+        motec_name: Tire Temp Rear Right Channel 10
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_11:
         name: tire_temp_rr_11
         id: 92
-        human_readable_name: Tire Temp Rear Right Channel 11
+        motec_name: Tire Temp Rear Right Channel 11
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_12:
         name: tire_temp_rr_12
         id: 93
-        human_readable_name: Tire Temp Rear Right Channel 12
+        motec_name: Tire Temp Rear Right Channel 12
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_13:
         name: tire_temp_rr_13
         id: 94
-        human_readable_name: Tire Temp Rear Right Channel 13
+        motec_name: Tire Temp Rear Right Channel 13
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_14:
         name: tire_temp_rr_14
         id: 95
-        human_readable_name: Tire Temp Rear Right Channel 14
+        motec_name: Tire Temp Rear Right Channel 14
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_15:
         name: tire_temp_rr_15
         id: 96
-        human_readable_name: Tire Temp Rear Right Channel 15
+        motec_name: Tire Temp Rear Right Channel 15
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rr_16:
         name: tire_temp_rr_16
         id: 97
-        human_readable_name: Tire Temp Rear Right Channel 16
+        motec_name: Tire Temp Rear Right Channel 16
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_1:
         name: tire_temp_rl_1
         id: 98
-        human_readable_name: Tire Temp Rear Left Channel 1
+        motec_name: Tire Temp Rear Left Channel 1
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_2:
         name: tire_temp_rl_2
         id: 99
-        human_readable_name: Tire Temp Rear Left Channel 2
+        motec_name: Tire Temp Rear Left Channel 2
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_3:
         name: tire_temp_rl_3
         id: 100
-        human_readable_name: Tire Temp Rear Left Channel 3
+        motec_name: Tire Temp Rear Left Channel 3
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_4:
         name: tire_temp_rl_4
         id: 101
-        human_readable_name: Tire Temp Rear Left Channel 4
+        motec_name: Tire Temp Rear Left Channel 4
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_5:
         name: tire_temp_rl_5
         id: 102
-        human_readable_name: Tire Temp Rear Left Channel 5
+        motec_name: Tire Temp Rear Left Channel 5
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_6:
         name: tire_temp_rl_6
         id: 103
-        human_readable_name: Tire Temp Rear Left Channel 6
+        motec_name: Tire Temp Rear Left Channel 6
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_7:
         name: tire_temp_rl_7
         id: 104
-        human_readable_name: Tire Temp Rear Left Channel 7
+        motec_name: Tire Temp Rear Left Channel 7
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_8:
         name: tire_temp_rl_8
         id: 105
-        human_readable_name: Tire Temp Rear Left Channel 8
+        motec_name: Tire Temp Rear Left Channel 8
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_9:
         name: tire_temp_rl_9
         id: 106
-        human_readable_name: Tire Temp Rear Left Channel 9
+        motec_name: Tire Temp Rear Left Channel 9
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_10:
         name: tire_temp_rl_10
         id: 107
-        human_readable_name: Tire Temp Rear Left Channel 10
+        motec_name: Tire Temp Rear Left Channel 10
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_11:
         name: tire_temp_rl_11
         id: 108
-        human_readable_name: Tire Temp Rear Left Channel 11
+        motec_name: Tire Temp Rear Left Channel 11
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_12:
         name: tire_temp_rl_12
         id: 109
-        human_readable_name: Tire Temp Rear Left Channel 12
+        motec_name: Tire Temp Rear Left Channel 12
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_13:
         name: tire_temp_rl_13
         id: 110
-        human_readable_name: Tire Temp Rear Left Channel 13
+        motec_name: Tire Temp Rear Left Channel 13
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_14:
         name: tire_temp_rl_14
         id: 111
-        human_readable_name: Tire Temp Rear Left Channel 14
+        motec_name: Tire Temp Rear Left Channel 14
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_15:
         name: tire_temp_rl_15
         id: 112
-        human_readable_name: Tire Temp Rear Left Channel 15
+        motec_name: Tire Temp Rear Left Channel 15
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_rl_16:
         name: tire_temp_rl_16
         id: 113
-        human_readable_name: Tire Temp Rear Left Channel 16
+        motec_name: Tire Temp Rear Left Channel 16
         unit: "\u2103"
         type: FLOATING
 
@@ -855,224 +855,224 @@ parameters:
     tire_temp_fl_1:
         name: tire_temp_fl_1
         id: 114
-        human_readable_name: Tire Temp Front Left Channel 1
+        motec_name: Tire Temp Front Left Channel 1
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_2:
         name: tire_temp_fl_2
         id: 115
-        human_readable_name: Tire Temp Front Left Channel 2
+        motec_name: Tire Temp Front Left Channel 2
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_3:
         name: tire_temp_fl_3
         id: 116
-        human_readable_name: Tire Temp Front Left Channel 3
+        motec_name: Tire Temp Front Left Channel 3
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_4:
         name: tire_temp_fl_4
         id: 117
-        human_readable_name: Tire Temp Front Left Channel 4
+        motec_name: Tire Temp Front Left Channel 4
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_5:
         name: tire_temp_fl_5
         id: 118
-        human_readable_name: Tire Temp Front Left Channel 5
+        motec_name: Tire Temp Front Left Channel 5
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_6:
         name: tire_temp_fl_6
         id: 119
-        human_readable_name: Tire Temp Front Left Channel 6
+        motec_name: Tire Temp Front Left Channel 6
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_7:
         name: tire_temp_fl_7
         id: 120
-        human_readable_name: Tire Temp Front Left Channel 7
+        motec_name: Tire Temp Front Left Channel 7
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_8:
         name: tire_temp_fl_8
         id: 121
-        human_readable_name: Tire Temp Front Left Channel 8
+        motec_name: Tire Temp Front Left Channel 8
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_9:
         name: tire_temp_fl_9
         id: 122
-        human_readable_name: Tire Temp Front Left Channel 9
+        motec_name: Tire Temp Front Left Channel 9
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_10:
         name: tire_temp_fl_10
         id: 123
-        human_readable_name: Tire Temp Front Left Channel 10
+        motec_name: Tire Temp Front Left Channel 10
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_11:
         name: tire_temp_fl_11
         id: 124
-        human_readable_name: Tire Temp Front Left Channel 11
+        motec_name: Tire Temp Front Left Channel 11
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_12:
         name: tire_temp_fl_12
         id: 125
-        human_readable_name: Tire Temp Front Left Channel 12
+        motec_name: Tire Temp Front Left Channel 12
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_13:
         name: tire_temp_fl_13
         id: 126
-        human_readable_name: Tire Temp Front Left Channel 13
+        motec_name: Tire Temp Front Left Channel 13
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_14:
         name: tire_temp_fl_14
         id: 127
-        human_readable_name: Tire Temp Front Left Channel 14
+        motec_name: Tire Temp Front Left Channel 14
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_15:
         name: tire_temp_fl_15
         id: 128
-        human_readable_name: Tire Temp Front Left Channel 15
+        motec_name: Tire Temp Front Left Channel 15
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fl_16:
         name: tire_temp_fl_16
         id: 129
-        human_readable_name: Tire Temp Front Left Channel 16
+        motec_name: Tire Temp Front Left Channel 16
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_1:
         name: tire_temp_fr_1
         id: 130
-        human_readable_name: Tire Temp Front Right Channel 1
+        motec_name: Tire Temp Front Right Channel 1
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_2:
         name: tire_temp_fr_2
         id: 131
-        human_readable_name: Tire Temp Front Right Channel 2
+        motec_name: Tire Temp Front Right Channel 2
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_3:
         name: tire_temp_fr_3
         id: 132
-        human_readable_name: Tire Temp Front Right Channel 3
+        motec_name: Tire Temp Front Right Channel 3
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_4:
         name: tire_temp_fr_4
         id: 133
-        human_readable_name: Tire Temp Front Right Channel 4
+        motec_name: Tire Temp Front Right Channel 4
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_5:
         name: tire_temp_fr_5
         id: 134
-        human_readable_name: Tire Temp Front Right Channel 5
+        motec_name: Tire Temp Front Right Channel 5
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_6:
         name: tire_temp_fr_6
         id: 135
-        human_readable_name: Tire Temp Front Right Channel 6
+        motec_name: Tire Temp Front Right Channel 6
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_7:
         name: tire_temp_fr_7
         id: 136
-        human_readable_name: Tire Temp Front Right Channel 7
+        motec_name: Tire Temp Front Right Channel 7
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_8:
         name: tire_temp_fr_8
         id: 137
-        human_readable_name: Tire Temp Front Right Channel 8
+        motec_name: Tire Temp Front Right Channel 8
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_9:
         name: tire_temp_fr_9
         id: 138
-        human_readable_name: Tire Temp Front Right Channel 9
+        motec_name: Tire Temp Front Right Channel 9
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_10:
         name: tire_temp_fr_10
         id: 139
-        human_readable_name: Tire Temp Front Right Channel 10
+        motec_name: Tire Temp Front Right Channel 10
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_11:
         name: tire_temp_fr_11
         id: 140
-        human_readable_name: Tire Temp Front Right Channel 11
+        motec_name: Tire Temp Front Right Channel 11
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_12:
         name: tire_temp_fr_12
         id: 141
-        human_readable_name: Tire Temp Front Right Channel 12
+        motec_name: Tire Temp Front Right Channel 12
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_13:
         name: tire_temp_fr_13
         id: 142
-        human_readable_name: Tire Temp Front Right Channel 13
+        motec_name: Tire Temp Front Right Channel 13
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_14:
         name: tire_temp_fr_14
         id: 143
-        human_readable_name: Tire Temp Front Right Channel 14
+        motec_name: Tire Temp Front Right Channel 14
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_15:
         name: tire_temp_fr_15
         id: 144
-        human_readable_name: Tire Temp Front Right Channel 15
+        motec_name: Tire Temp Front Right Channel 15
         unit: "\u2103"
         type: FLOATING
 
     tire_temp_fr_16:
         name: tire_temp_fr_16
         id: 145
-        human_readable_name: Tire Temp Front Right Channel 16
+        motec_name: Tire Temp Front Right Channel 16
         unit: "\u2103"
         type: FLOATING
 # end tire temps
@@ -1081,126 +1081,126 @@ parameters:
     sw_upshift:
         name: sw_upshift
         id: 146
-        human_readable_name: Upshift_Raw_Input
+        motec_name: Upshift_Raw_Input
         unit: bool
         type: UNSIGNED8
 
     sw_downshift:
         name: sw_downshift
         id: 147
-        human_readable_name: Downshift_Raw_Input
+        motec_name: Downshift_Raw_Input
         unit: bool
         type: UNSIGNED8
 
     sw_clutch_fast:
         name: sw_clutch_fast
         id: 148
-        human_readable_name: Clutch_Raw_Input
+        motec_name: Clutch_Raw_Input
         unit: bool
         type: UNSIGNED8
 
     sw_clutch_slow:
         name: sw_clutch_slow
         id: 149
-        human_readable_name: Clutch button (slow)
+        motec_name: Clutch button (slow)
         unit: bool
         type: UNSIGNED8
 
     sw_aero_front:
         name: sw_aero_front
         id: 150
-        human_readable_name: Front aero button
+        motec_name: Front aero button
         unit: bool
         type: UNSIGNED8
 
     sw_aero_rear:
         name: sw_aero_rear
         id: 151
-        human_readable_name: Rear aero button
+        motec_name: Rear aero button
         unit: bool
         type: UNSIGNED8
 
     tcm_neutral:
         name: tcm_neutral
         id: 152
-        human_readable_name: Neutral signal
+        motec_name: Neutral signal
         unit: bool
         type: UNSIGNED8
 
     tcm_shifter_position:
         name: tcm_shifter_position
         id: 153
-        human_readable_name: Shifter Position
+        motec_name: Shifter Position
         unit: mm
         type: FLOATING
 
     tcm_clutch_position:
         name: tcm_clutch_position
         id: 154
-        human_readable_name: Clutch Position
+        motec_name: Clutch Position
         unit: mm
         type: FLOATING
 
     tcm_target_rpm:
         name: tcm_target_rpm
         id: 155
-        human_readable_name: Target RPM during a shift
+        motec_name: Target RPM during a shift
         unit: rpm
         type: UNSIGNED32
 
     tcm_trans_rpm:
         name: tcm_trans_rpm
         id: 156
-        human_readable_name: Transmission speed, measured at the clutch
+        motec_name: Transmission speed, measured at the clutch
         unit: rpm
         type: UNSIGNED32
 
     tcm_current_gear:
         name: tcm_current_gear
         id: 157
-        human_readable_name: Current Gear
+        motec_name: Current Gear
         unit: gear
         type: UNSIGNED8
 
     tcm_target_gear:
         name: tcm_target_gear
         id: 158
-        human_readable_name: Target Gear During a shift
+        motec_name: Target Gear During a shift
         unit: gear
         type: UNSIGNED8
 
     tcm_currently_moving:
         name: tcm_currently_moving
         id: 159
-        human_readable_name: True if we are Currently moving
+        motec_name: True if we are Currently moving
         unit: bool
         type: UNSIGNED8
 
     tcm_throttle_blip:
         name: tcm_throttle_blip
         id: 160
-        human_readable_name: True if we are Currently blipping the ECU
+        motec_name: True if we are Currently blipping the ECU
         unit: bool
         type: UNSIGNED8
 
     tcm_using_clutch:
         name: tcm_using_clutch
         id: 161
-        human_readable_name: True if we are using the clutch during a shift
+        motec_name: True if we are using the clutch during a shift
         unit: bool
         type: UNSIGNED8
 
     tcm_successful_shift:
         name: tcm_successful_shift
         id: 162
-        human_readable_name: True if a shift is successful
+        motec_name: True if a shift is successful
         unit: bool
         type: UNSIGNED8
 
     tcm_anti_stall:
         name: tcm_anti_stall
         id: 163
-        human_readable_name: Anti stall active
+        motec_name: Anti stall active
         unit: bool
         type: UNSIGNED8
 
@@ -1208,21 +1208,21 @@ parameters:
     acm_fl_wing_angle:
         name: acm_fl_wing_angle
         id: 164
-        human_readable_name: Front Right Wing Angle
+        motec_name: Front Right Wing Angle
         unit: duty
         type: UNSIGNED32
 
     acm_fr_wing_angle:
         name: acm_fr_wing_angle
         id: 165
-        human_readable_name: Front Left Wing Angle
+        motec_name: Front Left Wing Angle
         unit: duty
         type: UNSIGNED32
 
     acm_rear_wing_angle:
         name: acm_rear_wing_angle
         id: 166
-        human_readable_name: Rear Wing Angle
+        motec_name: Rear Wing Angle
         unit: duty
         type: UNSIGNED32
 
@@ -1230,154 +1230,154 @@ parameters:
     pdm_1_current:
         name: pdm_1_current
         id: 167
-        human_readable_name: Current from PDM channel 1
+        motec_name: Current from PDM channel 1
         unit: mA
         type: FLOATING
 
     pdm_2_current:
         name: pdm_2_current
         id: 168
-        human_readable_name: Current from PDM channel 2
+        motec_name: Current from PDM channel 2
         unit: mA
         type: FLOATING
 
     pdm_3_current:
         name: pdm_3_current
         id: 169
-        human_readable_name: Current from PDM channel 3
+        motec_name: Current from PDM channel 3
         unit: mA
         type: FLOATING
 
     pdm_4_current:
         name: pdm_4_current
         id: 170
-        human_readable_name: Current from PDM channel 4
+        motec_name: Current from PDM channel 4
         unit: mA
         type: FLOATING
 
     pdm_5_current:
         name: pdm_5_current
         id: 171
-        human_readable_name: Current from PDM channel 5
+        motec_name: Current from PDM channel 5
         unit: mA
         type: FLOATING
 
     pdm_6_current:
         name: pdm_6_current
         id: 172
-        human_readable_name: Current from PDM channel 6
+        motec_name: Current from PDM channel 6
         unit: mA
         type: FLOATING
 
     pdm_7_current:
         name: pdm_7_current
         id: 173
-        human_readable_name: Current from PDM channel 7
+        motec_name: Current from PDM channel 7
         unit: mA
         type: FLOATING
 
     pdm_8_current:
         name: pdm_8_current
         id: 174
-        human_readable_name: Current from PDM channel 8
+        motec_name: Current from PDM channel 8
         unit: mA
         type: FLOATING
 
     pdm_9_current:
         name: pdm_9_current
         id: 175
-        human_readable_name: Current from PDM channel 9
+        motec_name: Current from PDM channel 9
         unit: mA
         type: FLOATING
 
     pdm_10_current:
         name: pdm_10_current
         id: 176
-        human_readable_name: Current from PDM channel 10
+        motec_name: Current from PDM channel 10
         unit: mA
         type: FLOATING
 
     pdm_11_current:
         name: pdm_11_current
         id: 177
-        human_readable_name: Current from PDM channel 11
+        motec_name: Current from PDM channel 11
         unit: mA
         type: FLOATING
 
     pdm_12_current:
         name: pdm_12_current
         id: 178
-        human_readable_name: Current from PDM channel 12
+        motec_name: Current from PDM channel 12
         unit: mA
         type: FLOATING
 
     pdm_13_current:
         name: pdm_13_current
         id: 179
-        human_readable_name: Current from PDM channel 13
+        motec_name: Current from PDM channel 13
         unit: mA
         type: FLOATING
 
     pdm_14_current:
         name: pdm_14_current
         id: 180
-        human_readable_name: Current from PDM channel 14
+        motec_name: Current from PDM channel 14
         unit: mA
         type: FLOATING
 
     pdm_15_current:
         name: pdm_15_current
         id: 181
-        human_readable_name: Current from PDM channel 15
+        motec_name: Current from PDM channel 15
         unit: mA
         type: FLOATING
 
     pdm_16_current:
         name: pdm_16_current
         id: 182
-        human_readable_name: Current from PDM channel 16
+        motec_name: Current from PDM channel 16
         unit: mA
         type: FLOATING
 
     pdm_17_current:
         name: pdm_17_current
         id: 183
-        human_readable_name: Current from PDM channel 17
+        motec_name: Current from PDM channel 17
         unit: mA
         type: FLOATING
 
     pdm_18_current:
         name: pdm_18_current
         id: 184
-        human_readable_name: Current from PDM channel 18
+        motec_name: Current from PDM channel 18
         unit: mA
         type: FLOATING
 
     pdm_19_current:
         name: pdm_19_current
         id: 185
-        human_readable_name: Current from PDM channel 19
+        motec_name: Current from PDM channel 19
         unit: mA
         type: FLOATING
 
     pdm_20_current:
         name: pdm_20_current
         id: 186
-        human_readable_name: Current from PDM channel 20
+        motec_name: Current from PDM channel 20
         unit: mA
         type: FLOATING
 
     pdm_voltage:
         name: pdm_voltage
         id: 187
-        human_readable_name: Switch Voltage
+        motec_name: Switch Voltage
         unit: Volts
         type: FLOATING
 
     pdm_temp:
         name: pdm_temp
         id: 188
-        human_readable_name: Switch Temperature
+        motec_name: Switch Temperature
         unit: C
         type: FLOATING
 
