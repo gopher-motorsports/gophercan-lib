@@ -10,7 +10,7 @@ char* name_strings[NUM_OF_PARAMETERS] =
 {
     "CAN Command",
     {% for parameter in parameters -%}
-    "{{ parameter.human_readable_name }}"{% if not loop.last %},{% endif %}
+    "{{ parameter.motec_name }}"{% if not loop.last %},{% endif %}
     {% endfor %}
 };
 
