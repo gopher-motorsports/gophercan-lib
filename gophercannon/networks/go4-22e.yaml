@@ -968,39 +968,343 @@ parameters:
         type: UNSIGNED32
 
 # Parameters from the inverter
+
+    inv_temp_igbt_a:
+        name: inv_temp_igbt_a
+        id: 133
+        motec_name: Phase A IGBT Module Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_igbt_b:
+        name: inv_temp_igbt_b
+        id: 134
+        motec_name: Phase B IGBT Module Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_igbt_c:
+        name: inv_temp_igbt_c
+        id: 135
+        motec_name: Phase C IGBT Module Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_gate_driver:
+        name: inv_temp_gate_driver
+        id: 136
+        motec_name: Gate Driver Board Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_ctrl_board:
+        name: inv_temp_ctrl_board
+        id: 137
+        motec_name: Control Board Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_rtd_1:
+        name: inv_temp_rtd_1
+        id: 138
+        motec_name: RTD Input 1 Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_rtd_2:
+        name: inv_temp_rtd_2
+        id: 139
+        motec_name: RTD Input 2 Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_rtd_3:
+        name: inv_temp_rtd_3
+        id: 140
+        motec_name: RTD Input 3 Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_rtd_4:
+        name: inv_temp_rtd_4
+        id: 141
+        motec_name: RTD Input 4 Temperature
+        unit: C
+        type: FLOATING
+    inv_temp_rtd_5:
+        name: inv_temp_rtd_5
+        id: 142
+        motec_name: RTD Input 5 Temperature
+        unit: C
+        type: FLOATING
     inv_motor_temp:
         name: inv_motor_temp
-        id: 133
-        motec_name: Motor Temp
+        id: 143
+        motec_name: Motor Temperature
         unit: C
         type: FLOATING
-
-    inv_motor_rpm:
-        name: inv_motor_rpm
-        id: 134
-        motec_name: Motor RPM
-        unit: RPM
+    inv_torque_shudder:
+        name: inv_torque_shudder
+        id: 144
+        motec_name: Torque Shudder
+        unit: Nm
+        type: FLOATING
+    inv_digital_in_1:
+        name: inv_digital_in_1
+        id: 145
+        motec_name: Digital Input 1
+        unit: bool
+        type: UNSIGNED8
+    inv_digital_in_2:
+        name: inv_digital_in_2
+        id: 146
+        motec_name: Digital Input 2
+        unit: bool
+        type: UNSIGNED8
+    inv_digital_in_3:
+        name: inv_digital_in_3
+        id: 147
+        motec_name: Digital Input 3
+        unit: bool
+        type: UNSIGNED8
+    inv_digital_in_4:
+        name: inv_digital_in_4
+        id: 148
+        motec_name: Digital Input 4
+        unit: bool
+        type: UNSIGNED8
+    inv_digital_in_5:
+        name: inv_digital_in_5
+        id: 149
+        motec_name: Digital Input 5
+        unit: bool
+        type: UNSIGNED8
+    inv_digital_in_6:
+        name: inv_digital_in_6
+        id: 150
+        motec_name: Digital Input 6
+        unit: bool
+        type: UNSIGNED8
+    inv_digital_in_7:
+        name: inv_digital_in_7
+        id: 151
+        motec_name: Digital Input 7
+        unit: bool
+        type: UNSIGNED8
+    inv_digital_in_8:
+        name: inv_digital_in_8
+        id: 152
+        motec_name: Digital Input 8
+        unit: bool
+        type: UNSIGNED8
+    inv_motor_angle:
+        name: inv_motor_angle
+        id: 153
+        motec_name: Motor Angle
+        unit: deg
+        type: FLOATING
+    inv_motor_speed:
+        name: inv_motor_speed
+        id: 154
+        motec_name: Motor Speed
+        unit: rpm
+        type: UNSIGNED16
+    inv_motor_ac_freq:
+        name: inv_motor_ac_freq
+        id: 155
+        motec_name: AC Output Frequency
+        unit: Hz
+        type: FLOATING
+    inv_delta_resolver_filtered:
+        name: inv_delta_resolver_filtered
+        id: 156
+        motec_name: Delta Resovler Filtered
+        unit: deg
+        type: FLOATING
+    inv_current_phase_a:
+        name: inv_current_phase_a
+        id: 157
+        motec_name: Phase A Current
+        unit: A
+        type: FLOATING
+    inv_current_phase_b:
+        name: inv_current_phase_b
+        id: 158
+        motec_name: Phase B Current
+        unit: A
+        type: FLOATING
+    inv_current_phase_c:
+        name: inv_current_phase_c
+        id: 159
+        motec_name: Phase C Current
+        unit: A
+        type: FLOATING
+    inv_current_dc_bus:
+        name: inv_current_dc_bus
+        id: 160
+        motec_name: DC Bus Current
+        unit: A
+        type: FLOATING
+    inv_dc_bus_voltage:
+        name: inv_dc_bus_voltage
+        id: 161
+        motec_name: DC Bus Voltage
+        unit: V
+        type: FLOATING
+    inv_peak_output_voltage:
+        name: inv_peak_output_voltage
+        id: 162
+        motec_name: Peak Output Voltage
+        unit: V
+        type: FLOATING
+    inv_vd_voltage:
+        name: inv_vd_voltage
+        id: 163
+        motec_name: Vd Voltage
+        unit: V
+        type: FLOATING
+    inv_vq_voltage:
+        name: inv_vq_voltage
+        id: 164
+        motec_name: Vq Voltage
+        unit: V
+        type: FLOATING
+    inv_flux_cmd:
+        name: inv_flux_cmd
+        id: 165
+        motec_name: The Commanded Flux
+        unit: Wb
+        type: FLOATING
+    inv_flux_feedback:
+        name: inv_flux_feedback
+        id: 166
+        motec_name: Estimated Flux
+        unit: Wb
+        type: FLOATING
+    inv_id_feedback:
+        name: inv_id_feedback
+        id: 167
+        motec_name: D-axis Current Feedback
+        unit: A
+        type: FLOATING
+    inv_iq_feedback:
+        name: inv_iq_feedback
+        id: 168
+        motec_name: Q-axis Current Feedback
+        unit: A
+        type: FLOATING
+    inv_1v5_ref:
+        name: inv_1v5_ref
+        id: 169
+        motec_name: 1v5 Reference
+        unit: V
+        type: FLOATING
+    inv_2v5_ref:
+        name: inv_2v5_ref
+        id: 170
+        motec_name: 2v5 Reference
+        unit: V
+        type: FLOATING
+    inv_5v_ref:
+        name: inv_5v_ref
+        id: 171
+        motec_name: 5v Refrence
+        unit: V
+        type: FLOATING
+    inv_12v_ref:
+        name: inv_12v_ref
+        id: 172
+        motec_name: 12v Reference
+        unit: V
+        type: FLOATING
+    inv_post_fault_lo:
+        name: inv_post_fault_lo
+        id: 173
+        motec_name: POST Faults (lo)
+        unit: fu
+        type: FLOATING
+    inv_post_fault_hi:
+        name: inv_post_fault_hi
+        id: 174
+        motec_name: POST Faults (hi)
+        unit: fu
+        type: FLOATING
+    inv_run_fault_lo:
+        name: inv_run_fault_lo
+        id: 175
+        motec_name: Running Faults (lo)
+        unit: fu
+        type: FLOATING
+    inv_run_fault_hi:
+        name: inv_run_fault_hi
+        id: 176
+        motec_name: Running Faults (hi)
+        unit: fu
+        type: FLOATING
+    inv_torque_cmd:
+        name: inv_torque_cmd
+        id: 177
+        motec_name: Torque Command
+        unit: Nm
+        type: FLOATING
+    inv_torque_feedback:
+        name: inv_torque_feedback
+        id: 178
+        motec_name: Estimated Torque
+        unit: Nm
+        type: FLOATING
+    inv_power_on_timer:
+        name: inv_power_on_timer
+        id: 179
+        motec_name: Power-on Timer
+        unit: S
+        type: FLOATING
+    inv_modulation_index:
+        name: inv_modulation_index
+        id: 180
+        motec_name: Modulation Index
+        unit: ul
+        type: FLOATING
+    inv_flux_weakening:
+        name: inv_flux_weakening
+        id: 181
+        motec_name: Current output of Flux Regulator
+        unit: A
+        type: FLOATING
+    inv_id_cmd:
+        name: inv_id_cmd
+        id: 182
+        motec_name: Commanded D-axis Current
+        unit: A
+        type: FLOATING
+    inv_iq_cmd:
+        name: inv_iq_cmd
+        id: 183
+        motec_name: Commanded Q-axis Current
+        unit: A
+        type: FLOATING
+    inv_torque_cmd_high:
+        name: inv_torque_cmd_high
+        id: 184
+        motec_name: High-frequency Commanded Torque
+        unit: Nm
+        type: FLOATING
+    inv_torque_feedback_high:
+        name: inv_torque_feedback_high
+        id: 185
+        motec_name: High-frequency Estimated Torque
+        unit: Nm
+        type: FLOATING
+    inv_motor_speed_high:
+        name: inv_motor_speed_high
+        id: 186
+        motec_name: High-frequency Motor Speed
+        unit: rpm
+        type: UNSIGNED16
+    inv_dc_bus_voltage_high:
+        name: inv_dc_bus_voltage_high
+        id: 187
+        motec_name: High-frequency DC Bus Voltage
+        unit: V
         type: FLOATING
 
-    inv_motor_position:
-        name: inv_motor_position
-        id: 135
-        motec_name: Motor Position
-        unit: Degrees
-        type: FLOATING
-
-    inv_temp:
-        name: inv_temp
-        id: 136
-        motec_name: Inverter Temp
-        unit: C
-        type: FLOATING
-        
     dummy_param:
         name: dummy_param
-        id: 137
-        motec_name: "Dummy CAN param for Temp Board"
-        unit: "number"
+        id: 188
+        motec_name: Dummy CAN param for Temp Board
+        unit: number
         type: FLOATING
 
 
