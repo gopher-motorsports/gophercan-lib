@@ -140,11 +140,7 @@ char* name_strings[NUM_OF_PARAMETERS] =
     "Water Pump Duty",
     "Water Pump Duty",
     "Brake Light Duty",
-    "VCU Status",
-    "Motor Temp",
-    "Motor RPM",
-    "Motor Position",
-    "Inverter Temp",
+    "VCU Status"
     "Dummy CAN param for Temp Board"
     
 };
@@ -286,10 +282,7 @@ char* unit_strings[NUM_OF_PARAMETERS] =
     "percent",
     "bits",
     "C",
-    "RPM",
-    "Degrees",
-    "C",
-    "number"
+
     
 };
 
@@ -421,18 +414,27 @@ PARAM_TYPE_t param_types[NUM_OF_PARAMETERS] =
     FLOAT,
     FLOAT,
     FLOAT,
-    FLOAT,
-    FLOAT,
-    UINT_8,
-    FLOAT,
-    FLOAT,
-    FLOAT,
-    FLOAT,
     UINT_32,
     FLOAT,
     FLOAT,
     FLOAT,
     FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    FLOAT,
+    UINT_16,
+    FLOAT,
+    UINT_8,
+    UINT_8,
+    UINT_8,
+    UINT_8,
+    UINT_8,
+    UINT_8,
+    UINT_8,
+    UINT_8,
     FLOAT
     
 };
