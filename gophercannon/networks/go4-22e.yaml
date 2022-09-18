@@ -1299,10 +1299,58 @@ parameters:
         motec_name: High-frequency DC Bus Voltage
         unit: V
         type: FLOATING
+    inv_vsm_state:
+        name: inv_vsm_state
+        id: 188
+        motec_name: VSM State
+        unit: ul
+        type: UNSIGNED8
+    inv_pwm_freq:
+        name: inv_pwm_freq
+        id: 189
+        motec_name: PWM Frequency
+        unit: ul
+        type: UNSIGNED8
+    inv_inverter_state:
+        name: inv_inverter_state
+        id: 190
+        motec_name: Inverter State
+        unit: ul
+        type: UNSIGNED8
+    inv_relay_state:
+        name: inv_relay_state
+        id: 191
+        motec_name: Relay State
+        unit: ul
+        type: UNSIGNED8
+    inv_states_byte4:
+        name: inv_states_byte4
+        id: 192
+        motec_name: Inverter States Byte 4
+        unit: ul
+        type: UNSIGNED8
+    inv_states_byte5:
+        name: inv_states_byte5
+        id: 193
+        motec_name: Inverter States Byte 5
+        unit: ul
+        type: UNSIGNED8
+    inv_states_byte6:
+        name: inv_states_byte6
+        id: 194
+        motec_name: Inverter States Byte 6
+        unit: ul
+        type: UNSIGNED8
+    inv_states_byte7:
+        name: inv_states_byte7
+        id: 195
+        motec_name: Inverter States Byte 7
+        unit: ul
+        type: UNSIGNED8
 
     dummy_param:
         name: dummy_param
-        id: 188
+        id: 196
         motec_name: Dummy CAN param for Temp Board
         unit: number
         type: FLOATING
