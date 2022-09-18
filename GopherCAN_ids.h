@@ -17,11 +17,9 @@ typedef enum
 {
     ALL_MODULES_ID = 0,
     DLM_ID = 1,
-    DAM_F_ID = 2,
-    DAM_R_ID = 3,
-    PDM_ID = 4,
-    TCM_ID = 5,
-    ACM_ID = 6,
+    PDM_ID = 2,
+    TEMP_BOARD_ID = 3,
+    VCU_ID = 4,
     
     NUM_OF_MODULES
 } MODULE_ID;
@@ -31,194 +29,143 @@ typedef enum
 typedef enum
 {
     CAN_COMMAND_ID = 0,
-    RPM_ECU_ID = 1,
-    WHEEL_SLIP_ECU_ID = 2,
-    WHEEL_SLIP_TARGET_ECU_ID = 3,
-    AIM_RPM_ECU_ID = 4,
-    WSFL_ECU_ID = 5,
-    WSFR_ECU_ID = 6,
-    WSRL_ECU_ID = 7,
-    WSRR_ECU_ID = 8,
-    IGN_CUT_LEVEL_ECU_ID = 9,
-    BAT_VOLTS_ECU_ID = 10,
-    ENGINE_TEMP_ECU_ID = 11,
-    INLET_AIR_TEMP_ECU_ID = 12,
-    LAMBDA_1_ECU_ID = 13,
-    THROTTLE_POS_1_ECU_ID = 14,
-    THROTTLE_POS_2_ECU_ID = 15,
-    PEDAL_POS_1_ECU_ID = 16,
-    PEDAL_POS_2_ECU_ID = 17,
-    MAN_PRESSURE_ECU_ID = 18,
-    FUEL_CUT_LVL_ECU_ID = 19,
-    IGN_ADVANCE_ECU_ID = 20,
-    OIL_PRESSURE_ECU_ID = 21,
-    OIL_TEMP_ECU_ID = 22,
-    FUEL_PRESSURE_ECU_ID = 23,
-    THROTTLE_POS_REQUIRED_ECU_ID = 24,
-    BRAKE_PRESSURE_FRONT_ECU_ID = 25,
-    ETC_DUTY_ECU_ID = 26,
-    FAN_DUTY_ECU_ID = 27,
-    FANOIL_DUTY_ECU_ID = 28,
-    WPUMP_DUTY_ECU_ID = 29,
-    BRAKE_LIGHT_DUTY_ECU_ID = 30,
-    WARNING_LIGHT_DUTY_ECU_ID = 31,
-    AUX_5V_ECU_ID = 32,
-    ENG_5V_ECU_ID = 33,
-    GPS_LAT_ECU_ID = 34,
-    GPS_LONG_ECU_ID = 35,
-    BRAKE_PRESSURE_REAR_ID = 36,
-    STEERING_ANGLE_ID = 37,
-    THROTTLE_POSITION_ID = 38,
-    ACCELERATION_ID = 39,
-    RIDE_HEIGHT_REAR_ID = 40,
-    RIDE_HEIGHT_FRONT_ID = 41,
-    REAR_RIGHT_SHOCK_POT_ID = 42,
-    REAR_LEFT_SHOCK_POT_ID = 43,
-    FRONT_LEFT_SHOCK_POT_ID = 44,
-    FRONT_RIGHT_SHOCK_POT_ID = 45,
-    RIGHT_RAD_PRESSURE_IN_ID = 46,
-    RIGHT_RAD_PRESSURE_OUT_ID = 47,
-    RIGHT_RAD_PRESSURE_DROP_ID = 48,
-    RIGHT_RAD_TEMP_IN_ID = 49,
-    RIGHT_RAD_TEMP_OUT_ID = 50,
-    LEFT_RAD_PRESSURE_IN_ID = 51,
-    LEFT_RAD_PRESSURE_OUT_ID = 52,
-    LEFT_RAD_PRESSURE_DROP_ID = 53,
-    LEFT_RAD_TEMP_IN_ID = 54,
-    LEFT_RAD_TEMP_OUT_ID = 55,
-    AIR_TANK_PRESSURE_ID = 56,
-    PNUMATIC_LINE_PRESSURE_ID = 57,
-    WATER_PUMP_PRESSURE_IN_ID = 58,
-    WATER_PUMP_PRESSURE_OUT_ID = 59,
-    MAIN_CIRCUIT_FLOW_RATE_ID = 60,
-    EXHAUST_TEMP_1_ID = 61,
-    EXHAUST_TEMP_2_ID = 62,
-    EXHAUST_TEMP_3_ID = 63,
-    EXHAUST_TEMP_4_ID = 64,
-    EXHAUST_TEMP_5_ID = 65,
-    LAMBDA_HEADER_1_ID = 66,
-    LAMBDA_HEADER_2_ID = 67,
-    OIL_COOLER_TEMP_IN_ID = 68,
-    OIL_COOLER_TEMP_OUT_ID = 69,
-    OIL_COOLER_PRESSURE_IN_ID = 70,
-    OIL_COOLER_PRESSURE_OUT_ID = 71,
-    FIREWALL_TEMP_ID = 72,
-    YAW_RATE_ID = 73,
-    Y_AXIS_ACCEL_ID = 74,
-    ROLL_RATE_ID = 75,
-    X_AXIS_ACCEL_ID = 76,
-    Z_AXIS_ACCEL_ID = 77,
-    BRAKE_TEMP_FL_ID = 78,
-    BRAKE_TEMP_FR_ID = 79,
-    BRAKE_TEMP_RL_ID = 80,
-    BRAKE_TEMP_RR_ID = 81,
-    TIRE_TEMP_RR_1_ID = 82,
-    TIRE_TEMP_RR_2_ID = 83,
-    TIRE_TEMP_RR_3_ID = 84,
-    TIRE_TEMP_RR_4_ID = 85,
-    TIRE_TEMP_RR_5_ID = 86,
-    TIRE_TEMP_RR_6_ID = 87,
-    TIRE_TEMP_RR_7_ID = 88,
-    TIRE_TEMP_RR_8_ID = 89,
-    TIRE_TEMP_RR_9_ID = 90,
-    TIRE_TEMP_RR_10_ID = 91,
-    TIRE_TEMP_RR_11_ID = 92,
-    TIRE_TEMP_RR_12_ID = 93,
-    TIRE_TEMP_RR_13_ID = 94,
-    TIRE_TEMP_RR_14_ID = 95,
-    TIRE_TEMP_RR_15_ID = 96,
-    TIRE_TEMP_RR_16_ID = 97,
-    TIRE_TEMP_RL_1_ID = 98,
-    TIRE_TEMP_RL_2_ID = 99,
-    TIRE_TEMP_RL_3_ID = 100,
-    TIRE_TEMP_RL_4_ID = 101,
-    TIRE_TEMP_RL_5_ID = 102,
-    TIRE_TEMP_RL_6_ID = 103,
-    TIRE_TEMP_RL_7_ID = 104,
-    TIRE_TEMP_RL_8_ID = 105,
-    TIRE_TEMP_RL_9_ID = 106,
-    TIRE_TEMP_RL_10_ID = 107,
-    TIRE_TEMP_RL_11_ID = 108,
-    TIRE_TEMP_RL_12_ID = 109,
-    TIRE_TEMP_RL_13_ID = 110,
-    TIRE_TEMP_RL_14_ID = 111,
-    TIRE_TEMP_RL_15_ID = 112,
-    TIRE_TEMP_RL_16_ID = 113,
-    TIRE_TEMP_FL_1_ID = 114,
-    TIRE_TEMP_FL_2_ID = 115,
-    TIRE_TEMP_FL_3_ID = 116,
-    TIRE_TEMP_FL_4_ID = 117,
-    TIRE_TEMP_FL_5_ID = 118,
-    TIRE_TEMP_FL_6_ID = 119,
-    TIRE_TEMP_FL_7_ID = 120,
-    TIRE_TEMP_FL_8_ID = 121,
-    TIRE_TEMP_FL_9_ID = 122,
-    TIRE_TEMP_FL_10_ID = 123,
-    TIRE_TEMP_FL_11_ID = 124,
-    TIRE_TEMP_FL_12_ID = 125,
-    TIRE_TEMP_FL_13_ID = 126,
-    TIRE_TEMP_FL_14_ID = 127,
-    TIRE_TEMP_FL_15_ID = 128,
-    TIRE_TEMP_FL_16_ID = 129,
-    TIRE_TEMP_FR_1_ID = 130,
-    TIRE_TEMP_FR_2_ID = 131,
-    TIRE_TEMP_FR_3_ID = 132,
-    TIRE_TEMP_FR_4_ID = 133,
-    TIRE_TEMP_FR_5_ID = 134,
-    TIRE_TEMP_FR_6_ID = 135,
-    TIRE_TEMP_FR_7_ID = 136,
-    TIRE_TEMP_FR_8_ID = 137,
-    TIRE_TEMP_FR_9_ID = 138,
-    TIRE_TEMP_FR_10_ID = 139,
-    TIRE_TEMP_FR_11_ID = 140,
-    TIRE_TEMP_FR_12_ID = 141,
-    TIRE_TEMP_FR_13_ID = 142,
-    TIRE_TEMP_FR_14_ID = 143,
-    TIRE_TEMP_FR_15_ID = 144,
-    TIRE_TEMP_FR_16_ID = 145,
-    SW_UPSHIFT_ID = 146,
-    SW_DOWNSHIFT_ID = 147,
-    SW_CLUTCH_FAST_ID = 148,
-    SW_CLUTCH_SLOW_ID = 149,
-    SW_AERO_FRONT_ID = 150,
-    SW_AERO_REAR_ID = 151,
-    TCM_NEUTRAL_ID = 152,
-    TCM_SHIFTER_POSITION_ID = 153,
-    TCM_CLUTCH_POSITION_ID = 154,
-    TCM_TARGET_RPM_ID = 155,
-    TCM_TRANS_RPM_ID = 156,
-    TCM_CURRENT_GEAR_ID = 157,
-    TCM_TARGET_GEAR_ID = 158,
-    TCM_CURRENTLY_MOVING_ID = 159,
-    TCM_THROTTLE_BLIP_ID = 160,
-    TCM_USING_CLUTCH_ID = 161,
-    TCM_SUCCESSFUL_SHIFT_ID = 162,
-    TCM_ANTI_STALL_ID = 163,
-    ACM_FL_WING_ANGLE_ID = 164,
-    ACM_FR_WING_ANGLE_ID = 165,
-    ACM_REAR_WING_ANGLE_ID = 166,
-    PDM_1_CURRENT_ID = 167,
-    PDM_2_CURRENT_ID = 168,
-    PDM_3_CURRENT_ID = 169,
-    PDM_4_CURRENT_ID = 170,
-    PDM_5_CURRENT_ID = 171,
-    PDM_6_CURRENT_ID = 172,
-    PDM_7_CURRENT_ID = 173,
-    PDM_8_CURRENT_ID = 174,
-    PDM_9_CURRENT_ID = 175,
-    PDM_10_CURRENT_ID = 176,
-    PDM_11_CURRENT_ID = 177,
-    PDM_12_CURRENT_ID = 178,
-    PDM_13_CURRENT_ID = 179,
-    PDM_14_CURRENT_ID = 180,
-    PDM_15_CURRENT_ID = 181,
-    PDM_16_CURRENT_ID = 182,
-    PDM_17_CURRENT_ID = 183,
-    PDM_18_CURRENT_ID = 184,
-    PDM_19_CURRENT_ID = 185,
-    PDM_20_CURRENT_ID = 186,
-    PDM_VOLTAGE_ID = 187,
-    PDM_TEMP_ID = 188,
+    BAT_0_TEMP_ID = 1,
+    BAT_1_TEMP_ID = 2,
+    BAT_2_TEMP_ID = 3,
+    BAT_3_TEMP_ID = 4,
+    BAT_4_TEMP_ID = 5,
+    BAT_5_TEMP_ID = 6,
+    BAT_6_TEMP_ID = 7,
+    BAT_7_TEMP_ID = 8,
+    BAT_8_TEMP_ID = 9,
+    BAT_9_TEMP_ID = 10,
+    BAT_10_TEMP_ID = 11,
+    BAT_11_TEMP_ID = 12,
+    BAT_12_TEMP_ID = 13,
+    BAT_13_TEMP_ID = 14,
+    BAT_14_TEMP_ID = 15,
+    BAT_15_TEMP_ID = 16,
+    BAT_16_TEMP_ID = 17,
+    BAT_17_TEMP_ID = 18,
+    BAT_18_TEMP_ID = 19,
+    BAT_19_TEMP_ID = 20,
+    BAT_20_TEMP_ID = 21,
+    BAT_21_TEMP_ID = 22,
+    BAT_22_TEMP_ID = 23,
+    BAT_23_TEMP_ID = 24,
+    BAT_24_TEMP_ID = 25,
+    BAT_25_TEMP_ID = 26,
+    BAT_26_TEMP_ID = 27,
+    BAT_27_TEMP_ID = 28,
+    BAT_28_TEMP_ID = 29,
+    BAT_29_TEMP_ID = 30,
+    BAT_30_TEMP_ID = 31,
+    BAT_31_TEMP_ID = 32,
+    BAT_32_TEMP_ID = 33,
+    BAT_33_TEMP_ID = 34,
+    BAT_34_TEMP_ID = 35,
+    BAT_35_TEMP_ID = 36,
+    BAT_36_TEMP_ID = 37,
+    BAT_37_TEMP_ID = 38,
+    BAT_38_TEMP_ID = 39,
+    BAT_39_TEMP_ID = 40,
+    BAT_40_TEMP_ID = 41,
+    BAT_41_TEMP_ID = 42,
+    BAT_42_TEMP_ID = 43,
+    BAT_43_TEMP_ID = 44,
+    BAT_44_TEMP_ID = 45,
+    BAT_45_TEMP_ID = 46,
+    BAT_46_TEMP_ID = 47,
+    BAT_47_TEMP_ID = 48,
+    BAT_48_TEMP_ID = 49,
+    BAT_49_TEMP_ID = 50,
+    BAT_50_TEMP_ID = 51,
+    BAT_51_TEMP_ID = 52,
+    BAT_52_TEMP_ID = 53,
+    BAT_53_TEMP_ID = 54,
+    BAT_54_TEMP_ID = 55,
+    BAT_55_TEMP_ID = 56,
+    BAT_56_TEMP_ID = 57,
+    BAT_57_TEMP_ID = 58,
+    BAT_58_TEMP_ID = 59,
+    BAT_59_TEMP_ID = 60,
+    BAT_60_TEMP_ID = 61,
+    BAT_61_TEMP_ID = 62,
+    BAT_62_TEMP_ID = 63,
+    BAT_63_TEMP_ID = 64,
+    BAT_64_TEMP_ID = 65,
+    BAT_65_TEMP_ID = 66,
+    BAT_66_TEMP_ID = 67,
+    BAT_67_TEMP_ID = 68,
+    BAT_68_TEMP_ID = 69,
+    BAT_69_TEMP_ID = 70,
+    BAT_70_TEMP_ID = 71,
+    BAT_71_TEMP_ID = 72,
+    BAT_72_TEMP_ID = 73,
+    BAT_73_TEMP_ID = 74,
+    BAT_74_TEMP_ID = 75,
+    BAT_75_TEMP_ID = 76,
+    BAT_76_TEMP_ID = 77,
+    BAT_77_TEMP_ID = 78,
+    BAT_78_TEMP_ID = 79,
+    BAT_79_TEMP_ID = 80,
+    BAT_80_TEMP_ID = 81,
+    BAT_81_TEMP_ID = 82,
+    BAT_82_TEMP_ID = 83,
+    BAT_83_TEMP_ID = 84,
+    BAT_84_TEMP_ID = 85,
+    BAT_85_TEMP_ID = 86,
+    BAT_86_TEMP_ID = 87,
+    BAT_87_TEMP_ID = 88,
+    BAT_MIN_TEMP_ID = 89,
+    BAT_AVE_TEMP_ID = 90,
+    BAT_MAX_TEMP_ID = 91,
+    PDM_1_CURRENT_ID = 92,
+    PDM_2_CURRENT_ID = 93,
+    PDM_3_CURRENT_ID = 94,
+    PDM_4_CURRENT_ID = 95,
+    PDM_5_CURRENT_ID = 96,
+    PDM_6_CURRENT_ID = 97,
+    PDM_7_CURRENT_ID = 98,
+    PDM_8_CURRENT_ID = 99,
+    PDM_9_CURRENT_ID = 100,
+    PDM_10_CURRENT_ID = 101,
+    PDM_11_CURRENT_ID = 102,
+    PDM_12_CURRENT_ID = 103,
+    PDM_13_CURRENT_ID = 104,
+    PDM_14_CURRENT_ID = 105,
+    PDM_15_CURRENT_ID = 106,
+    PDM_16_CURRENT_ID = 107,
+    PDM_17_CURRENT_ID = 108,
+    PDM_18_CURRENT_ID = 109,
+    PDM_19_CURRENT_ID = 110,
+    PDM_20_CURRENT_ID = 111,
+    PDM_VOLTAGE_ID = 112,
+    PDM_TEMP_ID = 113,
+    VCU_APPS1_ID = 114,
+    VCU_APPS2_ID = 115,
+    VCU_CURRENT1_ID = 116,
+    VCU_CURRENT2_ID = 117,
+    VCU_BRAKE_PRESSURE_FRONT_ID = 118,
+    VCU_WSFL_ID = 119,
+    VCU_WSFR_ID = 120,
+    VCU_SPFL_ID = 121,
+    VCU_SPFR_ID = 122,
+    VCU_SPRL_ID = 123,
+    VCU_SPRR_ID = 124,
+    VCU_SAS_ID = 125,
+    VCU_BAT_VOLTS_ID = 126,
+    VCU_RTD_BTN_ID = 127,
+    VCU_RTD_BZZR_DUTY_ID = 128,
+    VCU_PUMP_DUTY_ID = 129,
+    VCU_FAN_DUTY_ID = 130,
+    VCU_BL_DUTY_ID = 131,
+    VCU_STATUS_ID = 132,
+    INV_MOTOR_TEMP_ID = 133,
+    INV_MOTOR_RPM_ID = 134,
+    INV_MOTOR_POSITION_ID = 135,
+    INV_TEMP_ID = 136,
+    DUMMY_PARAM_ID = 137,
     
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
@@ -309,172 +256,97 @@ typedef enum
 // all of the global parameter struct externs so all files including GopherCAN.h
 // have access
 extern CAN_COMMAND_STRUCT can_command;
-extern U16_CAN_STRUCT rpm_ecu;
-extern FLOAT_CAN_STRUCT wheel_slip_ecu;
-extern FLOAT_CAN_STRUCT wheel_slip_target_ecu;
-extern FLOAT_CAN_STRUCT aim_rpm_ecu;
-extern FLOAT_CAN_STRUCT wsfl_ecu;
-extern FLOAT_CAN_STRUCT wsfr_ecu;
-extern FLOAT_CAN_STRUCT wsrl_ecu;
-extern FLOAT_CAN_STRUCT wsrr_ecu;
-extern FLOAT_CAN_STRUCT ign_cut_level_ecu;
-extern FLOAT_CAN_STRUCT bat_volts_ecu;
-extern FLOAT_CAN_STRUCT engine_temp_ecu;
-extern FLOAT_CAN_STRUCT inlet_air_temp_ecu;
-extern FLOAT_CAN_STRUCT lambda_1_ecu;
-extern FLOAT_CAN_STRUCT throttle_pos_1_ecu;
-extern FLOAT_CAN_STRUCT throttle_pos_2_ecu;
-extern FLOAT_CAN_STRUCT pedal_pos_1_ecu;
-extern FLOAT_CAN_STRUCT pedal_pos_2_ecu;
-extern FLOAT_CAN_STRUCT man_pressure_ecu;
-extern FLOAT_CAN_STRUCT fuel_cut_lvl_ecu;
-extern FLOAT_CAN_STRUCT ign_advance_ecu;
-extern FLOAT_CAN_STRUCT oil_pressure_ecu;
-extern FLOAT_CAN_STRUCT oil_temp_ecu;
-extern FLOAT_CAN_STRUCT fuel_pressure_ecu;
-extern FLOAT_CAN_STRUCT throttle_pos_required_ecu;
-extern FLOAT_CAN_STRUCT brake_pressure_front_ecu;
-extern FLOAT_CAN_STRUCT etc_duty_ecu;
-extern FLOAT_CAN_STRUCT fan_duty_ecu;
-extern FLOAT_CAN_STRUCT fanoil_duty_ecu;
-extern FLOAT_CAN_STRUCT wpump_duty_ecu;
-extern FLOAT_CAN_STRUCT brake_light_duty_ecu;
-extern FLOAT_CAN_STRUCT warning_light_duty_ecu;
-extern FLOAT_CAN_STRUCT aux_5v_ecu;
-extern FLOAT_CAN_STRUCT eng_5v_ecu;
-extern FLOAT_CAN_STRUCT gps_lat_ecu;
-extern FLOAT_CAN_STRUCT gps_long_ecu;
-extern FLOAT_CAN_STRUCT brake_pressure_rear;
-extern FLOAT_CAN_STRUCT steering_angle;
-extern FLOAT_CAN_STRUCT throttle_position;
-extern FLOAT_CAN_STRUCT acceleration;
-extern FLOAT_CAN_STRUCT ride_height_rear;
-extern FLOAT_CAN_STRUCT ride_height_front;
-extern FLOAT_CAN_STRUCT rear_right_shock_pot;
-extern FLOAT_CAN_STRUCT rear_left_shock_pot;
-extern FLOAT_CAN_STRUCT front_left_shock_pot;
-extern FLOAT_CAN_STRUCT front_right_shock_pot;
-extern FLOAT_CAN_STRUCT right_rad_pressure_in;
-extern FLOAT_CAN_STRUCT right_rad_pressure_out;
-extern FLOAT_CAN_STRUCT right_rad_pressure_drop;
-extern FLOAT_CAN_STRUCT right_rad_temp_in;
-extern FLOAT_CAN_STRUCT right_rad_temp_out;
-extern FLOAT_CAN_STRUCT left_rad_pressure_in;
-extern FLOAT_CAN_STRUCT left_rad_pressure_out;
-extern FLOAT_CAN_STRUCT left_rad_pressure_drop;
-extern FLOAT_CAN_STRUCT left_rad_temp_in;
-extern FLOAT_CAN_STRUCT left_rad_temp_out;
-extern FLOAT_CAN_STRUCT air_tank_pressure;
-extern FLOAT_CAN_STRUCT pnumatic_line_pressure;
-extern FLOAT_CAN_STRUCT water_pump_pressure_in;
-extern FLOAT_CAN_STRUCT water_pump_pressure_out;
-extern FLOAT_CAN_STRUCT main_circuit_flow_rate;
-extern FLOAT_CAN_STRUCT exhaust_temp_1;
-extern FLOAT_CAN_STRUCT exhaust_temp_2;
-extern FLOAT_CAN_STRUCT exhaust_temp_3;
-extern FLOAT_CAN_STRUCT exhaust_temp_4;
-extern FLOAT_CAN_STRUCT exhaust_temp_5;
-extern FLOAT_CAN_STRUCT lambda_header_1;
-extern FLOAT_CAN_STRUCT lambda_header_2;
-extern FLOAT_CAN_STRUCT oil_cooler_temp_in;
-extern FLOAT_CAN_STRUCT oil_cooler_temp_out;
-extern FLOAT_CAN_STRUCT oil_cooler_pressure_in;
-extern FLOAT_CAN_STRUCT oil_cooler_pressure_out;
-extern FLOAT_CAN_STRUCT firewall_temp;
-extern FLOAT_CAN_STRUCT yaw_rate;
-extern FLOAT_CAN_STRUCT y_axis_accel;
-extern FLOAT_CAN_STRUCT roll_rate;
-extern FLOAT_CAN_STRUCT x_axis_accel;
-extern FLOAT_CAN_STRUCT z_axis_accel;
-extern FLOAT_CAN_STRUCT brake_temp_fl;
-extern FLOAT_CAN_STRUCT brake_temp_fr;
-extern FLOAT_CAN_STRUCT brake_temp_rl;
-extern FLOAT_CAN_STRUCT brake_temp_rr;
-extern FLOAT_CAN_STRUCT tire_temp_rr_1;
-extern FLOAT_CAN_STRUCT tire_temp_rr_2;
-extern FLOAT_CAN_STRUCT tire_temp_rr_3;
-extern FLOAT_CAN_STRUCT tire_temp_rr_4;
-extern FLOAT_CAN_STRUCT tire_temp_rr_5;
-extern FLOAT_CAN_STRUCT tire_temp_rr_6;
-extern FLOAT_CAN_STRUCT tire_temp_rr_7;
-extern FLOAT_CAN_STRUCT tire_temp_rr_8;
-extern FLOAT_CAN_STRUCT tire_temp_rr_9;
-extern FLOAT_CAN_STRUCT tire_temp_rr_10;
-extern FLOAT_CAN_STRUCT tire_temp_rr_11;
-extern FLOAT_CAN_STRUCT tire_temp_rr_12;
-extern FLOAT_CAN_STRUCT tire_temp_rr_13;
-extern FLOAT_CAN_STRUCT tire_temp_rr_14;
-extern FLOAT_CAN_STRUCT tire_temp_rr_15;
-extern FLOAT_CAN_STRUCT tire_temp_rr_16;
-extern FLOAT_CAN_STRUCT tire_temp_rl_1;
-extern FLOAT_CAN_STRUCT tire_temp_rl_2;
-extern FLOAT_CAN_STRUCT tire_temp_rl_3;
-extern FLOAT_CAN_STRUCT tire_temp_rl_4;
-extern FLOAT_CAN_STRUCT tire_temp_rl_5;
-extern FLOAT_CAN_STRUCT tire_temp_rl_6;
-extern FLOAT_CAN_STRUCT tire_temp_rl_7;
-extern FLOAT_CAN_STRUCT tire_temp_rl_8;
-extern FLOAT_CAN_STRUCT tire_temp_rl_9;
-extern FLOAT_CAN_STRUCT tire_temp_rl_10;
-extern FLOAT_CAN_STRUCT tire_temp_rl_11;
-extern FLOAT_CAN_STRUCT tire_temp_rl_12;
-extern FLOAT_CAN_STRUCT tire_temp_rl_13;
-extern FLOAT_CAN_STRUCT tire_temp_rl_14;
-extern FLOAT_CAN_STRUCT tire_temp_rl_15;
-extern FLOAT_CAN_STRUCT tire_temp_rl_16;
-extern FLOAT_CAN_STRUCT tire_temp_fl_1;
-extern FLOAT_CAN_STRUCT tire_temp_fl_2;
-extern FLOAT_CAN_STRUCT tire_temp_fl_3;
-extern FLOAT_CAN_STRUCT tire_temp_fl_4;
-extern FLOAT_CAN_STRUCT tire_temp_fl_5;
-extern FLOAT_CAN_STRUCT tire_temp_fl_6;
-extern FLOAT_CAN_STRUCT tire_temp_fl_7;
-extern FLOAT_CAN_STRUCT tire_temp_fl_8;
-extern FLOAT_CAN_STRUCT tire_temp_fl_9;
-extern FLOAT_CAN_STRUCT tire_temp_fl_10;
-extern FLOAT_CAN_STRUCT tire_temp_fl_11;
-extern FLOAT_CAN_STRUCT tire_temp_fl_12;
-extern FLOAT_CAN_STRUCT tire_temp_fl_13;
-extern FLOAT_CAN_STRUCT tire_temp_fl_14;
-extern FLOAT_CAN_STRUCT tire_temp_fl_15;
-extern FLOAT_CAN_STRUCT tire_temp_fl_16;
-extern FLOAT_CAN_STRUCT tire_temp_fr_1;
-extern FLOAT_CAN_STRUCT tire_temp_fr_2;
-extern FLOAT_CAN_STRUCT tire_temp_fr_3;
-extern FLOAT_CAN_STRUCT tire_temp_fr_4;
-extern FLOAT_CAN_STRUCT tire_temp_fr_5;
-extern FLOAT_CAN_STRUCT tire_temp_fr_6;
-extern FLOAT_CAN_STRUCT tire_temp_fr_7;
-extern FLOAT_CAN_STRUCT tire_temp_fr_8;
-extern FLOAT_CAN_STRUCT tire_temp_fr_9;
-extern FLOAT_CAN_STRUCT tire_temp_fr_10;
-extern FLOAT_CAN_STRUCT tire_temp_fr_11;
-extern FLOAT_CAN_STRUCT tire_temp_fr_12;
-extern FLOAT_CAN_STRUCT tire_temp_fr_13;
-extern FLOAT_CAN_STRUCT tire_temp_fr_14;
-extern FLOAT_CAN_STRUCT tire_temp_fr_15;
-extern FLOAT_CAN_STRUCT tire_temp_fr_16;
-extern U8_CAN_STRUCT sw_upshift;
-extern U8_CAN_STRUCT sw_downshift;
-extern U8_CAN_STRUCT sw_clutch_fast;
-extern U8_CAN_STRUCT sw_clutch_slow;
-extern U8_CAN_STRUCT sw_aero_front;
-extern U8_CAN_STRUCT sw_aero_rear;
-extern U8_CAN_STRUCT tcm_neutral;
-extern FLOAT_CAN_STRUCT tcm_shifter_position;
-extern FLOAT_CAN_STRUCT tcm_clutch_position;
-extern U32_CAN_STRUCT tcm_target_rpm;
-extern U32_CAN_STRUCT tcm_trans_rpm;
-extern U8_CAN_STRUCT tcm_current_gear;
-extern U8_CAN_STRUCT tcm_target_gear;
-extern U8_CAN_STRUCT tcm_currently_moving;
-extern U8_CAN_STRUCT tcm_throttle_blip;
-extern U8_CAN_STRUCT tcm_using_clutch;
-extern U8_CAN_STRUCT tcm_successful_shift;
-extern U8_CAN_STRUCT tcm_anti_stall;
-extern U32_CAN_STRUCT acm_fl_wing_angle;
-extern U32_CAN_STRUCT acm_fr_wing_angle;
-extern U32_CAN_STRUCT acm_rear_wing_angle;
+extern FLOAT_CAN_STRUCT bat_0_temp;
+extern FLOAT_CAN_STRUCT bat_1_temp;
+extern FLOAT_CAN_STRUCT bat_2_temp;
+extern FLOAT_CAN_STRUCT bat_3_temp;
+extern FLOAT_CAN_STRUCT bat_4_temp;
+extern FLOAT_CAN_STRUCT bat_5_temp;
+extern FLOAT_CAN_STRUCT bat_6_temp;
+extern FLOAT_CAN_STRUCT bat_7_temp;
+extern FLOAT_CAN_STRUCT bat_8_temp;
+extern FLOAT_CAN_STRUCT bat_9_temp;
+extern FLOAT_CAN_STRUCT bat_10_temp;
+extern FLOAT_CAN_STRUCT bat_11_temp;
+extern FLOAT_CAN_STRUCT bat_12_temp;
+extern FLOAT_CAN_STRUCT bat_13_temp;
+extern FLOAT_CAN_STRUCT bat_14_temp;
+extern FLOAT_CAN_STRUCT bat_15_temp;
+extern FLOAT_CAN_STRUCT bat_16_temp;
+extern FLOAT_CAN_STRUCT bat_17_temp;
+extern FLOAT_CAN_STRUCT bat_18_temp;
+extern FLOAT_CAN_STRUCT bat_19_temp;
+extern FLOAT_CAN_STRUCT bat_20_temp;
+extern FLOAT_CAN_STRUCT bat_21_temp;
+extern FLOAT_CAN_STRUCT bat_22_temp;
+extern FLOAT_CAN_STRUCT bat_23_temp;
+extern FLOAT_CAN_STRUCT bat_24_temp;
+extern FLOAT_CAN_STRUCT bat_25_temp;
+extern FLOAT_CAN_STRUCT bat_26_temp;
+extern FLOAT_CAN_STRUCT bat_27_temp;
+extern FLOAT_CAN_STRUCT bat_28_temp;
+extern FLOAT_CAN_STRUCT bat_29_temp;
+extern FLOAT_CAN_STRUCT bat_30_temp;
+extern FLOAT_CAN_STRUCT bat_31_temp;
+extern FLOAT_CAN_STRUCT bat_32_temp;
+extern FLOAT_CAN_STRUCT bat_33_temp;
+extern FLOAT_CAN_STRUCT bat_34_temp;
+extern FLOAT_CAN_STRUCT bat_35_temp;
+extern FLOAT_CAN_STRUCT bat_36_temp;
+extern FLOAT_CAN_STRUCT bat_37_temp;
+extern FLOAT_CAN_STRUCT bat_38_temp;
+extern FLOAT_CAN_STRUCT bat_39_temp;
+extern FLOAT_CAN_STRUCT bat_40_temp;
+extern FLOAT_CAN_STRUCT bat_41_temp;
+extern FLOAT_CAN_STRUCT bat_42_temp;
+extern FLOAT_CAN_STRUCT bat_43_temp;
+extern FLOAT_CAN_STRUCT bat_44_temp;
+extern FLOAT_CAN_STRUCT bat_45_temp;
+extern FLOAT_CAN_STRUCT bat_46_temp;
+extern FLOAT_CAN_STRUCT bat_47_temp;
+extern FLOAT_CAN_STRUCT bat_48_temp;
+extern FLOAT_CAN_STRUCT bat_49_temp;
+extern FLOAT_CAN_STRUCT bat_50_temp;
+extern FLOAT_CAN_STRUCT bat_51_temp;
+extern FLOAT_CAN_STRUCT bat_52_temp;
+extern FLOAT_CAN_STRUCT bat_53_temp;
+extern FLOAT_CAN_STRUCT bat_54_temp;
+extern FLOAT_CAN_STRUCT bat_55_temp;
+extern FLOAT_CAN_STRUCT bat_56_temp;
+extern FLOAT_CAN_STRUCT bat_57_temp;
+extern FLOAT_CAN_STRUCT bat_58_temp;
+extern FLOAT_CAN_STRUCT bat_59_temp;
+extern FLOAT_CAN_STRUCT bat_60_temp;
+extern FLOAT_CAN_STRUCT bat_61_temp;
+extern FLOAT_CAN_STRUCT bat_62_temp;
+extern FLOAT_CAN_STRUCT bat_63_temp;
+extern FLOAT_CAN_STRUCT bat_64_temp;
+extern FLOAT_CAN_STRUCT bat_65_temp;
+extern FLOAT_CAN_STRUCT bat_66_temp;
+extern FLOAT_CAN_STRUCT bat_67_temp;
+extern FLOAT_CAN_STRUCT bat_68_temp;
+extern FLOAT_CAN_STRUCT bat_69_temp;
+extern FLOAT_CAN_STRUCT bat_70_temp;
+extern FLOAT_CAN_STRUCT bat_71_temp;
+extern FLOAT_CAN_STRUCT bat_72_temp;
+extern FLOAT_CAN_STRUCT bat_73_temp;
+extern FLOAT_CAN_STRUCT bat_74_temp;
+extern FLOAT_CAN_STRUCT bat_75_temp;
+extern FLOAT_CAN_STRUCT bat_76_temp;
+extern FLOAT_CAN_STRUCT bat_77_temp;
+extern FLOAT_CAN_STRUCT bat_78_temp;
+extern FLOAT_CAN_STRUCT bat_79_temp;
+extern FLOAT_CAN_STRUCT bat_80_temp;
+extern FLOAT_CAN_STRUCT bat_81_temp;
+extern FLOAT_CAN_STRUCT bat_82_temp;
+extern FLOAT_CAN_STRUCT bat_83_temp;
+extern FLOAT_CAN_STRUCT bat_84_temp;
+extern FLOAT_CAN_STRUCT bat_85_temp;
+extern FLOAT_CAN_STRUCT bat_86_temp;
+extern FLOAT_CAN_STRUCT bat_87_temp;
+extern FLOAT_CAN_STRUCT bat_min_temp;
+extern FLOAT_CAN_STRUCT bat_ave_temp;
+extern FLOAT_CAN_STRUCT bat_max_temp;
 extern FLOAT_CAN_STRUCT pdm_1_current;
 extern FLOAT_CAN_STRUCT pdm_2_current;
 extern FLOAT_CAN_STRUCT pdm_3_current;
@@ -497,6 +369,30 @@ extern FLOAT_CAN_STRUCT pdm_19_current;
 extern FLOAT_CAN_STRUCT pdm_20_current;
 extern FLOAT_CAN_STRUCT pdm_voltage;
 extern FLOAT_CAN_STRUCT pdm_temp;
+extern FLOAT_CAN_STRUCT vcu_apps1;
+extern FLOAT_CAN_STRUCT vcu_apps2;
+extern FLOAT_CAN_STRUCT vcu_current1;
+extern FLOAT_CAN_STRUCT vcu_current2;
+extern FLOAT_CAN_STRUCT vcu_brake_pressure_front;
+extern FLOAT_CAN_STRUCT vcu_wsfl;
+extern FLOAT_CAN_STRUCT vcu_wsfr;
+extern FLOAT_CAN_STRUCT vcu_spfl;
+extern FLOAT_CAN_STRUCT vcu_spfr;
+extern FLOAT_CAN_STRUCT vcu_sprl;
+extern FLOAT_CAN_STRUCT vcu_sprr;
+extern FLOAT_CAN_STRUCT vcu_sas;
+extern FLOAT_CAN_STRUCT vcu_bat_volts;
+extern U8_CAN_STRUCT vcu_rtd_btn;
+extern FLOAT_CAN_STRUCT vcu_rtd_bzzr_duty;
+extern FLOAT_CAN_STRUCT vcu_pump_duty;
+extern FLOAT_CAN_STRUCT vcu_fan_duty;
+extern FLOAT_CAN_STRUCT vcu_bl_duty;
+extern U32_CAN_STRUCT vcu_status;
+extern FLOAT_CAN_STRUCT inv_motor_temp;
+extern FLOAT_CAN_STRUCT inv_motor_rpm;
+extern FLOAT_CAN_STRUCT inv_motor_position;
+extern FLOAT_CAN_STRUCT inv_temp;
+extern FLOAT_CAN_STRUCT dummy_param;
 
 
 #endif // GOPHERCAN_IDS_H_P2

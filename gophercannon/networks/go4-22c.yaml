@@ -350,28 +350,28 @@ parameters:
         name: rear_right_shock_pot
         id: 42
         motec_name: Shock Pot Rear Right
-        unit: in
+        unit: mm
         type: FLOATING
 
     rear_left_shock_pot:
         name: rear_left_shock_pot
         id: 43
         motec_name: Shock Pot Rear Left
-        unit: in
+        unit: mm
         type: FLOATING
 
     front_left_shock_pot:
         name: front_left_shock_pot
         id: 44
         motec_name: Shock Pot Front Left
-        unit: in
+        unit: mm
         type: FLOATING
 
     front_right_shock_pot:
         name: front_right_shock_pot
         id: 45
         motec_name: Shock Pot Front Right
-        unit: in
+        unit: mm
         type: FLOATING
 
     right_rad_pressure_in:
