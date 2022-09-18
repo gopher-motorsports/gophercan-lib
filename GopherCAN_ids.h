@@ -161,11 +161,62 @@ typedef enum
     VCU_FAN_DUTY_ID = 130,
     VCU_BL_DUTY_ID = 131,
     VCU_STATUS_ID = 132,
-    INV_MOTOR_TEMP_ID = 133,
-    INV_MOTOR_RPM_ID = 134,
-    INV_MOTOR_POSITION_ID = 135,
-    INV_TEMP_ID = 136,
-    DUMMY_PARAM_ID = 137,
+    INV_TEMP_IGBT_A_ID = 133,
+    INV_TEMP_IGBT_B_ID = 134,
+    INV_TEMP_IGBT_C_ID = 135,
+    INV_TEMP_GATE_DRIVER_ID = 136,
+    INV_TEMP_CTRL_BOARD_ID = 137,
+    INV_TEMP_RTD_1_ID = 138,
+    INV_TEMP_RTD_2_ID = 139,
+    INV_TEMP_RTD_3_ID = 140,
+    INV_TEMP_RTD_4_ID = 141,
+    INV_TEMP_RTD_5_ID = 142,
+    INV_MOTOR_TEMP_ID = 143,
+    INV_TORQUE_SHUDDER_ID = 144,
+    INV_DIGITAL_IN_1_ID = 145,
+    INV_DIGITAL_IN_2_ID = 146,
+    INV_DIGITAL_IN_3_ID = 147,
+    INV_DIGITAL_IN_4_ID = 148,
+    INV_DIGITAL_IN_5_ID = 149,
+    INV_DIGITAL_IN_6_ID = 150,
+    INV_DIGITAL_IN_7_ID = 151,
+    INV_DIGITAL_IN_8_ID = 152,
+    INV_MOTOR_ANGLE_ID = 153,
+    INV_MOTOR_SPEED_ID = 154,
+    INV_MOTOR_AC_FREQ_ID = 155,
+    INV_DELTA_RESOLVER_FILTERED_ID = 156,
+    INV_CURRENT_PHASE_A_ID = 157,
+    INV_CURRENT_PHASE_B_ID = 158,
+    INV_CURRENT_PHASE_C_ID = 159,
+    INV_CURRENT_DC_BUS_ID = 160,
+    INV_DC_BUS_VOLTAGE_ID = 161,
+    INV_PEAK_OUTPUT_VOLTAGE_ID = 162,
+    INV_VD_VOLTAGE_ID = 163,
+    INV_VQ_VOLTAGE_ID = 164,
+    INV_FLUX_CMD_ID = 165,
+    INV_FLUX_FEEDBACK_ID = 166,
+    INV_ID_FEEDBACK_ID = 167,
+    INV_IQ_FEEDBACK_ID = 168,
+    INV_1V5_REF_ID = 169,
+    INV_2V5_REF_ID = 170,
+    INV_5V_REF_ID = 171,
+    INV_12V_REF_ID = 172,
+    INV_POST_FAULT_LO_ID = 173,
+    INV_POST_FAULT_HI_ID = 174,
+    INV_RUN_FAULT_LO_ID = 175,
+    INV_RUN_FAULT_HI_ID = 176,
+    INV_TORQUE_CMD_ID = 177,
+    INV_TORQUE_FEEDBACK_ID = 178,
+    INV_POWER_ON_TIMER_ID = 179,
+    INV_MODULATION_INDEX_ID = 180,
+    INV_FLUX_WEAKENING_ID = 181,
+    INV_ID_CMD_ID = 182,
+    INV_IQ_CMD_ID = 183,
+    INV_TORQUE_CMD_HIGH_ID = 184,
+    INV_TORQUE_FEEDBACK_HIGH_ID = 185,
+    INV_MOTOR_SPEED_HIGH_ID = 186,
+    INV_DC_BUS_VOLTAGE_HIGH_ID = 187,
+    DUMMY_PARAM_ID = 188,
     
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
@@ -388,10 +439,61 @@ extern FLOAT_CAN_STRUCT vcu_pump_duty;
 extern FLOAT_CAN_STRUCT vcu_fan_duty;
 extern FLOAT_CAN_STRUCT vcu_bl_duty;
 extern U32_CAN_STRUCT vcu_status;
+extern FLOAT_CAN_STRUCT inv_temp_igbt_a;
+extern FLOAT_CAN_STRUCT inv_temp_igbt_b;
+extern FLOAT_CAN_STRUCT inv_temp_igbt_c;
+extern FLOAT_CAN_STRUCT inv_temp_gate_driver;
+extern FLOAT_CAN_STRUCT inv_temp_ctrl_board;
+extern FLOAT_CAN_STRUCT inv_temp_rtd_1;
+extern FLOAT_CAN_STRUCT inv_temp_rtd_2;
+extern FLOAT_CAN_STRUCT inv_temp_rtd_3;
+extern FLOAT_CAN_STRUCT inv_temp_rtd_4;
+extern FLOAT_CAN_STRUCT inv_temp_rtd_5;
 extern FLOAT_CAN_STRUCT inv_motor_temp;
-extern FLOAT_CAN_STRUCT inv_motor_rpm;
-extern FLOAT_CAN_STRUCT inv_motor_position;
-extern FLOAT_CAN_STRUCT inv_temp;
+extern FLOAT_CAN_STRUCT inv_torque_shudder;
+extern U8_CAN_STRUCT inv_digital_in_1;
+extern U8_CAN_STRUCT inv_digital_in_2;
+extern U8_CAN_STRUCT inv_digital_in_3;
+extern U8_CAN_STRUCT inv_digital_in_4;
+extern U8_CAN_STRUCT inv_digital_in_5;
+extern U8_CAN_STRUCT inv_digital_in_6;
+extern U8_CAN_STRUCT inv_digital_in_7;
+extern U8_CAN_STRUCT inv_digital_in_8;
+extern FLOAT_CAN_STRUCT inv_motor_angle;
+extern U16_CAN_STRUCT inv_motor_speed;
+extern FLOAT_CAN_STRUCT inv_motor_ac_freq;
+extern FLOAT_CAN_STRUCT inv_delta_resolver_filtered;
+extern FLOAT_CAN_STRUCT inv_current_phase_a;
+extern FLOAT_CAN_STRUCT inv_current_phase_b;
+extern FLOAT_CAN_STRUCT inv_current_phase_c;
+extern FLOAT_CAN_STRUCT inv_current_dc_bus;
+extern FLOAT_CAN_STRUCT inv_dc_bus_voltage;
+extern FLOAT_CAN_STRUCT inv_peak_output_voltage;
+extern FLOAT_CAN_STRUCT inv_vd_voltage;
+extern FLOAT_CAN_STRUCT inv_vq_voltage;
+extern FLOAT_CAN_STRUCT inv_flux_cmd;
+extern FLOAT_CAN_STRUCT inv_flux_feedback;
+extern FLOAT_CAN_STRUCT inv_id_feedback;
+extern FLOAT_CAN_STRUCT inv_iq_feedback;
+extern FLOAT_CAN_STRUCT inv_1v5_ref;
+extern FLOAT_CAN_STRUCT inv_2v5_ref;
+extern FLOAT_CAN_STRUCT inv_5v_ref;
+extern FLOAT_CAN_STRUCT inv_12v_ref;
+extern FLOAT_CAN_STRUCT inv_post_fault_lo;
+extern FLOAT_CAN_STRUCT inv_post_fault_hi;
+extern FLOAT_CAN_STRUCT inv_run_fault_lo;
+extern FLOAT_CAN_STRUCT inv_run_fault_hi;
+extern FLOAT_CAN_STRUCT inv_torque_cmd;
+extern FLOAT_CAN_STRUCT inv_torque_feedback;
+extern FLOAT_CAN_STRUCT inv_power_on_timer;
+extern FLOAT_CAN_STRUCT inv_modulation_index;
+extern FLOAT_CAN_STRUCT inv_flux_weakening;
+extern FLOAT_CAN_STRUCT inv_id_cmd;
+extern FLOAT_CAN_STRUCT inv_iq_cmd;
+extern FLOAT_CAN_STRUCT inv_torque_cmd_high;
+extern FLOAT_CAN_STRUCT inv_torque_feedback_high;
+extern U16_CAN_STRUCT inv_motor_speed_high;
+extern FLOAT_CAN_STRUCT inv_dc_bus_voltage_high;
 extern FLOAT_CAN_STRUCT dummy_param;
 
 
