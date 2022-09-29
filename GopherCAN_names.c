@@ -175,7 +175,7 @@ char* name_strings[NUM_OF_PARAMETERS] =
     "Front Right Wing Angle",
     "Front Left Wing Angle",
     "Rear Wing Angle",
-    "Current from PDM channel 20",
+    "Current from PDM channel 0",
     "Current from PDM channel 1",
     "Current from PDM channel 2",
     "Current from PDM channel 3",

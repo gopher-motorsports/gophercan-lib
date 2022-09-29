@@ -1230,7 +1230,7 @@ parameters:
     pdm_0_current:
         name: pdm_0_current
         id: 167
-        motec_name: Current from PDM channel 20
+        motec_name: Current from PDM channel 0
         unit: mA
         type: FLOATING
 
