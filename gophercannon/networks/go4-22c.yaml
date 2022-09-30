@@ -573,7 +573,7 @@ parameters:
     y_axis_accel:
         name: y_axis_accel
         id: 74
-        motec_name: Longitudinal Acceleration
+        motec_name: Lateral Acceleration
         unit: G
         type: FLOATING
 
@@ -587,7 +587,7 @@ parameters:
     x_axis_accel:
         name: x_axis_accel
         id: 76
-        motec_name: Lateral Acceleration
+        motec_name: Longitudinal Acceleration
         unit: G
         type: FLOATING
 
