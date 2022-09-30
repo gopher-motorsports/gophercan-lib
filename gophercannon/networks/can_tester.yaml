@@ -394,10 +394,17 @@ parameters:
         unit: "m/s^2"
         type: FLOATING
         struct: FLOAT_CAN_STRUCT   
+
+    pdm_current:
+        name: "pdm_current"
+        id: 47
+        human_readable_name: "Currents for pdm"
+        unit: "amps"
+        type: FLOATING
         
     example_new_param:
         name: example_new_param
-        id: 47
+        id: 48
         human_readable_name: "New parameter for the tutorial code"
         unit: "Example Unit"
         type: FLOATING

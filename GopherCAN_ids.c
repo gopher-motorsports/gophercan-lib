@@ -6,97 +6,173 @@
 
 // all of the global parameter structs
 CAN_COMMAND_STRUCT can_command = {0};
-FLOAT_CAN_STRUCT bat_0_temp = {0};
-FLOAT_CAN_STRUCT bat_1_temp = {0};
-FLOAT_CAN_STRUCT bat_2_temp = {0};
-FLOAT_CAN_STRUCT bat_3_temp = {0};
-FLOAT_CAN_STRUCT bat_4_temp = {0};
-FLOAT_CAN_STRUCT bat_5_temp = {0};
-FLOAT_CAN_STRUCT bat_6_temp = {0};
-FLOAT_CAN_STRUCT bat_7_temp = {0};
-FLOAT_CAN_STRUCT bat_8_temp = {0};
-FLOAT_CAN_STRUCT bat_9_temp = {0};
-FLOAT_CAN_STRUCT bat_10_temp = {0};
-FLOAT_CAN_STRUCT bat_11_temp = {0};
-FLOAT_CAN_STRUCT bat_12_temp = {0};
-FLOAT_CAN_STRUCT bat_13_temp = {0};
-FLOAT_CAN_STRUCT bat_14_temp = {0};
-FLOAT_CAN_STRUCT bat_15_temp = {0};
-FLOAT_CAN_STRUCT bat_16_temp = {0};
-FLOAT_CAN_STRUCT bat_17_temp = {0};
-FLOAT_CAN_STRUCT bat_18_temp = {0};
-FLOAT_CAN_STRUCT bat_19_temp = {0};
-FLOAT_CAN_STRUCT bat_20_temp = {0};
-FLOAT_CAN_STRUCT bat_21_temp = {0};
-FLOAT_CAN_STRUCT bat_22_temp = {0};
-FLOAT_CAN_STRUCT bat_23_temp = {0};
-FLOAT_CAN_STRUCT bat_24_temp = {0};
-FLOAT_CAN_STRUCT bat_25_temp = {0};
-FLOAT_CAN_STRUCT bat_26_temp = {0};
-FLOAT_CAN_STRUCT bat_27_temp = {0};
-FLOAT_CAN_STRUCT bat_28_temp = {0};
-FLOAT_CAN_STRUCT bat_29_temp = {0};
-FLOAT_CAN_STRUCT bat_30_temp = {0};
-FLOAT_CAN_STRUCT bat_31_temp = {0};
-FLOAT_CAN_STRUCT bat_32_temp = {0};
-FLOAT_CAN_STRUCT bat_33_temp = {0};
-FLOAT_CAN_STRUCT bat_34_temp = {0};
-FLOAT_CAN_STRUCT bat_35_temp = {0};
-FLOAT_CAN_STRUCT bat_36_temp = {0};
-FLOAT_CAN_STRUCT bat_37_temp = {0};
-FLOAT_CAN_STRUCT bat_38_temp = {0};
-FLOAT_CAN_STRUCT bat_39_temp = {0};
-FLOAT_CAN_STRUCT bat_40_temp = {0};
-FLOAT_CAN_STRUCT bat_41_temp = {0};
-FLOAT_CAN_STRUCT bat_42_temp = {0};
-FLOAT_CAN_STRUCT bat_43_temp = {0};
-FLOAT_CAN_STRUCT bat_44_temp = {0};
-FLOAT_CAN_STRUCT bat_45_temp = {0};
-FLOAT_CAN_STRUCT bat_46_temp = {0};
-FLOAT_CAN_STRUCT bat_47_temp = {0};
-FLOAT_CAN_STRUCT bat_48_temp = {0};
-FLOAT_CAN_STRUCT bat_49_temp = {0};
-FLOAT_CAN_STRUCT bat_50_temp = {0};
-FLOAT_CAN_STRUCT bat_51_temp = {0};
-FLOAT_CAN_STRUCT bat_52_temp = {0};
-FLOAT_CAN_STRUCT bat_53_temp = {0};
-FLOAT_CAN_STRUCT bat_54_temp = {0};
-FLOAT_CAN_STRUCT bat_55_temp = {0};
-FLOAT_CAN_STRUCT bat_56_temp = {0};
-FLOAT_CAN_STRUCT bat_57_temp = {0};
-FLOAT_CAN_STRUCT bat_58_temp = {0};
-FLOAT_CAN_STRUCT bat_59_temp = {0};
-FLOAT_CAN_STRUCT bat_60_temp = {0};
-FLOAT_CAN_STRUCT bat_61_temp = {0};
-FLOAT_CAN_STRUCT bat_62_temp = {0};
-FLOAT_CAN_STRUCT bat_63_temp = {0};
-FLOAT_CAN_STRUCT bat_64_temp = {0};
-FLOAT_CAN_STRUCT bat_65_temp = {0};
-FLOAT_CAN_STRUCT bat_66_temp = {0};
-FLOAT_CAN_STRUCT bat_67_temp = {0};
-FLOAT_CAN_STRUCT bat_68_temp = {0};
-FLOAT_CAN_STRUCT bat_69_temp = {0};
-FLOAT_CAN_STRUCT bat_70_temp = {0};
-FLOAT_CAN_STRUCT bat_71_temp = {0};
-FLOAT_CAN_STRUCT bat_72_temp = {0};
-FLOAT_CAN_STRUCT bat_73_temp = {0};
-FLOAT_CAN_STRUCT bat_74_temp = {0};
-FLOAT_CAN_STRUCT bat_75_temp = {0};
-FLOAT_CAN_STRUCT bat_76_temp = {0};
-FLOAT_CAN_STRUCT bat_77_temp = {0};
-FLOAT_CAN_STRUCT bat_78_temp = {0};
-FLOAT_CAN_STRUCT bat_79_temp = {0};
-FLOAT_CAN_STRUCT bat_80_temp = {0};
-FLOAT_CAN_STRUCT bat_81_temp = {0};
-FLOAT_CAN_STRUCT bat_82_temp = {0};
-FLOAT_CAN_STRUCT bat_83_temp = {0};
-FLOAT_CAN_STRUCT bat_84_temp = {0};
-FLOAT_CAN_STRUCT bat_85_temp = {0};
-FLOAT_CAN_STRUCT bat_86_temp = {0};
-FLOAT_CAN_STRUCT bat_87_temp = {0};
-FLOAT_CAN_STRUCT bat_min_temp = {0};
-FLOAT_CAN_STRUCT bat_ave_temp = {0};
-FLOAT_CAN_STRUCT bat_max_temp = {0};
+U16_CAN_STRUCT rpm_ecu = {0};
+FLOAT_CAN_STRUCT wheel_slip_ecu = {0};
+FLOAT_CAN_STRUCT wheel_slip_target_ecu = {0};
+FLOAT_CAN_STRUCT aim_rpm_ecu = {0};
+FLOAT_CAN_STRUCT wsfl_ecu = {0};
+FLOAT_CAN_STRUCT wsfr_ecu = {0};
+FLOAT_CAN_STRUCT wsrl_ecu = {0};
+FLOAT_CAN_STRUCT wsrr_ecu = {0};
+FLOAT_CAN_STRUCT ign_cut_level_ecu = {0};
+FLOAT_CAN_STRUCT bat_volts_ecu = {0};
+FLOAT_CAN_STRUCT engine_temp_ecu = {0};
+FLOAT_CAN_STRUCT inlet_air_temp_ecu = {0};
+FLOAT_CAN_STRUCT lambda_1_ecu = {0};
+FLOAT_CAN_STRUCT throttle_pos_1_ecu = {0};
+FLOAT_CAN_STRUCT throttle_pos_2_ecu = {0};
+FLOAT_CAN_STRUCT pedal_pos_1_ecu = {0};
+FLOAT_CAN_STRUCT pedal_pos_2_ecu = {0};
+FLOAT_CAN_STRUCT man_pressure_ecu = {0};
+FLOAT_CAN_STRUCT fuel_cut_lvl_ecu = {0};
+FLOAT_CAN_STRUCT ign_advance_ecu = {0};
+FLOAT_CAN_STRUCT oil_pressure_ecu = {0};
+FLOAT_CAN_STRUCT oil_temp_ecu = {0};
+FLOAT_CAN_STRUCT fuel_pressure_ecu = {0};
+FLOAT_CAN_STRUCT throttle_pos_required_ecu = {0};
+FLOAT_CAN_STRUCT brake_pressure_front_ecu = {0};
+FLOAT_CAN_STRUCT etc_duty_ecu = {0};
+FLOAT_CAN_STRUCT fan_duty_ecu = {0};
+FLOAT_CAN_STRUCT fanoil_duty_ecu = {0};
+FLOAT_CAN_STRUCT wpump_duty_ecu = {0};
+FLOAT_CAN_STRUCT brake_light_duty_ecu = {0};
+FLOAT_CAN_STRUCT warning_light_duty_ecu = {0};
+FLOAT_CAN_STRUCT aux_5v_ecu = {0};
+FLOAT_CAN_STRUCT eng_5v_ecu = {0};
+FLOAT_CAN_STRUCT gps_lat_ecu = {0};
+FLOAT_CAN_STRUCT gps_long_ecu = {0};
+FLOAT_CAN_STRUCT brake_pressure_rear = {0};
+FLOAT_CAN_STRUCT steering_angle = {0};
+FLOAT_CAN_STRUCT throttle_position = {0};
+FLOAT_CAN_STRUCT acceleration = {0};
+FLOAT_CAN_STRUCT ride_height_rear = {0};
+FLOAT_CAN_STRUCT ride_height_front = {0};
+FLOAT_CAN_STRUCT rear_right_shock_pot = {0};
+FLOAT_CAN_STRUCT rear_left_shock_pot = {0};
+FLOAT_CAN_STRUCT front_left_shock_pot = {0};
+FLOAT_CAN_STRUCT front_right_shock_pot = {0};
+FLOAT_CAN_STRUCT right_rad_pressure_in = {0};
+FLOAT_CAN_STRUCT right_rad_pressure_out = {0};
+FLOAT_CAN_STRUCT right_rad_pressure_drop = {0};
+FLOAT_CAN_STRUCT right_rad_temp_in = {0};
+FLOAT_CAN_STRUCT right_rad_temp_out = {0};
+FLOAT_CAN_STRUCT left_rad_pressure_in = {0};
+FLOAT_CAN_STRUCT left_rad_pressure_out = {0};
+FLOAT_CAN_STRUCT left_rad_pressure_drop = {0};
+FLOAT_CAN_STRUCT left_rad_temp_in = {0};
+FLOAT_CAN_STRUCT left_rad_temp_out = {0};
+FLOAT_CAN_STRUCT air_tank_pressure = {0};
+FLOAT_CAN_STRUCT pnumatic_line_pressure = {0};
+FLOAT_CAN_STRUCT water_pump_pressure_in = {0};
+FLOAT_CAN_STRUCT water_pump_pressure_out = {0};
+FLOAT_CAN_STRUCT main_circuit_flow_rate = {0};
+FLOAT_CAN_STRUCT exhaust_temp_1 = {0};
+FLOAT_CAN_STRUCT exhaust_temp_2 = {0};
+FLOAT_CAN_STRUCT exhaust_temp_3 = {0};
+FLOAT_CAN_STRUCT exhaust_temp_4 = {0};
+FLOAT_CAN_STRUCT exhaust_temp_5 = {0};
+FLOAT_CAN_STRUCT lambda_header_1 = {0};
+FLOAT_CAN_STRUCT lambda_header_2 = {0};
+FLOAT_CAN_STRUCT oil_cooler_temp_in = {0};
+FLOAT_CAN_STRUCT oil_cooler_temp_out = {0};
+FLOAT_CAN_STRUCT oil_cooler_pressure_in = {0};
+FLOAT_CAN_STRUCT oil_cooler_pressure_out = {0};
+FLOAT_CAN_STRUCT firewall_temp = {0};
+FLOAT_CAN_STRUCT yaw_rate = {0};
+FLOAT_CAN_STRUCT y_axis_accel = {0};
+FLOAT_CAN_STRUCT roll_rate = {0};
+FLOAT_CAN_STRUCT x_axis_accel = {0};
+FLOAT_CAN_STRUCT z_axis_accel = {0};
+FLOAT_CAN_STRUCT brake_temp_fl = {0};
+FLOAT_CAN_STRUCT brake_temp_fr = {0};
+FLOAT_CAN_STRUCT brake_temp_rl = {0};
+FLOAT_CAN_STRUCT brake_temp_rr = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_1 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_2 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_3 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_4 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_5 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_6 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_7 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_8 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_9 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_10 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_11 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_12 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_13 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_14 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_15 = {0};
+FLOAT_CAN_STRUCT tire_temp_rr_16 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_1 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_2 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_3 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_4 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_5 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_6 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_7 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_8 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_9 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_10 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_11 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_12 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_13 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_14 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_15 = {0};
+FLOAT_CAN_STRUCT tire_temp_rl_16 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_1 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_2 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_3 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_4 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_5 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_6 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_7 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_8 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_9 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_10 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_11 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_12 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_13 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_14 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_15 = {0};
+FLOAT_CAN_STRUCT tire_temp_fl_16 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_1 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_2 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_3 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_4 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_5 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_6 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_7 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_8 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_9 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_10 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_11 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_12 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_13 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_14 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_15 = {0};
+FLOAT_CAN_STRUCT tire_temp_fr_16 = {0};
+U8_CAN_STRUCT sw_upshift = {0};
+U8_CAN_STRUCT sw_downshift = {0};
+U8_CAN_STRUCT sw_clutch_fast = {0};
+U8_CAN_STRUCT sw_clutch_slow = {0};
+U8_CAN_STRUCT sw_aero_front = {0};
+U8_CAN_STRUCT sw_aero_rear = {0};
+U8_CAN_STRUCT tcm_neutral = {0};
+FLOAT_CAN_STRUCT tcm_shifter_position = {0};
+FLOAT_CAN_STRUCT tcm_clutch_position = {0};
+U32_CAN_STRUCT tcm_target_rpm = {0};
+U32_CAN_STRUCT tcm_trans_rpm = {0};
+U8_CAN_STRUCT tcm_current_gear = {0};
+U8_CAN_STRUCT tcm_target_gear = {0};
+U8_CAN_STRUCT tcm_currently_moving = {0};
+U8_CAN_STRUCT tcm_throttle_blip = {0};
+U8_CAN_STRUCT tcm_using_clutch = {0};
+U8_CAN_STRUCT tcm_successful_shift = {0};
+U8_CAN_STRUCT tcm_anti_stall = {0};
+U32_CAN_STRUCT acm_fl_wing_angle = {0};
+U32_CAN_STRUCT acm_fr_wing_angle = {0};
+U32_CAN_STRUCT acm_rear_wing_angle = {0};
+FLOAT_CAN_STRUCT pdm_0_current = {0};
 FLOAT_CAN_STRUCT pdm_1_current = {0};
 FLOAT_CAN_STRUCT pdm_2_current = {0};
 FLOAT_CAN_STRUCT pdm_3_current = {0};
@@ -116,189 +192,181 @@ FLOAT_CAN_STRUCT pdm_16_current = {0};
 FLOAT_CAN_STRUCT pdm_17_current = {0};
 FLOAT_CAN_STRUCT pdm_18_current = {0};
 FLOAT_CAN_STRUCT pdm_19_current = {0};
-FLOAT_CAN_STRUCT pdm_20_current = {0};
 FLOAT_CAN_STRUCT pdm_voltage = {0};
 FLOAT_CAN_STRUCT pdm_temp = {0};
-FLOAT_CAN_STRUCT vcu_apps1 = {0};
-FLOAT_CAN_STRUCT vcu_apps2 = {0};
-FLOAT_CAN_STRUCT vcu_current1 = {0};
-FLOAT_CAN_STRUCT vcu_current2 = {0};
-FLOAT_CAN_STRUCT vcu_brake_pressure_front = {0};
-FLOAT_CAN_STRUCT vcu_wsfl = {0};
-FLOAT_CAN_STRUCT vcu_wsfr = {0};
-FLOAT_CAN_STRUCT vcu_spfl = {0};
-FLOAT_CAN_STRUCT vcu_spfr = {0};
-FLOAT_CAN_STRUCT vcu_sprl = {0};
-FLOAT_CAN_STRUCT vcu_sprr = {0};
-FLOAT_CAN_STRUCT vcu_sas = {0};
-FLOAT_CAN_STRUCT vcu_bat_volts = {0};
-U8_CAN_STRUCT vcu_rtd_btn = {0};
-FLOAT_CAN_STRUCT vcu_rtd_bzzr_duty = {0};
-FLOAT_CAN_STRUCT vcu_pump_duty = {0};
-FLOAT_CAN_STRUCT vcu_fan_duty = {0};
-FLOAT_CAN_STRUCT vcu_bl_duty = {0};
-U32_CAN_STRUCT vcu_status = {0};
-FLOAT_CAN_STRUCT inv_temp_igbt_a = {0};
-FLOAT_CAN_STRUCT inv_temp_igbt_b = {0};
-FLOAT_CAN_STRUCT inv_temp_igbt_c = {0};
-FLOAT_CAN_STRUCT inv_temp_gate_driver = {0};
-FLOAT_CAN_STRUCT inv_temp_ctrl_board = {0};
-FLOAT_CAN_STRUCT inv_temp_rtd_1 = {0};
-FLOAT_CAN_STRUCT inv_temp_rtd_2 = {0};
-FLOAT_CAN_STRUCT inv_temp_rtd_3 = {0};
-FLOAT_CAN_STRUCT inv_temp_rtd_4 = {0};
-FLOAT_CAN_STRUCT inv_temp_rtd_5 = {0};
-FLOAT_CAN_STRUCT inv_motor_temp = {0};
-FLOAT_CAN_STRUCT inv_torque_shudder = {0};
-U8_CAN_STRUCT inv_digital_in_1 = {0};
-U8_CAN_STRUCT inv_digital_in_2 = {0};
-U8_CAN_STRUCT inv_digital_in_3 = {0};
-U8_CAN_STRUCT inv_digital_in_4 = {0};
-U8_CAN_STRUCT inv_digital_in_5 = {0};
-U8_CAN_STRUCT inv_digital_in_6 = {0};
-U8_CAN_STRUCT inv_digital_in_7 = {0};
-U8_CAN_STRUCT inv_digital_in_8 = {0};
-FLOAT_CAN_STRUCT inv_motor_angle = {0};
-U16_CAN_STRUCT inv_motor_speed = {0};
-FLOAT_CAN_STRUCT inv_motor_ac_freq = {0};
-FLOAT_CAN_STRUCT inv_delta_resolver_filtered = {0};
-FLOAT_CAN_STRUCT inv_current_phase_a = {0};
-FLOAT_CAN_STRUCT inv_current_phase_b = {0};
-FLOAT_CAN_STRUCT inv_current_phase_c = {0};
-FLOAT_CAN_STRUCT inv_current_dc_bus = {0};
-FLOAT_CAN_STRUCT inv_dc_bus_voltage = {0};
-FLOAT_CAN_STRUCT inv_peak_output_voltage = {0};
-FLOAT_CAN_STRUCT inv_vd_voltage = {0};
-FLOAT_CAN_STRUCT inv_vq_voltage = {0};
-FLOAT_CAN_STRUCT inv_flux_cmd = {0};
-FLOAT_CAN_STRUCT inv_flux_feedback = {0};
-FLOAT_CAN_STRUCT inv_id_feedback = {0};
-FLOAT_CAN_STRUCT inv_iq_feedback = {0};
-FLOAT_CAN_STRUCT inv_1v5_ref = {0};
-FLOAT_CAN_STRUCT inv_2v5_ref = {0};
-FLOAT_CAN_STRUCT inv_5v_ref = {0};
-FLOAT_CAN_STRUCT inv_12v_ref = {0};
-FLOAT_CAN_STRUCT inv_post_fault_lo = {0};
-FLOAT_CAN_STRUCT inv_post_fault_hi = {0};
-FLOAT_CAN_STRUCT inv_run_fault_lo = {0};
-FLOAT_CAN_STRUCT inv_run_fault_hi = {0};
-FLOAT_CAN_STRUCT inv_torque_cmd = {0};
-FLOAT_CAN_STRUCT inv_torque_feedback = {0};
-FLOAT_CAN_STRUCT inv_power_on_timer = {0};
-FLOAT_CAN_STRUCT inv_modulation_index = {0};
-FLOAT_CAN_STRUCT inv_flux_weakening = {0};
-FLOAT_CAN_STRUCT inv_id_cmd = {0};
-FLOAT_CAN_STRUCT inv_iq_cmd = {0};
-FLOAT_CAN_STRUCT inv_torque_cmd_high = {0};
-FLOAT_CAN_STRUCT inv_torque_feedback_high = {0};
-U16_CAN_STRUCT inv_motor_speed_high = {0};
-FLOAT_CAN_STRUCT inv_dc_bus_voltage_high = {0};
-U8_CAN_STRUCT inv_vsm_state = {0};
-U8_CAN_STRUCT inv_pwm_freq = {0};
-U8_CAN_STRUCT inv_inverter_state = {0};
-U8_CAN_STRUCT inv_relay_state = {0};
-U8_CAN_STRUCT inv_states_byte4 = {0};
-U8_CAN_STRUCT inv_states_byte5 = {0};
-U8_CAN_STRUCT inv_states_byte6 = {0};
-U8_CAN_STRUCT inv_states_byte7 = {0};
-FLOAT_CAN_STRUCT dummy_param = {0};
 
 
 // this is the struct that will be used to reference based on ID
 void* all_parameter_structs[NUM_OF_PARAMETERS] =
 {
     &can_command,
-    &bat_0_temp,
-    &bat_1_temp,
-    &bat_2_temp,
-    &bat_3_temp,
-    &bat_4_temp,
-    &bat_5_temp,
-    &bat_6_temp,
-    &bat_7_temp,
-    &bat_8_temp,
-    &bat_9_temp,
-    &bat_10_temp,
-    &bat_11_temp,
-    &bat_12_temp,
-    &bat_13_temp,
-    &bat_14_temp,
-    &bat_15_temp,
-    &bat_16_temp,
-    &bat_17_temp,
-    &bat_18_temp,
-    &bat_19_temp,
-    &bat_20_temp,
-    &bat_21_temp,
-    &bat_22_temp,
-    &bat_23_temp,
-    &bat_24_temp,
-    &bat_25_temp,
-    &bat_26_temp,
-    &bat_27_temp,
-    &bat_28_temp,
-    &bat_29_temp,
-    &bat_30_temp,
-    &bat_31_temp,
-    &bat_32_temp,
-    &bat_33_temp,
-    &bat_34_temp,
-    &bat_35_temp,
-    &bat_36_temp,
-    &bat_37_temp,
-    &bat_38_temp,
-    &bat_39_temp,
-    &bat_40_temp,
-    &bat_41_temp,
-    &bat_42_temp,
-    &bat_43_temp,
-    &bat_44_temp,
-    &bat_45_temp,
-    &bat_46_temp,
-    &bat_47_temp,
-    &bat_48_temp,
-    &bat_49_temp,
-    &bat_50_temp,
-    &bat_51_temp,
-    &bat_52_temp,
-    &bat_53_temp,
-    &bat_54_temp,
-    &bat_55_temp,
-    &bat_56_temp,
-    &bat_57_temp,
-    &bat_58_temp,
-    &bat_59_temp,
-    &bat_60_temp,
-    &bat_61_temp,
-    &bat_62_temp,
-    &bat_63_temp,
-    &bat_64_temp,
-    &bat_65_temp,
-    &bat_66_temp,
-    &bat_67_temp,
-    &bat_68_temp,
-    &bat_69_temp,
-    &bat_70_temp,
-    &bat_71_temp,
-    &bat_72_temp,
-    &bat_73_temp,
-    &bat_74_temp,
-    &bat_75_temp,
-    &bat_76_temp,
-    &bat_77_temp,
-    &bat_78_temp,
-    &bat_79_temp,
-    &bat_80_temp,
-    &bat_81_temp,
-    &bat_82_temp,
-    &bat_83_temp,
-    &bat_84_temp,
-    &bat_85_temp,
-    &bat_86_temp,
-    &bat_87_temp,
-    &bat_min_temp,
-    &bat_ave_temp,
-    &bat_max_temp,
+    &rpm_ecu,
+    &wheel_slip_ecu,
+    &wheel_slip_target_ecu,
+    &aim_rpm_ecu,
+    &wsfl_ecu,
+    &wsfr_ecu,
+    &wsrl_ecu,
+    &wsrr_ecu,
+    &ign_cut_level_ecu,
+    &bat_volts_ecu,
+    &engine_temp_ecu,
+    &inlet_air_temp_ecu,
+    &lambda_1_ecu,
+    &throttle_pos_1_ecu,
+    &throttle_pos_2_ecu,
+    &pedal_pos_1_ecu,
+    &pedal_pos_2_ecu,
+    &man_pressure_ecu,
+    &fuel_cut_lvl_ecu,
+    &ign_advance_ecu,
+    &oil_pressure_ecu,
+    &oil_temp_ecu,
+    &fuel_pressure_ecu,
+    &throttle_pos_required_ecu,
+    &brake_pressure_front_ecu,
+    &etc_duty_ecu,
+    &fan_duty_ecu,
+    &fanoil_duty_ecu,
+    &wpump_duty_ecu,
+    &brake_light_duty_ecu,
+    &warning_light_duty_ecu,
+    &aux_5v_ecu,
+    &eng_5v_ecu,
+    &gps_lat_ecu,
+    &gps_long_ecu,
+    &brake_pressure_rear,
+    &steering_angle,
+    &throttle_position,
+    &acceleration,
+    &ride_height_rear,
+    &ride_height_front,
+    &rear_right_shock_pot,
+    &rear_left_shock_pot,
+    &front_left_shock_pot,
+    &front_right_shock_pot,
+    &right_rad_pressure_in,
+    &right_rad_pressure_out,
+    &right_rad_pressure_drop,
+    &right_rad_temp_in,
+    &right_rad_temp_out,
+    &left_rad_pressure_in,
+    &left_rad_pressure_out,
+    &left_rad_pressure_drop,
+    &left_rad_temp_in,
+    &left_rad_temp_out,
+    &air_tank_pressure,
+    &pnumatic_line_pressure,
+    &water_pump_pressure_in,
+    &water_pump_pressure_out,
+    &main_circuit_flow_rate,
+    &exhaust_temp_1,
+    &exhaust_temp_2,
+    &exhaust_temp_3,
+    &exhaust_temp_4,
+    &exhaust_temp_5,
+    &lambda_header_1,
+    &lambda_header_2,
+    &oil_cooler_temp_in,
+    &oil_cooler_temp_out,
+    &oil_cooler_pressure_in,
+    &oil_cooler_pressure_out,
+    &firewall_temp,
+    &yaw_rate,
+    &y_axis_accel,
+    &roll_rate,
+    &x_axis_accel,
+    &z_axis_accel,
+    &brake_temp_fl,
+    &brake_temp_fr,
+    &brake_temp_rl,
+    &brake_temp_rr,
+    &tire_temp_rr_1,
+    &tire_temp_rr_2,
+    &tire_temp_rr_3,
+    &tire_temp_rr_4,
+    &tire_temp_rr_5,
+    &tire_temp_rr_6,
+    &tire_temp_rr_7,
+    &tire_temp_rr_8,
+    &tire_temp_rr_9,
+    &tire_temp_rr_10,
+    &tire_temp_rr_11,
+    &tire_temp_rr_12,
+    &tire_temp_rr_13,
+    &tire_temp_rr_14,
+    &tire_temp_rr_15,
+    &tire_temp_rr_16,
+    &tire_temp_rl_1,
+    &tire_temp_rl_2,
+    &tire_temp_rl_3,
+    &tire_temp_rl_4,
+    &tire_temp_rl_5,
+    &tire_temp_rl_6,
+    &tire_temp_rl_7,
+    &tire_temp_rl_8,
+    &tire_temp_rl_9,
+    &tire_temp_rl_10,
+    &tire_temp_rl_11,
+    &tire_temp_rl_12,
+    &tire_temp_rl_13,
+    &tire_temp_rl_14,
+    &tire_temp_rl_15,
+    &tire_temp_rl_16,
+    &tire_temp_fl_1,
+    &tire_temp_fl_2,
+    &tire_temp_fl_3,
+    &tire_temp_fl_4,
+    &tire_temp_fl_5,
+    &tire_temp_fl_6,
+    &tire_temp_fl_7,
+    &tire_temp_fl_8,
+    &tire_temp_fl_9,
+    &tire_temp_fl_10,
+    &tire_temp_fl_11,
+    &tire_temp_fl_12,
+    &tire_temp_fl_13,
+    &tire_temp_fl_14,
+    &tire_temp_fl_15,
+    &tire_temp_fl_16,
+    &tire_temp_fr_1,
+    &tire_temp_fr_2,
+    &tire_temp_fr_3,
+    &tire_temp_fr_4,
+    &tire_temp_fr_5,
+    &tire_temp_fr_6,
+    &tire_temp_fr_7,
+    &tire_temp_fr_8,
+    &tire_temp_fr_9,
+    &tire_temp_fr_10,
+    &tire_temp_fr_11,
+    &tire_temp_fr_12,
+    &tire_temp_fr_13,
+    &tire_temp_fr_14,
+    &tire_temp_fr_15,
+    &tire_temp_fr_16,
+    &sw_upshift,
+    &sw_downshift,
+    &sw_clutch_fast,
+    &sw_clutch_slow,
+    &sw_aero_front,
+    &sw_aero_rear,
+    &tcm_neutral,
+    &tcm_shifter_position,
+    &tcm_clutch_position,
+    &tcm_target_rpm,
+    &tcm_trans_rpm,
+    &tcm_current_gear,
+    &tcm_target_gear,
+    &tcm_currently_moving,
+    &tcm_throttle_blip,
+    &tcm_using_clutch,
+    &tcm_successful_shift,
+    &tcm_anti_stall,
+    &acm_fl_wing_angle,
+    &acm_fr_wing_angle,
+    &acm_rear_wing_angle,
+    &pdm_0_current,
     &pdm_1_current,
     &pdm_2_current,
     &pdm_3_current,
@@ -318,92 +386,8 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &pdm_17_current,
     &pdm_18_current,
     &pdm_19_current,
-    &pdm_20_current,
     &pdm_voltage,
-    &pdm_temp,
-    &vcu_apps1,
-    &vcu_apps2,
-    &vcu_current1,
-    &vcu_current2,
-    &vcu_brake_pressure_front,
-    &vcu_wsfl,
-    &vcu_wsfr,
-    &vcu_spfl,
-    &vcu_spfr,
-    &vcu_sprl,
-    &vcu_sprr,
-    &vcu_sas,
-    &vcu_bat_volts,
-    &vcu_rtd_btn,
-    &vcu_rtd_bzzr_duty,
-    &vcu_pump_duty,
-    &vcu_fan_duty,
-    &vcu_bl_duty,
-    &vcu_status,
-    &inv_temp_igbt_a,
-    &inv_temp_igbt_b,
-    &inv_temp_igbt_c,
-    &inv_temp_gate_driver,
-    &inv_temp_ctrl_board,
-    &inv_temp_rtd_1,
-    &inv_temp_rtd_2,
-    &inv_temp_rtd_3,
-    &inv_temp_rtd_4,
-    &inv_temp_rtd_5,
-    &inv_motor_temp,
-    &inv_torque_shudder,
-    &inv_digital_in_1,
-    &inv_digital_in_2,
-    &inv_digital_in_3,
-    &inv_digital_in_4,
-    &inv_digital_in_5,
-    &inv_digital_in_6,
-    &inv_digital_in_7,
-    &inv_digital_in_8,
-    &inv_motor_angle,
-    &inv_motor_speed,
-    &inv_motor_ac_freq,
-    &inv_delta_resolver_filtered,
-    &inv_current_phase_a,
-    &inv_current_phase_b,
-    &inv_current_phase_c,
-    &inv_current_dc_bus,
-    &inv_dc_bus_voltage,
-    &inv_peak_output_voltage,
-    &inv_vd_voltage,
-    &inv_vq_voltage,
-    &inv_flux_cmd,
-    &inv_flux_feedback,
-    &inv_id_feedback,
-    &inv_iq_feedback,
-    &inv_1v5_ref,
-    &inv_2v5_ref,
-    &inv_5v_ref,
-    &inv_12v_ref,
-    &inv_post_fault_lo,
-    &inv_post_fault_hi,
-    &inv_run_fault_lo,
-    &inv_run_fault_hi,
-    &inv_torque_cmd,
-    &inv_torque_feedback,
-    &inv_power_on_timer,
-    &inv_modulation_index,
-    &inv_flux_weakening,
-    &inv_id_cmd,
-    &inv_iq_cmd,
-    &inv_torque_cmd_high,
-    &inv_torque_feedback_high,
-    &inv_motor_speed_high,
-    &inv_dc_bus_voltage_high,
-    &inv_vsm_state,
-    &inv_pwm_freq,
-    &inv_inverter_state,
-    &inv_relay_state,
-    &inv_states_byte4,
-    &inv_states_byte5,
-    &inv_states_byte6,
-    &inv_states_byte7,
-    &dummy_param
+    &pdm_temp
     
 };
 
@@ -411,6 +395,25 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
 U8 parameter_data_types[NUM_OF_PARAMETERS] =
 {
     COMMAND,
+    UNSIGNED16,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
+    FLOATING,
     FLOATING,
     FLOATING,
     FLOATING,
@@ -538,10 +541,25 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
     FLOATING,
     FLOATING,
-    FLOATING,
-    FLOATING,
+    UNSIGNED32,
+    UNSIGNED32,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED32,
+    UNSIGNED32,
     UNSIGNED32,
     FLOATING,
     FLOATING,
@@ -555,16 +573,6 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    FLOATING,
-    UNSIGNED16,
     FLOATING,
     FLOATING,
     FLOATING,
@@ -574,38 +582,6 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    FLOATING,
-    UNSIGNED16,
-    FLOATING,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
     FLOATING
     
 };
@@ -617,8 +593,10 @@ U8 module_bus_number[NUM_OF_MODULES] =
     ALL_BUSSES,
     GCAN0,
     GCAN2,
+    GCAN1,
     GCAN0,
-    GCAN1
+    GCAN0,
+    GCAN2
     
 };
 #endif // MULTI_BUS
