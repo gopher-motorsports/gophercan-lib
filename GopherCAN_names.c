@@ -196,7 +196,8 @@ char* name_strings[NUM_OF_PARAMETERS] =
     "Current from PDM channel 18",
     "Current from PDM channel 19",
     "Switch Voltage",
-    "Switch Temperature"
+    "Switch Temperature",
+    "Lap Timer Signal"
     
 };
 
@@ -391,7 +392,8 @@ char* unit_strings[NUM_OF_PARAMETERS] =
     "mA",
     "mA",
     "Volts",
-    "C"
+    "C",
+    "ul"
     
 };
 
@@ -586,7 +588,8 @@ PARAM_TYPE_t param_types[NUM_OF_PARAMETERS] =
     FLOAT,
     FLOAT,
     FLOAT,
-    FLOAT
+    FLOAT,
+    UINT_8
     
 };
 

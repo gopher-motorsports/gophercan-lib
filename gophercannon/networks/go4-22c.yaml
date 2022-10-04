@@ -1381,6 +1381,13 @@ parameters:
         motec_name: Switch Temperature
         unit: C
         type: FLOATING
+        
+    tcm_lap_timer:
+        name: tcm_lap_timer
+        id: 189
+        motec_name: Lap Timer Signal
+        unit: ul
+        type: UNSIGNED8
 
 
 commands:

@@ -219,6 +219,7 @@ typedef enum
     PDM_19_CURRENT_ID = 186,
     PDM_VOLTAGE_ID = 187,
     PDM_TEMP_ID = 188,
+    TCM_LAP_TIMER_ID = 189,
     
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
@@ -497,6 +498,7 @@ extern FLOAT_CAN_STRUCT pdm_18_current;
 extern FLOAT_CAN_STRUCT pdm_19_current;
 extern FLOAT_CAN_STRUCT pdm_voltage;
 extern FLOAT_CAN_STRUCT pdm_temp;
+extern U8_CAN_STRUCT tcm_lap_timer;
 
 
 #endif // GOPHERCAN_IDS_H_P2

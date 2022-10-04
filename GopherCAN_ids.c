@@ -194,6 +194,7 @@ FLOAT_CAN_STRUCT pdm_18_current = {0};
 FLOAT_CAN_STRUCT pdm_19_current = {0};
 FLOAT_CAN_STRUCT pdm_voltage = {0};
 FLOAT_CAN_STRUCT pdm_temp = {0};
+U8_CAN_STRUCT tcm_lap_timer = {0};
 
 
 // this is the struct that will be used to reference based on ID
@@ -387,7 +388,8 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &pdm_18_current,
     &pdm_19_current,
     &pdm_voltage,
-    &pdm_temp
+    &pdm_temp,
+    &tcm_lap_timer
     
 };
 
@@ -582,7 +584,8 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-    FLOATING
+    FLOATING,
+    UNSIGNED8
     
 };
 
