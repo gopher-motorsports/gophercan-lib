@@ -1176,11 +1176,11 @@ parameters:
         unit: bool
         type: UNSIGNED8
 
-    tcm_throttle_blip:
-        name: tcm_throttle_blip
+    tcm_shift_state:
+        name: tcm_shift_state
         id: 160
-        motec_name: Blip Active
-        unit: bool
+        motec_name: TCM Shift State
+        unit: ul
         type: UNSIGNED8
 
     tcm_using_clutch:

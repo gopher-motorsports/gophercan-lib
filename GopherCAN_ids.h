@@ -190,7 +190,7 @@ typedef enum
     TCM_CURRENT_GEAR_ID = 157,
     TCM_TARGET_GEAR_ID = 158,
     TCM_CURRENTLY_MOVING_ID = 159,
-    TCM_THROTTLE_BLIP_ID = 160,
+    TCM_SHIFT_STATE_ID = 160,
     TCM_USING_CLUTCH_ID = 161,
     TCM_SUCCESSFUL_SHIFT_ID = 162,
     TCM_ANTI_STALL_ID = 163,
@@ -469,7 +469,7 @@ extern U32_CAN_STRUCT tcm_trans_rpm;
 extern U8_CAN_STRUCT tcm_current_gear;
 extern U8_CAN_STRUCT tcm_target_gear;
 extern U8_CAN_STRUCT tcm_currently_moving;
-extern U8_CAN_STRUCT tcm_throttle_blip;
+extern U8_CAN_STRUCT tcm_shift_state;
 extern U8_CAN_STRUCT tcm_using_clutch;
 extern U8_CAN_STRUCT tcm_successful_shift;
 extern U8_CAN_STRUCT tcm_anti_stall;

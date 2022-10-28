@@ -165,7 +165,7 @@ U32_CAN_STRUCT tcm_trans_rpm = {0};
 U8_CAN_STRUCT tcm_current_gear = {0};
 U8_CAN_STRUCT tcm_target_gear = {0};
 U8_CAN_STRUCT tcm_currently_moving = {0};
-U8_CAN_STRUCT tcm_throttle_blip = {0};
+U8_CAN_STRUCT tcm_shift_state = {0};
 U8_CAN_STRUCT tcm_using_clutch = {0};
 U8_CAN_STRUCT tcm_successful_shift = {0};
 U8_CAN_STRUCT tcm_anti_stall = {0};
@@ -360,7 +360,7 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &tcm_current_gear,
     &tcm_target_gear,
     &tcm_currently_moving,
-    &tcm_throttle_blip,
+    &tcm_shift_state,
     &tcm_using_clutch,
     &tcm_successful_shift,
     &tcm_anti_stall,
