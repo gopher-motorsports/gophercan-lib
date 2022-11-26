@@ -1,11 +1,7 @@
-/*
- * GopherCAN.c
- *
- *  Created on: Aug 16, 2020
- *      Author: Calvin
- */
-
-// this will have some auto generated sections
+// GopherCAN.c
+//  This function houses the functionality of GopherCAN, including handling
+//  hardware, interrupts, and buffers. Functions will also automatically
+//  return request from other modules and call CAN commands
 
 #include "GopherCAN.h"
 #include "GopherCAN_ring_buffer.h"
@@ -296,8 +292,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 //  ISR called when CAN_RX_FIFO0 has a pending message
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    FIFO0_RX_CALLBACK
-	//service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+	service_can_rx_hardware(hcan, CAN_RX_FIFO0);
 }
 
 
@@ -305,8 +300,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 //  ISR called when CAN_RX_FIFO1 has a pending message
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    FIFO1_RX_CALLBACK
-	//service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+	service_can_rx_hardware(hcan, CAN_RX_FIFO1);
 }
 
 
