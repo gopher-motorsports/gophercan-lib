@@ -42,6 +42,10 @@ FLOAT_CAN_STRUCT eng_5v_ecu = {0};
 FLOAT_CAN_STRUCT gps_lat_ecu = {0};
 FLOAT_CAN_STRUCT gps_long_ecu = {0};
 FLOAT_CAN_STRUCT brake_pressure_rear = {0};
+U8_CAN_STRUCT upshift = {0};
+U8_CAN_STRUCT downshift = {0};
+U8_CAN_STRUCT clutch = {0};
+U8_CAN_STRUCT slow_clutch = {0};
 FLOAT_CAN_STRUCT steering_angle = {0};
 FLOAT_CAN_STRUCT throttle_position = {0};
 FLOAT_CAN_STRUCT acceleration = {0};
@@ -237,6 +241,10 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &gps_lat_ecu,
     &gps_long_ecu,
     &brake_pressure_rear,
+    &upshift,
+    &downshift,
+    &clutch,
+    &slow_clutch,
     &steering_angle,
     &throttle_position,
     &acceleration,
@@ -433,6 +441,10 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
+    UNSIGNED8,
     FLOATING,
     FLOATING,
     FLOATING,
