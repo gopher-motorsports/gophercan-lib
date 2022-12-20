@@ -162,6 +162,7 @@ U8_CAN_STRUCT sw_clutch_slow = {0};
 U8_CAN_STRUCT sw_aero_front = {0};
 U8_CAN_STRUCT sw_aero_rear = {0};
 U8_CAN_STRUCT tcm_neutral = {0};
+FLOAT_CAN_STRUCT tcm_gear_position = {0};
 FLOAT_CAN_STRUCT tcm_shifter_position = {0};
 FLOAT_CAN_STRUCT tcm_clutch_position = {0};
 U32_CAN_STRUCT tcm_target_rpm = {0};
@@ -361,6 +362,7 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &sw_aero_front,
     &sw_aero_rear,
     &tcm_neutral,
+    &tcm_gear_position,
     &tcm_shifter_position,
     &tcm_clutch_position,
     &tcm_target_rpm,
@@ -561,6 +563,7 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     UNSIGNED8,
     UNSIGNED8,
     UNSIGNED8,
+    FLOATING,
     FLOATING,
     FLOATING,
     UNSIGNED32,
