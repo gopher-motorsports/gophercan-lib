@@ -325,8 +325,8 @@ parameters:
         unit: bool
         type: UNSIGNED8
 
-    clutch:
-        name: clutch
+    fast_clutch:
+        name: fast_clutch
         id: 39
         motec_name: Clutch
         unit: bool
@@ -1106,135 +1106,107 @@ parameters:
 # end tire temps
 
     # Parameters from the TCM:
-    sw_upshift:
-        name: sw_upshift
-        id: 150
-        motec_name: Upshift_Raw_Input
-        unit: bool
-        type: UNSIGNED8
-
-    sw_downshift:
-        name: sw_downshift
-        id: 151
-        motec_name: Downshift_Raw_Input
-        unit: bool
-        type: UNSIGNED8
-
-    sw_clutch_fast:
-        name: sw_clutch_fast
-        id: 152
-        motec_name: Clutch_Raw_Input
-        unit: bool
-        type: UNSIGNED8
-
-    sw_clutch_slow:
-        name: sw_clutch_slow
-        id: 153
-        motec_name: Clutch button (slow)
-        unit: bool
-        type: UNSIGNED8
-
     sw_aero_front:
         name: sw_aero_front
-        id: 154
+        id: 150
         motec_name: Front aero button
         unit: bool
         type: UNSIGNED8
 
     sw_aero_rear:
         name: sw_aero_rear
-        id: 155
+        id: 151
         motec_name: Rear aero button
         unit: bool
         type: UNSIGNED8
 
     tcm_neutral:
         name: tcm_neutral
-        id: 156
+        id: 152
         motec_name: Neutral signal
         unit: bool
         type: UNSIGNED8
 
     tcm_gear_position:
         name: tcm_gear_position
-        id: 157
+        id: 153
         motec_name: Gear Position
         unit: mm
         type: FLOATING
 
     tcm_shifter_position:
         name: tcm_shifter_position
-        id: 158
+        id: 154
         motec_name: Shifter Position
         unit: mm
         type: FLOATING
 
     tcm_clutch_position:
         name: tcm_clutch_position
-        id: 159
+        id: 155
         motec_name: Clutch Position
         unit: mm
         type: FLOATING
 
     tcm_target_rpm:
         name: tcm_target_rpm
-        id: 160
+        id: 156
         motec_name: Target RPM during a shift
         unit: rpm
         type: UNSIGNED32
 
     tcm_trans_rpm:
         name: tcm_trans_rpm
-        id: 161
+        id: 157
         motec_name: Transmission speed
         unit: rpm
         type: UNSIGNED32
 
     tcm_current_gear:
         name: tcm_current_gear
-        id: 162
+        id: 158
         motec_name: Current Gear
         unit: gear
         type: UNSIGNED8
 
     tcm_target_gear:
         name: tcm_target_gear
-        id: 163
+        id: 159
         motec_name: Target Gear During a shift
         unit: gear
         type: UNSIGNED8
 
     tcm_currently_moving:
         name: tcm_currently_moving
-        id: 164
+        id: 160
         motec_name: Currently moving
         unit: bool
         type: UNSIGNED8
 
     tcm_shift_state:
         name: tcm_shift_state
-        id: 165
+        id: 161
         motec_name: TCM Shift State
         unit: ul
         type: UNSIGNED8
 
     tcm_using_clutch:
         name: tcm_using_clutch
-        id: 166
+        id: 162
         motec_name: Clutch Shifting
         unit: bool
         type: UNSIGNED8
 
     tcm_successful_shift:
         name: tcm_successful_shift
-        id: 167
+        id: 163
         motec_name: Shift Success
         unit: bool
         type: UNSIGNED8
 
     tcm_anti_stall:
         name: tcm_anti_stall
-        id: 168
+        id: 164
         motec_name: Anti stall active
         unit: bool
         type: UNSIGNED8
@@ -1242,21 +1214,21 @@ parameters:
     # Parameters from the ACM:
     acm_fl_wing_angle:
         name: acm_fl_wing_angle
-        id: 169
+        id: 165
         motec_name: Front Right Wing Angle
         unit: duty
         type: UNSIGNED32
 
     acm_fr_wing_angle:
         name: acm_fr_wing_angle
-        id: 170
+        id: 166
         motec_name: Front Left Wing Angle
         unit: duty
         type: UNSIGNED32
 
     acm_rear_wing_angle:
         name: acm_rear_wing_angle
-        id: 171
+        id: 167
         motec_name: Rear Wing Angle
         unit: duty
         type: UNSIGNED32
@@ -1264,140 +1236,140 @@ parameters:
     # Parameters from the PDM: TODO what data type?
     pdm_0_current:
         name: pdm_0_current
-        id: 172
+        id: 168
         motec_name: Current from PDM channel 0
         unit: mA
         type: FLOATING
 
     pdm_1_current:
         name: pdm_1_current
-        id: 173
+        id: 169
         motec_name: Current from PDM channel 1
         unit: mA
         type: FLOATING
 
     pdm_2_current:
         name: pdm_2_current
-        id: 174
+        id: 170
         motec_name: Current from PDM channel 2
         unit: mA
         type: FLOATING
 
     pdm_3_current:
         name: pdm_3_current
-        id: 175
+        id: 171
         motec_name: Current from PDM channel 3
         unit: mA
         type: FLOATING
 
     pdm_4_current:
         name: pdm_4_current
-        id: 176
+        id: 172
         motec_name: Current from PDM channel 4
         unit: mA
         type: FLOATING
 
     pdm_5_current:
         name: pdm_5_current
-        id: 177
+        id: 173
         motec_name: Current from PDM channel 5
         unit: mA
         type: FLOATING
 
     pdm_6_current:
         name: pdm_6_current
-        id: 178
+        id: 174
         motec_name: Current from PDM channel 6
         unit: mA
         type: FLOATING
 
     pdm_7_current:
         name: pdm_7_current
-        id: 179
+        id: 175
         motec_name: Current from PDM channel 7
         unit: mA
         type: FLOATING
 
     pdm_8_current:
         name: pdm_8_current
-        id: 180
+        id: 176
         motec_name: Current from PDM channel 8
         unit: mA
         type: FLOATING
 
     pdm_9_current:
         name: pdm_9_current
-        id: 181
+        id: 177
         motec_name: Current from PDM channel 9
         unit: mA
         type: FLOATING
 
     pdm_10_current:
         name: pdm_10_current
-        id: 182
+        id: 178
         motec_name: Current from PDM channel 10
         unit: mA
         type: FLOATING
 
     pdm_11_current:
         name: pdm_11_current
-        id: 183
+        id: 179
         motec_name: Current from PDM channel 11
         unit: mA
         type: FLOATING
 
     pdm_12_current:
         name: pdm_12_current
-        id: 184
+        id: 180
         motec_name: Current from PDM channel 12
         unit: mA
         type: FLOATING
 
     pdm_13_current:
         name: pdm_13_current
-        id: 185
+        id: 181
         motec_name: Current from PDM channel 13
         unit: mA
         type: FLOATING
 
     pdm_14_current:
         name: pdm_14_current
-        id: 186
+        id: 182
         motec_name: Current from PDM channel 14
         unit: mA
         type: FLOATING
 
     pdm_15_current:
         name: pdm_15_current
-        id: 187
+        id: 183
         motec_name: Current from PDM channel 15
         unit: mA
         type: FLOATING
 
     pdm_16_current:
         name: pdm_16_current
-        id: 188
+        id: 184
         motec_name: Current from PDM channel 16
         unit: mA
         type: FLOATING
 
     pdm_17_current:
         name: pdm_17_current
-        id: 189
+        id: 185
         motec_name: Current from PDM channel 17
         unit: mA
         type: FLOATING
 
     pdm_18_current:
         name: pdm_18_current
-        id: 190
+        id: 186
         motec_name: Current from PDM channel 18
         unit: mA
         type: FLOATING
 
     pdm_19_current:
         name: pdm_19_current
-        id: 191
+        id: 187
         motec_name: Current from PDM channel 19
         unit: mA
         type: FLOATING
@@ -1405,21 +1377,21 @@ parameters:
 
     pdm_voltage:
         name: pdm_voltage
-        id: 192
+        id: 188
         motec_name: Switch Voltage
         unit: Volts
         type: FLOATING
 
     pdm_temp:
         name: pdm_temp
-        id: 193
+        id: 189
         motec_name: Switch Temperature
         unit: C
         type: FLOATING
 
     tcm_lap_timer:
         name: tcm_lap_timer
-        id: 194
+        id: 190
         motec_name: Lap Timer Signal
         unit: ul
         type: UNSIGNED8

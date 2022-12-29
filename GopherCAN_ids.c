@@ -44,7 +44,7 @@ FLOAT_CAN_STRUCT gps_long_ecu = {0};
 FLOAT_CAN_STRUCT brake_pressure_rear = {0};
 U8_CAN_STRUCT upshift = {0};
 U8_CAN_STRUCT downshift = {0};
-U8_CAN_STRUCT clutch = {0};
+U8_CAN_STRUCT fast_clutch = {0};
 U8_CAN_STRUCT slow_clutch = {0};
 FLOAT_CAN_STRUCT steering_angle = {0};
 FLOAT_CAN_STRUCT throttle_position = {0};
@@ -155,10 +155,6 @@ FLOAT_CAN_STRUCT tire_temp_fr_13 = {0};
 FLOAT_CAN_STRUCT tire_temp_fr_14 = {0};
 FLOAT_CAN_STRUCT tire_temp_fr_15 = {0};
 FLOAT_CAN_STRUCT tire_temp_fr_16 = {0};
-U8_CAN_STRUCT sw_upshift = {0};
-U8_CAN_STRUCT sw_downshift = {0};
-U8_CAN_STRUCT sw_clutch_fast = {0};
-U8_CAN_STRUCT sw_clutch_slow = {0};
 U8_CAN_STRUCT sw_aero_front = {0};
 U8_CAN_STRUCT sw_aero_rear = {0};
 U8_CAN_STRUCT tcm_neutral = {0};
@@ -244,7 +240,7 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &brake_pressure_rear,
     &upshift,
     &downshift,
-    &clutch,
+    &fast_clutch,
     &slow_clutch,
     &steering_angle,
     &throttle_position,
@@ -355,10 +351,6 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &tire_temp_fr_14,
     &tire_temp_fr_15,
     &tire_temp_fr_16,
-    &sw_upshift,
-    &sw_downshift,
-    &sw_clutch_fast,
-    &sw_clutch_slow,
     &sw_aero_front,
     &sw_aero_rear,
     &tcm_neutral,
@@ -556,10 +548,6 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     FLOATING,
     FLOATING,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
-    UNSIGNED8,
     UNSIGNED8,
     UNSIGNED8,
     UNSIGNED8,
