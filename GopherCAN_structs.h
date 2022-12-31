@@ -7,7 +7,7 @@
 
 #include "base_types.h"
 #include "GopherCAN_ids.h"
-
+#include "stm32f7xx_hal.h"
 
 // float/U32 converter union
 typedef union
@@ -20,9 +20,7 @@ typedef union
 // CAN message struct
 typedef struct
 {
-	U32 id;             // only the least significant 29 bits will be used
-	U8  rtr_bit;        // 0 or 1: DATA_MESSAGE or REQUEST_DATA
-	U8  dlc;            // [0, 8]
+	CAN_TxHeaderTypeDef header;
 	U8  data[8];        // not all of these will matter depending on dlc
 } CAN_MSG;
 

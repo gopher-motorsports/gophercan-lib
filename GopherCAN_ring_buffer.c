@@ -79,7 +79,7 @@ void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
 	for (c = buffer->fill_level - 2; c >= 0; c--)
 	{
 		buffer_message = GET_FROM_BUFFER(buffer, c);
-		if (message->id >= buffer_message->id)
+		if (message->header.ExtId >= buffer_message->header.ExtId)
 		{
 			// we have found the correct place for the new message
 			buffer_message = GET_FROM_BUFFER(buffer, c + 1);
@@ -101,11 +101,9 @@ static void copy_message(CAN_MSG* source, CAN_MSG* dest)
 {
 	U8 c;
 
-	dest->id = source->id;
-	dest->dlc = source->dlc;
-	dest->rtr_bit = source->rtr_bit;
+	dest->header = source->header;
 
-	for (c = 0; c < dest->dlc; c++)
+	for (c = 0; c < dest->header.DLC; c++)
 	{
 		dest->data[c] = source->data[c];
 	}

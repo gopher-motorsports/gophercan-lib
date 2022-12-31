@@ -11,7 +11,7 @@ static void init_all_params(void);
 static S8   init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type);
 static S8   parameter_requested(CAN_MSG* message, CAN_ID* id);
 static S8   run_can_command(CAN_MSG* message, CAN_ID* id);
-static void build_message_id(CAN_MSG* msg, CAN_ID* id);
+static U32 build_message_id(CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static S8   send_error_message(CAN_ID* id, U8 error_id);
 static S8   tx_can_message(CAN_MSG* message);
@@ -334,12 +334,10 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 	id.error = FALSE;
 	id.parameter = parameter;
 
-	build_message_id(&message, &id);
-
-	// set the RTR bit to REQUEST_DATA
-	message.rtr_bit = REQUEST_DATA;
-
-	message.dlc = REQ_PARAM_SIZE;
+	message.header.ExtId = build_message_id(&id);
+	message.header.IDE = CAN_ID_EXT;
+	message.header.RTR = REQUEST_DATA;
+	message.header.DLC = REQ_PARAM_SIZE;
 
 	// set the pending response to true for this parameter, will be set to true once
 	// the value is received from the CAN bus
@@ -384,12 +382,10 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 	id.error = FALSE;
 	id.parameter = CAN_COMMAND_ID;
 
-	build_message_id(&message, &id);
-
-	// set the RTR bit to be a data message
-	message.rtr_bit = DATA_MESSAGE;
-
-	message.dlc = COMMAND_SIZE;
+	message.header.ExtId = build_message_id(&id);
+	message.header.IDE = CAN_ID_EXT;
+	message.header.RTR = DATA_MESSAGE;
+	message.header.DLC = COMMAND_SIZE;
 
 	message.data[0] = command_id;
 	message.data[1] = command_param_0;
@@ -437,38 +433,37 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 	id.error = FALSE;
 	id.parameter = parameter;
 
-	build_message_id(&message, &id);
-
-	// set the RTR bit to data type
-	message.rtr_bit = DATA_MESSAGE;
+	message.header.ExtId = build_message_id(&id);
+	message.header.IDE = CAN_ID_EXT;
+	message.header.RTR = DATA_MESSAGE;
 
 	// get the value of the data on this module and build the CAN message
 	if (parameter_data_types[parameter] == UNSIGNED8
 		|| parameter_data_types[parameter] == SIGNED8)
 	{
 		data |= ((U8_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.dlc = sizeof(U8);
+		message.header.DLC = sizeof(U8);
 	}
 
 	else if (parameter_data_types[parameter] == UNSIGNED16
 		|| parameter_data_types[parameter] == SIGNED16)
 	{
 		data |= ((U16_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.dlc = sizeof(U16);
+		message.header.DLC = sizeof(U16);
 	}
 
 	else if (parameter_data_types[parameter] == UNSIGNED32
 		|| parameter_data_types[parameter] == SIGNED32)
 	{
 		data |= ((U32_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.dlc = sizeof(U32);
+		message.header.DLC = sizeof(U32);
 	}
 
 	else if (parameter_data_types[parameter] == UNSIGNED64
 		|| parameter_data_types[parameter] == SIGNED64)
 	{
 		data |= ((U64_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.dlc = sizeof(U64);
+		message.header.DLC = sizeof(U64);
 	}
 
 	else if (parameter_data_types[parameter] == FLOATING)
@@ -477,11 +472,11 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 		float_con.f = ((FLOAT_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
 
 		data |= float_con.u32;
-		message.dlc = sizeof(float);
+		message.header.DLC = sizeof(float);
 	}
 
 	// build the data in the message (big endian)
-	for (c = message.dlc - 1; c >= 0; c--)
+	for (c = message.header.DLC - 1; c >= 0; c--)
 	{
 		message.data[c] = (U8)(data >> (c * BITS_IN_BYTE));
 	}
@@ -558,7 +553,6 @@ S8 mod_custom_can_func_state(GCAN_COMMAND_ID command_id, U8 state)
 //  designed to be called at high priority on 1ms loop
 void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 {
-	CAN_TxHeaderTypeDef tx_header;
 	CAN_MSG* message;
 	CAN_MSG_RING_BUFFER* buffer;
 
@@ -583,14 +577,10 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		message = GET_FROM_BUFFER(buffer, 0);
 
 		// configure the settings/params of the CAN message
-		tx_header.IDE = CAN_ID_EXT;                                          // 29 bit id
-		tx_header.TransmitGlobalTime = DISABLE;                              // do not send a timestamp
-		tx_header.ExtId = message->id;
-		tx_header.RTR = message->rtr_bit;
-		tx_header.DLC = message->dlc;
+		message->header.TransmitGlobalTime = DISABLE;
 
 		// add the message to the sending list
-		if (HAL_CAN_AddTxMessage(hcan, &tx_header, message->data, &tx_mailbox_num) != HAL_OK)
+		if (HAL_CAN_AddTxMessage(hcan, &(message->header), message->data, &tx_mailbox_num) != HAL_OK)
 		{
 			// this will always be HAL_ERROR. Check hcan->ErrorCode
 			// hardware error (do not move the head as the message did not send, try again later)
@@ -647,9 +637,11 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		rx_buffer.fill_level++;
 
 		// move the header ID, RTR bit, and DLC into the GopherCAN message struct
-		message->rtr_bit = rx_header.RTR;
-		message->dlc = rx_header.DLC;
-		message->id = (rx_header.IDE ? rx_header.ExtId : rx_header.StdId);
+		message->header.RTR = rx_header.RTR;
+		message->header.DLC = rx_header.DLC;
+		message->header.ExtId = rx_header.ExtId;
+		message->header.StdId = rx_header.StdId;
+		message->header.IDE = rx_header.IDE;
 
 #ifdef CAN_ROUTER
 		// router specific functionality that directly adds messages that need to be routed
@@ -701,15 +693,15 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 	// remove any trailing zeros in the CAN message. This is done by starting at the
 	// back of the message and decrementing the DLC for each byte in the message that
 	// is zero at the back. RX logic will add zero bytes as needed
-	while (message_to_add->dlc > 0
-			&& message_to_add->data[message_to_add->dlc - 1] == 0)
+	while (message_to_add->header.DLC > 0
+			&& message_to_add->data[message_to_add->header.DLC - 1] == 0)
 	{
-		message_to_add->dlc--;
+		message_to_add->header.DLC--;
 	}
 
 #ifdef MULTI_BUS
 	// Handle the case of the message being sent to all of the busses (ID 0)
-	if (GET_ID_DEST(message_to_add->id) == ALL_MODULES_ID)
+	if (GET_ID_DEST(message_to_add->header.ExtId) == ALL_MODULES_ID)
 	{
 		send_message_to_all_busses(message_to_add);
 		return CAN_SUCCESS;
@@ -778,7 +770,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 		last_error.last_rx = HAL_GetTick();
 		last_error.source_module = id.source_module;
 		last_error.parameter = id.parameter;
-		if (message->dlc > 0)
+		if (message->header.DLC > 0)
 		{
 			last_error.error_id = message->data[0];
 		}
@@ -813,7 +805,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	}
 
 	// request parameter: return a CAN message with the data taken from this module
-	if (message->rtr_bit)
+	if (message->header.RTR)
 	{
 		return parameter_requested(message, &id);
 	}
@@ -821,7 +813,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	// this code should only be reached if the message is a data message
 
 	// build the data U64 (big endian)
-	for (c = (message->dlc - 1); c >= 0; c--)
+	for (c = (message->header.DLC - 1); c >= 0; c--)
 	{
 		received_data |= message->data[c] << (c * BITS_IN_BYTE);
 	}
@@ -885,7 +877,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 //  return a CAN message with the data taken from this module
 static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 {
-	if (message->dlc != REQ_PARAM_SIZE)
+	if (message->header.DLC != REQ_PARAM_SIZE)
 	{
 		send_error_message(id, SIZE_ERROR);
 
@@ -914,7 +906,7 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 	U8 c;
 
 	// DLC error checking
-	if (message->dlc > COMMAND_SIZE)
+	if (message->header.DLC > COMMAND_SIZE)
 	{
 		// there is either no DLC (no function ID) or too many parameters sent
 		send_error_message(id, SIZE_ERROR);
@@ -922,7 +914,7 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// fill in the extra DLC of the message with zeros
-	for (c = message->dlc; c < COMMAND_SIZE; c++)
+	for (c = message->header.DLC; c < COMMAND_SIZE; c++)
 	{
 		message->data[c] = 0;
 	}
@@ -958,41 +950,42 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 // build_can_id
 //  this function will fill in the id of msg when called.
 //  No error checking is preformed in this function besides masking
-static void build_message_id(CAN_MSG* msg, CAN_ID* id)
+static U32 build_message_id(CAN_ID* id)
 {
 	U32 temp;
-
-	msg->id = 0;
+	U32 msg_id = 0;
 
 	// priority bit
 	temp = !!id->priority;
 	temp <<= (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE);
 	temp &= PRIORITY_MASK;
-	msg->id |= temp;
+	msg_id |= temp;
 
 	// destination bits
 	temp = id->dest_module;
 	temp <<= (CAN_ID_SIZE - DEST_POS - DEST_SIZE);
 	temp &= DEST_MASK;
-	msg->id |= temp;
+	msg_id |= temp;
 
     // source bits
 	temp = id->source_module;
 	temp <<= (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE);
 	temp &= SOURCE_MASK;
-	msg->id |= temp;
+	msg_id |= temp;
 
 	// error bit
 	temp = id->error;
 	temp <<= (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE);
 	temp &= ERROR_MASK;
-	msg->id |= temp;
+	msg_id |= temp;
 
 	// parameter bits
 	temp = id->parameter;
 	temp <<= (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE);
 	temp &= PARAM_MASK;
-	msg->id |= temp;
+	msg_id |= temp;
+
+	return msg_id;
 }
 
 
@@ -1001,11 +994,11 @@ static void build_message_id(CAN_MSG* msg, CAN_ID* id)
 //  a CAN id struct. No error checking is performed
 static void get_message_id(CAN_ID* id, CAN_MSG* message)
 {
-	id->priority = GET_ID_PRIO(message->id);
-	id->dest_module = GET_ID_DEST(message->id);
-	id->source_module = GET_ID_SOURCE(message->id);
-	id->error = GET_ID_ERROR(message->id);
-	id->parameter = GET_ID_PARAM(message->id);
+	id->priority = GET_ID_PRIO(message->header.ExtId);
+	id->dest_module = GET_ID_DEST(message->header.ExtId);
+	id->source_module = GET_ID_SOURCE(message->header.ExtId);
+	id->error = GET_ID_ERROR(message->header.ExtId);
+	id->parameter = GET_ID_PARAM(message->header.ExtId);
 }
 
 
@@ -1023,13 +1016,10 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 	tx_id.error = TRUE;
 	tx_id.parameter = rx_id->parameter;
 
-	build_message_id(&message, &tx_id);
-
-	// set the RTR bit to a data message
-	message.rtr_bit = DATA_MESSAGE;
-
-	// set the DLC and data
-	message.dlc = sizeof(error_id);
+	message.header.ExtId = build_message_id(&tx_id);
+	message.header.IDE = CAN_ID_EXT;
+	message.header.RTR = DATA_MESSAGE;
+	message.header.DLC = sizeof(error_id);
 	message.data[0] = error_id;
 
 	// send the CAN message
