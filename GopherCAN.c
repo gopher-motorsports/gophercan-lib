@@ -166,7 +166,7 @@ static void init_all_params(void)
 		data_struct->pending_response = FALSE;
 
 		// set the ID for each parameter
-		data_struct->param_id = c;
+		data_struct->ID = c;
 	}
 }
 
@@ -438,35 +438,32 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 	message.header.RTR = DATA_MESSAGE;
 
 	// get the value of the data on this module and build the CAN message
-	if (parameter_data_types[parameter] == UNSIGNED8
-		|| parameter_data_types[parameter] == SIGNED8)
+	CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) all_parameter_structs[parameter];
+	if (param->TYPE == UNSIGNED8 || param->TYPE == SIGNED8)
 	{
 		data |= ((U8_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
 		message.header.DLC = sizeof(U8);
 	}
 
-	else if (parameter_data_types[parameter] == UNSIGNED16
-		|| parameter_data_types[parameter] == SIGNED16)
+	else if (param->TYPE == UNSIGNED16 || param->TYPE == SIGNED16)
 	{
 		data |= ((U16_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
 		message.header.DLC = sizeof(U16);
 	}
 
-	else if (parameter_data_types[parameter] == UNSIGNED32
-		|| parameter_data_types[parameter] == SIGNED32)
+	else if (param->TYPE == UNSIGNED32 || param->TYPE == SIGNED32)
 	{
 		data |= ((U32_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
 		message.header.DLC = sizeof(U32);
 	}
 
-	else if (parameter_data_types[parameter] == UNSIGNED64
-		|| parameter_data_types[parameter] == SIGNED64)
+	else if (param->TYPE == UNSIGNED64 || param->TYPE == SIGNED64)
 	{
 		data |= ((U64_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
 		message.header.DLC = sizeof(U64);
 	}
 
-	else if (parameter_data_types[parameter] == FLOATING)
+	else if (param->TYPE == FLOATING)
 	{
 		// Union to get the bitwise data of the float
 		float_con.f = ((FLOAT_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
@@ -792,7 +789,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	data_struct->last_rx = HAL_GetTick();
 
     // run command: run the command specified by the CAN message on this module
-	if (parameter_data_types[id.parameter] == COMMAND)
+	if (data_struct->TYPE == COMMAND)
 	{
 		return run_can_command(message, &id);
 	}
@@ -823,7 +820,7 @@ static S8 service_can_rx_message(CAN_MSG* message)
 
 	// this switch will handle all of the different possible data types
 	// that can be sent over CAN
-	switch (parameter_data_types[id.parameter])
+	switch (data_struct->TYPE)
 	{
 	case UNSIGNED8:
 		((U8_CAN_STRUCT*)(data_struct))->data = (U8)received_data;

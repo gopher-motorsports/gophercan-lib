@@ -271,38 +271,6 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 
 #define NOT_IMPLEMENTED         -99
 
-
-// Data types
-typedef enum
-{
-	COMMAND    = 0,
-	UNSIGNED8  = 1,
-	UNSIGNED16 = 2,
-	UNSIGNED32 = 3,
-	UNSIGNED64 = 4,
-	SIGNED8    = 5,
-	SIGNED16   = 6,
-	SIGNED32   = 7,
-	SIGNED64   = 8,
-	FLOATING   = 9
-} DATATYPES;
-
-// data type sizes (in bytes)
-typedef enum
-{
-	REQ_PARAM_SIZE  = 0,
-	COMMAND_SIZE    = 5,
-	UNSIGNED8_SIZE  = 1,
-	UNSIGNED16_SIZE = 2,
-	UNSIGNED32_SIZE = 4,
-	UNSIGNED64_SIZE = 8,
-	SIGNED8_SIZE    = 1,
-	SIGNED16_SIZE   = 2,
-	SIGNED32_SIZE   = 4,
-	SIGNED64_SIZE   = 8,
-	FLOATING_SIZE   = 8
-} DATATYPES_SIZE;
-
 // bxcan slave first filter bank starts at 14
 #define SLAVE_FIRST_FILTER 14
 
