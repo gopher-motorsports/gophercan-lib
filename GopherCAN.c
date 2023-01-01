@@ -5,7 +5,7 @@
 
 #include "GopherCAN.h"
 #include "GopherCAN_ring_buffer.h"
-#include "GopherCAN_parameters.h"
+#include "GopherCAN_network.h"
 
 // static function prototypes
 static void init_all_params(void);

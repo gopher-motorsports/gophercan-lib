@@ -21,10 +21,8 @@
 
 
 #include "base_types.h"
-#include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
-#include "GopherCAN_ids.h"
-#include "GopherCAN_parameters.h"
+#include "GopherCAN_network.h"
 
 
 // make sure the target types are defined even if the dev forgot
@@ -70,11 +68,27 @@ typedef enum
     BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
 
-// externs for arrays in GopherCAN_ids.c
-#ifdef MULTI_BUS
-extern U8 module_bus_number[NUM_OF_MODULES];
-#endif // MULTI_BUS
+typedef union
+{
+    float f;
+    U32 u32;
+} FLOAT_CONVERTER;
 
+typedef struct
+{
+    U8  priority;
+    U8  dest_module;
+    U8  source_module;
+    U8  error;
+    U16 parameter;
+} CAN_ID;
+
+typedef struct
+{
+    void (*func_ptr)(U8, void*, U8, U8, U8, U8);
+    U8    func_enabled;
+    void* param_ptr;
+} CUST_FUNC;
 
 // function prototypes
 
@@ -221,13 +235,6 @@ void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #endif
-
-
-// CAN bus IDs. There should be one of these for each GopherCAN bus on the car, plus the ALL_BUSSES define
-#define ALL_BUSSES 0xFF
-#define GCAN0 0
-#define GCAN1 1
-#define GCAN2 2
 
 
 // return messages

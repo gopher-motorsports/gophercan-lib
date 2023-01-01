@@ -8,7 +8,14 @@
 #ifndef GOPHERCAN_RING_BUFFER_H_
 #define GOPHERCAN_RING_BUFFER_H_
 
-#include "GopherCAN_structs.h"
+#include "stm32f7xx_hal.h"
+#include "base_types.h"
+
+typedef struct
+{
+    CAN_TxHeaderTypeDef header;
+    U8  data[8];        // not all of these will matter depending on dlc
+} CAN_MSG;
 
 // the ring buffer struct
 typedef struct
