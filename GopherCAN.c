@@ -5,6 +5,7 @@
 
 #include "GopherCAN.h"
 #include "GopherCAN_ring_buffer.h"
+#include "GopherCAN_parameters.h"
 
 // static function prototypes
 static void init_all_params(void);
@@ -27,6 +28,7 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add);
 #ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
 #endif // CAN_ROUTER
+
 
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array

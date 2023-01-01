@@ -24,6 +24,7 @@
 #include "GopherCAN_structs.h"
 #include "GopherCAN_ring_buffer.h"
 #include "GopherCAN_ids.h"
+#include "GopherCAN_parameters.h"
 
 
 // make sure the target types are defined even if the dev forgot
@@ -55,7 +56,6 @@
 
 // get the externs from the auto-generated file
 #define AUTOGEN_EXTERNS
-#include "GopherCAN_ids.h"
 
 typedef enum
 {
@@ -70,12 +70,7 @@ typedef enum
     BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
 
-
-
-
 // externs for arrays in GopherCAN_ids.c
-extern void* all_parameter_structs[NUM_OF_PARAMETERS];
-extern U8 parameter_data_types[NUM_OF_PARAMETERS];
 #ifdef MULTI_BUS
 extern U8 module_bus_number[NUM_OF_MODULES];
 #endif // MULTI_BUS
