@@ -90,13 +90,6 @@ extern U8 module_bus_number[NUM_OF_MODULES];
 //  error codes specified in GopherCAN.h
 S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
 
-// set_all_params_state
-//  Function to set each parameter in gopherCAN to enabled(true) or disabled (false). This
-//  is easier than manually enabling all of them.
-// params:
-//  boolean enabled: the state to set all of the parameters to
-void set_all_params_state(boolean enabled);
-
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
 //	given by the parameter ID from the module specified by the module ID

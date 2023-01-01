@@ -164,28 +164,10 @@ static void init_all_params(void)
 		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
 
 		data_struct->last_rx = 0;
-		data_struct->update_enabled = FALSE;
 		data_struct->pending_response = FALSE;
 
 		// set the ID for each parameter
 		data_struct->ID = c;
-	}
-}
-
-
-// set_all_params_state
-//  Function to set each parameter in gopherCAN to enabled(true) or disabled (false). This
-//  is easier than manually enabling all of them.
-// params:
-//  boolean enabled: the state to set all of the parameters to
-void set_all_params_state(boolean enabled)
-{
-	U16 c;
-
-	// disable each parameter until the user manually enables them
-	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
-	{
-		((CAN_INFO_STRUCT*)(all_parameter_structs[c]))->update_enabled = enabled;
 	}
 }
 
@@ -420,12 +402,6 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 	if (parameter <= CAN_COMMAND_ID || parameter >= NUM_OF_PARAMETERS)
 	{
 		return BAD_PARAMETER_ID;
-	}
-
-	// make sure the parameter is enabled
-	if (!((CAN_INFO_STRUCT*)(all_parameter_structs[parameter]))->update_enabled)
-	{
-		return NOT_ENABLED_ERR;
 	}
 
 	// build the return message ID
@@ -794,13 +770,6 @@ static S8 service_can_rx_message(CAN_MSG* message)
 	if (data_struct->TYPE == COMMAND)
 	{
 		return run_can_command(message, &id);
-	}
-
-	// Check the update_enabled flag (if it is not a CAN command)
-	if (!(data_struct->update_enabled))
-	{
-		send_error_message(&id, PARAM_NOT_ENABLED);
-		return NOT_ENABLED_ERR;
 	}
 
 	// request parameter: return a CAN message with the data taken from this module

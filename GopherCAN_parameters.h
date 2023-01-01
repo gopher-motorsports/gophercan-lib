@@ -58,7 +58,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
 } CAN_INFO_STRUCT;
 
@@ -69,7 +68,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     U8  data;
 } U8_CAN_STRUCT;
@@ -81,7 +79,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     U16 data;
 } U16_CAN_STRUCT;
@@ -93,7 +90,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     U32 data;
 } U32_CAN_STRUCT;
@@ -105,7 +101,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     U64 data;
 } U64_CAN_STRUCT;
@@ -117,7 +112,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     S8  data;
 } S8_CAN_STRUCT;
@@ -129,7 +123,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     S16 data;
 } S16_CAN_STRUCT;
@@ -141,7 +134,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     S32 data;
 } S32_CAN_STRUCT;
@@ -153,7 +145,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     S64 data;
 } S64_CAN_STRUCT;
@@ -165,7 +156,6 @@ typedef struct
     float SCALE;
     float OFFSET;
     U32 last_rx;
-    U8  update_enabled;
     U8  pending_response;
     float data;
 } FLOAT_CAN_STRUCT;
