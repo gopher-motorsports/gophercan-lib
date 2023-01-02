@@ -132,16 +132,12 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 
 // send_parameter
-//  function to directly send a CAN message with the specified parameter to
-//  another module
+//  send a standard ID CAN message with the specified parameter
 // params:
-//  PRIORITY priority:        PRIO_LOW or PRIO_HIGH
-//  MODULE_ID dest_module:    what module to send the parameter to
 //  GCAN_PARAM_ID parameter:  what parameter to send
 // returns:
 //  error codes specified in GopherCAN.h
-
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 send_parameter(GCAN_PARAM_ID parameter);
 
 // add_custom_can_func
 //  add a user function to the array of functions to check if

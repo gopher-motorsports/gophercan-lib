@@ -355,17 +355,13 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 
 
 // send_parameter
-//  function to directly send a CAN message with the specified parameter to
-//  another module
+//  send a standard ID CAN message with the specified parameter
 // params:
-//  PRIORITY priority:        PRIO_LOW or PRIO_HIGH
-//  MODULE_ID dest_module:    what module to send the parameter to
 //  GCAN_PARAM_ID parameter:  what parameter to send
 // returns:
 //  error codes specified in GopherCAN.h
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter)
+S8 send_parameter(GCAN_PARAM_ID parameter)
 {
-	CAN_ID id;
 	CAN_MSG message;
 	U64 data = 0;
 	S8 c;
@@ -377,14 +373,6 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 		return BAD_PARAMETER_ID;
 	}
 
-	// build the return message ID
-	id.priority = priority;
-	id.dest_module = dest_module;
-	id.source_module = this_module_id;
-	id.error = FALSE;
-	id.parameter = parameter;
-
-	message.header.ExtId = build_message_id(&id);
 	message.header.StdId = parameter;
 	message.header.IDE = CAN_ID_STD;
 	message.header.RTR = DATA_MESSAGE;
@@ -842,7 +830,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// send the parameter data to the module that requested
-	return send_parameter(id->priority, id->source_module, id->parameter);
+	return send_parameter(id->parameter);
 }
 
 
