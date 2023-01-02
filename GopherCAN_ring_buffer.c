@@ -78,13 +78,24 @@ void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
 	buffer->fill_level++;
 	for (c = buffer->fill_level - 2; c >= 0; c--)
 	{
-		buffer_message = GET_FROM_BUFFER(buffer, c);
-		if (message->header.ExtId >= buffer_message->header.ExtId)
-		{
-			// we have found the correct place for the new message
-			buffer_message = GET_FROM_BUFFER(buffer, c + 1);
-			break;
-		}
+        buffer_message = GET_FROM_BUFFER(buffer, c);
+
+        if (
+            (message->header.IDE == CAN_ID_STD &&
+            buffer_message->header.IDE == CAN_ID_EXT)
+            ||
+            (message->header.IDE == CAN_ID_EXT &&
+            buffer_message->header.IDE == CAN_ID_EXT &&
+            message->header.ExtId >= buffer_message->header.ExtId)
+            ||
+            (message->header.IDE == CAN_ID_STD &&
+            buffer_message->header.IDE == CAN_ID_STD &&
+            message->header.StdId >= buffer_message->header.StdId)
+        ) {
+            // new message is lower priority, insert behind this buffer message
+            buffer_message = GET_FROM_BUFFER(buffer, c + 1);
+            break;
+        }
 
 		// move this message back by 1 and try again
 		copy_message(buffer_message, GET_FROM_BUFFER(buffer, c + 1));

@@ -16,7 +16,8 @@ static U32 build_message_id(CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static S8   send_error_message(CAN_ID* id, U8 error_id);
 static S8   tx_can_message(CAN_MSG* message);
-static S8   service_can_rx_message(CAN_MSG* message);
+static S8   service_can_rx_message_std(CAN_MSG* message);
+static S8   service_can_rx_message_ext(CAN_MSG* message);
 
 #ifdef MULTI_BUS
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
@@ -162,7 +163,6 @@ static void init_all_params(void)
 	for (c = CAN_COMMAND_ID + 1; c < NUM_OF_PARAMETERS; c++)
 	{
 		data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[c]);
-
 		data_struct->last_rx = 0;
 		data_struct->pending_response = FALSE;
 
@@ -412,7 +412,8 @@ S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parame
 	id.parameter = parameter;
 
 	message.header.ExtId = build_message_id(&id);
-	message.header.IDE = CAN_ID_EXT;
+	message.header.StdId = parameter;
+	message.header.IDE = CAN_ID_STD;
 	message.header.RTR = DATA_MESSAGE;
 
 	// get the value of the data on this module and build the CAN message
@@ -649,7 +650,11 @@ S8 service_can_rx_buffer(void)
 
 		// WARNING: CAN errors from other modules are not handled in this version. The message is just discarded
 		// Use a CAN bus analyzer to see what the message is for debugging
-		service_can_rx_message(current_message);
+		if (current_message->header.IDE == CAN_ID_STD) {
+		    service_can_rx_message_std(current_message);
+		} else {
+		    service_can_rx_message_ext(current_message);
+		}
 
 		// move the head now that the first element has been removed
 		remove_from_front(&rx_buffer);
@@ -716,18 +721,79 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 
 #endif
 
-// service_can_rx_message
-//  CAN message bus interrupt function this will update all
-//  the global variables or trigger the CAN functions if needed.
-//  Designed to be called by service_can_rx_software to loop perform
-//  this task for each pending CAN message
-static S8 service_can_rx_message(CAN_MSG* message)
+// service_can_rx_message_std
+// handle standard ID CAN messages (data messages)
+static S8 service_can_rx_message_std(CAN_MSG* message)
+{
+    CAN_INFO_STRUCT* data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[message->header.StdId]);
+    data_struct->last_rx = HAL_GetTick();
+    data_struct->pending_response = FALSE;
+
+    FLOAT_CONVERTER float_con;
+    U64 received_data = 0;
+    S8 c;
+
+    // convert big endian data field to little endian U64
+    for (c = message->header.DLC - 1; c >= 0; c--)
+    {
+        received_data |= message->data[c] << (c * BITS_IN_BYTE);
+    }
+
+    switch (data_struct->TYPE)
+    {
+      case UNSIGNED8:
+          ((U8_CAN_STRUCT*)(data_struct))->data = (U8)received_data;
+          return CAN_SUCCESS;
+
+      case UNSIGNED16:
+          ((U16_CAN_STRUCT*)(data_struct))->data = (U16)received_data;
+          return CAN_SUCCESS;
+
+      case UNSIGNED32:
+          ((U32_CAN_STRUCT*)(data_struct))->data = (U32)received_data;
+          return CAN_SUCCESS;
+
+      case UNSIGNED64:
+          ((U64_CAN_STRUCT*)(data_struct))->data = (U64)received_data;
+          return CAN_SUCCESS;
+
+      case SIGNED8:
+          ((S8_CAN_STRUCT*)(data_struct))->data = (S8)received_data;
+          return CAN_SUCCESS;
+
+      case SIGNED16:
+          ((S16_CAN_STRUCT*)(data_struct))->data = (S16)received_data;
+          return CAN_SUCCESS;
+
+      case SIGNED32:
+          ((S32_CAN_STRUCT*)(data_struct))->data = (S32)received_data;
+          return CAN_SUCCESS;
+
+      case SIGNED64:
+          ((S64_CAN_STRUCT*)(data_struct))->data = (S64)received_data;
+          return CAN_SUCCESS;
+
+      case FLOATING:
+          // Union to get the bitwise data of the float
+          float_con.u32 = (U32)received_data;
+
+          ((FLOAT_CAN_STRUCT*)(data_struct))->data = float_con.f;
+          return CAN_SUCCESS;
+
+      default:
+//          send_error_message(&id, DATATYPE_NOT_FOUND);
+          return NOT_FOUND_ERR;
+      }
+
+    return CAN_SUCCESS;
+}
+
+// service_can_rx_message_ext
+// handle extended ID CAN messages (commands/errors)
+static S8 service_can_rx_message_ext(CAN_MSG* message)
 {
 	CAN_ID id;
 	CAN_INFO_STRUCT* data_struct = 0;
-	FLOAT_CONVERTER float_con;
-	U64 received_data = 0;
-	S8 c;
 
 	get_message_id(&id, message);
 
@@ -778,66 +844,8 @@ static S8 service_can_rx_message(CAN_MSG* message)
 		return parameter_requested(message, &id);
 	}
 
-	// this code should only be reached if the message is a data message
-
-	// build the data U64 (big endian)
-	for (c = (message->header.DLC - 1); c >= 0; c--)
-	{
-		received_data |= message->data[c] << (c * BITS_IN_BYTE);
-	}
-
-	// Switch the pending_response flag
-	data_struct->pending_response = FALSE;
-
-	// this switch will handle all of the different possible data types
-	// that can be sent over CAN
-	switch (data_struct->TYPE)
-	{
-	case UNSIGNED8:
-		((U8_CAN_STRUCT*)(data_struct))->data = (U8)received_data;
-		return CAN_SUCCESS;
-
-	case UNSIGNED16:
-		((U16_CAN_STRUCT*)(data_struct))->data = (U16)received_data;
-		return CAN_SUCCESS;
-
-	case UNSIGNED32:
-		((U32_CAN_STRUCT*)(data_struct))->data = (U32)received_data;
-		return CAN_SUCCESS;
-
-	case UNSIGNED64:
-		((U64_CAN_STRUCT*)(data_struct))->data = (U64)received_data;
-		return CAN_SUCCESS;
-
-	case SIGNED8:
-		((S8_CAN_STRUCT*)(data_struct))->data = (S8)received_data;
-		return CAN_SUCCESS;
-
-	case SIGNED16:
-		((S16_CAN_STRUCT*)(data_struct))->data = (S16)received_data;
-		return CAN_SUCCESS;
-
-	case SIGNED32:
-		((S32_CAN_STRUCT*)(data_struct))->data = (S32)received_data;
-		return CAN_SUCCESS;
-
-	case SIGNED64:
-		((S64_CAN_STRUCT*)(data_struct))->data = (S64)received_data;
-		return CAN_SUCCESS;
-
-	case FLOATING:
-		// Union to get the bitwise data of the float
-		float_con.u32 = (U32)received_data;
-
-		((FLOAT_CAN_STRUCT*)(data_struct))->data = float_con.f;
-		return CAN_SUCCESS;
-
-	default:
-		send_error_message(&id, DATATYPE_NOT_FOUND);
-		return NOT_FOUND_ERR;
-	}
-
-	return CAN_SUCCESS;
+	// EXT ID but not a command/request/error - unknown message
+	return NOT_IMPLEMENTED;
 }
 
 
