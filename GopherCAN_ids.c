@@ -42,6 +42,7 @@ FLOAT_CAN_STRUCT eng_5v_ecu = {0};
 FLOAT_CAN_STRUCT gps_lat_ecu = {0};
 FLOAT_CAN_STRUCT gps_long_ecu = {0};
 FLOAT_CAN_STRUCT brake_pressure_rear = {0};
+U8_CAN_STRUCT shift_mode = {0};
 U8_CAN_STRUCT upshift = {0};
 U8_CAN_STRUCT downshift = {0};
 U8_CAN_STRUCT fast_clutch = {0};
@@ -163,7 +164,7 @@ FLOAT_CAN_STRUCT tcm_shifter_position = {0};
 FLOAT_CAN_STRUCT tcm_clutch_position = {0};
 U32_CAN_STRUCT tcm_target_rpm = {0};
 U32_CAN_STRUCT tcm_trans_rpm = {0};
-U8_CAN_STRUCT tcm_current_gear = {0};
+FLOAT_CAN_STRUCT tcm_current_gear = {0};
 U8_CAN_STRUCT tcm_target_gear = {0};
 U8_CAN_STRUCT tcm_currently_moving = {0};
 U8_CAN_STRUCT tcm_shift_state = {0};
@@ -238,6 +239,7 @@ void* all_parameter_structs[NUM_OF_PARAMETERS] =
     &gps_lat_ecu,
     &gps_long_ecu,
     &brake_pressure_rear,
+    &shift_mode,
     &upshift,
     &downshift,
     &fast_clutch,
@@ -439,6 +441,7 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     UNSIGNED8,
     UNSIGNED8,
     UNSIGNED8,
+    UNSIGNED8,
     FLOATING,
     FLOATING,
     FLOATING,
@@ -556,7 +559,7 @@ U8 parameter_data_types[NUM_OF_PARAMETERS] =
     FLOATING,
     UNSIGNED32,
     UNSIGNED32,
-    UNSIGNED8,
+    FLOATING,
     UNSIGNED8,
     UNSIGNED8,
     UNSIGNED8,
