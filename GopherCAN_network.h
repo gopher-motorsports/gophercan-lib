@@ -36,7 +36,7 @@ typedef enum {
     SIGNED16_SIZE = 2,
     SIGNED32_SIZE = 4,
     SIGNED64_SIZE = 8,
-    FLOATING_SIZE = 8
+    FLOATING_SIZE = 4
 } DATATYPES_SIZE;
 
 // *** BUSES ***
@@ -68,6 +68,7 @@ extern U8 module_bus_number[NUM_OF_MODULES];
 // *** PARAMETERS ***
 
 typedef enum {
+    EMPTY_ID = -1,
     CAN_COMMAND_ID = 0,
     RPM_ECU_ID = 1,
     ENGINE_TEMP_ECU_ID = 2,
@@ -76,9 +77,17 @@ typedef enum {
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
 
+typedef enum {
+    LSB,
+    MSB
+} ENCODING;
+
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -87,7 +96,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -97,7 +109,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -107,7 +122,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -117,7 +135,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -127,7 +148,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -137,7 +161,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -147,7 +174,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -157,7 +187,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -167,7 +200,10 @@ typedef struct {
 
 typedef struct {
     GCAN_PARAM_ID ID;
+    U16 GROUP_ID;
     DATATYPES TYPE;
+    DATATYPES_SIZE SIZE;
+    ENCODING ENC;
     float SCALE;
     float OFFSET;
     U32 last_rx;
@@ -178,7 +214,19 @@ typedef struct {
 extern U16_CAN_STRUCT rpm_ecu;
 extern FLOAT_CAN_STRUCT engine_temp_ecu;
 extern U8_CAN_STRUCT tcm_neutral;
-extern void *all_parameter_structs[NUM_OF_PARAMETERS];
+extern void* PARAMETERS[NUM_OF_PARAMETERS];
+
+// *** GROUPS ***
+
+#define NUM_OF_GROUPS 3
+
+typedef struct
+{
+    U16 id;
+    GCAN_PARAM_ID slots[8];
+} PARAM_GROUP;
+
+extern PARAM_GROUP GROUPS[NUM_OF_GROUPS];
 
 // *** COMMANDS ***
 

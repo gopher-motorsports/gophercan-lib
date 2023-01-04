@@ -131,13 +131,13 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 
-// send_parameter
-//  send a standard ID CAN message with the specified parameter
+// send_group
+// sends a group of parameters in a standard CAN frame
 // params:
-//  GCAN_PARAM_ID parameter:  what parameter to send
+// U16 group_id: group of parameters to send (defined in GopherCAN_network.c)
 // returns:
-//  error codes specified in GopherCAN.h
-S8 send_parameter(GCAN_PARAM_ID parameter);
+// error codes specified in GopherCAN.h
+S8 send_group(U16 group_id);
 
 // add_custom_can_func
 //  add a user function to the array of functions to check if
@@ -259,6 +259,8 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #define NOT_ENABLED_ERR         -11
 #define SIZE_ERR                -12
 #define WRONG_DEST_ERR          -13
+#define ENCODING_ERR            -14
+#define DECODING_ERR            -15
 
 #define NOT_IMPLEMENTED         -99
 

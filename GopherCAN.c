@@ -17,6 +17,8 @@ static S8   send_error_message(CAN_ID* id, U8 error_id);
 static S8   tx_can_message(CAN_MSG* message);
 static S8   service_can_rx_message_std(CAN_MSG* message);
 static S8   service_can_rx_message_ext(CAN_MSG* message);
+static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
+static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 
 #ifdef MULTI_BUS
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
@@ -298,7 +300,7 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 
 	// set the pending response to true for this parameter, will be set to true once
 	// the value is received from the CAN bus
-	((CAN_INFO_STRUCT*)(all_parameter_structs[parameter]))->pending_response = TRUE;
+	((CAN_INFO_STRUCT*)(PARAMETERS[parameter]))->pending_response = TRUE;
 
 	return tx_can_message(&message);
 }
@@ -354,72 +356,171 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 }
 
 
-// send_parameter
-//  send a standard ID CAN message with the specified parameter
+// send_group
+// sends a group of parameters in a standard CAN frame
 // params:
-//  GCAN_PARAM_ID parameter:  what parameter to send
+// U16 group_id: group of parameters to send (defined in GopherCAN_network.c)
 // returns:
-//  error codes specified in GopherCAN.h
-S8 send_parameter(GCAN_PARAM_ID parameter)
+// error codes specified in GopherCAN.h
+S8 send_group(U16 group_id)
 {
-	CAN_MSG message;
-	U64 data = 0;
-	S8 c;
-	FLOAT_CONVERTER float_con;
+    PARAM_GROUP* group = NULL;
 
-	// make sure the parameter is valid
-	if (parameter <= CAN_COMMAND_ID || parameter >= NUM_OF_PARAMETERS)
-	{
-		return BAD_PARAMETER_ID;
-	}
+    // find the specified parameter group
+    for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
+        if (GROUPS[i].id == group_id) {
+            group = &GROUPS[i];
+            break;
+        }
+    }
 
-	message.header.StdId = parameter;
-	message.header.IDE = CAN_ID_STD;
-	message.header.RTR = DATA_MESSAGE;
+    if (group == NULL) return NOT_FOUND_ERR;
 
-	// get the value of the data on this module and build the CAN message
-	CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) all_parameter_structs[parameter];
-	if (param->TYPE == UNSIGNED8 || param->TYPE == SIGNED8)
-	{
-		data |= ((U8_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.header.DLC = sizeof(U8);
-	}
+    // build parameter group message
+    CAN_MSG message;
 
-	else if (param->TYPE == UNSIGNED16 || param->TYPE == SIGNED16)
-	{
-		data |= ((U16_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.header.DLC = sizeof(U16);
-	}
+    message.header.StdId = group_id;
+    message.header.IDE = CAN_ID_STD;
+    message.header.RTR = DATA_MESSAGE;
+    message.header.DLC = 8;
 
-	else if (param->TYPE == UNSIGNED32 || param->TYPE == SIGNED32)
-	{
-		data |= ((U32_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.header.DLC = sizeof(U32);
-	}
+    // encode parameters
+    U8 param_start = 0;
+    U8 param_length = 1;
+    S8 err;
+    for (U8 i = 1; i < 8; i++) {
+        if (group->slots[i] == group->slots[i-1]) {
+            // count consecutive slots belonging to the same parameter
+            param_length++;
+        } else {
+            // start of a new parameter, encode previous and write to data
+            GCAN_PARAM_ID id = group->slots[i-1];
+            if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) {
+                return BAD_PARAMETER_ID;
+            } else if (id > CAN_COMMAND_ID) {
+                CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+                err = encode_parameter(param, message.data, param_start, param_length);
+                if (err) return err;
+            }
 
-	else if (param->TYPE == UNSIGNED64 || param->TYPE == SIGNED64)
-	{
-		data |= ((U64_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
-		message.header.DLC = sizeof(U64);
-	}
+            param_start = i;
+            param_length = 1;
+        }
 
-	else if (param->TYPE == FLOATING)
-	{
-		// Union to get the bitwise data of the float
-		float_con.f = ((FLOAT_CAN_STRUCT*)(all_parameter_structs[parameter]))->data;
+        // check if the last parameter is empty
+        if (i == 7 && group->slots[i] == EMPTY_ID) {
+            // cut off empty bytes at end of a message
+            message.header.DLC -= param_length;
+        }
+    }
 
-		data |= float_con.u32;
-		message.header.DLC = sizeof(float);
-	}
+    return tx_can_message(&message);
+}
 
-	// build the data in the message (big endian)
-	for (c = message.header.DLC - 1; c >= 0; c--)
-	{
-		message.data[c] = (U8)(data >> (c * BITS_IN_BYTE));
-	}
+// encode_parameter
+// encodes a parameter as an unsigned int with scale & offset
+// adds encoded param to the CAN message data field
+static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
+{
+    U64 value = 0;
+    FLOAT_CONVERTER float_con;
 
-	// send the built CAN message
-	return tx_can_message(&message);
+    // represent value as U64
+    switch (param->TYPE) {
+        case UNSIGNED8:
+        case SIGNED8:
+            value |= ((U8_CAN_STRUCT*) param)->data;
+            break;
+        case UNSIGNED16:
+        case SIGNED16:
+            value |= ((U16_CAN_STRUCT*) param)->data;
+            break;
+        case UNSIGNED32:
+        case SIGNED32:
+            value |= ((U32_CAN_STRUCT*) param)->data;
+            break;
+        case UNSIGNED64:
+        case SIGNED64:
+            value |= ((U64_CAN_STRUCT*) param)->data;
+            break;
+        case FLOATING:
+            float_con.f = ((FLOAT_CAN_STRUCT*) param)->data;
+            value |= float_con.u32;
+            break;
+        default:
+            return ENCODING_ERR;
+    }
+
+    // apply scale and offset to reduce bits required
+    value = value * param->SCALE - param->OFFSET;
+
+    // move bytes into data field
+    for (U8 i = 0; i < length; i++) {
+        if (param->ENC == LSB) {
+            data[start + i] = (U8)(value >> (i * BITS_IN_BYTE));
+        } else if (param->ENC == MSB) {
+            data[start + i] = (U8)(value >> ((param->SIZE - 1 - i) * BITS_IN_BYTE));
+        } else return ENCODING_ERR;
+    }
+
+    return CAN_SUCCESS;
+}
+
+
+// decode_parameter
+// extract and decode a parameter from CAN data field
+static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
+{
+    U64 value = 0;
+    FLOAT_CONVERTER float_con;
+
+    // extract bytes into U64
+    for (U8 i = 0; i < length; i++) {
+        if (param->ENC == LSB) {
+            value |= data[start + i] << (i * BITS_IN_BYTE);
+        } else if (param->ENC == MSB) {
+            value |= data[start + i] << ((param->SIZE - 1 - i) * BITS_IN_BYTE);
+        } else return DECODING_ERR;
+    }
+
+    // undo scale and offset
+    value = (value + param->OFFSET) / param->SCALE;
+
+    // restore original type
+    switch (param->TYPE) {
+        case UNSIGNED8:
+            ((U8_CAN_STRUCT*) param)->data = (U8) value;
+            break;
+        case UNSIGNED16:
+            ((U16_CAN_STRUCT*) param)->data = (U16) value;
+            break;
+        case UNSIGNED32:
+            ((U32_CAN_STRUCT*) param)->data = (U32) value;
+            break;
+        case UNSIGNED64:
+            ((U64_CAN_STRUCT*) param)->data = (U64) value;
+            break;
+        case SIGNED8:
+            ((S8_CAN_STRUCT*) param)->data = (S8) value;
+            break;
+        case SIGNED16:
+            ((S16_CAN_STRUCT*) param)->data = (S16) value;
+            break;
+        case SIGNED32:
+            ((S32_CAN_STRUCT*) param)->data = (S32) value;
+            break;
+        case SIGNED64:
+            ((S64_CAN_STRUCT*) param)->data = (S64) value;
+            break;
+        case FLOATING:
+            float_con.u32 = (U32) value;
+            ((FLOAT_CAN_STRUCT*) param)->data = float_con.f;
+            break;
+        default:
+            return DECODING_ERR;
+    }
+
+    return CAN_SUCCESS;
 }
 
 
@@ -684,67 +785,46 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 
 // service_can_rx_message_std
 // handle standard ID CAN messages (data messages)
+// finds the specified group and decodes parameters
 static S8 service_can_rx_message_std(CAN_MSG* message)
 {
-    CAN_INFO_STRUCT* data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[message->header.StdId]);
-    data_struct->last_rx = HAL_GetTick();
-    data_struct->pending_response = FALSE;
+    PARAM_GROUP* group = NULL;
 
-    FLOAT_CONVERTER float_con;
-    U64 received_data = 0;
-    S8 c;
-
-    // convert big endian data field to little endian U64
-    for (c = message->header.DLC - 1; c >= 0; c--)
-    {
-        received_data |= message->data[c] << (c * BITS_IN_BYTE);
+    // find the specified parameter group
+    for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
+        if (GROUPS[i].id == message->header.StdId) {
+            group = &GROUPS[i];
+            break;
+        }
     }
 
-    switch (data_struct->TYPE)
-    {
-      case UNSIGNED8:
-          ((U8_CAN_STRUCT*)(data_struct))->data = (U8)received_data;
-          return CAN_SUCCESS;
+    if (group == NULL) return NOT_FOUND_ERR;
 
-      case UNSIGNED16:
-          ((U16_CAN_STRUCT*)(data_struct))->data = (U16)received_data;
-          return CAN_SUCCESS;
+    // decode parameters
+    U8 param_start = 0;
+    U8 param_length = 1;
+    S8 err;
+    for (U8 i = 1; i < 8; i++) {
+        if (group->slots[i] == group->slots[i-1]) {
+            // count consecutive slots belonging to the same parameter
+            param_length++;
+        } else {
+            // start of a new parameter, decode previous param
+            GCAN_PARAM_ID id = group->slots[i-1];
+            if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) {
+                return BAD_PARAMETER_ID;
+            } else if (id > CAN_COMMAND_ID) {
+                CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+                param->last_rx = HAL_GetTick();
+                param->pending_response = FALSE;
+                err = decode_parameter(param, message->data, param_start, param_length);
+                if (err) return err;
+            }
 
-      case UNSIGNED32:
-          ((U32_CAN_STRUCT*)(data_struct))->data = (U32)received_data;
-          return CAN_SUCCESS;
-
-      case UNSIGNED64:
-          ((U64_CAN_STRUCT*)(data_struct))->data = (U64)received_data;
-          return CAN_SUCCESS;
-
-      case SIGNED8:
-          ((S8_CAN_STRUCT*)(data_struct))->data = (S8)received_data;
-          return CAN_SUCCESS;
-
-      case SIGNED16:
-          ((S16_CAN_STRUCT*)(data_struct))->data = (S16)received_data;
-          return CAN_SUCCESS;
-
-      case SIGNED32:
-          ((S32_CAN_STRUCT*)(data_struct))->data = (S32)received_data;
-          return CAN_SUCCESS;
-
-      case SIGNED64:
-          ((S64_CAN_STRUCT*)(data_struct))->data = (S64)received_data;
-          return CAN_SUCCESS;
-
-      case FLOATING:
-          // Union to get the bitwise data of the float
-          float_con.u32 = (U32)received_data;
-
-          ((FLOAT_CAN_STRUCT*)(data_struct))->data = float_con.f;
-          return CAN_SUCCESS;
-
-      default:
-//          send_error_message(&id, DATATYPE_NOT_FOUND);
-          return NOT_FOUND_ERR;
-      }
+            param_start = i;
+            param_length = 1;
+        }
+    }
 
     return CAN_SUCCESS;
 }
@@ -790,7 +870,7 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 	}
 	
 	// get the associated data struct and set last_rx
-	data_struct = (CAN_INFO_STRUCT*)(all_parameter_structs[id.parameter]);
+	data_struct = (CAN_INFO_STRUCT*)(PARAMETERS[id.parameter]);
 	data_struct->last_rx = HAL_GetTick();
 
     // run command: run the command specified by the CAN message on this module
@@ -830,7 +910,8 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// send the parameter data to the module that requested
-	return send_parameter(id->parameter);
+	U16 group_id = ((CAN_INFO_STRUCT*) PARAMETERS[id->parameter])->GROUP_ID;
+	return send_group(group_id);
 }
 
 
