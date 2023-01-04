@@ -354,19 +354,19 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 }
 
 
-// send_group
-// sends a group of parameters in a standard CAN frame
+// send_parameter
+// encodes and sends the specified parameter's group in a standard 11-bit CAN frame
 // params:
-// U16 group_id: group of parameters to send (defined in GopherCAN_network.c)
+// CAN_INFO_STRUCT* param: parameter to send (along with its group)
 // returns:
 // error codes specified in GopherCAN.h
-S8 send_group(U16 group_id)
+S8 send_parameter(CAN_INFO_STRUCT* param)
 {
     PARAM_GROUP* group = NULL;
 
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
-        if (GROUPS[i].id == group_id) {
+        if (GROUPS[i].id == param->GROUP_ID) {
             group = &GROUPS[i];
             break;
         }
@@ -377,7 +377,7 @@ S8 send_group(U16 group_id)
     // build parameter group message
     CAN_MSG message;
 
-    message.header.StdId = group_id;
+    message.header.StdId = param->GROUP_ID;
     message.header.IDE = CAN_ID_STD;
     message.header.RTR = DATA_MESSAGE;
     message.header.DLC = 8;
@@ -913,8 +913,8 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// send the parameter data to the module that requested
-	U16 group_id = ((CAN_INFO_STRUCT*) PARAMETERS[id->parameter])->GROUP_ID;
-	return send_group(group_id);
+	CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id->parameter];
+	return send_parameter(param);
 }
 
 

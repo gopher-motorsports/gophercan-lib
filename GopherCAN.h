@@ -117,13 +117,13 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 
-// send_group
-// sends a group of parameters in a standard CAN frame
+// send_parameter
+// encodes and sends the specified parameter's group in a standard 11-bit CAN frame
 // params:
-// U16 group_id: group of parameters to send (defined in GopherCAN_network.c)
+// CAN_INFO_STRUCT* param: parameter to send (along with its group)
 // returns:
 // error codes specified in GopherCAN.h
-S8 send_group(U16 group_id);
+S8 send_parameter(CAN_INFO_STRUCT* param);
 
 // add_custom_can_func
 //  add a user function to the array of functions to check if
