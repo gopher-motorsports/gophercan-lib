@@ -9,22 +9,8 @@
 #define GOPHERCAN_RING_BUFFER_H_
 
 #include "base_types.h"
-#include "GopherCAN_config.h"
-
-#if TARGET == F0XX
-#include "stm32f0xx_hal.h"
-#include "stm32f0xx_hal_can.h"
-#endif
-
-#if TARGET == F4XX
-#include "stm32f4xx_hal.h"
-#include "stm32f4xx_hal_can.h"
-#endif
-
-#if TARGET == F7XX
-#include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_can.h"
-#endif
+// include main for CAN HAL types
+#include "main.h"
 
 typedef struct
 {

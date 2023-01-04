@@ -21,25 +21,24 @@
 #include "base_types.h"
 #include "GopherCAN_ring_buffer.h"
 #include "GopherCAN_network.h"
+#include "main.h" // main.h includes the HAL
 
-// choose the correct libraries to use based on the type of module
-#if TARGET == F0XX
-#include "stm32f0xx_hal.h"
-#include "stm32f0xx_hal_can.h"
+// determine target MCU
+#define F0XX 0
+#define F4XX 4
+#define F7XX 7
+
+#ifdef __STM32F0xx_HAL_H
+#define TARGET F0XX
 #endif
 
-#if TARGET == F4XX
-#include "stm32f4xx_hal.h"
-#include "stm32f4xx_hal_can.h"
+#ifdef __STM32F4xx_HAL_H
+#define TARGET F4XX
 #endif
 
-#if TARGET == F7XX
-#include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_can.h"
+#ifdef __STM32F7xx_HAL_H
+#define TARGET F7XX
 #endif
-
-// get the externs from the auto-generated file
-#define AUTOGEN_EXTERNS
 
 typedef enum
 {
