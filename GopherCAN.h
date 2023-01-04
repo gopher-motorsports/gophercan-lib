@@ -24,17 +24,9 @@
 #include "GopherCAN_ring_buffer.h"
 #include "GopherCAN_network.h"
 
-
-// make sure the target types are defined even if the dev forgot
-#ifndef F0XX
-#define F0XX -1
-#endif
-#ifndef F4XX
-#define F4XX -4
-#endif
-#ifndef F7XX
-#define F7XX -7
-#endif
+#define F0XX 0
+#define F4XX 4
+#define F7XX 7
 
 // choose the correct libraries to use based on the type of module
 #if TARGET == F0XX
