@@ -1,5 +1,0 @@
-,Command Name,ID,Remote Parameter Comment,Comments
-Notes:,,Max 255 (U8),a U8 of data that is sent with the command,This will appear in the auto-generated code
-,INC_VARIABLE,0,UNUSED,
-,SET_LED_STATE,1,the state to set the LED to,"test comment, with a comma"
-,CUST_COMMAND_2,2,UNUSED,
