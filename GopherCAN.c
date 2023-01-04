@@ -20,12 +20,12 @@ static S8   service_can_rx_message_ext(CAN_MSG* message);
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
 static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer);
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add);
 static void send_message_to_all_busses(CAN_MSG* message_to_add);
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 #ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
@@ -54,21 +54,21 @@ CAN_MSG tx_buffer_mem[TX_BUFFER_SIZE];
 // if there are more than one CAN busses, we need more TX buffers
 // the HAL_CAN handle pointer is for checking which bus that handle is referring to
 // if the pointer is not found, the program will default to local bus 0 (hcan0)
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 
 GCAN_MULTI_BUS_STRUCT gbus0;
 
-#if NUM_OF_BUSSES > 1
 CAN_MSG_RING_BUFFER tx_buffer_1;
 CAN_MSG tx_buffer_mem_1[TX_BUFFER_SIZE];
 GCAN_MULTI_BUS_STRUCT gbus1;
-#endif // NUM_OF_BUSSES > 1
+
 #if NUM_OF_BUSSES > 2
 CAN_MSG_RING_BUFFER tx_buffer_2;
 CAN_MSG tx_buffer_mem_2[TX_BUFFER_SIZE];
 GCAN_MULTI_BUS_STRUCT gbus2;
 #endif // NUM_OF_BUSSES > 2
-#endif // MULTI_BUS
+
+#endif // NUM_OF_BUSSES > 1
 
 
 
@@ -98,14 +98,12 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 	init_buffer(&tx_buffer, tx_buffer_mem, TX_BUFFER_SIZE);
 
 	// if there are more CAN busses, set up the additional TX buffers
-#ifdef MULTI_BUS
 #if NUM_OF_BUSSES > 1
 	init_buffer(&tx_buffer_1, tx_buffer_mem_1, TX_BUFFER_SIZE);
-#endif // NUM_OF_BUSSES > 1
 #if NUM_OF_BUSSES > 2
 	init_buffer(&tx_buffer_2, tx_buffer_mem_2, TX_BUFFER_SIZE);
 #endif // NUM_OF_BUSSES > 2
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 	// set each function pointer to the do_nothing() function
 	for (c = 0; c < NUM_OF_COMMANDS; c++)
@@ -595,11 +593,11 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	CAN_MSG_RING_BUFFER* buffer;
 
 	// With multiple busses, choose the correct bus buffer to be working with
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 	buffer = choose_tx_buffer_from_hcan(hcan);
 #else
 	buffer = &tx_buffer;
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 	// add messages to the the TX mailboxes until they are full
 	while (!IS_EMPTY(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
@@ -741,7 +739,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 		message_to_add->header.DLC--;
 	}
 
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 	// Handle the case of the message being sent to all of the busses (ID 0)
 	if (GET_ID_DEST(message_to_add->header.ExtId) == ALL_MODULES_ID)
 	{
@@ -754,7 +752,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 
 #else
 	buffer = &tx_buffer;
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 	// check to make sure the buffer is not full, then add it to the back of the TX buffer
 	if (IS_FULL(buffer))
@@ -762,7 +760,7 @@ static S8 tx_can_message(CAN_MSG* message_to_add)
 		return TX_BUFFER_FULL;
 	}
 
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 	// Turn off the TX interrupt (if applicable) and add the message to the buffer
 #if TARGET == F7XX || TARGET == F4XX
 	HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
@@ -1059,13 +1057,19 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 //  U8 bus_number:           [0,2], Which local CAN bus is being assigned. This same value can be used to modify
 //                            This parameter later if needed
 //
-// WARNING: if MULTI_BUS is defined, this function must be called as part of the initialization step,
+// WARNING: if multiple buses are connected, this function must be called as part of the initialization step,
 //           right after init() has been called for all active busses
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 {
 	switch (bus_number)
 	{
+	case 1:
+		gbus1.tx_buffer = &tx_buffer_1;
+		gbus1.hcan = hcan;
+		gbus1.gopher_can_id = gophercan_bus_id;
+		break;
+
 #if NUM_OF_BUSSES > 2
 	case 2:
 		gbus2.tx_buffer = &tx_buffer_2;
@@ -1074,14 +1078,6 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 		break;
 #endif // NUM_OF_BUSSES > 2
 
-#if NUM_OF_BUSSES > 1
-	case 1:
-		gbus1.tx_buffer = &tx_buffer_1;
-		gbus1.hcan = hcan;
-		gbus1.gopher_can_id = gophercan_bus_id;
-		break;
-#endif // NUM_OF_BUSSES > 1
-
 	default:
 		gbus0.tx_buffer = &tx_buffer;
 		gbus0.hcan = hcan;
@@ -1089,7 +1085,7 @@ void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
 		break;
 	}
 }
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 
 // the F7xx has ISRs for available TX mailboxes having an opening. All callbacks should service the TX hardware
@@ -1129,79 +1125,77 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
 // choose_tx_buffer_from_hcan
 //  Chooses what buffer the hcan pointer inputed is referring to based on the function define_can_bus().
 //  If the hcan pointer is not found, defaults to module bus 0
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
 {
+	if (hcan == gbus1.hcan)
+	{
+		return gbus1.tx_buffer;
+	}
+
 #if NUM_OF_BUSSES > 2
 	if (hcan == gbus2.hcan)
 	{
 		return gbus2.tx_buffer;
 	}
 #endif // NUM_OF_BUSSES > 2
-#if NUM_OF_BUSSES > 1
-	if (hcan == gbus1.hcan)
-	{
-		return gbus1.tx_buffer;
-	}
-#endif // NUM_OF_BUSSES > 1
+
 	return gbus0.tx_buffer;
 }
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 
 // choose_hcan_from_tx_buffer
 //  Returns the correct HCAN from the inputed buffer. Defaults to hcan0
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer)
 {
+	if (buffer == gbus1.tx_buffer)
+	{
+		return gbus1.hcan;
+	}
+
 #if NUM_OF_BUSSES > 2
 	if (buffer == gbus2.tx_buffer)
 	{
 		return gbus2.hcan;
 	}
 #endif // NUM_OF_BUSSES > 2
-#if NUM_OF_BUSSES > 1
-	if (buffer == gbus1.tx_buffer)
-	{
-		return gbus1.hcan;
-	}
-#endif // NUM_OF_BUSSES > 1
+
 	return gbus0.hcan;
 }
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 
 // choose_tx_buffer_from_dest_module
 //  Chooses which buffer the the dest_module in message_to_add is on
 //  If the module is not found, defaults to module bus 0
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add)
 {
 	MODULE_ID dest_module;
-	dest_module = GET_ID_DEST(message_to_add->id);
+	dest_module = GET_ID_DEST(message_to_add->header.ExtId);
+
+	if (module_bus_number[dest_module] == gbus1.gopher_can_id)
+	{
+		return gbus1.tx_buffer;
+	}
 
 #if NUM_OF_BUSSES > 2
 	if (module_bus_number[dest_module] == gbus2.gopher_can_id)
 	{
 		return gbus2.tx_buffer;
 	}
-	else
 #endif // NUM_OF_BUSSES > 2
-#if NUM_OF_BUSSES > 1
-	if (module_bus_number[dest_module] == gbus1.gopher_can_id)
-	{
-		return gbus1.tx_buffer;
-	}
-	else
-#endif // NUM_OF_BUSSES > 1
+
 	return gbus0.tx_buffer;
 }
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 
 // send_message_to_all_busses
 //  This function will add the message to all of the TX buffers active
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 static void send_message_to_all_busses(CAN_MSG* message_to_add)
 {
 #if NUM_OF_BUSSES > 2
@@ -1218,7 +1212,7 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add)
 #endif // TARGET == F7XX || TARGET == F4XX
 	}
 #endif // NUM_OF_BUSSES > 2
-#if NUM_OF_BUSSES > 1
+
 	// check to make sure the buffer is not full
 	if (!IS_FULL(&tx_buffer_1))
 	{
@@ -1231,7 +1225,7 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add)
 		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
 #endif // TARGET == F7XX || TARGET == F4XX
 	}
-#endif // NUM_OF_BUSSES > 1
+
 	// check to make sure the buffer is not full
 	if (!IS_FULL(&tx_buffer))
 	{
@@ -1245,7 +1239,7 @@ static void send_message_to_all_busses(CAN_MSG* message_to_add)
 #endif // TARGET == F7XX || TARGET == F4XX
 	}
 }
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 
 // rout_can_message

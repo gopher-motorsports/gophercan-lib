@@ -14,19 +14,13 @@
 // look at the file "GopherCAN_configs_example.h" for an example
 #include "GopherCAN_config.h"
 
-
 #ifndef GOPHERCAN_CONFIG_H
 #error "Problem with GopherCAN_config.h"
 #endif
 
-
 #include "base_types.h"
 #include "GopherCAN_ring_buffer.h"
 #include "GopherCAN_network.h"
-
-#define F0XX 0
-#define F4XX 4
-#define F7XX 7
 
 // choose the correct libraries to use based on the type of module
 #if TARGET == F0XX
@@ -175,8 +169,6 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 //
 //  designed to be called as an ISR whenever there is an RX message pending
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
-void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
-
 
 // service_can_rx_buffer
 //  this method will take all of the messages in rx_message_buffer and run them through
@@ -190,7 +182,7 @@ void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 //  call in a 1 ms or faster loop
 S8 service_can_rx_buffer(void);
 
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 // define_can_bus
 //  Use this function to associate an hcan handle with a specific GopherCAN bus ID.
 //  Also send in the bus number [0, 2] for choosing which of the three slots to fill
@@ -202,7 +194,7 @@ S8 service_can_rx_buffer(void);
 //  U8 bus_number:           [0,2], Which local CAN bus is being assigned. This same value can be used to modify
 //                            This parameter later if needed
 //
-// WARNING: if MULTI_BUS is defined, this function must be called as part of the initialization step,
+// WARNING: if multiple buses are connected, this function must be called as part of the initialization step,
 //           right after init() has been called for all active busses
 void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
 #endif
@@ -308,7 +300,7 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #define GET_ID_LOW(id) ((((id) << 3) & 0xffff) | CAN_ID_EXT)
 
 // Multi-bus struct
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 typedef struct
 {
 	CAN_MSG_RING_BUFFER* tx_buffer;

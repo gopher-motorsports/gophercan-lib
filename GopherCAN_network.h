@@ -61,9 +61,9 @@ typedef enum
     NUM_OF_MODULES
 } MODULE_ID;
 
-#ifdef MULTI_BUS
+#if NUM_OF_BUSSES > 1
 extern U8 module_bus_number[NUM_OF_MODULES];
-#endif // MULTI_BUS
+#endif // NUM_OF_BUSSES > 1
 
 // *** PARAMETERS ***
 
