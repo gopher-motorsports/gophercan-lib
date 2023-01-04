@@ -19,7 +19,6 @@
 #endif
 
 #include "base_types.h"
-#include "GopherCAN_ring_buffer.h"
 #include "GopherCAN_network.h"
 #include "main.h" // main.h includes the HAL
 
@@ -74,6 +73,20 @@ typedef struct
     U8    func_enabled;
     void* param_ptr;
 } CUST_FUNC;
+
+typedef struct
+{
+    CAN_TxHeaderTypeDef header;
+    U8  data[8];        // not all of these will matter depending on dlc
+} CAN_MSG;
+
+typedef struct
+{
+    CAN_MSG* message_buffer;    // pointer to the array where the messages are stored
+    U8 size;                    // the total amount of space available
+    U8 head;                    // the position of the "first" element
+    U8 fill_level;              // the number of elements after the head that are apart of the buffer
+} CAN_MSG_RING_BUFFER;
 
 // function prototypes
 
@@ -214,6 +227,12 @@ void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #endif
+
+
+// buffer macros
+#define IS_FULL(buffer) ((buffer)->fill_level >= (buffer)->size)
+#define IS_EMPTY(buffer) ((buffer)->fill_level == 0)
+#define GET_FROM_BUFFER(buffer, index) ((buffer)->message_buffer + (((buffer)->head + index) % (buffer)->size))
 
 
 // return messages
