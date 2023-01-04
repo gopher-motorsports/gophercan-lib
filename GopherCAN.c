@@ -399,6 +399,9 @@ S8 send_group(U16 group_id)
                 CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
                 err = encode_parameter(param, message.data, param_start, param_length);
                 if (err) return err;
+                else {
+                    param->last_tx = HAL_GetTick();
+                }
             }
 
             param_start = i;
@@ -814,9 +817,11 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
             } else if (id > CAN_COMMAND_ID) {
                 CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
                 param->last_rx = HAL_GetTick();
-                param->pending_response = FALSE;
                 err = decode_parameter(param, message->data, param_start, param_length);
                 if (err) return err;
+                else {
+                    param->pending_response = FALSE;
+                }
             }
 
             param_start = i;

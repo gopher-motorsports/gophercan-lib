@@ -90,6 +90,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
 } CAN_INFO_STRUCT;
@@ -102,6 +103,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     U8 data;
@@ -115,6 +117,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     U16 data;
@@ -128,6 +131,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     U32 data;
@@ -141,6 +145,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     U64 data;
@@ -154,6 +159,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     S8 data;
@@ -167,6 +173,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     S16 data;
@@ -180,6 +187,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     S32 data;
@@ -193,6 +201,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     S64 data;
@@ -206,6 +215,7 @@ typedef struct {
     ENCODING ENC;
     float SCALE;
     float OFFSET;
+    U32 last_tx;
     U32 last_rx;
     U8 pending_response;
     float data;
