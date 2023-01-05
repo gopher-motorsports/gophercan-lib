@@ -33,17 +33,15 @@ typedef struct
 #define IS_EMPTY(buffer) ((buffer)->fill_level == 0)
 #define GET_FROM_BUFFER(buffer, index) ((buffer)->message_buffer + (((buffer)->head + index) % (buffer)->size))
 
+extern CAN_MSG_RING_BUFFER rxbuff;
 extern CAN_MSG_RING_BUFFER txbuff0;
-extern CAN_MSG_RING_BUFFER rxbuff0;
 
 #if NUM_OF_BUSSES > 1
 extern CAN_MSG_RING_BUFFER txbuff1;
-extern CAN_MSG_RING_BUFFER rxbuff1;
 #endif
 
 #if NUM_OF_BUSSES > 2
 extern CAN_MSG_RING_BUFFER txbuff2;
-extern CAN_MSG_RING_BUFFER rxbuff2;
 #endif
 
 void attach_hcan(U8 bus_id, CAN_HandleTypeDef* hcan);

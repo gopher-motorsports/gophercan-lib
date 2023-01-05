@@ -197,22 +197,6 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 }
 
 
-// HAL_CAN_RxFifo0MsgPendingCallback
-//  ISR called when CAN_RX_FIFO0 has a pending message
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_rx_hardware(hcan, CAN_RX_FIFO0);
-}
-
-
-// HAL_CAN_RxFifo1MsgPendingCallback
-//  ISR called when CAN_RX_FIFO1 has a pending message
-void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_rx_hardware(hcan, CAN_RX_FIFO1);
-}
-
-
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
 //	given by the parameter ID from the module specified by the module ID
@@ -599,10 +583,10 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 	CAN_MSG* message;
 
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
-	while (!IS_FULL(&rxbuff0) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
+	while (!IS_FULL(&rxbuff) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
 	{
 		// set message to the correct pointer from the RX buffer (the "last" message in the buffer)
-		message = GET_FROM_BUFFER(&rxbuff0, rxbuff0.fill_level);
+		message = GET_FROM_BUFFER(&rxbuff, rxbuff.fill_level);
 
 		// Build the message from the registers on the STM32
 		if (HAL_CAN_GetRxMessage(hcan, rx_mailbox, &rx_header, message->data) != HAL_OK)
@@ -615,7 +599,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		}
 
 		// modify the rx_buffer data to reflect the new message
-		rxbuff0.fill_level++;
+		rxbuff.fill_level++;
 
 		// move the header ID, RTR bit, and DLC into the GopherCAN message struct
 		message->header.RTR = rx_header.RTR;
@@ -648,10 +632,10 @@ S8 service_can_rx_buffer(void)
 	CAN_MSG* current_message;
 
 	// run through each message in the RX buffer and service it with service_can_rx_message() (FIFO)
-	while (!IS_EMPTY(&rxbuff0))
+	while (!IS_EMPTY(&rxbuff))
 	{
 		// get the message at the head of the array
-		current_message = GET_FROM_BUFFER(&rxbuff0, 0);
+		current_message = GET_FROM_BUFFER(&rxbuff, 0);
 
 		// WARNING: CAN errors from other modules are not handled in this version. The message is just discarded
 		// Use a CAN bus analyzer to see what the message is for debugging
@@ -662,7 +646,7 @@ S8 service_can_rx_buffer(void)
 		}
 
 		// move the head now that the first element has been removed
-		remove_from_front(&rxbuff0);
+		remove_from_front(&rxbuff);
 	}
 
 	return CAN_SUCCESS;
@@ -967,40 +951,6 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 }
 
 
-// the F7xx has ISRs for available TX mailboxes having an opening. All callbacks should service the TX hardware
-#if TARGET == F7XX || TARGET == F4XX
-void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_tx_hardware(hcan);
-}
-
-void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_tx_hardware(hcan);
-}
-
-void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_tx_hardware(hcan);
-}
-
-void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_tx_hardware(hcan);
-}
-
-void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_tx_hardware(hcan);
-}
-
-void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
-{
-	service_can_tx_hardware(hcan);
-}
-#endif // TARGET == F7XX || TARGET == F4XX
-
-
 // rout_can_message
 //  Function to be called in service_can_rx_hardware() that will take messages that are
 //  destined for modules on another bus and put that message into the correct TX buffer
@@ -1033,7 +983,7 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 	if (dest_tx_buffer == orig_tx_buffer) return;
 
 	// remove message from RX buffer and retransmit
-	remove_from_front(&rxbuff0);
+	remove_from_front(&rxbuff);
 	add_message_by_highest_prio(dest_tx_buffer, message);
 }
 
@@ -1047,5 +997,51 @@ void do_nothing(U8 sending_module, void* param,
 	// this function has successfully done nothing
 }
 
+
+// HAL_CAN_RxFifo0MsgPendingCallback
+//  ISR called when CAN_RX_FIFO0/FIFO1 has a pending message
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+}
+
+void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+}
+
+
+// the F7xx has ISRs for available TX mailboxes having an opening. All callbacks should service the TX hardware
+#if TARGET == F7XX || TARGET == F4XX
+void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_tx_hardware(hcan);
+}
+
+void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_tx_hardware(hcan);
+}
+
+void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_tx_hardware(hcan);
+}
+
+void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_tx_hardware(hcan);
+}
+
+void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_tx_hardware(hcan);
+}
+
+void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
+{
+    service_can_tx_hardware(hcan);
+}
+#endif // TARGET == F7XX || TARGET == F4XX
 
 // end of GopherCAN.c

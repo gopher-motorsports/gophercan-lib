@@ -181,23 +181,6 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 //  call in a 1 ms or faster loop
 S8 service_can_rx_buffer(void);
 
-#if NUM_OF_BUSSES > 1
-// define_can_bus
-//  Use this function to associate an hcan handle with a specific GopherCAN bus ID.
-//  Also send in the bus number [0, 2] for choosing which of the three slots to fill
-//  with that bus data.
-//  (Example: if hcan = &hcan1, bus_number = 0. hcan = &hcan2, bus_number = 1, ect)
-// params:
-//  CAN_HandleTypeDef* hcan: Which HAL hcan pointer to assign to this bus
-//  U8 gophercan_bus_id:     What GopherCAN bus id this bus will be assigned to. Reference master spreadsheet
-//  U8 bus_number:           [0,2], Which local CAN bus is being assigned. This same value can be used to modify
-//                            This parameter later if needed
-//
-// WARNING: if multiple buses are connected, this function must be called as part of the initialization step,
-//           right after init() has been called for all active busses
-void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
-#endif
-
 // function to add to the custom CAN commands by default just in case
 void do_nothing(MODULE_ID sending_module, void* param,
 	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3);

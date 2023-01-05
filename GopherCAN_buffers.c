@@ -9,45 +9,34 @@
 
 static void copy_message(CAN_MSG* source, CAN_MSG* dest);
 
-// TX and RX buffers for each CAN bus
+// RX CAN buffer
+CAN_MSG rxbuff_mem[RX_BUFFER_SIZE];
+CAN_MSG_RING_BUFFER rxbuff = {ALL_BUSSES, NULL, rxbuff_mem, RX_BUFFER_SIZE, 0, 0};
+
+// TX buffers for each CAN bus
 CAN_MSG txbuff0_mem[TX_BUFFER_SIZE];
 CAN_MSG_RING_BUFFER txbuff0 = {GCAN0, NULL, txbuff0_mem, TX_BUFFER_SIZE, 0, 0};
-CAN_MSG rxbuff0_mem[RX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER rxbuff0 = {GCAN0, NULL, rxbuff0_mem, RX_BUFFER_SIZE, 0, 0};
 
 #if NUM_OF_BUSSES > 1
 CAN_MSG txbuff1_mem[TX_BUFFER_SIZE];
 CAN_MSG_RING_BUFFER txbuff1 = {GCAN1, NULL, txbuff1_mem, TX_BUFFER_SIZE, 0, 0};
-CAN_MSG rxbuff1_mem[RX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER rxbuff1 = {GCAN1, NULL, rxbuff1_mem, RX_BUFFER_SIZE, 0, 0};
 #endif
 
 #if NUM_OF_BUSSES > 2
 CAN_MSG txbuff2_mem[TX_BUFFER_SIZE];
 CAN_MSG_RING_BUFFER txbuff2 = {GCAN2, NULL, txbuff2_mem, TX_BUFFER_SIZE, 0, 0};
-CAN_MSG rxbuff2_mem[RX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER rxbuff2 = {GCAN2, NULL, rxbuff2_mem, RX_BUFFER_SIZE, 0, 0};
 #endif
 
 
 // associate a CAN handle with a buffer
 void attach_hcan(U8 bus_id, CAN_HandleTypeDef* hcan) {
 #if NUM_OF_BUSSES > 2
-    if (bus_id == GCAN2) {
-        txbuff2.hcan = hcan;
-        rxbuff2.hcan = hcan;
-    }
+    if (bus_id == GCAN2) txbuff2.hcan = hcan;
 #endif
 #if NUM_OF_BUSSES > 1
-    if (bus_id == GCAN1) {
-        txbuff1.hcan = hcan;
-        rxbuff1.hcan = hcan;
-    }
+    if (bus_id == GCAN1) txbuff1.hcan = hcan;
 #endif
-    if (bus_id == GCAN0) {
-        txbuff0.hcan = hcan;
-        rxbuff0.hcan = hcan;
-    }
+    if (bus_id == GCAN0) txbuff0.hcan = hcan;
 }
 
 // get TX buffer associated with a CAN handle

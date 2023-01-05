@@ -9,7 +9,6 @@
 
 // *** MODULES ***
 
-#if NUM_OF_BUSSES > 1
 U8 module_bus_number[NUM_OF_MODULES] = {
     ALL_BUSSES,
     GCAN0,
@@ -19,7 +18,6 @@ U8 module_bus_number[NUM_OF_MODULES] = {
     GCAN0,
     GCAN2
 };
-#endif // NUM_OF_BUSSES > 1
 
 // *** PARAMETERS ***
 
