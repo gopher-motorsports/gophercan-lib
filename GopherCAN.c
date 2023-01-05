@@ -18,21 +18,7 @@ static S8   service_can_rx_message_std(CAN_MSG* message);
 static S8   service_can_rx_message_ext(CAN_MSG* message);
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
-static void init_buffer(CAN_MSG_RING_BUFFER* buffer, CAN_MSG buffer_memory_ptr[], U8 buffer_size);
-static void remove_from_front(CAN_MSG_RING_BUFFER* buffer);
-static void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message);
-static void copy_message(CAN_MSG* source, CAN_MSG* dest);
-
-#if NUM_OF_BUSSES > 1
-static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
-static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer);
-static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add);
-static void send_message_to_all_busses(CAN_MSG* message_to_add);
-#endif // NUM_OF_BUSSES > 1
-
-#ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
-#endif // CAN_ROUTER
 
 
 // all of the custom functions and an array to enable or disable
@@ -47,32 +33,6 @@ ERROR_MSG last_error;
 
 // stores the last hcan error code
 U32 hcan_error = HAL_CAN_ERROR_NONE;
-
-// buffers to store RX and TX messages
-CAN_MSG_RING_BUFFER rx_buffer;
-CAN_MSG rx_buffer_mem[RX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER tx_buffer;
-CAN_MSG tx_buffer_mem[TX_BUFFER_SIZE];
-
-// if there are more than one CAN busses, we need more TX buffers
-// the HAL_CAN handle pointer is for checking which bus that handle is referring to
-// if the pointer is not found, the program will default to local bus 0 (hcan0)
-#if NUM_OF_BUSSES > 1
-
-GCAN_MULTI_BUS_STRUCT gbus0;
-
-CAN_MSG_RING_BUFFER tx_buffer_1;
-CAN_MSG tx_buffer_mem_1[TX_BUFFER_SIZE];
-GCAN_MULTI_BUS_STRUCT gbus1;
-
-#if NUM_OF_BUSSES > 2
-CAN_MSG_RING_BUFFER tx_buffer_2;
-CAN_MSG tx_buffer_mem_2[TX_BUFFER_SIZE];
-GCAN_MULTI_BUS_STRUCT gbus2;
-#endif // NUM_OF_BUSSES > 2
-
-#endif // NUM_OF_BUSSES > 1
-
 
 
 // init_can
@@ -92,21 +52,10 @@ S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 	// set the current module
 	this_module_id = module_id;
 
+	attach_hcan(GCAN0, hcan);
 
 	// init HAL_GetTick()
 	HAL_SetTickFreq(HAL_TICK_FREQ_DEFAULT);
-
-	// setup the two buffers
-	init_buffer(&rx_buffer, rx_buffer_mem, RX_BUFFER_SIZE);
-	init_buffer(&tx_buffer, tx_buffer_mem, TX_BUFFER_SIZE);
-
-	// if there are more CAN busses, set up the additional TX buffers
-#if NUM_OF_BUSSES > 1
-	init_buffer(&tx_buffer_1, tx_buffer_mem_1, TX_BUFFER_SIZE);
-#if NUM_OF_BUSSES > 2
-	init_buffer(&tx_buffer_2, tx_buffer_mem_2, TX_BUFFER_SIZE);
-#endif // NUM_OF_BUSSES > 2
-#endif // NUM_OF_BUSSES > 1
 
 	// set each function pointer to the do_nothing() function
 	for (c = 0; c < NUM_OF_COMMANDS; c++)
@@ -410,12 +359,6 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
             param_start = i;
             param_length = 1;
         }
-
-        // check if the last parameter is empty
-        if (i == 7 && group->slots[i] == EMPTY_ID) {
-            // cut off empty bytes at end of a message
-            message.header.DLC -= param_length;
-        }
     }
 
     return tx_can_message(&message);
@@ -599,11 +542,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	CAN_MSG_RING_BUFFER* buffer;
 
 	// With multiple busses, choose the correct bus buffer to be working with
-#if NUM_OF_BUSSES > 1
 	buffer = choose_tx_buffer_from_hcan(hcan);
-#else
-	buffer = &tx_buffer;
-#endif // NUM_OF_BUSSES > 1
 
 	// add messages to the the TX mailboxes until they are full
 	while (!IS_EMPTY(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
@@ -660,10 +599,10 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 	CAN_MSG* message;
 
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
-	while (!IS_FULL(&rx_buffer) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
+	while (!IS_FULL(&rxbuff0) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
 	{
 		// set message to the correct pointer from the RX buffer (the "last" message in the buffer)
-		message = GET_FROM_BUFFER(&rx_buffer, rx_buffer.fill_level);
+		message = GET_FROM_BUFFER(&rxbuff0, rxbuff0.fill_level);
 
 		// Build the message from the registers on the STM32
 		if (HAL_CAN_GetRxMessage(hcan, rx_mailbox, &rx_header, message->data) != HAL_OK)
@@ -676,7 +615,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		}
 
 		// modify the rx_buffer data to reflect the new message
-		rx_buffer.fill_level++;
+		rxbuff0.fill_level++;
 
 		// move the header ID, RTR bit, and DLC into the GopherCAN message struct
 		message->header.RTR = rx_header.RTR;
@@ -709,10 +648,10 @@ S8 service_can_rx_buffer(void)
 	CAN_MSG* current_message;
 
 	// run through each message in the RX buffer and service it with service_can_rx_message() (FIFO)
-	while (!IS_EMPTY(&rx_buffer))
+	while (!IS_EMPTY(&rxbuff0))
 	{
 		// get the message at the head of the array
-		current_message = GET_FROM_BUFFER(&rx_buffer, 0);
+		current_message = GET_FROM_BUFFER(&rxbuff0, 0);
 
 		// WARNING: CAN errors from other modules are not handled in this version. The message is just discarded
 		// Use a CAN bus analyzer to see what the message is for debugging
@@ -723,7 +662,7 @@ S8 service_can_rx_buffer(void)
 		}
 
 		// move the head now that the first element has been removed
-		remove_from_front(&rx_buffer);
+		remove_from_front(&rxbuff0);
 	}
 
 	return CAN_SUCCESS;
@@ -732,60 +671,37 @@ S8 service_can_rx_buffer(void)
 
 // tx_can_message
 //  Takes in a CAN_MSG struct, adds it to the TX buffer
-static S8 tx_can_message(CAN_MSG* message_to_add)
+static S8 tx_can_message(CAN_MSG* message)
 {
-	CAN_MSG_RING_BUFFER* buffer;
-
 	// remove any trailing zeros in the CAN message. This is done by starting at the
 	// back of the message and decrementing the DLC for each byte in the message that
 	// is zero at the back. RX logic will add zero bytes as needed
-	while (message_to_add->header.DLC > 0
-			&& message_to_add->data[message_to_add->header.DLC - 1] == 0)
+	while (message->header.DLC > 0 && message->data[message->header.DLC - 1] == 0)
 	{
-		message_to_add->header.DLC--;
+		message->header.DLC--;
 	}
 
+	// if extended ID, get destination
+	// send standard ID data messages to all modules
+	MODULE_ID module_id = message->header.IDE == CAN_ID_EXT ?
+	        GET_ID_DEST(message->header.ExtId) :
+	        ALL_MODULES_ID;
+
+	if (module_id == ALL_MODULES_ID) {
+#if NUM_OF_BUSSES > 2
+        add_message_by_highest_prio(&txbuff2, message);
+#endif
 #if NUM_OF_BUSSES > 1
-	// Handle the case of the message being sent to all of the busses (ID 0)
-	if (GET_ID_DEST(message_to_add->header.ExtId) == ALL_MODULES_ID)
-	{
-		send_message_to_all_busses(message_to_add);
-		return CAN_SUCCESS;
-	}
-
-	// If there are multiple busses, choose the correct bus based on the routing table
-	buffer = choose_tx_buffer_from_dest_module(message_to_add);
-
-#else
-	buffer = &tx_buffer;
-#endif // NUM_OF_BUSSES > 1
-
-	// check to make sure the buffer is not full, then add it to the back of the TX buffer
-	if (IS_FULL(buffer))
-	{
-		return TX_BUFFER_FULL;
-	}
-
-#if NUM_OF_BUSSES > 1
-	// Turn off the TX interrupt (if applicable) and add the message to the buffer
-#if TARGET == F7XX || TARGET == F4XX
-	HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-	add_message_by_highest_prio(buffer, message_to_add);
-
-#if TARGET == F7XX || TARGET == F4XX
-	HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-
-	return CAN_SUCCESS;
-}
-#else
-    add_message_by_highest_prio(buffer, message_to_add);
+        add_message_by_highest_prio(&txbuff1, message);
+#endif
+        add_message_by_highest_prio(&txbuff0, message);
+    } else {
+        CAN_MSG_RING_BUFFER* buffer = choose_tx_buffer_from_dest_module(module_id);
+        add_message_by_highest_prio(buffer, message);
+    }
 
     return CAN_SUCCESS;
 }
-
-#endif
 
 // service_can_rx_message_std
 // handle standard ID CAN messages (data messages)
@@ -1051,140 +967,6 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 }
 
 
-// init_buffer
-//  initialize the buffer with the values passed in as parameters
-void init_buffer(CAN_MSG_RING_BUFFER* buffer, CAN_MSG buffer_memory_ptr[], U8 buffer_size)
-{
-    buffer->head = 0;
-    buffer->fill_level = 0;
-    buffer->size = buffer_size;
-    buffer->message_buffer = buffer_memory_ptr;
-}
-
-
-// remove_from_front
-//  will remove the first element of the ring buffer. If the buffer is empty it will do nothing
-static void remove_from_front(CAN_MSG_RING_BUFFER* buffer)
-{
-    // don't do anything if the buffer is empty
-    if (IS_EMPTY(buffer))
-    {
-        return;
-    }
-
-    // move the head to the next element
-    buffer->head = (buffer->head + 1) % buffer->size;
-
-    // decrement the fill level
-    buffer->fill_level--;
-}
-
-
-// add_message_by_highest_prio
-//  This function will add message to the buffer based on the ID of the message. Higher
-//  priority messages (lower ID) will be towards the front, with lower priority
-//  messages (greater ID) will be towards the back. Removing from the front will get
-//  the highest priority message. This function assumes the buffer is not full
-void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
-{
-    CAN_MSG* buffer_message = GET_FROM_BUFFER(buffer, 0);
-    S16 c;
-
-    // start from the back of the buffer, moving each message towards the back
-    // by one and put the new message in the correct spot by ID. If the buffer
-    // was empty when the message first went through here, it will put the new
-    // message in position 0
-    buffer->fill_level++;
-    for (c = buffer->fill_level - 2; c >= 0; c--)
-    {
-        buffer_message = GET_FROM_BUFFER(buffer, c);
-
-        if (
-            (message->header.IDE == CAN_ID_STD &&
-            buffer_message->header.IDE == CAN_ID_EXT)
-            ||
-            (message->header.IDE == CAN_ID_EXT &&
-            buffer_message->header.IDE == CAN_ID_EXT &&
-            message->header.ExtId >= buffer_message->header.ExtId)
-            ||
-            (message->header.IDE == CAN_ID_STD &&
-            buffer_message->header.IDE == CAN_ID_STD &&
-            message->header.StdId >= buffer_message->header.StdId)
-        ) {
-            // new message is lower priority, insert behind this buffer message
-            buffer_message = GET_FROM_BUFFER(buffer, c + 1);
-            break;
-        }
-
-        // move this message back by 1 and try again
-        copy_message(buffer_message, GET_FROM_BUFFER(buffer, c + 1));
-    }
-
-    // put the message into the buffer at this position
-    copy_message(message, buffer_message);
-}
-
-
-// copy_message
-//  function to copy all of the data in source to dest by value, not by refernce
-static void copy_message(CAN_MSG* source, CAN_MSG* dest)
-{
-    U8 c;
-
-    dest->header = source->header;
-
-    for (c = 0; c < dest->header.DLC; c++)
-    {
-        dest->data[c] = source->data[c];
-    }
-}
-
-
-// Begin ifdefed functions. Beware of #ifed code ahead
-
-
-// define_can_bus
-//  Use this function to associate an hcan handle with a specific GopherCAN bus ID.
-//  Also send in the bus number [0, 2] for choosing which of the three slots to fill
-//  with that bus data.
-//  (Example: if hcan = &hcan1, bus_number = 0. hcan = &hcan2, bus_number = 1, ect)
-// params:
-//  CAN_HandleTypeDef* hcan: Which HAL hcan pointer to assign to this bus
-//  U8 gophercan_bus_id:     What GopherCAN bus id this bus will be assigned to. Reference master spreadsheet
-//  U8 bus_number:           [0,2], Which local CAN bus is being assigned. This same value can be used to modify
-//                            This parameter later if needed
-//
-// WARNING: if multiple buses are connected, this function must be called as part of the initialization step,
-//           right after init() has been called for all active busses
-#if NUM_OF_BUSSES > 1
-void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number)
-{
-	switch (bus_number)
-	{
-	case 1:
-		gbus1.tx_buffer = &tx_buffer_1;
-		gbus1.hcan = hcan;
-		gbus1.gopher_can_id = gophercan_bus_id;
-		break;
-
-#if NUM_OF_BUSSES > 2
-	case 2:
-		gbus2.tx_buffer = &tx_buffer_2;
-		gbus2.hcan = hcan;
-		gbus2.gopher_can_id = gophercan_bus_id;
-		break;
-#endif // NUM_OF_BUSSES > 2
-
-	default:
-		gbus0.tx_buffer = &tx_buffer;
-		gbus0.hcan = hcan;
-		gbus0.gopher_can_id = gophercan_bus_id;
-		break;
-	}
-}
-#endif // NUM_OF_BUSSES > 1
-
-
 // the F7xx has ISRs for available TX mailboxes having an opening. All callbacks should service the TX hardware
 #if TARGET == F7XX || TARGET == F4XX
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef* hcan)
@@ -1219,228 +1001,41 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
 #endif // TARGET == F7XX || TARGET == F4XX
 
 
-// choose_tx_buffer_from_hcan
-//  Chooses what buffer the hcan pointer inputed is referring to based on the function define_can_bus().
-//  If the hcan pointer is not found, defaults to module bus 0
-#if NUM_OF_BUSSES > 1
-static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan)
-{
-	if (hcan == gbus1.hcan)
-	{
-		return gbus1.tx_buffer;
-	}
-
-#if NUM_OF_BUSSES > 2
-	if (hcan == gbus2.hcan)
-	{
-		return gbus2.tx_buffer;
-	}
-#endif // NUM_OF_BUSSES > 2
-
-	return gbus0.tx_buffer;
-}
-#endif // NUM_OF_BUSSES > 1
-
-
-// choose_hcan_from_tx_buffer
-//  Returns the correct HCAN from the inputed buffer. Defaults to hcan0
-#if NUM_OF_BUSSES > 1
-static CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer)
-{
-	if (buffer == gbus1.tx_buffer)
-	{
-		return gbus1.hcan;
-	}
-
-#if NUM_OF_BUSSES > 2
-	if (buffer == gbus2.tx_buffer)
-	{
-		return gbus2.hcan;
-	}
-#endif // NUM_OF_BUSSES > 2
-
-	return gbus0.hcan;
-}
-#endif // NUM_OF_BUSSES > 1
-
-
-// choose_tx_buffer_from_dest_module
-//  Chooses which buffer the the dest_module in message_to_add is on
-//  If the module is not found, defaults to module bus 0
-#if NUM_OF_BUSSES > 1
-static CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(CAN_MSG* message_to_add)
-{
-	MODULE_ID dest_module;
-	dest_module = GET_ID_DEST(message_to_add->header.ExtId);
-
-	if (module_bus_number[dest_module] == gbus1.gopher_can_id)
-	{
-		return gbus1.tx_buffer;
-	}
-
-#if NUM_OF_BUSSES > 2
-	if (module_bus_number[dest_module] == gbus2.gopher_can_id)
-	{
-		return gbus2.tx_buffer;
-	}
-#endif // NUM_OF_BUSSES > 2
-
-	return gbus0.tx_buffer;
-}
-#endif // NUM_OF_BUSSES > 1
-
-
-// send_message_to_all_busses
-//  This function will add the message to all of the TX buffers active
-#if NUM_OF_BUSSES > 1
-static void send_message_to_all_busses(CAN_MSG* message_to_add)
-{
-#if NUM_OF_BUSSES > 2
-	// check to make sure the buffer is not full
-	if (!IS_FULL(&tx_buffer_2))
-	{
-#if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-		add_message_by_highest_prio(&tx_buffer_2, message_to_add);
-
-#if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-	}
-#endif // NUM_OF_BUSSES > 2
-
-	// check to make sure the buffer is not full
-	if (!IS_FULL(&tx_buffer_1))
-	{
-#if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-		add_message_by_highest_prio(&tx_buffer_1, message_to_add);
-
-#if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-	}
-
-	// check to make sure the buffer is not full
-	if (!IS_FULL(&tx_buffer))
-	{
-#if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-		add_message_by_highest_prio(&tx_buffer, message_to_add);
-
-#if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-	}
-}
-#endif // NUM_OF_BUSSES > 1
-
-
 // rout_can_message
 //  Function to be called in service_can_rx_hardware() that will take messages that are
 //  destined for modules on another bus and put that message into the correct TX buffer
-#ifdef CAN_ROUTER
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
-	CAN_MSG_RING_BUFFER* buffer;
-	MODULE_ID dest_module;
-	dest_module = GET_ID_DEST(message->id);
+	MODULE_ID dest_module = GET_ID_DEST(message->header.ExtId);
 
-	// Get the buffer this message should go on if it needs to be routed
-	buffer = choose_tx_buffer_from_dest_module(message);
+	// TX buffer on the CAN bus this message was received on
+	CAN_MSG_RING_BUFFER* orig_tx_buffer = choose_tx_buffer_from_hcan(hcan);
 
-	// Handle the special case of a message that needs to be sent out to all busses (ID 0)
-	if (dest_module == ALL_MODULES_ID)
-	{
+	// TX buffer the message is intended for
+	CAN_MSG_RING_BUFFER* dest_tx_buffer = choose_tx_buffer_from_dest_module(dest_module);
+
+	// message is intended for all modules, retransmit on a new bus
+	if (dest_module == ALL_MODULES_ID) {
 #if NUM_OF_BUSSES > 2
-		// check to make sure the buffer is not full and the message did not come from this buffer
-		if (!IS_FULL(&tx_buffer_2)
-				&& &tx_buffer_2 != choose_tx_buffer_from_hcan(hcan))
-		{
-#if TARGET == F7XX || TARGET == F4XX
-			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-			add_message_by_highest_prio(&tx_buffer_2, message);
-
-#if TARGET == F7XX || TARGET == F4XX
-			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_2), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-		}
-#endif // NUM_OF_BUSSES > 2
+		if (&txbuff2 != orig_tx_buffer) add_message_by_highest_prio(&txbuff2, message);
+#endif
 #if NUM_OF_BUSSES > 1
-		// check to make sure the buffer is not full and the message did not come from this buffer
-		if (!IS_FULL(&tx_buffer_1)
-				&& &tx_buffer_1 != choose_tx_buffer_from_hcan(hcan))
-		{
-#if TARGET == F7XX || TARGET == F4XX
-			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-			add_message_by_highest_prio(&tx_buffer_1, message);
-
-#if TARGET == F7XX || TARGET == F4XX
-			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer_1), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-		}
-#endif // NUM_OF_BUSSES > 1
-		// check to make sure the buffer is not full and the message did not come from this buffer
-		if (!IS_FULL(&tx_buffer)
-				&& &tx_buffer != choose_tx_buffer_from_hcan(hcan))
-		{
-#if TARGET == F7XX || TARGET == F4XX
-			HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-			add_message_by_highest_prio(&tx_buffer, message);
-
-#if TARGET == F7XX || TARGET == F4XX
-			HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(&tx_buffer), CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-		}
-
+		if (&txbuff1 != orig_tx_buffer) add_message_by_highest_prio(&txbuff1, message);
+#endif
+		if (&txbuff0 != orig_tx_buffer) add_message_by_highest_prio(&txbuff0, message);
 		return;
 	}
 
-	// Make sure this message isn't for the module that is acting as the router
-	if (dest_module == this_module_id)
-	{
-		// This message is for the router module. Return and process the message as normal
-		return;
-	}
+	// message is intended for this module, don't retransmit
+	if (dest_module == this_module_id) return;
 
-	// Determine if this message needs to be routed (if the destination module is on another bus)
-	if (buffer == choose_tx_buffer_from_hcan(hcan))
-	{
-		// This message does not need to be routed. It came from the bus it should be on
-		return;
-	}
+	// message was already on the correct bus, don't retransmit
+	if (dest_tx_buffer == orig_tx_buffer) return;
 
-#if TARGET == F7XX || TARGET == F4XX
-	HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-
-	// check to make sure the buffer is not full. If it is, the message will be discarded
-	if (IS_FULL(buffer))
-	{
-		rx_buffer.fill_level--;
-		return;
-	}
-
-	// Add the message to the selected TX buffer
-	add_message_by_highest_prio(buffer, message);
-
-	// Remove the message from the RX buffer, it is now on a TX buffer
-	rx_buffer.fill_level--;
-
-#if TARGET == F7XX || TARGET == F4XX
-	HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
+	// remove message from RX buffer and retransmit
+	remove_from_front(&rxbuff0);
+	add_message_by_highest_prio(dest_tx_buffer, message);
 }
-#endif // CAN_ROUTER
-
-
-// End ifdefed functions
 
 
 // do_nothing
