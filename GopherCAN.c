@@ -524,20 +524,19 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 {
 	CAN_MSG* message;
 	CAN_MSG_RING_BUFFER* buffer;
+    U32 tx_mailbox_num;
 
 	// With multiple busses, choose the correct bus buffer to be working with
 	buffer = choose_tx_buffer_from_hcan(hcan);
 
+#if TARGET == F7XX || TARGET == F4XX
+		// disable TX interrupt to protect buffer
+		HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+#endif
+
 	// add messages to the the TX mailboxes until they are full
 	while (!IS_EMPTY(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
 	{
-		U32 tx_mailbox_num;
-
-		// Turn off the TX interrupt (if applicable)
-#if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-
 		// get the next CAN message from the TX buffer (FIFO)
 		message = GET_FROM_BUFFER(buffer, 0);
 
@@ -556,12 +555,11 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 
 		// move the head now that the first element has been removed
 		remove_from_front(buffer);
+	}
 
-		// re-enable the RX interrupt
 #if TARGET == F7XX || TARGET == F4XX
 		HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif // TARGET == F7XX || TARGET == F4XX
-	}
+#endif
 
 	return;
 }
@@ -777,7 +775,6 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 	
 	// get the associated data struct and set last_rx
 	data_struct = (CAN_INFO_STRUCT*)(PARAMETERS[id.parameter]);
-	data_struct->last_rx = HAL_GetTick();
 
     // run command: run the command specified by the CAN message on this module
 	if (data_struct->TYPE == COMMAND)

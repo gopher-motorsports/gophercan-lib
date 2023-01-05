@@ -94,6 +94,11 @@ void remove_from_front(CAN_MSG_RING_BUFFER* buffer)
 //  the highest priority message.
 void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
 {
+#if TARGET == F7XX || TARGET == F4XX
+    // disable TX interrupt to protect buffer
+    HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
+
     if (IS_FULL(buffer)) return;
 
     CAN_MSG* buffer_message = GET_FROM_BUFFER(buffer, 0);
@@ -131,6 +136,10 @@ void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
 
     // put the message into the buffer at this position
     copy_message(message, buffer_message);
+
+#if TARGET == F7XX || TARGET == F4XX
+    HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
+#endif
 }
 
 // copy_message
