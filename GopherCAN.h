@@ -82,12 +82,14 @@ typedef struct
 //	as a filter. All parameters that should be enabled should be set after
 //  calling this function
 // params:
+//  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
+//  osMutexId_t tx_mutex:    CMSIS mutex to attach to the TX buffer on this bus
 //  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
 //  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID module_id, BXCAN_TYPE bx_type);
 
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter

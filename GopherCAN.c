@@ -36,23 +36,41 @@ U32 hcan_error = HAL_CAN_ERROR_NONE;
 
 
 // init_can
-// 	This function will set up the CAN registers with the inputed module_id
-//	as a filter. All parameters that should be enabled should be set after
+//  This function will set up the CAN registers with the inputed module_id
+//  as a filter. All parameters that should be enabled should be set after
 //  calling this function
 // params:
+//  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
+//  osMutexId_t tx_mutex:    CMSIS mutex to attach to the TX buffer on this bus
 //  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
 //  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID module_id, BXCAN_TYPE bx_type)
 {
 	U8 c;
 
 	// set the current module
 	this_module_id = module_id;
 
-	attach_hcan(GCAN0, hcan);
+	// attach hcan and mutex to appropriate buffer
+#if NUM_OF_BUSSES > 2
+    if (bus_id == GCAN2) {
+        txbuff2.hcan = hcan;
+        txbuff2.mutex = tx_mutex;
+    }
+#endif
+#if NUM_OF_BUSSES > 1
+    if (bus_id == GCAN1) {
+        txbuff1.hcan = hcan;
+        txbuff1.mutex = tx_mutex;
+    }
+#endif
+    if (bus_id == GCAN0) {
+        txbuff0.hcan = hcan;
+        txbuff0.mutex = tx_mutex;
+    }
 
 	// init HAL_GetTick()
 	HAL_SetTickFreq(HAL_TICK_FREQ_DEFAULT);
@@ -529,9 +547,12 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	// With multiple busses, choose the correct bus buffer to be working with
 	buffer = choose_tx_buffer_from_hcan(hcan);
 
+    if (buffer->mutex != NULL) {
+        if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
+    }
 #if TARGET == F7XX || TARGET == F4XX
-		// disable TX interrupt to protect buffer
-		HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+    // disable TX interrupt to protect buffer
+    HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
 #endif
 
 	// add messages to the the TX mailboxes until they are full
@@ -558,8 +579,11 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 	}
 
 #if TARGET == F7XX || TARGET == F4XX
-		HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+    HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
 #endif
+    if (buffer->mutex != NULL) {
+        osMutexRelease(buffer->mutex);
+    }
 
 	return;
 }

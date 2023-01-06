@@ -12,6 +12,7 @@
 #include "base_types.h"
 #include "GopherCAN_config.h"
 #include "GopherCAN_network.h"
+#include "cmsis_os.h"
 
 typedef struct
 {
@@ -27,7 +28,11 @@ typedef struct
     U8 size;                    // the total amount of space available
     U8 head;                    // the position of the "first" element
     U8 fill_level;              // the number of elements after the head that are apart of the buffer
+    osMutexId_t mutex;
 } CAN_MSG_RING_BUFFER;
+
+// buffer mutex timeout in ticks (usually 1ms)
+#define MUTEX_TIMEOUT 500
 
 #define IS_FULL(buffer) ((buffer)->fill_level >= (buffer)->size)
 #define IS_EMPTY(buffer) ((buffer)->fill_level == 0)
@@ -44,7 +49,6 @@ extern CAN_MSG_RING_BUFFER txbuff1;
 extern CAN_MSG_RING_BUFFER txbuff2;
 #endif
 
-void attach_hcan(U8 bus_id, CAN_HandleTypeDef* hcan);
 CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);
 CAN_HandleTypeDef* choose_hcan_from_tx_buffer(CAN_MSG_RING_BUFFER* buffer);
 CAN_MSG_RING_BUFFER* choose_tx_buffer_from_dest_module(MODULE_ID module);

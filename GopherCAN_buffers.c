@@ -11,33 +11,22 @@ static void copy_message(CAN_MSG* source, CAN_MSG* dest);
 
 // RX CAN buffer
 CAN_MSG rxbuff_mem[RX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER rxbuff = {ALL_BUSSES, NULL, rxbuff_mem, RX_BUFFER_SIZE, 0, 0};
+CAN_MSG_RING_BUFFER rxbuff = {ALL_BUSSES, NULL, rxbuff_mem, RX_BUFFER_SIZE, 0, 0, NULL};
 
 // TX buffers for each CAN bus
 CAN_MSG txbuff0_mem[TX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER txbuff0 = {GCAN0, NULL, txbuff0_mem, TX_BUFFER_SIZE, 0, 0};
+CAN_MSG_RING_BUFFER txbuff0 = {GCAN0, NULL, txbuff0_mem, TX_BUFFER_SIZE, 0, 0, NULL};
 
 #if NUM_OF_BUSSES > 1
 CAN_MSG txbuff1_mem[TX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER txbuff1 = {GCAN1, NULL, txbuff1_mem, TX_BUFFER_SIZE, 0, 0};
+CAN_MSG_RING_BUFFER txbuff1 = {GCAN1, NULL, txbuff1_mem, TX_BUFFER_SIZE, 0, 0, NULL};
 #endif
 
 #if NUM_OF_BUSSES > 2
 CAN_MSG txbuff2_mem[TX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER txbuff2 = {GCAN2, NULL, txbuff2_mem, TX_BUFFER_SIZE, 0, 0};
+CAN_MSG_RING_BUFFER txbuff2 = {GCAN2, NULL, txbuff2_mem, TX_BUFFER_SIZE, 0, 0, NULL};
 #endif
 
-
-// associate a CAN handle with a buffer
-void attach_hcan(U8 bus_id, CAN_HandleTypeDef* hcan) {
-#if NUM_OF_BUSSES > 2
-    if (bus_id == GCAN2) txbuff2.hcan = hcan;
-#endif
-#if NUM_OF_BUSSES > 1
-    if (bus_id == GCAN1) txbuff1.hcan = hcan;
-#endif
-    if (bus_id == GCAN0) txbuff0.hcan = hcan;
-}
 
 // get TX buffer associated with a CAN handle
 // defaults to TX buffer 0
@@ -94,8 +83,12 @@ void remove_from_front(CAN_MSG_RING_BUFFER* buffer)
 //  the highest priority message.
 void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
 {
+    // protect buffer from RTOS thread switching
+    if (buffer->mutex != NULL) {
+        if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
+    }
 #if TARGET == F7XX || TARGET == F4XX
-    // disable TX interrupt to protect buffer
+    // protect buffer from interrupts
     HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
 #endif
 
@@ -140,6 +133,9 @@ void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
 #if TARGET == F7XX || TARGET == F4XX
     HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
 #endif
+    if (buffer->mutex != NULL) {
+        osMutexRelease(buffer->mutex);
+    }
 }
 
 // copy_message
