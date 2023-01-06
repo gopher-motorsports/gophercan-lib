@@ -127,88 +127,111 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 		banknum = SLAVE_FIRST_FILTER;
 	}
 
+	filterConfig.FilterActivation = CAN_FILTER_ENABLE;
+    filterConfig.FilterMode = CAN_FILTERMODE_IDMASK; // use mask mode to filter
+
 #if defined(CAN_ROUTER) || defined(NO_FILTER)
-	// Accept all messages on the CAN router
-	filterConfig.FilterBank = banknum;                                // Modify bank 0 (of 13)
-	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
-	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
-	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
-	filterConfig.FilterIdLow = 0;                                     // Low bound of accepted values
-	filterConfig.FilterIdHigh = 0xFFFF;                               // High bound of accepted values
-	filterConfig.FilterMaskIdLow = 0;                                 // Which bits matter when filtering (high)
-	filterConfig.FilterMaskIdHigh = 0;                                // Which bits matter when filtering (low)
+	// accept all messages on the CAN router
+	filterConfig.FilterBank = banknum++;                     // modify bank 0 (of 13)
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;    // use FIFO0
+	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;        // 32 bit mask
+	filterConfig.FilterIdLow = 0;                            // accepted IDs (lower 16 bits)
+	filterConfig.FilterIdHigh = 0;                           // accepted IDs (upper 16 bits)
+	filterConfig.FilterMaskIdLow = 0;                        // bits to compare (lower 16 bits)
+	filterConfig.FilterMaskIdHigh = 0;                       // bits to compare (upper 16 bits)
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 #else
-	U32 filt_id_low;
-	U32 filt_id_high;
-	U32 filt_mask_high;
-	U32 filt_mask_low;
 
-	// get the correct bits from the id and mask for each part of the ID.
+#ifndef IGNORE_DATA
+	// accept STD ID messages (IDE=0)
+	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	filterConfig.FilterScale = CAN_FILTERSCALE_16BIT; // 16 bit scale includes IDE bit
+	filterConfig.FilterIdLow = 0;
+	filterConfig.FilterIdHigh = 0;
+	filterConfig.FilterMaskIdLow = 0b00001000;
+	filterConfig.FilterMaskIdHigh = 0;
+
+	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	{
+		return FILTER_SET_FAILED;
+	}
+
+	// apply same filter to FIFO1
+	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
+
+	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	{
+		return FILTER_SET_FAILED;
+	}
+#endif
+
+	U32 filt_id_low;
+    U32 filt_id_high;
+    U32 filt_mask_high;
+    U32 filt_mask_low;
+
+	// accept EXT messages with destination = this_module_id
 	filt_id_high = GET_ID_HIGH(this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
 	filt_id_low = GET_ID_LOW(this_module_id << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
 	filt_mask_high = GET_ID_HIGH(DEST_MASK);
     filt_mask_low = GET_ID_LOW(DEST_MASK);
 
-	// Set the the parameters on the filter struct (FIFO0)
-	filterConfig.FilterBank = banknum;                                // Modify bank 0 (of 13)
-	filterConfig.FilterActivation = CAN_FILTER_ENABLE;                // enable the filter
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
-	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;                  // Use mask mode to filter
-	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;                 // 32 bit mask
-	filterConfig.FilterIdLow = filt_id_low;                           // Low bound of accepted values
-	filterConfig.FilterIdHigh = filt_id_high;                         // High bound of accepted values
-	filterConfig.FilterMaskIdLow = filt_mask_low;                     // Which bits matter when filtering (high)
-	filterConfig.FilterMaskIdHigh = filt_mask_high;                   // Which bits matter when filtering (low)
+	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
+	filterConfig.FilterIdLow = filt_id_low;
+	filterConfig.FilterIdHigh = filt_id_high;
+	filterConfig.FilterMaskIdLow = filt_mask_low;
+	filterConfig.FilterMaskIdHigh = filt_mask_high;
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 
-	// Set the the parameters on the filter struct (FIFO1)
-	// all other parameters are the same as FIFO0
-	filterConfig.FilterBank = banknum + 1;                            // Modify bank 1 (of 13)
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
+	// apply same filter to FIFO1
+	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 
-	// get the correct bits from the id and mask for each part of the ID for adding the general CAN ID
+	// accept EXT messages with destination = ALL_MODULES_ID
 	filt_id_high = GET_ID_HIGH(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
 	filt_id_low = GET_ID_LOW(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
 	filt_mask_high = GET_ID_HIGH(DEST_MASK);
 	filt_mask_low = GET_ID_LOW(DEST_MASK);
 
-	// Set the the parameters on the filter struct (FIFO0)
-	filterConfig.FilterBank = banknum + 2;                            // Modify bank 2 (of 13)
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;             // use FIFO0
-	filterConfig.FilterIdLow = filt_id_low;                           // Low bound of accepted values
-	filterConfig.FilterIdHigh = filt_id_high;                         // High bound of accepted values
-	filterConfig.FilterMaskIdLow = filt_mask_low;                     // Which bits matter when filtering (high)
-	filterConfig.FilterMaskIdHigh = filt_mask_high;                   // Which bits matter when filtering (low)
+	filterConfig.FilterBank = banknum++;
+    filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+    filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
+    filterConfig.FilterIdLow = filt_id_low;
+    filterConfig.FilterIdHigh = filt_id_high;
+	filterConfig.FilterMaskIdLow = filt_mask_low;
+	filterConfig.FilterMaskIdHigh = filt_mask_high;
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 
-	// Set the the parameters on the filter struct (FIFO1)
-	// all other parameters are the same as FIFO0
-	filterConfig.FilterBank = banknum + 3;                            // Modify bank 3 (of 13)
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;             // use FIFO1
+	// apply same filter to FIFO1
+	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
+
 #endif // CAN_ROUTER
 
 	return CAN_SUCCESS;
