@@ -9,16 +9,14 @@ The primary functionality of the library is contained in 'GopherCAN.c' and 'Goph
 The following are functions provided by GopherCAN.  More detailed usage information for these functions can be found in the 'GopherCAN.h' file.
 
 ```c
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
-
-void set_all_params_state(boolean enabled);
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID module_id, BXCAN_TYPE bx_type);
 
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+S8 send_parameter(CAN_INFO_STRUCT* param);
 
 S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
 					   U8 init_state, void* param_ptr);
@@ -32,8 +30,31 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 
 S8 service_can_rx_buffer(void);
+```
 
-In multi-bus mode:
+## Library Configuration
 
-void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
+Projects using the GopherCAN library should include a 'GopherCAN_config.h' file:
+
+```c
+#ifndef GOPHERCAN_CONFIG_H
+#define GOPHERCAN_CONFIG_H
+
+// RX and TX buffer sizes (bytes)
+#define RX_BUFFER_SIZE 32
+#define TX_BUFFER_SIZE 32
+
+// number of connected CAN buses (max 3)
+#define NUM_OF_BUSSES 1
+
+// if defined, GCAN tries to retransmit messages on their destination bus
+//#define CAN_ROUTER
+
+// if defined, all CAN messages are accepted
+//#define NO_FILTER
+
+// if defined, 11-bit ID data messages are filtered out
+//#define IGNORE_DATA
+
+#endif
 ```
