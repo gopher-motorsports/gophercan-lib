@@ -1,0 +1,78 @@
+buses:
+    - GCAN0
+    - GCAN1
+    - GCAN2
+
+modules:
+    PLM:
+        id: 1
+        name: Power & Logging Module
+        buses:
+            - GCAN0
+            - GCAN1
+            - GCAN2
+    TCM:
+        id: 2
+        name: Transmission Control Module
+        buses:
+            - GCAN1
+
+parameters:
+    rpm_ecu:
+        id: 1
+        group_id: 1
+        name: Engine RPM
+        unit: rpm
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+    engine_temp_ecu:
+        id: 2
+        group_id: 1
+        name: Engine Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+groups:
+    0x1: [
+        { id: 1, start: 0, length: 2 },
+        { id: 2, start: 2, length: 2 },
+    ]
+    0x12: [
+        { id: 1, start: 0, length: 1 },
+        { id: 2, start: 2, length: 1 },
+    ]
+
+commands:
+    SET_LED_STATE:
+        id: 0
+        param_0: LED state
+        param_1: LED state (duplicate)
+        param_2: LED state (duplicate)
+        param_3: LED state (duplicate)
+        comment: Only the first led_state is used, the rest are duplication for testing
+    SET_RTC_TIME:
+        id: 1
+        param_0: hour
+        param_1: minute
+        param_2: second
+        param_3: UNUSED
+        comment: pass in the hours, minutes, and seconds to set the RTC time in 24h format
+
+errors:
+    ID_NOT_FOUND:
+        id: 0
+    COMMAND_ID_NOT_FOUND:
+        id: 1
+    PARAM_NOT_ENABLED:
+        id: 2
+    SIZE_ERROR:
+        id: 3
+    DATATYPE_NOT_FOUND:
+        id: 4
+    COMMAND_NOT_ENABLED:
+        id: 5

@@ -44,9 +44,9 @@ typedef enum {
 typedef enum
 {
     ALL_MODULES_ID = 0,
-    PLM_ID = 1,
-    TCM_ID = 2,
-    
+    {% for key, value in modules.items() -%}
+    {{ key }}_ID = {{ value.id }},
+    {% endfor %}
     NUM_OF_MODULES
 } MODULE_ID;
 
@@ -57,9 +57,9 @@ extern U8 module_bus_number[NUM_OF_MODULES];
 typedef enum {
     EMPTY_ID = -1,
     CAN_COMMAND_ID = 0,
-    RPM_ECU_ID = 1,
-    ENGINE_TEMP_ECU_ID = 2,
-    
+    {% for id, value in parameters.items() -%}
+    {{ value.name.upper() }}_ID = {{ id }},
+    {% endfor %}
     NUM_OF_PARAMETERS
 } GCAN_PARAM_ID;
 
@@ -207,14 +207,14 @@ typedef struct {
     float data;
 } FLOAT_CAN_STRUCT;
 
-extern U16_CAN_STRUCT rpm_ecu;
-extern FLOAT_CAN_STRUCT engine_temp_ecu;
-
+{% for id, value in parameters.items() -%}
+extern {{ param_structs[value.type] }} {{ value.name }};
+{% endfor %}
 extern void* PARAMETERS[NUM_OF_PARAMETERS];
 
 // *** GROUPS ***
 
-#define NUM_OF_GROUPS 2
+#define NUM_OF_GROUPS {{ groups|length }}
 
 typedef struct
 {
@@ -236,9 +236,9 @@ typedef struct
 
 typedef enum
 {
-    SET_LED_STATE = 0,
-    SET_RTC_TIME = 1,
-    
+    {% for name, value in commands.items() -%}
+    {{ name.upper() }} = {{ value.id }},
+    {% endfor %}
     NUM_OF_COMMANDS
 } GCAN_COMMAND_ID;
 
@@ -246,13 +246,9 @@ extern CAN_COMMAND_STRUCT can_command;
 
 // *** ERRORS ***
 
-#define ID_NOT_FOUND 0
-#define COMMAND_ID_NOT_FOUND 1
-#define PARAM_NOT_ENABLED 2
-#define SIZE_ERROR 3
-#define DATATYPE_NOT_FOUND 4
-#define COMMAND_NOT_ENABLED 5
-
+{% for name, value in errors.items() -%}
+#define {{ name.upper() }} {{ value.id }}
+{% endfor %}
 typedef struct
 {
     U32 last_rx;

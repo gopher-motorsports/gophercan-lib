@@ -1,0 +1,44 @@
+#include "GopherCAN_network.h"
+
+// *** MODULES ***
+
+U8 module_bus_number[NUM_OF_MODULES] = {
+    ALL_BUSSES,
+    {% for name, module in modules.items() -%}
+    {{ module.buses[0] }}{% if not loop.last %},{% endif %}
+    {% endfor %}
+};
+
+// *** PARAMETERS ***
+
+{% for id, param in parameters.items() -%}
+{{ param_structs[param.type] }} {{ param.name }} = {
+{{- param.name.upper() }}_ID,
+{{- param.group_id }},
+{{- param.type }},
+{{- param.type }}_SIZE,
+{{- param.encoding }},
+{{- param.scale }},
+{{- param.offset }},0,0,0,0};
+{% endfor %}
+void* PARAMETERS[NUM_OF_PARAMETERS] = {
+    &can_command,
+    {% for id, param in parameters.items() -%}
+    &{{ param.name }}{% if not loop.last %},{% endif %}
+    {% endfor %}
+};
+
+// *** GROUPS ***
+
+PARAM_GROUP GROUPS[NUM_OF_GROUPS] = {
+    {% for id, group in groups.items() -%}
+    { {{ id }}, {
+        {%- for name in group %}
+        {{- name.upper() }}_ID{% if not loop.last %}, {% endif -%}
+        {% endfor %}} }{% if not loop.last %},{% endif %}
+    {% endfor %}
+};
+
+// *** COMMANDS ***
+
+CAN_COMMAND_STRUCT can_command = {0, 0, 0, CAN_COMMAND_ID};
