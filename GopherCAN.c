@@ -363,7 +363,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     U8 param_start = 0;
     U8 param_length = 1;
     S8 err;
-    for (U8 i = 1; i < 8; i++) {
+    for (U8 i = 1; i < CAN_DATA_BYTES; i++) {
         if (group->slots[i] == group->slots[i-1]) {
             // count consecutive slots belonging to the same parameter
             param_length++;
@@ -753,7 +753,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     U8 param_start = 0;
     U8 param_length = 1;
     S8 err;
-    for (U8 i = 1; i < 8; i++) {
+    for (U8 i = 1; i < CAN_DATA_BYTES; i++) {
         if (group->slots[i] == group->slots[i-1]) {
             // count consecutive slots belonging to the same parameter
             param_length++;

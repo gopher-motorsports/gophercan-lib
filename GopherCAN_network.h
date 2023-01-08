@@ -3,6 +3,8 @@
 
 #include "base_types.h"
 
+#define CAN_DATA_BYTES 8
+
 // *** TYPES ***
 
 typedef enum {
@@ -219,7 +221,7 @@ extern void* PARAMETERS[NUM_OF_PARAMETERS];
 typedef struct
 {
     U16 id;
-    GCAN_PARAM_ID slots[8];
+    GCAN_PARAM_ID slots[CAN_DATA_BYTES];
 } PARAM_GROUP;
 
 extern PARAM_GROUP GROUPS[NUM_OF_GROUPS];
