@@ -34,13 +34,21 @@ void* PARAMETERS[NUM_OF_PARAMETERS] = {
 
 PARAM_GROUP GROUPS[NUM_OF_GROUPS] = {
     {% for id, group in groups.items() -%}
-    { {{ id }}, {
-        {%- for name in group %}
-        {{- name.upper() }}_ID,
-        {%- endfor %}} },
+    {
+        .id = {{ id }},
+        .slots = {
+            {%- for name in group %}
+            {{- name.upper() }}_ID,
+            {%- endfor -%}}
+    },
     {% endfor %}
 };
 
 // *** COMMANDS ***
 
-CAN_COMMAND_STRUCT can_command = {0, 0, 0, CAN_COMMAND_ID};
+CAN_COMMAND_STRUCT can_command = {
+    .last_rx = 0,
+    .command_id = 0,
+    .command_parameter = 0,
+    .param_id = CAN_COMMAND_ID
+};

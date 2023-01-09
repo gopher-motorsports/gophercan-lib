@@ -11,20 +11,52 @@ static void copy_message(CAN_MSG* source, CAN_MSG* dest);
 
 // RX CAN buffer
 CAN_MSG rxbuff_mem[RX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER rxbuff = {ALL_BUSSES, NULL, rxbuff_mem, RX_BUFFER_SIZE, 0, 0, NULL};
+CAN_MSG_RING_BUFFER rxbuff = {
+    .BUS_ID = ALL_BUSSES,
+    .hcan = NULL,
+    .message_buffer = rxbuff_mem,
+    .size = RX_BUFFER_SIZE,
+    .head = 0,
+    .fill_level = 0,
+    .mutex = NULL
+};
 
 // TX buffers for each CAN bus
 CAN_MSG txbuff0_mem[TX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER txbuff0 = {GCAN0, NULL, txbuff0_mem, TX_BUFFER_SIZE, 0, 0, NULL};
+CAN_MSG_RING_BUFFER txbuff0 = {
+    .BUS_ID = GCAN0,
+    .hcan = NULL,
+    .message_buffer = txbuff0_mem,
+    .size = TX_BUFFER_SIZE,
+    .head = 0,
+    .fill_level = 0,
+    .mutex = NULL
+};
 
 #if NUM_OF_BUSSES > 1
 CAN_MSG txbuff1_mem[TX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER txbuff1 = {GCAN1, NULL, txbuff1_mem, TX_BUFFER_SIZE, 0, 0, NULL};
+CAN_MSG_RING_BUFFER txbuff1 = {
+    .BUS_ID = GCAN1,
+    .hcan = NULL,
+    .message_buffer = txbuff1_mem,
+    .size = TX_BUFFER_SIZE,
+    .head = 0,
+    .fill_level = 0,
+    .mutex = NULL
+};
 #endif
 
 #if NUM_OF_BUSSES > 2
 CAN_MSG txbuff2_mem[TX_BUFFER_SIZE];
-CAN_MSG_RING_BUFFER txbuff2 = {GCAN2, NULL, txbuff2_mem, TX_BUFFER_SIZE, 0, 0, NULL};
+CAN_MSG_RING_BUFFER txbuff2 = {
+    .BUS_ID = GCAN2,
+    .hcan = NULL,
+    .message_buffer = txbuff2_mem,
+    .size = TX_BUFFER_SIZE,
+    .head = 0,
+    .fill_level = 0,
+    .mutex = NULL
+};
 #endif
 
 

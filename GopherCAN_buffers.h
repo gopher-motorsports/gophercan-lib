@@ -17,7 +17,7 @@
 typedef struct
 {
     CAN_TxHeaderTypeDef header;
-    U8  data[8];
+    U8  data[CAN_DATA_BYTES];
 } CAN_MSG;
 
 typedef struct
