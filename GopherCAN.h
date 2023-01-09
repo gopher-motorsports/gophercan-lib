@@ -23,23 +23,6 @@
 #include "GopherCAN_network.h"
 #include "GopherCAN_buffers.h"
 
-// determine target MCU
-#define F0XX 0
-#define F4XX 4
-#define F7XX 7
-
-#ifdef __STM32F0xx_HAL_H
-#define TARGET F0XX
-#endif
-
-#ifdef __STM32F4xx_HAL_H
-#define TARGET F4XX
-#endif
-
-#ifdef __STM32F7xx_HAL_H
-#define TARGET F7XX
-#endif
-
 typedef enum
 {
     PRIO_HIGH = 0b0,

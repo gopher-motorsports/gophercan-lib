@@ -98,12 +98,12 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID 
 	}
 
 	// The F7xx includes interrupts for when a message is complete. Activate them here
-#if TARGET == F7XX || TARGET == F4XX
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
 	if (HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY) != HAL_OK)
 	{
 		return IRQ_SET_FAILED;
 	}
-#endif // TARGET == F7XX || TARGET == F4XX
+#endif
 
 	// start can!
 	if (HAL_CAN_Start(hcan) != HAL_OK)
@@ -573,7 +573,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
     if (buffer->mutex != NULL) {
         if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
     }
-#if TARGET == F7XX || TARGET == F4XX
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
     // disable TX interrupt to protect buffer
     HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
 #endif
@@ -601,7 +601,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		remove_from_front(buffer);
 	}
 
-#if TARGET == F7XX || TARGET == F4XX
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
     HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
 #endif
     if (buffer->mutex != NULL) {
@@ -1056,7 +1056,7 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 
 
 // the F7xx has ISRs for available TX mailboxes having an opening. All callbacks should service the TX hardware
-#if TARGET == F7XX || TARGET == F4XX
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef* hcan)
 {
     service_can_tx_hardware(hcan);
@@ -1086,6 +1086,6 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
 {
     service_can_tx_hardware(hcan);
 }
-#endif // TARGET == F7XX || TARGET == F4XX
+#endif
 
 // end of GopherCAN.c

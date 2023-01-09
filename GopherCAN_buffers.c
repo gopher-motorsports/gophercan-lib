@@ -87,7 +87,7 @@ void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
     if (buffer->mutex != NULL) {
         if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
     }
-#if TARGET == F7XX || TARGET == F4XX
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
     // protect buffer from interrupts
     HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
 #endif
@@ -130,7 +130,7 @@ void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
     // put the message into the buffer at this position
     copy_message(message, buffer_message);
 
-#if TARGET == F7XX || TARGET == F4XX
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
     HAL_CAN_ActivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
 #endif
     if (buffer->mutex != NULL) {
