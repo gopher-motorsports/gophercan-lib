@@ -3,7 +3,12 @@ from pathlib import Path
 import yaml
 from jinja2 import Template
 
-# python build-network.py configs/[filename].yaml
+# Run: python autogen.py configs/[filename].yaml
+# Generates:
+# ../GopherCAN_network.h
+# ../GopherCAN_network.c
+# ../GopherCAN_names.h
+# ../GopherCAN_names.c
 
 config_path = sys.argv[1]
 
@@ -24,6 +29,18 @@ with open(config_path) as config_file:
         "SIGNED32" : "S32_CAN_STRUCT",
         "SIGNED64" : "S64_CAN_STRUCT",
         "FLOATING" : "FLOAT_CAN_STRUCT"
+    }
+
+    type_names = {
+        "UNSIGNED8" : "UINT_8",
+        "UNSIGNED16" : "UINT_16",
+        "UNSIGNED32" : "UINT_32",
+        "UNSIGNED64" : "UINT_64",
+        "SIGNED8" : "SINT_8",
+        "SIGNED16" : "SINT_16",
+        "SIGNED32" : "SINT_32",
+        "SIGNED64" : "SINT_64",
+        "FLOATING" : "FLOAT"
     }
 
     # rebuild parameter dictionary with IDs as keys
@@ -48,23 +65,23 @@ with open(config_path) as config_file:
         'groups': groups,
         'commands': config['commands'],
         'errors': config['errors'],
-        'param_structs': param_structs
+        'param_structs': param_structs,
+        'type_names': type_names
     }
 
-    print('Generating GopherCAN_network.h...')
-    template_path = Path('templates/GopherCAN_network.h.jinja2')
-    with open(template_path) as template_file:
-        template = Template(template_file.read())
-        output = template.render(data)
-        output_path = Path('../GopherCAN_network.h')
-        with open(output_path, "w") as output_file:
-            output_file.write(output)
+    filenames = [
+        'GopherCAN_network.h',
+        'GopherCAN_network.c',
+        'GopherCAN_names.h',
+        'GopherCAN_names.c'
+    ]
 
-    print('Generating GopherCAN_network.c...')
-    template_path = Path('templates/GopherCAN_network.c.jinja2')
-    with open(template_path) as template_file:
-        template = Template(template_file.read())
-        output = template.render(data)
-        output_path = Path('../GopherCAN_network.c')
-        with open(output_path, "w") as output_file:
-            output_file.write(output)
+    for filename in filenames:
+        print(f'Generating {filename}...')
+        template_path = Path(f'templates/{filename}.jinja2')
+        with open(template_path) as template_file:
+            template = Template(template_file.read())
+            output = template.render(data)
+            output_path = Path(f'../{filename}')
+            with open(output_path, "w") as output_file:
+                output_file.write(output)
