@@ -5,7 +5,7 @@ char* name_strings[NUM_OF_PARAMETERS] =
 {
     "CAN Command",
     {% for name, param in parameters.items() -%}
-    "{{ param.name }}"{% if not loop.last %},{% endif %}
+    "{{ param.name }}",
     {% endfor %}
 };
 
@@ -14,7 +14,7 @@ char* unit_strings[NUM_OF_PARAMETERS] =
 {
     "cmd",
     {% for name, param in parameters.items() -%}
-    "{{ param.unit }}"{% if not loop.last %},{% endif %}
+    "{{ param.unit }}",
     {% endfor %}
 };
 
@@ -23,6 +23,6 @@ PARAM_TYPE_t param_types[NUM_OF_PARAMETERS] =
 {
 	CMD,
     {% for name, param in parameters.items() -%}
-	{{ type_names[param.type] }}{% if not loop.last %},{% endif %}
+	{{ type_names[param.type] }},
     {% endfor %}
 };

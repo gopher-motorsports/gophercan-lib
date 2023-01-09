@@ -5,7 +5,7 @@
 U8 module_bus_number[NUM_OF_MODULES] = {
     ALL_BUSSES,
     {% for name, module in modules.items() -%}
-    {{ module.buses[0] }}{% if not loop.last %},{% endif %}
+    {{ module.buses[0] }},
     {% endfor %}
 };
 
@@ -24,7 +24,7 @@ U8 module_bus_number[NUM_OF_MODULES] = {
 void* PARAMETERS[NUM_OF_PARAMETERS] = {
     &can_command,
     {% for id, param in parameters.items() -%}
-    &{{ param.name }}{% if not loop.last %},{% endif %}
+    &{{ param.name }},
     {% endfor %}
 };
 
@@ -34,8 +34,8 @@ PARAM_GROUP GROUPS[NUM_OF_GROUPS] = {
     {% for id, group in groups.items() -%}
     { {{ id }}, {
         {%- for name in group %}
-        {{- name.upper() }}_ID{% if not loop.last %}, {% endif -%}
-        {% endfor %}} }{% if not loop.last %},{% endif %}
+        {{- name.upper() }}_ID,
+        {%- endfor %}} },
     {% endfor %}
 };
 
