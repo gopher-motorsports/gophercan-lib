@@ -23,6 +23,9 @@ CAN_MSG_RING_BUFFER rxbuff = {
 
 // TX buffers for each CAN bus
 CAN_MSG txbuff0_mem[TX_BUFFER_SIZE];
+const osMutexAttr_t txbuff0_mutex_attr = {
+  .name = "txbuff0"
+};
 CAN_MSG_RING_BUFFER txbuff0 = {
     .BUS_ID = GCAN0,
     .hcan = NULL,
@@ -35,6 +38,9 @@ CAN_MSG_RING_BUFFER txbuff0 = {
 
 #if NUM_OF_BUSSES > 1
 CAN_MSG txbuff1_mem[TX_BUFFER_SIZE];
+const osMutexAttr_t txbuff1_mutex_attr = {
+  .name = "txbuff1"
+};
 CAN_MSG_RING_BUFFER txbuff1 = {
     .BUS_ID = GCAN1,
     .hcan = NULL,
@@ -48,6 +54,9 @@ CAN_MSG_RING_BUFFER txbuff1 = {
 
 #if NUM_OF_BUSSES > 2
 CAN_MSG txbuff2_mem[TX_BUFFER_SIZE];
+const osMutexAttr_t txbuff2_mutex_attr = {
+  .name = "txbuff2"
+};
 CAN_MSG_RING_BUFFER txbuff2 = {
     .BUS_ID = GCAN2,
     .hcan = NULL,

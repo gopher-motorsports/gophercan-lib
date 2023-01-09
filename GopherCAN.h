@@ -21,7 +21,6 @@
 #include "base_types.h"
 #include "main.h" // main.h includes the HAL
 #include "GopherCAN_network.h"
-#include "GopherCAN_buffers.h"
 
 typedef enum
 {
@@ -72,7 +71,7 @@ typedef struct
 //  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID module_id, BXCAN_TYPE bx_type);
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
 
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter

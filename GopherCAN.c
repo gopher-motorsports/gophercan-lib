@@ -5,6 +5,7 @@
 
 #include "GopherCAN.h"
 #include "GopherCAN_network.h"
+#include "GopherCAN_buffers.h"
 
 // static function prototypes
 static S8   init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type);
@@ -47,7 +48,7 @@ U32 hcan_error = HAL_CAN_ERROR_NONE;
 //  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID module_id, BXCAN_TYPE bx_type)
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
 {
 	U8 c;
 
@@ -58,18 +59,18 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID 
 #if NUM_OF_BUSSES > 2
     if (bus_id == GCAN2) {
         txbuff2.hcan = hcan;
-        txbuff2.mutex = tx_mutex;
+        txbuff2.mutex = osMutexNew(&txbuff2_mutex_attr);
     }
 #endif
 #if NUM_OF_BUSSES > 1
     if (bus_id == GCAN1) {
         txbuff1.hcan = hcan;
-        txbuff1.mutex = tx_mutex;
+        txbuff1.mutex = osMutexNew(&txbuff1_mutex_attr);
     }
 #endif
     if (bus_id == GCAN0) {
         txbuff0.hcan = hcan;
-        txbuff0.mutex = tx_mutex;
+        txbuff0.mutex = osMutexNew(&txbuff0_mutex_attr);
     }
 
 	// init HAL_GetTick()
