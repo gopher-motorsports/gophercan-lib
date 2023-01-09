@@ -1,0 +1,153 @@
+busses:
+    bus_0:
+        name: GCAN0
+        baud_rate: 1000000
+        motec_name: Front Bus
+    bus_1:
+        name: GCAN1
+        baud_rate: 1000000
+        motec_name: Middle Bus
+    bus_2:
+        name: GCAN2
+        baud_rate: 1000000
+        motec_name: Rear Bus
+modules:
+    PLM:
+        name: PLM
+        id: 1
+        busses:
+          - GCAN0
+          - GCAN1
+          - GCAN2
+        motec_name: Power and Logging Module
+
+    DAM_FL:
+        name: DAM_FL
+        id: 2
+        busses:
+          - GCAN0
+        motec_name: Front Left Sensor Hub
+
+    DAM_FR:
+        name: DAM_FR
+        id: 3
+        busses:
+          - GCAN0
+        motec_name: Front Right Sensor Hub
+
+    DAM_RL:
+        name: DAM_RL
+        id: 4
+        busses:
+          - GCAN2
+        motec_name: Rear Left Sensor Hub
+
+    DAM_RR:
+        name: DAM_RR
+        id: 5
+        busses:
+          - GCAN2
+        motec_name: Rear Right Sensor Hub
+    VCU:
+        name: VCU
+        id: 6
+        busses:
+          - GCAN1
+        motec_name: Vehicle Control Unit
+
+commands:
+    SET_LED_STATE:
+        name: SET_LED_STATE
+        id: 0
+        param_0: LED state
+        param_1: LED state (duplicate)
+        param_2: LED state (duplicate)
+        param_3: LED state (duplicate)
+        comment: Only the first led_state is used, the rest are duplication for testing
+    SET_RTC_TIME:
+        name: SET_RTC_TIME
+        id: 1
+        param_0: hour
+        param_1: minute
+        param_2: second
+        param_3: UNUSED
+        comment: pass in the hours, minutes, and seconds to set the RTC time. This
+            is in 24 hour format
+    SET_RTC_DATE:
+        name: SET_RTC_DATE
+        id: 2
+        param_0: year
+        param_1: month
+        param_2: day
+        param_3: weekday
+        comment: pass in the year, month, date, and day of week to set the RTC date.
+            Year is number of years since 1970. For weekday, mon = 1, teus = 2, ...,
+            sun = 7
+    SEND_BUCKET_PARAMS:
+        name: SEND_BUCKET_PARAMS
+        id: 3
+        param_0: UNUSED
+        param_1: UNUSED
+        param_2: UNUSED
+        param_3: UNUSED
+        comment: Command to start the DLM-DAM initialization process
+    SET_BUCKET_SIZE:
+        name: SET_BUCKET_SIZE
+        id: 4
+        param_0: bucket ID
+        param_1: number of parameters in that bucket
+        param_2: UNUSED
+        param_3: UNUSED
+        comment: Sets the number of parameters in the bucket specified by the bucket
+            ID
+    ADD_PARAM_TO_BUCKET:
+        name: ADD_PARAM_TO_BUCKET
+        id: 5
+        param_0: bucket ID
+        param_1: parameter ID - most significan byte
+        param_2: parameter ID - least significan byte
+        param_3: UNUSED
+        comment: Adds a specified parameter to the specified DLM bucket
+    BUCKET_OK:
+        name: BUCKET_OK
+        id: 6
+        param_0: bucket ID
+        param_1: UNUSED
+        param_2: UNUSED
+        param_3: UNUSED
+        comment: This command is sent when the bucket has the number of parameters
+            it expects
+
+    LOG_COMPLETE:
+        name: LOG_COMPLETE
+        id: 7
+        param_0: UNUSED
+        param_1: UNUSED
+        param_2: UNUSED
+        param_3: UNUSED
+        comment: Sent by the DLM after completing a write to storage
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
+
+    COMMAND_ID_NOT_FOUND:
+        name: COMMAND_ID_NOT_FOUND
+        id: 1
+
+    PARAM_NOT_ENABLED:
+        name: PARAM_NOT_ENABLED
+        id: 2
+
+    SIZE_ERROR:
+        name: SIZE_ERROR
+        id: 3
+
+    DATATYPE_NOT_FOUND:
+        name: DATATYPE_NOT_FOUND
+        id: 4
+
+    COMMAND_NOT_ENABLED:
+        name: COMMAND_NOT_ENABLED
+        id: 5
