@@ -10,6 +10,37 @@ from jinja2 import Template
 # ../GopherCAN_names.h
 # ../GopherCAN_names.c
 
+param_structs = {
+    "UNSIGNED8" : "U8_CAN_STRUCT",
+    "UNSIGNED16" : "U16_CAN_STRUCT",
+    "UNSIGNED32" : "U32_CAN_STRUCT",
+    "UNSIGNED64" : "U64_CAN_STRUCT",
+    "SIGNED8" : "S8_CAN_STRUCT",
+    "SIGNED16" : "S16_CAN_STRUCT",
+    "SIGNED32" : "S32_CAN_STRUCT",
+    "SIGNED64" : "S64_CAN_STRUCT",
+    "FLOATING" : "FLOAT_CAN_STRUCT"
+}
+
+type_names = {
+    "UNSIGNED8" : "UINT_8",
+    "UNSIGNED16" : "UINT_16",
+    "UNSIGNED32" : "UINT_32",
+    "UNSIGNED64" : "UINT_64",
+    "SIGNED8" : "SINT_8",
+    "SIGNED16" : "SINT_16",
+    "SIGNED32" : "SINT_32",
+    "SIGNED64" : "SINT_64",
+    "FLOATING" : "FLOAT"
+}
+
+filenames = [
+    'GopherCAN_network.h',
+    'GopherCAN_network.c',
+    'GopherCAN_names.h',
+    'GopherCAN_names.c'
+]
+
 config_path = sys.argv[1]
 
 if not Path(config_path).exists():
@@ -19,41 +50,22 @@ if not Path(config_path).exists():
 with open(config_path) as config_file:
     config = yaml.safe_load(config_file)
 
-    param_structs = {
-        "UNSIGNED8" : "U8_CAN_STRUCT",
-        "UNSIGNED16" : "U16_CAN_STRUCT",
-        "UNSIGNED32" : "U32_CAN_STRUCT",
-        "UNSIGNED64" : "U64_CAN_STRUCT",
-        "SIGNED8" : "S8_CAN_STRUCT",
-        "SIGNED16" : "S16_CAN_STRUCT",
-        "SIGNED32" : "S32_CAN_STRUCT",
-        "SIGNED64" : "S64_CAN_STRUCT",
-        "FLOATING" : "FLOAT_CAN_STRUCT"
-    }
-
-    type_names = {
-        "UNSIGNED8" : "UINT_8",
-        "UNSIGNED16" : "UINT_16",
-        "UNSIGNED32" : "UINT_32",
-        "UNSIGNED64" : "UINT_64",
-        "SIGNED8" : "SINT_8",
-        "SIGNED16" : "SINT_16",
-        "SIGNED32" : "SINT_32",
-        "SIGNED64" : "SINT_64",
-        "FLOATING" : "FLOAT"
-    }
-
     # rebuild parameter dictionary with IDs as keys
     parameters = {}
-    for name, value in config['parameters'].items():
-        value['name'] = name
-        parameters[value['id']] = value
+    for name, param in config['parameters'].items():
+        if param['id'] in parameters:
+            print(f"ERROR: \"{name}\" has the same ID as \"{parameters[param['id']]['name']}\"")
+            print('Exiting...')
+            sys.exit()
+        else:
+            parameters[param['id']] = param
+            parameters[param['id']]['name'] = name
 
     # build group blueprints
     groups = {}
-    for id, value in config['groups'].items():
+    for id, group in config['groups'].items():
         blueprint = ['EMPTY'] * 8
-        for param in value:
+        for param in group:
             for i in range(param['length']):
                 blueprint[param['start'] + i] = parameters[param['id']]['name']
         groups[id] = blueprint
@@ -68,13 +80,6 @@ with open(config_path) as config_file:
         'param_structs': param_structs,
         'type_names': type_names
     }
-
-    filenames = [
-        'GopherCAN_network.h',
-        'GopherCAN_network.c',
-        'GopherCAN_names.h',
-        'GopherCAN_names.c'
-    ]
 
     for filename in filenames:
         print(f'Generating {filename}...')
