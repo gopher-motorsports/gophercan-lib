@@ -54,6 +54,11 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE 
 	// set the current module
 	this_module_id = module_id;
 
+	// check for invalid bus ID
+	if (!(bus_id == GCAN0 || bus_id == GCAN1 || bus_id == GCAN2)) {
+	    return INIT_FAILED;
+	}
+
 	// attach hcan and mutex to appropriate buffer
 #if NUM_OF_BUSSES > 2
     if (bus_id == GCAN2) {
