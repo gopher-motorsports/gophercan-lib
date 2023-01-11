@@ -59,8 +59,7 @@ extern U8 module_bus_number[NUM_OF_MODULES];
 // *** PARAMETERS ***
 
 typedef enum {
-    EMPTY_ID = -1,
-    CAN_COMMAND_ID = 0,
+    EMPTY_ID = 0,
     {% for id, value in parameters.items() -%}
     {{ value.name.upper() }}_ID = {{ id }},
     {% endfor %}
@@ -149,14 +148,6 @@ extern PARAM_GROUP GROUPS[NUM_OF_GROUPS];
 
 // *** COMMANDS ***
 
-typedef struct
-{
-    U32 last_rx;
-    U8  command_id;
-    U8  command_parameter;
-    GCAN_PARAM_ID param_id;
-} CAN_COMMAND_STRUCT;
-
 typedef enum
 {
     {% for name, value in commands.items() -%}
@@ -164,8 +155,6 @@ typedef enum
     {% endfor %}
     NUM_OF_COMMANDS
 } GCAN_COMMAND_ID;
-
-extern CAN_COMMAND_STRUCT can_command;
 
 // *** ERRORS ***
 

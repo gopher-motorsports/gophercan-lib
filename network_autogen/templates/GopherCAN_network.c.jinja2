@@ -12,6 +12,8 @@ U8 module_bus_number[NUM_OF_MODULES] = {
 };
 
 // *** PARAMETERS ***
+
+CAN_INFO_STRUCT empty_param = {0};
 {% for id, param in parameters.items() %}
 {{ param_structs[param.type] }} {{ param.name }} = {
     .info = {
@@ -30,7 +32,7 @@ U8 module_bus_number[NUM_OF_MODULES] = {
 };
 {% endfor %}
 void* PARAMETERS[NUM_OF_PARAMETERS] = {
-    &can_command,
+    &empty_param,
     {% for id, param in parameters.items() -%}
     &{{ param.name }},
     {% endfor %}
@@ -47,13 +49,4 @@ PARAM_GROUP GROUPS[NUM_OF_GROUPS] = {
             {{- name.upper() }}_ID, {% endfor -%}}
     },
     {% endfor %}
-};
-
-// *** COMMANDS ***
-
-CAN_COMMAND_STRUCT can_command = {
-    .last_rx = 0,
-    .command_id = 0,
-    .command_parameter = 0,
-    .param_id = CAN_COMMAND_ID
 };

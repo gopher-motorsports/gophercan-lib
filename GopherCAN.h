@@ -66,7 +66,6 @@ typedef struct
 // params:
 //  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
-//  osMutexId_t tx_mutex:    CMSIS mutex to attach to the TX buffer on this bus
 //  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
 //  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:

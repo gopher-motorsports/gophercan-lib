@@ -43,7 +43,6 @@ U32 hcan_error = HAL_CAN_ERROR_NONE;
 // params:
 //  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
-//  osMutexId_t tx_mutex:    CMSIS mutex to attach to the TX buffer on this bus
 //  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
 //  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
@@ -258,7 +257,7 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 		return BAD_MODULE_ID;
 	}
 
-	if (parameter <= CAN_COMMAND_ID || parameter >= NUM_OF_PARAMETERS)
+	if (parameter <= EMPTY_ID || parameter >= NUM_OF_PARAMETERS)
 	{
 		return BAD_PARAMETER_ID;
 	}
@@ -315,7 +314,7 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 	id.dest_module = dest_module;
 	id.source_module = this_module_id;
 	id.error = FALSE;
-	id.parameter = CAN_COMMAND_ID;
+	id.parameter = EMPTY_ID;
 
 	message.header.ExtId = build_message_id(&id);
 	message.header.IDE = CAN_ID_EXT;
@@ -373,7 +372,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
             GCAN_PARAM_ID id = group->slots[i-1];
             if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) {
                 return BAD_PARAMETER_ID;
-            } else if (id > CAN_COMMAND_ID) {
+            } else {
                 CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
                 err = encode_parameter(param, message.data, param_start, param_length);
                 if (err) return err;
@@ -763,7 +762,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
             GCAN_PARAM_ID id = group->slots[i-1];
             if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) {
                 return BAD_PARAMETER_ID;
-            } else if (id > CAN_COMMAND_ID) {
+            } else {
                 CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
                 param->last_rx = HAL_GetTick();
                 err = decode_parameter(param, message->data, param_start, param_length);
@@ -786,8 +785,6 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 static S8 service_can_rx_message_ext(CAN_MSG* message)
 {
 	CAN_ID id;
-	CAN_INFO_STRUCT* data_struct = 0;
-
 	get_message_id(&id, message);
 
 	// A double check to make sure this message is actually for this module (most useful in the CAN router)
@@ -814,18 +811,15 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 	}
 
 	// error checking on the parameter requested
-	if (id.parameter < 0 || id.parameter >= NUM_OF_PARAMETERS)
+	if (id.parameter < EMPTY_ID || id.parameter >= NUM_OF_PARAMETERS)
 	{
 		send_error_message(&id, ID_NOT_FOUND);
 
 		return NOT_FOUND_ERR;
 	}
-	
-	// get the associated data struct and set last_rx
-	data_struct = (CAN_INFO_STRUCT*)(PARAMETERS[id.parameter]);
 
     // run command: run the command specified by the CAN message on this module
-	if (data_struct->TYPE == COMMAND)
+	if (id.parameter == EMPTY_ID)
 	{
 		return run_can_command(message, &id);
 	}
@@ -853,7 +847,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// the requested parameter is stored in id->parameter of the received CAN message
-	if (id->parameter <= CAN_COMMAND_ID || id->parameter >= NUM_OF_PARAMETERS)
+	if (id->parameter <= EMPTY_ID || id->parameter >= NUM_OF_PARAMETERS)
 	{
 		send_error_message(id, ID_NOT_FOUND);
 

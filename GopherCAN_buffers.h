@@ -32,7 +32,7 @@ typedef struct
 } CAN_MSG_RING_BUFFER;
 
 // buffer mutex timeout in ticks (usually 1ms)
-#define MUTEX_TIMEOUT 500
+#define MUTEX_TIMEOUT 5
 
 #define IS_FULL(buffer) ((buffer)->fill_level >= (buffer)->size)
 #define IS_EMPTY(buffer) ((buffer)->fill_level == 0)
