@@ -36,16 +36,10 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
-
+        
 groups:
-    0x1: [
-        { id: 1, start: 0, length: 2 },
-        { id: 2, start: 2, length: 2 },
-    ]
-    0x12: [
-        { id: 1, start: 0, length: 1 },
-        { id: 2, start: 2, length: 1 },
-    ]
+    0x1: [{id: 1, start: 0, length: 2}, {id: 2, start: 2, length: 2}]
+    0x12: [{id: 1, start: 0, length: 1}, {id: 2, start: 2, length: 1}]
 
 commands:
     SET_LED_STATE:
@@ -61,7 +55,8 @@ commands:
         param_1: minute
         param_2: second
         param_3: UNUSED
-        comment: pass in the hours, minutes, and seconds to set the RTC time in 24h format
+        comment: pass in the hours, minutes, and seconds to set the RTC time in 24h
+            format
 
 errors:
     ID_NOT_FOUND:

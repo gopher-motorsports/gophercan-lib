@@ -3,6 +3,9 @@ from pathlib import Path
 import yaml
 from jinja2 import Template
 
+# This script imports a .yaml config file and generates resources for the GopherCAN library
+# see configs/example.yaml for an example configuration
+
 # Run: python autogen.py configs/[filename].yaml
 # Generates:
 # ../GopherCAN_network.h
@@ -47,46 +50,49 @@ if not Path(config_path).exists():
     print('ERROR: Invalid configuration path')
     sys.exit()
 
+print('Loading configuration...')
 with open(config_path) as config_file:
     config = yaml.safe_load(config_file)
 
-    # rebuild parameter dictionary with IDs as keys
-    parameters = {}
-    for name, param in config['parameters'].items():
-        if param['id'] in parameters:
-            print(f"ERROR: \"{name}\" has the same ID as \"{parameters[param['id']]['name']}\"")
-            print('Exiting...')
-            sys.exit()
-        else:
-            parameters[param['id']] = param
-            parameters[param['id']]['name'] = name
+# rebuild parameter dictionary with IDs as keys
+parameters = {}
+for name, param in config['parameters'].items():
+    if param['id'] in parameters:
+        print(f"ERROR: \"{name}\" has the same ID as \"{parameters[param['id']]['name']}\"")
+        print('Exiting...')
+        sys.exit()
+    else:
+        parameters[param['id']] = param
+        parameters[param['id']]['name'] = name
 
-    # build group blueprints
-    groups = {}
-    for id, group in config['groups'].items():
-        blueprint = ['EMPTY'] * 8
-        for param in group:
-            for i in range(param['length']):
-                blueprint[param['start'] + i] = parameters[param['id']]['name']
-        groups[id] = blueprint
+# build group blueprints
+groups = {}
+for id, group in config['groups'].items():
+    blueprint = ['EMPTY'] * 8
+    for param in group:
+        for i in range(param['length']):
+            blueprint[param['start'] + i] = parameters[param['id']]['name']
+    groups[id] = blueprint
 
-    data = {
-        'buses': config['buses'],
-        'modules': config['modules'],
-        'parameters': parameters,
-        'groups': groups,
-        'commands': config['commands'],
-        'errors': config['errors'],
-        'param_structs': param_structs,
-        'type_names': type_names
-    }
+data = {
+    'buses': config['buses'],
+    'modules': config['modules'],
+    'parameters': parameters,
+    'groups': groups,
+    'commands': config['commands'],
+    'errors': config['errors'],
+    'param_structs': param_structs,
+    'type_names': type_names
+}
 
-    for filename in filenames:
-        print(f'Generating {filename}...')
-        template_path = Path(f'templates/{filename}.jinja2')
-        with open(template_path) as template_file:
-            template = Template(template_file.read())
-            output = template.render(data)
-            output_path = Path(f'../{filename}')
-            with open(output_path, "w") as output_file:
-                output_file.write(output)
+for filename in filenames:
+    print(f'Generating {filename}...')
+    template_path = Path(f'templates/{filename}.jinja2')
+    with open(template_path) as template_file:
+        template = Template(template_file.read())
+        output = template.render(data)
+        output_path = Path(f'../{filename}')
+        with open(output_path, "w") as output_file:
+            output_file.write(output)
+
+print('Done')
