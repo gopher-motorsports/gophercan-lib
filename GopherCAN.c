@@ -20,6 +20,7 @@ static S8   service_can_rx_message_ext(CAN_MSG* message);
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
+static void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 
 
 // all of the custom functions and an array to enable or disable
@@ -566,7 +567,7 @@ S8 mod_custom_can_func_state(GCAN_COMMAND_ID command_id, U8 state)
 //  then will fill as many tx mailboxes as possible from the tx_message_buffer
 //
 //  designed to be called at high priority on 1ms loop
-void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
+static void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 {
 	CAN_MSG* message;
 	CAN_MSG_RING_BUFFER* buffer;
@@ -574,14 +575,6 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 
 	// With multiple busses, choose the correct bus buffer to be working with
 	buffer = choose_tx_buffer_from_hcan(hcan);
-
-    if (buffer->mutex != NULL) {
-        if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
-    }
-#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
-    // disable TX interrupt to protect buffer
-    HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-#endif
 
 	// add messages to the the TX mailboxes until they are full
 	while (!IS_EMPTY(buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
@@ -606,6 +599,31 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		remove_from_front(buffer);
 	}
 
+	return;
+}
+
+// service_can_tx
+// Calls service_can_tx_hardware
+// Acquires mutexes and temporarily disables interrupts
+//  designed to be called at high priority on 1ms loop
+void service_can_tx(CAN_HandleTypeDef* hcan)
+{
+    CAN_MSG_RING_BUFFER* buffer;
+
+    // find buffer connected to this bus
+    buffer = choose_tx_buffer_from_hcan(hcan);
+
+    // protect buffer from RTOS thread switching
+    if (buffer->mutex != NULL) {
+        if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
+    }
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
+    // protect buffer from interrupts
+    HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+#endif
+
+    service_can_tx_hardware(hcan);
+
 #if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
     HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
 #endif
@@ -613,7 +631,7 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
         osMutexRelease(buffer->mutex);
     }
 
-	return;
+    return;
 }
 
 

@@ -133,13 +133,6 @@ S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, v
 //  error codes specified in GopherCAN.h
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 
-// service_can_tx_hardware
-//  Method to interact directly with the CAN registers through the HAL_CAN commands.
-//  then will fill as many tx mailboxes as possible from the tx_message_buffer
-//
-//  designed to be called at high priority on 1ms loop
-void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
-
 // service_can_rx_hardware
 //  Method to interact directly with the CAN registers through the HAL_CAN functions.
 //  Will take all messages from rx_mailbox (CAN_RX_FIFO0 or CAN_RX_FIFO1)
@@ -163,6 +156,12 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 //
 //  call in a 1 ms or faster loop
 S8 service_can_rx_buffer(void);
+
+// service_can_tx
+// Calls service_can_tx_hardware
+// Acquires mutexes and temporarily disables interrupts
+//  designed to be called at high priority on 1ms loop
+void service_can_tx(CAN_HandleTypeDef* hcan);
 
 // function to add to the custom CAN commands by default just in case
 void do_nothing(MODULE_ID sending_module, void* param,
