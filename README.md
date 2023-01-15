@@ -9,7 +9,7 @@ The primary functionality of the library is contained in 'GopherCAN.c' and 'Goph
 The following are functions provided by GopherCAN.  More detailed usage information for these functions can be found in the 'GopherCAN.h' file.
 
 ```c
-S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, osMutexId_t tx_mutex, MODULE_ID module_id, BXCAN_TYPE bx_type);
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
 
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 
@@ -23,13 +23,11 @@ S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, v
 
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 
-void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
-
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 
-void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
-
 S8 service_can_rx_buffer(void);
+
+void service_can_tx(CAN_HandleTypeDef* hcan);
 ```
 
 ## Library Configuration
@@ -58,3 +56,9 @@ Projects using the GopherCAN library should include a 'GopherCAN_config.h' file:
 
 #endif
 ```
+
+## Network Configuration
+
+`network_autogen/` is used to auto-generate `GopherCAN_network.h/c`.
+
+Run `python autogen.py configs/[filename].yaml` to generate the network files. See `network_autogen/configs/example.yaml` for an example.
