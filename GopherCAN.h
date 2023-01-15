@@ -14,48 +14,13 @@
 // look at the file "GopherCAN_configs_example.h" for an example
 #include "GopherCAN_config.h"
 
-
 #ifndef GOPHERCAN_CONFIG_H
 #error "Problem with GopherCAN_config.h"
 #endif
 
-
 #include "base_types.h"
-#include "GopherCAN_structs.h"
-#include "GopherCAN_ring_buffer.h"
-#include "GopherCAN_ids.h"
-
-
-// make sure the target types are defined even if the dev forgot
-#ifndef F0XX
-#define F0XX -1
-#endif
-#ifndef F4XX
-#define F4XX -4
-#endif
-#ifndef F7XX
-#define F7XX -7
-#endif
-
-// choose the correct libraries to use based on the type of module
-#if TARGET == F0XX
-#include "stm32f0xx_hal.h"
-#include "stm32f0xx_hal_can.h"
-#endif
-
-#if TARGET == F4XX
-#include "stm32f4xx_hal.h"
-#include "stm32f4xx_hal_can.h"
-#endif
-
-#if TARGET == F7XX
-#include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_can.h"
-#endif
-
-// get the externs from the auto-generated file
-#define AUTOGEN_EXTERNS
-#include "GopherCAN_ids.h"
+#include "main.h" // main.h includes the HAL
+#include "GopherCAN_network.h"
 
 typedef enum
 {
@@ -70,16 +35,27 @@ typedef enum
     BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
 
+typedef union
+{
+    float f;
+    U32 u32;
+} FLOAT_CONVERTER;
 
+typedef struct
+{
+    U8  priority;
+    U8  dest_module;
+    U8  source_module;
+    U8  error;
+    U16 parameter;
+} CAN_ID;
 
-
-// externs for arrays in GopherCAN_ids.c
-extern void* all_parameter_structs[NUM_OF_PARAMETERS];
-extern U8 parameter_data_types[NUM_OF_PARAMETERS];
-#ifdef MULTI_BUS
-extern U8 module_bus_number[NUM_OF_MODULES];
-#endif // MULTI_BUS
-
+typedef struct
+{
+    void (*func_ptr)(U8, void*, U8, U8, U8, U8);
+    U8    func_enabled;
+    void* param_ptr;
+} CUST_FUNC;
 
 // function prototypes
 
@@ -88,19 +64,13 @@ extern U8 module_bus_number[NUM_OF_MODULES];
 //	as a filter. All parameters that should be enabled should be set after
 //  calling this function
 // params:
+//  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
 //  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
 //  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
-
-// set_all_params_state
-//  Function to set each parameter in gopherCAN to enabled(true) or disabled (false). This
-//  is easier than manually enabling all of them.
-// params:
-//  boolean enabled: the state to set all of the parameters to
-void set_all_params_state(boolean enabled);
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
 
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
@@ -130,16 +100,12 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 
 // send_parameter
-//  function to directly send a CAN message with the specified parameter to
-//  another module
+// encodes and sends the specified parameter's group in a standard 11-bit CAN frame
 // params:
-//  PRIORITY priority:        PRIO_LOW or PRIO_HIGH
-//  MODULE_ID dest_module:    what module to send the parameter to
-//  GCAN_PARAM_ID parameter:  what parameter to send
+// CAN_INFO_STRUCT* param: parameter to send (along with its group)
 // returns:
-//  error codes specified in GopherCAN.h
-
-S8 send_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+// error codes specified in GopherCAN.h
+S8 send_parameter(CAN_INFO_STRUCT* param);
 
 // add_custom_can_func
 //  add a user function to the array of functions to check if
@@ -167,13 +133,6 @@ S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, v
 //  error codes specified in GopherCAN.h
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
 
-// service_can_tx_hardware
-//  Method to interact directly with the CAN registers through the HAL_CAN commands.
-//  then will fill as many tx mailboxes as possible from the tx_message_buffer
-//
-//  designed to be called at high priority on 1ms loop
-void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
-
 // service_can_rx_hardware
 //  Method to interact directly with the CAN registers through the HAL_CAN functions.
 //  Will take all messages from rx_mailbox (CAN_RX_FIFO0 or CAN_RX_FIFO1)
@@ -185,8 +144,6 @@ void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 //
 //  designed to be called as an ISR whenever there is an RX message pending
 void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
-void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
-
 
 // service_can_rx_buffer
 //  this method will take all of the messages in rx_message_buffer and run them through
@@ -200,22 +157,11 @@ void custom_service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 //  call in a 1 ms or faster loop
 S8 service_can_rx_buffer(void);
 
-#ifdef MULTI_BUS
-// define_can_bus
-//  Use this function to associate an hcan handle with a specific GopherCAN bus ID.
-//  Also send in the bus number [0, 2] for choosing which of the three slots to fill
-//  with that bus data.
-//  (Example: if hcan = &hcan1, bus_number = 0. hcan = &hcan2, bus_number = 1, ect)
-// params:
-//  CAN_HandleTypeDef* hcan: Which HAL hcan pointer to assign to this bus
-//  U8 gophercan_bus_id:     What GopherCAN bus id this bus will be assigned to. Reference master spreadsheet
-//  U8 bus_number:           [0,2], Which local CAN bus is being assigned. This same value can be used to modify
-//                            This parameter later if needed
-//
-// WARNING: if MULTI_BUS is defined, this function must be called as part of the initialization step,
-//           right after init() has been called for all active busses
-void define_can_bus(CAN_HandleTypeDef* hcan, U8 gophercan_bus_id, U8 bus_number);
-#endif
+// service_can_tx
+// Calls service_can_tx_hardware
+// Acquires mutexes and temporarily disables interrupts
+//  designed to be called at high priority on 1ms loop
+void service_can_tx(CAN_HandleTypeDef* hcan);
 
 // function to add to the custom CAN commands by default just in case
 void do_nothing(MODULE_ID sending_module, void* param,
@@ -233,13 +179,6 @@ void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #endif
-
-
-// CAN bus IDs. There should be one of these for each GopherCAN bus on the car, plus the ALL_BUSSES define
-#define ALL_BUSSES 0xFF
-#define GCAN0 0
-#define GCAN1 1
-#define GCAN2 2
 
 
 // return messages
@@ -268,40 +207,10 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 #define NOT_ENABLED_ERR         -11
 #define SIZE_ERR                -12
 #define WRONG_DEST_ERR          -13
+#define ENCODING_ERR            -14
+#define DECODING_ERR            -15
 
 #define NOT_IMPLEMENTED         -99
-
-
-// Data types
-typedef enum
-{
-	COMMAND    = 0,
-	UNSIGNED8  = 1,
-	UNSIGNED16 = 2,
-	UNSIGNED32 = 3,
-	UNSIGNED64 = 4,
-	SIGNED8    = 5,
-	SIGNED16   = 6,
-	SIGNED32   = 7,
-	SIGNED64   = 8,
-	FLOATING   = 9
-} DATATYPES;
-
-// data type sizes (in bytes)
-typedef enum
-{
-	REQ_PARAM_SIZE  = 0,
-	COMMAND_SIZE    = 5,
-	UNSIGNED8_SIZE  = 1,
-	UNSIGNED16_SIZE = 2,
-	UNSIGNED32_SIZE = 4,
-	UNSIGNED64_SIZE = 8,
-	SIGNED8_SIZE    = 1,
-	SIGNED16_SIZE   = 2,
-	SIGNED32_SIZE   = 4,
-	SIGNED64_SIZE   = 8,
-	FLOATING_SIZE   = 8
-} DATATYPES_SIZE;
 
 // bxcan slave first filter bank starts at 14
 #define SLAVE_FIRST_FILTER 14
@@ -354,15 +263,6 @@ typedef enum
 #define GET_ID_HIGH(id) ((((id) << 3) >> 16) & 0xffff)
 #define GET_ID_LOW(id) ((((id) << 3) & 0xffff) | CAN_ID_EXT)
 
-// Multi-bus struct
-#ifdef MULTI_BUS
-typedef struct
-{
-	CAN_MSG_RING_BUFFER* tx_buffer;
-	CAN_HandleTypeDef* hcan;
-	U8 gopher_can_id;
-} GCAN_MULTI_BUS_STRUCT;
-#endif
 
 #endif /* GOPHERCAN_H_ */
 

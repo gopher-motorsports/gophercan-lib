@@ -1,0 +1,77 @@
+buses:
+    bus_0:
+        name: GCAN0
+        baud_rate: 1000000
+        motec_name: Front Bus
+    bus_1:
+        name: GCAN1
+        baud_rate: 1000000
+        motec_name: Middle Bus
+    bus_2:
+        name: GCAN2
+        baud_rate: 1000000
+        motec_name: Rear Bus
+
+modules:
+    PLM:
+        name: PLM
+        id: 1
+        buses:
+          - GCAN0
+          - GCAN1
+          - GCAN2
+        motec_name: Power and Logging Module
+
+parameters:
+    rpm_ecu:
+        id: 1
+        group_id: 1
+        name: Engine RPM
+        unit: rpm
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+    engine_temp_ecu:
+        id: 2
+        group_id: 1
+        name: Engine Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+groups:
+    0x1: [{id: 1, start: 0, length: 2}, {id: 2, start: 2, length: 2}]
+    0x12: [{id: 1, start: 0, length: 1}, {id: 2, start: 2, length: 1}]
+
+commands:
+    SET_LED_STATE:
+        name: SET_LED_STATE
+        id: 0
+        param_0: LED state
+        param_1: LED state (duplicate)
+        param_2: LED state (duplicate)
+        param_3: LED state (duplicate)
+        comment: Only the first led_state is used, the rest are duplication for testing
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
+    COMMAND_ID_NOT_FOUND:
+        name: COMMAND_ID_NOT_FOUND
+        id: 1
+    PARAM_NOT_ENABLED:
+        name: PARAM_NOT_ENABLED
+        id: 2
+    SIZE_ERROR:
+        name: SIZE_ERROR
+        id: 3
+    DATATYPE_NOT_FOUND:
+        name: DATATYPE_NOT_FOUND
+        id: 4
+    COMMAND_NOT_ENABLED:
+        name: COMMAND_NOT_ENABLED
+        id: 5
