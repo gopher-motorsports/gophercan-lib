@@ -19,7 +19,9 @@ static S8   service_can_rx_message_std(CAN_MSG* message);
 static S8   service_can_rx_message_ext(CAN_MSG* message);
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
+#if defined(CAN_ROUTER)
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
+#endif
 static void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 
 
@@ -59,6 +61,9 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE 
 	if (!(bus_id == GCAN0 || bus_id == GCAN1 || bus_id == GCAN2)) {
 	    return INIT_FAILED;
 	}
+
+	// TODO theoretically there could be a module that is on Bus 2 and 1, there
+	// is no way to correctly configure this
 
 	// attach hcan and mutex to appropriate buffer
 #if NUM_OF_BUSSES > 2
@@ -383,6 +388,13 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
                 err = encode_parameter(param, message.data, param_start, param_length);
                 if (err) return err;
                 else {
+                	// TODO there is a bug where if the TX fails, the last_tx is
+                	// still updated even though it was not sent
+                	// TODO if two parameter that are in the same group are sent back
+                	// to back, is there a way we can prevent the same group
+                	// from being sent again? Like you could check the last tx
+                	// on the parameter trying to be sent and see if it is the
+                	// same tick as last_tx
                     param->last_tx = HAL_GetTick();
                 }
             }
@@ -1021,6 +1033,7 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 // rout_can_message
 //  Function to be called in service_can_rx_hardware() that will take messages that are
 //  destined for modules on another bus and put that message into the correct TX buffer
+#if defined(CAN_ROUTER)
 static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 {
 	MODULE_ID dest_module = GET_ID_DEST(message->header.ExtId);
@@ -1053,6 +1066,7 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
 	remove_from_front(&rxbuff);
 	add_message_by_highest_prio(dest_tx_buffer, message);
 }
+#endif // #if defined(CAN_ROUTER)
 
 
 // do_nothing
