@@ -64,6 +64,9 @@ for name, param in config['parameters'].items():
     else:
         parameters[param['id']] = param
         parameters[param['id']]['name'] = name
+        
+# add more error checking here
+# TODO
 
 # build group blueprints
 groups = {}

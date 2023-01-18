@@ -422,6 +422,8 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
             value |= ((U64_CAN_STRUCT*) param)->data;
             break;
         case FLOATING:
+        	// TODO floating point I think is wrong, it should be fixed point
+        	// on the bus
             float_con.f = ((FLOAT_CAN_STRUCT*) param)->data;
             value |= float_con.u32;
             break;
@@ -430,6 +432,8 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     }
 
     // apply scale and offset to reduce bits required
+    // TODO add parentheses to make it more clear what is first
+    // TODO scale might be backwards
     value = value * param->SCALE - param->OFFSET;
 
     // move bytes into data field
@@ -462,6 +466,7 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     }
 
     // undo scale and offset
+    // TODO check this as well for encode/decode
     value = (value + param->OFFSET) / param->SCALE;
 
     // restore original type
