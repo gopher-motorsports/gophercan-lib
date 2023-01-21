@@ -374,6 +374,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     U8 param_start = 0;
     U8 param_length = 1;
     S8 err;
+
     for (U8 i = 1; i < CAN_DATA_BYTES; i++) {
         if (group->slots[i] == group->slots[i-1]) {
             // count consecutive slots belonging to the same parameter
@@ -387,16 +388,6 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
                 CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
                 err = encode_parameter(param, message.data, param_start, param_length);
                 if (err) return err;
-                else {
-                	// TODO there is a bug where if the TX fails, the last_tx is
-                	// still updated even though it was not sent
-                	// TODO if two parameter that are in the same group are sent back
-                	// to back, is there a way we can prevent the same group
-                	// from being sent again? Like you could check the last tx
-                	// on the parameter trying to be sent and see if it is the
-                	// same tick as last_tx
-                    param->last_tx = HAL_GetTick();
-                }
             }
 
             param_start = i;
@@ -404,7 +395,29 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
         }
     }
 
-    return tx_can_message(&message);
+    err = tx_can_message(&message);
+    if (err) return err;
+
+    // revisit parameters to update last tx
+    for (U8 i = 1; i < CAN_DATA_BYTES; i++) {
+        if (group->slots[i] != group->slots[i-1]) {
+            GCAN_PARAM_ID id = group->slots[i-1];
+            if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) {
+                return BAD_PARAMETER_ID;
+            } else {
+                CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+                param->last_tx = HAL_GetTick();
+            }
+        }
+    }
+
+    // TODO if two parameter that are in the same group are sent back
+    // to back, is there a way we can prevent the same group
+    // from being sent again? Like you could check the last tx
+    // on the parameter trying to be sent and see if it is the
+    // same tick as last_tx
+
+    return CAN_SUCCESS;
 }
 
 // encode_parameter
