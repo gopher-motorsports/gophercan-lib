@@ -413,47 +413,45 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
-    FLOAT_CONVERTER float_con;
+    float value_fl = 0;
 
-    // represent value as U64
+    // apply quantization and store in U64
     switch (param->TYPE) {
         case UNSIGNED8:
         case SIGNED8:
             value |= ((U8_CAN_STRUCT*) param)->data;
+            value = (value - param->OFFSET) / param->SCALE;
             break;
         case UNSIGNED16:
         case SIGNED16:
             value |= ((U16_CAN_STRUCT*) param)->data;
+            value = (value - param->OFFSET) / param->SCALE;
             break;
         case UNSIGNED32:
         case SIGNED32:
             value |= ((U32_CAN_STRUCT*) param)->data;
+            value = (value - param->OFFSET) / param->SCALE;
             break;
         case UNSIGNED64:
         case SIGNED64:
             value |= ((U64_CAN_STRUCT*) param)->data;
+            value = (value - param->OFFSET) / param->SCALE;
             break;
         case FLOATING:
-        	// TODO floating point I think is wrong, it should be fixed point
-        	// on the bus
-            float_con.f = ((FLOAT_CAN_STRUCT*) param)->data;
-            value |= float_con.u32;
+            value_fl = ((FLOAT_CAN_STRUCT*) param)->data;
+            value_fl = (value_fl - param->OFFSET) / param->SCALE;
+            value |= (U64) value_fl;
             break;
         default:
             return ENCODING_ERR;
     }
-
-    // apply scale and offset to reduce bits required
-    // TODO add parentheses to make it more clear what is first
-    // TODO scale might be backwards
-    value = value * param->SCALE - param->OFFSET;
 
     // move bytes into data field
     for (U8 i = 0; i < length; i++) {
         if (param->ENC == LSB) {
             data[start + i] = (U8)(value >> (i * BITS_IN_BYTE));
         } else if (param->ENC == MSB) {
-            data[start + i] = (U8)(value >> ((param->SIZE - 1 - i) * BITS_IN_BYTE));
+            data[start + i] = (U8)(value >> ((length - 1 - i) * BITS_IN_BYTE));
         } else return ENCODING_ERR;
     }
 
@@ -466,50 +464,54 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
-    FLOAT_CONVERTER float_con;
+    float value_fl = 0;
 
-    // extract bytes into U64
+    // reconstruct U64
     for (U8 i = 0; i < length; i++) {
         if (param->ENC == LSB) {
             value |= data[start + i] << (i * BITS_IN_BYTE);
         } else if (param->ENC == MSB) {
-            value |= data[start + i] << ((param->SIZE - 1 - i) * BITS_IN_BYTE);
+            value |= data[start + i] << ((length - 1 - i) * BITS_IN_BYTE);
         } else return DECODING_ERR;
     }
-
-    // undo scale and offset
-    // TODO check this as well for encode/decode
-    value = (value + param->OFFSET) / param->SCALE;
 
     // restore original type
     switch (param->TYPE) {
         case UNSIGNED8:
+            value = (value * param->SCALE) + param->OFFSET;
             ((U8_CAN_STRUCT*) param)->data = (U8) value;
             break;
         case UNSIGNED16:
+            value = (value * param->SCALE) + param->OFFSET;
             ((U16_CAN_STRUCT*) param)->data = (U16) value;
             break;
         case UNSIGNED32:
+            value = (value * param->SCALE) + param->OFFSET;
             ((U32_CAN_STRUCT*) param)->data = (U32) value;
             break;
         case UNSIGNED64:
+            value = (value * param->SCALE) + param->OFFSET;
             ((U64_CAN_STRUCT*) param)->data = (U64) value;
             break;
         case SIGNED8:
+            value = (value * param->SCALE) + param->OFFSET;
             ((S8_CAN_STRUCT*) param)->data = (S8) value;
             break;
         case SIGNED16:
+            value = (value * param->SCALE) + param->OFFSET;
             ((S16_CAN_STRUCT*) param)->data = (S16) value;
             break;
         case SIGNED32:
+            value = (value * param->SCALE) + param->OFFSET;
             ((S32_CAN_STRUCT*) param)->data = (S32) value;
             break;
         case SIGNED64:
+            value = (value * param->SCALE) + param->OFFSET;
             ((S64_CAN_STRUCT*) param)->data = (S64) value;
             break;
         case FLOATING:
-            float_con.u32 = (U32) value;
-            ((FLOAT_CAN_STRUCT*) param)->data = float_con.f;
+            value_fl = ((float) value * param->SCALE) + param->OFFSET;
+            ((FLOAT_CAN_STRUCT*) param)->data = value_fl;
             break;
         default:
             return DECODING_ERR;
