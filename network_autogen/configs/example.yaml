@@ -25,7 +25,6 @@ modules:
 parameters:
     rpm_ecu:
         id: 1
-        group_id: 1
         name: Engine RPM
         unit: rpm
         type: UNSIGNED16
@@ -34,11 +33,6 @@ parameters:
         offset: 0
     engine_temp_ecu:
         id: 2
-        # TODO is there any way to use some code to attach the ID and group_id
-        # so each of these only have to be defined in one place? This would also
-        # prevent us from configuring it wrong if we mismatched this config and the
-        # group
-        group_id: 1
         name: Engine Temp
         unit: C
         type: FLOATING
@@ -46,9 +40,15 @@ parameters:
         scale: 1
         offset: 0
         
-groups:
-    0x1: [{id: 1, start: 0, length: 2}, {id: 2, start: 2, length: 2}]
-    0x12: [{id: 1, start: 0, length: 1}, {id: 2, start: 2, length: 1}]
+groups: [
+    {
+        id: 1,
+        parameters: [
+            { id: 1, start: 0, length: 2 },
+            { id: 2, start: 2, length: 2 }
+        ]
+    }
+]
 
 commands:
     SET_LED_STATE:

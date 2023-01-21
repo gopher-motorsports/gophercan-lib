@@ -57,25 +57,37 @@ with open(config_path) as config_file:
 # rebuild parameter dictionary with IDs as keys
 parameters = {}
 for name, param in config['parameters'].items():
+    # check for duplicate ID
     if param['id'] in parameters:
         print(f"ERROR: \"{name}\" has the same ID as \"{parameters[param['id']]['name']}\"")
-        print('Exiting...')
         sys.exit()
-    else:
-        parameters[param['id']] = param
-        parameters[param['id']]['name'] = name
-        
-# add more error checking here
-# TODO
+
+    parameters[param['id']] = param
+    parameters[param['id']]['name'] = name
 
 # build group blueprints
 groups = {}
-for id, group in config['groups'].items():
+for group in config['groups']:
     blueprint = ['EMPTY'] * 8
-    for param in group:
+    for param in group['parameters']:
+        # make sure parameter exists
+        if not param['id'] in parameters:
+            print(f"ERROR in group \"{group['id']}\": no parameter with ID \"{param['id']}\"")
+            sys.exit()
+
+        parameter = parameters[param['id']]
+
+        # make sure parameter only belongs to one group
+        if 'group_id' in parameter:
+            print(f"ERROR: \"{parameter['name']}\" was found in multiple groups: \"{parameter['group_id']}\" and \"{group['id']}\"")
+            sys.exit()
+
+        parameter['group_id'] = group['id']
+        # fill parameter name in blueprint
         for i in range(param['length']):
-            blueprint[param['start'] + i] = parameters[param['id']]['name']
-    groups[id] = blueprint
+            blueprint[param['start'] + i] = parameter['name']
+
+    groups[group['id']] = blueprint
 
 data = {
     'buses': config['buses'],
