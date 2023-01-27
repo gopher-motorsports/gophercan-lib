@@ -64,7 +64,6 @@ modules:
 parameters:
     u8_tester:
         id: 1
-        group_id: 1
         name: U8 Tester
         unit: number
         type: UNSIGNED8
@@ -74,7 +73,6 @@ parameters:
 
     u16_tester:
         id: 2
-        group_id: 1
         name: U16 Tester
         unit: number
         type: UNSIGNED16
@@ -84,7 +82,6 @@ parameters:
 
     u32_tester:
         id: 3
-        group_id: 1
         name: U32 Tester
         unit: number
         type: UNSIGNED32
@@ -94,7 +91,6 @@ parameters:
 
     u64_tester:
         id: 4
-        group_id: 2
         name: U64 Tester
         unit: number
         type: UNSIGNED64
@@ -104,7 +100,6 @@ parameters:
 
     s8_tester:
         id: 5
-        group_id: 3
         name: S8 Tester
         unit: number
         type: SIGNED8
@@ -114,7 +109,6 @@ parameters:
 
     s16_tester:
         id: 6
-        group_id: 3
         name: S16 Tester
         unit: number
         type: SIGNED16
@@ -124,7 +118,6 @@ parameters:
 
     s32_tester:
         id: 7
-        group_id: 3
         name: S32 Tester
         unit: number
         type: SIGNED32
@@ -134,7 +127,6 @@ parameters:
 
     s64_tester:
         id: 8
-        group_id: 4
         name: S64 Tester
         unit: number
         type: SIGNED64
@@ -145,7 +137,6 @@ parameters:
     # 8 bit, [0-25.5]
     float_tester:
         id: 9
-        group_id: 5
         name: Float Tester 1
         unit: number
         type: FLOATING
@@ -156,7 +147,6 @@ parameters:
     # 16 bit, [0-655.35]
     float_tester_2:
         id: 10
-        group_id: 5
         name: Float Tester 2
         unit: number
         type: FLOATING
@@ -167,7 +157,6 @@ parameters:
     # 16 bit, [0-65.535]
     float_tester_3:
         id: 11
-        group_id: 5
         name: Float Tester 3
         unit: number
         type: FLOATING
@@ -178,7 +167,6 @@ parameters:
     # 32 bit, [0-429496.7296]
     float_tester_4:
         id: 12
-        group_id: 6
         name: Float Tester 4
         unit: number
         type: FLOATING
@@ -189,7 +177,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_1:
         id: 13
-        group_id: 7
         name: DAM Channel 1
         unit: mm
         type: FLOATING
@@ -200,7 +187,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_2:
         id: 14
-        group_id: 7
         name: DAM Channel 2
         unit: mm
         type: FLOATING
@@ -211,7 +197,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_3:
         id: 15
-        group_id: 7
         name: DAM Channel 3
         unit: mm
         type: FLOATING
@@ -222,7 +207,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_4:
         id: 16
-        group_id: 7
         name: DAM Channel 4
         unit: mm
         type: FLOATING
@@ -233,7 +217,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_5:
         id: 17
-        group_id: 8
         name: DAM Channel 5
         unit: mm
         type: FLOATING
@@ -244,7 +227,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_6:
         id: 18
-        group_id: 8
         name: DAM Channel 6
         unit: mm
         type: FLOATING
@@ -255,7 +237,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_7:
         id: 19
-        group_id: 8
         name: DAM Channel 7
         unit: mm
         type: FLOATING
@@ -266,7 +247,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_8:
         id: 20
-        group_id: 8
         name: DAM Channel 8
         unit: mm
         type: FLOATING
@@ -277,7 +257,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_9:
         id: 21
-        group_id: 9
         name: DAM Channel 9
         unit: mm
         type: FLOATING
@@ -288,7 +267,6 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_10:
         id: 22
-        group_id: 9
         name: DAM Channel 10
         unit: mm
         type: FLOATING
@@ -296,50 +274,75 @@ parameters:
         scale: 0.000762939453125 # [0-50] -> [0-65535]
         offset: 0
 
-
-groups: # TODO
-    0x1: [
-        {id: 1, start: 0, length: 1},
-        {id: 2, start: 1, length: 2},
-        {id: 3, start: 3, length: 4}
+groups: [
+    {
+        id: 0x1,
+        parameters: [
+            {id: 1, start: 0, length: 1},
+            {id: 2, start: 1, length: 2},
+            {id: 3, start: 3, length: 4}
         ]
-    0x2: [
-        {id: 4, start: 0, length: 8}
+    },
+    {
+        id: 0x2,
+        parameters: [
+            {id: 4, start: 0, length: 8}
         ]
-    0x3: [
-        {id: 5, start: 0, length: 1},
-        {id: 6, start: 1, length: 2},
-        {id: 7, start: 3, length: 4}
+    },
+    {
+        id: 0x3,
+        parameters: [
+            {id: 5, start: 0, length: 1},
+            {id: 6, start: 1, length: 2},
+            {id: 7, start: 3, length: 4}
         ]
-    0x4: [
-        {id: 8, start: 0, length: 8}
+    },
+    {
+        id: 0x4,
+        parameters: [
+            {id: 8, start: 0, length: 8}
         ]
-    0x5: [
-        {id: 9, start: 0, length: 1},
-        {id: 10, start: 1, length: 2},
-        {id: 11, start: 3, length: 2}
+    },
+    {
+        id: 0x5,
+        parameters: [
+            {id: 9, start: 0, length: 1},
+            {id: 10, start: 1, length: 2},
+            {id: 11, start: 3, length: 2}
         ]
-    0x6: [
-        {id: 12, start: 0, length: 4}
+    },
+    {
+        id: 0x6,
+        parameters: [
+            {id: 12, start: 0, length: 4}
         ]
-    0x7: [
-        {id: 13, start: 0, length: 2},
-        {id: 14, start: 2, length: 2},
-        {id: 15, start: 4, length: 2},
-        {id: 16, start: 6, length: 2}
+    },
+    {
+        id: 0x7,
+        parameters: [
+            {id: 13, start: 0, length: 2},
+            {id: 14, start: 2, length: 2},
+            {id: 15, start: 4, length: 2},
+            {id: 16, start: 6, length: 2}
         ]
-    0x8: [
-        {id: 17, start: 0, length: 2},
-        {id: 18, start: 2, length: 2},
-        {id: 19, start: 4, length: 2},
-        {id: 20, start: 6, length: 2}
+    },
+    {
+        id: 0x8,
+        parameters: [
+            {id: 17, start: 0, length: 2},
+            {id: 18, start: 2, length: 2},
+            {id: 19, start: 4, length: 2},
+            {id: 20, start: 6, length: 2}
         ]
-    0x9: [
-        {id: 21, start: 0, length: 2},
-        {id: 22, start: 2, length: 2}
+    },
+    {
+        id: 0x9,
+        parameters: [
+            {id: 21, start: 0, length: 2},
+            {id: 22, start: 2, length: 2}
         ]
-
-    
+    }
+]
 
 commands:
     SET_LED_STATE:
