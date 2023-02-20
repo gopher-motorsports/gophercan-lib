@@ -375,16 +375,23 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     U8 param_length = 1;
     S8 err;
 
-    for (U8 i = 1; i < CAN_DATA_BYTES; i++) {
-        if (group->slots[i] == group->slots[i-1]) {
+    for (U8 i = 1; i < CAN_DATA_BYTES; i++)
+    {
+        if (group->slots[i] == group->slots[i-1])
+        {
             // count consecutive slots belonging to the same parameter
             param_length++;
-        } else {
+        }
+        else
+        {
             // start of a new parameter, encode previous and write to data
             GCAN_PARAM_ID id = group->slots[i-1];
-            if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) {
+            if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS)
+            {
                 return BAD_PARAMETER_ID;
-            } else {
+            }
+            else
+            {
                 CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
                 err = encode_parameter(param, message.data, param_start, param_length);
                 if (err) return err;
@@ -399,23 +406,22 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     if (err) return err;
 
     // revisit parameters to update last tx
-    for (U8 i = 1; i < CAN_DATA_BYTES; i++) {
-        if (group->slots[i] != group->slots[i-1]) {
+    for (U8 i = 1; i < CAN_DATA_BYTES; i++)
+    {
+        if (group->slots[i] != group->slots[i-1])
+        {
             GCAN_PARAM_ID id = group->slots[i-1];
-            if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) {
+            if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS)
+            {
                 return BAD_PARAMETER_ID;
-            } else {
+            }
+            else
+            {
                 CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
                 param->last_tx = HAL_GetTick();
             }
         }
     }
-
-    // TODO if two parameter that are in the same group are sent back
-    // to back, is there a way we can prevent the same group
-    // from being sent again? Like you could check the last tx
-    // on the parameter trying to be sent and see if it is the
-    // same tick as last_tx
 
     return CAN_SUCCESS;
 }
