@@ -1,0 +1,375 @@
+buses:
+    bus_0:
+        name: GCAN0
+        baud_rate: 1000000
+        motec_name: Front Bus
+    bus_1:
+        name: GCAN1
+        baud_rate: 1000000
+        motec_name: Middle Bus
+    bus_2:
+        name: GCAN2
+        baud_rate: 1000000
+        motec_name: Rear Bus
+
+modules:
+    DLM:
+        name: DLM
+        id: 1
+        buses:
+            - GCAN0
+            - GCAN1
+            - GCAN2
+        motec_name: Data Logging Module
+
+    DAM_FR:
+        name: DAM_FR
+        id: 2
+        buses:
+            - GCAN0
+        motec_name: Front DAM
+
+    DAM_RL:
+        name: DAM_RL
+        id: 3
+        buses:
+            - GCAN1
+        motec_name: Rear Left DAM
+
+    DAM_RR:
+        name: DAM_RR
+        id: 4
+        buses:
+            - GCAN2
+        motec_name: Rear Right DAM
+    PDM:
+        name: PDM
+        id: 5
+        buses:
+            - GCAN0
+        motec_name: Power Distribution Module
+    TCM:
+        name: TCM
+        id: 6
+        buses:
+            - GCAN1
+        motec_name: Transmission Control Module
+    ACM:
+        name: ACM
+        id: 7
+        buses:
+            - GCAN0
+        motec_name: Areodynamic Control Module
+
+parameters:
+    u8_tester:
+        id: 1
+        name: U8 Tester
+        unit: number
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    u16_tester:
+        id: 2
+        name: U16 Tester
+        unit: number
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    u32_tester:
+        id: 3
+        name: U32 Tester
+        unit: number
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    u64_tester:
+        id: 4
+        name: U64 Tester
+        unit: number
+        type: UNSIGNED64
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s8_tester:
+        id: 5
+        name: S8 Tester
+        unit: number
+        type: SIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s16_tester:
+        id: 6
+        name: S16 Tester
+        unit: number
+        type: SIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s32_tester:
+        id: 7
+        name: S32 Tester
+        unit: number
+        type: SIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s64_tester:
+        id: 8
+        name: S64 Tester
+        unit: number
+        type: SIGNED64
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    # 8 bit, [0-25.5]
+    float_tester:
+        id: 9
+        name: Float Tester 1
+        unit: number
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # 16 bit, [0-655.35]
+    float_tester_2:
+        id: 10
+        name: Float Tester 2
+        unit: number
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+
+    # 16 bit, [0-65.535]
+    float_tester_3:
+        id: 11
+        name: Float Tester 3
+        unit: number
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    # 32 bit, [0-429496.7296]
+    float_tester_4:
+        id: 12
+        name: Float Tester 4
+        unit: number
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0001
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_1:
+        id: 13
+        name: DAM Channel 1
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_2:
+        id: 14
+        name: DAM Channel 2
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_3:
+        id: 15
+        name: DAM Channel 3
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_4:
+        id: 16
+        name: DAM Channel 4
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_5:
+        id: 17
+        name: DAM Channel 5
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_6:
+        id: 18
+        name: DAM Channel 6
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_7:
+        id: 19
+        name: DAM Channel 7
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_8:
+        id: 20
+        name: DAM Channel 8
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_9:
+        id: 21
+        name: DAM Channel 9
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+    # 0-50 (sending mm from pot onto 16bit number)
+    dam_chan_10:
+        id: 22
+        name: DAM Channel 10
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000762939453125 # [0-50] -> [0-65535]
+        offset: 0
+
+groups: [
+    {
+        id: 0x1,
+        parameters: [
+            {id: 1, start: 0, length: 1},
+            {id: 2, start: 1, length: 2},
+            {id: 3, start: 3, length: 4}
+        ]
+    },
+    {
+        id: 0x2,
+        parameters: [
+            {id: 4, start: 0, length: 8}
+        ]
+    },
+    {
+        id: 0x3,
+        parameters: [
+            {id: 5, start: 0, length: 1},
+            {id: 6, start: 1, length: 2},
+            {id: 7, start: 3, length: 4}
+        ]
+    },
+    {
+        id: 0x4,
+        parameters: [
+            {id: 8, start: 0, length: 8}
+        ]
+    },
+    {
+        id: 0x5,
+        parameters: [
+            {id: 9, start: 0, length: 1},
+            {id: 10, start: 1, length: 2},
+            {id: 11, start: 3, length: 2}
+        ]
+    },
+    {
+        id: 0x6,
+        parameters: [
+            {id: 12, start: 0, length: 4}
+        ]
+    },
+    {
+        id: 0x7,
+        parameters: [
+            {id: 13, start: 0, length: 2},
+            {id: 14, start: 2, length: 2},
+            {id: 15, start: 4, length: 2},
+            {id: 16, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x8,
+        parameters: [
+            {id: 17, start: 0, length: 2},
+            {id: 18, start: 2, length: 2},
+            {id: 19, start: 4, length: 2},
+            {id: 20, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x9,
+        parameters: [
+            {id: 21, start: 0, length: 2},
+            {id: 22, start: 2, length: 2}
+        ]
+    }
+]
+
+commands:
+    SET_LED_STATE:
+        name: SET_LED_STATE
+        id: 0
+        param_0: LED state
+        param_1: LED state (duplicate)
+        param_2: LED state (duplicate)
+        param_3: LED state (duplicate)
+        comment: Only the first led_state is used, the rest are duplication for testing
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
+    COMMAND_ID_NOT_FOUND:
+        name: COMMAND_ID_NOT_FOUND
+        id: 1
+    PARAM_NOT_ENABLED:
+        name: PARAM_NOT_ENABLED
+        id: 2
+    SIZE_ERROR:
+        name: SIZE_ERROR
+        id: 3
+    DATATYPE_NOT_FOUND:
+        name: DATATYPE_NOT_FOUND
+        id: 4
+    COMMAND_NOT_ENABLED:
+        name: COMMAND_NOT_ENABLED
+        id: 5
