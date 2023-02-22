@@ -353,8 +353,10 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     PARAM_GROUP* group = NULL;
 
     // find the specified parameter group
-    for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
-        if (GROUPS[i].id == param->GROUP_ID) {
+    for (U8 i = 0; i < NUM_OF_GROUPS; i++)
+    {
+        if (GROUPS[i].id == param->GROUP_ID)
+        {
             group = &GROUPS[i];
             break;
         }
@@ -370,11 +372,48 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     message.header.RTR = DATA_MESSAGE;
     message.header.DLC = 8;
 
+    // run through all of the bytes in the group, putting the correct data in them based
+    // on the parameters that are in this group
+    GCAN_PARAM_ID last_param_id = EMPTY_ID;
+    U8 param_start = 0;
+    U8 param_length = 1;
+    S8 err;
+
+    for (U8 i = 0; i < CAN_DATA_BYTES; i++)
+    {
+    	// EMPTY_IDs in the list are skipped, but the counters are reset
+    	if (group->slots[i] != EMPTY_ID)
+    	{
+    		param_start = i + 1;
+    		param_length = 0;
+    		last_param_id = EMPTY_ID;
+    		continue;
+    	}
+
+    	// check if the next byte in the group is a new parameter
+    	if (group->slots[i] != last_param_id)
+    	{
+    		// this is a new param in the group, add it into the list
+
+    	}
+    }
+
+    // send the message
+    // TODO
+
+    // if successful send, update the last_tx for all of the sent parameters
+    // TODO
+
+    return CAN_SUCCESS;
+
     // encode parameters
     U8 param_start = 0;
     U8 param_length = 1;
     S8 err;
 
+    // TODO bug with the last parameter in the message. Because there is never
+    // a "next param" once we are at the end of the message there is no way to
+    // add the data to the message
     for (U8 i = 1; i < CAN_DATA_BYTES; i++)
     {
         if (group->slots[i] == group->slots[i-1])
@@ -406,6 +445,8 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     if (err) return err;
 
     // revisit parameters to update last tx
+    // TODO same bug with the last not being updated because there is no next to
+    // be not equal to
     for (U8 i = 1; i < CAN_DATA_BYTES; i++)
     {
         if (group->slots[i] != group->slots[i-1])
