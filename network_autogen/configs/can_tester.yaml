@@ -164,7 +164,7 @@ parameters:
         scale: 0.001
         offset: 0
 
-    # 32 bit, [0-429496.7296]
+    # 32 bit, [0-429496.7296] (floats are not this precise)
     float_tester_4:
         id: 12
         name: Float Tester 4

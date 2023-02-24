@@ -383,7 +383,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
     {
     	// EMPTY_IDs in the list are skipped, but the counters are reset
-    	if (group->slots[i] != EMPTY_ID)
+    	if (group->slots[i] == EMPTY_ID)
     	{
     		param_start = 0;
     		param_length = 0;
@@ -427,13 +427,12 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     // if successful send, update the last_tx for all of the sent parameters. This is
     // an inefficient solution as is sets the last_tx for the same parameter many times
     // depending on how many bytes it has
-    U32 tx_time = HAL_GetTick();
     for (U8 c = 0; c < CAN_DATA_BYTES; c++)
     {
     	last_param_id = group->slots[c];
     	if (last_param_id != EMPTY_ID)
     	{
-    		((CAN_INFO_STRUCT*)PARAMETERS[last_param_id])->last_tx = tx_time;
+    		((CAN_INFO_STRUCT*)PARAMETERS[last_param_id])->last_tx = HAL_GetTick();
     	}
     }
 
@@ -509,6 +508,8 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     }
 
     // restore original type
+    // TODO there is some floating point BS here when running the scale and offset on
+    // 32bit (and likely 64bit) numbers
     switch (param->TYPE) {
         case UNSIGNED8:
             value = (value * param->SCALE) + param->OFFSET;
@@ -836,7 +837,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
 	{
 		// EMPTY_IDs in the list are skipped, but the counters are reset
-		if (group->slots[i] != EMPTY_ID)
+		if (group->slots[i] == EMPTY_ID)
 		{
 			param_start = 0;
 			param_length = 0;
