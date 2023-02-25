@@ -1,0 +1,371 @@
+buses:
+    bus_0:
+        name: GCAN0
+        baud_rate: 1000000
+        motec_name: Main Bus
+    bus_1:
+        name: GCAN1
+        baud_rate: 1000000
+        motec_name: Unused
+    bus_2:
+        name: GCAN2
+        baud_rate: 1000000
+        motec_name: Unused
+
+modules:
+    DLM:
+        name: DLM
+        id: 1
+        buses:
+            - GCAN0
+            - GCAN1
+            - GCAN2
+        motec_name: Data Logging Module
+
+    DAM:
+        name: DAM
+        id: 2
+        buses:
+            - GCAN0
+        motec_name: Data Aquisition Module
+        
+    # ECU is also on GCAN0, but is not a GCAN module
+
+parameters:
+    # ECU Sensors:
+    # all are sent on the bus as S16s (MSB) and encoded in GCAN as a float
+    engineRPM_rpm:
+        id: 1
+        name: Engine RPM
+        unit: rpm
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    throttlePos_percent:
+        id: 2
+        name: Throttle Pos
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+    
+    engineTemp_C:
+        id: 3
+        name: Engine Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilTemp_C:
+        id: 4
+        name: Eng Oil Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilPressure_kPa:
+        id: 5
+        name: Eng Oil Pres
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    manifoldPressure_kPa:
+        id: 6
+        name: Manifold Pres
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    manifoldTemp_C:
+        id: 7
+        name: Air Temp Inlet
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    fuelPressure_kPa:
+        id: 8
+        name: Fuel Pres
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    lambda1_LA:
+        id: 9
+        name: Lambda 1
+        unit: LA
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+        
+    # User channel 1
+    waterFlowRate_LPerMin:
+        id: 10
+        name: Water Flow Rate
+        unit: L/min
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    # User channel 2
+    fuelFlowRate_LPerMin:
+        id: 11
+        name: Fuel Flow Rate
+        unit: L/min
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    # User channel 3
+    dynoTorque_V:
+        id: 12
+        name: Dyno Torque
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Internal ECU Parameters:
+    batteryVoltage_V:
+        id: 13
+        name: Battery Volts
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+        
+    ecu5VEng_V:
+        id: 14
+        name: ECU 5V Eng Volts
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+        
+    ecu5VAux_V:
+        id: 15
+        name: ECU 5V Aux Volts
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+
+    ecuTemp_C:
+        id: 16
+        name: ECU Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    aimLambda1_LA:
+        id: 17
+        name: Aim Lambda 1
+        unit: LA
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+        
+    fuelCutLevel_percent:
+        id: 18
+        name: Fuel Cut Level
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.392157
+        offset: 0
+    
+    ignCutLevel_percent:
+        id: 19
+        name: Ign Cut Level
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.392157
+        offset: 0
+        
+    ignAdvance_degrees:
+        id: 20
+        name: Ign Advance
+        unit: dBTDC
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    fuelInjDuty_percent:
+        id: 21
+        name: Fuel Inj Duty
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+    
+    # Aux Output 5
+    oilFanDuty_percent:
+        id: 22
+        name: Oil Fan Duty
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    # Aux Output 6
+    waterPumpDuty_percent:
+        id: 23
+        name: Water Pump Duty
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+
+groups: [
+    # High Frequency ECU (Custom Set 1)
+    {
+        id: 0x100,
+        parameters: [
+            {id: 1, start: 0, length: 2},
+            {id: 2, start: 2, length: 2},
+            {id: 9, start: 4, length: 2},
+            {id: 12, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x101,
+        parameters: [
+            {id: 17, start: 0, length: 2},
+            {id: 18, start: 2, length: 2},
+            {id: 19, start: 4, length: 2},
+            {id: 20, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x102,
+        parameters: [
+            {id: 21, start: 0, length: 2}
+        ]
+    },
+    # Low Frequency ECU (Custom Set 2)
+    {
+        id: 0x200,
+        parameters: [
+            {id: 3, start: 0, length: 2},
+            {id: 4, start: 2, length: 2},
+            {id: 5, start: 4, length: 2},
+            {id: 6, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x201,
+        parameters: [
+            {id: 7, start: 0, length: 2},
+            {id: 8, start: 2, length: 2},
+            {id: 10, start: 4, length: 2},
+            {id: 11, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x202,
+        parameters: [
+            {id: 13, start: 0, length: 2},
+            {id: 14, start: 2, length: 2},
+            {id: 15, start: 4, length: 2},
+            {id: 16, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x203,
+        parameters: [
+            {id: 22, start: 0, length: 2},
+            {id: 23, start: 2, length: 2}
+        ]
+    }
+]
+
+commands:
+    SET_LED_STATE:
+        name: SET_LED_STATE
+        id: 0
+        param_0: LED state
+        param_1: LED state (duplicate)
+        param_2: LED state (duplicate)
+        param_3: LED state (duplicate)
+        comment: Only the first led_state is used, the rest are duplication for testing
+        
+    SET_RTC_TIME:
+        name: SET_RTC_TIME
+        id: 1
+        param_0: hour
+        param_1: minute
+        param_2: second
+        param_3: UNUSED
+        comment: pass in the hours, minutes, and seconds to set the RTC time. This
+            is in 24 hour format
+    SET_RTC_DATE:
+        name: SET_RTC_DATE
+        id: 2
+        param_0: year
+        param_1: month
+        param_2: day
+        param_3: weekday
+        comment: pass in the year, month, date, and day of week to set the RTC date.
+            Year is number of years since 1970. For weekday, mon = 1, teus = 2, ...,
+            sun = 7
+            
+    LOG_COMPLETE:
+        name: LOG_COMPLETE
+        id: 3
+        param_0: UNUSED
+        param_1: UNUSED
+        param_2: UNUSED
+        param_3: UNUSED
+        comment: Sent by the DLM after completing a write to storage
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
+    COMMAND_ID_NOT_FOUND:
+        name: COMMAND_ID_NOT_FOUND
+        id: 1
+    PARAM_NOT_ENABLED:
+        name: PARAM_NOT_ENABLED
+        id: 2
+    SIZE_ERROR:
+        name: SIZE_ERROR
+        id: 3
+    DATATYPE_NOT_FOUND:
+        name: DATATYPE_NOT_FOUND
+        id: 4
+    COMMAND_NOT_ENABLED:
+        name: COMMAND_NOT_ENABLED
+        id: 5
