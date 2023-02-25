@@ -164,7 +164,7 @@ parameters:
         scale: 0.001
         offset: 0
 
-    # 32 bit, [0-429496.7296]
+    # 32 bit, [0-429496.7296] (floats are not this precise)
     float_tester_4:
         id: 12
         name: Float Tester 4
@@ -353,6 +353,35 @@ commands:
         param_2: LED state (duplicate)
         param_3: LED state (duplicate)
         comment: Only the first led_state is used, the rest are duplication for testing
+        
+    SET_RTC_TIME:
+        name: SET_RTC_TIME
+        id: 1
+        param_0: hour
+        param_1: minute
+        param_2: second
+        param_3: UNUSED
+        comment: pass in the hours, minutes, and seconds to set the RTC time. This
+            is in 24 hour format
+    SET_RTC_DATE:
+        name: SET_RTC_DATE
+        id: 2
+        param_0: year
+        param_1: month
+        param_2: day
+        param_3: weekday
+        comment: pass in the year, month, date, and day of week to set the RTC date.
+            Year is number of years since 1970. For weekday, mon = 1, teus = 2, ...,
+            sun = 7
+            
+    LOG_COMPLETE:
+        name: LOG_COMPLETE
+        id: 3
+        param_0: UNUSED
+        param_1: UNUSED
+        param_2: UNUSED
+        param_3: UNUSED
+        comment: Sent by the DLM after completing a write to storage
 
 errors:
     ID_NOT_FOUND:
