@@ -36,7 +36,7 @@ parameters:
     # all are sent on the bus as S16s (MSB) and encoded in GCAN as a float
     engineRPM_rpm:
         id: 1
-        name: Engine RPM
+        motec_name: Engine RPM
         unit: rpm
         type: FLOATING
         encoding: MSB
@@ -45,7 +45,7 @@ parameters:
         
     throttlePos_percent:
         id: 2
-        name: Throttle Pos
+        motec_name: Throttle Pos
         unit: "%"
         type: FLOATING
         encoding: MSB
@@ -54,7 +54,7 @@ parameters:
     
     engineTemp_C:
         id: 3
-        name: Engine Temp
+        motec_name: Engine Temp
         unit: C
         type: FLOATING
         encoding: MSB
@@ -63,7 +63,7 @@ parameters:
         
     oilTemp_C:
         id: 4
-        name: Eng Oil Temp
+        motec_name: Eng Oil Temp
         unit: C
         type: FLOATING
         encoding: MSB
@@ -72,7 +72,7 @@ parameters:
         
     oilPressure_kPa:
         id: 5
-        name: Eng Oil Pres
+        motec_name: Eng Oil Pres
         unit: kPa
         type: FLOATING
         encoding: MSB
@@ -81,7 +81,7 @@ parameters:
         
     manifoldPressure_kPa:
         id: 6
-        name: Manifold Pres
+        motec_name: Manifold Pres
         unit: kPa
         type: FLOATING
         encoding: MSB
@@ -90,7 +90,7 @@ parameters:
         
     manifoldTemp_C:
         id: 7
-        name: Air Temp Inlet
+        motec_name: Air Temp Inlet
         unit: C
         type: FLOATING
         encoding: MSB
@@ -99,7 +99,7 @@ parameters:
         
     fuelPressure_kPa:
         id: 8
-        name: Fuel Pres
+        motec_name: Fuel Pres
         unit: kPa
         type: FLOATING
         encoding: MSB
@@ -108,7 +108,7 @@ parameters:
         
     lambda1_LA:
         id: 9
-        name: Lambda 1
+        motec_name: Lambda 1
         unit: LA
         type: FLOATING
         encoding: MSB
@@ -118,7 +118,7 @@ parameters:
     # User channel 1
     waterFlowRate_LPerMin:
         id: 10
-        name: Water Flow Rate
+        motec_name: Water Flow Rate
         unit: L/min
         type: FLOATING
         encoding: MSB
@@ -128,7 +128,7 @@ parameters:
     # User channel 2
     fuelFlowRate_LPerMin:
         id: 11
-        name: Fuel Flow Rate
+        motec_name: Fuel Flow Rate
         unit: L/min
         type: FLOATING
         encoding: MSB
@@ -138,17 +138,17 @@ parameters:
     # User channel 3
     dynoTorque_V:
         id: 12
-        name: Dyno Torque
+        motec_name: Dyno Torque
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
+        scale: 0.001
         offset: 0
 
     # Internal ECU Parameters:
     batteryVoltage_V:
         id: 13
-        name: Battery Volts
+        motec_name: Battery Volts
         unit: V
         type: FLOATING
         encoding: MSB
@@ -157,25 +157,25 @@ parameters:
         
     ecu5VEng_V:
         id: 14
-        name: ECU 5V Eng Volts
+        motec_name: ECU 5V Eng Volts
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.01
+        scale: 0.001
         offset: 0
         
     ecu5VAux_V:
         id: 15
-        name: ECU 5V Aux Volts
+        motec_name: ECU 5V Aux Volts
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.01
+        scale: 0.001
         offset: 0
 
     ecuTemp_C:
         id: 16
-        name: ECU Temp
+        motec_name: ECU Temp
         unit: C
         type: FLOATING
         encoding: MSB
@@ -184,7 +184,7 @@ parameters:
 
     aimLambda1_LA:
         id: 17
-        name: Aim Lambda 1
+        motec_name: Aim Lambda 1
         unit: LA
         type: FLOATING
         encoding: MSB
@@ -193,7 +193,7 @@ parameters:
         
     fuelCutLevel_percent:
         id: 18
-        name: Fuel Cut Level
+        motec_name: Fuel Cut Level
         unit: "%"
         type: FLOATING
         encoding: MSB
@@ -202,7 +202,7 @@ parameters:
     
     ignCutLevel_percent:
         id: 19
-        name: Ign Cut Level
+        motec_name: Ign Cut Level
         unit: "%"
         type: FLOATING
         encoding: MSB
@@ -211,7 +211,7 @@ parameters:
         
     ignAdvance_degrees:
         id: 20
-        name: Ign Advance
+        motec_name: Ign Advance
         unit: dBTDC
         type: FLOATING
         encoding: MSB
@@ -220,7 +220,7 @@ parameters:
         
     fuelInjDuty_percent:
         id: 21
-        name: Fuel Inj Duty
+        motec_name: Fuel Inj Duty
         unit: "%"
         type: FLOATING
         encoding: MSB
@@ -230,7 +230,7 @@ parameters:
     # Aux Output 5
     oilFanDuty_percent:
         id: 22
-        name: Oil Fan Duty
+        motec_name: Oil Fan Duty
         unit: "%"
         type: FLOATING
         encoding: MSB
@@ -240,7 +240,7 @@ parameters:
     # Aux Output 6
     waterPumpDuty_percent:
         id: 23
-        name: Water Pump Duty
+        motec_name: Water Pump Duty
         unit: "%"
         type: FLOATING
         encoding: MSB

@@ -7,7 +7,7 @@ char* name_strings[NUM_OF_PARAMETERS] =
 {
     "CAN Command",
     {% for name, param in parameters.items() -%}
-    "{{ param.name }}",
+    "{{ param.motec_name }}",
     {% endfor %}
 };
 

@@ -64,7 +64,7 @@ modules:
 parameters:
     u8_tester:
         id: 1
-        name: U8 Tester
+        motec_name: U8 Tester
         unit: number
         type: UNSIGNED8
         encoding: MSB
@@ -73,7 +73,7 @@ parameters:
 
     u16_tester:
         id: 2
-        name: U16 Tester
+        motec_name: U16 Tester
         unit: number
         type: UNSIGNED16
         encoding: MSB
@@ -82,7 +82,7 @@ parameters:
 
     u32_tester:
         id: 3
-        name: U32 Tester
+        motec_name: U32 Tester
         unit: number
         type: UNSIGNED32
         encoding: MSB
@@ -91,7 +91,7 @@ parameters:
 
     u64_tester:
         id: 4
-        name: U64 Tester
+        motec_name: U64 Tester
         unit: number
         type: UNSIGNED64
         encoding: MSB
@@ -100,7 +100,7 @@ parameters:
 
     s8_tester:
         id: 5
-        name: S8 Tester
+        motec_name: S8 Tester
         unit: number
         type: SIGNED8
         encoding: MSB
@@ -109,7 +109,7 @@ parameters:
 
     s16_tester:
         id: 6
-        name: S16 Tester
+        motec_name: S16 Tester
         unit: number
         type: SIGNED16
         encoding: MSB
@@ -118,7 +118,7 @@ parameters:
 
     s32_tester:
         id: 7
-        name: S32 Tester
+        motec_name: S32 Tester
         unit: number
         type: SIGNED32
         encoding: MSB
@@ -127,7 +127,7 @@ parameters:
 
     s64_tester:
         id: 8
-        name: S64 Tester
+        motec_name: S64 Tester
         unit: number
         type: SIGNED64
         encoding: MSB
@@ -137,7 +137,7 @@ parameters:
     # 8 bit, [0-25.5]
     float_tester:
         id: 9
-        name: Float Tester 1
+        motec_name: Float Tester 1
         unit: number
         type: FLOATING
         encoding: MSB
@@ -147,7 +147,7 @@ parameters:
     # 16 bit, [0-655.35]
     float_tester_2:
         id: 10
-        name: Float Tester 2
+        motec_name: Float Tester 2
         unit: number
         type: FLOATING
         encoding: MSB
@@ -157,7 +157,7 @@ parameters:
     # 16 bit, [0-65.535]
     float_tester_3:
         id: 11
-        name: Float Tester 3
+        motec_name: Float Tester 3
         unit: number
         type: FLOATING
         encoding: MSB
@@ -167,7 +167,7 @@ parameters:
     # 32 bit, [0-429496.7296] (floats are not this precise)
     float_tester_4:
         id: 12
-        name: Float Tester 4
+        motec_name: Float Tester 4
         unit: number
         type: FLOATING
         encoding: MSB
@@ -177,7 +177,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_1:
         id: 13
-        name: DAM Channel 1
+        motec_name: DAM Channel 1
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -187,7 +187,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_2:
         id: 14
-        name: DAM Channel 2
+        motec_name: DAM Channel 2
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -197,7 +197,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_3:
         id: 15
-        name: DAM Channel 3
+        motec_name: DAM Channel 3
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -207,7 +207,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_4:
         id: 16
-        name: DAM Channel 4
+        motec_name: DAM Channel 4
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -217,7 +217,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_5:
         id: 17
-        name: DAM Channel 5
+        motec_name: DAM Channel 5
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -227,7 +227,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_6:
         id: 18
-        name: DAM Channel 6
+        motec_name: DAM Channel 6
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -237,7 +237,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_7:
         id: 19
-        name: DAM Channel 7
+        motec_name: DAM Channel 7
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -247,7 +247,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_8:
         id: 20
-        name: DAM Channel 8
+        motec_name: DAM Channel 8
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -257,7 +257,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_9:
         id: 21
-        name: DAM Channel 9
+        motec_name: DAM Channel 9
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -267,7 +267,7 @@ parameters:
     # 0-50 (sending mm from pot onto 16bit number)
     dam_chan_10:
         id: 22
-        name: DAM Channel 10
+        motec_name: DAM Channel 10
         unit: mm
         type: FLOATING
         encoding: MSB
