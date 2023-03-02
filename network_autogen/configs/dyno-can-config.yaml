@@ -14,7 +14,6 @@ buses:
 
 modules:
     DLM:
-        name: DLM
         id: 1
         buses:
             - GCAN0
@@ -23,7 +22,6 @@ modules:
         motec_name: Data Logging Module
 
     DAM:
-        name: DAM
         id: 2
         buses:
             - GCAN0
