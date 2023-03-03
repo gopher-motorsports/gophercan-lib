@@ -44,8 +44,8 @@ groups: [
     {
         id: 1,
         parameters: [
-            { id: 1, start: 0, length: 2 },
-            { id: 2, start: 2, length: 2 }
+            { name: rpm_ecu, start: 0, length: 2 },
+            { name: engine_temp_ecu, start: 2, length: 2 }
         ]
     }
 ]

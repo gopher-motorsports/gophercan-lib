@@ -69,13 +69,20 @@ for name, param in config['parameters'].items():
 groups = {}
 for group in config['groups']:
     blueprint = ['EMPTY'] * 8
-    for param in group['parameters']:
+    for group_param in group['parameters']:
+        # find the parameter with this name
+        param_id = -1
+        for param in parameters:
+            if group_param['name'] == parameters[param]['name']:
+                param_id = param
+                break
+
         # make sure parameter exists
-        if not param['id'] in parameters:
-            print(f"ERROR in group \"{group['id']}\": no parameter with ID \"{param['id']}\"")
+        if param_id == -1:
+            print(f"ERROR in group \"{group['id']}\": no parameter with name \"{group_param['name']}\"")
             sys.exit()
 
-        parameter = parameters[param['id']]
+        parameter = parameters[param_id]
 
         # make sure parameter only belongs to one group
         if 'group_id' in parameter:
@@ -84,8 +91,8 @@ for group in config['groups']:
 
         parameter['group_id'] = group['id']
         # fill parameter name in blueprint
-        for i in range(param['length']):
-            blueprint[param['start'] + i] = parameter['name']
+        for i in range(group_param['length']):
+            blueprint[group_param['start'] + i] = parameter['name']
 
     groups[group['id']] = blueprint
 

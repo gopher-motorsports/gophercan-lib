@@ -842,66 +842,66 @@ groups: [
     {
         id: 0x100,
         parameters: [
-            {id: 1, start: 0, length: 2},
-            {id: 5, start: 2, length: 2},
-            {id: 6, start: 4, length: 2},
-            {id: 11, start: 6, length: 2}
+            {name: engineRPM_rpm,       start: 0, length: 2},
+            {name: throttlePos_percent, start: 2, length: 2},
+            {name: lambda1_LA,          start: 4, length: 2},
+            {name: aimLambda1_LA,       start: 6, length: 2}
         ]
     },
     {
         id: 0x101,
         parameters: [
-            {id: 12, start: 0, length: 2},
-            {id: 13, start: 2, length: 2},
-            {id: 14, start: 4, length: 2},
-            {id: 15, start: 6, length: 2}
+            {name: fuelCutLevel_percent, start: 0, length: 2},
+            {name: ignCutLevel_percent,  start: 2, length: 2},
+            {name: ignAdvance_degrees,   start: 4, length: 2},
+            {name: fuelInjDuty_percent,  start: 6, length: 2}
         ]
     },
     # Low Frequency ECU (Custom Set 2)
     {
         id: 0x150,
         parameters: [
-            {id: 2, start: 0, length: 2},
-            {id: 3, start: 2, length: 2},
-            {id: 4, start: 4, length: 2},
-            {id: 7, start: 6, length: 2}
+            {name: engineTemp_C,     start: 0, length: 2},
+            {name: oilPressure_kPa,  start: 2, length: 2},
+            {name: oilTemp_C,        start: 4, length: 2},
+            {name: batteryVoltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x151,
         parameters: [
-            {id: 8, start: 0, length: 2},
-            {id: 9, start: 2, length: 2},
-            {id: 10, start: 4, length: 2},
-            {id: 16, start: 6, length: 2}
+            {name: ecu5VEng_V,         start: 0, length: 2},
+            {name: ecu5VAux_V,         start: 2, length: 2},
+            {name: ecuTemp_C,          start: 4, length: 2},
+            {name: oilFanDuty_percent, start: 6, length: 2}
         ]
     },
     {
         id: 0x152,
         parameters: [
-            {id: 17, start: 0, length: 2},
-            {id: 18, start: 2, length: 2},
-            {id: 19, start: 4, length: 2}
+            {name: waterPumpDuty_percent,      start: 0, length: 2},
+            {name: warningLightDuty_percent,   start: 2, length: 2},
+            {name: spartkCutLightDuty_percent, start: 4, length: 2}
         ]
     },
     # Display GPS
     {
         id: 0x700,
         parameters: [
-            {id: 20, start: 0, length: 4},
-            {id: 21, start: 4, length: 4}
+            {name: gpsLatitude_deg,  start: 0, length: 4},
+            {name: gpsLongitude_deg, start: 4, length: 4}
         ]
     },
     # Steering Wheel Module
     {
         id: 0x200,
         parameters: [
-            {id: 69, start: 0, length: 2},
-            {id: 70, start: 2, length: 2},
-            {id: 71, start: 4, length: 1},
-            {id: 72, start: 5, length: 1},
-            {id: 73, start: 6, length: 1},
-            {id: 74, start: 7, length: 1}
+            {name: swUpshift_state,    start: 0, length: 2},
+            {name: swDownshift_state,  start: 2, length: 2},
+            {name: swSlowClutch_state, start: 4, length: 1},
+            {name: swFastClutch_state, start: 5, length: 1},
+            {name: swButon0_state,     start: 6, length: 1},
+            {name: swButon1_state,     start: 7, length: 1}
         ]
     },
     {
@@ -910,30 +910,30 @@ groups: [
         # These are message types MoTeC sequential. This guide was followed to make
         # it work: https://www.motec.com.au/forum/viewtopic.php?f=11&t=4119
         parameters: [
-            {id: 75, start: 2, length: 2},
-            {id: 76, start: 4, length: 2},
-            {id: 77, start: 6, length: 2}
+            {name: swButon2_state, start: 2, length: 2},
+            {name: swButon3_state, start: 4, length: 2},
+            {name: swDial_ul,      start: 6, length: 2}
         ]
     },
     # TCM
     {
         id: 0x300,
         parameters: [
-            {id: 22, start: 0, length: 2},
-            {id: 23, start: 2, length: 2},
-            {id: 24, start: 4, length: 2},
-            {id: 25, start: 6, length: 2}
+            {name: shifterPosition_mm,    start: 0, length: 2},
+            {name: clutchPosition_mm,     start: 2, length: 2},
+            {name: gearPosition_mm,       start: 4, length: 2},
+            {name: counterShaftSpeed_rpm, start: 6, length: 2}
         ]
     },
     {
         id: 0x301,
         parameters: [
-            {id: 26, start: 0, length: 2},
-            {id: 27, start: 2, length: 1},
-            {id: 28, start: 3, length: 1},
-            {id: 29, start: 4, length: 1},
-            {id: 30, start: 5, length: 1},
-            {id: 31, start: 6, length: 1}
+            {name: tcmTargetRPM_rpm,         start: 0, length: 2},
+            {name: tcmCurrentGear_state,     start: 2, length: 1},
+            {name: tcmCurrentlyMoving_state, start: 3, length: 1},
+            {name: tcmAntiStallActive_state, start: 4, length: 1},
+            {name: tcmUsingClutch_state,     start: 5, length: 1},
+            {name: tcmShiftState_state,      start: 6, length: 1}
         ]
     },
     # Sensor Hub Front
@@ -941,26 +941,26 @@ groups: [
     {
         id: 0x400,
         parameters: [
-            {id: 32, start: 0, length: 2},
-            {id: 33, start: 2, length: 2},
-            {id: 34, start: 4, length: 2},
-            {id: 35, start: 6, length: 2}
+            {name: brakePressureFront_psi, start: 0, length: 2},
+            {name: brakePressureRear_psi, start: 2, length: 2},
+            {name: brakeTempFrontLeft_C, start: 4, length: 2},
+            {name: brakeTempFrontRight_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x401,
         parameters: [
-            {id: 36, start: 0, length: 2}
+            {name: steeringAngle_deg, start: 0, length: 2}
         ]
     },
     # High Frequency
     {
         id: 0x450,
         parameters: [
-            {id: 37, start: 0, length: 2},
-            {id: 38, start: 2, length: 2},
-            {id: 39, start: 4, length: 2},
-            {id: 40, start: 6, length: 2}
+            {name: shockPosFrontLeft_mm,     start: 0, length: 2},
+            {name: shockPosFrontRight_mm,    start: 2, length: 2},
+            {name: wheelSpeedFrontLeft_mph,  start: 4, length: 2},
+            {name: wheelSpeedFrontRight_mph, start: 6, length: 2}
         ]
     },
     # Sensor Hub Rear Left
@@ -968,18 +968,18 @@ groups: [
     {
         id: 0x500,
         parameters: [
-            {id: 41, start: 0, length: 2},
-            {id: 42, start: 2, length: 2},
-            {id: 43, start: 4, length: 2},
-            {id: 44, start: 6, length: 2}
+            {name: fuelPressure_kPa,      start: 0, length: 2},
+            {name: exhaustTemp_C,         start: 2, length: 2},
+            {name: leftRadWaterTempIn_C,  start: 4, length: 2},
+            {name: leftRadWaterTempOut_C, start: 6, length: 2}
         ]
     },
     # High Frequency
     {
         id: 0x550,
         parameters: [
-            {id: 45, start: 0, length: 2},
-            {id: 46, start: 2, length: 2}
+            {name: shockPosRearLeft_mm,    start: 0, length: 2},
+            {name: wheelSpeedRearLeft_mph, start: 2, length: 2}
         ]
     },
     # Sensor Hub Rear Right
@@ -987,76 +987,76 @@ groups: [
     {
         id: 0x600,
         parameters: [
-            {id: 49, start: 0, length: 2},
-            {id: 50, start: 2, length: 2},
-            {id: 51, start: 4, length: 2},
-            {id: 52, start: 6, length: 2}
+            {name: manifoldPressure_kPa, start: 0, length: 2},
+            {name: manifoldTemp_C,       start: 2, length: 2},
+            {name: airTankPressure_psi,  start: 4, length: 2},
+            {name: airLinePressure_psi,  start: 6, length: 2}
         ]
     },
     # High Frequency
     {
         id: 0x650,
         parameters: [
-            {id: 47, start: 0, length: 2},
-            {id: 48, start: 2, length: 2}
+            {name: shockPosRearRight_mm,    start: 0, length: 2},
+            {name: wheelSpeedRearRight_mph, start: 2, length: 2}
         ]
     },
     # Power and Logging Module (Not contiunously sent)
     {
         id: 0x000,
         parameters: [
-            {id: 55, start: 0, length: 2},
-            {id: 56, start: 2, length: 2},
-            {id: 57, start: 4, length: 2},
-            {id: 58, start: 6, length: 2}
+            {name: vbatChan0Current_A, start: 0, length: 2},
+            {name: vbatChan1Current_A, start: 2, length: 2},
+            {name: vbatChan2Current_A, start: 4, length: 2},
+            {name: vbatChan3Current_A, start: 6, length: 2}
         ]
     },
     {
         id: 0x001,
         parameters: [
-            {id: 59, start: 0, length: 2},
-            {id: 60, start: 2, length: 2},
-            {id: 61, start: 4, length: 2},
-            {id: 62, start: 6, length: 2}
+            {name: vbatChan4Current_A, start: 0, length: 2},
+            {name: vbatChan5Current_A, start: 2, length: 2},
+            {name: vbatChan6Current_A, start: 4, length: 2},
+            {name: fiveVChan0Current_A, start: 6, length: 2}
         ]
     },
     {
         id: 0x002,
         parameters: [
-            {id: 63, start: 0, length: 2},
-            {id: 64, start: 2, length: 2},
-            {id: 65, start: 4, length: 2},
-            {id: 66, start: 6, length: 2}
+            {name: fiveVChan1Current_A,     start: 0, length: 2},
+            {name: fiveVChan2Current_A,     start: 2, length: 2},
+            {name: fiveVChan3Current_A,     start: 4, length: 2},
+            {name: can0Utilization_percent, start: 6, length: 2}
         ]
     },
     {
         id: 0x003,
         parameters: [
-            {id: 67, start: 0, length: 2},
-            {id: 68, start: 2, length: 2},
-            {id: 53, start: 4, length: 2},
-            {id: 54, start: 6, length: 2}
+            {name: can1Utilization_percent, start: 0, length: 2},
+            {name: can2Utilization_percent, start: 2, length: 2},
+            {name: plmVbatVoltage_V,        start: 4, length: 2},
+            {name: plm5VVoltage_V,          start: 6, length: 2}
         ]
     },
     # IMU Messages (No control over these IDs)
     {
         id: 0x174,
         parameters: [
-            {id: 78, start: 0, length: 2},
-            {id: 80, start: 4, length: 2}
+            {name: yawRate_degPerSec, start: 0, length: 2},
+            {name: lateralAccel_G,    start: 4, length: 2}
         ]
     },
     {
         id: 0x178,
         parameters: [
-            {id: 79, start: 0, length: 2},
-            {id: 81, start: 4, length: 2}
+            {name: rollRate_degPerSec,  start: 0, length: 2},
+            {name: longitudinalAccel_G, start: 4, length: 2}
         ]
     },
     {
         id: 0x17C,
         parameters: [
-            {id: 82, start: 4, length: 2}
+            {name: verticalAccel_G, start: 4, length: 2}
         ]
     }
 ]
