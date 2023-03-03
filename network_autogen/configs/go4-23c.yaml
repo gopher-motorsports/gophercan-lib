@@ -62,6 +62,12 @@ modules:
         buses:
             - GCAN1
         motec_name: Display
+        
+    IMU:
+        id: 9
+        buses:
+            - GCAN0
+        motec_name: Inertial Measurement Unit
 
 parameters:
     # ECU Sensors:
@@ -248,7 +254,7 @@ parameters:
     gpsLatitude_deg:
         id: 20
         motec_name: GPS Latitude
-        unit: degree
+        unit: deg
         type: FLOATING
         encoding: MSB
         scale: 0.000021457672119140625 # [0-360] -> [0-16777216]
@@ -257,7 +263,7 @@ parameters:
     gpsLongitude_deg:
         id: 21
         motec_name: GPS Longitude
-        unit: degree
+        unit: deg
         type: FLOATING
         encoding: MSB
         scale: 0.000021457672119140625 # [0-360] -> [0-16777216]
@@ -311,7 +317,7 @@ parameters:
         scale: 1
         offset: 0
 
-    tcmCurrentGear_ul:
+    tcmCurrentGear_state:
         id: 27
         motec_name: Gear
         unit: ''
@@ -320,7 +326,7 @@ parameters:
         scale: 1
         offset: 0
 
-    tcmCurrentlyMoving_ul:
+    tcmCurrentlyMoving_state:
         id: 28
         motec_name: Currently Moving
         unit: ''
@@ -329,7 +335,7 @@ parameters:
         scale: 1
         offset: 0
 
-    tcmAntiStallActive_ul:
+    tcmAntiStallActive_state:
         id: 29
         motec_name: Anti Stall
         unit: ''
@@ -338,7 +344,7 @@ parameters:
         scale: 1
         offset: 0
 
-    tcmUsingClutch_ul:
+    tcmUsingClutch_state:
         id: 30
         motec_name: Using Clutch to Shift
         unit: ''
@@ -347,7 +353,7 @@ parameters:
         scale: 1
         offset: 0
 
-    tcmShiftState_ul:
+    tcmShiftState_state:
         id: 31
         motec_name: Shift State
         unit: ''
@@ -397,7 +403,7 @@ parameters:
     steeringAngle_deg:
         id: 36
         motec_name: Steered Angle
-        unit: degree
+        unit: deg
         type: FLOATING
         encoding: MSB
         scale: 0.087890625 # [0-360] -> [0-4096]
@@ -553,18 +559,18 @@ parameters:
     # END SENSOR HUB REAR RIGHT
     
     # Power and Logging Module Sensing:
-    vbatVoltage_V:
+    plmVbatVoltage_V:
         id: 53
-        motec_name: Battery Volts PLM
+        motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.005060546875 # [0-20.728] -> [0-4096]
         offset: 0
 
-    fiveVoltVoltage_V:
+    plm5VVoltage_V:
         id: 54
-        motec_name: Five Volts Voltage PLM
+        motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
         encoding: MSB
@@ -700,7 +706,7 @@ parameters:
     # END PLM
     
     # Steering Wheel Module
-    swUpshift_ul:
+    swUpshift_state:
         id: 69
         motec_name: Wheel Upshift Paddle Pos
         unit: ''
@@ -709,7 +715,7 @@ parameters:
         scale: 0.000244140625 # [0-1] -> [0-4096]
         offset: 0
 
-    swDownshift_ul:
+    swDownshift_state:
         id: 70
         motec_name: Wheel Downshift Paddle Pos
         unit: ''
@@ -718,7 +724,7 @@ parameters:
         scale: 0.000244140625 # [0-1] -> [0-4096]
         offset: 0
 
-    swSlowClutch_ul:
+    swSlowClutch_state:
         id: 71
         motec_name: Wheel Slow Clutch
         unit: ''
@@ -727,7 +733,7 @@ parameters:
         scale: 1
         offset: 0
 
-    swFastClutch_ul:
+    swFastClutch_state:
         id: 72
         motec_name: Wheel Fast Clutch
         unit: ''
@@ -736,7 +742,7 @@ parameters:
         scale: 1
         offset: 0
 
-    swButon0_ul:
+    swButon0_state:
         id: 73
         motec_name: Wheel Button 0
         unit: ''
@@ -745,7 +751,7 @@ parameters:
         scale: 1
         offset: 0
 
-    swButon1_ul:
+    swButon1_state:
         id: 74
         motec_name: Wheel Button 1
         unit: ''
@@ -754,7 +760,7 @@ parameters:
         scale: 1
         offset: 0
 
-    swButon2_ul:
+    swButon2_state:
         id: 75
         motec_name: Wheel Button 2
         unit: ''
@@ -763,7 +769,7 @@ parameters:
         scale: 1
         offset: 0
 
-    swButon3_ul:
+    swButon3_state:
         id: 76
         motec_name: Wheel Button 3
         unit: ''
@@ -781,6 +787,53 @@ parameters:
         scale: 1
         offset: 0
     # END SWM
+    
+    # Inertail Measurement Unit
+    yawRate_degPerSec:
+        id: 78
+        motec_name: Yaw Rate
+        unit: deg/s
+        type: FLOATING
+        encoding: LSB
+        scale: 0.005
+        offset: 0
+        
+    rollRate_degPerSec:
+        id: 79
+        motec_name: Roll Rate
+        unit: deg/s
+        type: FLOATING
+        encoding: LSB
+        scale: 0.005
+        offset: 0
+        
+    lateralAccel_G:
+        id: 80
+        motec_name: G Force Lat
+        unit: G
+        type: FLOATING
+        encoding: LSB
+        scale: 0.0001274
+        offset: 0
+        
+    longitudinalAccel_G:
+        id: 81
+        motec_name: G Force Long
+        unit: G
+        type: FLOATING
+        encoding: LSB
+        scale: 0.0001274
+        offset: 0
+        
+    verticalAccel_G:
+        id: 82
+        motec_name: G Force Vert
+        unit: G
+        type: FLOATING
+        encoding: LSB
+        scale: 0.0001274
+        offset: 0
+    # END IMU
 
 
 groups: [
@@ -985,6 +1038,27 @@ groups: [
             {id: 54, start: 6, length: 2}
         ]
     },
+    # IMU Messages (No control over these IDs)
+    {
+        id: 0x174,
+        parameters: [
+            {id: 78, start: 0, length: 2},
+            {id: 80, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x178,
+        parameters: [
+            {id: 79, start: 0, length: 2},
+            {id: 81, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x17C,
+        parameters: [
+            {id: 82, start: 4, length: 2}
+        ]
+    }
 ]
 
 commands:

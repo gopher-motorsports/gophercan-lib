@@ -2,313 +2,1078 @@ buses:
     bus_0:
         name: GCAN0
         baud_rate: 1000000
-        motec_name: Main Bus
+        motec_name: Front Bus
     bus_1:
         name: GCAN1
         baud_rate: 1000000
-        motec_name: Unused
+        motec_name: Middle Bus
     bus_2:
         name: GCAN2
         baud_rate: 1000000
-        motec_name: Unused
+        motec_name: Rear Bus
 
 modules:
-    DLM:
-        name: DLM
+    PLM:
         id: 1
         buses:
             - GCAN0
             - GCAN1
             - GCAN2
-        motec_name: Data Logging Module
+        motec_name: Power and Logging Module
 
-    DAM:
-        name: DAM
+    Inverter:
         id: 2
         buses:
-            - GCAN0
-        motec_name: Data Aquisition Module
+            - GCAN1
+        motec_name: Cascadia Motion PM100 Inverter
         
-    # ECU is also on GCAN0, but is not a GCAN module
+    VCU:
+        id: 3
+        buses:
+            - GCAN1
+        motec_name: Vehicle Control Unit
+        
+    BMS:
+        id: 4
+        buses:
+            - GCAN2
+        motec_name: Battery Management System
+        
+    SH_F:
+        id: 5
+        buses:
+            - GCAN0
+        motec_name: Sensor Hub Front
+        
+    SH_R:
+        id: 6
+        buses:
+            - GCAN2
+        motec_name: Sensor Hub Rear
+        
+    IMU:
+        id: 7
+        buses:
+            - GCAN0
+        motec_name: Inertial Measurement Unit
+        
+    Display:
+        id: 8
+        buses:
+            - GCAN1
+        motec_name: Display
 
 parameters:
-    # ECU Sensors:
-    # all are sent on the bus as S16s (MSB) and encoded in GCAN as a float
-    engineRPM_rpm:
-        id: 1
-        motec_name: Engine RPM
-        unit: rpm
+    # Inverter
+    igbtATemp_C:
+        id: 4
+        motec_name: IGBT A Temp
+        unit: C
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    igbtBTemp_C:
+        id: 4
+        motec_name: IGBT B Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    igbtCTemp_C:
+        id: 4
+        motec_name: IGBT C Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    gateDriverBoardTemp_C:
+        id: 4
+        motec_name: Gate Driver Board Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    controlBoardTemp_C:
+        id: 4
+        motec_name: Control Board Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    rtd1Temp_C:
+        id: 4
+        motec_name: RTD 1 Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    rtd2Temp_C:
+        id: 4
+        motec_name: RTD 2 Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    rtd3Temp_C:
+        id: 4
+        motec_name: RTD 3 Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    coolantTemp_C:
+        id: 4
+        motec_name: Estimated  Coolant Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    hotSpotTemp_C:
+        id: 4
+        motec_name: Inverter Hot Spot Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    motorTemp_C:
+        id: 4
+        motec_name: Motor Temp
+        unit: C
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    torqueShudder_Nm:
+        id: 4
+        motec_name: Torque Shudder
+        unit: Nm
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+    # Analog and Digital voltage inputs are not used
+    motorAngle_deg:
+        id: 4
+        motec_name: Motor Angle
+        unit: deg
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    motorSpeedLF_rpm:
+        id: 4
+        motec_name: Motor Speed Low Frequency
+        unit: rpm
+        type: UNSIGNED16
+        encoding: LSB
         scale: 1
         offset: 0
         
-    throttlePos_percent:
-        id: 2
-        motec_name: Throttle Pos
-        unit: "%"
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: 0
-    
-    engineTemp_C:
-        id: 3
-        motec_name: Engine Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: 0
-        
-    oilTemp_C:
+    motorACFreq_Hz:
         id: 4
-        motec_name: Eng Oil Temp
-        unit: C
+        motec_name: Motor AC Frequency
+        unit: Hz
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
         scale: 0.1
         offset: 0
         
-    oilPressure_kPa:
-        id: 5
-        motec_name: Eng Oil Pres
-        unit: kPa
+    deltaResolver_deg:
+        id: 4
+        motec_name: Delta Resolver Filtered
+        unit: deg
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
         scale: 0.1
         offset: 0
         
-    manifoldPressure_kPa:
-        id: 6
-        motec_name: Manifold Pres
-        unit: kPa
+    phaseACurrent_A:
+        id: 4
+        motec_name: Phase A Current
+        unit: A
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
         scale: 0.1
         offset: 0
         
-    manifoldTemp_C:
-        id: 7
-        motec_name: Air Temp Inlet
-        unit: C
+    phaseBCurrent_A:
+        id: 4
+        motec_name: Phase B Current
+        unit: A
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
         scale: 0.1
         offset: 0
         
-    fuelPressure_kPa:
-        id: 8
-        motec_name: Fuel Pres
-        unit: kPa
+    phaseCCurrent_A:
+        id: 4
+        motec_name: Phase C Current
+        unit: A
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
         scale: 0.1
         offset: 0
         
-    lambda1_LA:
-        id: 9
-        motec_name: Lambda 1
-        unit: LA
+    dcBusCurrent_A:
+        id: 4
+        motec_name: DC Bus Current
+        unit: A
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    dcBusVoltageLF_V:
+        id: 4
+        motec_name: DC Bus Voltage Low Frequency
+        unit: V
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    peakOutputVoltage_V:
+        id: 4
+        motec_name: Peak Output Voltage
+        unit: V
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    vdVoltage_V:
+        id: 4
+        motec_name: Vd Voltage
+        unit: V
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    vqVoltage_V:
+        id: 4
+        motec_name: Vq Voltage
+        unit: V
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    fluxCommand_Wb:
+        id: 4
+        motec_name: Flux Command
+        unit: Wb
+        type: FLOATING
+        encoding: LSB
         scale: 0.001
         offset: 0
         
-    # User channel 1
-    waterFlowRate_LPerMin:
-        id: 10
-        motec_name: Water Flow Rate
-        unit: L/min
+    fluxFeedback_Wb:
+        id: 4
+        motec_name: Flux Feedback
+        unit: Wb
         type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: 0
-        
-    # User channel 2
-    fuelFlowRate_LPerMin:
-        id: 11
-        motec_name: Fuel Flow Rate
-        unit: L/min
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: 0
-        
-    # User channel 3
-    dynoTorque_V:
-        id: 12
-        motec_name: Dyno Torque
-        unit: V
-        type: FLOATING
-        encoding: MSB
+        encoding: LSB
         scale: 0.001
         offset: 0
-
-    # Internal ECU Parameters:
-    batteryVoltage_V:
-        id: 13
-        motec_name: Battery Volts
+        
+    idFeedback_A:
+        id: 4
+        motec_name: Id Feedback
+        unit: A
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    iqFeedback_A:
+        id: 4
+        motec_name: Iq Feedback
+        unit: A
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    vRef1v5_V:
+        id: 4
+        motec_name: Refrence 1V5
         unit: V
         type: FLOATING
-        encoding: MSB
+        encoding: LSB
         scale: 0.01
         offset: 0
         
-    ecu5VEng_V:
-        id: 14
-        motec_name: ECU 5V Eng Volts
+    vRef2v5_V:
+        id: 4
+        motec_name: Refrence 2V5
         unit: V
         type: FLOATING
-        encoding: MSB
-        scale: 0.001
+        encoding: LSB
+        scale: 0.01
         offset: 0
         
-    ecu5VAux_V:
-        id: 15
-        motec_name: ECU 5V Aux Volts
+    vRef5v_V:
+        id: 4
+        motec_name: Refrence 5V
         unit: V
         type: FLOATING
+        encoding: LSB
+        scale: 0.01
+        offset: 0
+        
+    vRef12v_V:
+        id: 4
+        motec_name: Refrence 12V
+        unit: V
+        type: FLOATING
+        encoding: LSB
+        scale: 0.01
+        offset: 0
+        
+    vsmState_state:
+        id: 4
+        motec_name: VSM State
+        unit: ''
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    pwmFreq_kHz:
+        id: 4
+        motec_name: PWM Frequency
+        unit: kHz
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    inverterState_state:
+        id: 4
+        motec_name: Inverter State
+        unit: ''
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    relayState_state:
+        id: 4
+        motec_name: Relay State
+        unit: ''
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    invStatesByte4_state:
+        id: 4
+        motec_name: Byte 4 Inverter States
+        unit: ''
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    invStatesByte5_state:
+        id: 4
+        motec_name: Byte 5 Inverter States
+        unit: ''
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    invStatesByte6_state:
+        id: 4
+        motec_name: Byte 6 Inverter States
+        unit: ''
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    invStatesByte7_state:
+        id: 4
+        motec_name: Byte 7 Inverter States
+        unit: ''
+        type: UNSIGNED8
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    postFaultLo_state:
+        id: 4
+        motec_name: POST Fault Lo
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    postFaultHi_state:
+        id: 4
+        motec_name: POST Fault Hi
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    runFaultLo_state:
+        id: 4
+        motec_name: Run Fault Lo
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    runFaultHi_state:
+        id: 4
+        motec_name: Run Fault Hi
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    torqueCmdLF_Nm:
+        id: 4
+        motec_name: Commanded Torque Low Frequency
+        unit: Nm
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    torqueFeedbackLF_nm:
+        id: 4
+        motec_name: Torque Feedback Low Frequency
+        unit: Nm
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    powerOnTimer_s:
+        id: 4
+        motec_name: Power On Timer
+        unit: s
+        type: FLOATING
+        encoding: LSB
+        scale: 0.003
+        offset: 0
+        
+    modulationIndex_ul:
+        id: 4
+        motec_name: Modulation Index
+        unit: ''
+        type: FLOATING
+        encoding: LSB
+        scale: 0.01
+        offset: 0
+        
+    fluxWeakeningOutput_A:
+        id: 4
+        motec_name: Flux Weakening Output
+        unit: A
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    iqCommand_A:
+        id: 4
+        motec_name: Iq Command
+        unit: A
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+    
+    idCommand_A:
+        id: 4
+        motec_name: Id Command
+        unit: A
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+    # Skipping Firmware info and Diagnositic Data
+    torqueCmd_Nm:
+        id: 4
+        motec_name: Commanded Torque
+        unit: Nm
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    torqueFeedback_nm:
+        id: 4
+        motec_name: Torque Feedback
+        unit: Nm
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+        
+    motorSpeed_rpm:
+        id: 4
+        motec_name: Motor Speed
+        unit: rpm
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    dcBusVoltage_V:
+        id: 4
+        motec_name: DC Bus Voltage
+        unit: V
+        type: FLOATING
+        encoding: LSB
+        scale: 0.1
+        offset: 0
+    # END INVERTER
+    
+    # Vehicle Control Unit Sensors
+    pedalPosition1_mm:
+        id: 32
+        motec_name: Accellerator Pedal Pos 1
+        unit: mm
+        type: FLOATING
         encoding: MSB
-        scale: 0.001
+        scale: 0.006103515625 # [0-25] -> [0-4096]
+        offset: 0
+        
+    pedalPosition2_mm:
+        id: 32
+        motec_name: Accellerator Pedal Pos 2
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.006103515625 # [0-25] -> [0-4096]
+        offset: 0
+    
+    brakePressureFront_psi:
+        id: 32
+        motec_name: Brake Pres Front
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.48828125 # [0-2000] -> [0-4096]
+        offset: 0
+        
+    vcuTractiveSystemCurrent_A:
+        id: 32
+        motec_name: Tractive System Current (VCU)
+        unit: A
+        type: FLOATING
+        encoding: MSB
+        scale: 0.009144042618572711944580078125 # [-18.727-18.727] -> [0-4096]
+        offset: -18.727
+        
+    coolantPumpPressure_psi:
+        id: 3
+        motec_name: Coolant Pump Pres
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0244140625 # [0-100] -> [0-4096]
+        offset: 0
+        
+    # BSPD Check stuff
+    bspdBrakePressureSensorFault_state:
+        id: 3
+        motec_name: BSPD Brake Pres Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+    
+    bspdPedalPosition1Fault_state:
+        id: 3
+        motec_name: BSPD Pedal 1 Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    bapsPedalPosition2Fault_state:
+        id: 3
+        motec_name: BSPD Pedal 2 Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    bspdTractiveSystemCurrentSensorFault_state:
+        id: 3
+        motec_name: BSPD Tractive System Current Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    bspdTractiveSystemBrakingFault_state:
+        id: 3
+        motec_name: BSPD Check Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    # VSC Check Stuff
+    # TODO
+
+    # Vehicle Control Unit Internal
+    radFanControlDuty_percent:
+        id: 3
+        motec_name: Radiator Fan Control Duty
+        unit: '%'
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    accFanControlDuty_percent:
+        id: 3
+        motec_name: Accumulator Fan Control Duty
+        unit: '%'
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    pumpControlDuty_percent:
+        id: 3
+        motec_name: Pump Control Duty
+        unit: '%'
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    brakeLight_state:
+        id: 3
+        motec_name: Brake Light
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    rtdBuzzer_state:
+        id: 3
+        motec_name: Ready to Drive Buzzer
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    sw1_state:
+        id: 3
+        motec_name: Switch 1
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    sw2_state:
+        id: 3
+        motec_name: Switch 2
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    
+    # Battery Management System
+    # TODO
+    # END BMS
+    
+    # Sensor Hub Front
+    brakePressureRear_psi:
+        id: 33
+        motec_name: Brake Pres Rear
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.48828125 # [0-2000] -> [0-4096]
         offset: 0
 
-    ecuTemp_C:
-        id: 16
-        motec_name: ECU Temp
+
+    brakeTempFrontLeft_C:
+        id: 34
+        motec_name: Brake Temp FL
         unit: C
         type: FLOATING
         encoding: MSB
+        scale: 0.1953125 # [0-800] -> [0-4096]
+        offset: 0
+
+    brakeTempFrontRight_C:
+        id: 35
+        motec_name: Brake Temp FR
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1953125 # [0-800] -> [0-4096]
+        offset: 0
+
+    steeringAngle_deg:
+        id: 36
+        motec_name: Steered Angle
+        unit: deg
+        type: FLOATING
+        encoding: MSB
+        scale: 0.087890625 # [0-360] -> [0-4096]
+        offset: 0
+
+    shockPosFrontLeft_mm:
+        id: 37
+        motec_name: Susp Pos FL
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.006103515625 # [0-25] -> [0-4096]
+        offset: 0
+
+    shockPosFrontRight_mm:
+        id: 38
+        motec_name: Susp Pos FR
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.006103515625 # [0-25] -> [0-4096]
+        offset: 0
+
+    wheelSpeedFrontLeft_mph:
+        id: 39
+        motec_name: Wheel Speed FL
+        unit: mph
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        offset: 0
+
+    wheelSpeedFrontRight_mph:
+        id: 40
+        motec_name: Wheel Speed FR
+        unit: mph
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        offset: 0
+    # END SH_F
+    
+    # Sensor Hub Rear
+    radWaterTempIn_C:
+        id: 43
+        motec_name: Rad Water Temp In
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.048828125 # [0-200] -> [0-4096]
+        offset: 0
+
+    radWaterTempOut_C:
+        id: 44
+        motec_name: Rad Water Temp Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.048828125 # [0-200] -> [0-4096]
+        offset: 0
+
+    shockPosRearLeft_mm:
+        id: 45
+        motec_name: Susp Pos RL
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.006103515625 # [0-25] -> [0-4096]
+        offset: 0
+        
+    shockPosRearRight_mm:
+        id: 47
+        motec_name: Susp Pos RR
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.006103515625 # [0-25] -> [0-4096]
+        offset: 0
+
+    wheelSpeedRearLeft_mph:
+        id: 46
+        motec_name: Wheel Speed RL
+        unit: mph
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        offset: 0
+        
+    wheelSpeedRearRight_mph:
+        id: 48
+        motec_name: Wheel Speed RR
+        unit: mph
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        offset: 0
+    # END SH_R
+    
+    # Power and Logging Module Sensing:
+    plmVbatVoltage_V:
+        id: 53
+        motec_name: PLM Battery Volts
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.005060546875 # [0-20.728] -> [0-4096]
+        offset: 0
+
+    plm5VVoltage_V:
+        id: 54
+        motec_name: PLM 5V Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0019541015625 # [0-8.004] -> [0-4096]
+        offset: 0
+
+    vbatChan0Current_A:
+        id: 55
+        motec_name: VBat Channel 0 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        offset: 0
+
+    vbatChan1Current_A:
+        id: 56
+        motec_name: VBat Channel 1 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        offset: 0
+
+    vbatChan2Current_A:
+        id: 57
+        motec_name: VBat Channel 2 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        offset: 0
+
+    vbatChan3Current_A:
+        id: 58
+        motec_name: VBat Channel 3 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        offset: 0
+
+    vbatChan4Current_A:
+        id: 59
+        motec_name: VBat Channel 4 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        offset: 0
+
+    vbatChan5Current_A:
+        id: 60
+        motec_name: VBat Channel 5 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        offset: 0
+
+    vbatChan6Current_A:
+        id: 61
+        motec_name: VBat Channel 6 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        offset: 0
+
+    fiveVChan0Current_A:
+        id: 62
+        motec_name: Five Volts Channel 0 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        offset: 0
+
+    fiveVChan1Current_A:
+        id: 63
+        motec_name: Five Volts Channel 1 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        offset: 0
+
+    fiveVChan2Current_A:
+        id: 64
+        motec_name: Five Volts Channel 2 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        offset: 0
+
+    fiveVChan3Current_A:
+        id: 65
+        motec_name: Five Volts Channel 3 Current
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        offset: 0
+
+    # Power and Logging Module Internal
+    can0Utilization_percent:
+        id: 66
+        motec_name: Bus0 Utilization
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
         scale: 0.1
         offset: 0
 
-    aimLambda1_LA:
-        id: 17
-        motec_name: Aim Lambda 1
-        unit: LA
+    can1Utilization_percent:
+        id: 67
+        motec_name: Bus1 Utilization
+        unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 0.001
+        scale: 0.1
         offset: 0
-        
-    fuelCutLevel_percent:
-        id: 18
-        motec_name: Fuel Cut Level
-        unit: "%"
+
+    can2Utilization_percent:
+        id: 68
+        motec_name: Bus2 Utilization
+        unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 0.392157
+        scale: 0.1
         offset: 0
+    # END PLM
     
-    ignCutLevel_percent:
-        id: 19
-        motec_name: Ign Cut Level
-        unit: "%"
-        type: FLOATING
-        encoding: MSB
-        scale: 0.392157
-        offset: 0
-        
-    ignAdvance_degrees:
+    # Display:
+    # sent over 0x700, latitude than longitude, each 32bit
+    gpsLatitude_deg:
         id: 20
-        motec_name: Ign Advance
-        unit: dBTDC
+        motec_name: GPS Latitude
+        unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: 0
-        
-    fuelInjDuty_percent:
-        id: 21
-        motec_name: Fuel Inj Duty
-        unit: "%"
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: 0
-    
-    # Aux Output 5
-    oilFanDuty_percent:
-        id: 22
-        motec_name: Oil Fan Duty
-        unit: "%"
-        type: FLOATING
-        encoding: MSB
-        scale: 1
-        offset: 0
-        
-    # Aux Output 6
-    waterPumpDuty_percent:
-        id: 23
-        motec_name: Water Pump Duty
-        unit: "%"
-        type: FLOATING
-        encoding: MSB
-        scale: 1
+        scale: 0.000021457672119140625 # [0-360] -> [0-16777216]
         offset: 0
 
+    gpsLongitude_deg:
+        id: 21
+        motec_name: GPS Longitude
+        unit: deg
+        type: FLOATING
+        encoding: MSB
+        scale: 0.000021457672119140625 # [0-360] -> [0-16777216]
+        offset: 0
+    # END DISPLAY
+    
+    # Inertail Measurement Unit
+    yawRate_degPerSec:
+        id: 78
+        motec_name: Yaw Rate
+        unit: deg/s
+        type: FLOATING
+        encoding: LSB
+        scale: 0.005
+        offset: 0
+        
+    rollRate_degPerSec:
+        id: 79
+        motec_name: Roll Rate
+        unit: deg/s
+        type: FLOATING
+        encoding: LSB
+        scale: 0.005
+        offset: 0
+        
+    lateralAccel_G:
+        id: 80
+        motec_name: G Force Lat
+        unit: G
+        type: FLOATING
+        encoding: LSB
+        scale: 0.0001274
+        offset: 0
+        
+    longitudinalAccel_G:
+        id: 81
+        motec_name: G Force Long
+        unit: G
+        type: FLOATING
+        encoding: LSB
+        scale: 0.0001274
+        offset: 0
+        
+    verticalAccel_G:
+        id: 82
+        motec_name: G Force Vert
+        unit: G
+        type: FLOATING
+        encoding: LSB
+        scale: 0.0001274
+        offset: 0
+    # END IMU
+    
 
 groups: [
-    # High Frequency ECU (Custom Set 1)
-    {
-        id: 0x100,
-        parameters: [
-            {id: 1, start: 0, length: 2},
-            {id: 2, start: 2, length: 2},
-            {id: 9, start: 4, length: 2},
-            {id: 12, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x101,
-        parameters: [
-            {id: 17, start: 0, length: 2},
-            {id: 18, start: 2, length: 2},
-            {id: 19, start: 4, length: 2},
-            {id: 20, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x102,
-        parameters: [
-            {id: 21, start: 0, length: 2}
-        ]
-    },
-    # Low Frequency ECU (Custom Set 2)
-    {
-        id: 0x200,
-        parameters: [
-            {id: 3, start: 0, length: 2},
-            {id: 4, start: 2, length: 2},
-            {id: 5, start: 4, length: 2},
-            {id: 6, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x201,
-        parameters: [
-            {id: 7, start: 0, length: 2},
-            {id: 8, start: 2, length: 2},
-            {id: 10, start: 4, length: 2},
-            {id: 11, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x202,
-        parameters: [
-            {id: 13, start: 0, length: 2},
-            {id: 14, start: 2, length: 2},
-            {id: 15, start: 4, length: 2},
-            {id: 16, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x203,
-        parameters: [
-            {id: 22, start: 0, length: 2},
-            {id: 23, start: 2, length: 2}
-        ]
-    }
+    # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
 ]
 
 commands:
