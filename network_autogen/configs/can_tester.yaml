@@ -278,68 +278,68 @@ groups: [
     {
         id: 0x1,
         parameters: [
-            {id: 1, start: 0, length: 1},
-            {id: 2, start: 1, length: 2},
-            {id: 3, start: 3, length: 4}
+            {name: u8_tester, start: 0, length: 1},
+            {name: u16_tester, start: 1, length: 2},
+            {name: u32_tester, start: 3, length: 4}
         ]
     },
     {
         id: 0x2,
         parameters: [
-            {id: 4, start: 0, length: 8}
+            {name: u64_tester, start: 0, length: 8}
         ]
     },
     {
         id: 0x3,
         parameters: [
-            {id: 5, start: 0, length: 1},
-            {id: 6, start: 1, length: 2},
-            {id: 7, start: 3, length: 4}
+            {name: s8_tester, start: 0, length: 1},
+            {name: s16_tester, start: 1, length: 2},
+            {name: s32_tester, start: 3, length: 4}
         ]
     },
     {
         id: 0x4,
         parameters: [
-            {id: 8, start: 0, length: 8}
+            {name: s64_tester, start: 0, length: 8}
         ]
     },
     {
         id: 0x5,
         parameters: [
-            {id: 9, start: 0, length: 1},
-            {id: 10, start: 1, length: 2},
-            {id: 11, start: 3, length: 2}
+            {name: float_tester, start: 0, length: 1},
+            {name: float_tester_2, start: 1, length: 2},
+            {name: float_tester_3, start: 3, length: 2}
         ]
     },
     {
         id: 0x6,
         parameters: [
-            {id: 12, start: 0, length: 4}
+            {name: float_tester_4, start: 0, length: 4}
         ]
     },
     {
         id: 0x7,
         parameters: [
-            {id: 13, start: 0, length: 2},
-            {id: 14, start: 2, length: 2},
-            {id: 15, start: 4, length: 2},
-            {id: 16, start: 6, length: 2}
+            {name: dam_chan_1, start: 0, length: 2},
+            {name: dam_chan_2, start: 2, length: 2},
+            {name: dam_chan_3, start: 4, length: 2},
+            {name: dam_chan_4, start: 6, length: 2}
         ]
     },
     {
         id: 0x8,
         parameters: [
-            {id: 17, start: 0, length: 2},
-            {id: 18, start: 2, length: 2},
-            {id: 19, start: 4, length: 2},
-            {id: 20, start: 6, length: 2}
+            {name: dam_chan_5, start: 0, length: 2},
+            {name: dam_chan_6, start: 2, length: 2},
+            {name: dam_chan_7, start: 4, length: 2},
+            {name: dam_chan_8, start: 6, length: 2}
         ]
     },
     {
         id: 0x9,
         parameters: [
-            {id: 21, start: 0, length: 2},
-            {id: 22, start: 2, length: 2}
+            {name: dam_chan_9, start: 0, length: 2},
+            {name: dam_chan_10, start: 2, length: 2}
         ]
     }
 ]

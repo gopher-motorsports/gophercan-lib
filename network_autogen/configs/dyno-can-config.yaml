@@ -251,60 +251,60 @@ groups: [
     {
         id: 0x100,
         parameters: [
-            {id: 1, start: 0, length: 2},
-            {id: 2, start: 2, length: 2},
-            {id: 9, start: 4, length: 2},
-            {id: 12, start: 6, length: 2}
+            {name: engineRPM_rpm,       start: 0, length: 2},
+            {name: throttlePos_percent, start: 2, length: 2},
+            {name: lambda1_LA,          start: 4, length: 2},
+            {name: dynoTorque_V,        start: 6, length: 2}
         ]
     },
     {
         id: 0x101,
         parameters: [
-            {id: 17, start: 0, length: 2},
-            {id: 18, start: 2, length: 2},
-            {id: 19, start: 4, length: 2},
-            {id: 20, start: 6, length: 2}
+            {name: aimLambda1_LA,        start: 0, length: 2},
+            {name: fuelCutLevel_percent, start: 2, length: 2},
+            {name: ignCutLevel_percent,  start: 4, length: 2},
+            {name: ignAdvance_degrees,   start: 6, length: 2}
         ]
     },
     {
         id: 0x102,
         parameters: [
-            {id: 21, start: 0, length: 2}
+            {name: fuelInjDuty_percent, start: 0, length: 2}
         ]
     },
     # Low Frequency ECU (Custom Set 2)
     {
         id: 0x200,
         parameters: [
-            {id: 3, start: 0, length: 2},
-            {id: 4, start: 2, length: 2},
-            {id: 5, start: 4, length: 2},
-            {id: 6, start: 6, length: 2}
+            {name: engineTemp_C,         start: 0, length: 2},
+            {name: oilTemp_C,            start: 2, length: 2},
+            {name: oilPressure_kPa,      start: 4, length: 2},
+            {name: manifoldPressure_kPa, start: 6, length: 2}
         ]
     },
     {
         id: 0x201,
         parameters: [
-            {id: 7, start: 0, length: 2},
-            {id: 8, start: 2, length: 2},
-            {id: 10, start: 4, length: 2},
-            {id: 11, start: 6, length: 2}
+            {name: manifoldTemp_C,        start: 0, length: 2},
+            {name: fuelPressure_kPa,      start: 2, length: 2},
+            {name: waterFlowRate_LPerMin, start: 4, length: 2},
+            {name: fuelFlowRate_LPerMin,  start: 6, length: 2}
         ]
     },
     {
         id: 0x202,
         parameters: [
-            {id: 13, start: 0, length: 2},
-            {id: 14, start: 2, length: 2},
-            {id: 15, start: 4, length: 2},
-            {id: 16, start: 6, length: 2}
+            {name: batteryVoltage_V, start: 0, length: 2},
+            {name: ecu5VEng_V,       start: 2, length: 2},
+            {name: ecu5VAux_V,       start: 4, length: 2},
+            {name: ecuTemp_C,        start: 6, length: 2}
         ]
     },
     {
         id: 0x203,
         parameters: [
-            {id: 22, start: 0, length: 2},
-            {id: 23, start: 2, length: 2}
+            {name: oilFanDuty_percent,    start: 0, length: 2},
+            {name: waterPumpDuty_percent, start: 2, length: 2}
         ]
     }
 ]
