@@ -22,6 +22,7 @@ CAN_INFO_STRUCT empty_param = {0};
         .TYPE = {{ param.type }},
         .SIZE = {{ param.type }}_SIZE,
         .ENC = {{ param.encoding }},
+        .ENC_SIZE = {{ param.length }},
         .SCALE = {{ param.scale }},
         .OFFSET = {{ param.offset }},
         .last_tx = 0,
@@ -43,10 +44,9 @@ void* PARAMETERS[NUM_OF_PARAMETERS] = {
 PARAM_GROUP GROUPS[NUM_OF_GROUPS] = {
     {% for id, group in groups.items() -%}
     {
-        .id = {{ id }},
-        .slots = {
-            {%- for name in group %}
-            {{- name.upper() }}_ID, {% endfor -%}}
+        .group_id = {{ id }},
+        .param_ids = {
+            {%- for name in group %}{{ name }}, {% endfor -%}}
     },
     {% endfor %}
 };

@@ -355,7 +355,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++)
     {
-        if (GROUPS[i].id == param->GROUP_ID)
+        if (GROUPS[i].group_id == param->GROUP_ID)
         {
             group = &GROUPS[i];
             break;
@@ -375,65 +375,30 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 
     // run through all of the bytes in the group, putting the correct data in them based
     // on the parameters that are in this group
-    GCAN_PARAM_ID last_param_id = EMPTY_ID;
-    U8 param_start = 0;
-    U8 param_length = 0;
     S8 err;
-
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
     {
-    	// EMPTY_IDs in the list are skipped, but the counters are reset
-    	if (group->slots[i] == EMPTY_ID)
-    	{
-    		param_start = 0;
-    		param_length = 0;
-    		last_param_id = EMPTY_ID;
-    		continue;
-    	}
+        GCAN_PARAM_ID id = group->param_ids[i];
+        if (id == EMPTY_ID) continue;
 
-    	// check if the next byte in the group is a new parameter
-    	if (group->slots[i] != last_param_id)
-    	{
-    		// this is a new param in the group, add it into the list
-    		param_start = i;
-    		param_length = 0;
-    		last_param_id = group->slots[i];
-    	}
+        // check to make sure this is a good id. We are down bad if it is not
+        if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
 
-    	// add 1 to the length of the parameter always as this byte is apart of it
-    	param_length += 1;
-
-    	// check if the parameter is about to end, meaning we can build the message
-    	// with it
-    	if ((i + 1) > CAN_DATA_BYTES || group->slots[i + 1] != last_param_id)
-    	{
-    		// check to make sure this is a good id. We are down bad if it is not
-    		if (last_param_id < EMPTY_ID || last_param_id >= NUM_OF_PARAMETERS)
-			{
-				return BAD_PARAMETER_ID;
-			}
-
-    		// add this parameter's data to the message
-    		CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[last_param_id];
-			err = encode_parameter(param, message.data, param_start, param_length);
-			if (err) return err;
-    	}
+        // add this parameter's data to the message
+        CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+        err = encode_parameter(param, message.data, i, param->ENC_SIZE);
+        if (err) return err;
     }
 
     // send the message
     err = tx_can_message(&message);
     if (err) return err;
 
-    // if successful send, update the last_tx for all of the sent parameters. This is
-    // an inefficient solution as is sets the last_tx for the same parameter many times
-    // depending on how many bytes it has
-    for (U8 c = 0; c < CAN_DATA_BYTES; c++)
+    // if successful send, update the last_tx for all of the sent parameters
+    for (U8 i = 0; i < CAN_DATA_BYTES; i++)
     {
-    	last_param_id = group->slots[c];
-    	if (last_param_id != EMPTY_ID)
-    	{
-    		((CAN_INFO_STRUCT*)PARAMETERS[last_param_id])->last_tx = HAL_GetTick();
-    	}
+        GCAN_PARAM_ID id = group->param_ids[i];
+        if (id != EMPTY_ID) ((CAN_INFO_STRUCT*)PARAMETERS[id])->last_tx = HAL_GetTick();
     }
 
     return CAN_SUCCESS;
@@ -817,7 +782,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
-        if (GROUPS[i].id == message->header.StdId) {
+        if (GROUPS[i].group_id == message->header.StdId) {
             group = &GROUPS[i];
             break;
         }
@@ -826,54 +791,23 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     if (group == NULL) return NOT_FOUND_ERR;
 
     // decode parameters
-    GCAN_PARAM_ID last_param_id;
-    U8 param_start = 0;
-    U8 param_length = 1;
     S8 err;
     U32 rx_time = HAL_GetTick();
 
-    // run through each of the bytes in the group, decoding the param in that spot
-    // as needed when all of the bytes are accounted for
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
-	{
-		// EMPTY_IDs in the list are skipped, but the counters are reset
-		if (group->slots[i] == EMPTY_ID)
-		{
-			param_start = 0;
-			param_length = 0;
-			last_param_id = EMPTY_ID;
-			continue;
-		}
+    {
+        GCAN_PARAM_ID id = group->param_ids[i];
+        if (id == EMPTY_ID) continue;
 
-		// check if the next byte in the group is a new parameter
-		if (group->slots[i] != last_param_id)
-		{
-			// this is a new param in the group, add it into the list
-			param_start = i;
-			param_length = 0;
-			last_param_id = group->slots[i];
-		}
+        // check to make sure this is a good id. We are down bad if it is not
+        if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
 
-		// add 1 to the length of the parameter always as this byte is apart of it
-		param_length += 1;
-
-		// check if the parameter is about to end, meaning we can build the message
-		// with it
-		if ((i + 1) > CAN_DATA_BYTES || group->slots[i + 1] != last_param_id)
-		{
-			// check to make sure this is a good id. We are down bad if it is not
-			if (last_param_id < EMPTY_ID || last_param_id >= NUM_OF_PARAMETERS)
-			{
-				return BAD_PARAMETER_ID;
-			}
-
-			// decode this parameters data from the message, also update last_rx if there
-			// was no error decoding this parameter
-			CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[last_param_id];
-			err = decode_parameter(param, message->data, param_start, param_length);
-			if (!err) param->last_rx = rx_time;
-		}
-	}
+        // decode this parameters data from the message
+        // update last_rx if there was no error decoding
+        CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+        err = decode_parameter(param, message->data, i, param->ENC_SIZE);
+        if (!err) param->last_rx = rx_time;
+    }
 
     return CAN_SUCCESS;
 }
