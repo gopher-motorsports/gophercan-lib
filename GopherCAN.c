@@ -69,18 +69,21 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE 
 #if NUM_OF_BUSSES > 2
     if (bus_id == GCAN2) {
         txbuff2.hcan = hcan;
-        txbuff2.mutex = osMutexNew(&txbuff2_mutex_attr);
+        osMutexDef(txbuff2_mutex);
+        txbuff2.mutex = osMutexCreate(osMutex(txbuff2_mutex));
     }
 #endif
 #if NUM_OF_BUSSES > 1
     if (bus_id == GCAN1) {
         txbuff1.hcan = hcan;
-        txbuff1.mutex = osMutexNew(&txbuff1_mutex_attr);
+        osMutexDef(txbuff1_mutex);
+        txbuff1.mutex = osMutexCreate(osMutex(txbuff1_mutex));
     }
 #endif
     if (bus_id == GCAN0) {
         txbuff0.hcan = hcan;
-        txbuff0.mutex = osMutexNew(&txbuff0_mutex_attr);
+        osMutexDef(txbuff0_mutex);
+        txbuff0.mutex = osMutexCreate(osMutex(txbuff0_mutex));
     }
 
 	// init HAL_GetTick()
@@ -633,7 +636,7 @@ void service_can_tx(CAN_HandleTypeDef* hcan)
 
     // protect buffer from RTOS thread switching
     if (buffer->mutex != NULL) {
-        if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
+        if(osMutexWait(buffer->mutex, MUTEX_TIMEOUT)) return;
     }
 #if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
     // protect buffer from interrupts
