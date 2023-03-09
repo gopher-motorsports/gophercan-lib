@@ -453,8 +453,8 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
                 / ((S64)param->SCALE + ((S64)param->SCALE == 0));
             break;
         case FLOATING:
-            value = (((FLOAT_CAN_STRUCT*)param)->data - param->OFFSET)
-                / param->SCALE;
+            // send floats as signed values
+            value = (S64)( (((FLOAT_CAN_STRUCT*)param)->data - param->OFFSET) / param->SCALE );
             break;
         default:
             return ENCODING_ERR;
@@ -463,9 +463,9 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     // move bytes into data field
     for (U8 i = 0; i < length; i++) {
         if (param->ENC == LSB) {
-            data[start + i] = (U8)(value >> (i * BITS_IN_BYTE));
+            data[start + i] = value >> (i * BITS_IN_BYTE);
         } else if (param->ENC == MSB) {
-            data[start + i] = (U8)(value >> ((length - 1 - i) * BITS_IN_BYTE));
+            data[start + i] = value >> ((length - 1 - i) * BITS_IN_BYTE);
         } else return ENCODING_ERR;
     }
 
@@ -478,6 +478,7 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
+    float value_fl = 0;
 
     // reconstruct U64
     for (U8 i = 0; i < length; i++) {
@@ -515,7 +516,12 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
             ((S64_CAN_STRUCT*)param)->data = (value * (S64)param->SCALE) + (S64)param->OFFSET;
             break;
         case FLOATING:
-            ((FLOAT_CAN_STRUCT*)param)->data = ((float)value * param->SCALE) + param->OFFSET;
+            // floats are signed values in data frame
+            if (length == 1) value_fl = (S8)value;
+            else if (length == 2) value_fl = (S16)value;
+            else if (length == 4) value_fl = (S32)value;
+            else if (length == 8) value_fl = (S64)value;
+            ((FLOAT_CAN_STRUCT*)param)->data = (value_fl * param->SCALE) + param->OFFSET;
             break;
         default:
             return DECODING_ERR;
