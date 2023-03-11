@@ -244,6 +244,34 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
+        
+    # additional sensors
+    crankTorque_Nm:
+        id: 24
+        motec_name: Crank Torque
+        unit: Nm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilRadTemp1_C:
+        id: 25
+        motec_name: Oil Rad Temp 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilRadTemp2_C:
+        id: 26
+        motec_name: Oil Rad Temp 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
 
 
 groups: [
@@ -304,7 +332,15 @@ groups: [
         id: 0x203,
         parameters: [
             {name: oilFanDuty_percent,    start: 0, length: 2},
-            {name: waterPumpDuty_percent, start: 2, length: 2}
+            {name: waterPumpDuty_percent, start: 2, length: 2},
+            {name: crankTorque_Nm,        start: 4, length: 2},
+            {name: oilRadTemp1_C,         start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x204,
+        parameters: [
+            {name: oilRadTemp2_C, start: 0, length: 2}
         ]
     }
 ]
