@@ -521,6 +521,7 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
             else if (length == 2) value_fl = (S16)value;
             else if (length == 4) value_fl = (S32)value;
             else if (length == 8) value_fl = (S64)value;
+            else value_fl = value;
             ((FLOAT_CAN_STRUCT*)param)->data = (value_fl * param->SCALE) + param->OFFSET;
             break;
         default:
