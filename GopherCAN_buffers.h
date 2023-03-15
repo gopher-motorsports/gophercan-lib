@@ -28,7 +28,7 @@ typedef struct
     U8 size;                    // the total amount of space available
     U8 head;                    // the position of the "first" element
     U8 fill_level;              // the number of elements after the head that are apart of the buffer
-    osMutexId_t mutex;
+    osMutexId mutex;
 } CAN_MSG_RING_BUFFER;
 
 // buffer mutex timeout in ticks (usually 1ms)
@@ -41,16 +41,13 @@ typedef struct
 extern CAN_MSG_RING_BUFFER rxbuff;
 
 extern CAN_MSG_RING_BUFFER txbuff0;
-extern const osMutexAttr_t txbuff0_mutex_attr;
 
 #if NUM_OF_BUSSES > 1
 extern CAN_MSG_RING_BUFFER txbuff1;
-extern const osMutexAttr_t txbuff1_mutex_attr;
 #endif
 
 #if NUM_OF_BUSSES > 2
 extern CAN_MSG_RING_BUFFER txbuff2;
-extern const osMutexAttr_t txbuff2_mutex_attr;
 #endif
 
 CAN_MSG_RING_BUFFER* choose_tx_buffer_from_hcan(CAN_HandleTypeDef* hcan);

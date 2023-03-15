@@ -69,18 +69,21 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE 
 #if NUM_OF_BUSSES > 2
     if (bus_id == GCAN2) {
         txbuff2.hcan = hcan;
-        txbuff2.mutex = osMutexNew(&txbuff2_mutex_attr);
+        osMutexDef(txbuff2_mutex);
+        txbuff2.mutex = osMutexCreate(osMutex(txbuff2_mutex));
     }
 #endif
 #if NUM_OF_BUSSES > 1
     if (bus_id == GCAN1) {
         txbuff1.hcan = hcan;
-        txbuff1.mutex = osMutexNew(&txbuff1_mutex_attr);
+        osMutexDef(txbuff1_mutex);
+        txbuff1.mutex = osMutexCreate(osMutex(txbuff1_mutex));
     }
 #endif
     if (bus_id == GCAN0) {
         txbuff0.hcan = hcan;
-        txbuff0.mutex = osMutexNew(&txbuff0_mutex_attr);
+        osMutexDef(txbuff0_mutex);
+        txbuff0.mutex = osMutexCreate(osMutex(txbuff0_mutex));
     }
 
 	// init HAL_GetTick()
@@ -355,7 +358,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++)
     {
-        if (GROUPS[i].id == param->GROUP_ID)
+        if (GROUPS[i].group_id == param->GROUP_ID)
         {
             group = &GROUPS[i];
             break;
@@ -366,74 +369,42 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 
     // build parameter group message. Setting the data to 0 means that training zeros
     // will be properly removed when sending the message, cutting down the DLC with it
-    CAN_MSG message = {0};
-
-    message.header.StdId = param->GROUP_ID;
-    message.header.IDE = CAN_ID_STD;
-    message.header.RTR = DATA_MESSAGE;
-    message.header.DLC = CAN_DATA_BYTES;
+    CAN_MSG message = {
+        .header = {
+            .StdId = param->GROUP_ID,
+            .IDE = CAN_ID_STD,
+            .RTR = DATA_MESSAGE,
+            .DLC = CAN_DATA_BYTES
+        },
+        .data = {0}
+    };
 
     // run through all of the bytes in the group, putting the correct data in them based
     // on the parameters that are in this group
-    GCAN_PARAM_ID last_param_id = EMPTY_ID;
-    U8 param_start = 0;
-    U8 param_length = 0;
     S8 err;
-
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
     {
-    	// EMPTY_IDs in the list are skipped, but the counters are reset
-    	if (group->slots[i] == EMPTY_ID)
-    	{
-    		param_start = 0;
-    		param_length = 0;
-    		last_param_id = EMPTY_ID;
-    		continue;
-    	}
+        GCAN_PARAM_ID id = group->param_ids[i];
+        if (id == EMPTY_ID) continue;
 
-    	// check if the next byte in the group is a new parameter
-    	if (group->slots[i] != last_param_id)
-    	{
-    		// this is a new param in the group, add it into the list
-    		param_start = i;
-    		param_length = 0;
-    		last_param_id = group->slots[i];
-    	}
+        // check to make sure this is a good id. We are down bad if it is not
+        if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
 
-    	// add 1 to the length of the parameter always as this byte is apart of it
-    	param_length += 1;
-
-    	// check if the parameter is about to end, meaning we can build the message
-    	// with it
-    	if ((i + 1) > CAN_DATA_BYTES || group->slots[i + 1] != last_param_id)
-    	{
-    		// check to make sure this is a good id. We are down bad if it is not
-    		if (last_param_id < EMPTY_ID || last_param_id >= NUM_OF_PARAMETERS)
-			{
-				return BAD_PARAMETER_ID;
-			}
-
-    		// add this parameter's data to the message
-    		CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[last_param_id];
-			err = encode_parameter(param, message.data, param_start, param_length);
-			if (err) return err;
-    	}
+        // add this parameter's data to the message
+        CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+        err = encode_parameter(param, message.data, i, param->ENC_SIZE);
+        if (err) return err;
     }
 
     // send the message
     err = tx_can_message(&message);
     if (err) return err;
 
-    // if successful send, update the last_tx for all of the sent parameters. This is
-    // an inefficient solution as is sets the last_tx for the same parameter many times
-    // depending on how many bytes it has
-    for (U8 c = 0; c < CAN_DATA_BYTES; c++)
+    // if successful send, update the last_tx for all of the sent parameters
+    for (U8 i = 0; i < CAN_DATA_BYTES; i++)
     {
-    	last_param_id = group->slots[c];
-    	if (last_param_id != EMPTY_ID)
-    	{
-    		((CAN_INFO_STRUCT*)PARAMETERS[last_param_id])->last_tx = HAL_GetTick();
-    	}
+        GCAN_PARAM_ID id = group->param_ids[i];
+        if (id != EMPTY_ID) ((CAN_INFO_STRUCT*)PARAMETERS[id])->last_tx = HAL_GetTick();
     }
 
     return CAN_SUCCESS;
@@ -445,34 +416,45 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
-    float value_fl = 0;
 
     // apply quantization and store in U64
+    // use scale = 1 if necessary to avoid divide by 0 due to truncation
     switch (param->TYPE) {
         case UNSIGNED8:
+            value = (((U8_CAN_STRUCT*)param)->data - (U8)param->OFFSET)
+                / ((U8)param->SCALE + ((U8)param->SCALE == 0));
+            break;
         case SIGNED8:
-            value |= ((U8_CAN_STRUCT*) param)->data;
-            value = (value - param->OFFSET) / param->SCALE;
+            value = (((S8_CAN_STRUCT*)param)->data - (S8)param->OFFSET)
+                / ((S8)param->SCALE + ((S8)param->SCALE == 0));
             break;
         case UNSIGNED16:
+            value = (((U16_CAN_STRUCT*)param)->data - (U16)param->OFFSET)
+                / ((U16)param->SCALE + ((U16)param->SCALE == 0));
+            break;
         case SIGNED16:
-            value |= ((U16_CAN_STRUCT*) param)->data;
-            value = (value - param->OFFSET) / param->SCALE;
+            value = (((S16_CAN_STRUCT*)param)->data - (S16)param->OFFSET)
+                / ((S16)param->SCALE + ((S16)param->SCALE == 0));
             break;
         case UNSIGNED32:
+            value = (((U32_CAN_STRUCT*)param)->data - (U32)(param->OFFSET))
+                / ((U32)param->SCALE + ((U32)param->SCALE == 0));
+            break;
         case SIGNED32:
-            value |= ((U32_CAN_STRUCT*) param)->data;
-            value = (value - param->OFFSET) / param->SCALE;
+            value = (((S32_CAN_STRUCT*)param)->data - (S32)(param->OFFSET))
+                / ((S32)param->SCALE + ((S32)param->SCALE == 0));
             break;
         case UNSIGNED64:
+            value = (((U64_CAN_STRUCT*)param)->data - (U64)param->OFFSET)
+                / ((U64)param->SCALE + ((U64)param->SCALE == 0));
+            break;
         case SIGNED64:
-            value |= ((U64_CAN_STRUCT*) param)->data;
-            value = (value - param->OFFSET) / param->SCALE;
+            value = (((S64_CAN_STRUCT*)param)->data - (S64)param->OFFSET)
+                / ((S64)param->SCALE + ((S64)param->SCALE == 0));
             break;
         case FLOATING:
-            value_fl = ((FLOAT_CAN_STRUCT*) param)->data;
-            value_fl = (value_fl - param->OFFSET) / param->SCALE;
-            value |= (U64) value_fl;
+            // send floats as signed values
+            value = (S64)( (((FLOAT_CAN_STRUCT*)param)->data - param->OFFSET) / param->SCALE );
             break;
         default:
             return ENCODING_ERR;
@@ -481,9 +463,9 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     // move bytes into data field
     for (U8 i = 0; i < length; i++) {
         if (param->ENC == LSB) {
-            data[start + i] = (U8)(value >> (i * BITS_IN_BYTE));
+            data[start + i] = value >> (i * BITS_IN_BYTE);
         } else if (param->ENC == MSB) {
-            data[start + i] = (U8)(value >> ((length - 1 - i) * BITS_IN_BYTE));
+            data[start + i] = value >> ((length - 1 - i) * BITS_IN_BYTE);
         } else return ENCODING_ERR;
     }
 
@@ -508,44 +490,39 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     }
 
     // restore original type
-    // TODO there is some floating point BS here when running the scale and offset on
-    // 32bit (and likely 64bit) numbers
     switch (param->TYPE) {
         case UNSIGNED8:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((U8_CAN_STRUCT*) param)->data = (U8) value;
-            break;
-        case UNSIGNED16:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((U16_CAN_STRUCT*) param)->data = (U16) value;
-            break;
-        case UNSIGNED32:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((U32_CAN_STRUCT*) param)->data = (U32) value;
-            break;
-        case UNSIGNED64:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((U64_CAN_STRUCT*) param)->data = (U64) value;
+            ((U8_CAN_STRUCT*)param)->data = (value * (U8)param->SCALE) + (U8)param->OFFSET;
             break;
         case SIGNED8:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((S8_CAN_STRUCT*) param)->data = (S8) value;
+            ((S8_CAN_STRUCT*)param)->data = (value * (S8)param->SCALE) + (S8)param->OFFSET;
+            break;
+        case UNSIGNED16:
+            ((U16_CAN_STRUCT*)param)->data = (value * (U16)param->SCALE) + (U16)param->OFFSET;
             break;
         case SIGNED16:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((S16_CAN_STRUCT*) param)->data = (S16) value;
+            ((S16_CAN_STRUCT*)param)->data = (value * (S16)param->SCALE) + (S16)param->OFFSET;
+            break;
+        case UNSIGNED32:
+            ((U32_CAN_STRUCT*)param)->data = (value * (U32)param->SCALE) + (U32)param->OFFSET;
             break;
         case SIGNED32:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((S32_CAN_STRUCT*) param)->data = (S32) value;
+            ((S32_CAN_STRUCT*)param)->data = (value * (S32)param->SCALE) + (S32)param->OFFSET;
+            break;
+        case UNSIGNED64:
+            ((U64_CAN_STRUCT*)param)->data = (value * (U64)param->SCALE) + (U64)param->OFFSET;
             break;
         case SIGNED64:
-            value = (value * param->SCALE) + param->OFFSET;
-            ((S64_CAN_STRUCT*) param)->data = (S64) value;
+            ((S64_CAN_STRUCT*)param)->data = (value * (S64)param->SCALE) + (S64)param->OFFSET;
             break;
         case FLOATING:
-            value_fl = ((float) value * param->SCALE) + param->OFFSET;
-            ((FLOAT_CAN_STRUCT*) param)->data = value_fl;
+            // floats are signed values in data frame
+            if (length == 1) value_fl = (S8)value;
+            else if (length == 2) value_fl = (S16)value;
+            else if (length == 4) value_fl = (S32)value;
+            else if (length == 8) value_fl = (S64)value;
+            else value_fl = value;
+            ((FLOAT_CAN_STRUCT*)param)->data = (value_fl * param->SCALE) + param->OFFSET;
             break;
         default:
             return DECODING_ERR;
@@ -668,7 +645,7 @@ void service_can_tx(CAN_HandleTypeDef* hcan)
 
     // protect buffer from RTOS thread switching
     if (buffer->mutex != NULL) {
-        if(osMutexAcquire(buffer->mutex, MUTEX_TIMEOUT)) return;
+        if(osMutexWait(buffer->mutex, MUTEX_TIMEOUT)) return;
     }
 #if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
     // protect buffer from interrupts
@@ -817,7 +794,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
-        if (GROUPS[i].id == message->header.StdId) {
+        if (GROUPS[i].group_id == message->header.StdId) {
             group = &GROUPS[i];
             break;
         }
@@ -826,54 +803,23 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     if (group == NULL) return NOT_FOUND_ERR;
 
     // decode parameters
-    GCAN_PARAM_ID last_param_id;
-    U8 param_start = 0;
-    U8 param_length = 1;
     S8 err;
     U32 rx_time = HAL_GetTick();
 
-    // run through each of the bytes in the group, decoding the param in that spot
-    // as needed when all of the bytes are accounted for
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
-	{
-		// EMPTY_IDs in the list are skipped, but the counters are reset
-		if (group->slots[i] == EMPTY_ID)
-		{
-			param_start = 0;
-			param_length = 0;
-			last_param_id = EMPTY_ID;
-			continue;
-		}
+    {
+        GCAN_PARAM_ID id = group->param_ids[i];
+        if (id == EMPTY_ID) continue;
 
-		// check if the next byte in the group is a new parameter
-		if (group->slots[i] != last_param_id)
-		{
-			// this is a new param in the group, add it into the list
-			param_start = i;
-			param_length = 0;
-			last_param_id = group->slots[i];
-		}
+        // check to make sure this is a good id. We are down bad if it is not
+        if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
 
-		// add 1 to the length of the parameter always as this byte is apart of it
-		param_length += 1;
-
-		// check if the parameter is about to end, meaning we can build the message
-		// with it
-		if ((i + 1) > CAN_DATA_BYTES || group->slots[i + 1] != last_param_id)
-		{
-			// check to make sure this is a good id. We are down bad if it is not
-			if (last_param_id < EMPTY_ID || last_param_id >= NUM_OF_PARAMETERS)
-			{
-				return BAD_PARAMETER_ID;
-			}
-
-			// decode this parameters data from the message, also update last_rx if there
-			// was no error decoding this parameter
-			CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[last_param_id];
-			err = decode_parameter(param, message->data, param_start, param_length);
-			if (!err) param->last_rx = rx_time;
-		}
-	}
+        // decode this parameters data from the message
+        // update last_rx if there was no error decoding
+        CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+        err = decode_parameter(param, message->data, i, param->ENC_SIZE);
+        if (!err) param->last_rx = rx_time;
+    }
 
     return CAN_SUCCESS;
 }
