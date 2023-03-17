@@ -20,13 +20,13 @@ modules:
             - GCAN1
             - GCAN2
         motec_name: Power and Logging Module
-        
+
     ECU:
         id: 2
         buses:
             - GCAN1
         motec_name: Engine Control Unit
-        
+
     SWM:
         id: 3
         buses:
@@ -56,13 +56,13 @@ modules:
         buses:
             - GCAN2
         motec_name: Sensor Hub Rear Right
-        
+
     Display:
         id: 8
         buses:
             - GCAN1
         motec_name: Display
-        
+
     IMU:
         id: 9
         buses:
@@ -248,7 +248,6 @@ parameters:
         scale: 1
         offset: 0
     # END ECU
-    
     # Display:
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
@@ -269,7 +268,6 @@ parameters:
         scale: 0.000021457672119140625 # [0-360] -> [0-16777216]
         offset: 0
     # END DISPLAY
-    
     # Transmission Controller Sensors:
     shifterPosition_mm:
         id: 22
@@ -361,11 +359,29 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
+
+    tcmTimeShiftOnly_state:
+        id: 32
+        motec_name: Time Shifting Only
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmClutchlessDownshift_state:
+        id: 33
+        motec_name: Clutchless Downshift
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
     # END TCM
 
     # Sensor Hub Front Sensors
     brakePressureFront_psi:
-        id: 32
+        id: 34
         motec_name: Brake Pres Front
         unit: psi
         type: FLOATING
@@ -374,7 +390,7 @@ parameters:
         offset: 0
 
     brakePressureRear_psi:
-        id: 33
+        id: 35
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -383,7 +399,7 @@ parameters:
         offset: 0
 
     brakeTempFrontLeft_C:
-        id: 34
+        id: 36
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -392,7 +408,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 35
+        id: 37
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -401,7 +417,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 36
+        id: 38
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -410,7 +426,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 37
+        id: 39
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -419,7 +435,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 38
+        id: 40
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -428,7 +444,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 39
+        id: 41
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -437,7 +453,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 40
+        id: 42
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -445,10 +461,9 @@ parameters:
         scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
         offset: 0
     # END SENSOR HUB FRONT
-    
     # Sensor Hub Rear Left Sensors
     fuelPressure_kPa:
-        id: 41
+        id: 43
         motec_name: Fuel Pres
         unit: kPa
         type: FLOATING
@@ -457,7 +472,7 @@ parameters:
         offset: 0
 
     exhaustTemp_C:
-        id: 42
+        id: 44
         motec_name: Exhaust Temp
         unit: C
         type: FLOATING
@@ -466,7 +481,7 @@ parameters:
         offset: 0
 
     leftRadWaterTempIn_C:
-        id: 43
+        id: 45
         motec_name: Left Rad Water Temp In
         unit: C
         type: FLOATING
@@ -475,7 +490,7 @@ parameters:
         offset: 0
 
     leftRadWaterTempOut_C:
-        id: 44
+        id: 46
         motec_name: Left Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -484,7 +499,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 45
+        id: 47
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -493,7 +508,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 46
+        id: 48
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -501,10 +516,9 @@ parameters:
         scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
         offset: 0
     # END SENSOR HUB REAR LEFT
-    
     # Sensor Hub Rear Right Sensors
     shockPosRearRight_mm:
-        id: 47
+        id: 49
         motec_name: Susp Pos RR
         unit: mm
         type: FLOATING
@@ -513,7 +527,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearRight_mph:
-        id: 48
+        id: 50
         motec_name: Wheel Speed RR
         unit: mph
         type: FLOATING
@@ -522,7 +536,7 @@ parameters:
         offset: 0
 
     manifoldPressure_kPa:
-        id: 49
+        id: 51
         motec_name: Manifold Pres
         unit: kPa
         type: FLOATING
@@ -531,7 +545,7 @@ parameters:
         offset: 0
 
     manifoldTemp_C:
-        id: 50
+        id: 52
         motec_name: Air Temp Inlet
         unit: C
         type: FLOATING
@@ -540,7 +554,7 @@ parameters:
         offset: 0
 
     airTankPressure_psi:
-        id: 51
+        id: 53
         motec_name: Air Tank Pressure
         unit: psi
         type: FLOATING
@@ -549,7 +563,7 @@ parameters:
         offset: 0
 
     airLinePressure_psi:
-        id: 52
+        id: 54
         motec_name: Air Line Pressure
         unit: psi
         type: FLOATING
@@ -557,10 +571,9 @@ parameters:
         scale: 0.0244140625 # [0-100] -> [0-4096]
         offset: 0
     # END SENSOR HUB REAR RIGHT
-    
     # Power and Logging Module Sensing:
     plmVbatVoltage_V:
-        id: 53
+        id: 55
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -569,7 +582,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 54
+        id: 56
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -578,7 +591,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 55
+        id: 57
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -587,7 +600,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 56
+        id: 58
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -596,7 +609,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 57
+        id: 59
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -605,7 +618,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 58
+        id: 60
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -614,7 +627,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 59
+        id: 61
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -623,7 +636,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 60
+        id: 62
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -632,7 +645,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 61
+        id: 63
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -641,7 +654,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 62
+        id: 64
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -650,7 +663,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 63
+        id: 65
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -659,7 +672,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 64
+        id: 66
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -668,7 +681,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 65
+        id: 67
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -678,7 +691,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 66
+        id: 68
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -687,7 +700,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 67
+        id: 69
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -696,7 +709,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 68
+        id: 70
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -704,10 +717,9 @@ parameters:
         scale: 0.1
         offset: 0
     # END PLM
-    
     # Steering Wheel Module
     swUpshift_state:
-        id: 69
+        id: 71
         motec_name: Wheel Upshift Paddle Pos
         unit: ''
         type: FLOATING
@@ -716,7 +728,7 @@ parameters:
         offset: 0
 
     swDownshift_state:
-        id: 70
+        id: 72
         motec_name: Wheel Downshift Paddle Pos
         unit: ''
         type: FLOATING
@@ -725,7 +737,7 @@ parameters:
         offset: 0
 
     swSlowClutch_state:
-        id: 71
+        id: 73
         motec_name: Wheel Slow Clutch
         unit: ''
         type: UNSIGNED8
@@ -734,7 +746,7 @@ parameters:
         offset: 0
 
     swFastClutch_state:
-        id: 72
+        id: 74
         motec_name: Wheel Fast Clutch
         unit: ''
         type: UNSIGNED8
@@ -743,7 +755,7 @@ parameters:
         offset: 0
 
     swButon0_state:
-        id: 73
+        id: 75
         motec_name: Wheel Button 0
         unit: ''
         type: UNSIGNED8
@@ -752,7 +764,7 @@ parameters:
         offset: 0
 
     swButon1_state:
-        id: 74
+        id: 76
         motec_name: Wheel Button 1
         unit: ''
         type: UNSIGNED8
@@ -761,7 +773,7 @@ parameters:
         offset: 0
 
     swButon2_state:
-        id: 75
+        id: 77
         motec_name: Wheel Button 2
         unit: ''
         type: UNSIGNED8
@@ -770,7 +782,7 @@ parameters:
         offset: 0
 
     swButon3_state:
-        id: 76
+        id: 78
         motec_name: Wheel Button 3
         unit: ''
         type: UNSIGNED8
@@ -779,7 +791,7 @@ parameters:
         offset: 0
 
     swDial_ul:
-        id: 77
+        id: 79
         motec_name: Wheel Dial
         unit: ''
         type: UNSIGNED8
@@ -787,46 +799,45 @@ parameters:
         scale: 1
         offset: 0
     # END SWM
-    
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 78
+        id: 80
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
         encoding: LSB
         scale: 0.005
         offset: 0
-        
+
     rollRate_degPerSec:
-        id: 79
+        id: 81
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
         encoding: LSB
         scale: 0.005
         offset: 0
-        
+
     lateralAccel_G:
-        id: 80
+        id: 82
         motec_name: G Force Lat
         unit: G
         type: FLOATING
         encoding: LSB
         scale: 0.0001274
         offset: 0
-        
+
     longitudinalAccel_G:
-        id: 81
+        id: 83
         motec_name: G Force Long
         unit: G
         type: FLOATING
         encoding: LSB
         scale: 0.0001274
         offset: 0
-        
+
     verticalAccel_G:
-        id: 82
+        id: 84
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -839,227 +850,84 @@ parameters:
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
     # High Frequency ECU (Custom Set 1)
-    {
-        id: 0x100,
-        parameters: [
-            {name: engineRPM_rpm,       start: 0, length: 2},
-            {name: throttlePos_percent, start: 2, length: 2},
-            {name: lambda1_LA,          start: 4, length: 2},
-            {name: aimLambda1_LA,       start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x101,
-        parameters: [
-            {name: fuelCutLevel_percent, start: 0, length: 2},
-            {name: ignCutLevel_percent,  start: 2, length: 2},
-            {name: ignAdvance_degrees,   start: 4, length: 2},
-            {name: fuelInjDuty_percent,  start: 6, length: 2}
-        ]
-    },
+   {id: 0x100, parameters: [{name: engineRPM_rpm, start: 0, length: 2}, {name: throttlePos_percent,
+                start: 2, length: 2}, {name: lambda1_LA, start: 4, length: 2}, {name: aimLambda1_LA,
+                start: 6, length: 2}]}, {id: 0x101, parameters: [{name: fuelCutLevel_percent,
+                start: 0, length: 2}, {name: ignCutLevel_percent, start: 2, length: 2},
+            {name: ignAdvance_degrees, start: 4, length: 2}, {name: fuelInjDuty_percent,
+                start: 6, length: 2}]},
     # Low Frequency ECU (Custom Set 2)
-    {
-        id: 0x150,
-        parameters: [
-            {name: engineTemp_C,     start: 0, length: 2},
-            {name: oilPressure_kPa,  start: 2, length: 2},
-            {name: oilTemp_C,        start: 4, length: 2},
-            {name: batteryVoltage_V, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x151,
-        parameters: [
-            {name: ecu5VEng_V,         start: 0, length: 2},
-            {name: ecu5VAux_V,         start: 2, length: 2},
-            {name: ecuTemp_C,          start: 4, length: 2},
-            {name: oilFanDuty_percent, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x152,
-        parameters: [
-            {name: waterPumpDuty_percent,      start: 0, length: 2},
-            {name: warningLightDuty_percent,   start: 2, length: 2},
-            {name: spartkCutLightDuty_percent, start: 4, length: 2}
-        ]
-    },
+   {id: 0x150, parameters: [{name: engineTemp_C, start: 0, length: 2}, {name: oilPressure_kPa,
+                start: 2, length: 2}, {name: oilTemp_C, start: 4, length: 2}, {name: batteryVoltage_V,
+                start: 6, length: 2}]}, {id: 0x151, parameters: [{name: ecu5VEng_V,
+                start: 0, length: 2}, {name: ecu5VAux_V, start: 2, length: 2}, {name: ecuTemp_C,
+                start: 4, length: 2}, {name: oilFanDuty_percent, start: 6, length: 2}]},
+    {id: 0x152, parameters: [{name: waterPumpDuty_percent, start: 0, length: 2}, {
+                name: warningLightDuty_percent, start: 2, length: 2}, {name: spartkCutLightDuty_percent,
+                start: 4, length: 2}]},
     # Display GPS
-    {
-        id: 0x700,
-        parameters: [
-            {name: gpsLatitude_deg,  start: 0, length: 4},
-            {name: gpsLongitude_deg, start: 4, length: 4}
-        ]
-    },
+   {id: 0x700, parameters: [{name: gpsLatitude_deg, start: 0, length: 4}, {name: gpsLongitude_deg,
+                start: 4, length: 4}]},
     # Steering Wheel Module
-    {
-        id: 0x200,
-        parameters: [
-            {name: swUpshift_state,    start: 0, length: 2},
-            {name: swDownshift_state,  start: 2, length: 2},
-            {name: swSlowClutch_state, start: 4, length: 1},
-            {name: swFastClutch_state, start: 5, length: 1},
-            {name: swButon0_state,     start: 6, length: 1},
-            {name: swButon1_state,     start: 7, length: 1}
-        ]
-    },
-    {
-        id: 0x201,
-        # NOTE: This message is designed to be sent to the ECU over an ADL channel.
-        # These are message types MoTeC sequential. This guide was followed to make
-        # it work: https://www.motec.com.au/forum/viewtopic.php?f=11&t=4119
-        parameters: [
-            {name: swButon2_state, start: 2, length: 2},
-            {name: swButon3_state, start: 4, length: 2},
-            {name: swDial_ul,      start: 6, length: 2}
-        ]
-    },
+   {id: 0x200, parameters: [{name: swUpshift_state, start: 0, length: 2}, {name: swDownshift_state,
+                start: 2, length: 2}, {name: swSlowClutch_state, start: 4, length: 1},
+            {name: swFastClutch_state, start: 5, length: 1}, {name: swButon0_state,
+                start: 6, length: 1}, {name: swButon1_state, start: 7, length: 1}]},
+    {id: 0x201, parameters: [{name: swButon2_state, start: 2, length: 2}, {name: swButon3_state,
+                start: 4, length: 2}, {name: swDial_ul, start: 6, length: 2}]},
     # TCM
-    {
-        id: 0x300,
-        parameters: [
-            {name: shifterPosition_mm,    start: 0, length: 2},
-            {name: clutchPosition_mm,     start: 2, length: 2},
-            {name: gearPosition_mm,       start: 4, length: 2},
-            {name: counterShaftSpeed_rpm, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x301,
-        parameters: [
-            {name: tcmTargetRPM_rpm,         start: 0, length: 2},
-            {name: tcmCurrentGear_state,     start: 2, length: 1},
-            {name: tcmCurrentlyMoving_state, start: 3, length: 1},
-            {name: tcmAntiStallActive_state, start: 4, length: 1},
-            {name: tcmUsingClutch_state,     start: 5, length: 1},
-            {name: tcmShiftState_state,      start: 6, length: 1}
-        ]
-    },
+   {id: 0x300, parameters: [{name: shifterPosition_mm, start: 0, length: 2}, {name: clutchPosition_mm,
+                start: 2, length: 2}, {name: gearPosition_mm, start: 4, length: 2},
+            {name: counterShaftSpeed_rpm, start: 6, length: 2}]}, {id: 0x301, parameters: [
+            {name: tcmTargetRPM_rpm, start: 0, length: 2}, {name: tcmCurrentGear_state,
+                start: 2, length: 1}, {name: tcmCurrentlyMoving_state, start: 3, length: 1},
+            {name: tcmAntiStallActive_state, start: 4, length: 1}, {name: tcmUsingClutch_state,
+                start: 5, length: 1}, {name: tcmShiftState_state, start: 6, length: 1}]},
+    
     # Sensor Hub Front
     # Low frequency 
-    {
-        id: 0x400,
-        parameters: [
-            {name: brakePressureFront_psi, start: 0, length: 2},
-            {name: brakePressureRear_psi, start: 2, length: 2},
-            {name: brakeTempFrontLeft_C, start: 4, length: 2},
-            {name: brakeTempFrontRight_C, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x401,
-        parameters: [
-            {name: steeringAngle_deg, start: 0, length: 2}
-        ]
-    },
+   {id: 0x400, parameters: [{name: brakePressureFront_psi, start: 0, length: 2}, {
+                name: brakePressureRear_psi, start: 2, length: 2}, {name: brakeTempFrontLeft_C,
+                start: 4, length: 2}, {name: brakeTempFrontRight_C, start: 6, length: 2}]},
+    {id: 0x401, parameters: [{name: steeringAngle_deg, start: 0, length: 2}]},
     # High Frequency
-    {
-        id: 0x450,
-        parameters: [
-            {name: shockPosFrontLeft_mm,     start: 0, length: 2},
-            {name: shockPosFrontRight_mm,    start: 2, length: 2},
-            {name: wheelSpeedFrontLeft_mph,  start: 4, length: 2},
-            {name: wheelSpeedFrontRight_mph, start: 6, length: 2}
-        ]
-    },
+   {id: 0x450, parameters: [{name: shockPosFrontLeft_mm, start: 0, length: 2}, {name: shockPosFrontRight_mm,
+                start: 2, length: 2}, {name: wheelSpeedFrontLeft_mph, start: 4, length: 2},
+            {name: wheelSpeedFrontRight_mph, start: 6, length: 2}]},
     # Sensor Hub Rear Left
     # Low frequency 
-    {
-        id: 0x500,
-        parameters: [
-            {name: fuelPressure_kPa,      start: 0, length: 2},
-            {name: exhaustTemp_C,         start: 2, length: 2},
-            {name: leftRadWaterTempIn_C,  start: 4, length: 2},
-            {name: leftRadWaterTempOut_C, start: 6, length: 2}
-        ]
-    },
+   {id: 0x500, parameters: [{name: fuelPressure_kPa, start: 0, length: 2}, {name: exhaustTemp_C,
+                start: 2, length: 2}, {name: leftRadWaterTempIn_C, start: 4, length: 2},
+            {name: leftRadWaterTempOut_C, start: 6, length: 2}]},
     # High Frequency
-    {
-        id: 0x550,
-        parameters: [
-            {name: shockPosRearLeft_mm,    start: 0, length: 2},
-            {name: wheelSpeedRearLeft_mph, start: 2, length: 2}
-        ]
-    },
+   {id: 0x550, parameters: [{name: shockPosRearLeft_mm, start: 0, length: 2}, {name: wheelSpeedRearLeft_mph,
+                start: 2, length: 2}]},
     # Sensor Hub Rear Right
     # Low frequency 
-    {
-        id: 0x600,
-        parameters: [
-            {name: manifoldPressure_kPa, start: 0, length: 2},
-            {name: manifoldTemp_C,       start: 2, length: 2},
-            {name: airTankPressure_psi,  start: 4, length: 2},
-            {name: airLinePressure_psi,  start: 6, length: 2}
-        ]
-    },
+   {id: 0x600, parameters: [{name: manifoldPressure_kPa, start: 0, length: 2}, {name: manifoldTemp_C,
+                start: 2, length: 2}, {name: airTankPressure_psi, start: 4, length: 2},
+            {name: airLinePressure_psi, start: 6, length: 2}]},
     # High Frequency
-    {
-        id: 0x650,
-        parameters: [
-            {name: shockPosRearRight_mm,    start: 0, length: 2},
-            {name: wheelSpeedRearRight_mph, start: 2, length: 2}
-        ]
-    },
+   {id: 0x650, parameters: [{name: shockPosRearRight_mm, start: 0, length: 2}, {name: wheelSpeedRearRight_mph,
+                start: 2, length: 2}]},
     # Power and Logging Module (Not contiunously sent)
-    {
-        id: 0x000,
-        parameters: [
-            {name: vbatChan0Current_A, start: 0, length: 2},
-            {name: vbatChan1Current_A, start: 2, length: 2},
-            {name: vbatChan2Current_A, start: 4, length: 2},
-            {name: vbatChan3Current_A, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x001,
-        parameters: [
-            {name: vbatChan4Current_A, start: 0, length: 2},
-            {name: vbatChan5Current_A, start: 2, length: 2},
-            {name: vbatChan6Current_A, start: 4, length: 2},
-            {name: fiveVChan0Current_A, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x002,
-        parameters: [
-            {name: fiveVChan1Current_A,     start: 0, length: 2},
-            {name: fiveVChan2Current_A,     start: 2, length: 2},
-            {name: fiveVChan3Current_A,     start: 4, length: 2},
-            {name: can0Utilization_percent, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x003,
-        parameters: [
-            {name: can1Utilization_percent, start: 0, length: 2},
-            {name: can2Utilization_percent, start: 2, length: 2},
-            {name: plmVbatVoltage_V,        start: 4, length: 2},
-            {name: plm5VVoltage_V,          start: 6, length: 2}
-        ]
-    },
+   {id: 0x000, parameters: [{name: vbatChan0Current_A, start: 0, length: 2}, {name: vbatChan1Current_A,
+                start: 2, length: 2}, {name: vbatChan2Current_A, start: 4, length: 2},
+            {name: vbatChan3Current_A, start: 6, length: 2}]}, {id: 0x001, parameters: [
+            {name: vbatChan4Current_A, start: 0, length: 2}, {name: vbatChan5Current_A,
+                start: 2, length: 2}, {name: vbatChan6Current_A, start: 4, length: 2},
+            {name: fiveVChan0Current_A, start: 6, length: 2}]}, {id: 0x002, parameters: [
+            {name: fiveVChan1Current_A, start: 0, length: 2}, {name: fiveVChan2Current_A,
+                start: 2, length: 2}, {name: fiveVChan3Current_A, start: 4, length: 2},
+            {name: can0Utilization_percent, start: 6, length: 2}]}, {id: 0x003, parameters: [
+            {name: can1Utilization_percent, start: 0, length: 2}, {name: can2Utilization_percent,
+                start: 2, length: 2}, {name: plmVbatVoltage_V, start: 4, length: 2},
+            {name: plm5VVoltage_V, start: 6, length: 2}]},
     # IMU Messages (No control over these IDs)
-    {
-        id: 0x174,
-        parameters: [
-            {name: yawRate_degPerSec, start: 0, length: 2},
-            {name: lateralAccel_G,    start: 4, length: 2}
-        ]
-    },
-    {
-        id: 0x178,
-        parameters: [
-            {name: rollRate_degPerSec,  start: 0, length: 2},
-            {name: longitudinalAccel_G, start: 4, length: 2}
-        ]
-    },
-    {
-        id: 0x17C,
-        parameters: [
-            {name: verticalAccel_G, start: 4, length: 2}
-        ]
-    }
-]
+   {id: 0x174, parameters: [{name: yawRate_degPerSec, start: 0, length: 2}, {name: lateralAccel_G,
+                start: 4, length: 2}]}, {id: 0x178, parameters: [{name: rollRate_degPerSec,
+                start: 0, length: 2}, {name: longitudinalAccel_G, start: 4, length: 2}]},
+    {id: 0x17C, parameters: [{name: verticalAccel_G, start: 4, length: 2}]}]
 
 commands:
     SET_LED_STATE:
