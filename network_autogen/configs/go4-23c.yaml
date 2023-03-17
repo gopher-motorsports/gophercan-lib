@@ -882,7 +882,7 @@ groups: [
             {name: tcmTargetRPM_rpm, start: 0, length: 2}, {name: tcmCurrentGear_state,
                 start: 2, length: 1}, {name: tcmCurrentlyMoving_state, start: 3, length: 1},
             {name: tcmAntiStallActive_state, start: 4, length: 1}, {name: tcmUsingClutch_state,
-                start: 5, length: 1}, {name: tcmShiftState_state, start: 6, length: 1}]},
+                start: 5, length: 1}, {name: tcmShiftState_state, start: 6, length: 1}]}, {id: 0x302, parameters: [ {name: tcmTimeShiftOnly_state, start: 0, length: 1}, {name: tcmClutchlessDownshift_state, start: 1, length: 1}]},
     
     # Sensor Hub Front
     # Low frequency 
