@@ -68,18 +68,18 @@ for name, param in config['parameters'].items():
 # build group blueprints
 groups = {}
 for group in config['groups']:
-    blueprint = ['EMPTY'] * 8
-    for group_param in group['parameters']:
+    param_ids = ['EMPTY_ID'] * 8
+    for param in group['parameters']:
         # find the parameter with this name
         param_id = -1
-        for param in parameters:
-            if group_param['name'] == parameters[param]['name']:
-                param_id = param
+        for id in parameters:
+            if param['name'] == parameters[id]['name']:
+                param_id = id
                 break
 
         # make sure parameter exists
         if param_id == -1:
-            print(f"ERROR in group \"{group['id']}\": no parameter with name \"{group_param['name']}\"")
+            print(f"ERROR in group \"{group['id']}\": no parameter with name \"{param['name']}\"")
             sys.exit()
 
         parameter = parameters[param_id]
@@ -89,12 +89,14 @@ for group in config['groups']:
             print(f"ERROR: \"{parameter['name']}\" was found in multiple groups: \"{parameter['group_id']}\" and \"{group['id']}\"")
             sys.exit()
 
+        # fill parameter info
         parameter['group_id'] = group['id']
-        # fill parameter name in blueprint
-        for i in range(group_param['length']):
-            blueprint[group_param['start'] + i] = parameter['name']
+        parameter['length'] = param['length']
 
-    groups[group['id']] = blueprint
+        # fill parameter ids at starting position
+        param_ids[param['start']] = parameter['name'].upper() + "_ID"
+
+    groups[group['id']] = param_ids
 
 data = {
     'buses': config['buses'],
