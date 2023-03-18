@@ -799,7 +799,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1BMBMaxBoardTemp_C:
@@ -808,8 +808,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1BMBMinBoardTemp_C:
         id: 83
@@ -817,8 +817,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1BMBAveBoardTemp_C:
         id: 84
@@ -826,8 +826,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1MaxCellVoltage_V:
         id: 85
@@ -835,7 +835,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1MinCellVoltage_V:
@@ -844,7 +844,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1AveCellVoltage_V:
@@ -853,7 +853,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1MaxCellTemp_C:
@@ -862,8 +862,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1MinCellTemp_C:
         id: 89
@@ -871,8 +871,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1AveCellTemp_C:
         id: 90
@@ -880,8 +880,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 1 BMB Board Temps
     seg1BMBBoardTemp1_C:
@@ -890,8 +890,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1BMBBoardTemp2_C:
         id: 92
@@ -899,8 +899,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1BMBBoardTemp3_C:
         id: 93
@@ -908,8 +908,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1BMBBoardTemp4_C:
         id: 94
@@ -917,8 +917,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 1 Voltage
     seg1Cell1Voltage_V:
@@ -927,7 +927,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell2Voltage_V:
@@ -936,7 +936,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell3Voltage_V:
@@ -945,7 +945,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell4Voltage_V:
@@ -954,7 +954,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell5Voltage_V:
@@ -963,7 +963,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell6Voltage_V:
@@ -972,7 +972,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell7Voltage_V:
@@ -981,7 +981,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell8Voltage_V:
@@ -990,7 +990,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell9Voltage_V:
@@ -999,7 +999,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell10Voltage_V:
@@ -1008,7 +1008,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell11Voltage_V:
@@ -1017,7 +1017,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg1Cell12Voltage_V:
@@ -1026,7 +1026,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     # Segment 1 Temp
@@ -1036,8 +1036,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell2Temp_C:
         id: 108
@@ -1045,8 +1045,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell3Temp_C:
         id: 109
@@ -1054,8 +1054,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell4Temp_C:
         id: 110
@@ -1063,8 +1063,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell5Temp_C:
         id: 111
@@ -1072,8 +1072,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell6Temp_C:
         id: 112
@@ -1081,8 +1081,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell7Temp_C:
         id: 113
@@ -1090,8 +1090,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell8Temp_C:
         id: 114
@@ -1099,8 +1099,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell9Temp_C:
         id: 115
@@ -1108,8 +1108,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell10Temp_C:
         id: 116
@@ -1117,8 +1117,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell11Temp_C:
         id: 117
@@ -1126,8 +1126,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg1Cell12Temp_C:
         id: 118
@@ -1135,8 +1135,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 1 Balancing
     seg1Cell1BalanceEnable_state:
@@ -1256,7 +1256,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2BMBMaxBoardTemp_C:
@@ -1265,8 +1265,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2BMBMinBoardTemp_C:
         id: 133
@@ -1274,8 +1274,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2BMBAveBoardTemp_C:
         id: 134
@@ -1283,8 +1283,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2MaxCellVoltage_V:
         id: 135
@@ -1292,7 +1292,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2MinCellVoltage_V:
@@ -1301,7 +1301,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2AveCellVoltage_V:
@@ -1310,7 +1310,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2MaxCellTemp_C:
@@ -1319,8 +1319,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2MinCellTemp_C:
         id: 139
@@ -1328,8 +1328,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2AveCellTemp_C:
         id: 140
@@ -1337,8 +1337,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 2 BMB Board Temps
     seg2BMBBoardTemp1_C:
@@ -1347,8 +1347,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2BMBBoardTemp2_C:
         id: 142
@@ -1356,8 +1356,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2BMBBoardTemp3_C:
         id: 143
@@ -1365,8 +1365,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2BMBBoardTemp4_C:
         id: 144
@@ -1374,8 +1374,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 2 Voltage
     seg2Cell1Voltage_V:
@@ -1384,7 +1384,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell2Voltage_V:
@@ -1393,7 +1393,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell3Voltage_V:
@@ -1402,7 +1402,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell4Voltage_V:
@@ -1411,7 +1411,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell5Voltage_V:
@@ -1420,7 +1420,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell6Voltage_V:
@@ -1429,7 +1429,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell7Voltage_V:
@@ -1438,7 +1438,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell8Voltage_V:
@@ -1447,7 +1447,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell9Voltage_V:
@@ -1456,7 +1456,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell10Voltage_V:
@@ -1465,7 +1465,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell11Voltage_V:
@@ -1474,7 +1474,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg2Cell12Voltage_V:
@@ -1483,7 +1483,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     # Segment 2 Temp
@@ -1493,8 +1493,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell2Temp_C:
         id: 158
@@ -1502,8 +1502,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell3Temp_C:
         id: 159
@@ -1511,8 +1511,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell4Temp_C:
         id: 160
@@ -1520,8 +1520,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell5Temp_C:
         id: 161
@@ -1529,8 +1529,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell6Temp_C:
         id: 162
@@ -1538,8 +1538,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell7Temp_C:
         id: 163
@@ -1547,8 +1547,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell8Temp_C:
         id: 164
@@ -1556,8 +1556,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell9Temp_C:
         id: 165
@@ -1565,8 +1565,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell10Temp_C:
         id: 166
@@ -1574,8 +1574,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell11Temp_C:
         id: 167
@@ -1583,8 +1583,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg2Cell12Temp_C:
         id: 168
@@ -1592,8 +1592,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 2 Balancing
     seg2Cell1BalanceEnable_state:
@@ -1713,7 +1713,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3BMBMaxBoardTemp_C:
@@ -1722,8 +1722,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3BMBMinBoardTemp_C:
         id: 183
@@ -1731,8 +1731,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3BMBAveBoardTemp_C:
         id: 184
@@ -1740,8 +1740,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3MaxCellVoltage_V:
         id: 185
@@ -1749,7 +1749,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3MinCellVoltage_V:
@@ -1758,7 +1758,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3AveCellVoltage_V:
@@ -1767,7 +1767,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3MaxCellTemp_C:
@@ -1776,8 +1776,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3MinCellTemp_C:
         id: 189
@@ -1785,8 +1785,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3AveCellTemp_C:
         id: 190
@@ -1794,8 +1794,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 3 BMB Board Temps
     seg3BMBBoardTemp1_C:
@@ -1804,8 +1804,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3BMBBoardTemp2_C:
         id: 192
@@ -1813,8 +1813,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3BMBBoardTemp3_C:
         id: 193
@@ -1822,8 +1822,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3BMBBoardTemp4_C:
         id: 194
@@ -1831,8 +1831,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 3 Voltage
     seg3Cell1Voltage_V:
@@ -1841,7 +1841,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell2Voltage_V:
@@ -1850,7 +1850,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell3Voltage_V:
@@ -1859,7 +1859,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell4Voltage_V:
@@ -1868,7 +1868,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell5Voltage_V:
@@ -1877,7 +1877,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell6Voltage_V:
@@ -1886,7 +1886,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell7Voltage_V:
@@ -1895,7 +1895,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell8Voltage_V:
@@ -1904,7 +1904,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell9Voltage_V:
@@ -1913,7 +1913,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell10Voltage_V:
@@ -1922,7 +1922,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell11Voltage_V:
@@ -1931,7 +1931,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg3Cell12Voltage_V:
@@ -1940,7 +1940,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     # Segment 3 Temp
@@ -1950,8 +1950,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell2Temp_C:
         id: 208
@@ -1959,8 +1959,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell3Temp_C:
         id: 209
@@ -1968,8 +1968,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell4Temp_C:
         id: 210
@@ -1977,8 +1977,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell5Temp_C:
         id: 211
@@ -1986,8 +1986,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell6Temp_C:
         id: 212
@@ -1995,8 +1995,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell7Temp_C:
         id: 213
@@ -2004,8 +2004,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell8Temp_C:
         id: 214
@@ -2013,8 +2013,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell9Temp_C:
         id: 215
@@ -2022,8 +2022,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell10Temp_C:
         id: 216
@@ -2031,8 +2031,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell11Temp_C:
         id: 217
@@ -2040,8 +2040,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg3Cell12Temp_C:
         id: 218
@@ -2049,8 +2049,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 3 Balancing
     seg3Cell1BalanceEnable_state:
@@ -2170,7 +2170,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4BMBMaxBoardTemp_C:
@@ -2179,8 +2179,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4BMBMinBoardTemp_C:
         id: 233
@@ -2188,8 +2188,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4BMBAveBoardTemp_C:
         id: 234
@@ -2197,8 +2197,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4MaxCellVoltage_V:
         id: 235
@@ -2206,7 +2206,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4MinCellVoltage_V:
@@ -2215,7 +2215,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4AveCellVoltage_V:
@@ -2224,7 +2224,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4MaxCellTemp_C:
@@ -2233,8 +2233,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4MinCellTemp_C:
         id: 239
@@ -2242,8 +2242,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4AveCellTemp_C:
         id: 240
@@ -2251,8 +2251,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 4 BMB Board Temps
     seg4BMBBoardTemp1_C:
@@ -2261,8 +2261,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4BMBBoardTemp2_C:
         id: 242
@@ -2270,8 +2270,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4BMBBoardTemp3_C:
         id: 243
@@ -2279,8 +2279,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4BMBBoardTemp4_C:
         id: 244
@@ -2288,8 +2288,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 4 Voltage
     seg4Cell1Voltage_V:
@@ -2298,7 +2298,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell2Voltage_V:
@@ -2307,7 +2307,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell3Voltage_V:
@@ -2316,7 +2316,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell4Voltage_V:
@@ -2325,7 +2325,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell5Voltage_V:
@@ -2334,7 +2334,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell6Voltage_V:
@@ -2343,7 +2343,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell7Voltage_V:
@@ -2352,7 +2352,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell8Voltage_V:
@@ -2361,7 +2361,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell9Voltage_V:
@@ -2370,7 +2370,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell10Voltage_V:
@@ -2379,7 +2379,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell11Voltage_V:
@@ -2388,7 +2388,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg4Cell12Voltage_V:
@@ -2397,7 +2397,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     # Segment 4 Temp
@@ -2407,8 +2407,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell2Temp_C:
         id: 258
@@ -2416,8 +2416,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell3Temp_C:
         id: 259
@@ -2425,8 +2425,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell4Temp_C:
         id: 260
@@ -2434,8 +2434,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell5Temp_C:
         id: 261
@@ -2443,8 +2443,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell6Temp_C:
         id: 262
@@ -2452,8 +2452,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell7Temp_C:
         id: 263
@@ -2461,8 +2461,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell8Temp_C:
         id: 264
@@ -2470,8 +2470,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell9Temp_C:
         id: 265
@@ -2479,8 +2479,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell10Temp_C:
         id: 266
@@ -2488,8 +2488,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell11Temp_C:
         id: 267
@@ -2497,8 +2497,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg4Cell12Temp_C:
         id: 268
@@ -2506,8 +2506,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 4 Balancing
     seg4Cell1BalanceEnable_state:
@@ -2627,7 +2627,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5BMBMaxBoardTemp_C:
@@ -2636,8 +2636,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5BMBMinBoardTemp_C:
         id: 283
@@ -2645,8 +2645,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5BMBAveBoardTemp_C:
         id: 284
@@ -2654,8 +2654,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5MaxCellVoltage_V:
         id: 285
@@ -2663,7 +2663,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5MinCellVoltage_V:
@@ -2672,7 +2672,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5AveCellVoltage_V:
@@ -2681,7 +2681,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5MaxCellTemp_C:
@@ -2690,8 +2690,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5MinCellTemp_C:
         id: 289
@@ -2699,8 +2699,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5AveCellTemp_C:
         id: 290
@@ -2708,8 +2708,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 5 BMB Board Temps
     seg5BMBBoardTemp1_C:
@@ -2718,8 +2718,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5BMBBoardTemp2_C:
         id: 292
@@ -2727,8 +2727,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5BMBBoardTemp3_C:
         id: 293
@@ -2736,8 +2736,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5BMBBoardTemp4_C:
         id: 294
@@ -2745,8 +2745,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 5 Voltage
     seg5Cell1Voltage_V:
@@ -2755,7 +2755,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell2Voltage_V:
@@ -2764,7 +2764,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell3Voltage_V:
@@ -2773,7 +2773,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell4Voltage_V:
@@ -2782,7 +2782,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell5Voltage_V:
@@ -2791,7 +2791,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell6Voltage_V:
@@ -2800,7 +2800,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell7Voltage_V:
@@ -2809,7 +2809,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell8Voltage_V:
@@ -2818,7 +2818,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell9Voltage_V:
@@ -2827,7 +2827,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell10Voltage_V:
@@ -2836,7 +2836,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell11Voltage_V:
@@ -2845,7 +2845,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg5Cell12Voltage_V:
@@ -2854,7 +2854,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     # Segment 5 Temp
@@ -2864,8 +2864,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell2Temp_C:
         id: 308
@@ -2873,8 +2873,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell3Temp_C:
         id: 309
@@ -2882,8 +2882,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell4Temp_C:
         id: 310
@@ -2891,8 +2891,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell5Temp_C:
         id: 311
@@ -2900,8 +2900,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell6Temp_C:
         id: 312
@@ -2909,8 +2909,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell7Temp_C:
         id: 313
@@ -2918,8 +2918,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell8Temp_C:
         id: 314
@@ -2927,8 +2927,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell9Temp_C:
         id: 315
@@ -2936,8 +2936,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell10Temp_C:
         id: 316
@@ -2945,8 +2945,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell11Temp_C:
         id: 317
@@ -2954,8 +2954,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg5Cell12Temp_C:
         id: 318
@@ -2963,8 +2963,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 5 Balancing
     seg5Cell1BalanceEnable_state:
@@ -3084,7 +3084,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6BMBMaxBoardTemp_C:
@@ -3093,8 +3093,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6BMBMinBoardTemp_C:
         id: 333
@@ -3102,8 +3102,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6BMBAveBoardTemp_C:
         id: 334
@@ -3111,8 +3111,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6MaxCellVoltage_V:
         id: 335
@@ -3120,7 +3120,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6MinCellVoltage_V:
@@ -3129,7 +3129,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6AveCellVoltage_V:
@@ -3138,7 +3138,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6MaxCellTemp_C:
@@ -3147,8 +3147,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6MinCellTemp_C:
         id: 339
@@ -3156,8 +3156,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6AveCellTemp_C:
         id: 340
@@ -3165,8 +3165,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 6 BMB Board Temps
     seg6BMBBoardTemp1_C:
@@ -3175,8 +3175,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6BMBBoardTemp2_C:
         id: 342
@@ -3184,8 +3184,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6BMBBoardTemp3_C:
         id: 343
@@ -3193,8 +3193,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6BMBBoardTemp4_C:
         id: 344
@@ -3202,8 +3202,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 6 Voltage
     seg6Cell1Voltage_V:
@@ -3212,7 +3212,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell2Voltage_V:
@@ -3221,7 +3221,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell3Voltage_V:
@@ -3230,7 +3230,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell4Voltage_V:
@@ -3239,7 +3239,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell5Voltage_V:
@@ -3248,7 +3248,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell6Voltage_V:
@@ -3257,7 +3257,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell7Voltage_V:
@@ -3266,7 +3266,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell8Voltage_V:
@@ -3275,7 +3275,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell9Voltage_V:
@@ -3284,7 +3284,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell10Voltage_V:
@@ -3293,7 +3293,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell11Voltage_V:
@@ -3302,7 +3302,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg6Cell12Voltage_V:
@@ -3311,7 +3311,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     # Segment 6 Temp
@@ -3321,8 +3321,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell2Temp_C:
         id: 358
@@ -3330,8 +3330,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell3Temp_C:
         id: 359
@@ -3339,8 +3339,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell4Temp_C:
         id: 360
@@ -3348,8 +3348,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell5Temp_C:
         id: 361
@@ -3357,8 +3357,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell6Temp_C:
         id: 362
@@ -3366,8 +3366,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell7Temp_C:
         id: 363
@@ -3375,8 +3375,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell8Temp_C:
         id: 364
@@ -3384,8 +3384,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell9Temp_C:
         id: 365
@@ -3393,8 +3393,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell10Temp_C:
         id: 366
@@ -3402,8 +3402,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell11Temp_C:
         id: 367
@@ -3411,8 +3411,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg6Cell12Temp_C:
         id: 368
@@ -3420,8 +3420,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 6 Balancing
     seg6Cell1BalanceEnable_state:
@@ -3541,7 +3541,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7BMBMaxBoardTemp_C:
@@ -3550,8 +3550,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7BMBMinBoardTemp_C:
         id: 383
@@ -3559,8 +3559,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7BMBAveBoardTemp_C:
         id: 384
@@ -3568,8 +3568,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7MaxCellVoltage_V:
         id: 385
@@ -3577,7 +3577,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7MinCellVoltage_V:
@@ -3586,7 +3586,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7AveCellVoltage_V:
@@ -3595,7 +3595,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7MaxCellTemp_C:
@@ -3604,8 +3604,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7MinCellTemp_C:
         id: 389
@@ -3613,8 +3613,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7AveCellTemp_C:
         id: 390
@@ -3622,8 +3622,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 7 BMB Board Temps
     seg7BMBBoardTemp1_C:
@@ -3632,8 +3632,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7BMBBoardTemp2_C:
         id: 392
@@ -3641,8 +3641,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7BMBBoardTemp3_C:
         id: 393
@@ -3650,8 +3650,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7BMBBoardTemp4_C:
         id: 394
@@ -3659,8 +3659,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 7 Voltage
     seg7Cell1Voltage_V:
@@ -3669,7 +3669,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell2Voltage_V:
@@ -3678,7 +3678,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell3Voltage_V:
@@ -3687,7 +3687,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell4Voltage_V:
@@ -3696,7 +3696,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell5Voltage_V:
@@ -3705,7 +3705,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell6Voltage_V:
@@ -3714,7 +3714,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell7Voltage_V:
@@ -3723,7 +3723,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell8Voltage_V:
@@ -3732,7 +3732,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell9Voltage_V:
@@ -3741,7 +3741,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell10Voltage_V:
@@ -3750,7 +3750,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell11Voltage_V:
@@ -3759,7 +3759,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     seg7Cell12Voltage_V:
@@ -3768,7 +3768,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.42069
+        scale: 0.001
         offset: 0
 
     # Segment 7 Temp
@@ -3778,8 +3778,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell2Temp_C:
         id: 408
@@ -3787,8 +3787,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell3Temp_C:
         id: 409
@@ -3796,8 +3796,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell4Temp_C:
         id: 410
@@ -3805,8 +3805,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell5Temp_C:
         id: 411
@@ -3814,8 +3814,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell6Temp_C:
         id: 412
@@ -3823,8 +3823,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell7Temp_C:
         id: 413
@@ -3832,8 +3832,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell8Temp_C:
         id: 414
@@ -3841,8 +3841,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell9Temp_C:
         id: 415
@@ -3850,8 +3850,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell10Temp_C:
         id: 416
@@ -3859,8 +3859,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell11Temp_C:
         id: 417
@@ -3868,8 +3868,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     seg7Cell12Temp_C:
         id: 418
@@ -3877,8 +3877,8 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.69420
-        offset: 0
+        scale: 0.1
+        offset: -40
 
     # Segment 7 Balancing
     seg7Cell1BalanceEnable_state:
@@ -4035,8 +4035,8 @@ parameters:
         unit: A
         type: FLOATING
         encoding: MSB
-        scale: 0.009144042618572711944580078125 # [-18.727-18.727] -> [0-4096]
-        offset: -18.727
+        scale: 0.01
+        offset: -100
 
     bmsTractiveSystemCurrentHigh_A:
         id: 436
@@ -4044,8 +4044,8 @@ parameters:
         unit: A
         type: FLOATING
         encoding: MSB
-        scale: 0.180844724178314208984375 # [-370.370-370.370] -> [0-4096]
-        offset: -370.370
+        scale: 0.1
+        offset: -1000
 
     # END BMS
     
