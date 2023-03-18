@@ -124,7 +124,13 @@ void add_message_by_highest_prio(CAN_MSG_RING_BUFFER* buffer, CAN_MSG* message)
     HAL_CAN_DeactivateNotification(choose_hcan_from_tx_buffer(buffer), CAN_IT_TX_MAILBOX_EMPTY);
 #endif
 
-    if (IS_FULL(buffer)) return;
+    if (IS_FULL(buffer)) 
+    {
+        if (buffer->mutex != NULL) {
+            osMutexRelease(buffer->mutex);
+        }
+        return;
+    }
 
     CAN_MSG* buffer_message = GET_FROM_BUFFER(buffer, 0);
     S16 c;
