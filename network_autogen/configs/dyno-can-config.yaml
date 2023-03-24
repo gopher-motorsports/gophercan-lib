@@ -26,6 +26,8 @@ modules:
         buses:
             - GCAN0
         motec_name: Data Aquisition Module
+
+    TCM
         
     # ECU is also on GCAN0, but is not a GCAN module
 
