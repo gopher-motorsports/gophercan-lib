@@ -13,7 +13,7 @@ buses:
         motec_name: Unused
 
 modules:
-    DLM:
+    PLM:
         id: 1
         buses:
             - GCAN0
@@ -26,8 +26,12 @@ modules:
         buses:
             - GCAN0
         motec_name: Data Aquisition Module
-
-    TCM
+        
+    TCM:
+        id: 3
+        buses:
+            - GCAN0
+        motec_name: Transmission Control Module
         
     # ECU is also on GCAN0, but is not a GCAN module
 
@@ -274,6 +278,153 @@ parameters:
         encoding: MSB
         scale: 0.1
         offset: 0
+        
+    # Transmission Controller Sensors:
+    shifterPosition_mm:
+        id: 27
+        motec_name: Shifter Position
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01220703125 # [0-50] -> [0-4096]
+        offset: 0
+
+    clutchPosition_mm:
+        id: 28
+        motec_name: Clutch Position
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01220703125 # [0-50] -> [0-4096]
+        offset: 0
+
+    gearPosition_mm:
+        id: 29
+        motec_name: Gear Position
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001220703125 # [0-5] -> [0-4096]
+        offset: 0
+
+    counterShaftSpeed_rpm:
+        id: 30
+        motec_name: Counter Shaft Speed
+        unit: rpm
+        type: FLOATING
+        encoding: MSB
+        scale: 1 # designed to be sent on the bus as a U16
+        offset: 0
+
+    # Transmission Controller Internal:
+    tcmTargetRPM_rpm:
+        id: 31
+        motec_name: Target RPM
+        unit: rpm
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmCurrentGear_state:
+        id: 32
+        motec_name: Gear
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmCurrentlyMoving_state:
+        id: 33
+        motec_name: Currently Moving
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmAntiStallActive_state:
+        id: 34
+        motec_name: Anti Stall
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmUsingClutch_state:
+        id: 35
+        motec_name: Using Clutch to Shift
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmShiftState_state:
+        id: 36
+        motec_name: Shift State
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    tcmTestAverageDelta_ns:
+        id: 37
+        motec_name: Test Average Delta
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmTestFrequency_hz:
+        id: 38
+        motec_name: Test Frequency
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmTestNumDroppedValues:
+        id: 39
+        motec_name: Test Num Dropped Values
+        unit: ''
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmTestNumSamples:
+        id: 40
+        motec_name: Test Num Samples
+        unit: ''
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmTestNum1PercentOutliers:
+        id: 41
+        motec_name: Test Num 1 Percent Outliers
+        unit: ''
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tcmTestNum5PercentOutliers:
+        id: 42
+        motec_name: Test Num 5 Percent Outliers
+        unit: ''
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # END TCM
 
 
 groups: [
@@ -344,7 +495,44 @@ groups: [
         parameters: [
             {name: oilRadTemp2_C, start: 0, length: 2}
         ]
-    }
+    },
+     # TCM
+   {
+        id: 0x300,
+        parameters: [
+            {name: shifterPosition_mm,    start: 0, length: 2},
+            {name: clutchPosition_mm,     start: 2, length: 2},
+            {name: gearPosition_mm,       start: 4, length: 2},
+            {name: counterShaftSpeed_rpm, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x301,
+        parameters: [
+            {name: tcmTargetRPM_rpm,         start: 0, length: 2},
+            {name: tcmCurrentGear_state,     start: 2, length: 1},
+            {name: tcmCurrentlyMoving_state, start: 3, length: 1},
+            {name: tcmAntiStallActive_state, start: 4, length: 1},
+            {name: tcmUsingClutch_state,     start: 5, length: 1},
+            {name: tcmShiftState_state,      start: 6, length: 1}
+        ]
+    },
+    {
+        id: 0x302,
+        parameters: [
+            {name: tcmTestAverageDelta_ns,  start: 0, length: 2},
+            {name: tcmTestFrequency_hz,     start: 2, length: 2},
+            {name: tcmTestNumDroppedValues, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x303,
+        parameters: [
+            {name: tcmTestNumSamples,          start: 0, length: 2},
+            {name: tcmTestNum1PercentOutliers, start: 2, length: 2},
+            {name: tcmTestNum5PercentOutliers, start: 4, length: 2}
+        ]
+    },
 ]
 
 commands:
