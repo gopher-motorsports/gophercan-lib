@@ -13,8 +13,8 @@ buses:
         motec_name: Rear Bus
 
 modules:
-    DLM:
-        name: DLM
+    PLM:
+        name: PLM
         id: 1
         buses:
             - GCAN0

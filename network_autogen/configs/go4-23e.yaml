@@ -792,2249 +792,355 @@ parameters:
     # END VCU
 
     # Battery Management System
-    # Segment 1 Voltage Statistics
+    # Segment 1 Overall
     seg1Voltage_V:
         id: 81
         motec_name: Segment 1 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.001
+        scale: 0.42069
+        offset: 0
+
+    seg1BMBMaxBoardTemp_C:
+        id: 82
+        motec_name: Segment 1 BMB Max Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1BMBMinBoardTemp_C:
+        id: 83
+        motec_name: Segment 1 BMB Min Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1BMBAveBoardTemp_C:
+        id: 84
+        motec_name: Segment 1 BMB Ave Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
         offset: 0
 
     seg1MaxCellVoltage_V:
-        id: 82
+        id: 85
         motec_name: Segment 1 Max Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.001
+        scale: 0.42069
         offset: 0
 
     seg1MinCellVoltage_V:
-        id: 83
+        id: 86
         motec_name: Segment 1 Min Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.001
+        scale: 0.42069
         offset: 0
 
     seg1AveCellVoltage_V:
-        id: 84
+        id: 87
         motec_name: Segment 1 Average Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.001
+        scale: 0.42069
         offset: 0
-
-    # Segment 1 Voltage
-    seg1Cell1Voltage_V:
-        id: 85
-        motec_name: Segment 1 Cell 1 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell2Voltage_V:
-        id: 86
-        motec_name: Segment 1 Cell 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell3Voltage_V:
-        id: 87
-        motec_name: Segment 1 Cell 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell4Voltage_V:
-        id: 88
-        motec_name: Segment 1 Cell 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell5Voltage_V:
-        id: 89
-        motec_name: Segment 1 Cell 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell6Voltage_V:
-        id: 90
-        motec_name: Segment 1 Cell 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell7Voltage_V:
-        id: 91
-        motec_name: Segment 1 Cell 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell8Voltage_V:
-        id: 92
-        motec_name: Segment 1 Cell 8 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell9Voltage_V:
-        id: 93
-        motec_name: Segment 1 Cell 9 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell10Voltage_V:
-        id: 94
-        motec_name: Segment 1 Cell 10 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell11Voltage_V:
-        id: 95
-        motec_name: Segment 1 Cell 11 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg1Cell12Voltage_V:
-        id: 96
-        motec_name: Segment 1 Cell 12 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 1 Temp
-    seg1Cell1Temp_C:
-        id: 97
-        motec_name: Segment 1 Cell 1 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell2Temp_C:
-        id: 98
-        motec_name: Segment 1 Cell 2 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell3Temp_C:
-        id: 99
-        motec_name: Segment 1 Cell 3 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell4Temp_C:
-        id: 100
-        motec_name: Segment 1 Cell 4 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell5Temp_C:
-        id: 101
-        motec_name: Segment 1 Cell 5 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell6Temp_C:
-        id: 102
-        motec_name: Segment 1 Cell 6 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell7Temp_C:
-        id: 103
-        motec_name: Segment 1 Cell 7 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell8Temp_C:
-        id: 104
-        motec_name: Segment 1 Cell 8 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell9Temp_C:
-        id: 105
-        motec_name: Segment 1 Cell 9 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell10Temp_C:
-        id: 106
-        motec_name: Segment 1 Cell 10 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell11Temp_C:
-        id: 107
-        motec_name: Segment 1 Cell 11 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1Cell12Temp_C:
-        id: 108
-        motec_name: Segment 1 Cell 12 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 1 BMB Board Temps
-    seg1BMBBoardTemp1_C:
-        id: 109
-        motec_name: Segment 1 BMB Board Temp 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1BMBBoardTemp2_C:
-        id: 110
-        motec_name: Segment 1 BMB Board Temp 2
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1BMBBoardTemp3_C:
-        id: 111
-        motec_name: Segment 1 BMB Board Temp 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1BMBBoardTemp4_C:
-        id: 112
-        motec_name: Segment 1 BMB Board Temp 4
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 2 Voltage Statistics
-    seg2Voltage_V:
-        id: 113
-        motec_name: Segment 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2AveCellVoltage_V:
-        id: 114
-        motec_name: Segment 2 Average Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2MaxCellVoltage_V:
-        id: 115
-        motec_name: Segment 2 Max Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2MinCellVoltage_V:
-        id: 116
-        motec_name: Segment 2 Min Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 2 Voltage
-    seg2Cell1Voltage_V:
-        id: 117
-        motec_name: Segment 2 Cell 1 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell2Voltage_V:
-        id: 118
-        motec_name: Segment 2 Cell 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell3Voltage_V:
-        id: 119
-        motec_name: Segment 2 Cell 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell4Voltage_V:
-        id: 120
-        motec_name: Segment 2 Cell 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell5Voltage_V:
-        id: 121
-        motec_name: Segment 2 Cell 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell6Voltage_V:
-        id: 122
-        motec_name: Segment 2 Cell 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell7Voltage_V:
-        id: 123
-        motec_name: Segment 2 Cell 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell8Voltage_V:
-        id: 124
-        motec_name: Segment 2 Cell 8 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell9Voltage_V:
-        id: 125
-        motec_name: Segment 2 Cell 9 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell10Voltage_V:
-        id: 126
-        motec_name: Segment 2 Cell 10 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell11Voltage_V:
-        id: 127
-        motec_name: Segment 2 Cell 11 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg2Cell12Voltage_V:
-        id: 128
-        motec_name: Segment 2 Cell 12 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 2 Temp
-    seg2Cell1Temp_C:
-        id: 129
-        motec_name: Segment 2 Cell 1 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell2Temp_C:
-        id: 130
-        motec_name: Segment 2 Cell 2 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell3Temp_C:
-        id: 131
-        motec_name: Segment 2 Cell 3 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell4Temp_C:
-        id: 132
-        motec_name: Segment 2 Cell 4 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell5Temp_C:
-        id: 133
-        motec_name: Segment 2 Cell 5 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell6Temp_C:
-        id: 134
-        motec_name: Segment 2 Cell 6 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell7Temp_C:
-        id: 135
-        motec_name: Segment 2 Cell 7 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell8Temp_C:
-        id: 136
-        motec_name: Segment 2 Cell 8 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell9Temp_C:
-        id: 137
-        motec_name: Segment 2 Cell 9 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell10Temp_C:
-        id: 138
-        motec_name: Segment 2 Cell 10 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell11Temp_C:
-        id: 139
-        motec_name: Segment 2 Cell 11 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2Cell12Temp_C:
-        id: 140
-        motec_name: Segment 2 Cell 12 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 2 BMB Board Temps
-    seg2BMBBoardTemp1_C:
-        id: 141
-        motec_name: Segment 2 BMB Board Temp 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2BMBBoardTemp2_C:
-        id: 142
-        motec_name: Segment 2 BMB Board Temp 2
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2BMBBoardTemp3_C:
-        id: 143
-        motec_name: Segment 2 BMB Board Temp 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg2BMBBoardTemp4_C:
-        id: 144
-        motec_name: Segment 2 BMB Board Temp 4
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 3 Overall
-    seg3Voltage_V:
-        id: 145
-        motec_name: Segment 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3AveCellVoltage_V:
-        id: 146
-        motec_name: Segment 3 Average Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3MaxCellVoltage_V:
-        id: 147
-        motec_name: Segment 3 Max Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3MinCellVoltage_V:
-        id: 148
-        motec_name: Segment 3 Min Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 3 Voltage
-    seg3Cell1Voltage_V:
-        id: 149
-        motec_name: Segment 3 Cell 1 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell2Voltage_V:
-        id: 150
-        motec_name: Segment 3 Cell 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell3Voltage_V:
-        id: 151
-        motec_name: Segment 3 Cell 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell4Voltage_V:
-        id: 152
-        motec_name: Segment 3 Cell 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell5Voltage_V:
-        id: 153
-        motec_name: Segment 3 Cell 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell6Voltage_V:
-        id: 154
-        motec_name: Segment 3 Cell 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell7Voltage_V:
-        id: 155
-        motec_name: Segment 3 Cell 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell8Voltage_V:
-        id: 156
-        motec_name: Segment 3 Cell 8 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell9Voltage_V:
-        id: 157
-        motec_name: Segment 3 Cell 9 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell10Voltage_V:
-        id: 158
-        motec_name: Segment 3 Cell 10 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell11Voltage_V:
-        id: 159
-        motec_name: Segment 3 Cell 11 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg3Cell12Voltage_V:
-        id: 160
-        motec_name: Segment 3 Cell 12 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 3 Temp
-    seg3Cell1Temp_C:
-        id: 161
-        motec_name: Segment 3 Cell 1 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell2Temp_C:
-        id: 162
-        motec_name: Segment 3 Cell 2 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell3Temp_C:
-        id: 163
-        motec_name: Segment 3 Cell 3 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell4Temp_C:
-        id: 164
-        motec_name: Segment 3 Cell 4 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell5Temp_C:
-        id: 165
-        motec_name: Segment 3 Cell 5 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell6Temp_C:
-        id: 166
-        motec_name: Segment 3 Cell 6 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell7Temp_C:
-        id: 167
-        motec_name: Segment 3 Cell 7 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell8Temp_C:
-        id: 168
-        motec_name: Segment 3 Cell 8 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell9Temp_C:
-        id: 169
-        motec_name: Segment 3 Cell 9 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell10Temp_C:
-        id: 170
-        motec_name: Segment 3 Cell 10 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell11Temp_C:
-        id: 171
-        motec_name: Segment 3 Cell 11 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3Cell12Temp_C:
-        id: 172
-        motec_name: Segment 3 Cell 12 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 3 BMB Board Temps
-    seg3BMBBoardTemp1_C:
-        id: 173
-        motec_name: Segment 3 BMB Board Temp 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3BMBBoardTemp2_C:
-        id: 174
-        motec_name: Segment 3 BMB Board Temp 2
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3BMBBoardTemp3_C:
-        id: 175
-        motec_name: Segment 3 BMB Board Temp 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg3BMBBoardTemp4_C:
-        id: 176
-        motec_name: Segment 3 BMB Board Temp 4
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 4 Overall
-    seg4Voltage_V:
-        id: 177
-        motec_name: Segment 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4AveCellVoltage_V:
-        id: 178
-        motec_name: Segment 4 Average Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4MaxCellVoltage_V:
-        id: 179
-        motec_name: Segment 4 Max Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4MinCellVoltage_V:
-        id: 180
-        motec_name: Segment 4 Min Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 4 Voltage
-    seg4Cell1Voltage_V:
-        id: 181
-        motec_name: Segment 4 Cell 1 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell2Voltage_V:
-        id: 182
-        motec_name: Segment 4 Cell 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell3Voltage_V:
-        id: 183
-        motec_name: Segment 4 Cell 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell4Voltage_V:
-        id: 184
-        motec_name: Segment 4 Cell 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell5Voltage_V:
-        id: 185
-        motec_name: Segment 4 Cell 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell6Voltage_V:
-        id: 186
-        motec_name: Segment 4 Cell 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell7Voltage_V:
-        id: 187
-        motec_name: Segment 4 Cell 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell8Voltage_V:
-        id: 188
-        motec_name: Segment 4 Cell 8 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell9Voltage_V:
-        id: 189
-        motec_name: Segment 4 Cell 9 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell10Voltage_V:
-        id: 190
-        motec_name: Segment 4 Cell 10 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell11Voltage_V:
-        id: 191
-        motec_name: Segment 4 Cell 11 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg4Cell12Voltage_V:
-        id: 192
-        motec_name: Segment 4 Cell 12 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 4 Temp
-    seg4Cell1Temp_C:
-        id: 193
-        motec_name: Segment 4 Cell 1 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell2Temp_C:
-        id: 194
-        motec_name: Segment 4 Cell 2 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell3Temp_C:
-        id: 195
-        motec_name: Segment 4 Cell 3 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell4Temp_C:
-        id: 196
-        motec_name: Segment 4 Cell 4 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell5Temp_C:
-        id: 197
-        motec_name: Segment 4 Cell 5 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell6Temp_C:
-        id: 198
-        motec_name: Segment 4 Cell 6 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell7Temp_C:
-        id: 199
-        motec_name: Segment 4 Cell 7 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell8Temp_C:
-        id: 200
-        motec_name: Segment 4 Cell 8 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell9Temp_C:
-        id: 201
-        motec_name: Segment 4 Cell 9 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell10Temp_C:
-        id: 202
-        motec_name: Segment 4 Cell 10 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell11Temp_C:
-        id: 203
-        motec_name: Segment 4 Cell 11 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4Cell12Temp_C:
-        id: 204
-        motec_name: Segment 4 Cell 12 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 4 BMB Board Temps
-    seg4BMBBoardTemp1_C:
-        id: 205
-        motec_name: Segment 4 BMB Board Temp 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4BMBBoardTemp2_C:
-        id: 206
-        motec_name: Segment 4 BMB Board Temp 2
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4BMBBoardTemp3_C:
-        id: 207
-        motec_name: Segment 4 BMB Board Temp 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg4BMBBoardTemp4_C:
-        id: 208
-        motec_name: Segment 4 BMB Board Temp 4
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 5 Overall
-    seg5Voltage_V:
-        id: 209
-        motec_name: Segment 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5AveCellVoltage_V:
-        id: 210
-        motec_name: Segment 5 Average Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0    
-
-    seg5MaxCellVoltage_V:
-        id: 211
-        motec_name: Segment 5 Max Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5MinCellVoltage_V:
-        id: 212
-        motec_name: Segment 5 Min Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 5 Voltage
-    seg5Cell1Voltage_V:
-        id: 213
-        motec_name: Segment 5 Cell 1 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell2Voltage_V:
-        id: 214
-        motec_name: Segment 5 Cell 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell3Voltage_V:
-        id: 215
-        motec_name: Segment 5 Cell 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell4Voltage_V:
-        id: 216
-        motec_name: Segment 5 Cell 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell5Voltage_V:
-        id: 217
-        motec_name: Segment 5 Cell 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell6Voltage_V:
-        id: 218
-        motec_name: Segment 5 Cell 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell7Voltage_V:
-        id: 219
-        motec_name: Segment 5 Cell 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell8Voltage_V:
-        id: 220
-        motec_name: Segment 5 Cell 8 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell9Voltage_V:
-        id: 221
-        motec_name: Segment 5 Cell 9 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell10Voltage_V:
-        id: 222
-        motec_name: Segment 5 Cell 10 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell11Voltage_V:
-        id: 223
-        motec_name: Segment 5 Cell 11 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg5Cell12Voltage_V:
-        id: 224
-        motec_name: Segment 5 Cell 12 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 5 Temp
-    seg5Cell1Temp_C:
-        id: 225
-        motec_name: Segment 5 Cell 1 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell2Temp_C:
-        id: 226
-        motec_name: Segment 5 Cell 2 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell3Temp_C:
-        id: 227
-        motec_name: Segment 5 Cell 3 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell4Temp_C:
-        id: 228
-        motec_name: Segment 5 Cell 4 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell5Temp_C:
-        id: 229
-        motec_name: Segment 5 Cell 5 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell6Temp_C:
-        id: 230
-        motec_name: Segment 5 Cell 6 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell7Temp_C:
-        id: 231
-        motec_name: Segment 5 Cell 7 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell8Temp_C:
-        id: 232
-        motec_name: Segment 5 Cell 8 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell9Temp_C:
-        id: 233
-        motec_name: Segment 5 Cell 9 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell10Temp_C:
-        id: 234
-        motec_name: Segment 5 Cell 10 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell11Temp_C:
-        id: 235
-        motec_name: Segment 5 Cell 11 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5Cell12Temp_C:
-        id: 236
-        motec_name: Segment 5 Cell 12 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 5 BMB Board Temps
-    seg5BMBBoardTemp1_C:
-        id: 237
-        motec_name: Segment 5 BMB Board Temp 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5BMBBoardTemp2_C:
-        id: 238
-        motec_name: Segment 5 BMB Board Temp 2
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5BMBBoardTemp3_C:
-        id: 239
-        motec_name: Segment 5 BMB Board Temp 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg5BMBBoardTemp4_C:
-        id: 240
-        motec_name: Segment 5 BMB Board Temp 4
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 6 Overall
-    seg6Voltage_V:
-        id: 241
-        motec_name: Segment 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6AveCellVoltage_V:
-        id: 242
-        motec_name: Segment 6 Average Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6MaxCellVoltage_V:
-        id: 243
-        motec_name: Segment 6 Max Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6MinCellVoltage_V:
-        id: 244
-        motec_name: Segment 6 Min Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 6 Voltage
-    seg6Cell1Voltage_V:
-        id: 245
-        motec_name: Segment 6 Cell 1 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell2Voltage_V:
-        id: 246
-        motec_name: Segment 6 Cell 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell3Voltage_V:
-        id: 247
-        motec_name: Segment 6 Cell 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell4Voltage_V:
-        id: 248
-        motec_name: Segment 6 Cell 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell5Voltage_V:
-        id: 249
-        motec_name: Segment 6 Cell 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell6Voltage_V:
-        id: 250
-        motec_name: Segment 6 Cell 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell7Voltage_V:
-        id: 251
-        motec_name: Segment 6 Cell 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell8Voltage_V:
-        id: 252
-        motec_name: Segment 6 Cell 8 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell9Voltage_V:
-        id: 253
-        motec_name: Segment 6 Cell 9 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell10Voltage_V:
-        id: 254
-        motec_name: Segment 6 Cell 10 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell11Voltage_V:
-        id: 255
-        motec_name: Segment 6 Cell 11 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg6Cell12Voltage_V:
-        id: 256
-        motec_name: Segment 6 Cell 12 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 6 Temp
-    seg6Cell1Temp_C:
-        id: 257
-        motec_name: Segment 6 Cell 1 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell2Temp_C:
-        id: 258
-        motec_name: Segment 6 Cell 2 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell3Temp_C:
-        id: 259
-        motec_name: Segment 6 Cell 3 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell4Temp_C:
-        id: 260
-        motec_name: Segment 6 Cell 4 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell5Temp_C:
-        id: 261
-        motec_name: Segment 6 Cell 5 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell6Temp_C:
-        id: 262
-        motec_name: Segment 6 Cell 6 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell7Temp_C:
-        id: 263
-        motec_name: Segment 6 Cell 7 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell8Temp_C:
-        id: 264
-        motec_name: Segment 6 Cell 8 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell9Temp_C:
-        id: 265
-        motec_name: Segment 6 Cell 9 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell10Temp_C:
-        id: 266
-        motec_name: Segment 6 Cell 10 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell11Temp_C:
-        id: 267
-        motec_name: Segment 6 Cell 11 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6Cell12Temp_C:
-        id: 268
-        motec_name: Segment 6 Cell 12 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 6 BMB Board Temps
-    seg6BMBBoardTemp1_C:
-        id: 269
-        motec_name: Segment 6 BMB Board Temp 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6BMBBoardTemp2_C:
-        id: 270
-        motec_name: Segment 6 BMB Board Temp 2
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6BMBBoardTemp3_C:
-        id: 271
-        motec_name: Segment 6 BMB Board Temp 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg6BMBBoardTemp4_C:
-        id: 272
-        motec_name: Segment 6 BMB Board Temp 4
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 7 Overall
-    seg7Voltage_V:
-        id: 273
-        motec_name: Segment 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7AveCellVoltage_V:
-        id: 274
-        motec_name: Segment 7 Average Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7MaxCellVoltage_V:
-        id: 275
-        motec_name: Segment 7 Max Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7MinCellVoltage_V:
-        id: 276
-        motec_name: Segment 7 Min Cell Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 7 Voltage
-    seg7Cell1Voltage_V:
-        id: 277
-        motec_name: Segment 7 Cell 1 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell2Voltage_V:
-        id: 278
-        motec_name: Segment 7 Cell 2 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell3Voltage_V:
-        id: 279
-        motec_name: Segment 7 Cell 3 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell4Voltage_V:
-        id: 280
-        motec_name: Segment 7 Cell 4 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell5Voltage_V:
-        id: 281
-        motec_name: Segment 7 Cell 5 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell6Voltage_V:
-        id: 282
-        motec_name: Segment 7 Cell 6 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell7Voltage_V:
-        id: 283
-        motec_name: Segment 7 Cell 7 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell8Voltage_V:
-        id: 284
-        motec_name: Segment 7 Cell 8 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell9Voltage_V:
-        id: 285
-        motec_name: Segment 7 Cell 9 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell10Voltage_V:
-        id: 286
-        motec_name: Segment 7 Cell 10 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell11Voltage_V:
-        id: 287
-        motec_name: Segment 7 Cell 11 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    seg7Cell12Voltage_V:
-        id: 288
-        motec_name: Segment 7 Cell 12 Voltage
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.001
-        offset: 0
-
-    # Segment 7 Temp
-    seg7Cell1Temp_C:
-        id: 289
-        motec_name: Segment 7 Cell 1 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell2Temp_C:
-        id: 290
-        motec_name: Segment 7 Cell 2 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell3Temp_C:
-        id: 291
-        motec_name: Segment 7 Cell 3 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell4Temp_C:
-        id: 292
-        motec_name: Segment 7 Cell 4 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell5Temp_C:
-        id: 293
-        motec_name: Segment 7 Cell 5 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell6Temp_C:
-        id: 294
-        motec_name: Segment 7 Cell 6 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell7Temp_C:
-        id: 295
-        motec_name: Segment 7 Cell 7 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell8Temp_C:
-        id: 296
-        motec_name: Segment 7 Cell 8 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell9Temp_C:
-        id: 297
-        motec_name: Segment 7 Cell 9 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell10Temp_C:
-        id: 298
-        motec_name: Segment 7 Cell 10 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell11Temp_C:
-        id: 299
-        motec_name: Segment 7 Cell 11 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7Cell12Temp_C:
-        id: 300
-        motec_name: Segment 7 Cell 12 Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 7 BMB Board Temps
-    seg7BMBBoardTemp1_C:
-        id: 301
-        motec_name: Segment 7 BMB Board Temp 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7BMBBoardTemp2_C:
-        id: 302
-        motec_name: Segment 7 BMB Board Temp 2
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7BMBBoardTemp3_C:
-        id: 303
-        motec_name: Segment 7 BMB Board Temp 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg7BMBBoardTemp4_C:
-        id: 304
-        motec_name: Segment 7 BMB Board Temp 4
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 1 Cell Temp Stats
-    seg1AveCellTemp_C:
-        id: 305
-        motec_name: Segment 1 Ave Cell Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
 
     seg1MaxCellTemp_C:
-        id: 306
+        id: 88
         motec_name: Segment 1 Max Cell Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
     seg1MinCellTemp_C:
-        id: 307
+        id: 89
         motec_name: Segment 1 Min Cell Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    # Segment 2 Cell Temp Stats
-    seg2AveCellTemp_C:
-        id: 308
-        motec_name: Segment 2 Ave Cell Temp
+    seg1AveCellTemp_C:
+        id: 90
+        motec_name: Segment 1 Ave Cell Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg2MaxCellTemp_C:
-        id: 309
-        motec_name: Segment 2 Max Cell Temp
+    # Segment 1 BMB Board Temps
+    seg1BMBBoardTemp1_C:
+        id: 91
+        motec_name: Segment 1 BMB Board Temp 1
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg2MinCellTemp_C:
-        id: 310
-        motec_name: Segment 2 Min Cell Temp
+    seg1BMBBoardTemp2_C:
+        id: 92
+        motec_name: Segment 1 BMB Board Temp 2
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    # Segment 3 Cell Temp Stats
-    seg3AveCellTemp_C:
-        id: 311
-        motec_name: Segment 3 Ave Cell Temp
+    seg1BMBBoardTemp3_C:
+        id: 93
+        motec_name: Segment 1 BMB Board Temp 3
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg3MaxCellTemp_C:
-        id: 312
-        motec_name: Segment 3 Max Cell Temp
+    seg1BMBBoardTemp4_C:
+        id: 94
+        motec_name: Segment 1 BMB Board Temp 4
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg3MinCellTemp_C:
-        id: 313
-        motec_name: Segment 3 Min Cell Temp
-        unit: C
+    # Segment 1 Voltage
+    seg1Cell1Voltage_V:
+        id: 95
+        motec_name: Segment 1 Cell 1 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    # Segment 4 Cell Temp Stats
-    seg4AveCellTemp_C:
-        id: 314
-        motec_name: Segment 4 Ave Cell Temp
-        unit: C
+    seg1Cell2Voltage_V:
+        id: 96
+        motec_name: Segment 1 Cell 2 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    seg4MaxCellTemp_C:
-        id: 315
-        motec_name: Segment 4 Max Cell Temp
-        unit: C
+    seg1Cell3Voltage_V:
+        id: 97
+        motec_name: Segment 1 Cell 3 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    seg4MinCellTemp_C:
-        id: 316
-        motec_name: Segment 4 Min Cell Temp
-        unit: C
+    seg1Cell4Voltage_V:
+        id: 98
+        motec_name: Segment 1 Cell 4 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    # Segment 5 Cell Temp Stats
-    seg5AveCellTemp_C:
-        id: 317
-        motec_name: Segment 5 Ave Cell Temp
-        unit: C
+    seg1Cell5Voltage_V:
+        id: 99
+        motec_name: Segment 1 Cell 5 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    seg5MaxCellTemp_C:
-        id: 318
-        motec_name: Segment 5 Max Cell Temp
-        unit: C
+    seg1Cell6Voltage_V:
+        id: 100
+        motec_name: Segment 1 Cell 6 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    seg5MinCellTemp_C:
-        id: 319
-        motec_name: Segment 5 Min Cell Temp
-        unit: C
+    seg1Cell7Voltage_V:
+        id: 101
+        motec_name: Segment 1 Cell 7 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    # Segment 6 Cell Temp Stats
-    seg6AveCellTemp_C:
-        id: 320
-        motec_name: Segment 6 Ave Cell Temp
-        unit: C
+    seg1Cell8Voltage_V:
+        id: 102
+        motec_name: Segment 1 Cell 8 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    seg6MaxCellTemp_C:
-        id: 321
-        motec_name: Segment 6 Max Cell Temp
-        unit: C
+    seg1Cell9Voltage_V:
+        id: 103
+        motec_name: Segment 1 Cell 9 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    seg6MinCellTemp_C:
-        id: 322
-        motec_name: Segment 6 Min Cell Temp
-        unit: C
+    seg1Cell10Voltage_V:
+        id: 104
+        motec_name: Segment 1 Cell 10 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    # Segment 7 Cell Temp Stats
-    seg7AveCellTemp_C:
-        id: 323
-        motec_name: Segment 7 Ave Cell Temp
-        unit: C
+    seg1Cell11Voltage_V:
+        id: 105
+        motec_name: Segment 1 Cell 11 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
-        
-    seg7MaxCellTemp_C:
-        id: 324
-        motec_name: Segment 7 Max Cell Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.42069
+        offset: 0
 
-    seg7MinCellTemp_C:
-        id: 325
-        motec_name: Segment 7 Min Cell Temp
+    seg1Cell12Voltage_V:
+        id: 106
+        motec_name: Segment 1 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    # Segment 1 Temp
+    seg1Cell1Temp_C:
+        id: 107
+        motec_name: Segment 1 Cell 1 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell2Temp_C:
+        id: 108
+        motec_name: Segment 1 Cell 2 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell3Temp_C:
+        id: 109
+        motec_name: Segment 1 Cell 3 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell4Temp_C:
+        id: 110
+        motec_name: Segment 1 Cell 4 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell5Temp_C:
+        id: 111
+        motec_name: Segment 1 Cell 5 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell6Temp_C:
+        id: 112
+        motec_name: Segment 1 Cell 6 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell7Temp_C:
+        id: 113
+        motec_name: Segment 1 Cell 7 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell8Temp_C:
+        id: 114
+        motec_name: Segment 1 Cell 8 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell9Temp_C:
+        id: 115
+        motec_name: Segment 1 Cell 9 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell10Temp_C:
+        id: 116
+        motec_name: Segment 1 Cell 10 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell11Temp_C:
+        id: 117
+        motec_name: Segment 1 Cell 11 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg1Cell12Temp_C:
+        id: 118
+        motec_name: Segment 1 Cell 12 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
 
     # Segment 1 Balancing
     seg1Cell1BalanceEnable_state:
-        id: 326
+        id: 119
         motec_name: Segment 1 Cell 1 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3043,7 +1149,7 @@ parameters:
         offset: 0
 
     seg1Cell2BalanceEnable_state:
-        id: 327
+        id: 120
         motec_name: Segment 1 Cell 2 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3052,7 +1158,7 @@ parameters:
         offset: 0
 
     seg1Cell3BalanceEnable_state:
-        id: 328
+        id: 121
         motec_name: Segment 1 Cell 3 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3061,7 +1167,7 @@ parameters:
         offset: 0
 
     seg1Cell4BalanceEnable_state:
-        id: 329
+        id: 122
         motec_name: Segment 1 Cell 4 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3070,7 +1176,7 @@ parameters:
         offset: 0
 
     seg1Cell5BalanceEnable_state:
-        id: 330
+        id: 123
         motec_name: Segment 1 Cell 5 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3079,7 +1185,7 @@ parameters:
         offset: 0
 
     seg1Cell6BalanceEnable_state:
-        id: 331
+        id: 124
         motec_name: Segment 1 Cell 6 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3088,7 +1194,7 @@ parameters:
         offset: 0
 
     seg1Cell7BalanceEnable_state:
-        id: 332
+        id: 125
         motec_name: Segment 1 Cell 7 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3097,7 +1203,7 @@ parameters:
         offset: 0
 
     seg1Cell8BalanceEnable_state:
-        id: 333
+        id: 126
         motec_name: Segment 1 Cell 8 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3106,7 +1212,7 @@ parameters:
         offset: 0
 
     seg1Cell9BalanceEnable_state:
-        id: 334
+        id: 127
         motec_name: Segment 1 Cell 9 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3115,7 +1221,7 @@ parameters:
         offset: 0
 
     seg1Cell10BalanceEnable_state:
-        id: 335
+        id: 128
         motec_name: Segment 1 Cell 10 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3124,7 +1230,7 @@ parameters:
         offset: 0
 
     seg1Cell11BalanceEnable_state:
-        id: 336
+        id: 129
         motec_name: Segment 1 Cell 11 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3133,7 +1239,7 @@ parameters:
         offset: 0
 
     seg1Cell12BalanceEnable_state:
-        id: 337
+        id: 130
         motec_name: Segment 1 Cell 12 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3141,225 +1247,357 @@ parameters:
         scale: 1
         offset: 0
 
-    # AMS Fault Latched State
-    amsFault_state:
-        id: 338
-        motec_name: AMS Fault State
-        unit: ''
-        type: UNSIGNED8
+    # END SEGMENT 1
+    
+    # Segment 2 Overall
+    seg2Voltage_V:
+        id: 131
+        motec_name: Segment 2 Voltage
+        unit: V
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.42069
         offset: 0
-
-    # BSPD Fault Latched State
-    bspdFault_state:
-        id: 339
-        motec_name: BSPD Fault State
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    # Segment 1 Board Temp Stats
-    seg1BMBAveBoardTemp_C:
-        id: 340
-        motec_name: Segment 1 BMB Ave Board Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1BMBMaxBoardTemp_C:
-        id: 341
-        motec_name: Segment 1 BMB Max Board Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    seg1BMBMinBoardTemp_C:
-        id: 342
-        motec_name: Segment 1 BMB Min Board Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
-
-    # Segment 2 Board Temp Stats
-    seg2BMBAveBoardTemp_C:
-        id: 343
-        motec_name: Segment 2 BMB Ave Board Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -120
 
     seg2BMBMaxBoardTemp_C:
-        id: 344
+        id: 132
         motec_name: Segment 2 BMB Max Board Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
     seg2BMBMinBoardTemp_C:
-        id: 345
+        id: 133
         motec_name: Segment 2 BMB Min Board Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    # Segment 3 Board Temp Stats
-    seg3BMBAveBoardTemp_C:
-        id: 346
-        motec_name: Segment 3 BMB Ave Board Temp
+    seg2BMBAveBoardTemp_C:
+        id: 134
+        motec_name: Segment 2 BMB Ave Board Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg3BMBMaxBoardTemp_C:
-        id: 347
-        motec_name: Segment 3 BMB Max Board Temp
+    seg2MaxCellVoltage_V:
+        id: 135
+        motec_name: Segment 2 Max Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2MinCellVoltage_V:
+        id: 136
+        motec_name: Segment 2 Min Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2AveCellVoltage_V:
+        id: 137
+        motec_name: Segment 2 Average Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2MaxCellTemp_C:
+        id: 138
+        motec_name: Segment 2 Max Cell Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg3BMBMinBoardTemp_C:
-        id: 348
-        motec_name: Segment 3 BMB Min Board Temp
+    seg2MinCellTemp_C:
+        id: 139
+        motec_name: Segment 2 Min Cell Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    # Segment 4 Board Temp Stats
-    seg4BMBAveBoardTemp_C:
-        id: 349
-        motec_name: Segment 4 BMB Ave Board Temp
+    seg2AveCellTemp_C:
+        id: 140
+        motec_name: Segment 2 Ave Cell Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg4BMBMaxBoardTemp_C:
-        id: 350
-        motec_name: Segment 4 BMB Max Board Temp
+    # Segment 2 BMB Board Temps
+    seg2BMBBoardTemp1_C:
+        id: 141
+        motec_name: Segment 2 BMB Board Temp 1
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg4BMBMinBoardTemp_C:
-        id: 351
-        motec_name: Segment 4 BMB Min Board Temp
+    seg2BMBBoardTemp2_C:
+        id: 142
+        motec_name: Segment 2 BMB Board Temp 2
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    # Segment 5 Board Temp Stats
-    seg5BMBAveBoardTemp_C:
-        id: 352
-        motec_name: Segment 5 BMB Ave Board Temp
+    seg2BMBBoardTemp3_C:
+        id: 143
+        motec_name: Segment 2 BMB Board Temp 3
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg5BMBMaxBoardTemp_C:
-        id: 353
-        motec_name: Segment 5 BMB Max Board Temp
+    seg2BMBBoardTemp4_C:
+        id: 144
+        motec_name: Segment 2 BMB Board Temp 4
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg5BMBMinBoardTemp_C:
-        id: 354
-        motec_name: Segment 5 BMB Min Board Temp
+    # Segment 2 Voltage
+    seg2Cell1Voltage_V:
+        id: 145
+        motec_name: Segment 2 Cell 1 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell2Voltage_V:
+        id: 146
+        motec_name: Segment 2 Cell 2 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell3Voltage_V:
+        id: 147
+        motec_name: Segment 2 Cell 3 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell4Voltage_V:
+        id: 148
+        motec_name: Segment 2 Cell 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell5Voltage_V:
+        id: 149
+        motec_name: Segment 2 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell6Voltage_V:
+        id: 150
+        motec_name: Segment 2 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell7Voltage_V:
+        id: 151
+        motec_name: Segment 2 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell8Voltage_V:
+        id: 152
+        motec_name: Segment 2 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell9Voltage_V:
+        id: 153
+        motec_name: Segment 2 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell10Voltage_V:
+        id: 154
+        motec_name: Segment 2 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell11Voltage_V:
+        id: 155
+        motec_name: Segment 2 Cell 11 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg2Cell12Voltage_V:
+        id: 156
+        motec_name: Segment 2 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    # Segment 2 Temp
+    seg2Cell1Temp_C:
+        id: 157
+        motec_name: Segment 2 Cell 1 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    # Segment 6 Board Temp Stats
-    seg6BMBAveBoardTemp_C:
-        id: 355
-        motec_name: Segment 6 BMB Ave Board Temp
+    seg2Cell2Temp_C:
+        id: 158
+        motec_name: Segment 2 Cell 2 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg6BMBMaxBoardTemp_C:
-        id: 356
-        motec_name: Segment 6 BMB Max Board Temp
+    seg2Cell3Temp_C:
+        id: 159
+        motec_name: Segment 2 Cell 3 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg6BMBMinBoardTemp_C:
-        id: 357
-        motec_name: Segment 6 BMB Min Board Temp
+    seg2Cell4Temp_C:
+        id: 160
+        motec_name: Segment 2 Cell 4 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    # Segment 7 Board Temp Stats
-    seg7BMBAveBoardTemp_C:
-        id: 358
-        motec_name: Segment 7 BMB Ave Board Temp
+    seg2Cell5Temp_C:
+        id: 161
+        motec_name: Segment 2 Cell 5 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg7BMBMaxBoardTemp_C:
-        id: 359
-        motec_name: Segment 7 BMB Max Board Temp
+    seg2Cell6Temp_C:
+        id: 162
+        motec_name: Segment 2 Cell 6 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
 
-    seg7BMBMinBoardTemp_C:
-        id: 360
-        motec_name: Segment 7 BMB Min Board Temp
+    seg2Cell7Temp_C:
+        id: 163
+        motec_name: Segment 2 Cell 7 Temp
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -120
+        scale: 0.69420
+        offset: 0
+
+    seg2Cell8Temp_C:
+        id: 164
+        motec_name: Segment 2 Cell 8 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg2Cell9Temp_C:
+        id: 165
+        motec_name: Segment 2 Cell 9 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg2Cell10Temp_C:
+        id: 166
+        motec_name: Segment 2 Cell 10 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg2Cell11Temp_C:
+        id: 167
+        motec_name: Segment 2 Cell 11 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg2Cell12Temp_C:
+        id: 168
+        motec_name: Segment 2 Cell 12 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
 
     # Segment 2 Balancing
     seg2Cell1BalanceEnable_state:
-        id: 361
+        id: 169
         motec_name: Segment 2 Cell 1 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3368,7 +1606,7 @@ parameters:
         offset: 0
 
     seg2Cell2BalanceEnable_state:
-        id: 362
+        id: 170
         motec_name: Segment 2 Cell 2 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3377,7 +1615,7 @@ parameters:
         offset: 0
 
     seg2Cell3BalanceEnable_state:
-        id: 363
+        id: 171
         motec_name: Segment 2 Cell 3 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3386,7 +1624,7 @@ parameters:
         offset: 0
 
     seg2Cell4BalanceEnable_state:
-        id: 364
+        id: 172
         motec_name: Segment 2 Cell 4 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3395,7 +1633,7 @@ parameters:
         offset: 0
 
     seg2Cell5BalanceEnable_state:
-        id: 365
+        id: 173
         motec_name: Segment 2 Cell 5 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3404,7 +1642,7 @@ parameters:
         offset: 0
 
     seg2Cell6BalanceEnable_state:
-        id: 366
+        id: 174
         motec_name: Segment 2 Cell 6 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3413,7 +1651,7 @@ parameters:
         offset: 0
 
     seg2Cell7BalanceEnable_state:
-        id: 367
+        id: 175
         motec_name: Segment 2 Cell 7 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3422,7 +1660,7 @@ parameters:
         offset: 0
 
     seg2Cell8BalanceEnable_state:
-        id: 368
+        id: 176
         motec_name: Segment 2 Cell 8 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3431,7 +1669,7 @@ parameters:
         offset: 0
 
     seg2Cell9BalanceEnable_state:
-        id: 369
+        id: 177
         motec_name: Segment 2 Cell 9 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3440,7 +1678,7 @@ parameters:
         offset: 0
 
     seg2Cell10BalanceEnable_state:
-        id: 370
+        id: 178
         motec_name: Segment 2 Cell 10 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3449,7 +1687,7 @@ parameters:
         offset: 0
 
     seg2Cell11BalanceEnable_state:
-        id: 371
+        id: 179
         motec_name: Segment 2 Cell 11 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3458,7 +1696,7 @@ parameters:
         offset: 0
 
     seg2Cell12BalanceEnable_state:
-        id: 372
+        id: 180
         motec_name: Segment 2 Cell 12 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3466,29 +1704,357 @@ parameters:
         scale: 1
         offset: 0
 
-    # IMD Fault Latched State
-    imdFault_state:
-        id: 373
-        motec_name: IMD Fault State
-        unit: ''
-        type: UNSIGNED8
+    # END SEGMENT 2
+    
+    # Segment 3 Overall
+    seg3Voltage_V:
+        id: 181
+        motec_name: Segment 3 Voltage
+        unit: V
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.42069
         offset: 0
 
-    # IMD Fault condition
-    imdFaultInfo_state:
-        id: 374
-        motec_name: IMD Fault Information
-        unit: ''
-        type: UNSIGNED8
+    seg3BMBMaxBoardTemp_C:
+        id: 182
+        motec_name: Segment 3 BMB Max Board Temp
+        unit: C
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.69420
+        offset: 0
+
+    seg3BMBMinBoardTemp_C:
+        id: 183
+        motec_name: Segment 3 BMB Min Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3BMBAveBoardTemp_C:
+        id: 184
+        motec_name: Segment 3 BMB Ave Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3MaxCellVoltage_V:
+        id: 185
+        motec_name: Segment 3 Max Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3MinCellVoltage_V:
+        id: 186
+        motec_name: Segment 3 Min Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3AveCellVoltage_V:
+        id: 187
+        motec_name: Segment 3 Average Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3MaxCellTemp_C:
+        id: 188
+        motec_name: Segment 3 Max Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3MinCellTemp_C:
+        id: 189
+        motec_name: Segment 3 Min Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3AveCellTemp_C:
+        id: 190
+        motec_name: Segment 3 Ave Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 3 BMB Board Temps
+    seg3BMBBoardTemp1_C:
+        id: 191
+        motec_name: Segment 3 BMB Board Temp 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3BMBBoardTemp2_C:
+        id: 192
+        motec_name: Segment 3 BMB Board Temp 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3BMBBoardTemp3_C:
+        id: 193
+        motec_name: Segment 3 BMB Board Temp 3
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3BMBBoardTemp4_C:
+        id: 194
+        motec_name: Segment 3 BMB Board Temp 4
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 3 Voltage
+    seg3Cell1Voltage_V:
+        id: 195
+        motec_name: Segment 3 Cell 1 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell2Voltage_V:
+        id: 196
+        motec_name: Segment 3 Cell 2 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell3Voltage_V:
+        id: 197
+        motec_name: Segment 3 Cell 3 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell4Voltage_V:
+        id: 198
+        motec_name: Segment 3 Cell 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell5Voltage_V:
+        id: 199
+        motec_name: Segment 3 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell6Voltage_V:
+        id: 200
+        motec_name: Segment 3 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell7Voltage_V:
+        id: 201
+        motec_name: Segment 3 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell8Voltage_V:
+        id: 202
+        motec_name: Segment 3 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell9Voltage_V:
+        id: 203
+        motec_name: Segment 3 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell10Voltage_V:
+        id: 204
+        motec_name: Segment 3 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell11Voltage_V:
+        id: 205
+        motec_name: Segment 3 Cell 11 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg3Cell12Voltage_V:
+        id: 206
+        motec_name: Segment 3 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    # Segment 3 Temp
+    seg3Cell1Temp_C:
+        id: 207
+        motec_name: Segment 3 Cell 1 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell2Temp_C:
+        id: 208
+        motec_name: Segment 3 Cell 2 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell3Temp_C:
+        id: 209
+        motec_name: Segment 3 Cell 3 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell4Temp_C:
+        id: 210
+        motec_name: Segment 3 Cell 4 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell5Temp_C:
+        id: 211
+        motec_name: Segment 3 Cell 5 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell6Temp_C:
+        id: 212
+        motec_name: Segment 3 Cell 6 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell7Temp_C:
+        id: 213
+        motec_name: Segment 3 Cell 7 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell8Temp_C:
+        id: 214
+        motec_name: Segment 3 Cell 8 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell9Temp_C:
+        id: 215
+        motec_name: Segment 3 Cell 9 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell10Temp_C:
+        id: 216
+        motec_name: Segment 3 Cell 10 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell11Temp_C:
+        id: 217
+        motec_name: Segment 3 Cell 11 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg3Cell12Temp_C:
+        id: 218
+        motec_name: Segment 3 Cell 12 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
         offset: 0
 
     # Segment 3 Balancing
     seg3Cell1BalanceEnable_state:
-        id: 375
+        id: 219
         motec_name: Segment 3 Cell 1 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3497,7 +2063,7 @@ parameters:
         offset: 0
 
     seg3Cell2BalanceEnable_state:
-        id: 376
+        id: 220
         motec_name: Segment 3 Cell 2 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3506,7 +2072,7 @@ parameters:
         offset: 0
 
     seg3Cell3BalanceEnable_state:
-        id: 377
+        id: 221
         motec_name: Segment 3 Cell 3 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3515,7 +2081,7 @@ parameters:
         offset: 0
 
     seg3Cell4BalanceEnable_state:
-        id: 378
+        id: 222
         motec_name: Segment 3 Cell 4 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3524,7 +2090,7 @@ parameters:
         offset: 0
 
     seg3Cell5BalanceEnable_state:
-        id: 379
+        id: 223
         motec_name: Segment 3 Cell 5 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3533,7 +2099,7 @@ parameters:
         offset: 0
 
     seg3Cell6BalanceEnable_state:
-        id: 380
+        id: 224
         motec_name: Segment 3 Cell 6 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3542,7 +2108,7 @@ parameters:
         offset: 0
 
     seg3Cell7BalanceEnable_state:
-        id: 381
+        id: 225
         motec_name: Segment 3 Cell 7 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3551,7 +2117,7 @@ parameters:
         offset: 0
 
     seg3Cell8BalanceEnable_state:
-        id: 382
+        id: 226
         motec_name: Segment 3 Cell 8 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3560,7 +2126,7 @@ parameters:
         offset: 0
 
     seg3Cell9BalanceEnable_state:
-        id: 383
+        id: 227
         motec_name: Segment 3 Cell 9 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3569,7 +2135,7 @@ parameters:
         offset: 0
 
     seg3Cell10BalanceEnable_state:
-        id: 384
+        id: 228
         motec_name: Segment 3 Cell 10 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3578,7 +2144,7 @@ parameters:
         offset: 0
 
     seg3Cell11BalanceEnable_state:
-        id: 385
+        id: 229
         motec_name: Segment 3 Cell 11 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3587,7 +2153,7 @@ parameters:
         offset: 0
 
     seg3Cell12BalanceEnable_state:
-        id: 386
+        id: 230
         motec_name: Segment 3 Cell 12 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3595,9 +2161,357 @@ parameters:
         scale: 1
         offset: 0
 
+    # END SEGMENT 3
+    
+    # Segment 4 Overall
+    seg4Voltage_V:
+        id: 231
+        motec_name: Segment 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4BMBMaxBoardTemp_C:
+        id: 232
+        motec_name: Segment 4 BMB Max Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4BMBMinBoardTemp_C:
+        id: 233
+        motec_name: Segment 4 BMB Min Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4BMBAveBoardTemp_C:
+        id: 234
+        motec_name: Segment 4 BMB Ave Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4MaxCellVoltage_V:
+        id: 235
+        motec_name: Segment 4 Max Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4MinCellVoltage_V:
+        id: 236
+        motec_name: Segment 4 Min Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4AveCellVoltage_V:
+        id: 237
+        motec_name: Segment 4 Average Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4MaxCellTemp_C:
+        id: 238
+        motec_name: Segment 4 Max Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4MinCellTemp_C:
+        id: 239
+        motec_name: Segment 4 Min Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4AveCellTemp_C:
+        id: 240
+        motec_name: Segment 4 Ave Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 4 BMB Board Temps
+    seg4BMBBoardTemp1_C:
+        id: 241
+        motec_name: Segment 4 BMB Board Temp 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4BMBBoardTemp2_C:
+        id: 242
+        motec_name: Segment 4 BMB Board Temp 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4BMBBoardTemp3_C:
+        id: 243
+        motec_name: Segment 4 BMB Board Temp 3
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4BMBBoardTemp4_C:
+        id: 244
+        motec_name: Segment 4 BMB Board Temp 4
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 4 Voltage
+    seg4Cell1Voltage_V:
+        id: 245
+        motec_name: Segment 4 Cell 1 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell2Voltage_V:
+        id: 246
+        motec_name: Segment 4 Cell 2 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell3Voltage_V:
+        id: 247
+        motec_name: Segment 4 Cell 3 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell4Voltage_V:
+        id: 248
+        motec_name: Segment 4 Cell 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell5Voltage_V:
+        id: 249
+        motec_name: Segment 4 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell6Voltage_V:
+        id: 250
+        motec_name: Segment 4 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell7Voltage_V:
+        id: 251
+        motec_name: Segment 4 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell8Voltage_V:
+        id: 252
+        motec_name: Segment 4 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell9Voltage_V:
+        id: 253
+        motec_name: Segment 4 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell10Voltage_V:
+        id: 254
+        motec_name: Segment 4 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell11Voltage_V:
+        id: 255
+        motec_name: Segment 4 Cell 11 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg4Cell12Voltage_V:
+        id: 256
+        motec_name: Segment 4 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    # Segment 4 Temp
+    seg4Cell1Temp_C:
+        id: 257
+        motec_name: Segment 4 Cell 1 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell2Temp_C:
+        id: 258
+        motec_name: Segment 4 Cell 2 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell3Temp_C:
+        id: 259
+        motec_name: Segment 4 Cell 3 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell4Temp_C:
+        id: 260
+        motec_name: Segment 4 Cell 4 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell5Temp_C:
+        id: 261
+        motec_name: Segment 4 Cell 5 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell6Temp_C:
+        id: 262
+        motec_name: Segment 4 Cell 6 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell7Temp_C:
+        id: 263
+        motec_name: Segment 4 Cell 7 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell8Temp_C:
+        id: 264
+        motec_name: Segment 4 Cell 8 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell9Temp_C:
+        id: 265
+        motec_name: Segment 4 Cell 9 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell10Temp_C:
+        id: 266
+        motec_name: Segment 4 Cell 10 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell11Temp_C:
+        id: 267
+        motec_name: Segment 4 Cell 11 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg4Cell12Temp_C:
+        id: 268
+        motec_name: Segment 4 Cell 12 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
     # Segment 4 Balancing
     seg4Cell1BalanceEnable_state:
-        id: 387
+        id: 269
         motec_name: Segment 4 Cell 1 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3606,7 +2520,7 @@ parameters:
         offset: 0
 
     seg4Cell2BalanceEnable_state:
-        id: 388
+        id: 270
         motec_name: Segment 4 Cell 2 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3615,7 +2529,7 @@ parameters:
         offset: 0
 
     seg4Cell3BalanceEnable_state:
-        id: 389
+        id: 271
         motec_name: Segment 4 Cell 3 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3624,7 +2538,7 @@ parameters:
         offset: 0
 
     seg4Cell4BalanceEnable_state:
-        id: 390
+        id: 272
         motec_name: Segment 4 Cell 4 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3633,7 +2547,7 @@ parameters:
         offset: 0
 
     seg4Cell5BalanceEnable_state:
-        id: 391
+        id: 273
         motec_name: Segment 4 Cell 5 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3642,7 +2556,7 @@ parameters:
         offset: 0
 
     seg4Cell6BalanceEnable_state:
-        id: 392
+        id: 274
         motec_name: Segment 4 Cell 6 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3651,7 +2565,7 @@ parameters:
         offset: 0
 
     seg4Cell7BalanceEnable_state:
-        id: 393
+        id: 275
         motec_name: Segment 4 Cell 7 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3660,7 +2574,7 @@ parameters:
         offset: 0
 
     seg4Cell8BalanceEnable_state:
-        id: 394
+        id: 276
         motec_name: Segment 4 Cell 8 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3669,7 +2583,7 @@ parameters:
         offset: 0
 
     seg4Cell9BalanceEnable_state:
-        id: 395
+        id: 277
         motec_name: Segment 4 Cell 9 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3678,7 +2592,7 @@ parameters:
         offset: 0
 
     seg4Cell10BalanceEnable_state:
-        id: 396
+        id: 278
         motec_name: Segment 4 Cell 10 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3687,7 +2601,7 @@ parameters:
         offset: 0
 
     seg4Cell11BalanceEnable_state:
-        id: 397
+        id: 279
         motec_name: Segment 4 Cell 11 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3696,7 +2610,7 @@ parameters:
         offset: 0
 
     seg4Cell12BalanceEnable_state:
-        id: 398
+        id: 280
         motec_name: Segment 4 Cell 12 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3704,9 +2618,357 @@ parameters:
         scale: 1
         offset: 0
 
+    # END SEGMENT 4
+    
+    # Segment 5 Overall
+    seg5Voltage_V:
+        id: 281
+        motec_name: Segment 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5BMBMaxBoardTemp_C:
+        id: 282
+        motec_name: Segment 5 BMB Max Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5BMBMinBoardTemp_C:
+        id: 283
+        motec_name: Segment 5 BMB Min Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5BMBAveBoardTemp_C:
+        id: 284
+        motec_name: Segment 5 BMB Ave Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5MaxCellVoltage_V:
+        id: 285
+        motec_name: Segment 5 Max Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5MinCellVoltage_V:
+        id: 286
+        motec_name: Segment 5 Min Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5AveCellVoltage_V:
+        id: 287
+        motec_name: Segment 5 Average Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5MaxCellTemp_C:
+        id: 288
+        motec_name: Segment 5 Max Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5MinCellTemp_C:
+        id: 289
+        motec_name: Segment 5 Min Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5AveCellTemp_C:
+        id: 290
+        motec_name: Segment 5 Ave Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 5 BMB Board Temps
+    seg5BMBBoardTemp1_C:
+        id: 291
+        motec_name: Segment 5 BMB Board Temp 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5BMBBoardTemp2_C:
+        id: 292
+        motec_name: Segment 5 BMB Board Temp 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5BMBBoardTemp3_C:
+        id: 293
+        motec_name: Segment 5 BMB Board Temp 3
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5BMBBoardTemp4_C:
+        id: 294
+        motec_name: Segment 5 BMB Board Temp 4
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 5 Voltage
+    seg5Cell1Voltage_V:
+        id: 295
+        motec_name: Segment 5 Cell 1 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell2Voltage_V:
+        id: 296
+        motec_name: Segment 5 Cell 2 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell3Voltage_V:
+        id: 297
+        motec_name: Segment 5 Cell 3 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell4Voltage_V:
+        id: 298
+        motec_name: Segment 5 Cell 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell5Voltage_V:
+        id: 299
+        motec_name: Segment 5 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell6Voltage_V:
+        id: 300
+        motec_name: Segment 5 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell7Voltage_V:
+        id: 301
+        motec_name: Segment 5 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell8Voltage_V:
+        id: 302
+        motec_name: Segment 5 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell9Voltage_V:
+        id: 303
+        motec_name: Segment 5 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell10Voltage_V:
+        id: 304
+        motec_name: Segment 5 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell11Voltage_V:
+        id: 305
+        motec_name: Segment 5 Cell 11 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg5Cell12Voltage_V:
+        id: 306
+        motec_name: Segment 5 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    # Segment 5 Temp
+    seg5Cell1Temp_C:
+        id: 307
+        motec_name: Segment 5 Cell 1 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell2Temp_C:
+        id: 308
+        motec_name: Segment 5 Cell 2 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell3Temp_C:
+        id: 309
+        motec_name: Segment 5 Cell 3 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell4Temp_C:
+        id: 310
+        motec_name: Segment 5 Cell 4 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell5Temp_C:
+        id: 311
+        motec_name: Segment 5 Cell 5 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell6Temp_C:
+        id: 312
+        motec_name: Segment 5 Cell 6 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell7Temp_C:
+        id: 313
+        motec_name: Segment 5 Cell 7 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell8Temp_C:
+        id: 314
+        motec_name: Segment 5 Cell 8 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell9Temp_C:
+        id: 315
+        motec_name: Segment 5 Cell 9 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell10Temp_C:
+        id: 316
+        motec_name: Segment 5 Cell 10 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell11Temp_C:
+        id: 317
+        motec_name: Segment 5 Cell 11 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg5Cell12Temp_C:
+        id: 318
+        motec_name: Segment 5 Cell 12 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
     # Segment 5 Balancing
     seg5Cell1BalanceEnable_state:
-        id: 399
+        id: 319
         motec_name: Segment 5 Cell 1 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3715,7 +2977,7 @@ parameters:
         offset: 0
 
     seg5Cell2BalanceEnable_state:
-        id: 400
+        id: 320
         motec_name: Segment 5 Cell 2 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3724,7 +2986,7 @@ parameters:
         offset: 0
 
     seg5Cell3BalanceEnable_state:
-        id: 401
+        id: 321
         motec_name: Segment 5 Cell 3 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3733,7 +2995,7 @@ parameters:
         offset: 0
 
     seg5Cell4BalanceEnable_state:
-        id: 402
+        id: 322
         motec_name: Segment 5 Cell 4 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3742,7 +3004,7 @@ parameters:
         offset: 0
 
     seg5Cell5BalanceEnable_state:
-        id: 403
+        id: 323
         motec_name: Segment 5 Cell 5 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3751,7 +3013,7 @@ parameters:
         offset: 0
 
     seg5Cell6BalanceEnable_state:
-        id: 404
+        id: 324
         motec_name: Segment 5 Cell 6 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3760,7 +3022,7 @@ parameters:
         offset: 0
 
     seg5Cell7BalanceEnable_state:
-        id: 405
+        id: 325
         motec_name: Segment 5 Cell 7 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3769,7 +3031,7 @@ parameters:
         offset: 0
 
     seg5Cell8BalanceEnable_state:
-        id: 406
+        id: 326
         motec_name: Segment 5 Cell 8 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3778,7 +3040,7 @@ parameters:
         offset: 0
 
     seg5Cell9BalanceEnable_state:
-        id: 407
+        id: 327
         motec_name: Segment 5 Cell 9 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3787,7 +3049,7 @@ parameters:
         offset: 0
 
     seg5Cell10BalanceEnable_state:
-        id: 408
+        id: 328
         motec_name: Segment 5 Cell 10 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3796,7 +3058,7 @@ parameters:
         offset: 0
 
     seg5Cell11BalanceEnable_state:
-        id: 409
+        id: 329
         motec_name: Segment 5 Cell 11 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3805,7 +3067,7 @@ parameters:
         offset: 0
 
     seg5Cell12BalanceEnable_state:
-        id: 410
+        id: 330
         motec_name: Segment 5 Cell 12 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3813,9 +3075,357 @@ parameters:
         scale: 1
         offset: 0
 
+    # END SEGMENT 5
+    
+    # Segment 6 Overall
+    seg6Voltage_V:
+        id: 331
+        motec_name: Segment 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6BMBMaxBoardTemp_C:
+        id: 332
+        motec_name: Segment 6 BMB Max Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6BMBMinBoardTemp_C:
+        id: 333
+        motec_name: Segment 6 BMB Min Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6BMBAveBoardTemp_C:
+        id: 334
+        motec_name: Segment 6 BMB Ave Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6MaxCellVoltage_V:
+        id: 335
+        motec_name: Segment 6 Max Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6MinCellVoltage_V:
+        id: 336
+        motec_name: Segment 6 Min Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6AveCellVoltage_V:
+        id: 337
+        motec_name: Segment 6 Average Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6MaxCellTemp_C:
+        id: 338
+        motec_name: Segment 6 Max Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6MinCellTemp_C:
+        id: 339
+        motec_name: Segment 6 Min Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6AveCellTemp_C:
+        id: 340
+        motec_name: Segment 6 Ave Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 6 BMB Board Temps
+    seg6BMBBoardTemp1_C:
+        id: 341
+        motec_name: Segment 6 BMB Board Temp 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6BMBBoardTemp2_C:
+        id: 342
+        motec_name: Segment 6 BMB Board Temp 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6BMBBoardTemp3_C:
+        id: 343
+        motec_name: Segment 6 BMB Board Temp 3
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6BMBBoardTemp4_C:
+        id: 344
+        motec_name: Segment 6 BMB Board Temp 4
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 6 Voltage
+    seg6Cell1Voltage_V:
+        id: 345
+        motec_name: Segment 6 Cell 1 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell2Voltage_V:
+        id: 346
+        motec_name: Segment 6 Cell 2 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell3Voltage_V:
+        id: 347
+        motec_name: Segment 6 Cell 3 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell4Voltage_V:
+        id: 348
+        motec_name: Segment 6 Cell 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell5Voltage_V:
+        id: 349
+        motec_name: Segment 6 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell6Voltage_V:
+        id: 350
+        motec_name: Segment 6 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell7Voltage_V:
+        id: 351
+        motec_name: Segment 6 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell8Voltage_V:
+        id: 352
+        motec_name: Segment 6 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell9Voltage_V:
+        id: 353
+        motec_name: Segment 6 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell10Voltage_V:
+        id: 354
+        motec_name: Segment 6 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell11Voltage_V:
+        id: 355
+        motec_name: Segment 6 Cell 11 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg6Cell12Voltage_V:
+        id: 356
+        motec_name: Segment 6 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    # Segment 6 Temp
+    seg6Cell1Temp_C:
+        id: 357
+        motec_name: Segment 6 Cell 1 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell2Temp_C:
+        id: 358
+        motec_name: Segment 6 Cell 2 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell3Temp_C:
+        id: 359
+        motec_name: Segment 6 Cell 3 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell4Temp_C:
+        id: 360
+        motec_name: Segment 6 Cell 4 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell5Temp_C:
+        id: 361
+        motec_name: Segment 6 Cell 5 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell6Temp_C:
+        id: 362
+        motec_name: Segment 6 Cell 6 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell7Temp_C:
+        id: 363
+        motec_name: Segment 6 Cell 7 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell8Temp_C:
+        id: 364
+        motec_name: Segment 6 Cell 8 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell9Temp_C:
+        id: 365
+        motec_name: Segment 6 Cell 9 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell10Temp_C:
+        id: 366
+        motec_name: Segment 6 Cell 10 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell11Temp_C:
+        id: 367
+        motec_name: Segment 6 Cell 11 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg6Cell12Temp_C:
+        id: 368
+        motec_name: Segment 6 Cell 12 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
     # Segment 6 Balancing
     seg6Cell1BalanceEnable_state:
-        id: 411
+        id: 369
         motec_name: Segment 6 Cell 1 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3824,7 +3434,7 @@ parameters:
         offset: 0
 
     seg6Cell2BalanceEnable_state:
-        id: 412
+        id: 370
         motec_name: Segment 6 Cell 2 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3833,7 +3443,7 @@ parameters:
         offset: 0
 
     seg6Cell3BalanceEnable_state:
-        id: 413
+        id: 371
         motec_name: Segment 6 Cell 3 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3842,7 +3452,7 @@ parameters:
         offset: 0
 
     seg6Cell4BalanceEnable_state:
-        id: 414
+        id: 372
         motec_name: Segment 6 Cell 4 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3851,7 +3461,7 @@ parameters:
         offset: 0
 
     seg6Cell5BalanceEnable_state:
-        id: 415
+        id: 373
         motec_name: Segment 6 Cell 5 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3860,7 +3470,7 @@ parameters:
         offset: 0
 
     seg6Cell6BalanceEnable_state:
-        id: 416
+        id: 374
         motec_name: Segment 6 Cell 6 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3869,7 +3479,7 @@ parameters:
         offset: 0
 
     seg6Cell7BalanceEnable_state:
-        id: 417
+        id: 375
         motec_name: Segment 6 Cell 7 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3878,7 +3488,7 @@ parameters:
         offset: 0
 
     seg6Cell8BalanceEnable_state:
-        id: 418
+        id: 376
         motec_name: Segment 6 Cell 8 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3887,7 +3497,7 @@ parameters:
         offset: 0
 
     seg6Cell9BalanceEnable_state:
-        id: 419
+        id: 377
         motec_name: Segment 6 Cell 9 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3896,7 +3506,7 @@ parameters:
         offset: 0
 
     seg6Cell10BalanceEnable_state:
-        id: 420
+        id: 378
         motec_name: Segment 6 Cell 10 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3905,7 +3515,7 @@ parameters:
         offset: 0
 
     seg6Cell11BalanceEnable_state:
-        id: 421
+        id: 379
         motec_name: Segment 6 Cell 11 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3914,7 +3524,7 @@ parameters:
         offset: 0
 
     seg6Cell12BalanceEnable_state:
-        id: 422
+        id: 380
         motec_name: Segment 6 Cell 12 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3922,9 +3532,357 @@ parameters:
         scale: 1
         offset: 0
 
+    # END SEGMENT 6
+    
+    # Segment 7 Overall
+    seg7Voltage_V:
+        id: 381
+        motec_name: Segment 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7BMBMaxBoardTemp_C:
+        id: 382
+        motec_name: Segment 7 BMB Max Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7BMBMinBoardTemp_C:
+        id: 383
+        motec_name: Segment 7 BMB Min Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7BMBAveBoardTemp_C:
+        id: 384
+        motec_name: Segment 7 BMB Ave Board Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7MaxCellVoltage_V:
+        id: 385
+        motec_name: Segment 7 Max Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7MinCellVoltage_V:
+        id: 386
+        motec_name: Segment 7 Min Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7AveCellVoltage_V:
+        id: 387
+        motec_name: Segment 7 Average Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7MaxCellTemp_C:
+        id: 388
+        motec_name: Segment 7 Max Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7MinCellTemp_C:
+        id: 389
+        motec_name: Segment 7 Min Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7AveCellTemp_C:
+        id: 390
+        motec_name: Segment 7 Ave Cell Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 7 BMB Board Temps
+    seg7BMBBoardTemp1_C:
+        id: 391
+        motec_name: Segment 7 BMB Board Temp 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7BMBBoardTemp2_C:
+        id: 392
+        motec_name: Segment 7 BMB Board Temp 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7BMBBoardTemp3_C:
+        id: 393
+        motec_name: Segment 7 BMB Board Temp 3
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7BMBBoardTemp4_C:
+        id: 394
+        motec_name: Segment 7 BMB Board Temp 4
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    # Segment 7 Voltage
+    seg7Cell1Voltage_V:
+        id: 395
+        motec_name: Segment 7 Cell 1 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell2Voltage_V:
+        id: 396
+        motec_name: Segment 7 Cell 2 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell3Voltage_V:
+        id: 397
+        motec_name: Segment 7 Cell 3 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell4Voltage_V:
+        id: 398
+        motec_name: Segment 7 Cell 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell5Voltage_V:
+        id: 399
+        motec_name: Segment 7 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell6Voltage_V:
+        id: 400
+        motec_name: Segment 7 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell7Voltage_V:
+        id: 401
+        motec_name: Segment 7 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell8Voltage_V:
+        id: 402
+        motec_name: Segment 7 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell9Voltage_V:
+        id: 403
+        motec_name: Segment 7 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell10Voltage_V:
+        id: 404
+        motec_name: Segment 7 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell11Voltage_V:
+        id: 405
+        motec_name: Segment 7 Cell 11 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    seg7Cell12Voltage_V:
+        id: 406
+        motec_name: Segment 7 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.42069
+        offset: 0
+
+    # Segment 7 Temp
+    seg7Cell1Temp_C:
+        id: 407
+        motec_name: Segment 7 Cell 1 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell2Temp_C:
+        id: 408
+        motec_name: Segment 7 Cell 2 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell3Temp_C:
+        id: 409
+        motec_name: Segment 7 Cell 3 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell4Temp_C:
+        id: 410
+        motec_name: Segment 7 Cell 4 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell5Temp_C:
+        id: 411
+        motec_name: Segment 7 Cell 5 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell6Temp_C:
+        id: 412
+        motec_name: Segment 7 Cell 6 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell7Temp_C:
+        id: 413
+        motec_name: Segment 7 Cell 7 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell8Temp_C:
+        id: 414
+        motec_name: Segment 7 Cell 8 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell9Temp_C:
+        id: 415
+        motec_name: Segment 7 Cell 9 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell10Temp_C:
+        id: 416
+        motec_name: Segment 7 Cell 10 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell11Temp_C:
+        id: 417
+        motec_name: Segment 7 Cell 11 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
+    seg7Cell12Temp_C:
+        id: 418
+        motec_name: Segment 7 Cell 12 Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.69420
+        offset: 0
+
     # Segment 7 Balancing
     seg7Cell1BalanceEnable_state:
-        id: 423
+        id: 419
         motec_name: Segment 7 Cell 1 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3933,7 +3891,7 @@ parameters:
         offset: 0
 
     seg7Cell2BalanceEnable_state:
-        id: 424
+        id: 420
         motec_name: Segment 7 Cell 2 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3942,7 +3900,7 @@ parameters:
         offset: 0
 
     seg7Cell3BalanceEnable_state:
-        id: 425
+        id: 421
         motec_name: Segment 7 Cell 3 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3951,7 +3909,7 @@ parameters:
         offset: 0
 
     seg7Cell4BalanceEnable_state:
-        id: 426
+        id: 422
         motec_name: Segment 7 Cell 4 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3960,7 +3918,7 @@ parameters:
         offset: 0
 
     seg7Cell5BalanceEnable_state:
-        id: 427
+        id: 423
         motec_name: Segment 7 Cell 5 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3969,7 +3927,7 @@ parameters:
         offset: 0
 
     seg7Cell6BalanceEnable_state:
-        id: 428
+        id: 424
         motec_name: Segment 7 Cell 6 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3978,7 +3936,7 @@ parameters:
         offset: 0
 
     seg7Cell7BalanceEnable_state:
-        id: 429
+        id: 425
         motec_name: Segment 7 Cell 7 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3987,7 +3945,7 @@ parameters:
         offset: 0
 
     seg7Cell8BalanceEnable_state:
-        id: 430
+        id: 426
         motec_name: Segment 7 Cell 8 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -3996,7 +3954,7 @@ parameters:
         offset: 0
 
     seg7Cell9BalanceEnable_state:
-        id: 431
+        id: 427
         motec_name: Segment 7 Cell 9 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -4005,7 +3963,7 @@ parameters:
         offset: 0
 
     seg7Cell10BalanceEnable_state:
-        id: 432
+        id: 428
         motec_name: Segment 7 Cell 10 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -4014,7 +3972,7 @@ parameters:
         offset: 0
 
     seg7Cell11BalanceEnable_state:
-        id: 433
+        id: 429
         motec_name: Segment 7 Cell 11 Balance Enabled
         unit: ''
         type: UNSIGNED8
@@ -4023,8 +3981,47 @@ parameters:
         offset: 0
 
     seg7Cell12BalanceEnable_state:
-        id: 434
+        id: 430
         motec_name: Segment 7 Cell 12 Balance Enabled
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    # END SEGMENT 7
+    
+    # Error states
+    amsFault_state:
+        id: 431
+        motec_name: AMS Fault State
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    imdFault_state:
+        id: 432
+        motec_name: IMD Fault State
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bspdFault_state:
+        id: 433
+        motec_name: BSPD Fault State
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    imdFaultInfo_state:
+        id: 434
+        motec_name: IMD Fault Information
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4038,8 +4035,8 @@ parameters:
         unit: A
         type: FLOATING
         encoding: MSB
-        scale: 0.04634831461 # [-93.63-96.21] -> [0-4096]
-        offset: -93.6329588
+        scale: 0.009144042618572711944580078125 # [-18.727-18.727] -> [0-4096]
+        offset: -18.727
 
     bmsTractiveSystemCurrentHigh_A:
         id: 436
@@ -4047,8 +4044,8 @@ parameters:
         unit: A
         type: FLOATING
         encoding: MSB
-        scale: 0.309375 # [-625-642.2] -> [0-4096]
-        offset: -625
+        scale: 0.180844724178314208984375 # [-370.370-370.370] -> [0-4096]
+        offset: -370.370
 
     # END BMS
     
