@@ -377,11 +377,20 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
+
+    tcmError_state:
+        id: 34
+        motec_name: TCM Error
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
     # END TCM
 
     # Sensor Hub Front Sensors
     brakePressureFront_psi:
-        id: 34
+        id: 35
         motec_name: Brake Pres Front
         unit: psi
         type: FLOATING
@@ -390,7 +399,7 @@ parameters:
         offset: 0
 
     brakePressureRear_psi:
-        id: 35
+        id: 36
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -399,7 +408,7 @@ parameters:
         offset: 0
 
     brakeTempFrontLeft_C:
-        id: 36
+        id: 37
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -408,7 +417,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 37
+        id: 38
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -417,7 +426,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 38
+        id: 39
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -426,7 +435,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 39
+        id: 40
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -435,7 +444,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 40
+        id: 41
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -444,7 +453,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 41
+        id: 42
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -453,7 +462,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 42
+        id: 43
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -463,7 +472,7 @@ parameters:
     # END SENSOR HUB FRONT
     # Sensor Hub Rear Left Sensors
     fuelPressure_kPa:
-        id: 43
+        id: 44
         motec_name: Fuel Pres
         unit: kPa
         type: FLOATING
@@ -472,7 +481,7 @@ parameters:
         offset: 0
 
     exhaustTemp_C:
-        id: 44
+        id: 45
         motec_name: Exhaust Temp
         unit: C
         type: FLOATING
@@ -481,7 +490,7 @@ parameters:
         offset: 0
 
     leftRadWaterTempIn_C:
-        id: 45
+        id: 46
         motec_name: Left Rad Water Temp In
         unit: C
         type: FLOATING
@@ -490,7 +499,7 @@ parameters:
         offset: 0
 
     leftRadWaterTempOut_C:
-        id: 46
+        id: 47
         motec_name: Left Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -499,7 +508,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 47
+        id: 48
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -508,7 +517,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 48
+        id: 49
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -518,7 +527,7 @@ parameters:
     # END SENSOR HUB REAR LEFT
     # Sensor Hub Rear Right Sensors
     shockPosRearRight_mm:
-        id: 49
+        id: 50
         motec_name: Susp Pos RR
         unit: mm
         type: FLOATING
@@ -527,7 +536,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearRight_mph:
-        id: 50
+        id: 51
         motec_name: Wheel Speed RR
         unit: mph
         type: FLOATING
@@ -536,7 +545,7 @@ parameters:
         offset: 0
 
     manifoldPressure_kPa:
-        id: 51
+        id: 52
         motec_name: Manifold Pres
         unit: kPa
         type: FLOATING
@@ -545,7 +554,7 @@ parameters:
         offset: 0
 
     manifoldTemp_C:
-        id: 52
+        id: 53
         motec_name: Air Temp Inlet
         unit: C
         type: FLOATING
@@ -554,7 +563,7 @@ parameters:
         offset: 0
 
     airTankPressure_psi:
-        id: 53
+        id: 54
         motec_name: Air Tank Pressure
         unit: psi
         type: FLOATING
@@ -563,7 +572,7 @@ parameters:
         offset: 0
 
     airLinePressure_psi:
-        id: 54
+        id: 55
         motec_name: Air Line Pressure
         unit: psi
         type: FLOATING
@@ -573,7 +582,7 @@ parameters:
     # END SENSOR HUB REAR RIGHT
     # Power and Logging Module Sensing:
     plmVbatVoltage_V:
-        id: 55
+        id: 56
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -582,7 +591,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 56
+        id: 57
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -591,7 +600,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 57
+        id: 58
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -600,7 +609,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 58
+        id: 59
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -609,7 +618,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 59
+        id: 60
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -618,7 +627,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 60
+        id: 61
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -627,7 +636,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 61
+        id: 62
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -636,7 +645,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 62
+        id: 63
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -645,7 +654,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 63
+        id: 64
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -654,7 +663,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 64
+        id: 65
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -663,7 +672,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 65
+        id: 66
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -672,7 +681,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 66
+        id: 67
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -681,7 +690,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 67
+        id: 68
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -691,7 +700,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 68
+        id: 69
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -700,7 +709,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 69
+        id: 70
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -709,7 +718,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 70
+        id: 71
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -719,7 +728,7 @@ parameters:
     # END PLM
     # Steering Wheel Module
     swUpshift_state:
-        id: 71
+        id: 72
         motec_name: Wheel Upshift Paddle Pos
         unit: ''
         type: FLOATING
@@ -728,7 +737,7 @@ parameters:
         offset: 0
 
     swDownshift_state:
-        id: 72
+        id: 73
         motec_name: Wheel Downshift Paddle Pos
         unit: ''
         type: FLOATING
@@ -737,7 +746,7 @@ parameters:
         offset: 0
 
     swSlowClutch_state:
-        id: 73
+        id: 74
         motec_name: Wheel Slow Clutch
         unit: ''
         type: UNSIGNED8
@@ -746,7 +755,7 @@ parameters:
         offset: 0
 
     swFastClutch_state:
-        id: 74
+        id: 75
         motec_name: Wheel Fast Clutch
         unit: ''
         type: UNSIGNED8
@@ -755,7 +764,7 @@ parameters:
         offset: 0
 
     swButon0_state:
-        id: 75
+        id: 76
         motec_name: Wheel Button 0
         unit: ''
         type: UNSIGNED8
@@ -764,7 +773,7 @@ parameters:
         offset: 0
 
     swButon1_state:
-        id: 76
+        id: 77
         motec_name: Wheel Button 1
         unit: ''
         type: UNSIGNED8
@@ -773,7 +782,7 @@ parameters:
         offset: 0
 
     swButon2_state:
-        id: 77
+        id: 78
         motec_name: Wheel Button 2
         unit: ''
         type: UNSIGNED8
@@ -782,7 +791,7 @@ parameters:
         offset: 0
 
     swButon3_state:
-        id: 78
+        id: 79
         motec_name: Wheel Button 3
         unit: ''
         type: UNSIGNED8
@@ -791,7 +800,7 @@ parameters:
         offset: 0
 
     swDial_ul:
-        id: 79
+        id: 80
         motec_name: Wheel Dial
         unit: ''
         type: UNSIGNED8
@@ -801,7 +810,7 @@ parameters:
     # END SWM
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 80
+        id: 81
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -810,7 +819,7 @@ parameters:
         offset: 0
 
     rollRate_degPerSec:
-        id: 81
+        id: 82
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -819,7 +828,7 @@ parameters:
         offset: 0
 
     lateralAccel_G:
-        id: 82
+        id: 83
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -828,7 +837,7 @@ parameters:
         offset: 0
 
     longitudinalAccel_G:
-        id: 83
+        id: 84
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -837,7 +846,7 @@ parameters:
         offset: 0
 
     verticalAccel_G:
-        id: 84
+        id: 85
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -882,8 +891,10 @@ groups: [
             {name: tcmTargetRPM_rpm, start: 0, length: 2}, {name: tcmCurrentGear_state,
                 start: 2, length: 1}, {name: tcmCurrentlyMoving_state, start: 3, length: 1},
             {name: tcmAntiStallActive_state, start: 4, length: 1}, {name: tcmUsingClutch_state,
-                start: 5, length: 1}, {name: tcmShiftState_state, start: 6, length: 1}]}, {id: 0x302, parameters: [ {name: tcmTimeShiftOnly_state, start: 0, length: 1}, {name: tcmClutchlessDownshift_state, start: 1, length: 1}]},
-    
+                start: 5, length: 1}, {name: tcmShiftState_state, start: 6, length: 1},
+            {name: tcmError_state, start: 7, length: 1}]}, {id: 0x302, parameters: [
+            {name: tcmTimeShiftOnly_state, start: 0, length: 1}, {name: tcmClutchlessDownshift_state,
+                start: 1, length: 1}]},
     # Sensor Hub Front
     # Low frequency 
    {id: 0x400, parameters: [{name: brakePressureFront_psi, start: 0, length: 2}, {
