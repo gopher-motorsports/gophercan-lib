@@ -171,7 +171,7 @@ void do_nothing(MODULE_ID sending_module, void* param,
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan);
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
 
-#if TARGET == F7XX
+#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan);
