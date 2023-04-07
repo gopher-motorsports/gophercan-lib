@@ -13,7 +13,9 @@ buses:
         motec_name: Unused
 
 modules:
-    DLM:
+    # this is probably the 2022 DLM but this makes it work better with all the
+    # code that expects a PLM to be there
+    PLM:
         id: 1
         buses:
             - GCAN0

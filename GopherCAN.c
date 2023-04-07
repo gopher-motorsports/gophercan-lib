@@ -1085,12 +1085,12 @@ void do_nothing(U8 sending_module, void* param,
 
 // HAL_CAN_RxFifo0MsgPendingCallback
 //  ISR called when CAN_RX_FIFO0/FIFO1 has a pending message
-__weak void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
     service_can_rx_hardware(hcan, CAN_RX_FIFO0);
 }
 
-__weak void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
+void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
     service_can_rx_hardware(hcan, CAN_RX_FIFO1);
 }
