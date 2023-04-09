@@ -710,18 +710,18 @@ parameters:
         id: 69
         motec_name: Wheel Upshift Paddle Pos
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.000244140625 # [0-1] -> [0-4096]
+        scale: 1
         offset: 0
 
     swDownshift_state:
         id: 70
         motec_name: Wheel Downshift Paddle Pos
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.000244140625 # [0-1] -> [0-4096]
+        scale: 1
         offset: 0
 
     swSlowClutch_state:
