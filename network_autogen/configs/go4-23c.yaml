@@ -896,12 +896,12 @@ groups: [
     {
         id: 0x200,
         parameters: [
-            {name: swUpshift_state,    start: 0, length: 2},
-            {name: swDownshift_state,  start: 2, length: 2},
-            {name: swSlowClutch_state, start: 4, length: 1},
-            {name: swFastClutch_state, start: 5, length: 1},
-            {name: swButon0_state,     start: 6, length: 1},
-            {name: swButon1_state,     start: 7, length: 1}
+            {name: swUpshift_state,    start: 0, length: 1},
+            {name: swDownshift_state,  start: 1, length: 1},
+            {name: swSlowClutch_state, start: 2, length: 1},
+            {name: swFastClutch_state, start: 3, length: 1},
+            {name: swButon0_state,     start: 4, length: 1},
+            {name: swButon1_state,     start: 5, length: 1}
         ]
     },
     {
