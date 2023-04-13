@@ -391,8 +391,8 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
         if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
 
         // add this parameter's data to the message
-        CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
-        err = encode_parameter(param, message.data, i, param->ENC_SIZE);
+        CAN_INFO_STRUCT* parameter = (CAN_INFO_STRUCT*) PARAMETERS[id];
+        err = encode_parameter(parameter, message.data, i, param->ENC_SIZE);
         if (err) return err;
     }
 

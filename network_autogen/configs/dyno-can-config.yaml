@@ -13,7 +13,9 @@ buses:
         motec_name: Unused
 
 modules:
-    DLM:
+    # this is probably the 2022 DLM but this makes it work better with all the
+    # code that expects a PLM to be there
+    PLM:
         id: 1
         buses:
             - GCAN0
@@ -273,6 +275,42 @@ parameters:
         scale: 0.1
         offset: 0
 
+    waterTempBeforeOil_C:
+        id: 27
+        motec_name: Water Temp Before Oil
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    waterTempAfterOil_C:
+        id: 28
+        motec_name: Water Temp After Oil
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    waterTempBeforeHeatExchanger_C:
+        id: 29
+        motec_name: Water Temp Before Heat Exchanger
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    waterTempAfterHeatExchanger_C:
+        id: 30
+        motec_name: Water Temp After Heat Exchanger
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
 
 groups: [
     # High Frequency ECU (Custom Set 1)
@@ -341,6 +379,15 @@ groups: [
         id: 0x204,
         parameters: [
             {name: oilRadTemp2_C, start: 0, length: 2}
+        ]
+    },
+    {
+        id: 0x600,
+        parameters: [
+            {name: waterTempBeforeOil_C, start: 0, length: 2},
+            {name: waterTempAfterOil_C, start: 2, length: 2},
+            {name: waterTempBeforeHeatExchanger_C, start: 4, length: 2},
+            {name: waterTempAfterHeatExchanger_C, start: 6, length: 2}
         ]
     }
 ]
