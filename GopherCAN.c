@@ -1082,17 +1082,22 @@ void do_nothing(U8 sending_module, void* param,
 	// this function has successfully done nothing
 }
 
+// Custom callback for CAN
+__weak void custom_can_callback(CAN_HandleTypeDef* hcan, U32 fifo_num)
+{
+	service_can_rx_hardware(hcan, fifo_num);
+}
 
 // HAL_CAN_RxFifo0MsgPendingCallback
 //  ISR called when CAN_RX_FIFO0/FIFO1 has a pending message
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+	custom_can_callback(hcan, CAN_RX_FIFO0);
 }
 
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+	custom_can_callback(hcan, CAN_RX_FIFO1);
 }
 
 
