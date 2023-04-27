@@ -267,6 +267,106 @@ parameters:
         encoding: MSB
         scale: 0.000021457672119140625 # [0-360] -> [0-16777216]
         offset: 0
+
+    gpsSpeed_mph:
+        id: 20
+        motec_name: GPS Speed
+        unit: mph
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+
+    gpsAltitude_ft:
+        id: 21
+        motec_name: GPS Altitude
+        unit: ft
+        type: SIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsCourse_deg:
+        id: 20
+        motec_name: GPS Course
+        unit: deg
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+
+    gpsSatelliteCount_ul:
+        id: 21
+        motec_name: GPS Satellite Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsValid_ul:
+        id: 21
+        motec_name: GPS Satellite Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsYearUTC_ul:
+        id: 21
+        motec_name: GPS Year UTC
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsMonthUTC_ul:
+        id: 21
+        motec_name: GPS Month UTC
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsDayUTC_ul:
+        id: 21
+        motec_name: GPS Day UTC
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsHoursUTC_ul:
+        id: 21
+        motec_name: GPS Hours UTC
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsMinutesUTC_ul:
+        id: 21
+        motec_name: GPS Minutes UTC
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsSecondsUTC_ul:
+        id: 21
+        motec_name: GPS Seconds UTC
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
     # END DISPLAY
     # Transmission Controller Sensors:
     shifterPosition_mm:
@@ -910,6 +1010,27 @@ groups: [
         parameters: [
             {name: gpsLatitude_deg,  start: 0, length: 4},
             {name: gpsLongitude_deg, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x701,
+        parameters: [
+            {name: gpsSpeed_mph,  start: 0, length: 2},
+            {name: gpsAltitude_ft, start: 2, length: 2},
+            {name: gpsCourse_deg,  start: 4, length: 2},
+            {name: gpsSatelliteCount_ul, start: 6, length: 1}
+        ]
+    },
+    {
+        id: 0x702,
+        parameters: [
+            {name: gpsValid_ul,  start: 0, length: 1},
+            {name: gpsYearUTC_ul, start: 1, length: 1},
+            {name: gpsMonthUTC_ul,  start: 2, length: 1},
+            {name: gpsDayUTC_ul, start: 3, length: 1},
+            {name: gpsHoursUTC_ul,  start: 5, length: 1},
+            {name: gpsMinutesUTC_ul, start: 6, length: 1},
+            {name: gpsSecondsUTC_ul,  start: 7, length: 1}
         ]
     },
     # Steering Wheel Module
