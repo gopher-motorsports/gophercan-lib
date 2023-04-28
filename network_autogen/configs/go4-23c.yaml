@@ -1072,6 +1072,8 @@ groups: [
         # NOTE: This message is designed to be sent to the ECU over an ECU channel.
         # These are message types MoTeC sequential. This guide was followed to make
         # it work: https://www.motec.com.au/forum/viewtopic.php?f=11&t=4119
+        # This also must be lower in the list than the message being sent from the
+        # sensor hubs to make it so this can only be sent using the send_group() function
         parameters: [
             {name: brakePressureFront_psi,   start: 2, length: 2},
             {name: wheelSpeedFrontLeft_mph,  start: 4, length: 2},
