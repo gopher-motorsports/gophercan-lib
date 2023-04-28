@@ -396,7 +396,7 @@ parameters:
         unit: psi
         type: FLOATING
         encoding: MSB
-        scale: 0.48828125 # [0-2000] -> [0-4096]
+        scale: 0.1 # [0-2000] -> [0-20000]
         offset: 0
 
     brakePressureRear_psi:
@@ -405,7 +405,7 @@ parameters:
         unit: psi
         type: FLOATING
         encoding: MSB
-        scale: 0.48828125 # [0-2000] -> [0-4096]
+        scale: 0.1 # [0-2000] -> [0-20000]
         offset: 0
 
     brakeTempFrontLeft_C:
@@ -459,7 +459,7 @@ parameters:
         unit: mph
         type: FLOATING
         encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        scale: 0.1 # [0-150] -> [0-1500]
         offset: 0
 
     wheelSpeedFrontRight_mph:
@@ -468,7 +468,7 @@ parameters:
         unit: mph
         type: FLOATING
         encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        scale: 0.1 # [0-150] -> [0-1500]
         offset: 0
     # END SENSOR HUB FRONT
     # Sensor Hub Rear Left Sensors
@@ -523,7 +523,7 @@ parameters:
         unit: mph
         type: FLOATING
         encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        scale: 0.1 # [0-150] -> [0-1500]
         offset: 0
     # END SENSOR HUB REAR LEFT
     # Sensor Hub Rear Right Sensors
@@ -542,7 +542,7 @@ parameters:
         unit: mph
         type: FLOATING
         encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        scale: 0.1 # [0-150] -> [0-1500]
         offset: 0
 
     manifoldPressure_kPa:
@@ -1067,6 +1067,18 @@ groups: [
             {name: plm5VVoltage_V,          start: 6, length: 2}
         ]
     },
+    {
+    id: 0x010,
+        # NOTE: This message is designed to be sent to the ECU over an ECU channel.
+        # These are message types MoTeC sequential. This guide was followed to make
+        # it work: https://www.motec.com.au/forum/viewtopic.php?f=11&t=4119
+        parameters: [
+            {name: brakePressureFront_psi,   start: 2, length: 2},
+            {name: wheelSpeedFrontLeft_mph,  start: 4, length: 2},
+            {name: wheelSpeedFrontRight_mph, start: 6, length: 2}
+        ]
+    },
+    
     # IMU Messages (No control over these IDs)
     {
         id: 0x174,

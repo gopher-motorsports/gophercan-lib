@@ -353,12 +353,24 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 // error codes specified in GopherCAN.h
 S8 send_parameter(CAN_INFO_STRUCT* param)
 {
+	return send_group(param->GROUP_ID);
+}
+
+
+// send_group
+//  encodes all of the parameters in a group and send is out on the bus
+// params:
+//  U16 group_id: the CAN ID of the group to be sent
+// returns:
+//  error codes specificed in GopherCAN.h
+S8 send_group(U16 group_id)
+{
     PARAM_GROUP* group = NULL;
 
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++)
     {
-        if (GROUPS[i].group_id == param->GROUP_ID)
+        if (GROUPS[i].group_id == group_id)
         {
             group = &GROUPS[i];
             break;
@@ -371,7 +383,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     // will be properly removed when sending the message, cutting down the DLC with it
     CAN_MSG message = {
         .header = {
-            .StdId = param->GROUP_ID,
+            .StdId = group_id,
             .IDE = CAN_ID_STD,
             .RTR = DATA_MESSAGE,
             .DLC = CAN_DATA_BYTES
@@ -392,7 +404,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 
         // add this parameter's data to the message
         CAN_INFO_STRUCT* parameter = (CAN_INFO_STRUCT*) PARAMETERS[id];
-        err = encode_parameter(parameter, message.data, i, param->ENC_SIZE);
+        err = encode_parameter(parameter, message.data, i, parameter->ENC_SIZE);
         if (err) return err;
     }
 
@@ -409,6 +421,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 
     return CAN_SUCCESS;
 }
+
 
 // encode_parameter
 // encodes a parameter as an unsigned int with scale & offset
