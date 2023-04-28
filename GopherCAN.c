@@ -705,6 +705,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		message->header.ExtId = rx_header.ExtId;
 		message->header.StdId = rx_header.StdId;
 		message->header.IDE = rx_header.IDE;
+		message->rx_time = HAL_GetTick();
 
 #ifdef CAN_ROUTER
 		// router specific functionality that directly adds messages that need to be routed
@@ -804,7 +805,6 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
     // decode parameters
     S8 err;
-    U32 rx_time = HAL_GetTick();
 
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
     {
@@ -818,7 +818,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
         // update last_rx if there was no error decoding
         CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
         err = decode_parameter(param, message->data, i, param->ENC_SIZE);
-        if (!err) param->last_rx = rx_time;
+        if (!err) param->last_rx = message->rx_time;
     }
 
     return CAN_SUCCESS;
@@ -842,7 +842,7 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 	if (id.error)
 	{
 		// this could possibly be changed into a ring buffer
-		last_error.last_rx = HAL_GetTick();
+		last_error.last_rx = message->rx_time;
 		last_error.source_module = id.source_module;
 		last_error.parameter = id.parameter;
 		if (message->header.DLC > 0)

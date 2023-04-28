@@ -60,6 +60,7 @@ modules:
     Display:
         id: 8
         buses:
+            - GCAN0
             - GCAN1
         motec_name: Display
 
@@ -954,7 +955,7 @@ groups: [
             {name: tcmAntiStallActive_state, start: 4, length: 1},
             {name: tcmUsingClutch_state,     start: 5, length: 1},
             {name: tcmShiftState_state,      start: 6, length: 1},
-            {name: tcmError_state, start: 7, length: 1}
+            {name: tcmError_state,           start: 7, length: 1}
         ]
     },
     {
