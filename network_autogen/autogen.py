@@ -85,7 +85,7 @@ for group in config['groups']:
         parameter = parameters[param_id]
 
         # fill parameter info
-        parameter['group_id'] = group['id']
+        parameter['group_id'] = group['id'] # NOTE: This will select the last instance of the parameter when it is in multiple groups. Make sure to fill out the YAML accordingly
         parameter['length'] = param['length']
 
         # fill parameter ids at starting position
