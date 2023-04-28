@@ -817,7 +817,7 @@ parameters:
         type: FLOATING
         encoding: LSB
         scale: 0.005
-        offset: 0
+        offset: -163.84
 
     rollRate_degPerSec:
         id: 82
@@ -826,7 +826,7 @@ parameters:
         type: FLOATING
         encoding: LSB
         scale: 0.005
-        offset: 0
+        offset: -163.84
 
     lateralAccel_G:
         id: 83
@@ -835,7 +835,7 @@ parameters:
         type: FLOATING
         encoding: LSB
         scale: 0.0001274
-        offset: 0
+        offset: -4.1746432
 
     longitudinalAccel_G:
         id: 84
@@ -844,7 +844,7 @@ parameters:
         type: FLOATING
         encoding: LSB
         scale: 0.0001274
-        offset: 0
+        offset: -4.1746432
 
     verticalAccel_G:
         id: 85
@@ -853,7 +853,7 @@ parameters:
         type: FLOATING
         encoding: LSB
         scale: 0.0001274
-        offset: 0
+        offset: -4.1746432
     # END IMU
 
 
