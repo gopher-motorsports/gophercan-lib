@@ -84,13 +84,8 @@ for group in config['groups']:
 
         parameter = parameters[param_id]
 
-        # make sure parameter only belongs to one group
-        if 'group_id' in parameter:
-            print(f"ERROR: \"{parameter['name']}\" was found in multiple groups: \"{parameter['group_id']}\" and \"{group['id']}\"")
-            sys.exit()
-
         # fill parameter info
-        parameter['group_id'] = group['id']
+        parameter['group_id'] = group['id'] # NOTE: This will select the last instance of the parameter when it is in multiple groups. Make sure to fill out the YAML accordingly
         parameter['length'] = param['length']
 
         # fill parameter ids at starting position
