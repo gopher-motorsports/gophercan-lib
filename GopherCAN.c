@@ -24,6 +24,9 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
 #endif
 static void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 
+// this might be needed to communicate with other modules
+#define DISABLE_TRIM_ZEROS
+
 
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
@@ -772,10 +775,12 @@ static S8 tx_can_message(CAN_MSG* message)
 	// remove any trailing zeros in the CAN message. This is done by starting at the
 	// back of the message and decrementing the DLC for each byte in the message that
 	// is zero at the back. RX logic will add zero bytes as needed
+#ifndef DISABLE_TRIM_ZEROS
 	while (message->header.DLC > 0 && message->data[message->header.DLC - 1] == 0)
 	{
 		message->header.DLC--;
 	}
+#endif
 
 	// if extended ID, get destination
 	// send standard ID data messages to all modules
