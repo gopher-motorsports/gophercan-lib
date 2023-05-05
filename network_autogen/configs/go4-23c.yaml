@@ -212,7 +212,7 @@ parameters:
     # Aux Output 5
     oilFanDuty_percent:
         id: 16
-        motec_name: Oil Fan Duty
+        motec_name: Rad Fan Duty
         unit: '%'
         type: UNSIGNED16
         encoding: MSB
