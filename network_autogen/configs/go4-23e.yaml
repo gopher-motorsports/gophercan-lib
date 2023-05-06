@@ -5348,9 +5348,9 @@ groups: [
         id: 0x400,
         parameters: [
             {name: brakePressureRear_psi, start: 0, length: 2},
-            {name: brakeTempFrontLeft_C,  start: 2, length: 2},
+            {name: steeringAngle_deg,     start: 2, length: 2},
             {name: brakeTempFrontRight_C, start: 4, length: 2},
-            {name: steeringAngle_deg,     start: 6, length: 2}
+            {name: brakeTempFrontLeft_C,  start: 6, length: 2}
         ]
     },
     {
