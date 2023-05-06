@@ -572,10 +572,10 @@ parameters:
         offset: 0
     # END SENSOR HUB FRONT
     # Sensor Hub Rear Left Sensors
-    fuelPressure_kPa:
+    fuelPressure_psi:
         id: 55
         motec_name: Fuel Pres
-        unit: kPa
+        unit: psi
         type: FLOATING
         encoding: MSB
         scale: 0.0244140625 # [0-100] -> [0-4096]
@@ -955,6 +955,19 @@ parameters:
         scale: 0.0001274
         offset: -4.1746432
     # END IMU
+    
+    # LAP BEACON (sent with ECU)
+    # pretty sure i2 just looks for the channel named "beacon" and works with that
+    lapBeacon_ul:
+        id: 97
+        motec_name: Beacon
+        unit: ''
+        type: SIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # END LAP BEACON
+    
 
 
 groups: [
@@ -1017,7 +1030,8 @@ groups: [
         parameters: [
             {name: waterPumpDuty_percent,      start: 0, length: 2},
             {name: warningLightDuty_percent,   start: 2, length: 2},
-            {name: spartkCutLightDuty_percent, start: 4, length: 2}
+            {name: spartkCutLightDuty_percent, start: 4, length: 2},
+            {name: lapBeacon_ul,               start: 6, length: 2}
         ]
     },
     # Display GPS
@@ -1133,7 +1147,7 @@ groups: [
     {
         id: 0x500,
         parameters: [
-            {name: fuelPressure_kPa,      start: 0, length: 2},
+            {name: fuelPressure_psi,      start: 0, length: 2},
             {name: exhaustTemp_C,         start: 2, length: 2},
             {name: leftRadWaterTempIn_C,  start: 4, length: 2},
             {name: leftRadWaterTempOut_C, start: 6, length: 2}

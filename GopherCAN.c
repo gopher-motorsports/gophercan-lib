@@ -533,11 +533,27 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
             break;
         case FLOATING:
             // floats are signed values in data frame
+#ifdef PLM_JANK
+        	// this is to make sure the IMU logs correctly
+        	if (param->GROUP_ID == 0x174 || param->GROUP_ID == 0x178 || param->GROUP_ID == 0x17C)
+        	{
+        		value_fl = (U16)value;
+        	}
+        	else
+        	{
+				if (length == 1) value_fl = (S8)value;
+				else if (length == 2) value_fl = (S16)value;
+				else if (length == 4) value_fl = (S32)value;
+				else if (length == 8) value_fl = (S64)value;
+				else value_fl = value;
+        	}
+#else
             if (length == 1) value_fl = (S8)value;
             else if (length == 2) value_fl = (S16)value;
             else if (length == 4) value_fl = (S32)value;
             else if (length == 8) value_fl = (S64)value;
             else value_fl = value;
+#endif
             ((FLOAT_CAN_STRUCT*)param)->data = (value_fl * param->SCALE) + param->OFFSET;
             break;
         default:
