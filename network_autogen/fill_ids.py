@@ -29,7 +29,6 @@ for line in rawTxtConfig:
              groupsNotFound = False
         if groupsNotFound == False:
             data_after_groups_formatted.append(line)
-        #config_file.write(line)
 
 #run yaml script
 with open(config_path, 'r') as config_file:
@@ -61,7 +60,6 @@ for line in raw_txt_after_script:
 #stich together good scripted data with well formatted groups 
 print('Reformatting Groups')
 with open(config_path, 'w') as config_file:
-    #yaml.dump(config, config_file)
     for line in data_before_groups:
          config_file.write(line)
     
