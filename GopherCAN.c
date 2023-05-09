@@ -1117,16 +1117,23 @@ void do_nothing(U8 sending_module, void* param,
 }
 
 
+// custom CAN RX callback
+__weak void GCAN_RxMsgPendingCallback(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
+{
+    service_can_rx_hardware(hcan, rx_mailbox);
+}
+
+
 // HAL_CAN_RxFifo0MsgPendingCallback
 //  ISR called when CAN_RX_FIFO0/FIFO1 has a pending message
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+    GCAN_RxMsgPendingCallback(hcan, CAN_RX_FIFO0);
 }
 
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+    GCAN_RxMsgPendingCallback(hcan, CAN_RX_FIFO1);
 }
 
 
