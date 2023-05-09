@@ -59,6 +59,14 @@ typedef struct
 
 // function prototypes
 
+// accept_std_id
+// adds a CAN filter to accept a particular 11-bit ID
+// must be called BEFORE init_can
+// PARAMETERS:
+//  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
+//  U16 can_id:              11-bit CAN ID to accept
+S8 accept_std_id(CAN_HandleTypeDef* hcan, U16 can_id);
+
 // init_can
 // 	This function will set up the CAN registers with the inputed module_id
 //	as a filter. All parameters that should be enabled should be set after
@@ -67,10 +75,9 @@ typedef struct
 //  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
 //  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
-//  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id);
 
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter

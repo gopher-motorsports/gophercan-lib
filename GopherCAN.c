@@ -8,7 +8,7 @@
 #include "GopherCAN_buffers.h"
 
 // static function prototypes
-static S8   init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type);
+static S8   init_filters(CAN_HandleTypeDef* hcan);
 static S8   parameter_requested(CAN_MSG* message, CAN_ID* id);
 static S8   run_can_command(CAN_MSG* message, CAN_ID* id);
 static U32 build_message_id(CAN_ID* id);
@@ -50,10 +50,9 @@ U32 hcan_error = HAL_CAN_ERROR_NONE;
 //  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
 //  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
-//  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type)
+S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id)
 {
 	U8 c;
 
@@ -101,7 +100,7 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE 
 
 	}
 
-	if (init_filters(hcan, bx_type))
+	if (init_filters(hcan))
 	{
 		return FILTER_SET_FAILED;
 	}
@@ -132,24 +131,67 @@ S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE 
 }
 
 
+// accept_std_id
+// adds a CAN filter to accept a particular 11-bit ID
+// must be called BEFORE init_can
+// PARAMETERS:
+//  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
+//  U16 can_id:              11-bit CAN ID to accept
+S8 accept_std_id(CAN_HandleTypeDef* hcan, U16 can_id) {
+    static U8 id_num = 1; // number of whitelisted IDs
+
+    if (id_num > 10) {
+        // all filter banks used
+        return FILTER_SET_FAILED;
+    }
+
+    // reserve space for default filters in init_filters (up to bank 3/17)
+    // CAN2 (slave) begins at bank 14
+    U8 banknum = id_num + 3 + (hcan->Instance == CAN2 ? 14 : 0);
+
+    CAN_FilterTypeDef filter = {
+        .FilterActivation = CAN_FILTER_ENABLE,
+        .FilterMode = CAN_FILTERMODE_IDMASK,
+        .FilterBank = banknum,
+        .FilterFIFOAssignment = CAN_FILTER_FIFO0,
+        .FilterScale = CAN_FILTERSCALE_32BIT,
+        .FilterIdLow = 0,
+        .FilterIdHigh = can_id << 5, // shift to 11-bit ID in U16
+        .FilterMaskIdLow = 0,
+        .FilterMaskIdHigh = 0xffe0 // only check STDID[10:0]
+    };
+
+    if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK) {
+        return FILTER_SET_FAILED;
+    } else {
+        id_num++;
+        return CAN_SUCCESS;
+    }
+}
+
+
 // init_filters
 //  function called within init() that sets up all of the filters
-static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
+static S8 init_filters(CAN_HandleTypeDef* hcan)
 {
 	CAN_FilterTypeDef filterConfig;
 	U8 banknum = 0;
 
-	if (bx_type == BXTYPE_SLAVE)
+	// single CAN banks 0-13, dual CAN 0-27
+	// slave bxCAN (CAN2) starts at 14
+	if (hcan->Instance == CAN2)
 	{
 		banknum = SLAVE_FIRST_FILTER;
 	}
 
+	// mask filter mode
+	// a "1" in the filter mask means the corresponding bit in the filter id must match the incoming message
 	filterConfig.FilterActivation = CAN_FILTER_ENABLE;
-    filterConfig.FilterMode = CAN_FILTERMODE_IDMASK; // use mask mode to filter
+    filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
 
 #if defined(CAN_ROUTER) || defined(NO_FILTER)
 	// accept all messages on the CAN router
-	filterConfig.FilterBank = banknum++;                     // modify bank 0 (of 13)
+	filterConfig.FilterBank = banknum++;                     // modify bank 0/14
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;    // use FIFO0
 	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;        // 32 bit mask
 	filterConfig.FilterIdLow = 0;                            // accepted IDs (lower 16 bits)
@@ -165,22 +207,13 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 
 #ifndef IGNORE_DATA
 	// accept STD ID messages (IDE=0)
-	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterBank = banknum++; // bank 1/15
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	filterConfig.FilterScale = CAN_FILTERSCALE_16BIT; // 16 bit scale includes IDE bit
+	filterConfig.FilterScale = CAN_FILTERSCALE_16BIT; // 16 bit scale includes IDE bit for STD ID messages
 	filterConfig.FilterIdLow = 0;
 	filterConfig.FilterIdHigh = 0;
 	filterConfig.FilterMaskIdLow = 0b00001000;
 	filterConfig.FilterMaskIdHigh = 0;
-
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
-	{
-		return FILTER_SET_FAILED;
-	}
-
-	// apply same filter to FIFO1
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 
 	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
 	{
@@ -199,7 +232,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 	filt_mask_high = GET_ID_HIGH(DEST_MASK);
     filt_mask_low = GET_ID_LOW(DEST_MASK);
 
-	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterBank = banknum++; // bank 2/16
 	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
 	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
 	filterConfig.FilterIdLow = filt_id_low;
@@ -212,22 +245,13 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 		return FILTER_SET_FAILED;
 	}
 
-	// apply same filter to FIFO1
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
-
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
-	{
-		return FILTER_SET_FAILED;
-	}
-
 	// accept EXT messages with destination = ALL_MODULES_ID
 	filt_id_high = GET_ID_HIGH(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
 	filt_id_low = GET_ID_LOW(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
 	filt_mask_high = GET_ID_HIGH(DEST_MASK);
 	filt_mask_low = GET_ID_LOW(DEST_MASK);
 
-	filterConfig.FilterBank = banknum++;
+	filterConfig.FilterBank = banknum++; // bank 3/17
     filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
     filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
     filterConfig.FilterIdLow = filt_id_low;
@@ -239,17 +263,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan, BXCAN_TYPE bx_type)
 	{
 		return FILTER_SET_FAILED;
 	}
-
-	// apply same filter to FIFO1
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
-
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
-	{
-		return FILTER_SET_FAILED;
-	}
-
-#endif // CAN_ROUTER
+#endif // CAN_ROUTER || NO_FILTER
 
 	return CAN_SUCCESS;
 }
