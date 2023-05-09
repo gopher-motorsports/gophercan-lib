@@ -967,6 +967,26 @@ parameters:
         scale: 1
         offset: 0
     # END LAP BEACON
+
+    # DATA LOGGING
+    packetsLogged_ul:
+        id: 98
+        motec_name: Packets Logged
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    packetsDropped_ul:
+        id: 99
+        motec_name: Packets Dropped
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # END DATA LOGGING
     
 
 
@@ -1215,6 +1235,13 @@ groups: [
             {name: can2Utilization_percent, start: 2, length: 2},
             {name: plmVbatVoltage_V,        start: 4, length: 2},
             {name: plm5VVoltage_V,          start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x004,
+        parameters: [
+            {name: packetsLogged_ul, start: 0, length: 4},
+            {name: packetsDropped_ul, start: 4, length: 4}
         ]
     },
     
