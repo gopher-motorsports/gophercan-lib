@@ -986,6 +986,24 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
+
+    storageBufferFill_percent:
+        id: 100
+        motec_name: Storage Buffer Fill
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    telemetryBufferFill_percent:
+        id: 101
+        motec_name: Telemetry Buffer Fill
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
     # END DATA LOGGING
     
 
@@ -1242,6 +1260,13 @@ groups: [
         parameters: [
             {name: packetsLogged_ul, start: 0, length: 4},
             {name: packetsDropped_ul, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x005,
+        parameters: [
+            {name: storageBufferFill_percent, start: 0, length: 2},
+            {name: telemetryBufferFill_percent, start: 2, length: 2}
         ]
     },
     
