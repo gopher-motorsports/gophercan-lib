@@ -1081,9 +1081,9 @@ groups: [
         # These are message types MoTeC sequential. This guide was followed to make
         # it work: https://www.motec.com.au/forum/viewtopic.php?f=11&t=4119
         parameters: [
-            {name: swButon2_state, start: 2, length: 1},
-            {name: swButon3_state, start: 4, length: 1},
-            {name: swDial_ul,      start: 6, length: 1}
+            {name: swButon2_state, start: 3, length: 1},
+            {name: swButon3_state, start: 5, length: 1},
+            {name: swDial_ul,      start: 7, length: 1}
         ]
     },
     # TCM
