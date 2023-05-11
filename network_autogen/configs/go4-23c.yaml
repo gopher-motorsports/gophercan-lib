@@ -271,7 +271,7 @@ parameters:
 
     gpsSpeed_mph:
         id: 22
-        motec_name: GPS Speed
+        motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
         encoding: MSB

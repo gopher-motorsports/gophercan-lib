@@ -25,9 +25,9 @@ with open(config_path, 'r') as config_file:
 data_after_groups_formatted = [] 
 groupsNotFound = False
 for line in rawTxtConfig:
-        if line.startswith("groups: [") and groupsNotFound == True:
-             groupsNotFound = False
-        if groupsNotFound == False:
+        if line.startswith("groups: ["):
+             groupsNotFound = True
+        if groupsNotFound == True:
             data_after_groups_formatted.append(line)
 
 #run yaml script
@@ -56,7 +56,7 @@ for line in raw_txt_after_script:
             groupsFound = True
         if groupsFound == False:
             data_before_groups.append(line)
-             
+
 #stich together good scripted data with well formatted groups 
 print('Reformatting Groups')
 with open(config_path, 'w') as config_file:
