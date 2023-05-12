@@ -271,7 +271,7 @@ parameters:
 
     gpsSpeed_mph:
         id: 22
-        motec_name: GPS Speed
+        motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
         encoding: MSB
@@ -918,8 +918,17 @@ parameters:
         scale: 1
         offset: 0
 
-    swDial_ul:
+    displayPage_state:
         id: 93
+        motec_name: Display Page
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swDial_ul:
+        id: 94
         motec_name: Wheel Dial
         unit: ''
         type: UNSIGNED8
@@ -929,7 +938,7 @@ parameters:
     # END SWM
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 94
+        id: 95
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -938,7 +947,7 @@ parameters:
         offset: -163.84
 
     rollRate_degPerSec:
-        id: 95
+        id: 96
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -947,7 +956,7 @@ parameters:
         offset: -163.84
 
     lateralAccel_G:
-        id: 96
+        id: 97
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -956,7 +965,7 @@ parameters:
         offset: -4.1746432
 
     longitudinalAccel_G:
-        id: 97
+        id: 98
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -965,7 +974,7 @@ parameters:
         offset: -4.1746432
 
     verticalAccel_G:
-        id: 98
+        id: 99
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -976,7 +985,7 @@ parameters:
     # LAP BEACON (sent with ECU)
     # pretty sure i2 just looks for the channel named "beacon" and works with that
     lapBeacon_ul:
-        id: 99
+        id: 100
         motec_name: Beacon
         unit: ''
         type: SIGNED16
@@ -987,7 +996,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-        id: 100
+        id: 101
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -996,7 +1005,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-        id: 101
+        id: 102
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -1005,7 +1014,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-        id: 102
+        id: 103
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -1014,7 +1023,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-        id: 103
+        id: 104
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -1126,7 +1135,8 @@ groups: [
             {name: swSlowClutch_state, start: 2, length: 1},
             {name: swFastClutch_state, start: 3, length: 1},
             {name: swButon0_state,     start: 4, length: 1},
-            {name: swButon1_state,     start: 5, length: 1}
+            {name: swButon1_state,     start: 5, length: 1},
+            {name: displayPage_state,  start: 6, length: 1}
         ]
     },
     {
