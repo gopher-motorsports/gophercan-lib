@@ -487,6 +487,24 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
+
+    tcmTargetGear_state:
+        id: 45
+        motec_name: TCM Target Gear
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    tcmSpkCut_state:
+        id: 45
+        motec_name: TCM Spark Cut
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0    
     # END TCM
 
     # Sensor Hub Front Sensors
@@ -1159,7 +1177,9 @@ groups: [
         id: 0x302,
         parameters: [
             {name: tcmTimeShiftOnly_state,          start: 0, length: 1},
-            {name: tcmClutchlessDownshift_state,    start: 1, length: 1}
+            {name: tcmClutchlessDownshift_state,    start: 1, length: 1},
+            {name: tcmTargetGear_state,             start: 2, length: 1},
+            {name: tcmSpkCut_state,                 start: 3, length: 1}
         ]
     },
     # Sensor Hub Front
