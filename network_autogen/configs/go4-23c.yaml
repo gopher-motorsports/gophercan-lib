@@ -610,7 +610,7 @@ parameters:
 
     leftRadWaterTempIn_C:
         id: 59
-        motec_name: Left Rad Water Temp In
+        motec_name: Oil Pan Temp
         unit: C
         type: FLOATING
         encoding: MSB
