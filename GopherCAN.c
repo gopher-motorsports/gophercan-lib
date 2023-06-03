@@ -24,6 +24,9 @@ static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
 #endif
 static void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
 
+// this might be needed to communicate with other modules
+#define DISABLE_TRIM_ZEROS
+
 
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
@@ -353,12 +356,24 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 // error codes specified in GopherCAN.h
 S8 send_parameter(CAN_INFO_STRUCT* param)
 {
+	return send_group(param->GROUP_ID);
+}
+
+
+// send_group
+//  encodes all of the parameters in a group and send is out on the bus
+// params:
+//  U16 group_id: the CAN ID of the group to be sent
+// returns:
+//  error codes specificed in GopherCAN.h
+S8 send_group(U16 group_id)
+{
     PARAM_GROUP* group = NULL;
 
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++)
     {
-        if (GROUPS[i].group_id == param->GROUP_ID)
+        if (GROUPS[i].group_id == group_id)
         {
             group = &GROUPS[i];
             break;
@@ -371,7 +386,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
     // will be properly removed when sending the message, cutting down the DLC with it
     CAN_MSG message = {
         .header = {
-            .StdId = param->GROUP_ID,
+            .StdId = group_id,
             .IDE = CAN_ID_STD,
             .RTR = DATA_MESSAGE,
             .DLC = CAN_DATA_BYTES
@@ -392,7 +407,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 
         // add this parameter's data to the message
         CAN_INFO_STRUCT* parameter = (CAN_INFO_STRUCT*) PARAMETERS[id];
-        err = encode_parameter(parameter, message.data, i, param->ENC_SIZE);
+        err = encode_parameter(parameter, message.data, i, parameter->ENC_SIZE);
         if (err) return err;
     }
 
@@ -409,6 +424,7 @@ S8 send_parameter(CAN_INFO_STRUCT* param)
 
     return CAN_SUCCESS;
 }
+
 
 // encode_parameter
 // encodes a parameter as an unsigned int with scale & offset
@@ -517,11 +533,27 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
             break;
         case FLOATING:
             // floats are signed values in data frame
+#ifdef PLM_JANK
+        	// this is to make sure the IMU logs correctly
+        	if (param->GROUP_ID == 0x174 || param->GROUP_ID == 0x178 || param->GROUP_ID == 0x17C)
+        	{
+        		value_fl = (U16)value;
+        	}
+        	else
+        	{
+				if (length == 1) value_fl = (S8)value;
+				else if (length == 2) value_fl = (S16)value;
+				else if (length == 4) value_fl = (S32)value;
+				else if (length == 8) value_fl = (S64)value;
+				else value_fl = value;
+        	}
+#else
             if (length == 1) value_fl = (S8)value;
             else if (length == 2) value_fl = (S16)value;
             else if (length == 4) value_fl = (S32)value;
             else if (length == 8) value_fl = (S64)value;
             else value_fl = value;
+#endif
             ((FLOAT_CAN_STRUCT*)param)->data = (value_fl * param->SCALE) + param->OFFSET;
             break;
         default:
@@ -705,6 +737,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		message->header.ExtId = rx_header.ExtId;
 		message->header.StdId = rx_header.StdId;
 		message->header.IDE = rx_header.IDE;
+		message->rx_time = HAL_GetTick();
 
 #ifdef CAN_ROUTER
 		// router specific functionality that directly adds messages that need to be routed
@@ -758,10 +791,12 @@ static S8 tx_can_message(CAN_MSG* message)
 	// remove any trailing zeros in the CAN message. This is done by starting at the
 	// back of the message and decrementing the DLC for each byte in the message that
 	// is zero at the back. RX logic will add zero bytes as needed
+#ifndef DISABLE_TRIM_ZEROS
 	while (message->header.DLC > 0 && message->data[message->header.DLC - 1] == 0)
 	{
 		message->header.DLC--;
 	}
+#endif
 
 	// if extended ID, get destination
 	// send standard ID data messages to all modules
@@ -804,7 +839,6 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
     // decode parameters
     S8 err;
-    U32 rx_time = HAL_GetTick();
 
     for (U8 i = 0; i < CAN_DATA_BYTES; i++)
     {
@@ -818,7 +852,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
         // update last_rx if there was no error decoding
         CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
         err = decode_parameter(param, message->data, i, param->ENC_SIZE);
-        if (!err) param->last_rx = rx_time;
+        if (!err) param->last_rx = message->rx_time;
     }
 
     return CAN_SUCCESS;
@@ -842,7 +876,7 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 	if (id.error)
 	{
 		// this could possibly be changed into a ring buffer
-		last_error.last_rx = HAL_GetTick();
+		last_error.last_rx = message->rx_time;
 		last_error.source_module = id.source_module;
 		last_error.parameter = id.parameter;
 		if (message->header.DLC > 0)
@@ -1083,16 +1117,23 @@ void do_nothing(U8 sending_module, void* param,
 }
 
 
+// custom CAN RX callback
+__weak void GCAN_RxMsgPendingCallback(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
+{
+    service_can_rx_hardware(hcan, rx_mailbox);
+}
+
+
 // HAL_CAN_RxFifo0MsgPendingCallback
 //  ISR called when CAN_RX_FIFO0/FIFO1 has a pending message
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    service_can_rx_hardware(hcan, CAN_RX_FIFO0);
+    GCAN_RxMsgPendingCallback(hcan, CAN_RX_FIFO0);
 }
 
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    service_can_rx_hardware(hcan, CAN_RX_FIFO1);
+    GCAN_RxMsgPendingCallback(hcan, CAN_RX_FIFO1);
 }
 
 
