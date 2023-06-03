@@ -567,7 +567,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.006103515625 # [0-25] -> [0-4096]
+        scale: 0.00610500611 # [0-25] -> [0-4095]
         offset: 0
 
     pedalPosition2_mm:
@@ -576,7 +576,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.006103515625 # [0-25] -> [0-4096]
+        scale: 0.00610500611 # [0-25] -> [0-4095]
         offset: 0
 
     brakePressureFront_psi:
@@ -585,7 +585,7 @@ parameters:
         unit: psi
         type: FLOATING
         encoding: MSB
-        scale: 0.48828125 # [0-2000] -> [0-4096]
+        scale: 0.488400488 # [0-2000] -> [0-4095]
         offset: 0
 
     vcuTractiveSystemCurrent_A:
@@ -594,7 +594,7 @@ parameters:
         unit: A
         type: FLOATING
         encoding: MSB
-        scale: 0.009144042618572711944580078125 # [-18.727-18.727] -> [0-4096]
+        scale: 0.00914627595 # [-18.727-18.727] -> [0-4095]
         offset: -18.727
 
     # BSPD Check stuff
@@ -726,7 +726,7 @@ parameters:
         unit: psi
         type: FLOATING
         encoding: MSB
-        scale: 0.0244140625 # [0-100] -> [0-4096]
+        scale: 0.0244200244 # [0-100] -> [0-4095]
         offset: 0
 
     coolantFanPower_percent:
@@ -4135,7 +4135,7 @@ parameters:
         unit: psi
         type: FLOATING
         encoding: MSB
-        scale: 0.48828125 # [0-2000] -> [0-4096]
+        scale: 0.488400488 # [0-2000] -> [0-4095]
         offset: 0
 
 
@@ -4145,7 +4145,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1953125 # [0-800] -> [0-4096]
+        scale: 0.195360195 # [0-800] -> [0-4095]
         offset: 0
 
     brakeTempFrontRight_C:
@@ -4154,7 +4154,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.1953125 # [0-800] -> [0-4096]
+        scale: 0.195360195 # [0-800] -> [0-4095]
         offset: 0
 
     steeringAngle_deg:
@@ -4163,7 +4163,7 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.087890625 # [0-360] -> [0-4096]
+        scale: 0.0879120879 # [0-360] -> [0-4095]
         offset: 0
 
     shockPosFrontLeft_mm:
@@ -4172,7 +4172,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.006103515625 # [0-25] -> [0-4096]
+        scale: 0.00610500611 # [0-25] -> [0-4095]
         offset: 0
 
     shockPosFrontRight_mm:
@@ -4181,7 +4181,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.006103515625 # [0-25] -> [0-4096]
+        scale: 0.00610500611 # [0-25] -> [0-4095]
         offset: 0
 
     wheelSpeedFrontLeft_mph:
@@ -4209,7 +4209,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.048828125 # [0-200] -> [0-4096]
+        scale: 0.0488400488 # [0-200] -> [0-4095]
         offset: 0
 
     radWaterTempOut_C:
@@ -4218,7 +4218,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.048828125 # [0-200] -> [0-4096]
+        scale: 0.0488400488 # [0-200] -> [0-4095]
         offset: 0
 
     shockPosRearLeft_mm:
@@ -4227,7 +4227,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.006103515625 # [0-25] -> [0-4096]
+        scale: 0.00610500611 # [0-25] -> [0-4095]
         offset: 0
 
     shockPosRearRight_mm:
@@ -4236,7 +4236,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.006103515625 # [0-25] -> [0-4096]
+        scale: 0.00610500611 # [0-25] -> [0-4095]
         offset: 0
 
     wheelSpeedRearLeft_mph:
@@ -4264,7 +4264,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.005060546875 # [0-20.728] -> [0-4096]
+        scale: 0.00506178266 # [0-20.728] -> [0-4095]
         offset: 0
 
     plm5VVoltage_V:
@@ -4273,7 +4273,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.0019541015625 # [0-8.004] -> [0-4096]
+        scale: 0.00195457875 # [0-8.004] -> [0-4095]
         offset: 0
 
     vbatChan0Current_A:
@@ -4282,7 +4282,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        scale: 0.00741391941 # [0-30.36] -> [0-4095]
         offset: 0
 
     vbatChan1Current_A:
@@ -4291,7 +4291,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        scale: 0.00741391941 # [0-30.36] -> [0-4095]
         offset: 0
 
     vbatChan2Current_A:
@@ -4300,7 +4300,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        scale: 0.00741391941 # [0-30.36] -> [0-4095]
         offset: 0
 
     vbatChan3Current_A:
@@ -4309,7 +4309,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        scale: 0.00741391941 # [0-30.36] -> [0-4095]
         offset: 0
 
     vbatChan4Current_A:
@@ -4318,7 +4318,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        scale: 0.00741391941 # [0-30.36] -> [0-4095]
         offset: 0
 
     vbatChan5Current_A:
@@ -4327,7 +4327,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        scale: 0.00741391941 # [0-30.36] -> [0-4095]
         offset: 0
 
     vbatChan6Current_A:
@@ -4336,7 +4336,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.007412109375 # [0-30.36] -> [0-4096]
+        scale: 0.00741391941 # [0-30.36] -> [0-4095]
         offset: 0
 
     fiveVChan0Current_A:
@@ -4345,7 +4345,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        scale: 0.00196141636 # [0-8.032] -> [0-4095]
         offset: 0
 
     fiveVChan1Current_A:
@@ -4354,7 +4354,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        scale: 0.00196141636 # [0-8.032] -> [0-4095]
         offset: 0
 
     fiveVChan2Current_A:
@@ -4363,7 +4363,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        scale: 0.00196141636 # [0-8.032] -> [0-4095]
         offset: 0
 
     fiveVChan3Current_A:
@@ -4372,7 +4372,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.0019609375 # [0-8.032] -> [0-4096]
+        scale: 0.00196141636 # [0-8.032] -> [0-4095]
         offset: 0
 
     # Power and Logging Module Internal
