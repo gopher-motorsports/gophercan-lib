@@ -4640,7 +4640,7 @@ groups: [
         ]
     },
     {
-        id: 0x203,
+        id: 0x204,
         parameters: [
             {name: coolantPumpPressure_psi,           start: 0, length: 1},
             {name: coolantFanPower_percent,           start: 1, length: 1},
@@ -4649,7 +4649,7 @@ groups: [
         ]
     },
     {
-        id: 0x204,
+        id: 0x205,
         parameters: [
             {name: switch1On_state,            start: 1, length: 1},
             {name: switch2On_state,            start: 2, length: 1},
@@ -4661,7 +4661,7 @@ groups: [
         ]
     },
     {
-        id: 0x204,
+        id: 0x206,
         parameters: [
             {name: vcuTemp_C,                 start: 1, length: 1},
             {name: vehicleState_state,        start: 2, length: 1},
