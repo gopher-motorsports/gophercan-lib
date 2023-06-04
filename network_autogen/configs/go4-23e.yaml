@@ -569,7 +569,7 @@ parameters:
         id: 56
         motec_name: Commanded Torque
         unit: Nm
-        type: SIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 0.1
         offset: 0
@@ -578,7 +578,7 @@ parameters:
         id: 57
         motec_name: Commanded Speed (rpm)
         unit: rpm
-        type: SIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 1
         offset: 0
@@ -587,7 +587,7 @@ parameters:
         id: 58
         motec_name: Commanded Motor Direction
         unit: state
-        type: UNSIGNED8
+        type: FLOATING
         encoding: LSB
         scale: 1
         offset: 0
@@ -605,10 +605,31 @@ parameters:
         id: 60
         motec_name: Commanded Torque Limit
         unit: Nm
-        type: SIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 0.1
         offset: 0
+
+    # Inverter Current Limiting
+
+    inverterChargeLimit_A:
+        id: 60
+        motec_name: DC Current Charge Limit
+        unit: Nm
+        type: SIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+        
+    inverterDischargeLimit_A:
+        id: 60
+        motec_name: DC Current Discharge Limit
+        unit: Nm
+        type: SIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
 
 
 
@@ -4687,6 +4708,13 @@ groups: [
     {
         id: 0x202,
         parameters: [
+            {name: inverterDischargeLimit_A,  start: 0, length: 2},
+            {name: inverterChargeLimit_A,     start: 2, length: 2},
+        ]
+    },
+    {
+        id: 0x203,
+        parameters: [
             {name: vcuBrakePressureSensorFault_state,         start: 0, length: 1},
             {name: vcuPedalPosition1Fault_state,              start: 1, length: 1},
             {name: vcuPedalPosition2Fault_state,              start: 2, length: 1},
@@ -4698,7 +4726,7 @@ groups: [
         ]
     },
     {
-        id: 0x203,
+        id: 0x204,
         parameters: [
             {name: coolantPumpPressure_psi,           start: 0, length: 2},
             {name: coolantFanPower_percent,           start: 2, length: 1},
@@ -4707,7 +4735,7 @@ groups: [
         ]
     },
     {
-        id: 0x204,
+        id: 0x205,
         parameters: [
             {name: coolantPumpPressure_psi,           start: 0, length: 1},
             {name: coolantFanPower_percent,           start: 1, length: 1},
@@ -4716,7 +4744,7 @@ groups: [
         ]
     },
     {
-        id: 0x205,
+        id: 0x206,
         parameters: [
             {name: switch1On_state,            start: 1, length: 1},
             {name: switch2On_state,            start: 2, length: 1},
@@ -4728,7 +4756,7 @@ groups: [
         ]
     },
     {
-        id: 0x206,
+        id: 0x207,
         parameters: [
             {name: vcuTemp_C,                 start: 1, length: 1},
             {name: vehicleState_state,        start: 2, length: 1},
