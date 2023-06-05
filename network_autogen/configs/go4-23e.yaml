@@ -4028,9 +4028,27 @@ parameters:
         scale: 1
         offset: 0
 
+    soeByOCV_percent:
+        id: 435
+        motec_name: SOE by OCV
+        uint: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+
+    soeByCoulombCounting_percent:
+        id: 436
+        motec_name: SOE by Coulomb Counting
+        uint: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+
     # Tractive System Currents
     bmsTractiveSystemCurrentLow_A:
-        id: 435
+        id: 437
         motec_name: Tractive System Current Low (BMS)
         unit: A
         type: FLOATING
@@ -4039,7 +4057,7 @@ parameters:
         offset: -100
 
     bmsTractiveSystemCurrentHigh_A:
-        id: 436
+        id: 438
         motec_name: Tractive System Current High (BMS)
         unit: A
         type: FLOATING
@@ -4051,7 +4069,7 @@ parameters:
     
     # Sensor Hub Front
     brakePressureRear_psi:
-        id: 437
+        id: 439
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -4059,9 +4077,8 @@ parameters:
         scale: 0.48828125 # [0-2000] -> [0-4096]
         offset: 0
 
-
     brakeTempFrontLeft_C:
-        id: 438
+        id: 440
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -4070,7 +4087,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 439
+        id: 441
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -4079,7 +4096,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 440
+        id: 442
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -4088,7 +4105,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 441
+        id: 443
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -4097,7 +4114,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 442
+        id: 444
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -4106,7 +4123,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 443
+        id: 445
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -4115,7 +4132,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 444
+        id: 446
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -4126,7 +4143,7 @@ parameters:
     
     # Sensor Hub Rear
     radWaterTempIn_C:
-        id: 445
+        id: 447
         motec_name: Rad Water Temp In
         unit: C
         type: FLOATING
@@ -4135,7 +4152,7 @@ parameters:
         offset: 0
 
     radWaterTempOut_C:
-        id: 446
+        id: 448
         motec_name: Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -4144,7 +4161,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 447
+        id: 449
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -4153,7 +4170,7 @@ parameters:
         offset: 0
 
     shockPosRearRight_mm:
-        id: 448
+        id: 450
         motec_name: Susp Pos RR
         unit: mm
         type: FLOATING
@@ -4162,7 +4179,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 449
+        id: 451
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -4171,7 +4188,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearRight_mph:
-        id: 450
+        id: 452
         motec_name: Wheel Speed RR
         unit: mph
         type: FLOATING
@@ -4182,7 +4199,7 @@ parameters:
     
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
-        id: 451
+        id: 453
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -4191,7 +4208,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 452
+        id: 454
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -4200,7 +4217,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 453
+        id: 455
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -4209,7 +4226,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 454
+        id: 456
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -4218,7 +4235,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 455
+        id: 457
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -4227,7 +4244,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 456
+        id: 458
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -4236,7 +4253,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 457
+        id: 459
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -4245,7 +4262,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 458
+        id: 460
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -4254,7 +4271,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 459
+        id: 461
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -4263,7 +4280,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 460
+        id: 462
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -4272,7 +4289,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 461
+        id: 463
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -4281,7 +4298,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 462
+        id: 464
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -4290,7 +4307,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 463
+        id: 465
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -4300,7 +4317,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 464
+        id: 466
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -4309,7 +4326,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 465
+        id: 467
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -4318,7 +4335,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 466
+        id: 468
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -4330,7 +4347,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 467
+        id: 469
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -4339,7 +4356,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 468
+        id: 470
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -4350,7 +4367,7 @@ parameters:
     
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 469
+        id: 471
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -4359,7 +4376,7 @@ parameters:
         offset: 0
 
     rollRate_degPerSec:
-        id: 470
+        id: 472
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -4368,7 +4385,7 @@ parameters:
         offset: 0
 
     lateralAccel_G:
-        id: 471
+        id: 473
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -4377,7 +4394,7 @@ parameters:
         offset: 0
 
     longitudinalAccel_G:
-        id: 472
+        id: 474
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -4386,7 +4403,7 @@ parameters:
         offset: 0
 
     verticalAccel_G:
-        id: 473
+        id: 475
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -5329,7 +5346,9 @@ groups: [
             {name: seg7Cell9BalanceEnable_state, start: 0, length: 1},
             {name: seg7Cell10BalanceEnable_state, start: 1, length: 1},
             {name: seg7Cell11BalanceEnable_state, start: 2, length: 1},
-            {name: seg7Cell12BalanceEnable_state, start: 3, length: 1}
+            {name: seg7Cell12BalanceEnable_state, start: 3, length: 1},
+            {name: soeByOCV_percent, start: 4, length: 2},
+            {name: soeByCoulombCounting_percent, start: 6, length: 2}
         ]
     },
 
