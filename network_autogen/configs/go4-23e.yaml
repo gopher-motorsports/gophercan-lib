@@ -587,7 +587,7 @@ parameters:
         id: 58
         motec_name: Commanded Motor Direction
         unit: state
-        type: FLOATING
+        type: UNSIGNED8
         encoding: LSB
         scale: 1
         offset: 0
