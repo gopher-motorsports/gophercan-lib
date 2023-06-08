@@ -4365,7 +4365,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 22
+        id: 471
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -4374,7 +4374,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 23
+        id: 472
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -4383,7 +4383,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 24
+        id: 473
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -4392,7 +4392,7 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 25
+        id: 474
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -4401,7 +4401,7 @@ parameters:
         offset: 0
 
     gpsValid_ul:
-        id: 26
+        id: 475
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -4410,7 +4410,7 @@ parameters:
         offset: 0
 
     gpsYearUTC_ul:
-        id: 27
+        id: 476
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -4419,7 +4419,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 28
+        id: 477
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -4428,7 +4428,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 29
+        id: 478
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -4437,7 +4437,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 30
+        id: 479
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -4446,7 +4446,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 31
+        id: 480
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -4455,7 +4455,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 32
+        id: 481
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -4467,7 +4467,7 @@ parameters:
     
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 471
+        id: 482
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -4476,7 +4476,7 @@ parameters:
         offset: 0
 
     rollRate_degPerSec:
-        id: 472
+        id: 483
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -4485,7 +4485,7 @@ parameters:
         offset: 0
 
     lateralAccel_G:
-        id: 473
+        id: 484
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -4494,7 +4494,7 @@ parameters:
         offset: 0
 
     longitudinalAccel_G:
-        id: 474
+        id: 485
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -4503,7 +4503,7 @@ parameters:
         offset: 0
 
     verticalAccel_G:
-        id: 475
+        id: 486
         motec_name: G Force Vert
         unit: G
         type: FLOATING
