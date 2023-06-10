@@ -680,23 +680,20 @@ parameters:
     inverterChargeLimit_A:
         id: 68
         motec_name: DC Current Charge Limit
-        unit: Nm
+        unit: A
         type: FLOATING
         encoding: LSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     inverterDischargeLimit_A:
         id: 69
         motec_name: DC Current Discharge Limit
-        unit: Nm
+        unit: A
         type: FLOATING
         encoding: LSB
-        scale: 1
+        scale: 0.01
         offset: 0
-
-
-
 
     # END INVERTER
 
@@ -855,8 +852,8 @@ parameters:
     vcuTorqueRequested_Nm:
         id: 86
         motec_name: VCU Torque Requested
-        unit: '%'
-        type: UNSIGNED8
+        unit: Nm
+        type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
