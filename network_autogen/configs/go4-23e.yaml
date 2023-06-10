@@ -4222,9 +4222,91 @@ parameters:
         offset: 0
 
     # END SEGMENT 7
+    # Display Info
+    bmsAveBrickVoltage_V:
+        id: 455
+        motec_name: BMS Average Brick Voltage
+        unit: V
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsMaxBrickVoltage_V:
+        id: 456
+        motec_name: BMS Max Brick Voltage
+        unit: V
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsMinBrickVoltage_V:
+        id: 457
+        motec_name: BMS Min Brick Voltage
+        unit: V
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsAveBrickTemp_C:
+        id: 458
+        motec_name: BMS Average Brick Temp
+        unit: C
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsMaxBrickTemp_C:
+        id: 459
+        motec_name: BMS Max Brick Temp
+        unit: C
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsMinBrickTemp_C:
+        id: 460
+        motec_name: BMS Min Brick Temp
+        unit: C
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsAveBoardTemp_C:
+        id: 461
+        motec_name: BMS Average Board Temp
+        unit: C
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsMaxBoardTemp_C:
+        id: 462
+        motec_name: BMS Max Board Temp
+        unit: C
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsMinBoardTemp_C:
+        id: 463
+        motec_name: BMS Min Board Temp
+        unit: C
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
     # Error states
     amsFault_state:
-        id: 455
+        id: 464
         motec_name: AMS Fault State
         unit: ''
         type: UNSIGNED8
@@ -4233,7 +4315,7 @@ parameters:
         offset: 0
 
     imdFault_state:
-        id: 456
+        id: 465
         motec_name: IMD Fault State
         unit: ''
         type: UNSIGNED8
@@ -4242,7 +4324,7 @@ parameters:
         offset: 0
 
     bspdFault_state:
-        id: 457
+        id: 466
         motec_name: BSPD Fault State
         unit: ''
         type: UNSIGNED8
@@ -4251,7 +4333,7 @@ parameters:
         offset: 0
 
     imdFaultInfo_state:
-        id: 458
+        id: 467
         motec_name: IMD Fault Information
         unit: ''
         type: UNSIGNED8
@@ -4260,7 +4342,7 @@ parameters:
         offset: 0
 
     bmsNumActiveAlerts_state:
-        id: 459
+        id: 468
         motec_name: BMS Num Active Alerts
         unit: ''
         type: UNSIGNED8
@@ -4269,7 +4351,7 @@ parameters:
         offset: 0
 
     bmsCurrAlertIndex_state:
-        id: 460
+        id: 469
         motec_name: BMS Current Alert Index
         unit: ''
         type: UNSIGNED8
@@ -4278,7 +4360,7 @@ parameters:
         offset: 0
 
     bmsAlertMessage_state:
-        id: 461
+        id: 470
         motec_name: BMS Alert Message
         unit: ''
         type: UNSIGNED8
@@ -4288,7 +4370,7 @@ parameters:
 
     # Tractive System Currents
     bmsTractiveSystemCurrentLow_A:
-        id: 462
+        id: 471
         motec_name: Tractive System Current Low (BMS)
         unit: A
         type: FLOATING
@@ -4297,7 +4379,7 @@ parameters:
         offset: -100
 
     bmsTractiveSystemCurrentHigh_A:
-        id: 463
+        id: 472
         motec_name: Tractive System Current High (BMS)
         unit: A
         type: FLOATING
@@ -4308,7 +4390,7 @@ parameters:
     # END BMS
     # Sensor Hub Front
     brakePressureRear_psi:
-        id: 464
+        id: 473
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -4318,7 +4400,7 @@ parameters:
 
 
     brakeTempFrontLeft_C:
-        id: 465
+        id: 474
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -4327,7 +4409,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 466
+        id: 475
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -4336,7 +4418,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 467
+        id: 476
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -4345,7 +4427,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 468
+        id: 477
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -4354,7 +4436,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 469
+        id: 478
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -4363,7 +4445,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 470
+        id: 479
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -4372,7 +4454,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 471
+        id: 480
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -4382,7 +4464,7 @@ parameters:
     # END SH_F
     # Sensor Hub Rear
     radWaterTempIn_C:
-        id: 472
+        id: 481
         motec_name: Rad Water Temp In
         unit: C
         type: FLOATING
@@ -4391,7 +4473,7 @@ parameters:
         offset: 0
 
     radWaterTempOut_C:
-        id: 473
+        id: 482
         motec_name: Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -4400,7 +4482,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 474
+        id: 483
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -4409,7 +4491,7 @@ parameters:
         offset: 0
 
     shockPosRearRight_mm:
-        id: 475
+        id: 484
         motec_name: Susp Pos RR
         unit: mm
         type: FLOATING
@@ -4418,7 +4500,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 476
+        id: 485
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -4427,7 +4509,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearRight_mph:
-        id: 477
+        id: 486
         motec_name: Wheel Speed RR
         unit: mph
         type: FLOATING
@@ -4437,7 +4519,7 @@ parameters:
     # END SH_R
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
-        id: 478
+        id: 487
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -4446,7 +4528,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 479
+        id: 488
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -4455,7 +4537,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 480
+        id: 489
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -4464,7 +4546,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 481
+        id: 490
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -4473,7 +4555,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 482
+        id: 491
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -4482,7 +4564,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 483
+        id: 492
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -4491,7 +4573,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 484
+        id: 493
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -4500,7 +4582,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 485
+        id: 494
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -4509,7 +4591,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 486
+        id: 495
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -4518,7 +4600,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 487
+        id: 496
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -4527,7 +4609,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 488
+        id: 497
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -4536,7 +4618,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 489
+        id: 498
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -4545,7 +4627,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 490
+        id: 499
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -4555,7 +4637,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 491
+        id: 500
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -4564,7 +4646,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 492
+        id: 501
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -4573,7 +4655,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 493
+        id: 502
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -4584,7 +4666,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 494
+        id: 503
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -4593,7 +4675,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 495
+        id: 504
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -4602,7 +4684,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 496
+        id: 505
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -4611,7 +4693,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 497
+        id: 506
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -4620,7 +4702,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 498
+        id: 507
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -4629,7 +4711,7 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 499
+        id: 508
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -4638,7 +4720,7 @@ parameters:
         offset: 0
 
     gpsValid_ul:
-        id: 500
+        id: 509
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -4647,7 +4729,7 @@ parameters:
         offset: 0
 
     gpsYearUTC_ul:
-        id: 501
+        id: 510
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -4656,7 +4738,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 502
+        id: 511
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -4665,7 +4747,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 503
+        id: 512
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -4674,7 +4756,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 504
+        id: 513
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -4683,7 +4765,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 505
+        id: 514
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -4692,7 +4774,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 506
+        id: 515
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -4703,7 +4785,7 @@ parameters:
     # END DISPLAY
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 507
+        id: 516
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -4712,7 +4794,7 @@ parameters:
         offset: 0
 
     rollRate_degPerSec:
-        id: 508
+        id: 517
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -4721,7 +4803,7 @@ parameters:
         offset: 0
 
     lateralAccel_G:
-        id: 509
+        id: 518
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -4730,7 +4812,7 @@ parameters:
         offset: 0
 
     longitudinalAccel_G:
-        id: 510
+        id: 519
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -4739,7 +4821,7 @@ parameters:
         offset: 0
 
     verticalAccel_G:
-        id: 511
+        id: 520
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -5745,14 +5827,6 @@ groups: [
             {name: soeByCoulombCounting_percent, start: 6, length: 2}
         ]
     },
-    {
-        id: 0x3A8,
-        parameters: [
-            {name: bmsNumActiveAlerts_state, start: 0, length: 1},
-            {name: bmsCurrAlertIndex_state, start: 1, length: 1},
-            {name: bmsAlertMessage_state, start: 2, length: 1}
-        ]
-    },
 
     # BMS High Frequency
     {
@@ -5762,6 +5836,31 @@ groups: [
             {name: bmsTractiveSystemCurrentHigh_A, start: 2, length: 2}
         ]
     },
+
+     # BMS Alerts/Info
+    {
+        id: 0x3C0,
+        parameters: [
+            {name: bmsNumActiveAlerts_state, start: 0, length: 1},
+            {name: bmsCurrAlertIndex_state, start: 1, length: 1},
+            {name: bmsAlertMessage_state, start: 2, length: 1},
+            {name: bmsAveBrickVoltage_V, start: 7, length: 1}
+        ]
+    },
+    {
+        id: 0x3C1,
+        parameters: [
+            {name: bmsMaxBrickVoltage_V, start: 0, length: 1},
+            {name: bmsMinBrickVoltage_V, start: 1, length: 1},
+            {name: bmsAveBrickTemp_C, start: 2, length: 1},
+            {name: bmsMaxBrickTemp_C, start: 3, length: 1},
+            {name: bmsMinBrickTemp_C, start: 4, length: 1},
+            {name: bmsAveBoardTemp_C, start: 5, length: 1},
+            {name: bmsMaxBoardTemp_C, start: 6, length: 1},
+            {name: bmsMinBoardTemp_C, start: 7, length: 1}
+        ]
+    },
+
     # END BMS
     
     # Sensor Hub Front
