@@ -4227,81 +4227,81 @@ parameters:
         id: 455
         motec_name: BMS Average Brick Voltage
         unit: V
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.001
         offset: 0
 
     bmsMaxBrickVoltage_V:
         id: 456
         motec_name: BMS Max Brick Voltage
         unit: V
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.001
         offset: 0
 
     bmsMinBrickVoltage_V:
         id: 457
         motec_name: BMS Min Brick Voltage
         unit: V
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.001
         offset: 0
 
     bmsAveBrickTemp_C:
         id: 458
         motec_name: BMS Average Brick Temp
         unit: C
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     bmsMaxBrickTemp_C:
         id: 459
         motec_name: BMS Max Brick Temp
         unit: C
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     bmsMinBrickTemp_C:
         id: 460
         motec_name: BMS Min Brick Temp
         unit: C
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     bmsAveBoardTemp_C:
         id: 461
         motec_name: BMS Average Board Temp
         unit: C
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     bmsMaxBoardTemp_C:
         id: 462
         motec_name: BMS Max Board Temp
         unit: C
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     bmsMinBoardTemp_C:
         id: 463
         motec_name: BMS Min Board Temp
         unit: C
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     # Error states
