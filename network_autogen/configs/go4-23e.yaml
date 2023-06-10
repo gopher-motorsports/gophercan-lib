@@ -4830,6 +4830,44 @@ parameters:
         offset: 0
     # END IMU
 
+    # DATA LOGGING
+    packetsLogged_ul:
+        id: 521
+        motec_name: Packets Logged
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    packetsDropped_ul:
+        id: 522
+        motec_name: Packets Dropped
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    storageBufferFill_percent:
+        id: 523
+        motec_name: Storage Buffer Fill
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    telemetryBufferFill_percent:
+        id: 524
+        motec_name: Telemetry Buffer Fill
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+    # END DATA LOGGING
+
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
     # Inverter Low Frequency
@@ -5943,6 +5981,20 @@ groups: [
             {name: can2Utilization_percent, start: 2, length: 2},
             {name: plmVbatVoltage_V,        start: 4, length: 2},
             {name: plm5VVoltage_V,          start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x004,
+        parameters: [
+            {name: packetsLogged_ul, start: 0, length: 4},
+            {name: packetsDropped_ul, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x005,
+        parameters: [
+            {name: storageBufferFill_percent, start: 0, length: 2},
+            {name: telemetryBufferFill_percent, start: 2, length: 2}
         ]
     },
     # END PLM
