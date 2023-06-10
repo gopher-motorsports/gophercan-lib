@@ -683,7 +683,7 @@ parameters:
         unit: A
         type: FLOATING
         encoding: LSB
-        scale: 0.01
+        scale: 1
         offset: 0
 
     inverterDischargeLimit_A:
@@ -692,7 +692,7 @@ parameters:
         unit: A
         type: FLOATING
         encoding: LSB
-        scale: 0.01
+        scale: 1
         offset: 0
 
     # END INVERTER
