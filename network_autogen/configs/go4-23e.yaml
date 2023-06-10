@@ -4257,7 +4257,7 @@ parameters:
         type: FLOATING
         encoding: MSB
         scale: 0.1
-        offset: 0
+        offset: -40
 
     bmsMaxBrickTemp_C:
         id: 459
@@ -4266,7 +4266,7 @@ parameters:
         type: FLOATING
         encoding: MSB
         scale: 0.1
-        offset: 0
+        offset: -40
 
     bmsMinBrickTemp_C:
         id: 460
@@ -4275,7 +4275,7 @@ parameters:
         type: FLOATING
         encoding: MSB
         scale: 0.1
-        offset: 0
+        offset: -40
 
     bmsAveBoardTemp_C:
         id: 461
@@ -4284,7 +4284,7 @@ parameters:
         type: FLOATING
         encoding: MSB
         scale: 0.1
-        offset: 0
+        offset: -40
 
     bmsMaxBoardTemp_C:
         id: 462
@@ -4293,7 +4293,7 @@ parameters:
         type: FLOATING
         encoding: MSB
         scale: 0.1
-        offset: 0
+        offset: -40
 
     bmsMinBoardTemp_C:
         id: 463
@@ -4302,7 +4302,7 @@ parameters:
         type: FLOATING
         encoding: MSB
         scale: 0.1
-        offset: 0
+        offset: -40
 
     # Error states
     amsFault_state:
@@ -5844,20 +5844,25 @@ groups: [
             {name: bmsNumActiveAlerts_state, start: 0, length: 1},
             {name: bmsCurrAlertIndex_state, start: 1, length: 1},
             {name: bmsAlertMessage_state, start: 2, length: 1},
-            {name: bmsAveBrickVoltage_V, start: 7, length: 1}
+            {name: bmsAveBrickVoltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x3C1,
         parameters: [
-            {name: bmsMaxBrickVoltage_V, start: 0, length: 1},
-            {name: bmsMinBrickVoltage_V, start: 1, length: 1},
-            {name: bmsAveBrickTemp_C, start: 2, length: 1},
-            {name: bmsMaxBrickTemp_C, start: 3, length: 1},
-            {name: bmsMinBrickTemp_C, start: 4, length: 1},
-            {name: bmsAveBoardTemp_C, start: 5, length: 1},
-            {name: bmsMaxBoardTemp_C, start: 6, length: 1},
-            {name: bmsMinBoardTemp_C, start: 7, length: 1}
+            {name: bmsMaxBrickVoltage_V, start: 0, length: 2},
+            {name: bmsMinBrickVoltage_V, start: 2, length: 2},
+            {name: bmsAveBrickTemp_C, start: 4, length: 2},
+            {name: bmsMaxBrickTemp_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x3C2,
+        parameters: [
+            {name: bmsMinBrickTemp_C, start: 0, length: 2},
+            {name: bmsAveBoardTemp_C, start: 2, length: 2},
+            {name: bmsMaxBoardTemp_C, start: 4, length: 2},
+            {name: bmsMinBoardTemp_C, start: 6, length: 2}
         ]
     },
 
