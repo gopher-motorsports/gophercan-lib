@@ -4368,10 +4368,10 @@ parameters:
         scale: 1
         offset: 0
 
-    #AMS Faults
+    #Faults
     bmsOvervoltageFaultAlert_state:
         id: 471
-        motec_name: BMS AMS Overvoltage Fault Alert
+        motec_name: BMS Overvoltage Fault Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4380,7 +4380,7 @@ parameters:
 
     bmsUndervoltageFaultAlert_state:
         id: 472
-        motec_name: BMS AMS Undervoltage Fault Alert
+        motec_name: BMS Undervoltage Fault Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4389,7 +4389,7 @@ parameters:
 
     bmsOvertempFaultAlert_state:
         id: 473
-        motec_name: BMS AMS Overtemp Fault Alert
+        motec_name: BMS Overtemp Fault Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4398,7 +4398,7 @@ parameters:
 
     bmsBmbCommunicationFailureAlert_state:
         id: 474
-        motec_name: BMS AMS BMB Communication Failure Alert
+        motec_name: BMS BMB Communication Failure Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4407,7 +4407,7 @@ parameters:
 
     bmsBadVoltageSenseStatusAlert_state:
         id: 475
-        motec_name: BMS AMS Bad Voltage Status Alert
+        motec_name: BMS Bad Voltage Status Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4416,7 +4416,7 @@ parameters:
 
     bmsInsufficientTempSensorsAlert_state:
         id: 476
-        motec_name: BMS AMS Insufficient Temp Sensors Alert
+        motec_name: BMS Insufficient Temp Sensors Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4425,7 +4425,7 @@ parameters:
 
     bmsChargerOverVoltageAlert_state:
         id: 477
-        motec_name: BMS AMS Charger Over Votlage Alert
+        motec_name: BMS Charger Over Votlage Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4434,7 +4434,7 @@ parameters:
 
     bmsChargerOverCurrentAlert_state:
         id: 478
-        motec_name: BMS AMS Charger Over Current Alert
+        motec_name: BMS Charger Over Current Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4443,7 +4443,7 @@ parameters:
 
     bmsChargerVoltageMismatchAlert_state:
         id: 479
-        motec_name: BMS AMS Charger Voltage Mismatch Alert
+        motec_name: BMS Charger Voltage Mismatch Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4452,7 +4452,7 @@ parameters:
 
     bmsChargerCurrentMismatchAlert_state:
         id: 480
-        motec_name: BMS AMS Charger Current Mismatch Alert
+        motec_name: BMS Charger Current Mismatch Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4461,7 +4461,7 @@ parameters:
 
     bmsChargerHardwareFailureAlert_state:
         id: 481
-        motec_name: BMS AMS Charger Hardware Failure Alert
+        motec_name: BMS Charger Hardware Failure Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -4516,7 +4516,7 @@ parameters:
 
     bmsAmsSdcFaultAlert_state:
         id: 487
-        motec_name: IMD AMS SDC Fault Alert
+        motec_name: BMS AMS SDC Fault Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
