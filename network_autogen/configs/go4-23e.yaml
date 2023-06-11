@@ -4368,6 +4368,116 @@ parameters:
         scale: 1
         offset: 0
 
+    #AMS Faults
+    bmsOvervoltageFaultAlert_state:
+        id: 462
+        motec_name: BMS Overvoltage Fault Alert
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsUndervoltageFaultAlert_state:
+        id: 463
+        motec_name: BMS Undervoltage Fault Alert
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsOvertempFaultAlert_state:
+        id: 464
+        motec_name: BMS Overtemp Fault Alert
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsBmbCommunicationFailureAlert_state:
+        id: 465
+        motec_name: BMS BMB Communication Failure Alert
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsBadVoltageSenseStatusAlert_state:
+        id: 466
+        motec_name: IMD Fault Information
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsInsufficientTempSensorsAlert_state:
+        id: 467
+        motec_name: BMS Num Active Alerts
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsChargerOverVoltageAlert_state:
+        id: 468
+        motec_name: BMS Current Alert Index
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsChargerOverCurrentAlert_state:
+        id: 469
+        motec_name: BMS Alert Message
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsChargerVoltageMismatchAlert_state:
+        id: 470
+        motec_name: BMS Alert Message
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsChargerCurrentMismatchAlert_state:
+        id: 471
+        motec_name: AMS Fault State
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsChargerHardwareFailureAlert_state:
+        id: 472
+        motec_name: IMD Fault State
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bmsChargerOverTempAlert_state:
+        id: 473
+        motec_name: BSPD Fault State
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    # END Error States
     # Tractive System Currents
     bmsTractiveSystemCurrentLow_A:
         id: 471
