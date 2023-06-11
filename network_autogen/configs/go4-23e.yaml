@@ -1376,119 +1376,10 @@ parameters:
         scale: 0.1
         offset: -40
 
-    # Segment 1 Balancing
-    seg1Cell1BalanceEnable_state:
-        id: 143
-        motec_name: Segment 1 Cell 1 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell2BalanceEnable_state:
-        id: 144
-        motec_name: Segment 1 Cell 2 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell3BalanceEnable_state:
-        id: 145
-        motec_name: Segment 1 Cell 3 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell4BalanceEnable_state:
-        id: 146
-        motec_name: Segment 1 Cell 4 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell5BalanceEnable_state:
-        id: 147
-        motec_name: Segment 1 Cell 5 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell6BalanceEnable_state:
-        id: 148
-        motec_name: Segment 1 Cell 6 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell7BalanceEnable_state:
-        id: 149
-        motec_name: Segment 1 Cell 7 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell8BalanceEnable_state:
-        id: 150
-        motec_name: Segment 1 Cell 8 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell9BalanceEnable_state:
-        id: 151
-        motec_name: Segment 1 Cell 9 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell10BalanceEnable_state:
-        id: 152
-        motec_name: Segment 1 Cell 10 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell11BalanceEnable_state:
-        id: 153
-        motec_name: Segment 1 Cell 11 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg1Cell12BalanceEnable_state:
-        id: 154
-        motec_name: Segment 1 Cell 12 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     # END SEGMENT 1
     # Segment 2 Overall
     seg2Voltage_V:
-        id: 155
+        id: 143
         motec_name: Segment 2 Voltage
         unit: V
         type: FLOATING
@@ -1497,7 +1388,7 @@ parameters:
         offset: 0
 
     seg2BMBMaxBoardTemp_C:
-        id: 156
+        id: 144
         motec_name: Segment 2 BMB Max Board Temp
         unit: C
         type: FLOATING
@@ -1506,7 +1397,7 @@ parameters:
         offset: -40
 
     seg2BMBMinBoardTemp_C:
-        id: 157
+        id: 145
         motec_name: Segment 2 BMB Min Board Temp
         unit: C
         type: FLOATING
@@ -1515,7 +1406,7 @@ parameters:
         offset: -40
 
     seg2BMBAveBoardTemp_C:
-        id: 158
+        id: 146
         motec_name: Segment 2 BMB Ave Board Temp
         unit: C
         type: FLOATING
@@ -1524,7 +1415,7 @@ parameters:
         offset: -40
 
     seg2MaxCellVoltage_V:
-        id: 159
+        id: 147
         motec_name: Segment 2 Max Cell Voltage
         unit: V
         type: FLOATING
@@ -1533,7 +1424,7 @@ parameters:
         offset: 0
 
     seg2MinCellVoltage_V:
-        id: 160
+        id: 148
         motec_name: Segment 2 Min Cell Voltage
         unit: V
         type: FLOATING
@@ -1542,7 +1433,7 @@ parameters:
         offset: 0
 
     seg2AveCellVoltage_V:
-        id: 161
+        id: 149
         motec_name: Segment 2 Average Cell Voltage
         unit: V
         type: FLOATING
@@ -1551,7 +1442,7 @@ parameters:
         offset: 0
 
     seg2MaxCellTemp_C:
-        id: 162
+        id: 150
         motec_name: Segment 2 Max Cell Temp
         unit: C
         type: FLOATING
@@ -1560,7 +1451,7 @@ parameters:
         offset: -40
 
     seg2MinCellTemp_C:
-        id: 163
+        id: 151
         motec_name: Segment 2 Min Cell Temp
         unit: C
         type: FLOATING
@@ -1569,7 +1460,7 @@ parameters:
         offset: -40
 
     seg2AveCellTemp_C:
-        id: 164
+        id: 152
         motec_name: Segment 2 Ave Cell Temp
         unit: C
         type: FLOATING
@@ -1579,7 +1470,7 @@ parameters:
 
     # Segment 2 BMB Board Temps
     seg2BMBBoardTemp1_C:
-        id: 165
+        id: 153
         motec_name: Segment 2 BMB Board Temp 1
         unit: C
         type: FLOATING
@@ -1588,7 +1479,7 @@ parameters:
         offset: -40
 
     seg2BMBBoardTemp2_C:
-        id: 166
+        id: 154
         motec_name: Segment 2 BMB Board Temp 2
         unit: C
         type: FLOATING
@@ -1597,7 +1488,7 @@ parameters:
         offset: -40
 
     seg2BMBBoardTemp3_C:
-        id: 167
+        id: 155
         motec_name: Segment 2 BMB Board Temp 3
         unit: C
         type: FLOATING
@@ -1606,7 +1497,7 @@ parameters:
         offset: -40
 
     seg2BMBBoardTemp4_C:
-        id: 168
+        id: 156
         motec_name: Segment 2 BMB Board Temp 4
         unit: C
         type: FLOATING
@@ -1616,7 +1507,7 @@ parameters:
 
     # Segment 2 Voltage
     seg2Cell1Voltage_V:
-        id: 169
+        id: 157
         motec_name: Segment 2 Cell 1 Voltage
         unit: V
         type: FLOATING
@@ -1625,7 +1516,7 @@ parameters:
         offset: 0
 
     seg2Cell2Voltage_V:
-        id: 170
+        id: 158
         motec_name: Segment 2 Cell 2 Voltage
         unit: V
         type: FLOATING
@@ -1634,7 +1525,7 @@ parameters:
         offset: 0
 
     seg2Cell3Voltage_V:
-        id: 171
+        id: 159
         motec_name: Segment 2 Cell 3 Voltage
         unit: V
         type: FLOATING
@@ -1643,7 +1534,7 @@ parameters:
         offset: 0
 
     seg2Cell4Voltage_V:
-        id: 172
+        id: 160
         motec_name: Segment 2 Cell 4 Voltage
         unit: V
         type: FLOATING
@@ -1652,7 +1543,7 @@ parameters:
         offset: 0
 
     seg2Cell5Voltage_V:
-        id: 173
+        id: 161
         motec_name: Segment 2 Cell 5 Voltage
         unit: V
         type: FLOATING
@@ -1661,7 +1552,7 @@ parameters:
         offset: 0
 
     seg2Cell6Voltage_V:
-        id: 174
+        id: 162
         motec_name: Segment 2 Cell 6 Voltage
         unit: V
         type: FLOATING
@@ -1670,7 +1561,7 @@ parameters:
         offset: 0
 
     seg2Cell7Voltage_V:
-        id: 175
+        id: 163
         motec_name: Segment 2 Cell 7 Voltage
         unit: V
         type: FLOATING
@@ -1679,7 +1570,7 @@ parameters:
         offset: 0
 
     seg2Cell8Voltage_V:
-        id: 176
+        id: 164
         motec_name: Segment 2 Cell 8 Voltage
         unit: V
         type: FLOATING
@@ -1688,7 +1579,7 @@ parameters:
         offset: 0
 
     seg2Cell9Voltage_V:
-        id: 177
+        id: 165
         motec_name: Segment 2 Cell 9 Voltage
         unit: V
         type: FLOATING
@@ -1697,7 +1588,7 @@ parameters:
         offset: 0
 
     seg2Cell10Voltage_V:
-        id: 178
+        id: 166
         motec_name: Segment 2 Cell 10 Voltage
         unit: V
         type: FLOATING
@@ -1706,7 +1597,7 @@ parameters:
         offset: 0
 
     seg2Cell11Voltage_V:
-        id: 179
+        id: 167
         motec_name: Segment 2 Cell 11 Voltage
         unit: V
         type: FLOATING
@@ -1715,7 +1606,7 @@ parameters:
         offset: 0
 
     seg2Cell12Voltage_V:
-        id: 180
+        id: 168
         motec_name: Segment 2 Cell 12 Voltage
         unit: V
         type: FLOATING
@@ -1725,7 +1616,7 @@ parameters:
 
     # Segment 2 Temp
     seg2Cell1Temp_C:
-        id: 181
+        id: 169
         motec_name: Segment 2 Cell 1 Temp
         unit: C
         type: FLOATING
@@ -1734,7 +1625,7 @@ parameters:
         offset: -40
 
     seg2Cell2Temp_C:
-        id: 182
+        id: 170
         motec_name: Segment 2 Cell 2 Temp
         unit: C
         type: FLOATING
@@ -1743,7 +1634,7 @@ parameters:
         offset: -40
 
     seg2Cell3Temp_C:
-        id: 183
+        id: 171
         motec_name: Segment 2 Cell 3 Temp
         unit: C
         type: FLOATING
@@ -1752,7 +1643,7 @@ parameters:
         offset: -40
 
     seg2Cell4Temp_C:
-        id: 184
+        id: 172
         motec_name: Segment 2 Cell 4 Temp
         unit: C
         type: FLOATING
@@ -1761,7 +1652,7 @@ parameters:
         offset: -40
 
     seg2Cell5Temp_C:
-        id: 185
+        id: 173
         motec_name: Segment 2 Cell 5 Temp
         unit: C
         type: FLOATING
@@ -1770,7 +1661,7 @@ parameters:
         offset: -40
 
     seg2Cell6Temp_C:
-        id: 186
+        id: 174
         motec_name: Segment 2 Cell 6 Temp
         unit: C
         type: FLOATING
@@ -1779,7 +1670,7 @@ parameters:
         offset: -40
 
     seg2Cell7Temp_C:
-        id: 187
+        id: 175
         motec_name: Segment 2 Cell 7 Temp
         unit: C
         type: FLOATING
@@ -1788,7 +1679,7 @@ parameters:
         offset: -40
 
     seg2Cell8Temp_C:
-        id: 188
+        id: 176
         motec_name: Segment 2 Cell 8 Temp
         unit: C
         type: FLOATING
@@ -1797,7 +1688,7 @@ parameters:
         offset: -40
 
     seg2Cell9Temp_C:
-        id: 189
+        id: 177
         motec_name: Segment 2 Cell 9 Temp
         unit: C
         type: FLOATING
@@ -1806,7 +1697,7 @@ parameters:
         offset: -40
 
     seg2Cell10Temp_C:
-        id: 190
+        id: 178
         motec_name: Segment 2 Cell 10 Temp
         unit: C
         type: FLOATING
@@ -1815,7 +1706,7 @@ parameters:
         offset: -40
 
     seg2Cell11Temp_C:
-        id: 191
+        id: 179
         motec_name: Segment 2 Cell 11 Temp
         unit: C
         type: FLOATING
@@ -1824,7 +1715,7 @@ parameters:
         offset: -40
 
     seg2Cell12Temp_C:
-        id: 192
+        id: 180
         motec_name: Segment 2 Cell 12 Temp
         unit: C
         type: FLOATING
@@ -1832,119 +1723,10 @@ parameters:
         scale: 0.1
         offset: -40
 
-    # Segment 2 Balancing
-    seg2Cell1BalanceEnable_state:
-        id: 193
-        motec_name: Segment 2 Cell 1 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell2BalanceEnable_state:
-        id: 194
-        motec_name: Segment 2 Cell 2 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell3BalanceEnable_state:
-        id: 195
-        motec_name: Segment 2 Cell 3 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell4BalanceEnable_state:
-        id: 196
-        motec_name: Segment 2 Cell 4 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell5BalanceEnable_state:
-        id: 197
-        motec_name: Segment 2 Cell 5 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell6BalanceEnable_state:
-        id: 198
-        motec_name: Segment 2 Cell 6 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell7BalanceEnable_state:
-        id: 199
-        motec_name: Segment 2 Cell 7 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell8BalanceEnable_state:
-        id: 200
-        motec_name: Segment 2 Cell 8 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell9BalanceEnable_state:
-        id: 201
-        motec_name: Segment 2 Cell 9 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell10BalanceEnable_state:
-        id: 202
-        motec_name: Segment 2 Cell 10 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell11BalanceEnable_state:
-        id: 203
-        motec_name: Segment 2 Cell 11 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg2Cell12BalanceEnable_state:
-        id: 204
-        motec_name: Segment 2 Cell 12 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     # END SEGMENT 2
     # Segment 3 Overall
     seg3Voltage_V:
-        id: 205
+        id: 181
         motec_name: Segment 3 Voltage
         unit: V
         type: FLOATING
@@ -1953,7 +1735,7 @@ parameters:
         offset: 0
 
     seg3BMBMaxBoardTemp_C:
-        id: 206
+        id: 182
         motec_name: Segment 3 BMB Max Board Temp
         unit: C
         type: FLOATING
@@ -1962,7 +1744,7 @@ parameters:
         offset: -40
 
     seg3BMBMinBoardTemp_C:
-        id: 207
+        id: 183
         motec_name: Segment 3 BMB Min Board Temp
         unit: C
         type: FLOATING
@@ -1971,7 +1753,7 @@ parameters:
         offset: -40
 
     seg3BMBAveBoardTemp_C:
-        id: 208
+        id: 184
         motec_name: Segment 3 BMB Ave Board Temp
         unit: C
         type: FLOATING
@@ -1980,7 +1762,7 @@ parameters:
         offset: -40
 
     seg3MaxCellVoltage_V:
-        id: 209
+        id: 185
         motec_name: Segment 3 Max Cell Voltage
         unit: V
         type: FLOATING
@@ -1989,7 +1771,7 @@ parameters:
         offset: 0
 
     seg3MinCellVoltage_V:
-        id: 210
+        id: 186
         motec_name: Segment 3 Min Cell Voltage
         unit: V
         type: FLOATING
@@ -1998,7 +1780,7 @@ parameters:
         offset: 0
 
     seg3AveCellVoltage_V:
-        id: 211
+        id: 187
         motec_name: Segment 3 Average Cell Voltage
         unit: V
         type: FLOATING
@@ -2007,7 +1789,7 @@ parameters:
         offset: 0
 
     seg3MaxCellTemp_C:
-        id: 212
+        id: 188
         motec_name: Segment 3 Max Cell Temp
         unit: C
         type: FLOATING
@@ -2016,7 +1798,7 @@ parameters:
         offset: -40
 
     seg3MinCellTemp_C:
-        id: 213
+        id: 189
         motec_name: Segment 3 Min Cell Temp
         unit: C
         type: FLOATING
@@ -2025,7 +1807,7 @@ parameters:
         offset: -40
 
     seg3AveCellTemp_C:
-        id: 214
+        id: 190
         motec_name: Segment 3 Ave Cell Temp
         unit: C
         type: FLOATING
@@ -2035,7 +1817,7 @@ parameters:
 
     # Segment 3 BMB Board Temps
     seg3BMBBoardTemp1_C:
-        id: 215
+        id: 191
         motec_name: Segment 3 BMB Board Temp 1
         unit: C
         type: FLOATING
@@ -2044,7 +1826,7 @@ parameters:
         offset: -40
 
     seg3BMBBoardTemp2_C:
-        id: 216
+        id: 192
         motec_name: Segment 3 BMB Board Temp 2
         unit: C
         type: FLOATING
@@ -2053,7 +1835,7 @@ parameters:
         offset: -40
 
     seg3BMBBoardTemp3_C:
-        id: 217
+        id: 193
         motec_name: Segment 3 BMB Board Temp 3
         unit: C
         type: FLOATING
@@ -2062,7 +1844,7 @@ parameters:
         offset: -40
 
     seg3BMBBoardTemp4_C:
-        id: 218
+        id: 194
         motec_name: Segment 3 BMB Board Temp 4
         unit: C
         type: FLOATING
@@ -2072,7 +1854,7 @@ parameters:
 
     # Segment 3 Voltage
     seg3Cell1Voltage_V:
-        id: 219
+        id: 195
         motec_name: Segment 3 Cell 1 Voltage
         unit: V
         type: FLOATING
@@ -2081,7 +1863,7 @@ parameters:
         offset: 0
 
     seg3Cell2Voltage_V:
-        id: 220
+        id: 196
         motec_name: Segment 3 Cell 2 Voltage
         unit: V
         type: FLOATING
@@ -2090,7 +1872,7 @@ parameters:
         offset: 0
 
     seg3Cell3Voltage_V:
-        id: 221
+        id: 197
         motec_name: Segment 3 Cell 3 Voltage
         unit: V
         type: FLOATING
@@ -2099,7 +1881,7 @@ parameters:
         offset: 0
 
     seg3Cell4Voltage_V:
-        id: 222
+        id: 198
         motec_name: Segment 3 Cell 4 Voltage
         unit: V
         type: FLOATING
@@ -2108,7 +1890,7 @@ parameters:
         offset: 0
 
     seg3Cell5Voltage_V:
-        id: 223
+        id: 199
         motec_name: Segment 3 Cell 5 Voltage
         unit: V
         type: FLOATING
@@ -2117,7 +1899,7 @@ parameters:
         offset: 0
 
     seg3Cell6Voltage_V:
-        id: 224
+        id: 200
         motec_name: Segment 3 Cell 6 Voltage
         unit: V
         type: FLOATING
@@ -2126,7 +1908,7 @@ parameters:
         offset: 0
 
     seg3Cell7Voltage_V:
-        id: 225
+        id: 201
         motec_name: Segment 3 Cell 7 Voltage
         unit: V
         type: FLOATING
@@ -2135,7 +1917,7 @@ parameters:
         offset: 0
 
     seg3Cell8Voltage_V:
-        id: 226
+        id: 202
         motec_name: Segment 3 Cell 8 Voltage
         unit: V
         type: FLOATING
@@ -2144,7 +1926,7 @@ parameters:
         offset: 0
 
     seg3Cell9Voltage_V:
-        id: 227
+        id: 203
         motec_name: Segment 3 Cell 9 Voltage
         unit: V
         type: FLOATING
@@ -2153,7 +1935,7 @@ parameters:
         offset: 0
 
     seg3Cell10Voltage_V:
-        id: 228
+        id: 204
         motec_name: Segment 3 Cell 10 Voltage
         unit: V
         type: FLOATING
@@ -2162,7 +1944,7 @@ parameters:
         offset: 0
 
     seg3Cell11Voltage_V:
-        id: 229
+        id: 205
         motec_name: Segment 3 Cell 11 Voltage
         unit: V
         type: FLOATING
@@ -2171,7 +1953,7 @@ parameters:
         offset: 0
 
     seg3Cell12Voltage_V:
-        id: 230
+        id: 206
         motec_name: Segment 3 Cell 12 Voltage
         unit: V
         type: FLOATING
@@ -2181,7 +1963,7 @@ parameters:
 
     # Segment 3 Temp
     seg3Cell1Temp_C:
-        id: 231
+        id: 207
         motec_name: Segment 3 Cell 1 Temp
         unit: C
         type: FLOATING
@@ -2190,7 +1972,7 @@ parameters:
         offset: -40
 
     seg3Cell2Temp_C:
-        id: 232
+        id: 208
         motec_name: Segment 3 Cell 2 Temp
         unit: C
         type: FLOATING
@@ -2199,7 +1981,7 @@ parameters:
         offset: -40
 
     seg3Cell3Temp_C:
-        id: 233
+        id: 209
         motec_name: Segment 3 Cell 3 Temp
         unit: C
         type: FLOATING
@@ -2208,7 +1990,7 @@ parameters:
         offset: -40
 
     seg3Cell4Temp_C:
-        id: 234
+        id: 210
         motec_name: Segment 3 Cell 4 Temp
         unit: C
         type: FLOATING
@@ -2217,7 +1999,7 @@ parameters:
         offset: -40
 
     seg3Cell5Temp_C:
-        id: 235
+        id: 211
         motec_name: Segment 3 Cell 5 Temp
         unit: C
         type: FLOATING
@@ -2226,7 +2008,7 @@ parameters:
         offset: -40
 
     seg3Cell6Temp_C:
-        id: 236
+        id: 212
         motec_name: Segment 3 Cell 6 Temp
         unit: C
         type: FLOATING
@@ -2235,7 +2017,7 @@ parameters:
         offset: -40
 
     seg3Cell7Temp_C:
-        id: 237
+        id: 213
         motec_name: Segment 3 Cell 7 Temp
         unit: C
         type: FLOATING
@@ -2244,7 +2026,7 @@ parameters:
         offset: -40
 
     seg3Cell8Temp_C:
-        id: 238
+        id: 214
         motec_name: Segment 3 Cell 8 Temp
         unit: C
         type: FLOATING
@@ -2253,7 +2035,7 @@ parameters:
         offset: -40
 
     seg3Cell9Temp_C:
-        id: 239
+        id: 215
         motec_name: Segment 3 Cell 9 Temp
         unit: C
         type: FLOATING
@@ -2262,7 +2044,7 @@ parameters:
         offset: -40
 
     seg3Cell10Temp_C:
-        id: 240
+        id: 216
         motec_name: Segment 3 Cell 10 Temp
         unit: C
         type: FLOATING
@@ -2271,7 +2053,7 @@ parameters:
         offset: -40
 
     seg3Cell11Temp_C:
-        id: 241
+        id: 217
         motec_name: Segment 3 Cell 11 Temp
         unit: C
         type: FLOATING
@@ -2280,7 +2062,7 @@ parameters:
         offset: -40
 
     seg3Cell12Temp_C:
-        id: 242
+        id: 218
         motec_name: Segment 3 Cell 12 Temp
         unit: C
         type: FLOATING
@@ -2288,119 +2070,10 @@ parameters:
         scale: 0.1
         offset: -40
 
-    # Segment 3 Balancing
-    seg3Cell1BalanceEnable_state:
-        id: 243
-        motec_name: Segment 3 Cell 1 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell2BalanceEnable_state:
-        id: 244
-        motec_name: Segment 3 Cell 2 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell3BalanceEnable_state:
-        id: 245
-        motec_name: Segment 3 Cell 3 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell4BalanceEnable_state:
-        id: 246
-        motec_name: Segment 3 Cell 4 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell5BalanceEnable_state:
-        id: 247
-        motec_name: Segment 3 Cell 5 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell6BalanceEnable_state:
-        id: 248
-        motec_name: Segment 3 Cell 6 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell7BalanceEnable_state:
-        id: 249
-        motec_name: Segment 3 Cell 7 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell8BalanceEnable_state:
-        id: 250
-        motec_name: Segment 3 Cell 8 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell9BalanceEnable_state:
-        id: 251
-        motec_name: Segment 3 Cell 9 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell10BalanceEnable_state:
-        id: 252
-        motec_name: Segment 3 Cell 10 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell11BalanceEnable_state:
-        id: 253
-        motec_name: Segment 3 Cell 11 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg3Cell12BalanceEnable_state:
-        id: 254
-        motec_name: Segment 3 Cell 12 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     # END SEGMENT 3
     # Segment 4 Overall
     seg4Voltage_V:
-        id: 255
+        id: 219
         motec_name: Segment 4 Voltage
         unit: V
         type: FLOATING
@@ -2409,7 +2082,7 @@ parameters:
         offset: 0
 
     seg4BMBMaxBoardTemp_C:
-        id: 256
+        id: 220
         motec_name: Segment 4 BMB Max Board Temp
         unit: C
         type: FLOATING
@@ -2418,7 +2091,7 @@ parameters:
         offset: -40
 
     seg4BMBMinBoardTemp_C:
-        id: 257
+        id: 221
         motec_name: Segment 4 BMB Min Board Temp
         unit: C
         type: FLOATING
@@ -2427,7 +2100,7 @@ parameters:
         offset: -40
 
     seg4BMBAveBoardTemp_C:
-        id: 258
+        id: 222
         motec_name: Segment 4 BMB Ave Board Temp
         unit: C
         type: FLOATING
@@ -2436,7 +2109,7 @@ parameters:
         offset: -40
 
     seg4MaxCellVoltage_V:
-        id: 259
+        id: 223
         motec_name: Segment 4 Max Cell Voltage
         unit: V
         type: FLOATING
@@ -2445,7 +2118,7 @@ parameters:
         offset: 0
 
     seg4MinCellVoltage_V:
-        id: 260
+        id: 224
         motec_name: Segment 4 Min Cell Voltage
         unit: V
         type: FLOATING
@@ -2454,7 +2127,7 @@ parameters:
         offset: 0
 
     seg4AveCellVoltage_V:
-        id: 261
+        id: 225
         motec_name: Segment 4 Average Cell Voltage
         unit: V
         type: FLOATING
@@ -2463,7 +2136,7 @@ parameters:
         offset: 0
 
     seg4MaxCellTemp_C:
-        id: 262
+        id: 226
         motec_name: Segment 4 Max Cell Temp
         unit: C
         type: FLOATING
@@ -2472,7 +2145,7 @@ parameters:
         offset: -40
 
     seg4MinCellTemp_C:
-        id: 263
+        id: 227
         motec_name: Segment 4 Min Cell Temp
         unit: C
         type: FLOATING
@@ -2481,7 +2154,7 @@ parameters:
         offset: -40
 
     seg4AveCellTemp_C:
-        id: 264
+        id: 228
         motec_name: Segment 4 Ave Cell Temp
         unit: C
         type: FLOATING
@@ -2491,7 +2164,7 @@ parameters:
 
     # Segment 4 BMB Board Temps
     seg4BMBBoardTemp1_C:
-        id: 265
+        id: 229
         motec_name: Segment 4 BMB Board Temp 1
         unit: C
         type: FLOATING
@@ -2500,7 +2173,7 @@ parameters:
         offset: -40
 
     seg4BMBBoardTemp2_C:
-        id: 266
+        id: 230
         motec_name: Segment 4 BMB Board Temp 2
         unit: C
         type: FLOATING
@@ -2509,7 +2182,7 @@ parameters:
         offset: -40
 
     seg4BMBBoardTemp3_C:
-        id: 267
+        id: 231
         motec_name: Segment 4 BMB Board Temp 3
         unit: C
         type: FLOATING
@@ -2518,7 +2191,7 @@ parameters:
         offset: -40
 
     seg4BMBBoardTemp4_C:
-        id: 268
+        id: 232
         motec_name: Segment 4 BMB Board Temp 4
         unit: C
         type: FLOATING
@@ -2528,7 +2201,7 @@ parameters:
 
     # Segment 4 Voltage
     seg4Cell1Voltage_V:
-        id: 269
+        id: 233
         motec_name: Segment 4 Cell 1 Voltage
         unit: V
         type: FLOATING
@@ -2537,7 +2210,7 @@ parameters:
         offset: 0
 
     seg4Cell2Voltage_V:
-        id: 270
+        id: 234
         motec_name: Segment 4 Cell 2 Voltage
         unit: V
         type: FLOATING
@@ -2546,7 +2219,7 @@ parameters:
         offset: 0
 
     seg4Cell3Voltage_V:
-        id: 271
+        id: 235
         motec_name: Segment 4 Cell 3 Voltage
         unit: V
         type: FLOATING
@@ -2555,7 +2228,7 @@ parameters:
         offset: 0
 
     seg4Cell4Voltage_V:
-        id: 272
+        id: 236
         motec_name: Segment 4 Cell 4 Voltage
         unit: V
         type: FLOATING
@@ -2564,7 +2237,7 @@ parameters:
         offset: 0
 
     seg4Cell5Voltage_V:
-        id: 273
+        id: 237
         motec_name: Segment 4 Cell 5 Voltage
         unit: V
         type: FLOATING
@@ -2573,7 +2246,7 @@ parameters:
         offset: 0
 
     seg4Cell6Voltage_V:
-        id: 274
+        id: 238
         motec_name: Segment 4 Cell 6 Voltage
         unit: V
         type: FLOATING
@@ -2582,7 +2255,7 @@ parameters:
         offset: 0
 
     seg4Cell7Voltage_V:
-        id: 275
+        id: 239
         motec_name: Segment 4 Cell 7 Voltage
         unit: V
         type: FLOATING
@@ -2591,7 +2264,7 @@ parameters:
         offset: 0
 
     seg4Cell8Voltage_V:
-        id: 276
+        id: 240
         motec_name: Segment 4 Cell 8 Voltage
         unit: V
         type: FLOATING
@@ -2600,7 +2273,7 @@ parameters:
         offset: 0
 
     seg4Cell9Voltage_V:
-        id: 277
+        id: 241
         motec_name: Segment 4 Cell 9 Voltage
         unit: V
         type: FLOATING
@@ -2609,7 +2282,7 @@ parameters:
         offset: 0
 
     seg4Cell10Voltage_V:
-        id: 278
+        id: 242
         motec_name: Segment 4 Cell 10 Voltage
         unit: V
         type: FLOATING
@@ -2618,7 +2291,7 @@ parameters:
         offset: 0
 
     seg4Cell11Voltage_V:
-        id: 279
+        id: 243
         motec_name: Segment 4 Cell 11 Voltage
         unit: V
         type: FLOATING
@@ -2627,7 +2300,7 @@ parameters:
         offset: 0
 
     seg4Cell12Voltage_V:
-        id: 280
+        id: 244
         motec_name: Segment 4 Cell 12 Voltage
         unit: V
         type: FLOATING
@@ -2637,7 +2310,7 @@ parameters:
 
     # Segment 4 Temp
     seg4Cell1Temp_C:
-        id: 281
+        id: 245
         motec_name: Segment 4 Cell 1 Temp
         unit: C
         type: FLOATING
@@ -2646,7 +2319,7 @@ parameters:
         offset: -40
 
     seg4Cell2Temp_C:
-        id: 282
+        id: 246
         motec_name: Segment 4 Cell 2 Temp
         unit: C
         type: FLOATING
@@ -2655,7 +2328,7 @@ parameters:
         offset: -40
 
     seg4Cell3Temp_C:
-        id: 283
+        id: 247
         motec_name: Segment 4 Cell 3 Temp
         unit: C
         type: FLOATING
@@ -2664,7 +2337,7 @@ parameters:
         offset: -40
 
     seg4Cell4Temp_C:
-        id: 284
+        id: 248
         motec_name: Segment 4 Cell 4 Temp
         unit: C
         type: FLOATING
@@ -2673,7 +2346,7 @@ parameters:
         offset: -40
 
     seg4Cell5Temp_C:
-        id: 285
+        id: 249
         motec_name: Segment 4 Cell 5 Temp
         unit: C
         type: FLOATING
@@ -2682,7 +2355,7 @@ parameters:
         offset: -40
 
     seg4Cell6Temp_C:
-        id: 286
+        id: 250
         motec_name: Segment 4 Cell 6 Temp
         unit: C
         type: FLOATING
@@ -2691,7 +2364,7 @@ parameters:
         offset: -40
 
     seg4Cell7Temp_C:
-        id: 287
+        id: 251
         motec_name: Segment 4 Cell 7 Temp
         unit: C
         type: FLOATING
@@ -2700,7 +2373,7 @@ parameters:
         offset: -40
 
     seg4Cell8Temp_C:
-        id: 288
+        id: 252
         motec_name: Segment 4 Cell 8 Temp
         unit: C
         type: FLOATING
@@ -2709,7 +2382,7 @@ parameters:
         offset: -40
 
     seg4Cell9Temp_C:
-        id: 289
+        id: 253
         motec_name: Segment 4 Cell 9 Temp
         unit: C
         type: FLOATING
@@ -2718,7 +2391,7 @@ parameters:
         offset: -40
 
     seg4Cell10Temp_C:
-        id: 290
+        id: 254
         motec_name: Segment 4 Cell 10 Temp
         unit: C
         type: FLOATING
@@ -2727,7 +2400,7 @@ parameters:
         offset: -40
 
     seg4Cell11Temp_C:
-        id: 291
+        id: 255
         motec_name: Segment 4 Cell 11 Temp
         unit: C
         type: FLOATING
@@ -2736,7 +2409,7 @@ parameters:
         offset: -40
 
     seg4Cell12Temp_C:
-        id: 292
+        id: 256
         motec_name: Segment 4 Cell 12 Temp
         unit: C
         type: FLOATING
@@ -2744,119 +2417,10 @@ parameters:
         scale: 0.1
         offset: -40
 
-    # Segment 4 Balancing
-    seg4Cell1BalanceEnable_state:
-        id: 293
-        motec_name: Segment 4 Cell 1 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell2BalanceEnable_state:
-        id: 294
-        motec_name: Segment 4 Cell 2 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell3BalanceEnable_state:
-        id: 295
-        motec_name: Segment 4 Cell 3 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell4BalanceEnable_state:
-        id: 296
-        motec_name: Segment 4 Cell 4 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell5BalanceEnable_state:
-        id: 297
-        motec_name: Segment 4 Cell 5 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell6BalanceEnable_state:
-        id: 298
-        motec_name: Segment 4 Cell 6 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell7BalanceEnable_state:
-        id: 299
-        motec_name: Segment 4 Cell 7 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell8BalanceEnable_state:
-        id: 300
-        motec_name: Segment 4 Cell 8 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell9BalanceEnable_state:
-        id: 301
-        motec_name: Segment 4 Cell 9 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell10BalanceEnable_state:
-        id: 302
-        motec_name: Segment 4 Cell 10 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell11BalanceEnable_state:
-        id: 303
-        motec_name: Segment 4 Cell 11 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg4Cell12BalanceEnable_state:
-        id: 304
-        motec_name: Segment 4 Cell 12 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     # END SEGMENT 4
     # Segment 5 Overall
     seg5Voltage_V:
-        id: 305
+        id: 257
         motec_name: Segment 5 Voltage
         unit: V
         type: FLOATING
@@ -2865,7 +2429,7 @@ parameters:
         offset: 0
 
     seg5BMBMaxBoardTemp_C:
-        id: 306
+        id: 258
         motec_name: Segment 5 BMB Max Board Temp
         unit: C
         type: FLOATING
@@ -2874,7 +2438,7 @@ parameters:
         offset: -40
 
     seg5BMBMinBoardTemp_C:
-        id: 307
+        id: 259
         motec_name: Segment 5 BMB Min Board Temp
         unit: C
         type: FLOATING
@@ -2883,7 +2447,7 @@ parameters:
         offset: -40
 
     seg5BMBAveBoardTemp_C:
-        id: 308
+        id: 260
         motec_name: Segment 5 BMB Ave Board Temp
         unit: C
         type: FLOATING
@@ -2892,7 +2456,7 @@ parameters:
         offset: -40
 
     seg5MaxCellVoltage_V:
-        id: 309
+        id: 261
         motec_name: Segment 5 Max Cell Voltage
         unit: V
         type: FLOATING
@@ -2901,7 +2465,7 @@ parameters:
         offset: 0
 
     seg5MinCellVoltage_V:
-        id: 310
+        id: 262
         motec_name: Segment 5 Min Cell Voltage
         unit: V
         type: FLOATING
@@ -2910,7 +2474,7 @@ parameters:
         offset: 0
 
     seg5AveCellVoltage_V:
-        id: 311
+        id: 263
         motec_name: Segment 5 Average Cell Voltage
         unit: V
         type: FLOATING
@@ -2919,7 +2483,7 @@ parameters:
         offset: 0
 
     seg5MaxCellTemp_C:
-        id: 312
+        id: 264
         motec_name: Segment 5 Max Cell Temp
         unit: C
         type: FLOATING
@@ -2928,7 +2492,7 @@ parameters:
         offset: -40
 
     seg5MinCellTemp_C:
-        id: 313
+        id: 265
         motec_name: Segment 5 Min Cell Temp
         unit: C
         type: FLOATING
@@ -2937,7 +2501,7 @@ parameters:
         offset: -40
 
     seg5AveCellTemp_C:
-        id: 314
+        id: 266
         motec_name: Segment 5 Ave Cell Temp
         unit: C
         type: FLOATING
@@ -2947,7 +2511,7 @@ parameters:
 
     # Segment 5 BMB Board Temps
     seg5BMBBoardTemp1_C:
-        id: 315
+        id: 267
         motec_name: Segment 5 BMB Board Temp 1
         unit: C
         type: FLOATING
@@ -2956,7 +2520,7 @@ parameters:
         offset: -40
 
     seg5BMBBoardTemp2_C:
-        id: 316
+        id: 268
         motec_name: Segment 5 BMB Board Temp 2
         unit: C
         type: FLOATING
@@ -2965,7 +2529,7 @@ parameters:
         offset: -40
 
     seg5BMBBoardTemp3_C:
-        id: 317
+        id: 269
         motec_name: Segment 5 BMB Board Temp 3
         unit: C
         type: FLOATING
@@ -2974,7 +2538,7 @@ parameters:
         offset: -40
 
     seg5BMBBoardTemp4_C:
-        id: 318
+        id: 270
         motec_name: Segment 5 BMB Board Temp 4
         unit: C
         type: FLOATING
@@ -2984,7 +2548,7 @@ parameters:
 
     # Segment 5 Voltage
     seg5Cell1Voltage_V:
-        id: 319
+        id: 271
         motec_name: Segment 5 Cell 1 Voltage
         unit: V
         type: FLOATING
@@ -2993,7 +2557,7 @@ parameters:
         offset: 0
 
     seg5Cell2Voltage_V:
-        id: 320
+        id: 272
         motec_name: Segment 5 Cell 2 Voltage
         unit: V
         type: FLOATING
@@ -3002,7 +2566,7 @@ parameters:
         offset: 0
 
     seg5Cell3Voltage_V:
-        id: 321
+        id: 273
         motec_name: Segment 5 Cell 3 Voltage
         unit: V
         type: FLOATING
@@ -3011,7 +2575,7 @@ parameters:
         offset: 0
 
     seg5Cell4Voltage_V:
-        id: 322
+        id: 274
         motec_name: Segment 5 Cell 4 Voltage
         unit: V
         type: FLOATING
@@ -3020,7 +2584,7 @@ parameters:
         offset: 0
 
     seg5Cell5Voltage_V:
-        id: 323
+        id: 275
         motec_name: Segment 5 Cell 5 Voltage
         unit: V
         type: FLOATING
@@ -3029,7 +2593,7 @@ parameters:
         offset: 0
 
     seg5Cell6Voltage_V:
-        id: 324
+        id: 276
         motec_name: Segment 5 Cell 6 Voltage
         unit: V
         type: FLOATING
@@ -3038,7 +2602,7 @@ parameters:
         offset: 0
 
     seg5Cell7Voltage_V:
-        id: 325
+        id: 277
         motec_name: Segment 5 Cell 7 Voltage
         unit: V
         type: FLOATING
@@ -3047,7 +2611,7 @@ parameters:
         offset: 0
 
     seg5Cell8Voltage_V:
-        id: 326
+        id: 278
         motec_name: Segment 5 Cell 8 Voltage
         unit: V
         type: FLOATING
@@ -3056,7 +2620,7 @@ parameters:
         offset: 0
 
     seg5Cell9Voltage_V:
-        id: 327
+        id: 279
         motec_name: Segment 5 Cell 9 Voltage
         unit: V
         type: FLOATING
@@ -3065,7 +2629,7 @@ parameters:
         offset: 0
 
     seg5Cell10Voltage_V:
-        id: 328
+        id: 280
         motec_name: Segment 5 Cell 10 Voltage
         unit: V
         type: FLOATING
@@ -3074,7 +2638,7 @@ parameters:
         offset: 0
 
     seg5Cell11Voltage_V:
-        id: 329
+        id: 281
         motec_name: Segment 5 Cell 11 Voltage
         unit: V
         type: FLOATING
@@ -3083,7 +2647,7 @@ parameters:
         offset: 0
 
     seg5Cell12Voltage_V:
-        id: 330
+        id: 282
         motec_name: Segment 5 Cell 12 Voltage
         unit: V
         type: FLOATING
@@ -3093,7 +2657,7 @@ parameters:
 
     # Segment 5 Temp
     seg5Cell1Temp_C:
-        id: 331
+        id: 283
         motec_name: Segment 5 Cell 1 Temp
         unit: C
         type: FLOATING
@@ -3102,7 +2666,7 @@ parameters:
         offset: -40
 
     seg5Cell2Temp_C:
-        id: 332
+        id: 284
         motec_name: Segment 5 Cell 2 Temp
         unit: C
         type: FLOATING
@@ -3111,7 +2675,7 @@ parameters:
         offset: -40
 
     seg5Cell3Temp_C:
-        id: 333
+        id: 285
         motec_name: Segment 5 Cell 3 Temp
         unit: C
         type: FLOATING
@@ -3120,7 +2684,7 @@ parameters:
         offset: -40
 
     seg5Cell4Temp_C:
-        id: 334
+        id: 286
         motec_name: Segment 5 Cell 4 Temp
         unit: C
         type: FLOATING
@@ -3129,7 +2693,7 @@ parameters:
         offset: -40
 
     seg5Cell5Temp_C:
-        id: 335
+        id: 287
         motec_name: Segment 5 Cell 5 Temp
         unit: C
         type: FLOATING
@@ -3138,7 +2702,7 @@ parameters:
         offset: -40
 
     seg5Cell6Temp_C:
-        id: 336
+        id: 288
         motec_name: Segment 5 Cell 6 Temp
         unit: C
         type: FLOATING
@@ -3147,7 +2711,7 @@ parameters:
         offset: -40
 
     seg5Cell7Temp_C:
-        id: 337
+        id: 289
         motec_name: Segment 5 Cell 7 Temp
         unit: C
         type: FLOATING
@@ -3156,7 +2720,7 @@ parameters:
         offset: -40
 
     seg5Cell8Temp_C:
-        id: 338
+        id: 290
         motec_name: Segment 5 Cell 8 Temp
         unit: C
         type: FLOATING
@@ -3165,7 +2729,7 @@ parameters:
         offset: -40
 
     seg5Cell9Temp_C:
-        id: 339
+        id: 291
         motec_name: Segment 5 Cell 9 Temp
         unit: C
         type: FLOATING
@@ -3174,7 +2738,7 @@ parameters:
         offset: -40
 
     seg5Cell10Temp_C:
-        id: 340
+        id: 292
         motec_name: Segment 5 Cell 10 Temp
         unit: C
         type: FLOATING
@@ -3183,7 +2747,7 @@ parameters:
         offset: -40
 
     seg5Cell11Temp_C:
-        id: 341
+        id: 293
         motec_name: Segment 5 Cell 11 Temp
         unit: C
         type: FLOATING
@@ -3192,7 +2756,7 @@ parameters:
         offset: -40
 
     seg5Cell12Temp_C:
-        id: 342
+        id: 294
         motec_name: Segment 5 Cell 12 Temp
         unit: C
         type: FLOATING
@@ -3200,119 +2764,10 @@ parameters:
         scale: 0.1
         offset: -40
 
-    # Segment 5 Balancing
-    seg5Cell1BalanceEnable_state:
-        id: 343
-        motec_name: Segment 5 Cell 1 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell2BalanceEnable_state:
-        id: 344
-        motec_name: Segment 5 Cell 2 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell3BalanceEnable_state:
-        id: 345
-        motec_name: Segment 5 Cell 3 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell4BalanceEnable_state:
-        id: 346
-        motec_name: Segment 5 Cell 4 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell5BalanceEnable_state:
-        id: 347
-        motec_name: Segment 5 Cell 5 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell6BalanceEnable_state:
-        id: 348
-        motec_name: Segment 5 Cell 6 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell7BalanceEnable_state:
-        id: 349
-        motec_name: Segment 5 Cell 7 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell8BalanceEnable_state:
-        id: 350
-        motec_name: Segment 5 Cell 8 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell9BalanceEnable_state:
-        id: 351
-        motec_name: Segment 5 Cell 9 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell10BalanceEnable_state:
-        id: 352
-        motec_name: Segment 5 Cell 10 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell11BalanceEnable_state:
-        id: 353
-        motec_name: Segment 5 Cell 11 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg5Cell12BalanceEnable_state:
-        id: 354
-        motec_name: Segment 5 Cell 12 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     # END SEGMENT 5
     # Segment 6 Overall
     seg6Voltage_V:
-        id: 355
+        id: 295
         motec_name: Segment 6 Voltage
         unit: V
         type: FLOATING
@@ -3321,7 +2776,7 @@ parameters:
         offset: 0
 
     seg6BMBMaxBoardTemp_C:
-        id: 356
+        id: 296
         motec_name: Segment 6 BMB Max Board Temp
         unit: C
         type: FLOATING
@@ -3330,7 +2785,7 @@ parameters:
         offset: -40
 
     seg6BMBMinBoardTemp_C:
-        id: 357
+        id: 297
         motec_name: Segment 6 BMB Min Board Temp
         unit: C
         type: FLOATING
@@ -3339,7 +2794,7 @@ parameters:
         offset: -40
 
     seg6BMBAveBoardTemp_C:
-        id: 358
+        id: 298
         motec_name: Segment 6 BMB Ave Board Temp
         unit: C
         type: FLOATING
@@ -3348,7 +2803,7 @@ parameters:
         offset: -40
 
     seg6MaxCellVoltage_V:
-        id: 359
+        id: 299
         motec_name: Segment 6 Max Cell Voltage
         unit: V
         type: FLOATING
@@ -3357,7 +2812,7 @@ parameters:
         offset: 0
 
     seg6MinCellVoltage_V:
-        id: 360
+        id: 300
         motec_name: Segment 6 Min Cell Voltage
         unit: V
         type: FLOATING
@@ -3366,7 +2821,7 @@ parameters:
         offset: 0
 
     seg6AveCellVoltage_V:
-        id: 361
+        id: 301
         motec_name: Segment 6 Average Cell Voltage
         unit: V
         type: FLOATING
@@ -3375,7 +2830,7 @@ parameters:
         offset: 0
 
     seg6MaxCellTemp_C:
-        id: 362
+        id: 302
         motec_name: Segment 6 Max Cell Temp
         unit: C
         type: FLOATING
@@ -3384,7 +2839,7 @@ parameters:
         offset: -40
 
     seg6MinCellTemp_C:
-        id: 363
+        id: 303
         motec_name: Segment 6 Min Cell Temp
         unit: C
         type: FLOATING
@@ -3393,7 +2848,7 @@ parameters:
         offset: -40
 
     seg6AveCellTemp_C:
-        id: 364
+        id: 304
         motec_name: Segment 6 Ave Cell Temp
         unit: C
         type: FLOATING
@@ -3403,7 +2858,7 @@ parameters:
 
     # Segment 6 BMB Board Temps
     seg6BMBBoardTemp1_C:
-        id: 365
+        id: 305
         motec_name: Segment 6 BMB Board Temp 1
         unit: C
         type: FLOATING
@@ -3412,7 +2867,7 @@ parameters:
         offset: -40
 
     seg6BMBBoardTemp2_C:
-        id: 366
+        id: 306
         motec_name: Segment 6 BMB Board Temp 2
         unit: C
         type: FLOATING
@@ -3421,7 +2876,7 @@ parameters:
         offset: -40
 
     seg6BMBBoardTemp3_C:
-        id: 367
+        id: 307
         motec_name: Segment 6 BMB Board Temp 3
         unit: C
         type: FLOATING
@@ -3430,7 +2885,7 @@ parameters:
         offset: -40
 
     seg6BMBBoardTemp4_C:
-        id: 368
+        id: 308
         motec_name: Segment 6 BMB Board Temp 4
         unit: C
         type: FLOATING
@@ -3440,7 +2895,7 @@ parameters:
 
     # Segment 6 Voltage
     seg6Cell1Voltage_V:
-        id: 369
+        id: 309
         motec_name: Segment 6 Cell 1 Voltage
         unit: V
         type: FLOATING
@@ -3449,7 +2904,7 @@ parameters:
         offset: 0
 
     seg6Cell2Voltage_V:
-        id: 370
+        id: 310
         motec_name: Segment 6 Cell 2 Voltage
         unit: V
         type: FLOATING
@@ -3458,7 +2913,7 @@ parameters:
         offset: 0
 
     seg6Cell3Voltage_V:
-        id: 371
+        id: 311
         motec_name: Segment 6 Cell 3 Voltage
         unit: V
         type: FLOATING
@@ -3467,7 +2922,7 @@ parameters:
         offset: 0
 
     seg6Cell4Voltage_V:
-        id: 372
+        id: 312
         motec_name: Segment 6 Cell 4 Voltage
         unit: V
         type: FLOATING
@@ -3476,7 +2931,7 @@ parameters:
         offset: 0
 
     seg6Cell5Voltage_V:
-        id: 373
+        id: 313
         motec_name: Segment 6 Cell 5 Voltage
         unit: V
         type: FLOATING
@@ -3485,7 +2940,7 @@ parameters:
         offset: 0
 
     seg6Cell6Voltage_V:
-        id: 374
+        id: 314
         motec_name: Segment 6 Cell 6 Voltage
         unit: V
         type: FLOATING
@@ -3494,7 +2949,7 @@ parameters:
         offset: 0
 
     seg6Cell7Voltage_V:
-        id: 375
+        id: 315
         motec_name: Segment 6 Cell 7 Voltage
         unit: V
         type: FLOATING
@@ -3503,7 +2958,7 @@ parameters:
         offset: 0
 
     seg6Cell8Voltage_V:
-        id: 376
+        id: 316
         motec_name: Segment 6 Cell 8 Voltage
         unit: V
         type: FLOATING
@@ -3512,7 +2967,7 @@ parameters:
         offset: 0
 
     seg6Cell9Voltage_V:
-        id: 377
+        id: 317
         motec_name: Segment 6 Cell 9 Voltage
         unit: V
         type: FLOATING
@@ -3521,7 +2976,7 @@ parameters:
         offset: 0
 
     seg6Cell10Voltage_V:
-        id: 378
+        id: 318
         motec_name: Segment 6 Cell 10 Voltage
         unit: V
         type: FLOATING
@@ -3530,7 +2985,7 @@ parameters:
         offset: 0
 
     seg6Cell11Voltage_V:
-        id: 379
+        id: 319
         motec_name: Segment 6 Cell 11 Voltage
         unit: V
         type: FLOATING
@@ -3539,7 +2994,7 @@ parameters:
         offset: 0
 
     seg6Cell12Voltage_V:
-        id: 380
+        id: 320
         motec_name: Segment 6 Cell 12 Voltage
         unit: V
         type: FLOATING
@@ -3549,7 +3004,7 @@ parameters:
 
     # Segment 6 Temp
     seg6Cell1Temp_C:
-        id: 381
+        id: 321
         motec_name: Segment 6 Cell 1 Temp
         unit: C
         type: FLOATING
@@ -3558,7 +3013,7 @@ parameters:
         offset: -40
 
     seg6Cell2Temp_C:
-        id: 382
+        id: 322
         motec_name: Segment 6 Cell 2 Temp
         unit: C
         type: FLOATING
@@ -3567,7 +3022,7 @@ parameters:
         offset: -40
 
     seg6Cell3Temp_C:
-        id: 383
+        id: 323
         motec_name: Segment 6 Cell 3 Temp
         unit: C
         type: FLOATING
@@ -3576,7 +3031,7 @@ parameters:
         offset: -40
 
     seg6Cell4Temp_C:
-        id: 384
+        id: 324
         motec_name: Segment 6 Cell 4 Temp
         unit: C
         type: FLOATING
@@ -3585,7 +3040,7 @@ parameters:
         offset: -40
 
     seg6Cell5Temp_C:
-        id: 385
+        id: 325
         motec_name: Segment 6 Cell 5 Temp
         unit: C
         type: FLOATING
@@ -3594,7 +3049,7 @@ parameters:
         offset: -40
 
     seg6Cell6Temp_C:
-        id: 386
+        id: 326
         motec_name: Segment 6 Cell 6 Temp
         unit: C
         type: FLOATING
@@ -3603,7 +3058,7 @@ parameters:
         offset: -40
 
     seg6Cell7Temp_C:
-        id: 387
+        id: 327
         motec_name: Segment 6 Cell 7 Temp
         unit: C
         type: FLOATING
@@ -3612,7 +3067,7 @@ parameters:
         offset: -40
 
     seg6Cell8Temp_C:
-        id: 388
+        id: 328
         motec_name: Segment 6 Cell 8 Temp
         unit: C
         type: FLOATING
@@ -3621,7 +3076,7 @@ parameters:
         offset: -40
 
     seg6Cell9Temp_C:
-        id: 389
+        id: 329
         motec_name: Segment 6 Cell 9 Temp
         unit: C
         type: FLOATING
@@ -3630,7 +3085,7 @@ parameters:
         offset: -40
 
     seg6Cell10Temp_C:
-        id: 390
+        id: 330
         motec_name: Segment 6 Cell 10 Temp
         unit: C
         type: FLOATING
@@ -3639,7 +3094,7 @@ parameters:
         offset: -40
 
     seg6Cell11Temp_C:
-        id: 391
+        id: 331
         motec_name: Segment 6 Cell 11 Temp
         unit: C
         type: FLOATING
@@ -3648,7 +3103,7 @@ parameters:
         offset: -40
 
     seg6Cell12Temp_C:
-        id: 392
+        id: 332
         motec_name: Segment 6 Cell 12 Temp
         unit: C
         type: FLOATING
@@ -3656,119 +3111,10 @@ parameters:
         scale: 0.1
         offset: -40
 
-    # Segment 6 Balancing
-    seg6Cell1BalanceEnable_state:
-        id: 393
-        motec_name: Segment 6 Cell 1 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell2BalanceEnable_state:
-        id: 394
-        motec_name: Segment 6 Cell 2 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell3BalanceEnable_state:
-        id: 395
-        motec_name: Segment 6 Cell 3 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell4BalanceEnable_state:
-        id: 396
-        motec_name: Segment 6 Cell 4 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell5BalanceEnable_state:
-        id: 397
-        motec_name: Segment 6 Cell 5 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell6BalanceEnable_state:
-        id: 398
-        motec_name: Segment 6 Cell 6 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell7BalanceEnable_state:
-        id: 399
-        motec_name: Segment 6 Cell 7 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell8BalanceEnable_state:
-        id: 400
-        motec_name: Segment 6 Cell 8 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell9BalanceEnable_state:
-        id: 401
-        motec_name: Segment 6 Cell 9 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell10BalanceEnable_state:
-        id: 402
-        motec_name: Segment 6 Cell 10 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell11BalanceEnable_state:
-        id: 403
-        motec_name: Segment 6 Cell 11 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg6Cell12BalanceEnable_state:
-        id: 404
-        motec_name: Segment 6 Cell 12 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     # END SEGMENT 6
     # Segment 7 Overall
     seg7Voltage_V:
-        id: 405
+        id: 333
         motec_name: Segment 7 Voltage
         unit: V
         type: FLOATING
@@ -3777,7 +3123,7 @@ parameters:
         offset: 0
 
     seg7BMBMaxBoardTemp_C:
-        id: 406
+        id: 334
         motec_name: Segment 7 BMB Max Board Temp
         unit: C
         type: FLOATING
@@ -3786,7 +3132,7 @@ parameters:
         offset: -40
 
     seg7BMBMinBoardTemp_C:
-        id: 407
+        id: 335
         motec_name: Segment 7 BMB Min Board Temp
         unit: C
         type: FLOATING
@@ -3795,7 +3141,7 @@ parameters:
         offset: -40
 
     seg7BMBAveBoardTemp_C:
-        id: 408
+        id: 336
         motec_name: Segment 7 BMB Ave Board Temp
         unit: C
         type: FLOATING
@@ -3804,7 +3150,7 @@ parameters:
         offset: -40
 
     seg7MaxCellVoltage_V:
-        id: 409
+        id: 337
         motec_name: Segment 7 Max Cell Voltage
         unit: V
         type: FLOATING
@@ -3813,7 +3159,7 @@ parameters:
         offset: 0
 
     seg7MinCellVoltage_V:
-        id: 410
+        id: 338
         motec_name: Segment 7 Min Cell Voltage
         unit: V
         type: FLOATING
@@ -3822,7 +3168,7 @@ parameters:
         offset: 0
 
     seg7AveCellVoltage_V:
-        id: 411
+        id: 339
         motec_name: Segment 7 Average Cell Voltage
         unit: V
         type: FLOATING
@@ -3831,7 +3177,7 @@ parameters:
         offset: 0
 
     seg7MaxCellTemp_C:
-        id: 412
+        id: 340
         motec_name: Segment 7 Max Cell Temp
         unit: C
         type: FLOATING
@@ -3840,7 +3186,7 @@ parameters:
         offset: -40
 
     seg7MinCellTemp_C:
-        id: 413
+        id: 341
         motec_name: Segment 7 Min Cell Temp
         unit: C
         type: FLOATING
@@ -3849,7 +3195,7 @@ parameters:
         offset: -40
 
     seg7AveCellTemp_C:
-        id: 414
+        id: 342
         motec_name: Segment 7 Ave Cell Temp
         unit: C
         type: FLOATING
@@ -3859,7 +3205,7 @@ parameters:
 
     # Segment 7 BMB Board Temps
     seg7BMBBoardTemp1_C:
-        id: 415
+        id: 343
         motec_name: Segment 7 BMB Board Temp 1
         unit: C
         type: FLOATING
@@ -3868,7 +3214,7 @@ parameters:
         offset: -40
 
     seg7BMBBoardTemp2_C:
-        id: 416
+        id: 344
         motec_name: Segment 7 BMB Board Temp 2
         unit: C
         type: FLOATING
@@ -3877,7 +3223,7 @@ parameters:
         offset: -40
 
     seg7BMBBoardTemp3_C:
-        id: 417
+        id: 345
         motec_name: Segment 7 BMB Board Temp 3
         unit: C
         type: FLOATING
@@ -3886,7 +3232,7 @@ parameters:
         offset: -40
 
     seg7BMBBoardTemp4_C:
-        id: 418
+        id: 346
         motec_name: Segment 7 BMB Board Temp 4
         unit: C
         type: FLOATING
@@ -3896,7 +3242,7 @@ parameters:
 
     # Segment 7 Voltage
     seg7Cell1Voltage_V:
-        id: 419
+        id: 347
         motec_name: Segment 7 Cell 1 Voltage
         unit: V
         type: FLOATING
@@ -3905,7 +3251,7 @@ parameters:
         offset: 0
 
     seg7Cell2Voltage_V:
-        id: 420
+        id: 348
         motec_name: Segment 7 Cell 2 Voltage
         unit: V
         type: FLOATING
@@ -3914,7 +3260,7 @@ parameters:
         offset: 0
 
     seg7Cell3Voltage_V:
-        id: 421
+        id: 349
         motec_name: Segment 7 Cell 3 Voltage
         unit: V
         type: FLOATING
@@ -3923,7 +3269,7 @@ parameters:
         offset: 0
 
     seg7Cell4Voltage_V:
-        id: 422
+        id: 350
         motec_name: Segment 7 Cell 4 Voltage
         unit: V
         type: FLOATING
@@ -3932,7 +3278,7 @@ parameters:
         offset: 0
 
     seg7Cell5Voltage_V:
-        id: 423
+        id: 351
         motec_name: Segment 7 Cell 5 Voltage
         unit: V
         type: FLOATING
@@ -3941,7 +3287,7 @@ parameters:
         offset: 0
 
     seg7Cell6Voltage_V:
-        id: 424
+        id: 352
         motec_name: Segment 7 Cell 6 Voltage
         unit: V
         type: FLOATING
@@ -3950,7 +3296,7 @@ parameters:
         offset: 0
 
     seg7Cell7Voltage_V:
-        id: 425
+        id: 353
         motec_name: Segment 7 Cell 7 Voltage
         unit: V
         type: FLOATING
@@ -3959,7 +3305,7 @@ parameters:
         offset: 0
 
     seg7Cell8Voltage_V:
-        id: 426
+        id: 354
         motec_name: Segment 7 Cell 8 Voltage
         unit: V
         type: FLOATING
@@ -3968,7 +3314,7 @@ parameters:
         offset: 0
 
     seg7Cell9Voltage_V:
-        id: 427
+        id: 355
         motec_name: Segment 7 Cell 9 Voltage
         unit: V
         type: FLOATING
@@ -3977,7 +3323,7 @@ parameters:
         offset: 0
 
     seg7Cell10Voltage_V:
-        id: 428
+        id: 356
         motec_name: Segment 7 Cell 10 Voltage
         unit: V
         type: FLOATING
@@ -3986,7 +3332,7 @@ parameters:
         offset: 0
 
     seg7Cell11Voltage_V:
-        id: 429
+        id: 357
         motec_name: Segment 7 Cell 11 Voltage
         unit: V
         type: FLOATING
@@ -3995,7 +3341,7 @@ parameters:
         offset: 0
 
     seg7Cell12Voltage_V:
-        id: 430
+        id: 358
         motec_name: Segment 7 Cell 12 Voltage
         unit: V
         type: FLOATING
@@ -4005,7 +3351,7 @@ parameters:
 
     # Segment 7 Temp
     seg7Cell1Temp_C:
-        id: 431
+        id: 359
         motec_name: Segment 7 Cell 1 Temp
         unit: C
         type: FLOATING
@@ -4014,7 +3360,7 @@ parameters:
         offset: -40
 
     seg7Cell2Temp_C:
-        id: 432
+        id: 360
         motec_name: Segment 7 Cell 2 Temp
         unit: C
         type: FLOATING
@@ -4023,7 +3369,7 @@ parameters:
         offset: -40
 
     seg7Cell3Temp_C:
-        id: 433
+        id: 361
         motec_name: Segment 7 Cell 3 Temp
         unit: C
         type: FLOATING
@@ -4032,7 +3378,7 @@ parameters:
         offset: -40
 
     seg7Cell4Temp_C:
-        id: 434
+        id: 362
         motec_name: Segment 7 Cell 4 Temp
         unit: C
         type: FLOATING
@@ -4041,7 +3387,7 @@ parameters:
         offset: -40
 
     seg7Cell5Temp_C:
-        id: 435
+        id: 363
         motec_name: Segment 7 Cell 5 Temp
         unit: C
         type: FLOATING
@@ -4050,7 +3396,7 @@ parameters:
         offset: -40
 
     seg7Cell6Temp_C:
-        id: 436
+        id: 364
         motec_name: Segment 7 Cell 6 Temp
         unit: C
         type: FLOATING
@@ -4059,7 +3405,7 @@ parameters:
         offset: -40
 
     seg7Cell7Temp_C:
-        id: 437
+        id: 365
         motec_name: Segment 7 Cell 7 Temp
         unit: C
         type: FLOATING
@@ -4068,7 +3414,7 @@ parameters:
         offset: -40
 
     seg7Cell8Temp_C:
-        id: 438
+        id: 366
         motec_name: Segment 7 Cell 8 Temp
         unit: C
         type: FLOATING
@@ -4077,7 +3423,7 @@ parameters:
         offset: -40
 
     seg7Cell9Temp_C:
-        id: 439
+        id: 367
         motec_name: Segment 7 Cell 9 Temp
         unit: C
         type: FLOATING
@@ -4086,7 +3432,7 @@ parameters:
         offset: -40
 
     seg7Cell10Temp_C:
-        id: 440
+        id: 368
         motec_name: Segment 7 Cell 10 Temp
         unit: C
         type: FLOATING
@@ -4095,7 +3441,7 @@ parameters:
         offset: -40
 
     seg7Cell11Temp_C:
-        id: 441
+        id: 369
         motec_name: Segment 7 Cell 11 Temp
         unit: C
         type: FLOATING
@@ -4104,7 +3450,7 @@ parameters:
         offset: -40
 
     seg7Cell12Temp_C:
-        id: 442
+        id: 370
         motec_name: Segment 7 Cell 12 Temp
         unit: C
         type: FLOATING
@@ -4112,119 +3458,10 @@ parameters:
         scale: 0.1
         offset: -40
 
-    # Segment 7 Balancing
-    seg7Cell1BalanceEnable_state:
-        id: 443
-        motec_name: Segment 7 Cell 1 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell2BalanceEnable_state:
-        id: 444
-        motec_name: Segment 7 Cell 2 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell3BalanceEnable_state:
-        id: 445
-        motec_name: Segment 7 Cell 3 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell4BalanceEnable_state:
-        id: 446
-        motec_name: Segment 7 Cell 4 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell5BalanceEnable_state:
-        id: 447
-        motec_name: Segment 7 Cell 5 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell6BalanceEnable_state:
-        id: 448
-        motec_name: Segment 7 Cell 6 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell7BalanceEnable_state:
-        id: 449
-        motec_name: Segment 7 Cell 7 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell8BalanceEnable_state:
-        id: 450
-        motec_name: Segment 7 Cell 8 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell9BalanceEnable_state:
-        id: 451
-        motec_name: Segment 7 Cell 9 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell10BalanceEnable_state:
-        id: 452
-        motec_name: Segment 7 Cell 10 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell11BalanceEnable_state:
-        id: 453
-        motec_name: Segment 7 Cell 11 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    seg7Cell12BalanceEnable_state:
-        id: 454
-        motec_name: Segment 7 Cell 12 Balance Enabled
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     # END SEGMENT 7
     # Display Info
     bmsAveBrickVoltage_V:
-        id: 455
+        id: 371
         motec_name: BMS Average Brick Voltage
         unit: V
         type: FLOATING
@@ -4233,7 +3470,7 @@ parameters:
         offset: 0
 
     bmsMaxBrickVoltage_V:
-        id: 456
+        id: 372
         motec_name: BMS Max Brick Voltage
         unit: V
         type: FLOATING
@@ -4242,7 +3479,7 @@ parameters:
         offset: 0
 
     bmsMinBrickVoltage_V:
-        id: 457
+        id: 373
         motec_name: BMS Min Brick Voltage
         unit: V
         type: FLOATING
@@ -4251,7 +3488,7 @@ parameters:
         offset: 0
 
     bmsAveBrickTemp_C:
-        id: 458
+        id: 374
         motec_name: BMS Average Brick Temp
         unit: C
         type: FLOATING
@@ -4260,7 +3497,7 @@ parameters:
         offset: -40
 
     bmsMaxBrickTemp_C:
-        id: 459
+        id: 375
         motec_name: BMS Max Brick Temp
         unit: C
         type: FLOATING
@@ -4269,7 +3506,7 @@ parameters:
         offset: -40
 
     bmsMinBrickTemp_C:
-        id: 460
+        id: 376
         motec_name: BMS Min Brick Temp
         unit: C
         type: FLOATING
@@ -4278,7 +3515,7 @@ parameters:
         offset: -40
 
     bmsAveBoardTemp_C:
-        id: 461
+        id: 377
         motec_name: BMS Average Board Temp
         unit: C
         type: FLOATING
@@ -4287,7 +3524,7 @@ parameters:
         offset: -40
 
     bmsMaxBoardTemp_C:
-        id: 462
+        id: 378
         motec_name: BMS Max Board Temp
         unit: C
         type: FLOATING
@@ -4296,7 +3533,7 @@ parameters:
         offset: -40
 
     bmsMinBoardTemp_C:
-        id: 463
+        id: 379
         motec_name: BMS Min Board Temp
         unit: C
         type: FLOATING
@@ -4306,7 +3543,7 @@ parameters:
 
     # Error states
     amsFault_state:
-        id: 464
+        id: 380
         motec_name: AMS Fault State
         unit: ''
         type: UNSIGNED8
@@ -4315,7 +3552,7 @@ parameters:
         offset: 0
 
     imdFault_state:
-        id: 465
+        id: 381
         motec_name: IMD Fault State
         unit: ''
         type: UNSIGNED8
@@ -4324,7 +3561,7 @@ parameters:
         offset: 0
 
     bspdFault_state:
-        id: 466
+        id: 382
         motec_name: BSPD Fault State
         unit: ''
         type: UNSIGNED8
@@ -4333,7 +3570,7 @@ parameters:
         offset: 0
 
     imdFaultInfo_state:
-        id: 467
+        id: 383
         motec_name: IMD Fault Information
         unit: ''
         type: UNSIGNED8
@@ -4342,7 +3579,7 @@ parameters:
         offset: 0
 
     bmsNumActiveAlerts_state:
-        id: 468
+        id: 384
         motec_name: BMS Num Active Alerts
         unit: ''
         type: UNSIGNED8
@@ -4351,7 +3588,7 @@ parameters:
         offset: 0
 
     bmsCurrAlertIndex_state:
-        id: 469
+        id: 385
         motec_name: BMS Current Alert Index
         unit: ''
         type: UNSIGNED8
@@ -4360,7 +3597,7 @@ parameters:
         offset: 0
 
     bmsAlertMessage_state:
-        id: 470
+        id: 386
         motec_name: BMS Alert Message
         unit: ''
         type: UNSIGNED8
@@ -4370,7 +3607,7 @@ parameters:
 
     #Faults
     bmsOvervoltageFaultAlert_state:
-        id: 471
+        id: 387
         motec_name: BMS Overvoltage Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -4379,7 +3616,7 @@ parameters:
         offset: 0
 
     bmsUndervoltageFaultAlert_state:
-        id: 472
+        id: 388
         motec_name: BMS Undervoltage Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -4388,7 +3625,7 @@ parameters:
         offset: 0
 
     bmsOvertempFaultAlert_state:
-        id: 473
+        id: 389
         motec_name: BMS Overtemp Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -4397,7 +3634,7 @@ parameters:
         offset: 0
 
     bmsBmbCommunicationFailureAlert_state:
-        id: 474
+        id: 390
         motec_name: BMS BMB Communication Failure Alert
         unit: ''
         type: UNSIGNED8
@@ -4406,7 +3643,7 @@ parameters:
         offset: 0
 
     bmsBadVoltageSenseStatusAlert_state:
-        id: 475
+        id: 391
         motec_name: BMS Bad Voltage Status Alert
         unit: ''
         type: UNSIGNED8
@@ -4415,7 +3652,7 @@ parameters:
         offset: 0
 
     bmsInsufficientTempSensorsAlert_state:
-        id: 476
+        id: 392
         motec_name: BMS Insufficient Temp Sensors Alert
         unit: ''
         type: UNSIGNED8
@@ -4424,7 +3661,7 @@ parameters:
         offset: 0
 
     bmsChargerOverVoltageAlert_state:
-        id: 477
+        id: 393
         motec_name: BMS Charger Over Votlage Alert
         unit: ''
         type: UNSIGNED8
@@ -4433,7 +3670,7 @@ parameters:
         offset: 0
 
     bmsChargerOverCurrentAlert_state:
-        id: 478
+        id: 394
         motec_name: BMS Charger Over Current Alert
         unit: ''
         type: UNSIGNED8
@@ -4442,7 +3679,7 @@ parameters:
         offset: 0
 
     bmsChargerVoltageMismatchAlert_state:
-        id: 479
+        id: 395
         motec_name: BMS Charger Voltage Mismatch Alert
         unit: ''
         type: UNSIGNED8
@@ -4451,7 +3688,7 @@ parameters:
         offset: 0
 
     bmsChargerCurrentMismatchAlert_state:
-        id: 480
+        id: 396
         motec_name: BMS Charger Current Mismatch Alert
         unit: ''
         type: UNSIGNED8
@@ -4460,7 +3697,7 @@ parameters:
         offset: 0
 
     bmsChargerHardwareFailureAlert_state:
-        id: 481
+        id: 397
         motec_name: BMS Charger Hardware Failure Alert
         unit: ''
         type: UNSIGNED8
@@ -4469,7 +3706,7 @@ parameters:
         offset: 0
 
     bmsChargerOverTempAlert_state:
-        id: 482
+        id: 398
         motec_name: BMS Charger Over Temp Alert
         unit: ''
         type: UNSIGNED8
@@ -4479,7 +3716,7 @@ parameters:
 
     # Other Alerts
     bmsOvervoltageWarningAlert_state:
-        id: 483
+        id: 399
         motec_name: BMS Overvoltage Warning Alert
         unit: ''
         type: UNSIGNED8
@@ -4488,7 +3725,7 @@ parameters:
         offset: 0
 
     bmsUndervoltageWarningAlert_state:
-        id: 484
+        id: 400
         motec_name: BMS Undervoltage Warning Alert
         unit: ''
         type: UNSIGNED8
@@ -4497,7 +3734,7 @@ parameters:
         offset: 0
 
     bmsCellImbalanceAlert_state:
-        id: 485
+        id: 401
         motec_name: BMS Cell Imbalance Alert
         unit: ''
         type: UNSIGNED8
@@ -4506,7 +3743,7 @@ parameters:
         offset: 0
 
     bmsOvertempWarningAlert_state:
-        id: 486
+        id: 402
         motec_name: BMS Overtemp Warning Alert
         unit: ''
         type: UNSIGNED8
@@ -4515,7 +3752,7 @@ parameters:
         offset: 0
 
     bmsAmsSdcFaultAlert_state:
-        id: 487
+        id: 403
         motec_name: BMS AMS SDC Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -4524,7 +3761,7 @@ parameters:
         offset: 0
 
     bmsBspdSdcFaultAlert_state:
-        id: 488
+        id: 404
         motec_name: BMS SDC Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -4533,7 +3770,7 @@ parameters:
         offset: 0
 
     bmsImdSdcFaultAlert_state:
-        id: 489
+        id: 405
         motec_name: BMS IMD SDC Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -4542,7 +3779,7 @@ parameters:
         offset: 0
 
     bmsCurrentSensorErrorAlert_state:
-        id: 490
+        id: 406
         motec_name: BMS Current Sensor Error Alert
         unit: ''
         type: UNSIGNED8
@@ -4551,7 +3788,7 @@ parameters:
         offset: 0
 
     bmsBadBrickTempSenseStatusAlert_state:
-        id: 491
+        id: 407
         motec_name: BMS Bad Brick Temp Status Alert
         unit: ''
         type: UNSIGNED8
@@ -4560,7 +3797,7 @@ parameters:
         offset: 0
 
     bmsBadBoardTempSenseStatusAlert_state:
-        id: 492
+        id: 408
         motec_name: BMS Bad Board Temp Sense Status
         unit: ''
         type: UNSIGNED8
@@ -4569,7 +3806,7 @@ parameters:
         offset: 0
 
     bmsStackVsSegmentImbalanceAlert_state:
-        id: 493
+        id: 409
         motec_name: BMS Stack Vs Segment Imbalance Alert
         unit: ''
         type: UNSIGNED8
@@ -4578,7 +3815,7 @@ parameters:
         offset: 0
 
     bmsChargerInputVoltageErrorAlert_state:
-        id: 494
+        id: 410
         motec_name: BMS Charger Input Voltage Error Alert
         unit: ''
         type: UNSIGNED8
@@ -4587,7 +3824,7 @@ parameters:
         offset: 0
 
     bmsChargerBatteryNotDetectedErrorAlert_state:
-        id: 495
+        id: 411
         motec_name: BMS Charger Battery Not Detected Error Alert
         unit: ''
         type: UNSIGNED8
@@ -4596,7 +3833,7 @@ parameters:
         offset: 0
 
     bmsChargerCommunicationErrorAlert_state:
-        id: 496
+        id: 412
         motec_name: BMS Charger Communication Error Alert
         unit: ''
         type: UNSIGNED8
@@ -4607,7 +3844,7 @@ parameters:
     # END Error States
     # Tractive System Currents
     bmsTractiveSystemCurrentLow_A:
-        id: 497
+        id: 413
         motec_name: Tractive System Current Low (BMS)
         unit: A
         type: FLOATING
@@ -4616,7 +3853,7 @@ parameters:
         offset: -100
 
     bmsTractiveSystemCurrentHigh_A:
-        id: 498
+        id: 414
         motec_name: Tractive System Current High (BMS)
         unit: A
         type: FLOATING
@@ -4627,7 +3864,7 @@ parameters:
     # END BMS
     # Sensor Hub Front
     brakePressureRear_psi:
-        id: 499
+        id: 415
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -4637,7 +3874,7 @@ parameters:
 
 
     brakeTempFrontLeft_C:
-        id: 500
+        id: 416
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -4646,7 +3883,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 501
+        id: 417
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -4655,7 +3892,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 502
+        id: 418
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -4664,7 +3901,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 503
+        id: 419
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -4673,7 +3910,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 504
+        id: 420
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -4682,7 +3919,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 505
+        id: 421
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -4691,7 +3928,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 506
+        id: 422
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -4701,7 +3938,7 @@ parameters:
     # END SH_F
     # Sensor Hub Rear
     radWaterTempIn_C:
-        id: 507
+        id: 423
         motec_name: Rad Water Temp In
         unit: C
         type: FLOATING
@@ -4710,7 +3947,7 @@ parameters:
         offset: 0
 
     radWaterTempOut_C:
-        id: 508
+        id: 424
         motec_name: Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -4719,7 +3956,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 509
+        id: 425
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -4728,7 +3965,7 @@ parameters:
         offset: 0
 
     shockPosRearRight_mm:
-        id: 510
+        id: 426
         motec_name: Susp Pos RR
         unit: mm
         type: FLOATING
@@ -4737,7 +3974,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 511
+        id: 427
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -4746,7 +3983,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearRight_mph:
-        id: 512
+        id: 428
         motec_name: Wheel Speed RR
         unit: mph
         type: FLOATING
@@ -4756,7 +3993,7 @@ parameters:
     # END SH_R
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
-        id: 513
+        id: 429
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -4765,7 +4002,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 514
+        id: 430
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -4774,7 +4011,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 515
+        id: 431
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -4783,7 +4020,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 516
+        id: 432
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -4792,7 +4029,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 517
+        id: 433
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -4801,7 +4038,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 518
+        id: 434
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -4810,7 +4047,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 519
+        id: 435
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -4819,7 +4056,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 520
+        id: 436
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -4828,7 +4065,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 521
+        id: 437
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -4837,7 +4074,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 522
+        id: 438
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -4846,7 +4083,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 523
+        id: 439
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -4855,7 +4092,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 524
+        id: 440
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -4864,7 +4101,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 525
+        id: 441
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -4874,7 +4111,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 526
+        id: 442
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -4883,7 +4120,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 527
+        id: 443
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -4892,7 +4129,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 528
+        id: 444
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -4903,7 +4140,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 529
+        id: 445
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -4912,7 +4149,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 530
+        id: 446
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -4921,7 +4158,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 531
+        id: 447
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -4930,7 +4167,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 532
+        id: 448
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -4939,7 +4176,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 533
+        id: 449
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -4948,7 +4185,7 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 534
+        id: 450
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -4957,7 +4194,7 @@ parameters:
         offset: 0
 
     gpsValid_ul:
-        id: 535
+        id: 451
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -4966,7 +4203,7 @@ parameters:
         offset: 0
 
     gpsYearUTC_ul:
-        id: 536
+        id: 452
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -4975,7 +4212,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 537
+        id: 453
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -4984,7 +4221,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 538
+        id: 454
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -4993,7 +4230,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 539
+        id: 455
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -5002,7 +4239,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 540
+        id: 456
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -5011,7 +4248,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 541
+        id: 457
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -5022,7 +4259,7 @@ parameters:
     # END DISPLAY
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 542
+        id: 458
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -5031,7 +4268,7 @@ parameters:
         offset: 0
 
     rollRate_degPerSec:
-        id: 543
+        id: 459
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -5040,7 +4277,7 @@ parameters:
         offset: 0
 
     lateralAccel_G:
-        id: 544
+        id: 460
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -5049,7 +4286,7 @@ parameters:
         offset: 0
 
     longitudinalAccel_G:
-        id: 545
+        id: 461
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -5058,7 +4295,7 @@ parameters:
         offset: 0
 
     verticalAccel_G:
-        id: 546
+        id: 462
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -5069,7 +4306,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-        id: 547
+        id: 463
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -5078,7 +4315,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-        id: 548
+        id: 464
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -5087,7 +4324,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-        id: 549
+        id: 465
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5096,7 +4333,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-        id: 550
+        id: 466
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5905,23 +5142,11 @@ groups: [
         id: 0x385,
         parameters: [
             {name: seg7MinCellTemp_C, start: 0, length: 2},
-            {name: seg1Cell1BalanceEnable_state, start: 2, length: 1},
-            {name: seg1Cell2BalanceEnable_state, start: 3, length: 1},
-            {name: seg1Cell3BalanceEnable_state, start: 4, length: 1},
-            {name: seg1Cell4BalanceEnable_state, start: 5, length: 1},
-            {name: seg1Cell5BalanceEnable_state, start: 6, length: 1},
-            {name: seg1Cell6BalanceEnable_state, start: 7, length: 1}
         ]
     },
     {
         id: 0x386,
         parameters: [
-            {name: seg1Cell7BalanceEnable_state, start: 0, length: 1},
-            {name: seg1Cell8BalanceEnable_state, start: 1, length: 1},
-            {name: seg1Cell9BalanceEnable_state, start: 2, length: 1},
-            {name: seg1Cell10BalanceEnable_state, start: 3, length: 1},
-            {name: seg1Cell11BalanceEnable_state, start: 4, length: 1},
-            {name: seg1Cell12BalanceEnable_state, start: 5, length: 1},
             {name: amsFault_state, start: 6, length: 1},
             {name: bspdFault_state, start: 7, length: 1}
         ]
@@ -5976,128 +5201,19 @@ groups: [
     {
         id: 0x395,
         parameters: [
-            {name: seg7BMBMinBoardTemp_C, start: 0, length: 2},
-            {name: seg2Cell1BalanceEnable_state, start: 2, length: 1},
-            {name: seg2Cell2BalanceEnable_state, start: 3, length: 1},
-            {name: seg2Cell3BalanceEnable_state, start: 4, length: 1},
-            {name: seg2Cell4BalanceEnable_state, start: 5, length: 1},
-            {name: seg2Cell5BalanceEnable_state, start: 6, length: 1},
-            {name: seg2Cell6BalanceEnable_state, start: 7, length: 1}
+            {name: seg7BMBMinBoardTemp_C, start: 0, length: 2}
         ]
     },
     {
         id: 0x396,
         parameters: [
-            {name: seg2Cell7BalanceEnable_state, start: 0, length: 1},
-            {name: seg2Cell8BalanceEnable_state, start: 1, length: 1},
-            {name: seg2Cell9BalanceEnable_state, start: 2, length: 1},
-            {name: seg2Cell10BalanceEnable_state, start: 3, length: 1},
-            {name: seg2Cell11BalanceEnable_state, start: 4, length: 1},
-            {name: seg2Cell12BalanceEnable_state, start: 5, length: 1},
             {name: imdFault_state, start: 6, length: 1},
             {name: imdFaultInfo_state, start: 7, length: 1}
-        ]
-    },
-
-    # Cell Balancing
-    {
-        id: 0x3A0,
-        parameters: [
-            {name: seg3Cell1BalanceEnable_state, start: 0, length: 1},
-            {name: seg3Cell2BalanceEnable_state, start: 1, length: 1},
-            {name: seg3Cell3BalanceEnable_state, start: 2, length: 1},
-            {name: seg3Cell4BalanceEnable_state, start: 3, length: 1},
-            {name: seg3Cell5BalanceEnable_state, start: 4, length: 1},
-            {name: seg3Cell6BalanceEnable_state, start: 5, length: 1},
-            {name: seg3Cell7BalanceEnable_state, start: 6, length: 1},
-            {name: seg3Cell8BalanceEnable_state, start: 7, length: 1}
-        ]
-    },
-    {
-        id: 0x3A1,
-        parameters: [
-            {name: seg3Cell9BalanceEnable_state, start: 0, length: 1},
-            {name: seg3Cell10BalanceEnable_state, start: 1, length: 1},
-            {name: seg3Cell11BalanceEnable_state, start: 2, length: 1},
-            {name: seg3Cell12BalanceEnable_state, start: 3, length: 1},
-            {name: seg4Cell1BalanceEnable_state, start: 4, length: 1},
-            {name: seg4Cell2BalanceEnable_state, start: 5, length: 1},
-            {name: seg4Cell3BalanceEnable_state, start: 6, length: 1},
-            {name: seg4Cell4BalanceEnable_state, start: 7, length: 1}
-        ]
-    },
-    {
-        id: 0x3A2,
-        parameters: [
-            {name: seg4Cell5BalanceEnable_state, start: 0, length: 1},
-            {name: seg4Cell6BalanceEnable_state, start: 1, length: 1},
-            {name: seg4Cell7BalanceEnable_state, start: 2, length: 1},
-            {name: seg4Cell8BalanceEnable_state, start: 3, length: 1},
-            {name: seg4Cell9BalanceEnable_state, start: 4, length: 1},
-            {name: seg4Cell10BalanceEnable_state, start: 5, length: 1},
-            {name: seg4Cell11BalanceEnable_state, start: 6, length: 1},
-            {name: seg4Cell12BalanceEnable_state, start: 7, length: 1}
-        ]
-    },
-    {
-        id: 0x3A3,
-        parameters: [
-            {name: seg5Cell1BalanceEnable_state, start: 0, length: 1},
-            {name: seg5Cell2BalanceEnable_state, start: 1, length: 1},
-            {name: seg5Cell3BalanceEnable_state, start: 2, length: 1},
-            {name: seg5Cell4BalanceEnable_state, start: 3, length: 1},
-            {name: seg5Cell5BalanceEnable_state, start: 4, length: 1},
-            {name: seg5Cell6BalanceEnable_state, start: 5, length: 1},
-            {name: seg5Cell7BalanceEnable_state, start: 6, length: 1},
-            {name: seg5Cell8BalanceEnable_state, start: 7, length: 1}
-        ]
-    },
-    {
-        id: 0x3A4,
-        parameters: [
-            {name: seg5Cell9BalanceEnable_state, start: 0, length: 1},
-            {name: seg5Cell10BalanceEnable_state, start: 1, length: 1},
-            {name: seg5Cell11BalanceEnable_state, start: 2, length: 1},
-            {name: seg5Cell12BalanceEnable_state, start: 3, length: 1},
-            {name: seg6Cell1BalanceEnable_state, start: 4, length: 1},
-            {name: seg6Cell2BalanceEnable_state, start: 5, length: 1},
-            {name: seg6Cell3BalanceEnable_state, start: 6, length: 1},
-            {name: seg6Cell4BalanceEnable_state, start: 7, length: 1}
-        ]
-    },
-    {
-        id: 0x3A5,
-        parameters: [
-            {name: seg6Cell5BalanceEnable_state, start: 0, length: 1},
-            {name: seg6Cell6BalanceEnable_state, start: 1, length: 1},
-            {name: seg6Cell7BalanceEnable_state, start: 2, length: 1},
-            {name: seg6Cell8BalanceEnable_state, start: 3, length: 1},
-            {name: seg6Cell9BalanceEnable_state, start: 4, length: 1},
-            {name: seg6Cell10BalanceEnable_state, start: 5, length: 1},
-            {name: seg6Cell11BalanceEnable_state, start: 6, length: 1},
-            {name: seg6Cell12BalanceEnable_state, start: 7, length: 1}
-        ]
-    },
-    {
-        id: 0x3A6,
-        parameters: [
-            {name: seg7Cell1BalanceEnable_state, start: 0, length: 1},
-            {name: seg7Cell2BalanceEnable_state, start: 1, length: 1},
-            {name: seg7Cell3BalanceEnable_state, start: 2, length: 1},
-            {name: seg7Cell4BalanceEnable_state, start: 3, length: 1},
-            {name: seg7Cell5BalanceEnable_state, start: 4, length: 1},
-            {name: seg7Cell6BalanceEnable_state, start: 5, length: 1},
-            {name: seg7Cell7BalanceEnable_state, start: 6, length: 1},
-            {name: seg7Cell8BalanceEnable_state, start: 7, length: 1}
         ]
     },
     {
         id: 0x3A7,
         parameters: [
-            {name: seg7Cell9BalanceEnable_state, start: 0, length: 1},
-            {name: seg7Cell10BalanceEnable_state, start: 1, length: 1},
-            {name: seg7Cell11BalanceEnable_state, start: 2, length: 1},
-            {name: seg7Cell12BalanceEnable_state, start: 3, length: 1},
             {name: soeByOCV_percent, start: 4, length: 2},
             {name: soeByCoulombCounting_percent, start: 6, length: 2}
         ]
