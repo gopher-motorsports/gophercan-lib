@@ -3605,9 +3605,18 @@ parameters:
         scale: 1
         offset: 0
 
+    bmsCurrAlertIsLatched_state:
+        id: 387
+        motec_name: BMS Alert Message
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
     #Faults
     bmsOvervoltageFaultAlert_state:
-        id: 387
+        id: 388
         motec_name: BMS Overvoltage Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -3616,7 +3625,7 @@ parameters:
         offset: 0
 
     bmsUndervoltageFaultAlert_state:
-        id: 388
+        id: 389
         motec_name: BMS Undervoltage Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -3625,7 +3634,7 @@ parameters:
         offset: 0
 
     bmsOvertempFaultAlert_state:
-        id: 389
+        id: 390
         motec_name: BMS Overtemp Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -3634,7 +3643,7 @@ parameters:
         offset: 0
 
     bmsBmbCommunicationFailureAlert_state:
-        id: 390
+        id: 391
         motec_name: BMS BMB Communication Failure Alert
         unit: ''
         type: UNSIGNED8
@@ -3643,7 +3652,7 @@ parameters:
         offset: 0
 
     bmsBadVoltageSenseStatusAlert_state:
-        id: 391
+        id: 392
         motec_name: BMS Bad Voltage Status Alert
         unit: ''
         type: UNSIGNED8
@@ -3652,7 +3661,7 @@ parameters:
         offset: 0
 
     bmsInsufficientTempSensorsAlert_state:
-        id: 392
+        id: 393
         motec_name: BMS Insufficient Temp Sensors Alert
         unit: ''
         type: UNSIGNED8
@@ -3661,7 +3670,7 @@ parameters:
         offset: 0
 
     bmsChargerOverVoltageAlert_state:
-        id: 393
+        id: 394
         motec_name: BMS Charger Over Votlage Alert
         unit: ''
         type: UNSIGNED8
@@ -3670,7 +3679,7 @@ parameters:
         offset: 0
 
     bmsChargerOverCurrentAlert_state:
-        id: 394
+        id: 395
         motec_name: BMS Charger Over Current Alert
         unit: ''
         type: UNSIGNED8
@@ -3679,7 +3688,7 @@ parameters:
         offset: 0
 
     bmsChargerVoltageMismatchAlert_state:
-        id: 395
+        id: 396
         motec_name: BMS Charger Voltage Mismatch Alert
         unit: ''
         type: UNSIGNED8
@@ -3688,7 +3697,7 @@ parameters:
         offset: 0
 
     bmsChargerCurrentMismatchAlert_state:
-        id: 396
+        id: 397
         motec_name: BMS Charger Current Mismatch Alert
         unit: ''
         type: UNSIGNED8
@@ -3697,7 +3706,7 @@ parameters:
         offset: 0
 
     bmsChargerHardwareFailureAlert_state:
-        id: 397
+        id: 398
         motec_name: BMS Charger Hardware Failure Alert
         unit: ''
         type: UNSIGNED8
@@ -3706,7 +3715,7 @@ parameters:
         offset: 0
 
     bmsChargerOverTempAlert_state:
-        id: 398
+        id: 399
         motec_name: BMS Charger Over Temp Alert
         unit: ''
         type: UNSIGNED8
@@ -3716,7 +3725,7 @@ parameters:
 
     # Other Alerts
     bmsOvervoltageWarningAlert_state:
-        id: 399
+        id: 400
         motec_name: BMS Overvoltage Warning Alert
         unit: ''
         type: UNSIGNED8
@@ -3725,7 +3734,7 @@ parameters:
         offset: 0
 
     bmsUndervoltageWarningAlert_state:
-        id: 400
+        id: 401
         motec_name: BMS Undervoltage Warning Alert
         unit: ''
         type: UNSIGNED8
@@ -3734,7 +3743,7 @@ parameters:
         offset: 0
 
     bmsCellImbalanceAlert_state:
-        id: 401
+        id: 402
         motec_name: BMS Cell Imbalance Alert
         unit: ''
         type: UNSIGNED8
@@ -3743,7 +3752,7 @@ parameters:
         offset: 0
 
     bmsOvertempWarningAlert_state:
-        id: 402
+        id: 403
         motec_name: BMS Overtemp Warning Alert
         unit: ''
         type: UNSIGNED8
@@ -3752,7 +3761,7 @@ parameters:
         offset: 0
 
     bmsAmsSdcFaultAlert_state:
-        id: 403
+        id: 404
         motec_name: BMS AMS SDC Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -3761,7 +3770,7 @@ parameters:
         offset: 0
 
     bmsBspdSdcFaultAlert_state:
-        id: 404
+        id: 405
         motec_name: BMS SDC Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -3770,7 +3779,7 @@ parameters:
         offset: 0
 
     bmsImdSdcFaultAlert_state:
-        id: 405
+        id: 406
         motec_name: BMS IMD SDC Fault Alert
         unit: ''
         type: UNSIGNED8
@@ -3779,7 +3788,7 @@ parameters:
         offset: 0
 
     bmsCurrentSensorErrorAlert_state:
-        id: 406
+        id: 407
         motec_name: BMS Current Sensor Error Alert
         unit: ''
         type: UNSIGNED8
@@ -3788,7 +3797,7 @@ parameters:
         offset: 0
 
     bmsBadBrickTempSenseStatusAlert_state:
-        id: 407
+        id: 408
         motec_name: BMS Bad Brick Temp Status Alert
         unit: ''
         type: UNSIGNED8
@@ -3797,7 +3806,7 @@ parameters:
         offset: 0
 
     bmsBadBoardTempSenseStatusAlert_state:
-        id: 408
+        id: 409
         motec_name: BMS Bad Board Temp Sense Status
         unit: ''
         type: UNSIGNED8
@@ -3806,7 +3815,7 @@ parameters:
         offset: 0
 
     bmsStackVsSegmentImbalanceAlert_state:
-        id: 409
+        id: 410
         motec_name: BMS Stack Vs Segment Imbalance Alert
         unit: ''
         type: UNSIGNED8
@@ -3815,7 +3824,7 @@ parameters:
         offset: 0
 
     bmsChargerInputVoltageErrorAlert_state:
-        id: 410
+        id: 411
         motec_name: BMS Charger Input Voltage Error Alert
         unit: ''
         type: UNSIGNED8
@@ -3824,7 +3833,7 @@ parameters:
         offset: 0
 
     bmsChargerBatteryNotDetectedErrorAlert_state:
-        id: 411
+        id: 412
         motec_name: BMS Charger Battery Not Detected Error Alert
         unit: ''
         type: UNSIGNED8
@@ -3833,7 +3842,7 @@ parameters:
         offset: 0
 
     bmsChargerCommunicationErrorAlert_state:
-        id: 412
+        id: 413
         motec_name: BMS Charger Communication Error Alert
         unit: ''
         type: UNSIGNED8
@@ -3844,7 +3853,7 @@ parameters:
     # END Error States
     # Tractive System Currents
     bmsTractiveSystemCurrentLow_A:
-        id: 413
+        id: 414
         motec_name: Tractive System Current Low (BMS)
         unit: A
         type: FLOATING
@@ -3853,7 +3862,7 @@ parameters:
         offset: -100
 
     bmsTractiveSystemCurrentHigh_A:
-        id: 414
+        id: 415
         motec_name: Tractive System Current High (BMS)
         unit: A
         type: FLOATING
@@ -3864,7 +3873,7 @@ parameters:
     # END BMS
     # Sensor Hub Front
     brakePressureRear_psi:
-        id: 415
+        id: 416
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -3874,7 +3883,7 @@ parameters:
 
 
     brakeTempFrontLeft_C:
-        id: 416
+        id: 417
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -3883,7 +3892,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 417
+        id: 418
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -3892,7 +3901,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 418
+        id: 419
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -3901,7 +3910,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 419
+        id: 420
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -3910,7 +3919,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 420
+        id: 421
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -3919,7 +3928,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 421
+        id: 422
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -3928,7 +3937,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 422
+        id: 423
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -3938,7 +3947,7 @@ parameters:
     # END SH_F
     # Sensor Hub Rear
     radWaterTempIn_C:
-        id: 423
+        id: 424
         motec_name: Rad Water Temp In
         unit: C
         type: FLOATING
@@ -3947,7 +3956,7 @@ parameters:
         offset: 0
 
     radWaterTempOut_C:
-        id: 424
+        id: 425
         motec_name: Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -3956,7 +3965,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 425
+        id: 426
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -3965,7 +3974,7 @@ parameters:
         offset: 0
 
     shockPosRearRight_mm:
-        id: 426
+        id: 427
         motec_name: Susp Pos RR
         unit: mm
         type: FLOATING
@@ -3974,7 +3983,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 427
+        id: 428
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -3983,7 +3992,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearRight_mph:
-        id: 428
+        id: 429
         motec_name: Wheel Speed RR
         unit: mph
         type: FLOATING
@@ -3993,7 +4002,7 @@ parameters:
     # END SH_R
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
-        id: 429
+        id: 430
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -4002,7 +4011,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 430
+        id: 431
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -4011,7 +4020,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 431
+        id: 432
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -4020,7 +4029,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 432
+        id: 433
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -4029,7 +4038,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 433
+        id: 434
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -4038,7 +4047,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 434
+        id: 435
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -4047,7 +4056,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 435
+        id: 436
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -4056,7 +4065,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 436
+        id: 437
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -4065,7 +4074,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 437
+        id: 438
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -4074,7 +4083,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 438
+        id: 439
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -4083,7 +4092,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 439
+        id: 440
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -4092,7 +4101,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 440
+        id: 441
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -4101,7 +4110,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 441
+        id: 442
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -4111,7 +4120,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 442
+        id: 443
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -4120,7 +4129,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 443
+        id: 444
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -4129,7 +4138,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 444
+        id: 445
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -4140,7 +4149,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 445
+        id: 446
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -4149,7 +4158,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 446
+        id: 447
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -4158,7 +4167,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 447
+        id: 448
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -4167,7 +4176,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 448
+        id: 449
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -4176,7 +4185,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 449
+        id: 450
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -4185,15 +4194,6 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 450
-        motec_name: GPS Satellite Count
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    gpsValid_ul:
         id: 451
         motec_name: GPS Satellite Count
         unit: ''
@@ -4202,8 +4202,17 @@ parameters:
         scale: 1
         offset: 0
 
-    gpsYearUTC_ul:
+    gpsValid_ul:
         id: 452
+        motec_name: GPS Satellite Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsYearUTC_ul:
+        id: 453
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -4212,7 +4221,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 453
+        id: 454
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -4221,7 +4230,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 454
+        id: 455
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -4230,7 +4239,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 455
+        id: 456
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -4239,7 +4248,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 456
+        id: 457
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -4248,7 +4257,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 457
+        id: 458
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -4259,7 +4268,7 @@ parameters:
     # END DISPLAY
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 458
+        id: 459
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -4268,7 +4277,7 @@ parameters:
         offset: 0
 
     rollRate_degPerSec:
-        id: 459
+        id: 460
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -4277,7 +4286,7 @@ parameters:
         offset: 0
 
     lateralAccel_G:
-        id: 460
+        id: 461
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -4286,7 +4295,7 @@ parameters:
         offset: 0
 
     longitudinalAccel_G:
-        id: 461
+        id: 462
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -4295,7 +4304,7 @@ parameters:
         offset: 0
 
     verticalAccel_G:
-        id: 462
+        id: 463
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -4306,7 +4315,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-        id: 463
+        id: 464
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -4315,7 +4324,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-        id: 464
+        id: 465
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -4324,7 +4333,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-        id: 465
+        id: 466
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -4333,7 +4342,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-        id: 466
+        id: 467
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5237,6 +5246,7 @@ groups: [
             {name: bmsAlertMessage_state, start: 2, length: 1},
             {name: bmsChargerBatteryNotDetectedErrorAlert_state, start: 3, length: 1},
             {name: bmsChargerCommunicationErrorAlert_state, start: 4, length: 1},
+            {name: bmsCurrAlertIsLatched_state, start: 5, length: 1},
             {name: bmsAveBrickVoltage_V, start: 6, length: 2}
         ]
     },
