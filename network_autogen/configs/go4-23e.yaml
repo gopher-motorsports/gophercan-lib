@@ -680,7 +680,7 @@ parameters:
     inverterChargeLimit_A:
         id: 68
         motec_name: DC Current Charge Limit
-        unit: Nm
+        unit: A
         type: FLOATING
         encoding: LSB
         scale: 1
@@ -689,14 +689,11 @@ parameters:
     inverterDischargeLimit_A:
         id: 69
         motec_name: DC Current Discharge Limit
-        unit: Nm
+        unit: A
         type: FLOATING
         encoding: LSB
         scale: 1
         offset: 0
-
-
-
 
     # END INVERTER
 
@@ -873,8 +870,8 @@ parameters:
     vcuTorqueRequested_Nm:
         id: 88
         motec_name: VCU Torque Requested
-        unit: '%'
-        type: UNSIGNED8
+        unit: Nm
+        type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
@@ -986,10 +983,10 @@ parameters:
     vcuTemp_C:
         id: 100
         motec_name: VCU Temperature
-        unit: ''
-        type: UNSIGNED8
+        unit: C
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     vehicleState_state:
@@ -4593,7 +4590,7 @@ groups: [
     {
         id: 0x207,
         parameters: [
-            {name: vcuTemp_C,                 start: 1, length: 1},
+            {name: vcuTemp_C,                 start: 0, length: 2},
             {name: vehicleState_state,        start: 2, length: 1},
             {name: vcuState_state,            start: 3, length: 1},
             {name: vcuMcuStatus_state,        start: 4, length: 1},
