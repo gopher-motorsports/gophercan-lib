@@ -4540,7 +4540,7 @@ groups: [
         parameters: [
             {name: inverterDischargeLimit_A,  start: 0, length: 2},
             {name: inverterChargeLimit_A,     start: 2, length: 2},
-            {name: pedalPosition1_percent,     start: 4, length: 2}
+            {name: pedalPosition1_percent,     start: 4, length: 2},
             {name: pedalPosition2_percent,     start: 6, length: 2}
         ]
     },
