@@ -187,7 +187,7 @@ parameters:
         id: 14
         motec_name: Motor Speed Low Frequency
         unit: rpm
-        type: UNSIGNED16
+        type: SIGNED16
         encoding: LSB
         scale: 1
         offset: 0
@@ -549,7 +549,7 @@ parameters:
         id: 54
         motec_name: Motor Speed
         unit: rpm
-        type: UNSIGNED16
+        type: SIGNED16
         encoding: LSB
         scale: 1
         offset: 0
@@ -3786,7 +3786,7 @@ parameters:
 
     bmsBspdSdcFaultAlert_state:
         id: 407
-        motec_name: BMS SDC Fault Alert
+        motec_name: BMS BSPD SDC Fault Alert
         unit: ''
         type: UNSIGNED8
         encoding: MSB
