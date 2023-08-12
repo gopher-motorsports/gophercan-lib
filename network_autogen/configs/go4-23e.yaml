@@ -5468,8 +5468,17 @@ parameters:
         scale: 0.00610500611 # [0-25] -> [0-4095]
         offset: 0
 
-    wheelSpeedFrontLeft_mph:
+    pittoTubePressure_psi:
         id: 592
+        motec_name: Pitto Tube
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+
+    wheelSpeedFrontLeft_mph:
+        id: 593
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -5478,7 +5487,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 593
+        id: 594
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -5488,7 +5497,7 @@ parameters:
     # END SH_F
     # Sensor Hub Rear
     radWaterTempIn_C:
-        id: 594
+        id: 595
         motec_name: Rad Water Temp In
         unit: C
         type: FLOATING
@@ -5497,7 +5506,7 @@ parameters:
         offset: 0
 
     radWaterTempOut_C:
-        id: 595
+        id: 596
         motec_name: Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -5506,7 +5515,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 596
+        id: 597
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -5515,7 +5524,7 @@ parameters:
         offset: 0
 
     shockPosRearRight_mm:
-        id: 597
+        id: 598
         motec_name: Susp Pos RR
         unit: mm
         type: FLOATING
@@ -5524,7 +5533,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 598
+        id: 599
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -5533,7 +5542,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearRight_mph:
-        id: 599
+        id: 600
         motec_name: Wheel Speed RR
         unit: mph
         type: FLOATING
@@ -5543,7 +5552,7 @@ parameters:
     # END SH_R
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
-        id: 600
+        id: 601
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -5552,7 +5561,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 601
+        id: 602
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -5561,7 +5570,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 602
+        id: 603
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -5570,7 +5579,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 603
+        id: 604
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -5579,7 +5588,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 604
+        id: 605
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -5588,7 +5597,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 605
+        id: 606
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -5597,7 +5606,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 606
+        id: 607
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -5606,7 +5615,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 607
+        id: 608
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -5615,7 +5624,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 608
+        id: 609
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -5624,7 +5633,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 609
+        id: 610
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -5633,7 +5642,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 610
+        id: 611
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -5642,7 +5651,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 611
+        id: 612
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -5651,7 +5660,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 612
+        id: 613
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -5661,7 +5670,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 613
+        id: 614
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -5670,7 +5679,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 614
+        id: 615
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -5679,7 +5688,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 615
+        id: 616
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -5690,7 +5699,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 616
+        id: 617
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -5699,7 +5708,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 617
+        id: 618
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -5708,7 +5717,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 618
+        id: 619
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -5717,7 +5726,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 619
+        id: 620
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -5726,7 +5735,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 620
+        id: 621
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -5735,15 +5744,6 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 621
-        motec_name: GPS Satellite Count
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    gpsValid_ul:
         id: 622
         motec_name: GPS Satellite Count
         unit: ''
@@ -5752,8 +5752,17 @@ parameters:
         scale: 1
         offset: 0
 
-    gpsYearUTC_ul:
+    gpsValid_ul:
         id: 623
+        motec_name: GPS Satellite Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsYearUTC_ul:
+        id: 624
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -5762,7 +5771,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 624
+        id: 625
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -5771,7 +5780,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 625
+        id: 626
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -5780,7 +5789,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 626
+        id: 627
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -5789,7 +5798,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 627
+        id: 628
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -5798,7 +5807,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 628
+        id: 629
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -5809,7 +5818,7 @@ parameters:
     # END DISPLAY
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 629
+        id: 630
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -5818,7 +5827,7 @@ parameters:
         offset: 0
 
     rollRate_degPerSec:
-        id: 630
+        id: 631
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -5827,7 +5836,7 @@ parameters:
         offset: 0
 
     lateralAccel_G:
-        id: 631
+        id: 632
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -5836,7 +5845,7 @@ parameters:
         offset: 0
 
     longitudinalAccel_G:
-        id: 632
+        id: 633
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -5845,7 +5854,7 @@ parameters:
         offset: 0
 
     verticalAccel_G:
-        id: 633
+        id: 634
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -5856,7 +5865,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-        id: 634
+        id: 635
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -5865,7 +5874,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-        id: 635
+        id: 636
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -5874,7 +5883,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-        id: 636
+        id: 637
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5883,7 +5892,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-        id: 637
+        id: 638
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5891,6 +5900,17 @@ parameters:
         scale: 0.1
         offset: 0
     # END DATA LOGGING
+
+    # MISC
+    lapBeacon_state:
+        id: 639
+        motec_name: Lap Beacon
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # END MISC
 
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
@@ -7147,6 +7167,12 @@ groups: [
             {name: wheelSpeedFrontRight_mph, start: 6, length: 2}
         ]
     },
+    {
+        id: 0x451,
+        parameters: [
+            {name: pittoTubePressure_psi,     start: 0, length: 2}
+        ]
+    },
     # END SH_F
     
     # Sensor Hub Rear
@@ -7272,8 +7298,17 @@ groups: [
         parameters: [
             {name: verticalAccel_G, start: 4, length: 2}
         ]
-    }
+    },
     # END IMU
+
+    # MISC
+    {
+        id: 0xE5,
+        parameters: [
+            {name: lapBeacon_state,  start: 0, length: 8}
+        ]
+    }
+    # END MISC
 ]
 
 commands:
