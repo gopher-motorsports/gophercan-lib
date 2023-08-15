@@ -5911,9 +5911,9 @@ parameters:
         scale: 1
         offset: 0
 
-    lapBeacon_state:
+    lapBeacon_ul:
         id: 640
-        motec_name: Lap Beacon Trigger
+        motec_name: Beacon
         unit: ''
         type: FLOATING
         encoding: MSB
