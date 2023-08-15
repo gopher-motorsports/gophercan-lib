@@ -5902,9 +5902,18 @@ parameters:
     # END DATA LOGGING
 
     # MISC
-    lapBeacon_state:
+    lapBeaconRaw_ul:
         id: 639
-        motec_name: Lap Beacon
+        motec_name: Lap Beacon Raw Message
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    lapBeacon_state:
+        id: 640
+        motec_name: Lap Beacon Trigger
         unit: ''
         type: FLOATING
         encoding: MSB
@@ -7305,7 +7314,13 @@ groups: [
     {
         id: 0xE5,
         parameters: [
-            {name: lapBeacon_state,  start: 0, length: 8}
+            {name: lapBeaconRaw_ul,  start: 0, length: 3}
+        ]
+    },
+    {
+        id: 0x100,
+        parameters: [
+            {name: lapBeacon_state,  start: 0, length: 1}
         ]
     }
     # END MISC

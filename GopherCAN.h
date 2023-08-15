@@ -258,6 +258,8 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 // general defines
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
+#define BEACON_ID 0xE5
+#define BEACON_DATA_CHECK 0x0055AA03
 
 
 // Macro functions to get different parts of an id from the U32
