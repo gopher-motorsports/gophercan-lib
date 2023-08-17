@@ -7320,7 +7320,7 @@ groups: [
     {
         id: 0x100,
         parameters: [
-            {name: lapBeacon_state,  start: 0, length: 1}
+            {name: lapBeacon_ul,  start: 0, length: 1}
         ]
     }
     # END MISC
