@@ -845,13 +845,13 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
 			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
 			if (beaconData == BEACON_DATA_CHECK) {
-				lapBeacon_state.data = 1;
+				lapBeacon_ul.data = 1;
 				beacon_success_counter++;
 				lastHitTick = HAL_GetTick();
 			} else {
-				lapBeacon_state.data = 0;
+				lapBeacon_ul.data = 0;
 			}
-			lapBeacon_state.info.last_rx = message->rx_time;
+			lapBeacon_ul.info.last_rx = message->rx_time;
 		}
 	}
 

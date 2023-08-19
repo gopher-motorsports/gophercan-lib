@@ -5911,9 +5911,9 @@ parameters:
         scale: 1
         offset: 0
 
-    lapBeacon_state:
+    lapBeacon_ul:
         id: 640
-        motec_name: Lap Beacon Trigger
+        motec_name: Beacon
         unit: ''
         type: FLOATING
         encoding: MSB
@@ -7320,7 +7320,7 @@ groups: [
     {
         id: 0x100,
         parameters: [
-            {name: lapBeacon_state,  start: 0, length: 1}
+            {name: lapBeacon_ul,  start: 0, length: 1}
         ]
     }
     # END MISC
