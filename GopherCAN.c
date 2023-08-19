@@ -821,6 +821,7 @@ static S8 tx_can_message(CAN_MSG* message)
 }
 
 static uint16_t beacon_success_counter = 0;
+static uint32_t lastHitTick = 0;
 
 // service_can_rx_message_std
 // handle standard ID CAN messages (data messages)
@@ -840,14 +841,18 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     if (group == NULL) return NOT_FOUND_ERR;
 
 	if (group->group_id == BEACON_ID) {
-		U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
-		if (beaconData == BEACON_DATA_CHECK) {
-			lapBeacon_state.data = 1;
-			beacon_success_counter++;
-		} else {
-			lapBeacon_state.data = 0;
+		if (HAL_GetTick() - lastHitTick > 100) {
+
+			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
+			if (beaconData == BEACON_DATA_CHECK) {
+				lapBeacon_state.data = 1;
+				beacon_success_counter++;
+				lastHitTick = HAL_GetTick();
+			} else {
+				lapBeacon_state.data = 0;
+			}
+			lapBeacon_state.info.last_rx = message->rx_time;
 		}
-		lapBeacon_state.info.last_rx = message->rx_time;
 	}
 
     // decode parameters
