@@ -844,7 +844,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 		if (HAL_GetTick() - lastHitTick > 100) {
 
 			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
-			if (beaconData == BEACON_DATA_CHECK) {
+			if (beaconData <= (BEACON_DATA_CHECK*1.01) && beaconData >= (BEACON_DATA_CHECK*0.99)) {
 				lapBeacon_ul.data = 1;
 				beacon_success_counter++;
 				lastHitTick = HAL_GetTick();
