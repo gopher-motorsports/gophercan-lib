@@ -438,7 +438,7 @@ parameters:
         id: 40
         motec_name: Gear
         unit: ''
-        type: UNSIGNED8
+        type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
