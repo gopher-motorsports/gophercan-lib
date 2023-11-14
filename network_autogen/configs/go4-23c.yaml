@@ -127,18 +127,27 @@ parameters:
         scale: 0.001
         offset: 0
 
-    rightRadWaterTempIn_C:
+    rightRadWaterTempOut_C:
         id: 7
-        motec_name: Right Rad Water Temp In
+        motec_name: Right Rad Water Temp Out
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: 0
 
-    rightRadWaterTempOut_C:
+    engineInletTemp_C:
         id: 8
-        motec_name: Right Rad Water Temp Out
+        motec_name: Engine Inlet Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    engineOutletTemp_C:
+        id: 9
+        motec_name: Engine Oulet Temp
         unit: C
         type: FLOATING
         encoding: MSB
@@ -147,7 +156,7 @@ parameters:
 
     # Internal ECU Parameters:
     batteryVoltage_V:
-        id: 9
+        id: 10
         motec_name: Battery Volts
         unit: V
         type: FLOATING
@@ -156,7 +165,7 @@ parameters:
         offset: 0
 
     ecu5VEng_V:
-        id: 10
+        id: 11
         motec_name: ECU 5V Eng Volts
         unit: V
         type: FLOATING
@@ -165,7 +174,7 @@ parameters:
         offset: 0
 
     ecu5VAux_V:
-        id: 11
+        id: 12
         motec_name: ECU 5V Aux Volts
         unit: V
         type: FLOATING
@@ -174,7 +183,7 @@ parameters:
         offset: 0
 
     ecuTemp_C:
-        id: 12
+        id: 13
         motec_name: ECU Temp
         unit: C
         type: FLOATING
@@ -183,7 +192,7 @@ parameters:
         offset: 0
 
     aimLambda1_LA:
-        id: 13
+        id: 14
         motec_name: Aim Lambda 1
         unit: LA
         type: FLOATING
@@ -192,7 +201,7 @@ parameters:
         offset: 0
 
     fuelCutLevel_percent:
-        id: 14
+        id: 15
         motec_name: Fuel Cut Level
         unit: '%'
         type: FLOATING
@@ -201,7 +210,7 @@ parameters:
         offset: 0
 
     ignCutLevel_percent:
-        id: 15
+        id: 16
         motec_name: Ign Cut Level
         unit: '%'
         type: FLOATING
@@ -210,7 +219,7 @@ parameters:
         offset: 0
 
     ignAdvance_degrees:
-        id: 16
+        id: 17
         motec_name: Ign Advance
         unit: dBTDC
         type: FLOATING
@@ -219,7 +228,7 @@ parameters:
         offset: 0
 
     fuelInjDuty_percent:
-        id: 17
+        id: 18
         motec_name: Fuel Inj Duty
         unit: '%'
         type: FLOATING
@@ -229,7 +238,7 @@ parameters:
 
     # Aux Output 5
     oilFanDuty_percent:
-        id: 18
+        id: 19
         motec_name: Rad Fan Duty
         unit: '%'
         type: UNSIGNED16
@@ -239,7 +248,7 @@ parameters:
 
     # Aux Output 6
     waterPumpDuty_percent:
-        id: 19
+        id: 20
         motec_name: Water Pump Duty
         unit: '%'
         type: UNSIGNED16
@@ -249,7 +258,7 @@ parameters:
 
     # Aux Output 7
     warningLightDuty_percent:
-        id: 20
+        id: 21
         motec_name: Warning Light Duty
         unit: '%'
         type: UNSIGNED16
@@ -259,7 +268,7 @@ parameters:
 
     # Aux Output 8
     spartkCutLightDuty_percent:
-        id: 21
+        id: 22
         motec_name: Spark Cut Light Duty
         unit: '%'
         type: UNSIGNED16
@@ -270,7 +279,7 @@ parameters:
     # Display:
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 22
+        id: 23
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -279,7 +288,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 23
+        id: 24
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -288,7 +297,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 24
+        id: 25
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -297,7 +306,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 25
+        id: 26
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -306,7 +315,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 26
+        id: 27
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -315,15 +324,6 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 27
-        motec_name: GPS Satellite Count
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    gpsValid_ul:
         id: 28
         motec_name: GPS Satellite Count
         unit: ''
@@ -332,8 +332,17 @@ parameters:
         scale: 1
         offset: 0
 
-    gpsYearUTC_ul:
+    gpsValid_ul:
         id: 29
+        motec_name: GPS Satellite Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsYearUTC_ul:
+        id: 30
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -342,7 +351,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 30
+        id: 31
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -351,7 +360,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 31
+        id: 32
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -360,7 +369,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 32
+        id: 33
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -369,7 +378,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 33
+        id: 34
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -378,7 +387,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 34
+        id: 35
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -389,7 +398,7 @@ parameters:
     # END DISPLAY
     # Transmission Controller Sensors:
     shifterPosition_mm:
-        id: 35
+        id: 36
         motec_name: Shifter Position
         unit: mm
         type: FLOATING
@@ -398,7 +407,7 @@ parameters:
         offset: 0
 
     clutchPosition_mm:
-        id: 36
+        id: 37
         motec_name: Clutch Position
         unit: mm
         type: FLOATING
@@ -407,7 +416,7 @@ parameters:
         offset: 0
 
     gearPosition_mm:
-        id: 37
+        id: 38
         motec_name: Gear Position
         unit: mm
         type: FLOATING
@@ -416,7 +425,7 @@ parameters:
         offset: 0
 
     counterShaftSpeed_rpm:
-        id: 38
+        id: 39
         motec_name: Counter Shaft Speed
         unit: rpm
         type: FLOATING
@@ -426,7 +435,7 @@ parameters:
 
     # Transmission Controller Internal:
     tcmTargetRPM_rpm:
-        id: 39
+        id: 40
         motec_name: Target RPM
         unit: rpm
         type: UNSIGNED16
@@ -435,7 +444,7 @@ parameters:
         offset: 0
 
     tcmCurrentGear_state:
-        id: 40
+        id: 41
         motec_name: Gear
         unit: ''
         type: FLOATING
@@ -444,7 +453,7 @@ parameters:
         offset: 0
 
     tcmCurrentlyMoving_state:
-        id: 41
+        id: 42
         motec_name: Currently Moving
         unit: ''
         type: UNSIGNED8
@@ -453,7 +462,7 @@ parameters:
         offset: 0
 
     tcmAntiStallActive_state:
-        id: 42
+        id: 43
         motec_name: Anti Stall
         unit: ''
         type: UNSIGNED8
@@ -462,7 +471,7 @@ parameters:
         offset: 0
 
     tcmUsingClutch_state:
-        id: 43
+        id: 44
         motec_name: Using Clutch to Shift
         unit: ''
         type: UNSIGNED8
@@ -471,7 +480,7 @@ parameters:
         offset: 0
 
     tcmShiftState_state:
-        id: 44
+        id: 45
         motec_name: Shift State
         unit: ''
         type: UNSIGNED8
@@ -480,7 +489,7 @@ parameters:
         offset: 0
 
     tcmTimeShiftOnly_state:
-        id: 45
+        id: 46
         motec_name: Time Shifting Only
         unit: ''
         type: UNSIGNED8
@@ -489,7 +498,7 @@ parameters:
         offset: 0
 
     tcmClutchlessDownshift_state:
-        id: 46
+        id: 47
         motec_name: Clutchless Downshift
         unit: ''
         type: UNSIGNED8
@@ -498,7 +507,7 @@ parameters:
         offset: 0
 
     tcmError_state:
-        id: 47
+        id: 48
         motec_name: TCM Error
         unit: ''
         type: UNSIGNED8
@@ -507,7 +516,7 @@ parameters:
         offset: 0
 
     tcmTargetGear_state:
-        id: 48
+        id: 49
         motec_name: TCM Target Gear
         unit: ''
         type: UNSIGNED8
@@ -516,7 +525,7 @@ parameters:
         offset: 0
 
     tcmSpkCut_state:
-        id: 49
+        id: 50
         motec_name: TCM Spark Cut
         unit: ''
         type: UNSIGNED8
@@ -525,7 +534,7 @@ parameters:
         offset: 0
 
     tcmSuccessfulShift_state:
-        id: 50
+        id: 51
         motec_name: TCM Successful Shift
         unit: ''
         type: UNSIGNED8
@@ -534,7 +543,7 @@ parameters:
         offset: 0
 
     tcmNumShifts_ul:
-        id: 51
+        id: 52
         motec_name: TCM Shifts
         unit: ''
         type: UNSIGNED16
@@ -543,7 +552,7 @@ parameters:
         offset: 0
 
     tcmNumSuccessfulShifts_ul:
-        id: 52
+        id: 53
         motec_name: TCM Num Successful Shifts
         unit: ''
         type: UNSIGNED16
@@ -554,7 +563,7 @@ parameters:
 
     # Sensor Hub Front Sensors
     brakePressureFront_psi:
-        id: 53
+        id: 54
         motec_name: Brake Pres Front
         unit: psi
         type: FLOATING
@@ -563,7 +572,7 @@ parameters:
         offset: 0
 
     brakePressureRear_psi:
-        id: 54
+        id: 55
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -572,7 +581,7 @@ parameters:
         offset: 0
 
     brakeTempFrontLeft_C:
-        id: 55
+        id: 56
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -581,7 +590,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 56
+        id: 57
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -590,7 +599,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 57
+        id: 58
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -599,7 +608,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 58
+        id: 59
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -608,7 +617,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 59
+        id: 60
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -617,7 +626,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 60
+        id: 61
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -626,7 +635,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 61
+        id: 62
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -636,7 +645,7 @@ parameters:
     # END SENSOR HUB FRONT
     # Sensor Hub Rear Left Sensors
     fuelPressure_psi:
-        id: 62
+        id: 63
         motec_name: Fuel Pres
         unit: psi
         type: FLOATING
@@ -645,7 +654,7 @@ parameters:
         offset: 0
 
     exhaustTemp_C:
-        id: 63
+        id: 64
         motec_name: Exhaust Temp
         unit: C
         type: FLOATING
@@ -654,7 +663,7 @@ parameters:
         offset: 0
 
     leftRadWaterTempIn_C:
-        id: 64
+        id: 65
         motec_name: Left Rad Water Temp In
         unit: C
         type: FLOATING
@@ -663,7 +672,7 @@ parameters:
         offset: 0
 
     leftRadWaterTempOut_C:
-        id: 65
+        id: 66
         motec_name: Left Rad Water Temp Out
         unit: C
         type: FLOATING
@@ -672,7 +681,7 @@ parameters:
         offset: 0
 
     shockPosRearLeft_mm:
-        id: 66
+        id: 67
         motec_name: Susp Pos RL
         unit: mm
         type: FLOATING
@@ -681,7 +690,7 @@ parameters:
         offset: 0
 
     wheelSpeedRearLeft_mph:
-        id: 67
+        id: 68
         motec_name: Wheel Speed RL
         unit: mph
         type: FLOATING
@@ -689,14 +698,14 @@ parameters:
         scale: 0.1 # [0-150] -> [0-1500]
         offset: 0
 
-    leftAuxPressure_psi:
-        id: 68
-        motec_name: Left Aux Pressure
-        unit: psi
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0244140625 # [0-100] -> [0-4096]
-        offset: 0
+    # leftAuxPressure_psi:
+    #     id: 68
+    #     motec_name: Left Aux Pressure
+    #     unit: psi
+    #     type: FLOATING
+    #     encoding: MSB
+    #     scale: 0.0244140625 # [0-100] -> [0-4096]
+    #     offset: 0
 
     leftShroudPitot_inH2O:
         id: 69
@@ -1218,8 +1227,9 @@ groups: [
     {
         id: 0x102,
         parameters: [
-            {name: rightRadWaterTempIn_C,      start: 0, length: 2},
-            {name: rightRadWaterTempOut_C,   start: 2, length: 2}
+            {name: rightRadWaterTempOut_C,  start: 0, length: 2},
+            {name: engineInletTemp_C,       start: 2, length: 2},
+            {name: engineOutletTemp_C,      start: 4, length: 2}
         ]
     },
     # Low Frequency ECU (Custom Set 2)
@@ -1356,8 +1366,7 @@ groups: [
     {
         id: 0x401,
         parameters: [
-            {name: steeringAngle_deg, start: 0, length: 2},
-            {name: leftAuxPressure_psi, start: 0, length: 2}
+            {name: steeringAngle_deg, start: 0, length: 2}
         ]
     },
     # High Frequency
