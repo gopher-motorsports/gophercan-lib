@@ -1186,7 +1186,117 @@ parameters:
         offset: 0
     # END DATA LOGGING
 
+    # FRONT LOAD CELL BOARD SENSOR HUB
+    front1SuspensionLoadCell_N:
+        id: 120
+        motec_name: Front 1 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
 
+    front2SuspensionLoadCell_N:
+        id: 121
+        motec_name: Front 2 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    front3SuspensionLoadCell_N:
+        id: 122
+        motec_name: Front 3 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    front4SuspensionLoadCell_N:
+        id: 123
+        motec_name: Front 4 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    front5SuspensionLoadCell_N:
+        id: 124
+        motec_name: Front 5 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    front6SuspensionLoadCell_N:
+        id: 125
+        motec_name: Front 6 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # END FRONT LOAD CELL BOARD SENSOR HUB
+
+    # REAR LOAD CELL BOARD SENSOR HUB
+    rear1SuspensionLoadCell_N:
+        id: 126
+        motec_name: Rear 1 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    rear2SuspensionLoadCell_N:
+        id: 127
+        motec_name: Rear 2 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    rear3SuspensionLoadCell_N:
+        id: 128
+        motec_name: Rear 3 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    rear4SuspensionLoadCell_N:
+        id: 129
+        motec_name: Rear 4 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    rear5SuspensionLoadCell_N:
+        id: 130
+        motec_name: Rear 5 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    rear6SuspensionLoadCell_N:
+        id: 131
+        motec_name: Rear 6 Suspension Load Cell
+        unit: N
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # END REAR LOAD CELL BOARD SENSOR HUB
 
 groups: [
     {
@@ -1507,6 +1617,40 @@ groups: [
         id: 0x17C,
         parameters: [
             {name: verticalAccel_G, start: 4, length: 2}
+        ]
+    },
+
+    # Front Load Cell Sensor Hub
+    {
+        id: 0x800,
+        parameters: [
+            {name: front1SuspensionLoadCell_N, start: 0, length: 2},
+            {name: front2SuspensionLoadCell_N, start: 2, length: 2},
+            {name: front3SuspensionLoadCell_N, start: 4, length: 2},
+            {name: front4SuspensionLoadCell_N, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x801,
+        parameters: [
+            {name: front5SuspensionLoadCell_N, start: 0, length: 2},
+            {name: front6SuspensionLoadCell_N, start: 2, length: 2}
+        ]
+    },
+    {
+        id: 0x850,
+        parameters: [
+            {name: rear1SuspensionLoadCell_N, start: 0, length: 2},
+            {name: rear2SuspensionLoadCell_N, start: 2, length: 2},
+            {name: rear3SuspensionLoadCell_N, start: 4, length: 2},
+            {name: rear4SuspensionLoadCell_N, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x851,
+        parameters: [
+            {name: rear5SuspensionLoadCell_N, start: 0, length: 2},
+            {name: rear6SuspensionLoadCell_N, start: 2, length: 2}
         ]
     }
 ]
