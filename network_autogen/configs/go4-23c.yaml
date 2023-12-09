@@ -1298,6 +1298,80 @@ parameters:
         offset: 0
     # END REAR LOAD CELL BOARD SENSOR HUB
 
+    voltageSensor1:
+        id: 132
+        motec_name: Voltage 1
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    voltageSensor2:
+        id: 133
+        motec_name: Voltage 2
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    voltageSensor3:
+        id: 134
+        motec_name: Voltage 3
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    voltageSensor4:
+        id: 135
+        motec_name: Voltage 4
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    voltageSensor5:
+        id: 136
+        motec_name: Voltage 5
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    voltageSensor6:
+        id: 137
+        motec_name: Voltage 6
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    voltageSensor7:
+        id: 138
+        motec_name: Voltage 7
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    voltageSensor8:
+        id: 139
+        motec_name: 8
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    
+
 groups: [
     {
     id: 0x010,
@@ -1514,6 +1588,24 @@ groups: [
         id: 0x551,
         parameters: [
             {name: leftFlowRateFreq_hz,    start: 0, length: 2}
+        ]
+    },
+    {
+        id: 0x552,
+        parameters: [
+            {name: voltageSensor1,    start: 0, length: 2},
+            {name: voltageSensor2,    start: 2, length: 2},
+            {name: voltageSensor3,    start: 4, length: 2},
+            {name: voltageSensor4,    start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x553,
+        parameters: [
+            {name: voltageSensor5,    start: 0, length: 2},
+            {name: voltageSensor6,    start: 2, length: 2},
+            {name: voltageSensor7,    start: 4, length: 2},
+            {name: voltageSensor8,    start: 6, length: 2}
         ]
     },
     # Sensor Hub Rear Right
