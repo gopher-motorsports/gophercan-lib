@@ -497,6 +497,16 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
+    
+    loadcell_voltage:
+        id: 50
+        motec_name: Load Cell
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
 
 
 groups: [
@@ -598,7 +608,8 @@ groups: [
         id: 0x613,
         parameters: [
             {name: pressure7_psi, start: 0, length: 2},
-            {name: pressure8_psi, start: 2, length: 2}
+            {name: pressure8_psi, start: 2, length: 2},
+            {name: loadcell_voltage, start: 4, length: 2}
         ]
     },
     {
