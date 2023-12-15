@@ -28,6 +28,18 @@ modules:
         buses:
             - GCAN0
         motec_name: Data Aquisition Module
+    
+    SH_TEMPS:
+        id: 3
+        buses:
+            - GCAN0
+        motec_name: Sensor Hub 1
+
+    SH_PRESSURES:
+        id: 4
+        buses:
+            - GCAN0
+        motec_name: Sensor Hub 2
         
     # ECU is also on GCAN0, but is not a GCAN module
 
@@ -311,6 +323,181 @@ parameters:
         scale: 0.1
         offset: 0
 
+    # Pressure Sensors
+    pressure1_psi:
+        id: 31
+        motec_name: Oil Cooler Outlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure2_psi:
+        id: 32
+        motec_name: Oil Cooler Inlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure3_psi:
+        id: 33
+        motec_name: Heat Exchanger Inlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure4_psi:
+        id: 34
+        motec_name: Manifold Air Pressure
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure5_psi:
+        id: 35
+        motec_name: Header Tank Outlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure6_psi:
+        id: 36
+        motec_name: Heat Exchanger Outlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure7_psi:
+        id: 37
+        motec_name: Engine Inlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure8_psi:
+        id: 38
+        motec_name: Unused Pressure Input
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Temperature Sensors
+    temp1_C:
+        id: 39
+        motec_name: Heat Exchanger Temp Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp2_C:
+        id: 40
+        motec_name: Heat Exchanger Temp In
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp3_C:
+        id: 41
+        motec_name: Engine Inlet Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp4_C:
+        id: 42
+        motec_name: Oil Cooler Water In Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp5_C:
+        id: 43
+        motec_name: Oil Cooler Water Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp6_C:
+        id: 44
+        motec_name: Oil Temp Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp7_C:
+        id: 45
+        motec_name: Engine Outlet Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp8_C:
+        id: 46
+        motec_name: Oil Temp In
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Flow Sensors
+    flowRate1_Hz:
+        id: 47
+        motec_name: Building Flow
+        unit: Hz
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    flowRate2_Hz:
+        id: 48
+        motec_name: Engine Flow
+        unit: Hz
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Other
+    lapBeacon_ul:
+        id: 49
+        motec_name: Lap Beacon (Placeholder)
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
 
 groups: [
     # High Frequency ECU (Custom Set 1)
@@ -388,6 +575,60 @@ groups: [
             {name: waterTempAfterOil_C, start: 2, length: 2},
             {name: waterTempBeforeHeatExchanger_C, start: 4, length: 2},
             {name: waterTempAfterHeatExchanger_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x601,
+        parameters: [
+            {name: pressure1_psi, start: 0, length: 2},
+            {name: pressure2_psi, start: 2, length: 2},
+            {name: pressure3_psi, start: 4, length: 2},
+            {name: pressure4_psi, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x602,
+        parameters: [
+            {name: pressure5_psi, start: 0, length: 2},
+            {name: pressure6_psi, start: 2, length: 2},
+            {name: flowRate2_Hz, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x613,
+        parameters: [
+            {name: pressure7_psi, start: 0, length: 2},
+            {name: pressure8_psi, start: 2, length: 2}
+        ]
+    },
+    {
+        id: 0x603,
+        parameters: [
+            {name: temp1_C,       start: 0, length: 2},
+            {name: temp2_C,       start: 2, length: 2}
+        ]
+    },
+    {
+        id: 0x604,
+        parameters: [
+            {name: temp3_C, start: 0, length: 2},
+            {name: temp4_C, start: 2, length: 2},
+            {name: temp5_C, start: 4, length: 2},
+            {name: temp6_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x605,
+        parameters: [
+            {name: temp7_C,           start: 0, length: 2},
+            {name: temp8_C,           start: 2, length: 2},
+            {name: flowRate1_Hz, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x700,
+        parameters: [
+            {name: lapBeacon_ul, start: 0, length: 2}
         ]
     }
 ]
