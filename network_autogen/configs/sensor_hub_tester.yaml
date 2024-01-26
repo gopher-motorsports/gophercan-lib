@@ -275,142 +275,142 @@ parameters:
         offset: 0
 
     voltageSensor1_V:
-        id: 22
+        id: 23
         motec_name: Voltage Sensor 1
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor2_V:
-        id: 22
+        id: 24
         motec_name: Voltage Sensor 2
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor3_V:
-        id: 22
+        id: 25
         motec_name: Voltage Sensor 3
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor4_V:
-        id: 22
+        id: 26
         motec_name: Voltage Sensor 4
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor5_V:
-        id: 22
+        id: 27
         motec_name: Voltage Sensor 5
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor6_V:
-        id: 22
+        id: 28
         motec_name: Voltage Sensor 6
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor7_V:
-        id: 22
+        id: 29
         motec_name: Voltage Sensor 7
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor8_V:
-        id: 22
+        id: 30
         motec_name: Voltage Sensor 8
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor9_V:
-        id: 22
+        id: 31
         motec_name: Voltage Sensor 9
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor10_V:
-        id: 22
+        id: 32
         motec_name: Voltage Sensor 10
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor11_V:
-        id: 22
+        id: 33
         motec_name: Voltage Sensor 11
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-        
+
     voltageSensor12_V:
-        id: 22
+        id: 34
         motec_name: Voltage Sensor 12
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-                
+
     pulseSensor1_V:
-        id: 22
+        id: 35
         motec_name: Pulse Sensor 1
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-                        
+
     pulseSensor2_V:
-        id: 22
+        id: 36
         motec_name: Pulse Sensor 2
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-                        
+
     pulseSensor3_V:
-        id: 22
+        id: 37
         motec_name: Pulse Sensor 3
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
-                        
+
     pulseSensor4_V:
-        id: 22
+        id: 38
         motec_name: Pulse Sensor 4
         unit: V
         type: FLOATING
@@ -420,7 +420,7 @@ parameters:
 
         # 0-50 (sending mm from pot onto 16bit number)
     lapBeacon_ul:
-        id: 23
+        id: 39
         motec_name: Lap Beacon Test
         unit: mm
         type: FLOATING
