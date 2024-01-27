@@ -9,8 +9,7 @@
 #define GOPHERCAN_BUFFERS_H_
 
 #include "main.h"
-#include "base_types.h"
-#include "GopherCAN_config.h"
+#include "GopherCAN.h"
 #include "GopherCAN_network.h"
 #include "cmsis_os.h"
 

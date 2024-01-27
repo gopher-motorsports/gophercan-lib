@@ -4,7 +4,7 @@
 
 // *** MODULES ***
 
-U8 module_bus_number[NUM_OF_MODULES] = {
+uint8_t module_bus_number[NUM_OF_MODULES] = {
     ALL_BUSSES,
     {% for name, module in modules.items() -%}
     {{ module.buses[0] }},

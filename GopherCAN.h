@@ -5,44 +5,78 @@
  *      Author: Calvin
  */
 
-// this will include auto generated code based on a spreadsheet of variables
-
 #ifndef GOPHERCAN_H_
 #define GOPHERCAN_H_
 
-// this file should be module-specific and exist in the module project directory.
-// look at the file "GopherCAN_configs_example.h" for an example
-#include "GopherCAN_config.h"
-
-#ifndef GOPHERCAN_CONFIG_H
-#error "Problem with GopherCAN_config.h"
-#endif
-
-#include "base_types.h"
-#include "main.h" // main.h includes the HAL
+#include "main.h"
+#include "stm32f4xx_hal.h"
 #include "GopherCAN_network.h"
 
-typedef enum
-{
+/*************************************************
+ * CONFIGURATION
+*************************************************/
+
+/* to override a configuration value:
+#ifdef RX_BUFFER_SIZE
+#undef RX_BUFFER_SIZE
+#define RX_BUFFER_SIZE 256
+#endif
+ */
+
+// RX and TX buffer sizes (bytes)
+#define RX_BUFFER_SIZE 128
+#define TX_BUFFER_SIZE 32
+
+// number of connected CAN buses (max 3)
+#define NUM_OF_BUSSES 1
+
+// if defined, GCAN tries to retransmit messages on their destination bus
+//#define CAN_ROUTER
+
+// if defined, all CAN messages are accepted
+//#define NO_FILTER
+
+// if defined, 11-bit ID data messages are filtered out
+//#define IGNORE_DATA
+
+/*************************************************
+ * TYPES
+*************************************************/
+
+typedef uint8_t   U8 ;
+typedef uint16_t  U16;
+typedef uint32_t  U32;
+typedef uint64_t  U64;
+typedef int8_t    S8 ;
+typedef int16_t   S16;
+typedef int32_t   S32;
+typedef int64_t   S64;
+
+typedef enum {
+	TRUE = 1,
+	FALSE = 0
+} boolean;
+
+#ifndef NULL
+#define NULL (void*)(0)
+#endif
+
+typedef enum {
     PRIO_HIGH = 0b0,
     PRIO_LOW = 0b1
 } PRIORITY;
 
-// master or slave BxCAN type
-typedef enum
-{
+typedef enum {
     BXTYPE_MASTER = 0,
     BXTYPE_SLAVE = 1
 } BXCAN_TYPE;
 
-typedef union
-{
+typedef union {
     float f;
     U32 u32;
 } FLOAT_CONVERTER;
 
-typedef struct
-{
+typedef struct {
     U8  priority;
     U8  dest_module;
     U8  source_module;
@@ -50,12 +84,15 @@ typedef struct
     U16 parameter;
 } CAN_ID;
 
-typedef struct
-{
+typedef struct {
     void (*func_ptr)(U8, void*, U8, U8, U8, U8);
     U8    func_enabled;
     void* param_ptr;
 } CUST_FUNC;
+
+/*************************************************
+ * FUNCTIONS
+*************************************************/
 
 // function prototypes
 

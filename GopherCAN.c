@@ -1,7 +1,6 @@
-// GopherCAN.c
-//  This function houses the functionality of GopherCAN, including handling
-//  hardware, interrupts, and buffers. Functions will also automatically
-//  return request from other modules and call CAN commands
+/*
+ * GopherCAN
+ */
 
 #include "GopherCAN.h"
 #include "GopherCAN_network.h"

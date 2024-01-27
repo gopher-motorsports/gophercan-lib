@@ -3,7 +3,7 @@
 #ifndef GOPHERCAN_NETWORK_H
 #define GOPHERCAN_NETWORK_H
 
-#include "base_types.h"
+#include <stdint.h>
 
 #define CAN_DATA_BYTES 8
 
@@ -54,7 +54,7 @@ typedef enum
     NUM_OF_MODULES
 } MODULE_ID;
 
-extern U8 module_bus_number[NUM_OF_MODULES];
+extern uint8_t module_bus_number[NUM_OF_MODULES];
 
 // *** PARAMETERS ***
 
@@ -73,56 +73,56 @@ typedef enum {
 
 typedef struct {
     GCAN_PARAM_ID ID;
-    U16 GROUP_ID;
+    uint16_t GROUP_ID;
     DATATYPES TYPE;
     DATATYPES_SIZE SIZE;
     ENCODING ENC;
-    U8 ENC_SIZE;
+    uint8_t ENC_SIZE;
     float SCALE;
     float OFFSET;
-    U32 last_tx;
-    U32 last_rx;
-    U8 pending_response;
+    uint32_t last_tx;
+    uint32_t last_rx;
+    uint8_t pending_response;
 } CAN_INFO_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U8 data;
+    uint8_t data;
 } U8_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U16 data;
+    uint16_t data;
 } U16_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U32 data;
+    uint32_t data;
 } U32_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U64 data;
+    uint64_t data;
 } U64_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S8 data;
+    int8_t data;
 } S8_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S16 data;
+    int16_t data;
 } S16_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S32 data;
+    int32_t data;
 } S32_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S64 data;
+    int64_t data;
 } S64_CAN_STRUCT;
 
 typedef struct {
@@ -141,7 +141,7 @@ extern void* PARAMETERS[NUM_OF_PARAMETERS];
 
 typedef struct
 {
-    U16 group_id;
+    uint16_t group_id;
     GCAN_PARAM_ID param_ids[CAN_DATA_BYTES];
 } PARAM_GROUP;
 
@@ -164,10 +164,10 @@ typedef enum
 {% endfor %}
 typedef struct
 {
-    U32 last_rx;
-    U8  source_module;
-    U16 parameter;
-    U8  error_id;
+    uint32_t last_rx;
+    uint8_t  source_module;
+    uint16_t parameter;
+    uint8_t  error_id;
 } ERROR_MSG;
 
 #endif /* GOPHERCAN_NETWORK_H */
