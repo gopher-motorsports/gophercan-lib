@@ -16,19 +16,19 @@
  * CONFIGURATION
 *************************************************/
 
-/* to override a configuration value:
+/* configuration values can be overridden e.g.:
 #ifdef RX_BUFFER_SIZE
 #undef RX_BUFFER_SIZE
 #define RX_BUFFER_SIZE 256
 #endif
  */
 
+// number of connected CAN buses (max 3)
+#define NUM_OF_BUSSES 1
+
 // RX and TX buffer sizes (bytes)
 #define RX_BUFFER_SIZE 128
 #define TX_BUFFER_SIZE 32
-
-// number of connected CAN buses (max 3)
-#define NUM_OF_BUSSES 1
 
 // if defined, GCAN tries to retransmit messages on their destination bus
 //#define CAN_ROUTER
@@ -91,10 +91,11 @@ typedef struct {
 } CUST_FUNC;
 
 /*************************************************
- * FUNCTIONS
+ * FUNCTION PROTOTYPES
 *************************************************/
 
-// function prototypes
+void GCAN_RxCallback(CAN_HandleTypeDef* hcan);
+
 
 // init_can
 // 	This function will set up the CAN registers with the inputed module_id
@@ -211,19 +212,6 @@ void service_can_tx(CAN_HandleTypeDef* hcan);
 // function to add to the custom CAN commands by default just in case
 void do_nothing(MODULE_ID sending_module, void* param,
 	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3);
-
-// ISR functions, do not call these in runtime
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan);
-void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan);
-
-#if defined __STM32F4xx_HAL_H || defined __STM32F7xx_HAL_H
-void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
-#endif
 
 
 // return messages
