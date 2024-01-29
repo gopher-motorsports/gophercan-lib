@@ -16,28 +16,12 @@
  * CONFIGURATION
 *************************************************/
 
-/* configuration values can be overridden e.g.:
-#ifdef RX_BUFFER_SIZE
-#undef RX_BUFFER_SIZE
-#define RX_BUFFER_SIZE 256
+// modules should include a GopherCAN configuration named "GopherCAN_config.h"
+#include "GopherCAN_config.h"
+
+#ifndef GOPHERCAN_CONFIG_H
+#error "Problem with GopherCAN_config.h"
 #endif
- */
-
-// number of connected CAN buses (max 3)
-#define NUM_OF_BUSSES 1
-
-// RX and TX buffer sizes (bytes)
-#define RX_BUFFER_SIZE 128
-#define TX_BUFFER_SIZE 32
-
-// if defined, GCAN tries to retransmit messages on their destination bus
-//#define CAN_ROUTER
-
-// if defined, all CAN messages are accepted
-//#define NO_FILTER
-
-// if defined, 11-bit ID data messages are filtered out
-//#define IGNORE_DATA
 
 /*************************************************
  * TYPES
