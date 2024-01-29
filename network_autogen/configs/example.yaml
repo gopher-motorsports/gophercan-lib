@@ -1,0 +1,198 @@
+buses:
+    - GCAN0
+    - GCAN1
+
+modules:
+    MOD1:
+        id: 1
+        buses:
+            - GCAN0
+            - GCAN1
+
+    MOD2:
+        id: 2
+        buses:
+            - GCAN0
+
+    MOD3:
+        id: 3
+        buses:
+            - GCAN1
+
+parameters:
+    u8_tester:
+        id: 1
+        motec_name: U8 Tester
+        unit: number
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    u16_tester:
+        id: 2
+        motec_name: U16 Tester
+        unit: number
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    u32_tester:
+        id: 3
+        motec_name: U32 Tester
+        unit: number
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    u64_tester:
+        id: 4
+        motec_name: U64 Tester
+        unit: number
+        type: UNSIGNED64
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s8_tester:
+        id: 5
+        motec_name: S8 Tester
+        unit: number
+        type: SIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s16_tester:
+        id: 6
+        motec_name: S16 Tester
+        unit: number
+        type: SIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s32_tester:
+        id: 7
+        motec_name: S32 Tester
+        unit: number
+        type: SIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    s64_tester:
+        id: 8
+        motec_name: S64 Tester
+        unit: number
+        type: SIGNED64
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    float_tester:
+        id: 9
+        motec_name: Float Tester 1
+        unit: number
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+groups: [
+    {
+        id: 0x1,
+        parameters: [
+            {name: u8_tester, start: 0, length: 1},
+            {name: u16_tester, start: 1, length: 2},
+            {name: u32_tester, start: 3, length: 4}
+        ]
+    },
+    {
+        id: 0x2,
+        parameters: [
+            {name: u64_tester, start: 0, length: 8}
+        ]
+    },
+    {
+        id: 0x3,
+        parameters: [
+            {name: s8_tester, start: 0, length: 1},
+            {name: s16_tester, start: 1, length: 2},
+            {name: s32_tester, start: 3, length: 4}
+        ]
+    },
+    {
+        id: 0x4,
+        parameters: [
+            {name: s64_tester, start: 0, length: 8}
+        ]
+    },
+    {
+        id: 0x5,
+        parameters: [
+            {name: float_tester, start: 0, length: 1},
+        ]
+    },
+]
+
+commands:
+    SET_LED_STATE:
+        name: SET_LED_STATE
+        id: 0
+        param_0: LED state
+        param_1: LED state (duplicate)
+        param_2: LED state (duplicate)
+        param_3: LED state (duplicate)
+        comment: Only the first led_state is used, the rest are duplication for testing
+        
+    SET_RTC_TIME:
+        name: SET_RTC_TIME
+        id: 1
+        param_0: hour
+        param_1: minute
+        param_2: second
+        param_3: UNUSED
+        comment: pass in the hours, minutes, and seconds to set the RTC time. This
+            is in 24 hour format
+    SET_RTC_DATE:
+        name: SET_RTC_DATE
+        id: 2
+        param_0: year
+        param_1: month
+        param_2: day
+        param_3: weekday
+        comment: pass in the year, month, date, and day of week to set the RTC date.
+            Year is number of years since 1970. For weekday, mon = 1, teus = 2, ...,
+            sun = 7
+            
+    LOG_COMPLETE:
+        name: LOG_COMPLETE
+        id: 3
+        param_0: UNUSED
+        param_1: UNUSED
+        param_2: UNUSED
+        param_3: UNUSED
+        comment: Sent by the DLM after completing a write to storage
+
+errors:
+    ID_NOT_FOUND:
+        name: ID_NOT_FOUND
+        id: 0
+    COMMAND_ID_NOT_FOUND:
+        name: COMMAND_ID_NOT_FOUND
+        id: 1
+    PARAM_NOT_ENABLED:
+        name: PARAM_NOT_ENABLED
+        id: 2
+    SIZE_ERROR:
+        name: SIZE_ERROR
+        id: 3
+    DATATYPE_NOT_FOUND:
+        name: DATATYPE_NOT_FOUND
+        id: 4
+    COMMAND_NOT_ENABLED:
+        name: COMMAND_NOT_ENABLED
+        id: 5

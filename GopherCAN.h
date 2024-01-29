@@ -79,17 +79,15 @@ typedef struct {
 *************************************************/
 
 // init_can
-// 	This function will set up the CAN registers with the inputed module_id
-//	as a filter. All parameters that should be enabled should be set after
+//  This function will set up the CAN registers with the inputed module_id
+//  as a filter. All parameters that should be enabled should be set after
 //  calling this function
 // params:
-//  U8 bus_id:               CAN bus identifier (GCAN0/1/2)
 //  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
-//  MODULE_ID module_id:     what module this is (ex. PDM_ID, ACM_ID)
-//  BXCAN_TYPE bx_type:      master or slave BXcan type. This is usually BXTYPE_MASTER
+//  BUS_ID bus_id:               CAN bus identifier (GCAN0/1/2)
 // returns:
 //  error codes specified in GopherCAN.h
-S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
+S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id);
 
 // called when a message is received, redefine in application code
 void GCAN_RxCallback(CAN_HandleTypeDef* hcan);
@@ -185,6 +183,10 @@ S8 mod_custom_can_func_state(U8 func_id, U8 state);
 void do_nothing(MODULE_ID sending_module, void* param,
 	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3);
 
+#define MUTEX_TIMEOUT 5
+#define IS_FULL(buffer) ((buffer)->fill >= (buffer)->size)
+#define IS_EMPTY(buffer) ((buffer)->fill == 0)
+#define GET_FROM_BUFFER(buffer, index) ((buffer)->messages + (((buffer)->head + index) % (buffer)->size))
 
 // return messages
 #define CAN_SUCCESS         0

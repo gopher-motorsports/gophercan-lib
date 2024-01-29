@@ -4,6 +4,9 @@
 #define GOPHERCAN_NETWORK_H
 
 #include <stdint.h>
+#include "stm32f4xx_hal.h"
+#include "cmsis_os.h"
+#include "GopherCAN_config.h"
 
 #define CAN_DATA_BYTES 8
 
@@ -36,17 +39,44 @@ typedef enum {
     FLOATING_SIZE = 4
 } DATATYPES_SIZE;
 
+// *** BUFFERS ***
+
+typedef struct {
+    CAN_TxHeaderTypeDef header;
+    uint8_t data[CAN_DATA_BYTES];
+    uint32_t rx_time;
+} CAN_MSG;
+
+typedef struct {
+    CAN_MSG* messages;
+    uint8_t size;
+    uint8_t fill;
+    uint8_t head;
+    osMutexId mutex;
+} CAN_BUFFER;
+
+extern CAN_BUFFER RX_BUFF;
+
 // *** BUSES ***
 
-#define ALL_BUSSES 0xFF
-#define GCAN0 0
-#define GCAN1 1
-#define GCAN2 2
+typedef enum {
+    {% for bus_id in buses -%}
+    {{ bus_id }} = {{ loop.index - 1 }},
+    {% endfor %}
+    ALL_BUSSES
+} BUS_ID;
+
+typedef struct {
+    BUS_ID id;
+    CAN_HandleTypeDef* hcan;
+    CAN_BUFFER* tx_buffer;
+} CAN_BUS;
+
+extern CAN_BUS* BUSES[ALL_BUSSES];
 
 // *** MODULES ***
 
-typedef enum
-{
+typedef enum {
     ALL_MODULES_ID = 0,
     {% for key, value in modules.items() -%}
     {{ key }}_ID = {{ value.id }},
@@ -54,7 +84,7 @@ typedef enum
     NUM_OF_MODULES
 } MODULE_ID;
 
-extern uint8_t module_bus_number[NUM_OF_MODULES];
+extern BUS_ID module_bus_number[NUM_OF_MODULES];
 
 // *** PARAMETERS ***
 
@@ -169,5 +199,7 @@ typedef struct
     uint16_t parameter;
     uint8_t  error_id;
 } ERROR_MSG;
+
+void GCAN_InitNetwork();
 
 #endif /* GOPHERCAN_NETWORK_H */
