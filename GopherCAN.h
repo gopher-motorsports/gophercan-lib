@@ -94,9 +94,6 @@ typedef struct {
  * FUNCTION PROTOTYPES
 *************************************************/
 
-void GCAN_RxCallback(CAN_HandleTypeDef* hcan);
-
-
 // init_can
 // 	This function will set up the CAN registers with the inputed module_id
 //	as a filter. All parameters that should be enabled should be set after
@@ -109,6 +106,43 @@ void GCAN_RxCallback(CAN_HandleTypeDef* hcan);
 // returns:
 //  error codes specified in GopherCAN.h
 S8 init_can(U8 bus_id, CAN_HandleTypeDef* hcan, MODULE_ID module_id, BXCAN_TYPE bx_type);
+
+// called when a message is received, redefine in application code
+void GCAN_RxCallback(CAN_HandleTypeDef* hcan);
+
+// service_can_tx
+// Calls service_can_tx_hardware
+// Acquires mutexes and temporarily disables interrupts
+//  designed to be called at high priority on 1ms loop
+void service_can_tx(CAN_HandleTypeDef* hcan);
+
+// service_can_rx_buffer
+//  this method will take all of the messages in rx_message_buffer and run them through
+//  service_can_rx_message to return parameter requests, run CAN commands, and update
+//  parameters.
+//
+//  WARNING: currently this function will not handle a full rx_message_buffer when returning
+//   parameter requests. The request will not be completed and the other module will have to
+//   send a new request
+//
+//  call in a 1 ms or faster loop
+S8 service_can_rx_buffer(void);
+
+// send_parameter
+//  encodes and sends the specified parameter's group in a standard 11-bit CAN frame
+// params:
+//  CAN_INFO_STRUCT* param: parameter to send (along with its group)
+// returns:
+//  error codes specified in GopherCAN.h
+S8 send_parameter(CAN_INFO_STRUCT* param);
+
+// send_group
+//  encodes all of the parameters in a group and send is out on the bus
+// params:
+//  U16 group_id: the CAN ID of the group to be sent
+// returns:
+//  error codes specificed in GopherCAN.h
+S8 send_group(U16 group_id);
 
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
@@ -137,22 +171,6 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
 					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
 
-// send_parameter
-//  encodes and sends the specified parameter's group in a standard 11-bit CAN frame
-// params:
-//  CAN_INFO_STRUCT* param: parameter to send (along with its group)
-// returns:
-//  error codes specified in GopherCAN.h
-S8 send_parameter(CAN_INFO_STRUCT* param);
-
-// send_group
-//  encodes all of the parameters in a group and send is out on the bus
-// params:
-//  U16 group_id: the CAN ID of the group to be sent
-// returns:
-//  error codes specificed in GopherCAN.h
-S8 send_group(U16 group_id);
-
 // add_custom_can_func
 //  add a user function to the array of functions to check if
 //  a CAN command message is sent. Note the functions must be of type 'void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8)',
@@ -178,36 +196,6 @@ S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, v
 // returns:
 //  error codes specified in GopherCAN.h
 S8 mod_custom_can_func_state(U8 func_id, U8 state);
-
-// service_can_rx_hardware
-//  Method to interact directly with the CAN registers through the HAL_CAN functions.
-//  Will take all messages from rx_mailbox (CAN_RX_FIFO0 or CAN_RX_FIFO1)
-//  and put them into the rx_buffer
-// params:
-// CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
-//  U32 rx_mailbox:         the mailbox to service (CAN_RX_FIFO0 or CAN_RX_FIFO1)
-//                           Make sure this is valid, no error checking is done
-//
-//  designed to be called as an ISR whenever there is an RX message pending
-void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
-
-// service_can_rx_buffer
-//  this method will take all of the messages in rx_message_buffer and run them through
-//  service_can_rx_message to return parameter requests, run CAN commands, and update
-//  parameters.
-//
-//  WARNING: currently this function will not handle a full rx_message_buffer when returning
-//   parameter requests. The request will not be completed and the other module will have to
-//   send a new request
-//
-//  call in a 1 ms or faster loop
-S8 service_can_rx_buffer(void);
-
-// service_can_tx
-// Calls service_can_tx_hardware
-// Acquires mutexes and temporarily disables interrupts
-//  designed to be called at high priority on 1ms loop
-void service_can_tx(CAN_HandleTypeDef* hcan);
 
 // function to add to the custom CAN commands by default just in case
 void do_nothing(MODULE_ID sending_module, void* param,
