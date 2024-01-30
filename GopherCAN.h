@@ -103,7 +103,7 @@ typedef enum {
 #define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
 /*************************************************
- * EVENT CALLBACKS
+ * EVENT HANDLERS
  * these functions are marked __weak, they should be redefined in application code
 *************************************************/
 
@@ -114,7 +114,7 @@ void GCAN_onRX(CAN_HandleTypeDef* hcan);
 void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id);
 
 /*************************************************
- * FUNCTION PROTOTYPES
+ * INITIALIZATION
 *************************************************/
 
 // init_can
@@ -126,6 +126,10 @@ void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id);
 //  error codes specified in GopherCAN.h
 S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id);
 
+/*************************************************
+ * BUFFER SERVICE
+*************************************************/
+
 // service_can_tx
 //  Moves messages from TX buffer to mailbox. Designed to be called frequently (1ms).
 void service_can_tx(CAN_HandleTypeDef* hcan);
@@ -134,6 +138,10 @@ void service_can_tx(CAN_HandleTypeDef* hcan);
 //  Processes messages in the RX buffer. Designed to be called frequently (1ms).
 S8 service_can_rx_buffer(void);
 
+/*************************************************
+ * STD MESSAGE CALLBACKS
+*************************************************/
+
 // attach_callback
 //  Configure a function to be called when a parameter group is received.
 //  The function will be called after parameters have been decoded and updated.
@@ -141,6 +149,10 @@ S8 service_can_rx_buffer(void);
 //  U16 group_id: group ID to trigger the callback
 //  void (*func_ptr)(): function pointer
 void attach_callback(U16 group_id, void (*func_ptr)());
+
+/*************************************************
+ * DATA MESSAGE (STD 11-bit ID)
+*************************************************/
 
 // send_parameter
 //  Sends the group containing a parameter.
@@ -154,6 +166,10 @@ S8 send_parameter(CAN_INFO_STRUCT* param);
 //  error codes specified in GopherCAN.h
 S8 send_group(U16 group_id);
 
+/*************************************************
+ * PARAMETER REQUESTS (EXT 29-bit ID)
+*************************************************/
+
 // request_parameter
 // 	This function will send out a CAN message requesting the parameter
 //	given by the parameter ID from the module specified by the module ID
@@ -164,6 +180,10 @@ S8 send_group(U16 group_id);
 // returns:
 //  error codes specified in GopherCAN.h
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
+
+/*************************************************
+ * COMMANDS (EXT 29-bit ID)
+*************************************************/
 
 // send_can_command
 //	This function will send a CAN message with a command specified

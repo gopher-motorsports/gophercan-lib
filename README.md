@@ -1,14 +1,33 @@
 # GopherCAN
 
-This repository holds the source code for the GopherCAN library designed for bxCAN on STM32 microcontrollers.
+GopherCAN is a messaging protocol built on top of [CAN](https://en.wikipedia.org/wiki/CAN_bus). It defines what information is packed into the ID and data fields in a CAN frame.
 
-To see an example of GopherCAN running in a project, look into the 'gcan-boiler-plate' repository
+`gophercan-lib` is a library designed for the bxCAN peripheral on STM32 microcontrollers. It provides utilities for sending and receiving CAN frames following the GopherCAN protocol.
 
-The primary functionality of the library is contained in 'GopherCAN.c' and 'GopherCAN.h'
+Check out [CSS Electronics | CAN Bus Explained](https://www.csselectronics.com/pages/can-bus-simple-intro-tutorial) for more information on CAN.
 
-## Library Configuration
+## Installation
 
-Projects using the GopherCAN library should include a 'GopherCAN_config.h' file:
+```
+cd FSAE
+git clone https://github.com/gopher-motorsports/gophercan-lib.git
+```
+
+It's recommended that you create a folder for all Gopher Motorsports projects e.g. `FSAE`. Projects depending on `gophercan-lib` will expect it to be in a sibling directory.
+
+## Configuration
+
+### Network Configuration
+
+YAML configuration files (found in `network_autogen/configs/`) are used to define what parameters, commands, modules, etc. exist in a GopherCAN network. A Python script uses these configs to generate `GopherCAN_network.h/c`:
+```
+cd network_autogen
+python autogen.py configs/[FILENAME].yaml
+```
+
+### Library Configuration
+
+Projects using `gophercan-lib` should include a `GopherCAN_config.h` header:
 
 ```c
 #ifndef GOPHERCAN_CONFIG_H
@@ -33,8 +52,20 @@ Projects using the GopherCAN library should include a 'GopherCAN_config.h' file:
 #endif
 ```
 
-## Network Configuration
+## Usage
 
-`network_autogen/` is used to auto-generate `GopherCAN_network.h/c`.
+### Initialization
 
-Run `python autogen.py configs/[filename].yaml` to generate the network files.
+### Sending & Receiving Messages
+
+GopherCAN supports four fundamental message types: data, commands, requests, and errors.
+
+Data messages use an 11-bit CAN ID. They are composed of groups of parameters defined in a YAML configuration.
+
+Commands, requests, and errors use a 29-bit CAN ID.
+
+### Event Handlers
+
+### Callbacks
+
+### Routing

@@ -279,7 +279,7 @@ static void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 {
 	CAN_BUS* bus = get_bus_from_hcan(hcan);
 
-	// add messages to the the TX mailboxes until they are full
+	// add messages to the TX mailboxes until they are full
 	while (!IS_EMPTY(bus->tx_buffer) && HAL_CAN_GetTxMailboxesFreeLevel(hcan))
 	{
 		// get the next CAN message from the TX buffer (FIFO)
@@ -423,6 +423,143 @@ void attach_callback(U16 group_id, void (*func_ptr)()) {
  * TX MESSAGE
 *************************************************/
 
+// tx_can_message
+//  Adds a CAN message to TX buffers
+static S8 tx_can_message(CAN_MSG* message)
+{
+	// remove any trailing zeros in the CAN message. This is done by starting at the
+	// back of the message and decrementing the DLC for each byte in the message that
+	// is zero at the back. RX logic will add zero bytes as needed
+#ifndef DISABLE_TRIM_ZEROS
+	while (message->header.DLC > 0 && message->data[message->header.DLC - 1] == 0)
+	{
+		message->header.DLC--;
+	}
+#endif
+
+	// if extended ID, get destination
+	// send standard ID data messages to all modules
+	MODULE_ID module_id = message->header.IDE == CAN_ID_EXT ?
+	        GET_ID_DEST(message->header.ExtId) :
+	        ALL_MODULES_ID;
+
+	if (module_id == ALL_MODULES_ID) {
+        for (U8 i = 0; i < ALL_BUSSES; i++) {
+			CAN_BUS* bus = BUSES[i];
+			add_message_by_highest_prio(bus, message);
+        }
+    } else {
+        BUS_ID bus_id = module_bus_number[module_id];
+        CAN_BUS* bus = BUSES[bus_id];
+        add_message_by_highest_prio(bus, message);
+    }
+
+    return CAN_SUCCESS;
+}
+
+/*************************************************
+ * RX MESSAGE
+*************************************************/
+
+// service_can_rx_message_std
+// handle standard ID CAN messages (data messages)
+// finds the specified group and decodes parameters
+static S8 service_can_rx_message_std(CAN_MSG* message)
+{
+    PARAM_GROUP* group = NULL;
+
+    // find the specified parameter group
+    for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
+        if (GROUPS[i].group_id == message->header.StdId) {
+            group = &GROUPS[i];
+            break;
+        }
+    }
+
+    if (group == NULL) return NOT_FOUND_ERR;
+
+    // decode parameters
+    S8 err;
+
+    for (U8 i = 0; i < CAN_DATA_BYTES; i++)
+    {
+        GCAN_PARAM_ID id = group->param_ids[i];
+        if (id == EMPTY_ID) continue;
+
+        // check to make sure this is a good id. We are down bad if it is not
+        if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
+
+        // decode this parameters data from the message
+        // update last_rx if there was no error decoding
+        CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+
+        err = decode_parameter(param, message->data, i, param->ENC_SIZE);
+        if (!err) param->last_rx = message->rx_time;
+    }
+
+    // trigger callback for this group if one has been attached
+    if (CALLBACKS[group->group_id] != NULL) {
+    	(*CALLBACKS[group->group_id])();
+    }
+
+    return CAN_SUCCESS;
+}
+
+// service_can_rx_message_ext
+// handle extended ID CAN messages (commands/errors)
+static S8 service_can_rx_message_ext(CAN_MSG* message)
+{
+	CAN_ID id;
+	id.priority = GET_ID_PRIO(message->header.ExtId);
+	id.dest_module = GET_ID_DEST(message->header.ExtId);
+	id.source_module = GET_ID_SOURCE(message->header.ExtId);
+	id.error = GET_ID_ERROR(message->header.ExtId);
+	id.parameter = GET_ID_PARAM(message->header.ExtId);
+
+	// A double check to make sure this message is actually for this module (most useful in the CAN router)
+	if (id.dest_module != THIS_MODULE_ID && id.dest_module != ALL_MODULES_ID)
+	{
+		// This is not for this module. Do not process this message
+		return WRONG_DEST_ERR;
+	}
+
+	// if the message received has the error flag high, put the details into the last_error struct, then return
+	if (id.error)
+	{
+		GCAN_onError(message->rx_time, id.source_module, id.parameter, message->header.DLC > 0 ? message->data[0] : 0);
+
+		// return success because the problem is not with the RX
+		return CAN_SUCCESS;
+	}
+
+	// error checking on the parameter requested
+	if (id.parameter < EMPTY_ID || id.parameter >= NUM_OF_PARAMETERS)
+	{
+		send_error_message(&id, ID_NOT_FOUND);
+
+		return NOT_FOUND_ERR;
+	}
+
+    // run command: run the command specified by the CAN message on this module
+	if (id.parameter == EMPTY_ID)
+	{
+		return run_can_command(message, &id);
+	}
+
+	// request parameter: return a CAN message with the data taken from this module
+	if (message->header.RTR)
+	{
+		return parameter_requested(message, &id);
+	}
+
+	// EXT ID but not a command/request/error - unknown message
+	return NOT_IMPLEMENTED;
+}
+
+/*************************************************
+ * DATA MESSAGE (STD 11-bit ID)
+*************************************************/
+
 // send_parameter
 //  Sends the group containing a parameter.
 S8 send_parameter(CAN_INFO_STRUCT* param)
@@ -558,139 +695,6 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     return CAN_SUCCESS;
 }
 
-// tx_can_message
-//  Adds a CAN message to TX buffers
-static S8 tx_can_message(CAN_MSG* message)
-{
-	// remove any trailing zeros in the CAN message. This is done by starting at the
-	// back of the message and decrementing the DLC for each byte in the message that
-	// is zero at the back. RX logic will add zero bytes as needed
-#ifndef DISABLE_TRIM_ZEROS
-	while (message->header.DLC > 0 && message->data[message->header.DLC - 1] == 0)
-	{
-		message->header.DLC--;
-	}
-#endif
-
-	// if extended ID, get destination
-	// send standard ID data messages to all modules
-	MODULE_ID module_id = message->header.IDE == CAN_ID_EXT ?
-	        GET_ID_DEST(message->header.ExtId) :
-	        ALL_MODULES_ID;
-
-	if (module_id == ALL_MODULES_ID) {
-        for (U8 i = 0; i < ALL_BUSSES; i++) {
-			CAN_BUS* bus = BUSES[i];
-			add_message_by_highest_prio(bus, message);
-        }
-    } else {
-        BUS_ID bus_id = module_bus_number[module_id];
-        CAN_BUS* bus = BUSES[bus_id];
-        add_message_by_highest_prio(bus, message);
-    }
-
-    return CAN_SUCCESS;
-}
-
-/*************************************************
- * RX MESSAGE
-*************************************************/
-
-// service_can_rx_message_std
-// handle standard ID CAN messages (data messages)
-// finds the specified group and decodes parameters
-static S8 service_can_rx_message_std(CAN_MSG* message)
-{
-    PARAM_GROUP* group = NULL;
-
-    // find the specified parameter group
-    for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
-        if (GROUPS[i].group_id == message->header.StdId) {
-            group = &GROUPS[i];
-            break;
-        }
-    }
-
-    if (group == NULL) return NOT_FOUND_ERR;
-
-    // decode parameters
-    S8 err;
-
-    for (U8 i = 0; i < CAN_DATA_BYTES; i++)
-    {
-        GCAN_PARAM_ID id = group->param_ids[i];
-        if (id == EMPTY_ID) continue;
-
-        // check to make sure this is a good id. We are down bad if it is not
-        if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
-
-        // decode this parameters data from the message
-        // update last_rx if there was no error decoding
-        CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
-
-        err = decode_parameter(param, message->data, i, param->ENC_SIZE);
-        if (!err) param->last_rx = message->rx_time;
-    }
-
-    // trigger callback for this group if one has been attached
-    if (CALLBACKS[group->group_id] != NULL) {
-    	(*CALLBACKS[group->group_id])();
-    }
-
-    return CAN_SUCCESS;
-}
-
-// service_can_rx_message_ext
-// handle extended ID CAN messages (commands/errors)
-static S8 service_can_rx_message_ext(CAN_MSG* message)
-{
-	CAN_ID id;
-	id.priority = GET_ID_PRIO(message->header.ExtId);
-	id.dest_module = GET_ID_DEST(message->header.ExtId);
-	id.source_module = GET_ID_SOURCE(message->header.ExtId);
-	id.error = GET_ID_ERROR(message->header.ExtId);
-	id.parameter = GET_ID_PARAM(message->header.ExtId);
-
-	// A double check to make sure this message is actually for this module (most useful in the CAN router)
-	if (id.dest_module != THIS_MODULE_ID && id.dest_module != ALL_MODULES_ID)
-	{
-		// This is not for this module. Do not process this message
-		return WRONG_DEST_ERR;
-	}
-
-	// if the message received has the error flag high, put the details into the last_error struct, then return
-	if (id.error)
-	{
-		GCAN_onError(message->rx_time, id.source_module, id.parameter, message->header.DLC > 0 ? message->data[0] : 0);
-
-		// return success because the problem is not with the RX
-		return CAN_SUCCESS;
-	}
-
-	// error checking on the parameter requested
-	if (id.parameter < EMPTY_ID || id.parameter >= NUM_OF_PARAMETERS)
-	{
-		send_error_message(&id, ID_NOT_FOUND);
-
-		return NOT_FOUND_ERR;
-	}
-
-    // run command: run the command specified by the CAN message on this module
-	if (id.parameter == EMPTY_ID)
-	{
-		return run_can_command(message, &id);
-	}
-
-	// request parameter: return a CAN message with the data taken from this module
-	if (message->header.RTR)
-	{
-		return parameter_requested(message, &id);
-	}
-
-	// EXT ID but not a command/request/error - unknown message
-	return NOT_IMPLEMENTED;
-}
-
 // decode_parameter
 // extract and decode a parameter from CAN data field
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
@@ -766,7 +770,7 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
 }
 
 /*************************************************
- * PARAMETER REQUEST
+ * PARAMETER REQUESTS (EXT 29-bit ID)
 *************************************************/
 
 // request_parameter
@@ -836,7 +840,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 }
 
 /*************************************************
- * COMMANDS
+ * COMMANDS (EXT 29-bit ID)
 *************************************************/
 
 // send_can_command
@@ -997,7 +1001,7 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 }
 
 /*************************************************
- * ERROR MESSAGES
+ * ERROR MESSAGES (EXT 29-bit ID)
 *************************************************/
 
 // send_error_message
