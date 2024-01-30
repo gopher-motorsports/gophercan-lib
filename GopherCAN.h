@@ -50,12 +50,6 @@ typedef union {
     U32 u32;
 } FLOAT_CONVERTER;
 
-typedef struct {
-    void (*func_ptr)(U8, void*, U8, U8, U8, U8);
-    U8    func_enabled;
-    void* param_ptr;
-} CUST_FUNC;
-
 /*************************************************
  * CAN ID (EXT, 29-bit)
 *************************************************/
@@ -139,16 +133,22 @@ void service_can_tx(CAN_HandleTypeDef* hcan);
 S8 service_can_rx_buffer(void);
 
 /*************************************************
- * STD MESSAGE CALLBACKS
+ * CALLBACKS
 *************************************************/
 
-// attach_callback
-//  Configure a function to be called when a parameter group is received.
-//  The function will be called after parameters have been decoded and updated.
+// attach_callback_std
+//  Configure a function to be called when a particular STD ID is received.
 // PARAMS:
-//  U16 group_id: group ID to trigger the callback
-//  void (*func_ptr)(): function pointer
-void attach_callback(U16 group_id, void (*func_ptr)());
+//  U16 std_id: 11-bit CAN ID to trigger the callback
+//  void (*func)(): function pointer accepting no arguments
+void attach_callback_std(U16 std_id, void (*func)());
+
+// attach_callback_cmd
+//  Configure a function to be called when a particular command is received.
+// PARAMS:
+//  U16 cmd_id: command ID to trigger the callback
+//  void (*func)(): function pointer accepting the source module ID and four U8 arguments
+void attach_callback_cmd(GCAN_COMMAND_ID cmd_id, void (*func)(MODULE_ID, U8, U8, U8, U8));
 
 /*************************************************
  * DATA MESSAGE (STD 11-bit ID)
@@ -192,44 +192,14 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 //  PRIORITY priority:          PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:      what module to send the command to
 //  GCAN_COMMAND_ID command_id: what command the module should run
-//  U8 command_param_0:         parameter 0 to run the function with. May not be used depending on the function
-//  U8 command_param_1:         parameter 1
-//  U8 command_param_2:         parameter 2
-//  U8 command_param_3:         parameter 3
+//  U8 a0:         argument 0 to run the function with. May not be used depending on the function
+//  U8 a1:         argument 1
+//  U8 a2:         argument 2
+//  U8 a3:         argument 3
 // returns:
 //  error codes specified in GopherCAN.h
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
-					U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3);
-
-// add_custom_can_func
-//  add a user function to the array of functions to check if
-//  a CAN command message is sent. Note the functions must be of type 'void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8)',
-//  so structs and casts are needed to get multiple params. The third-sixth parameter (U8, U8, U8, U8) will be
-//  sent by the module in the CAN command message. This function can also be called to overwrite
-//  or modify existing custom commands
-// params:
-//  GCAN_COMMAND_ID command_id:                         what command ID is being defined
-//  void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8): the pointer to the function that should be run if this command_id is called
-//  U8 init_state:                                      TRUE or FALSE, whether to start with the command enabled
-//  void* param_ptr:                                    pointer to the parameter that should be used. This can point to any
-//                                                       data type (including NULL) as long as it is casted correctly
-// returns:
-//  error codes specified in GopherCAN.h
-S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
-					   U8 init_state, void* param_ptr);
-
-// mod_custom_can_func_state
-//  change the state (enabled or disabled) of the specified custom CAN function
-// params:
-//  GCAN_COMMAND_ID command_id: what command ID should have its state modified
-//  U8 state:                   TRUE or FALSE. what state to set this command to
-// returns:
-//  error codes specified in GopherCAN.h
-S8 mod_custom_can_func_state(U8 func_id, U8 state);
-
-// function to add to the custom CAN commands by default just in case
-void do_nothing(MODULE_ID sending_module, void* param,
-	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3);
+					U8 a0, U8 a1, U8 a2, U8 a3);
 
 /*************************************************
  * RETURN CODES
@@ -275,10 +245,10 @@ void do_nothing(MODULE_ID sending_module, void* param,
 
 // custom function data positions
 #define COMMAND_ID_POS 0
-#define COMMAND_PARAM_0 1
-#define COMMAND_PARAM_1 2
-#define COMMAND_PARAM_2 3
-#define COMMAND_PARAM_3 4
+#define COMMAND_A0 1
+#define COMMAND_A1 2
+#define COMMAND_A2 3
+#define COMMAND_A3 4
 
 // general defines
 #define BITS_IN_BYTE 8

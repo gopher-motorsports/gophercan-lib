@@ -38,13 +38,11 @@ static U32 build_message_id(CAN_ID* id);
  * GLOBAL VARIABLES
 *************************************************/
 
-// all of the custom functions and an array to enable or disable
-// each command ID corresponds to an index in the array
-CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
+// callbacks triggered by receiving a particular 11-bit CAN ID
+void (*CALLBACKS_STD[NUM_OF_GROUPS]) () = { NULL };
 
-// array of function pointers for each param group
-// callbacks are triggered when their corresponding group ID is received
-void (*CALLBACKS[NUM_OF_GROUPS]) () = { NULL };
+// callbacks triggered by receiving a particular command
+void (*CALLBACKS_CMD[NUM_OF_COMMANDS]) (MODULE_ID, U8, U8, U8, U8) = { NULL };
 
 /*************************************************
  * INITIALIZATION
@@ -64,14 +62,6 @@ S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id)
 	// attach hcan to designated bus
     CAN_BUS* bus = BUSES[bus_id];
     bus->hcan = hcan;
-
-	// set each function pointer to the do_nothing() function
-	for (U8 c = 0; c < NUM_OF_COMMANDS; c++)
-	{
-		cust_funcs[c].func_ptr = &do_nothing;
-		cust_funcs[c].func_enabled = FALSE;
-		cust_funcs[c].param_ptr = NULL;
-	}
 
 	if (init_filters(hcan))
 	{
@@ -406,17 +396,25 @@ S8 service_can_rx_buffer(void)
 }
 
 /*************************************************
- * STD MESSAGE CALLBACKS
+ * CALLBACKS
 *************************************************/
 
-// attach_callback
-//  Configure a function to be called when a parameter group is received.
-//  The function will be called after parameters have been decoded and updated.
+// attach_callback_std
+//  Configure a function to be called when a particular STD ID is received.
 // PARAMS:
-//  U16 group_id: group ID to trigger the callback
-//  void (*func_ptr)(): function pointer
-void attach_callback(U16 group_id, void (*func_ptr)()) {
-	CALLBACKS[group_id] = func_ptr;
+//  U16 std_id: 11-bit CAN ID to trigger the callback
+//  void (*func)(): function pointer accepting no arguments
+void attach_callback_std(U16 std_id, void (*func)()) {
+	CALLBACKS_STD[std_id] = func;
+}
+
+// attach_callback_cmd
+//  Configure a function to be called when a particular command is received.
+// PARAMS:
+//  U16 cmd_id: command ID to trigger the callback
+//  void (*func)(): function pointer accepting the source module ID and four U8 arguments
+void attach_callback_cmd(GCAN_COMMAND_ID cmd_id, void (*func)(MODULE_ID, U8, U8, U8, U8)) {
+	CALLBACKS_CMD[cmd_id] = func;
 }
 
 /*************************************************
@@ -498,8 +496,8 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     }
 
     // trigger callback for this group if one has been attached
-    if (CALLBACKS[group->group_id] != NULL) {
-    	(*CALLBACKS[group->group_id])();
+    if (CALLBACKS_STD[group->group_id] != NULL) {
+    	(*CALLBACKS_STD[group->group_id])();
     }
 
     return CAN_SUCCESS;
@@ -850,14 +848,14 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 //  PRIORITY priority:          PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:      what module to send the command to
 //  GCAN_COMMAND_ID command_id: what command the module should run
-//  U8 command_param_0:         parameter 0 to run the function with. May not be used depending on the function
-//  U8 command_param_1:         parameter 1
-//  U8 command_param_2:         parameter 2
-//  U8 command_param_3:         parameter 3
+//  U8 a0:         argument 0 to run the function with. May not be used depending on the function
+//  U8 a1:         argument 1
+//  U8 a2:         argument 2
+//  U8 a3:         argument 3
 // returns:
 //  error codes specified in GopherCAN.h
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
-	U8 command_param_0, U8 command_param_1, U8 command_param_2, U8 command_param_3)
+	U8 a0, U8 a1, U8 a2, U8 a3)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -883,82 +881,19 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 	message.header.RTR = DATA_MESSAGE;
 	message.header.DLC = COMMAND_SIZE;
 
-	message.data[0] = command_id;
-	message.data[1] = command_param_0;
-	message.data[2] = command_param_1;
-	message.data[3] = command_param_2;
-	message.data[4] = command_param_3;
+	message.data[COMMAND_ID_POS] = command_id;
+	message.data[COMMAND_A0] = a0;
+	message.data[COMMAND_A1] = a1;
+	message.data[COMMAND_A2] = a2;
+	message.data[COMMAND_A3] = a3;
 
 	return tx_can_message(&message);
-}
-
-// add_custom_can_func
-//  add a user function to the array of functions to check if
-//  a CAN command message is sent. Note the functions must be of type 'void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8)',
-//  so structs and casts are needed to get multiple params. The third-sixth parameter (U8, U8, U8, U8) will be
-//  sent by the module in the CAN command message. This function can also be called to overwrite
-//  or modify existing custom commands
-// params:
-//  GCAN_COMMAND_ID command_id:                         what command ID is being defined
-//  void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8): the pointer to the function that should be run if this command_id is called
-//  U8 init_state:                                      TRUE or FALSE, whether to start with the command enabled
-//  void* param_ptr:                                    pointer to the parameter that should be used. This can point to any
-//                                                       data type (including NULL) as long as it is casted correctly
-// returns:
-//  error codes specified in GopherCAN.h
-S8 add_custom_can_func(GCAN_COMMAND_ID command_id, void (*func_ptr)(MODULE_ID, void*, U8, U8, U8, U8),
-	U8 init_state, void* param_ptr)
-{
-	CUST_FUNC* new_cust_func;
-
-	// make sure the ID is valid
-	if (command_id < 0 || command_id >= NUM_OF_COMMANDS)
-	{
-		return BAD_COMMAND_ID;
-	}
-
-	new_cust_func = &(cust_funcs[command_id]);
-
-	// set all of the values of the struct accordingly
-	new_cust_func->func_ptr       = func_ptr;
-	new_cust_func->func_enabled   = !!init_state;
-	new_cust_func->param_ptr      = param_ptr;
-
-	return CAN_SUCCESS;
-}
-
-
-// mod_custom_can_func_state
-//  change the state (enabled or disabled) of the specified custom CAN function
-// params:
-//  GCAN_COMMAND_ID command_id: what command ID should have its state modified
-//  U8 state:                   TRUE or FALSE. what state to set this command to
-// returns:
-//  error codes specified in GopherCAN.h
-S8 mod_custom_can_func_state(GCAN_COMMAND_ID command_id, U8 state)
-{
-	CUST_FUNC* this_cust_func;
-
-	// make sure the ID is valid
-	if (command_id < 0 || command_id >= NUM_OF_COMMANDS)
-	{
-		return BAD_COMMAND_ID;
-	}
-
-	this_cust_func = &(cust_funcs[command_id]);
-	this_cust_func->func_enabled = !!state;
-
-	return CAN_SUCCESS;
 }
 
 // run_can_command
 //  run the command specified by the CAN message on this module
 static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 {
-	GCAN_COMMAND_ID command_id;
-	CUST_FUNC* this_function;
-	U8 c;
-
 	// DLC error checking
 	if (message->header.DLC > COMMAND_SIZE)
 	{
@@ -968,13 +903,13 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// fill in the extra DLC of the message with zeros
-	for (c = message->header.DLC; c < COMMAND_SIZE; c++)
+	for (U8 c = message->header.DLC; c < COMMAND_SIZE; c++)
 	{
 		message->data[c] = 0;
 	}
 
 	// error checking on the command ID
-	command_id = message->data[COMMAND_ID_POS];
+	GCAN_COMMAND_ID command_id = message->data[COMMAND_ID_POS];
 	if (command_id < 0 || command_id >= NUM_OF_COMMANDS)
 	{
 		send_error_message(id, COMMAND_ID_NOT_FOUND);
@@ -982,20 +917,14 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 		return NOT_FOUND_ERR;
 	}
 
-	this_function = &(cust_funcs[command_id]);
-
-	// check if the function is enabled
-	if (!this_function->func_enabled)
-	{
-		send_error_message(id, COMMAND_NOT_ENABLED);
-
-		return NOT_ENABLED_ERR;
+	// trigger command callback if one has been attached
+	if (CALLBACKS_CMD[command_id] != NULL) {
+		(*CALLBACKS_CMD[command_id])(
+				id->source_module,
+				message->data[COMMAND_A0], message->data[COMMAND_A1],
+				message->data[COMMAND_A2], message->data[COMMAND_A3]
+			 );
 	}
-
-	// run the function
-	(*(this_function->func_ptr))(id->source_module, this_function->param_ptr,
-		message->data[COMMAND_PARAM_0], message->data[COMMAND_PARAM_1],
-		message->data[COMMAND_PARAM_2], message->data[COMMAND_PARAM_3]);
 
 	return CAN_SUCCESS;
 }

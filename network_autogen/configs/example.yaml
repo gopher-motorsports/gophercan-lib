@@ -94,7 +94,7 @@ parameters:
 
     float_tester:
         id: 9
-        motec_name: Float Tester 1
+        motec_name: Float Tester
         unit: number
         type: FLOATING
         encoding: MSB

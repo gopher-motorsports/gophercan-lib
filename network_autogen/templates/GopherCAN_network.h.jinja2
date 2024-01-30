@@ -11,6 +11,8 @@
 #define CAN_DATA_BYTES 8
 #define MUTEX_TIMEOUT 5
 
+void GCAN_InitNetwork();
+
 // *** TYPES ***
 
 typedef enum {
@@ -197,14 +199,4 @@ typedef enum
 {% for name, value in errors.items() -%}
 #define {{ name.upper() }} {{ value.id }}
 {% endfor %}
-typedef struct
-{
-    uint32_t last_rx;
-    uint8_t  source_module;
-    uint16_t parameter;
-    uint8_t  error_id;
-} ERROR_MSG;
-
-void GCAN_InitNetwork();
-
 #endif /* GOPHERCAN_NETWORK_H */
