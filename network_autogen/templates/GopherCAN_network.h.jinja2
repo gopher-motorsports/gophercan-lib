@@ -9,6 +9,7 @@
 #include "GopherCAN_config.h"
 
 #define CAN_DATA_BYTES 8
+#define MUTEX_TIMEOUT 5
 
 // *** TYPES ***
 
@@ -39,7 +40,7 @@ typedef enum {
     FLOATING_SIZE = 4
 } DATATYPES_SIZE;
 
-// *** BUFFERS ***
+// *** MESSAGE BUFFERS ***
 
 typedef struct {
     CAN_TxHeaderTypeDef header;
@@ -54,6 +55,10 @@ typedef struct {
     uint8_t head;
     osMutexId mutex;
 } CAN_BUFFER;
+
+#define IS_FULL(buffer) ((buffer)->fill >= (buffer)->size)
+#define IS_EMPTY(buffer) ((buffer)->fill == 0)
+#define GET_FROM_BUFFER(buffer, index) ((buffer)->messages + (((buffer)->head + index) % (buffer)->size))
 
 extern CAN_BUFFER RX_BUFF;
 

@@ -34,39 +34,24 @@ static U32 build_message_id(CAN_ID* id);
 static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static S8 send_error_message(CAN_ID* id, U8 error_id);
 
-#if defined(CAN_ROUTER)
-static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message);
-#endif
-
 /*************************************************
  * GLOBAL VARIABLES
 *************************************************/
 
-// this might be needed to communicate with other modules
-#define DISABLE_TRIM_ZEROS
-
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
 CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
-
-// a struct to store the last error type message received
-ERROR_MSG last_error;
-
-// stores the last hcan error code
-U32 hcan_error = HAL_CAN_ERROR_NONE;
 
 /*************************************************
  * INITIALIZATION
 *************************************************/
 
 // init_can
-//  This function will set up the CAN registers with the inputed module_id
-//  as a filter. All parameters that should be enabled should be set after
-//  calling this function
-// params:
-//  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
-//  BUS_ID bus_id:               CAN bus identifier (GCAN0/1/2)
-// returns:
+//  Connects an hcan instance to a bus ID, configures ID filters, activates ISRs, starts CAN peripheral
+// PARAMS:
+//  CAN_HandleTypeDef* hcan: the bxCAN hcan pointer from the STM HAL library
+//  BUS_ID bus_id: CAN bus identifier
+// RETURNS:
 //  error codes specified in GopherCAN.h
 S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id)
 {
@@ -75,9 +60,6 @@ S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id)
 	// attach hcan to designated bus
     CAN_BUS* bus = BUSES[bus_id];
     bus->hcan = hcan;
-
-	// init HAL_GetTick()
-	HAL_SetTickFreq(HAL_TICK_FREQ_DEFAULT);
 
 	// set each function pointer to the do_nothing() function
 	for (U8 c = 0; c < NUM_OF_COMMANDS; c++)
@@ -92,6 +74,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id)
 		return FILTER_SET_FAILED;
 	}
 
+	// activate ISRs
 	if (
 		HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK
 		|| HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING) != HAL_OK
@@ -100,6 +83,7 @@ S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id)
 		return IRQ_SET_FAILED;
 	}
 
+	// start CAN
 	if (HAL_CAN_Start(hcan) != HAL_OK)
 	{
 		return CAN_START_FAILED;
@@ -110,124 +94,114 @@ S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id)
 
 
 // init_filters
-//  function called within init() that sets up all of the filters
+//  Configures CAN message acceptance filters. Messages matching a filter are copied to SRAM.
+//  Messages not matching any filter are discarded. Accepted IDs are selected by macros in GopherCAN_config.h
 static S8 init_filters(CAN_HandleTypeDef* hcan)
 {
-	CAN_FilterTypeDef filterConfig;
+	CAN_FilterTypeDef filter;
 	U8 banknum = 0;
 
-	// CAN2 is a "slave bxCAN" in dual CAN configuration
-	if (hcan->Instance == CAN2)
-	{
-		banknum = SLAVE_FIRST_FILTER;
-	}
+	filter.FilterActivation = CAN_FILTER_ENABLE;
+    filter.FilterMode = CAN_FILTERMODE_IDMASK; // use mask mode to filter
+    filter.SlaveStartFilterBank = SLAVE_FIRST_FILTER;
 
-	filterConfig.FilterActivation = CAN_FILTER_ENABLE;
-    filterConfig.FilterMode = CAN_FILTERMODE_IDMASK; // use mask mode to filter
+#ifdef FILTER_ACCEPT_ALL // match/accept all message IDs
+	filter.FilterBank = banknum++;                     // modify bank 0 (of 13)
+	filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;    // use FIFO0
+	filter.FilterScale = CAN_FILTERSCALE_32BIT;        // 32 bit mask
+	filter.FilterIdLow = 0;                            // accepted IDs (lower 16 bits)
+	filter.FilterIdHigh = 0;                           // accepted IDs (upper 16 bits)
+	filter.FilterMaskIdLow = 0;                        // bits to compare (lower 16 bits)
+	filter.FilterMaskIdHigh = 0;                       // bits to compare (upper 16 bits)
 
-#if defined(CAN_ROUTER) || defined(NO_FILTER)
-	// accept all messages on the CAN router
-	filterConfig.FilterBank = banknum++;                     // modify bank 0 (of 13)
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;    // use FIFO0
-	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;        // 32 bit mask
-	filterConfig.FilterIdLow = 0;                            // accepted IDs (lower 16 bits)
-	filterConfig.FilterIdHigh = 0;                           // accepted IDs (upper 16 bits)
-	filterConfig.FilterMaskIdLow = 0;                        // bits to compare (lower 16 bits)
-	filterConfig.FilterMaskIdHigh = 0;                       // bits to compare (upper 16 bits)
-
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
-	{
-		return FILTER_SET_FAILED;
-	}
-#else
-
-#ifndef IGNORE_DATA
-	// accept STD ID messages (IDE=0)
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	filterConfig.FilterScale = CAN_FILTERSCALE_16BIT; // 16 bit scale includes IDE bit
-	filterConfig.FilterIdLow = 0;
-	filterConfig.FilterIdHigh = 0;
-	filterConfig.FilterMaskIdLow = 0b00001000;
-	filterConfig.FilterMaskIdHigh = 0;
-
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 
 	// apply same filter to FIFO1
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
+	filter.FilterBank = banknum++;
+	filter.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
+	{
+		return FILTER_SET_FAILED;
+	}
+
+	return CAN_SUCCESS;
+#endif
+
+#ifdef FILTER_ACCEPT_STD // accept STD ID messages (IDE=0)
+	filter.FilterBank = banknum++;
+	filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	filter.FilterScale = CAN_FILTERSCALE_16BIT;
+	filter.FilterIdLow = 0;
+	filter.FilterIdHigh = 0;
+	filter.FilterMaskIdLow = 0b00001000;
+	filter.FilterMaskIdHigh = 0;
+
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
+	{
+		return FILTER_SET_FAILED;
+	}
+
+	// apply same filter to FIFO1
+	filter.FilterBank = banknum++;
+	filter.FilterFIFOAssignment = CAN_FILTER_FIFO1;
+
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 #endif
 
-	U32 filt_id_low;
-    U32 filt_id_high;
-    U32 filt_mask_high;
-    U32 filt_mask_low;
+#ifdef FILTER_ACCEPT_EXT_THIS_ID // accept EXT messages with destination = THIS_MODULE_ID
+	filter.FilterBank = banknum++;
+	filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	filter.FilterScale = CAN_FILTERSCALE_32BIT;
+	filter.FilterIdLow = GET_ID_LOW(THIS_MODULE_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+	filter.FilterIdHigh = GET_ID_HIGH(THIS_MODULE_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+	filter.FilterMaskIdLow = GET_ID_LOW(DEST_MASK);
+	filter.FilterMaskIdHigh = GET_ID_HIGH(DEST_MASK);
 
-	// accept EXT messages with destination = THIS_MODULE_ID
-	filt_id_high = GET_ID_HIGH(THIS_MODULE_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
-	filt_id_low = GET_ID_LOW(THIS_MODULE_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
-	filt_mask_high = GET_ID_HIGH(DEST_MASK);
-    filt_mask_low = GET_ID_LOW(DEST_MASK);
-
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
-	filterConfig.FilterIdLow = filt_id_low;
-	filterConfig.FilterIdHigh = filt_id_high;
-	filterConfig.FilterMaskIdLow = filt_mask_low;
-	filterConfig.FilterMaskIdHigh = filt_mask_high;
-
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 
 	// apply same filter to FIFO1
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
+	filter.FilterBank = banknum++;
+	filter.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
+#endif
 
-	// accept EXT messages with destination = ALL_MODULES_ID
-	filt_id_high = GET_ID_HIGH(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
-	filt_id_low = GET_ID_LOW(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
-	filt_mask_high = GET_ID_HIGH(DEST_MASK);
-	filt_mask_low = GET_ID_LOW(DEST_MASK);
+#ifdef FILTER_ACCEPT_EXT_ALL_ID // accept EXT messages with destination = ALL_MODULES_ID
+	filter.FilterBank = banknum++;
+    filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+    filter.FilterScale = CAN_FILTERSCALE_32BIT;
+    filter.FilterIdLow = GET_ID_LOW(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+    filter.FilterIdHigh = GET_ID_HIGH(ALL_MODULES_ID << (CAN_ID_SIZE - DEST_POS - DEST_SIZE));
+	filter.FilterMaskIdLow = GET_ID_LOW(DEST_MASK);
+	filter.FilterMaskIdHigh = GET_ID_HIGH(DEST_MASK);
 
-	filterConfig.FilterBank = banknum++;
-    filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-    filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
-    filterConfig.FilterIdLow = filt_id_low;
-    filterConfig.FilterIdHigh = filt_id_high;
-	filterConfig.FilterMaskIdLow = filt_mask_low;
-	filterConfig.FilterMaskIdHigh = filt_mask_high;
-
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
 
 	// apply same filter to FIFO1
-	filterConfig.FilterBank = banknum++;
-	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
+	filter.FilterBank = banknum++;
+	filter.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 
-	if (HAL_CAN_ConfigFilter(hcan, &filterConfig) != HAL_OK)
+	if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
 	{
 		return FILTER_SET_FAILED;
 	}
-
-#endif // CAN_ROUTER
+#endif
 
 	return CAN_SUCCESS;
 }
@@ -306,10 +280,7 @@ static void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 		U32 tx_mailbox_num;
 		if (HAL_CAN_AddTxMessage(hcan, &(message->header), message->data, &tx_mailbox_num) != HAL_OK)
 		{
-			// this will always be HAL_ERROR. Check hcan->ErrorCode
 			// hardware error (do not move the head as the message did not send, try again later)
-
-			hcan_error = hcan->ErrorCode;
 			return;
 		}
 
@@ -321,7 +292,7 @@ static void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 }
 
 // called by CAN RX ISRs, moves messages from FIFO to buffer
-void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
+static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 {
 	// get all the pending RX messages from the RX mailbox and store into the RX buffer
 	while (!IS_FULL(&RX_BUFF) && HAL_CAN_GetRxFifoFillLevel(hcan, rx_mailbox))
@@ -333,10 +304,7 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		CAN_RxHeaderTypeDef rx_header;
 		if (HAL_CAN_GetRxMessage(hcan, rx_mailbox, &rx_header, message->data) != HAL_OK)
 		{
-			// this will always return HAL_ERROR. Check hcan->ErrorCode
 			// hardware error (do not move the head as the message did not send, try again later)
-
-			hcan_error = hcan->ErrorCode;
 			return;
 		}
 
@@ -351,11 +319,24 @@ void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		message->header.IDE = rx_header.IDE;
 		message->rx_time = HAL_GetTick();
 
-#ifdef CAN_ROUTER
-		// router specific functionality that directly adds messages that need to be routed
-		//  directly to the correct TX buffer (if needed, that decision is made within the function)
-		rout_can_message(hcan, message);
-#endif // CAN_ROUTER
+#ifdef ENABLE_ROUTING
+		MODULE_ID dest_module = GET_ID_DEST(message->header.ExtId);
+		BUS_ID dest_bus = module_bus_number[dest_module];
+		CAN_BUS* this_bus = get_bus_from_hcan(hcan);
+
+		if (dest_bus != this_bus->id) {
+			// try to retransmit message on the correct bus
+			if (dest_module == ALL_MODULES_ID) {
+				for (U8 i = 0; i < ALL_BUSSES; i++) {
+					CAN_BUS *bus = BUSES[i];
+					add_message_by_highest_prio(bus, message);
+				}
+			} else if (dest_module != THIS_MODULE_ID) {
+				CAN_BUS *bus = BUSES[dest_bus];
+				add_message_by_highest_prio(bus, message);
+			}
+		}
+#endif
 	}
 }
 
@@ -621,20 +602,20 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
     if (group == NULL) return NOT_FOUND_ERR;
 
-	if (group->group_id == BEACON_ID) {
-		if (HAL_GetTick() - lastHitTick > 100) {
-
-			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
-			if (beaconData <= (BEACON_DATA_CHECK*1.01) && beaconData >= (BEACON_DATA_CHECK*0.99)) {
-				lapBeacon_ul.data = 1;
-				beacon_success_counter++;
-				lastHitTick = HAL_GetTick();
-			} else {
-				lapBeacon_ul.data = 0;
-			}
-			lapBeacon_ul.info.last_rx = message->rx_time;
-		}
-	}
+//	if (group->group_id == BEACON_ID) {
+//		if (HAL_GetTick() - lastHitTick > 100) {
+//
+//			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
+//			if (beaconData <= (BEACON_DATA_CHECK*1.01) && beaconData >= (BEACON_DATA_CHECK*0.99)) {
+//				lapBeacon_ul.data = 1;
+//				beacon_success_counter++;
+//				lastHitTick = HAL_GetTick();
+//			} else {
+//				lapBeacon_ul.data = 0;
+//			}
+//			lapBeacon_ul.info.last_rx = message->rx_time;
+//		}
+//	}
 
     // decode parameters
     S8 err;
@@ -676,13 +657,14 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 	if (id.error)
 	{
 		// this could possibly be changed into a ring buffer
-		last_error.last_rx = message->rx_time;
-		last_error.source_module = id.source_module;
-		last_error.parameter = id.parameter;
-		if (message->header.DLC > 0)
-		{
-			last_error.error_id = message->data[0];
-		}
+//		ERROR_MSG last_error;
+//		last_error.last_rx = message->rx_time;
+//		last_error.source_module = id.source_module;
+//		last_error.parameter = id.parameter;
+//		if (message->header.DLC > 0)
+//		{
+//			last_error.error_id = message->data[0];
+//		}
 
 		// return success because the problem is not with the RX
 		return CAN_SUCCESS;
@@ -1202,45 +1184,6 @@ static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
 	// send the CAN message
 	return tx_can_message(&message);
 }
-
-
-// rout_can_message
-//  Function to be called in service_can_rx_hardware() that will take messages that are
-//  destined for modules on another bus and put that message into the correct TX buffer
-#if defined(CAN_ROUTER)
-static void rout_can_message(CAN_HandleTypeDef* hcan, CAN_MSG* message)
-{
-	MODULE_ID dest_module = GET_ID_DEST(message->header.ExtId);
-
-	// TX buffer on the CAN bus this message was received on
-	CAN_MSG_RING_BUFFER* orig_tx_buffer = choose_tx_buffer_from_hcan(hcan);
-
-	// TX buffer the message is intended for
-	CAN_MSG_RING_BUFFER* dest_tx_buffer = choose_tx_buffer_from_dest_module(dest_module);
-
-	// message is intended for all modules, retransmit on a new bus
-	if (dest_module == ALL_MODULES_ID) {
-#if NUM_OF_BUSSES > 2
-		if (&txbuff2 != orig_tx_buffer) add_message_by_highest_prio(&txbuff2, message);
-#endif
-#if NUM_OF_BUSSES > 1
-		if (&txbuff1 != orig_tx_buffer) add_message_by_highest_prio(&txbuff1, message);
-#endif
-		if (&txbuff0 != orig_tx_buffer) add_message_by_highest_prio(&txbuff0, message);
-		return;
-	}
-
-	// message is intended for this module, don't retransmit
-	if (dest_module == THIS_MODULE_ID) return;
-
-	// message was already on the correct bus, don't retransmit
-	if (dest_tx_buffer == orig_tx_buffer) return;
-
-	// remove message from RX buffer and retransmit
-	remove_from_front(&rxbuff);
-	add_message_by_highest_prio(dest_tx_buffer, message);
-}
-#endif // #if defined(CAN_ROUTER)
 
 
 // do_nothing

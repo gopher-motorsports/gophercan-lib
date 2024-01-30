@@ -45,20 +45,20 @@ typedef enum {
 #define NULL (void*)(0)
 #endif
 
-typedef enum {
-    PRIO_HIGH = 0b0,
-    PRIO_LOW = 0b1
-} PRIORITY;
-
-typedef enum {
-    BXTYPE_MASTER = 0,
-    BXTYPE_SLAVE = 1
-} BXCAN_TYPE;
-
 typedef union {
     float f;
     U32 u32;
 } FLOAT_CONVERTER;
+
+typedef struct {
+    void (*func_ptr)(U8, void*, U8, U8, U8, U8);
+    U8    func_enabled;
+    void* param_ptr;
+} CUST_FUNC;
+
+/*************************************************
+ * CAN ID (EXT, 29-bit)
+*************************************************/
 
 typedef struct {
     U8  priority;
@@ -68,24 +68,50 @@ typedef struct {
     U16 parameter;
 } CAN_ID;
 
-typedef struct {
-    void (*func_ptr)(U8, void*, U8, U8, U8, U8);
-    U8    func_enabled;
-    void* param_ptr;
-} CUST_FUNC;
+typedef enum {
+    PRIO_HIGH = 0b0,
+    PRIO_LOW = 0b1
+} PRIORITY;
+
+#define CAN_ID_SIZE   29
+
+#define PRIORITY_MASK 0b00010000000000000000000000000000
+#define PRIORITY_POS  0
+#define PRIORITY_SIZE 1
+
+#define DEST_MASK     0b00001111110000000000000000000000
+#define DEST_POS      1
+#define DEST_SIZE     6
+
+#define SOURCE_MASK   0b00000000001111110000000000000000
+#define SOURCE_POS    7
+#define SOURCE_SIZE   6
+
+#define ERROR_MASK    0b00000000000000001000000000000000
+#define ERROR_POS     13
+#define ERROR_SIZE    1
+
+#define PARAM_MASK    0b00000000000000000111111111111111
+#define PARAM_POS     14
+#define PARAM_SIZE    15
+
+// macros to extract 29-bit ID components from a U32
+#define GET_ID_PRIO(id) (((id) & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
+#define GET_ID_DEST(id) (((id) & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
+#define GET_ID_SOURCE(id) (((id) & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
+#define GET_ID_ERROR(id) (((id) & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
+#define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
 /*************************************************
  * FUNCTION PROTOTYPES
 *************************************************/
 
 // init_can
-//  This function will set up the CAN registers with the inputed module_id
-//  as a filter. All parameters that should be enabled should be set after
-//  calling this function
-// params:
-//  CAN_HandleTypeDef* hcan: the BXcan hcan pointer from the STM HAL library
-//  BUS_ID bus_id:               CAN bus identifier (GCAN0/1/2)
-// returns:
+//  Connects an hcan instance to a bus ID, configures ID filters, activates ISRs, starts CAN peripheral
+// PARAMS:
+//  CAN_HandleTypeDef* hcan: the bxCAN hcan pointer from the STM HAL library
+//  BUS_ID bus_id: CAN bus identifier
+// RETURNS:
 //  error codes specified in GopherCAN.h
 S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id);
 
@@ -183,24 +209,15 @@ S8 mod_custom_can_func_state(U8 func_id, U8 state);
 void do_nothing(MODULE_ID sending_module, void* param,
 	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3);
 
-#define MUTEX_TIMEOUT 5
-#define IS_FULL(buffer) ((buffer)->fill >= (buffer)->size)
-#define IS_EMPTY(buffer) ((buffer)->fill == 0)
-#define GET_FROM_BUFFER(buffer, index) ((buffer)->messages + (((buffer)->head + index) % (buffer)->size))
+/*************************************************
+ * RETURN CODES
+*************************************************/
 
-// return messages
 #define CAN_SUCCESS         0
 #define NO_NEW_MESSAGE      1
 #define NEW_MESSAGE         2
 #define MAX_NEW_MESSAGES    3
 
-
-// Data or Request message for the RTR bit
-#define DATA_MESSAGE CAN_RTR_DATA                                     // 0U
-#define REQUEST_DATA CAN_RTR_REMOTE                                   // 2U
-
-
-// return errors
 #define INIT_FAILED             -1
 #define BAD_MODULE_ID           -2
 #define BAD_PARAMETER_ID        -3
@@ -219,32 +236,20 @@ void do_nothing(MODULE_ID sending_module, void* param,
 
 #define NOT_IMPLEMENTED         -99
 
+/*************************************************
+ * OTHER STUFF
+*************************************************/
+
+// prevents trimming 0s in CAN data field
+// this might be needed to communicate with other modules
+#define DISABLE_TRIM_ZEROS
+
+// Data or Request message for the RTR bit
+#define DATA_MESSAGE CAN_RTR_DATA                // 0U
+#define REQUEST_DATA CAN_RTR_REMOTE              // 2U
+
 // bxcan slave first filter bank starts at 14
 #define SLAVE_FIRST_FILTER 14
-
-// CAN message ID positions. Sizes are in number of bits
-#define CAN_ID_SIZE   29
-
-#define PRIORITY_MASK 0b00010000000000000000000000000000
-#define PRIORITY_POS  0
-#define PRIORITY_SIZE 1
-
-#define DEST_MASK     0b00001111110000000000000000000000
-#define DEST_POS      1
-#define DEST_SIZE     6
-
-#define SOURCE_MASK   0b00000000001111110000000000000000
-#define SOURCE_POS    7
-#define SOURCE_SIZE   6
-
-#define ERROR_MASK    0b00000000000000001000000000000000
-#define ERROR_POS     13
-#define ERROR_SIZE    1
-
-#define PARAM_MASK    0b00000000000000000111111111111111
-#define PARAM_POS     14
-#define PARAM_SIZE    15
-
 
 // custom function data positions
 #define COMMAND_ID_POS 0
@@ -253,27 +258,14 @@ void do_nothing(MODULE_ID sending_module, void* param,
 #define COMMAND_PARAM_2 3
 #define COMMAND_PARAM_3 4
 
-
 // general defines
 #define BITS_IN_BYTE 8
 #define U8_MAX 0xFF
 #define BEACON_ID 0xE5
 #define BEACON_DATA_CHECK 0x0055AA03
 
-
-// Macro functions to get different parts of an id from the U32
-#define GET_ID_PRIO(id) (((id) & PRIORITY_MASK) >> (CAN_ID_SIZE - PRIORITY_POS - PRIORITY_SIZE))
-#define GET_ID_DEST(id) (((id) & DEST_MASK) >> (CAN_ID_SIZE - DEST_POS - DEST_SIZE))
-#define GET_ID_SOURCE(id) (((id) & SOURCE_MASK) >> (CAN_ID_SIZE - SOURCE_POS - SOURCE_SIZE))
-#define GET_ID_ERROR(id) (((id) & ERROR_MASK) >> (CAN_ID_SIZE - ERROR_POS - ERROR_SIZE))
-#define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
-
 // Macro function for dealing with the stupid BxCAN filter config
 #define GET_ID_HIGH(id) ((((id) << 3) >> 16) & 0xffff)
 #define GET_ID_LOW(id) ((((id) << 3) & 0xffff) | CAN_ID_EXT)
 
-
 #endif /* GOPHERCAN_H_ */
-
-
-// end of GopherCAN.h
