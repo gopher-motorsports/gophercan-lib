@@ -25,13 +25,14 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id);
 
 static S8 run_can_command(CAN_MSG* message, CAN_ID* id);
 
+static S8 send_error_message(CAN_ID* id, U8 error_id);
+
 static CAN_BUS* get_bus_from_hcan(CAN_HandleTypeDef* hcan);
 static void remove_from_front(CAN_BUFFER* buffer);
 static void add_message_by_highest_prio(CAN_BUS* bus, CAN_MSG* message);
 static void copy_message(CAN_MSG* source, CAN_MSG* dest);
 
 static U32 build_message_id(CAN_ID* id);
-static S8 send_error_message(CAN_ID* id, U8 error_id);
 
 /*************************************************
  * GLOBAL VARIABLES
@@ -40,6 +41,10 @@ static S8 send_error_message(CAN_ID* id, U8 error_id);
 // all of the custom functions and an array to enable or disable
 // each command ID corresponds to an index in the array
 CUST_FUNC cust_funcs[NUM_OF_COMMANDS];
+
+// array of function pointers for each param group
+// callbacks are triggered when their corresponding group ID is received
+void (*CALLBACKS[NUM_OF_GROUPS]) () = { NULL };
 
 /*************************************************
  * INITIALIZATION
@@ -401,6 +406,20 @@ S8 service_can_rx_buffer(void)
 }
 
 /*************************************************
+ * STD MESSAGE CALLBACKS
+*************************************************/
+
+// attach_callback
+//  Configure a function to be called when a parameter group is received.
+//  The function will be called after parameters have been decoded and updated.
+// PARAMS:
+//  U16 group_id: group ID to trigger the callback
+//  void (*func_ptr)(): function pointer
+void attach_callback(U16 group_id, void (*func_ptr)()) {
+	CALLBACKS[group_id] = func_ptr;
+}
+
+/*************************************************
  * TX MESSAGE
 *************************************************/
 
@@ -577,9 +596,6 @@ static S8 tx_can_message(CAN_MSG* message)
  * RX MESSAGE
 *************************************************/
 
-static uint16_t beacon_success_counter = 0;
-static uint32_t lastHitTick = 0;
-
 // service_can_rx_message_std
 // handle standard ID CAN messages (data messages)
 // finds the specified group and decodes parameters
@@ -596,21 +612,6 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     }
 
     if (group == NULL) return NOT_FOUND_ERR;
-
-//	if (group->group_id == BEACON_ID) {
-//		if (HAL_GetTick() - lastHitTick > 100) {
-//
-//			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
-//			if (beaconData <= (BEACON_DATA_CHECK*1.01) && beaconData >= (BEACON_DATA_CHECK*0.99)) {
-//				lapBeacon_ul.data = 1;
-//				beacon_success_counter++;
-//				lastHitTick = HAL_GetTick();
-//			} else {
-//				lapBeacon_ul.data = 0;
-//			}
-//			lapBeacon_ul.info.last_rx = message->rx_time;
-//		}
-//	}
 
     // decode parameters
     S8 err;
@@ -629,6 +630,11 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
         err = decode_parameter(param, message->data, i, param->ENC_SIZE);
         if (!err) param->last_rx = message->rx_time;
+    }
+
+    // trigger callback for this group if one has been attached
+    if (CALLBACKS[group->group_id] != NULL) {
+    	(*CALLBACKS[group->group_id])();
     }
 
     return CAN_SUCCESS;

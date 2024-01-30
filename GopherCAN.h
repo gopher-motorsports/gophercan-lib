@@ -134,6 +134,14 @@ void service_can_tx(CAN_HandleTypeDef* hcan);
 //  Processes messages in the RX buffer. Designed to be called frequently (1ms).
 S8 service_can_rx_buffer(void);
 
+// attach_callback
+//  Configure a function to be called when a parameter group is received.
+//  The function will be called after parameters have been decoded and updated.
+// PARAMS:
+//  U16 group_id: group ID to trigger the callback
+//  void (*func_ptr)(): function pointer
+void attach_callback(U16 group_id, void (*func_ptr)());
+
 // send_parameter
 //  Sends the group containing a parameter.
 S8 send_parameter(CAN_INFO_STRUCT* param);
