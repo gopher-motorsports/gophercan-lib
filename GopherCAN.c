@@ -31,7 +31,6 @@ static void add_message_by_highest_prio(CAN_BUS* bus, CAN_MSG* message);
 static void copy_message(CAN_MSG* source, CAN_MSG* dest);
 
 static U32 build_message_id(CAN_ID* id);
-static void get_message_id(CAN_ID* id, CAN_MSG* message);
 static S8 send_error_message(CAN_ID* id, U8 error_id);
 
 /*************************************************
@@ -207,6 +206,17 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 }
 
 /*************************************************
+ * EVENT CALLBACKS
+ * these functions are marked __weak, they should be redefined in application code
+*************************************************/
+
+// called by ISRs when a message is received
+__weak void GCAN_onRX(CAN_HandleTypeDef* hcan) {}
+
+// called when an error message (EXT ID) is received
+__weak void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id) {}
+
+/*************************************************
  * ISRs
 *************************************************/
 
@@ -242,27 +252,24 @@ void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef* hcan)
     service_can_tx_hardware(hcan);
 }
 
-// called when a message is received, redefine in application code
-__weak void GCAN_RxCallback(CAN_HandleTypeDef* hcan) {}
-
 // triggered when an RX FIFO has a pending message
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
 	service_can_rx_hardware(hcan, CAN_RX_FIFO0);
-	GCAN_RxCallback(hcan);
+	GCAN_onRX(hcan);
 }
 
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
 	service_can_rx_hardware(hcan, CAN_RX_FIFO1);
-	GCAN_RxCallback(hcan);
+	GCAN_onRX(hcan);
 }
 
 /*************************************************
  * HARDWARE SERVICE
 *************************************************/
 
-// called by CAN TX ISRs, moves messages from buffer to mailbox
+// called by ISRs and service_can_tx(), moves messages from buffer to mailbox
 static void service_can_tx_hardware(CAN_HandleTypeDef* hcan)
 {
 	CAN_BUS* bus = get_bus_from_hcan(hcan);
@@ -320,20 +327,22 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 		message->rx_time = HAL_GetTick();
 
 #ifdef ENABLE_ROUTING
-		MODULE_ID dest_module = GET_ID_DEST(message->header.ExtId);
-		BUS_ID dest_bus = module_bus_number[dest_module];
-		CAN_BUS* this_bus = get_bus_from_hcan(hcan);
+		if (message->header.IDE == CAN_ID_EXT) { // routing only applies to EXT IDs
+			MODULE_ID dest_module = GET_ID_DEST(message->header.ExtId);
+			BUS_ID dest_bus = module_bus_number[dest_module];
+			CAN_BUS* this_bus = get_bus_from_hcan(hcan);
 
-		if (dest_bus != this_bus->id) {
-			// try to retransmit message on the correct bus
-			if (dest_module == ALL_MODULES_ID) {
-				for (U8 i = 0; i < ALL_BUSSES; i++) {
-					CAN_BUS *bus = BUSES[i];
+			if (dest_bus != this_bus->id) {
+				// try to retransmit message on the correct bus
+				if (dest_module == ALL_MODULES_ID) {
+					for (U8 i = 0; i < ALL_BUSSES; i++) {
+						CAN_BUS *bus = BUSES[i];
+						add_message_by_highest_prio(bus, message);
+					}
+				} else if (dest_module != THIS_MODULE_ID) {
+					CAN_BUS *bus = BUSES[dest_bus];
 					add_message_by_highest_prio(bus, message);
 				}
-			} else if (dest_module != THIS_MODULE_ID) {
-				CAN_BUS *bus = BUSES[dest_bus];
-				add_message_by_highest_prio(bus, message);
 			}
 		}
 #endif
@@ -345,16 +354,15 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 *************************************************/
 
 // service_can_tx
-// Calls service_can_tx_hardware
-// Acquires mutexes and temporarily disables interrupts
-//  designed to be called at high priority on 1ms loop
+//  Moves messages from TX buffer to mailbox. Designed to be called frequently (1ms).
 void service_can_tx(CAN_HandleTypeDef* hcan)
 {
 	CAN_BUS* bus = get_bus_from_hcan(hcan);
 
     // protect buffer from RTOS thread switching and interrupts
     if (bus->tx_buffer->mutex != NULL) {
-        if (osMutexWait(bus->tx_buffer->mutex, MUTEX_TIMEOUT)) return;
+        if (osMutexWait(bus->tx_buffer->mutex, MUTEX_TIMEOUT))
+        	return;
     }
     HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
 
@@ -369,18 +377,9 @@ void service_can_tx(CAN_HandleTypeDef* hcan)
 }
 
 // service_can_rx_buffer
-//  this method will take all of the messages in rx_message_buffer and run them through
-//  service_can_rx_message to return parameter requests, run CAN commands, and update
-//  parameters.
-//
-//  WARNING: currently this function will not handle a full rx_message_buffer when returning
-//   parameter requests. The request will not be completed and the other module will have to
-//   send a new request
-//
-//  call in a 1 ms or faster loop
+//  Processes messages in the RX buffer. Designed to be called frequently (1ms).
 S8 service_can_rx_buffer(void)
 {
-	// run through each message in the RX buffer and service it with service_can_rx_message() (FIFO)
 	while (!IS_EMPTY(&RX_BUFF))
 	{
 		// get the message at the head of the array
@@ -406,22 +405,18 @@ S8 service_can_rx_buffer(void)
 *************************************************/
 
 // send_parameter
-// encodes and sends the specified parameter's group in a standard 11-bit CAN frame
-// params:
-// CAN_INFO_STRUCT* param: parameter to send (along with its group)
-// returns:
-// error codes specified in GopherCAN.h
+//  Sends the group containing a parameter.
 S8 send_parameter(CAN_INFO_STRUCT* param)
 {
 	return send_group(param->GROUP_ID);
 }
 
 // send_group
-//  encodes all of the parameters in a group and send is out on the bus
-// params:
+//  Encodes and transmits a group of parameters.
+// PARAMS:
 //  U16 group_id: the CAN ID of the group to be sent
-// returns:
-//  error codes specificed in GopherCAN.h
+// RETURNS:
+//  error codes specified in GopherCAN.h
 S8 send_group(U16 group_id)
 {
     PARAM_GROUP* group = NULL;
@@ -545,7 +540,7 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
 }
 
 // tx_can_message
-//  Takes in a CAN_MSG struct, adds it to the TX buffer
+//  Adds a CAN message to TX buffers
 static S8 tx_can_message(CAN_MSG* message)
 {
 	// remove any trailing zeros in the CAN message. This is done by starting at the
@@ -644,7 +639,11 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 static S8 service_can_rx_message_ext(CAN_MSG* message)
 {
 	CAN_ID id;
-	get_message_id(&id, message);
+	id.priority = GET_ID_PRIO(message->header.ExtId);
+	id.dest_module = GET_ID_DEST(message->header.ExtId);
+	id.source_module = GET_ID_SOURCE(message->header.ExtId);
+	id.error = GET_ID_ERROR(message->header.ExtId);
+	id.parameter = GET_ID_PARAM(message->header.ExtId);
 
 	// A double check to make sure this message is actually for this module (most useful in the CAN router)
 	if (id.dest_module != THIS_MODULE_ID && id.dest_module != ALL_MODULES_ID)
@@ -656,15 +655,7 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 	// if the message received has the error flag high, put the details into the last_error struct, then return
 	if (id.error)
 	{
-		// this could possibly be changed into a ring buffer
-//		ERROR_MSG last_error;
-//		last_error.last_rx = message->rx_time;
-//		last_error.source_module = id.source_module;
-//		last_error.parameter = id.parameter;
-//		if (message->header.DLC > 0)
-//		{
-//			last_error.error_id = message->data[0];
-//		}
+		GCAN_onError(message->rx_time, id.source_module, id.parameter, message->header.DLC > 0 ? message->data[0] : 0);
 
 		// return success because the problem is not with the RX
 		return CAN_SUCCESS;
@@ -1000,6 +991,34 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 }
 
 /*************************************************
+ * ERROR MESSAGES
+*************************************************/
+
+// send_error_message
+//  Sends a return message to the original sender with the ID specified
+static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
+{
+	CAN_MSG message;
+	CAN_ID tx_id;
+
+	// create the CAN ID for the error message
+	tx_id.priority = rx_id->priority;
+	tx_id.dest_module = rx_id->source_module;
+	tx_id.source_module = THIS_MODULE_ID;
+	tx_id.error = TRUE;
+	tx_id.parameter = rx_id->parameter;
+
+	message.header.ExtId = build_message_id(&tx_id);
+	message.header.IDE = CAN_ID_EXT;
+	message.header.RTR = DATA_MESSAGE;
+	message.header.DLC = sizeof(error_id);
+	message.data[0] = error_id;
+
+	// send the CAN message
+	return tx_can_message(&message);
+}
+
+/*************************************************
  * MESSAGE BUFFERS
 *************************************************/
 
@@ -1146,43 +1165,6 @@ static U32 build_message_id(CAN_ID* id)
 	msg_id |= temp;
 
 	return msg_id;
-}
-
-// get_message_id
-//  this function will take in a CAN message and convert it to
-//  a CAN id struct. No error checking is performed
-static void get_message_id(CAN_ID* id, CAN_MSG* message)
-{
-	id->priority = GET_ID_PRIO(message->header.ExtId);
-	id->dest_module = GET_ID_DEST(message->header.ExtId);
-	id->source_module = GET_ID_SOURCE(message->header.ExtId);
-	id->error = GET_ID_ERROR(message->header.ExtId);
-	id->parameter = GET_ID_PARAM(message->header.ExtId);
-}
-
-
-// send_error_message
-//  Sends a return message to the original sender with the ID specified
-static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
-{
-	CAN_MSG message;
-	CAN_ID tx_id;
-
-	// create the CAN ID for the error message
-	tx_id.priority = rx_id->priority;
-	tx_id.dest_module = rx_id->source_module;
-	tx_id.source_module = THIS_MODULE_ID;
-	tx_id.error = TRUE;
-	tx_id.parameter = rx_id->parameter;
-
-	message.header.ExtId = build_message_id(&tx_id);
-	message.header.IDE = CAN_ID_EXT;
-	message.header.RTR = DATA_MESSAGE;
-	message.header.DLC = sizeof(error_id);
-	message.data[0] = error_id;
-
-	// send the CAN message
-	return tx_can_message(&message);
 }
 
 

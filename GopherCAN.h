@@ -103,6 +103,17 @@ typedef enum {
 #define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
 /*************************************************
+ * EVENT CALLBACKS
+ * these functions are marked __weak, they should be redefined in application code
+*************************************************/
+
+// called by ISRs when a message is received
+void GCAN_onRX(CAN_HandleTypeDef* hcan);
+
+// called when an error message (EXT ID) is received
+void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id);
+
+/*************************************************
  * FUNCTION PROTOTYPES
 *************************************************/
 
@@ -115,41 +126,24 @@ typedef enum {
 //  error codes specified in GopherCAN.h
 S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id);
 
-// called when a message is received, redefine in application code
-void GCAN_RxCallback(CAN_HandleTypeDef* hcan);
-
 // service_can_tx
-// Calls service_can_tx_hardware
-// Acquires mutexes and temporarily disables interrupts
-//  designed to be called at high priority on 1ms loop
+//  Moves messages from TX buffer to mailbox. Designed to be called frequently (1ms).
 void service_can_tx(CAN_HandleTypeDef* hcan);
 
 // service_can_rx_buffer
-//  this method will take all of the messages in rx_message_buffer and run them through
-//  service_can_rx_message to return parameter requests, run CAN commands, and update
-//  parameters.
-//
-//  WARNING: currently this function will not handle a full rx_message_buffer when returning
-//   parameter requests. The request will not be completed and the other module will have to
-//   send a new request
-//
-//  call in a 1 ms or faster loop
+//  Processes messages in the RX buffer. Designed to be called frequently (1ms).
 S8 service_can_rx_buffer(void);
 
 // send_parameter
-//  encodes and sends the specified parameter's group in a standard 11-bit CAN frame
-// params:
-//  CAN_INFO_STRUCT* param: parameter to send (along with its group)
-// returns:
-//  error codes specified in GopherCAN.h
+//  Sends the group containing a parameter.
 S8 send_parameter(CAN_INFO_STRUCT* param);
 
 // send_group
-//  encodes all of the parameters in a group and send is out on the bus
-// params:
+//  Encodes and transmits a group of parameters.
+// PARAMS:
 //  U16 group_id: the CAN ID of the group to be sent
-// returns:
-//  error codes specificed in GopherCAN.h
+// RETURNS:
+//  error codes specified in GopherCAN.h
 S8 send_group(U16 group_id);
 
 // request_parameter
