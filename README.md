@@ -165,3 +165,57 @@ Command callbacks take the source module's ID and up to four arbitrary arguments
 Including `#define ENABLE_ROUTING` in `GopherCAN_config.h` enables message routing. When an EXT ID message is received on a bus different than the bus indicated by `DESTINATION`, the message will be retransmitted on the target bus.
 
 This is useful for passing messages between two modules that are not physically connected to the same bus.
+
+## Example
+
+Below is a minimal example of using `gophercan-lib` in an STM32 project running FreeRTOS. This project is using `example.yaml` and one CAN peripheral in loopback mode.
+
+```c
+#include "GopherCAN.h"
+#include "GopherCAN_network.h"
+
+extern CAN_HandleTypeDef hcan1; // configured in loopback mode
+
+void on_rpm() {
+	// do some stuff with engine RPM ...
+	return;
+}
+
+void on_set_time(MODULE_ID source, U8 hour, U8 min, U8 sec, U8 _) {
+	// do some stuff with the time ...
+	return;
+}
+
+void setup() {
+	printf("initializing...\n");
+
+	if (init_can(&hcan1, GCAN0))
+		fault();
+
+	attach_callback_std(engineRPM.info.GROUP_ID, on_rpm);
+	attach_callback_cmd(SET_TIME, on_set_time);
+}
+
+// called in RTOS task
+void loop() {
+	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+
+	send_parameter(ENGINERPM_ID);
+	send_can_command(PRIO_LOW, THIS_MODULE_ID, SET_TIME, 1, 2, 3, 4);
+
+	osDelay(1000);
+}
+
+// called in RTOS task
+void service_can() {
+	service_can_tx(&hcan1);
+	service_can_rx_buffer();
+	osDelay(1);
+}
+
+void fault() {
+    HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+    HAL_Delay(5000);
+    NVIC_SystemReset();
+}
+```
