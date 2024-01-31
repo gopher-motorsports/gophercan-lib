@@ -188,15 +188,20 @@ extern PARAM_GROUP GROUPS[NUM_OF_GROUPS];
 
 typedef enum
 {
-    {% for name, value in commands.items() -%}
-    {{ name.upper() }} = {{ value.id }},
+    {% for num, id in commands.items() -%}
+    {{ id.upper() }} = {{ num }},
     {% endfor %}
     NUM_OF_COMMANDS
 } GCAN_COMMAND_ID;
 
 // *** ERRORS ***
 
-{% for name, value in errors.items() -%}
-#define {{ name.upper() }} {{ value.id }}
-{% endfor %}
+typedef enum
+{
+    {% for num, id in errors.items() -%}
+    {{ id.upper() }} = {{ num }},
+    {% endfor %}
+    NUM_OF_ERRORS
+} GCAN_ERROR_ID;
+
 #endif /* GOPHERCAN_NETWORK_H */

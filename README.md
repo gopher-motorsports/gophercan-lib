@@ -60,45 +60,42 @@ Projects using `gophercan-lib` should include a `GopherCAN_config.h` header:
 
 Each CAN peripheral must be initialized:
 
-```
+```c
 S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id);
 ```
 
-This ties the peripheral to a message buffer and `BUS_ID` (defined in the YAML). When a message is sent with a particular destination module (commands, requests, or errors), the bus ID is used to determine which peripheral to send the message to.
+This ties the peripheral to a `BUS_ID` (defined in the YAML) and message buffer. When sending 29-bit ID messages with a `DESTINATION` field, the bus ID is used to determine which peripheral to send the message to.
 
 ### Servicing Buffers
 
 The following functions must be called frequently (e.g. in a 1ms loop):
-```
+```c
 void service_can_tx(CAN_HandleTypeDef* hcan);
 S8 service_can_rx_buffer(void);
 ```
 
-`service_can_tx` moves messages from the transmit buffer of an hcan instance to the CAN mailbox (where it is actually sent).
+`service_can_tx` moves messages from the transmit buffer of an hcan instance to the CAN mailbox. The functions described below simply move messages to this buffer. Those messages are actually sent when the peripheral is serviced.
 
-`service_can_rx_buffer` processes messages in the RX buffer. When a message is received, it is automatically moved from the CAN FIFOs to the RX buffer by an interrupt handler.
+When a message is received, it is automatically moved from the CAN FIFOs to the RX buffer by an interrupt handler. `service_can_rx_buffer` processes the messages in the RX buffer (i.e. updates parameters, triggers callbacks, responds to requests, etc.). 
 
-### Message Types
+### Messages
 
 GopherCAN supports four fundamental message types: data, requests, commands and errors.
-
-"Sending" a message simply means moving a message into the TX buffer of one or more hcan instances. The message won't be transmitted unless that peripheral is serviced with `service_can_tx`.
 
 #### Data
 
 Data messages use an 11-bit CAN ID. They are composed of groups of parameters and have the following format:
 
-| ID<10:0> | Data<63:0> |
+| ID<10:0> | Data[0:7] |
 | --- | --- |
 | `GROUP_ID` | `PARAM0` `PARAM1` `...` |
 
-The ID of a group and the parameters it contains are defined in a YAML configuration. Groups can be sent either by specifying a parameter (the group it belongs to will be sent) or by specifying the group ID:
-```
-S8 send_parameter(CAN_INFO_STRUCT* param);
+```c
+S8 send_parameter(GCAN_PARAM_ID param_id);
 S8 send_group(U16 group_id);
 ```
 
-Data messages are sent on all configured buses.
+The ID of a group and the parameters it contains are defined in the YAML configuration. Groups can be sent either by specifying a parameter ID (the group it belongs to will be sent) or by specifying the group ID directly. Data messages are added to the TX buffer of every bus.
 
 #### Requests
 
@@ -106,27 +103,23 @@ Requests use a 29-bit CAN ID. They contain no data.
 
 | ID<28> | ID<27:22> | ID<21:16> | ID<15> | ID<14:0> |
 | --- | --- | --- | --- | --- |
-| `PRIORITY` | `DESTINATION` | `SOURCE` | `ERROR` | `PARAMETER` |
+| `PRIORITY` | `DESTINATION` | `SOURCE` | `ERROR=0` | `PARAMETER` |
 
-*`ERROR`=0
-
-```
+```c
 S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID parameter);
 ```
 
-Requests are sent on the bus corresponding to the provided `MODULE_ID`. When a request is received and processed in the RX buffer, the specified parameter is automatically sent with `send_parameter`.
+Requests are sent on the bus corresponding to the provided `MODULE_ID`. When a request is received and processed in the RX buffer, the specified `PARAMETER` is automatically sent with `send_parameter`.
 
 #### Commands
 
 Commands use a 29-bit CAN ID. The data field supports up to four arguments.
 
-| ID<28> | ID<27:22> | ID<21:16> | ID<15> | ID<14:0> | Data<0> | Data<1> | Data<2> | Data<3> | Data<4> | Data<5-7> |
+| ID<28> | ID<27:22> | ID<21:16> | ID<15> | ID<14:0> | Data[0] | Data[1] | Data[2] | Data[3] | Data[4] | Data[5:7] |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `PRIORITY` | `DESTINATION` | `SOURCE` | `ERROR` | `PARAMETER` | `COMMAND_ID` | `A0` | `A1` | `A2` | `A3` | 0 |
+| `PRIORITY` | `DESTINATION` | `SOURCE` | `ERROR=0` | `PARAMETER=0` | `COMMAND_ID` | `A0` | `A1` | `A2` | `A3` | 0 |
 
-*`ERROR`=0, `PARAMETER`=0
-
-```
+```c
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id, U8 a0, U8 a1, U8 a2, U8 a3);
 ```
 
@@ -134,18 +127,41 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 
 #### Errors
 
-| ID<28> | ID<27:22> | ID<21:16> | ID<15> | ID<14:0> | Data<0> |
-| --- | --- | --- | --- | --- | --- |
-| `PRIORITY` | `DESTINATION` | `SOURCE` | `ERROR` | `PARAMETER` | `ERROR_ID` |
-
-*`ERROR`=1
+| ID<28> | ID<27:22> | ID<21:16> | ID<15> | ID<14:0> | Data[0] | Data[1:7] |
+| --- | --- | --- | --- | --- | --- | --- |
+| `PRIORITY` | `DESTINATION` | `SOURCE` | `ERROR=1` | `PARAMETER` | `ERROR_ID` | 0 |
 
 The `PRIORITY` and `PARAMETER` fields will be copied from the message that triggered an error.
 
 ### Event Handlers
 
+```c
+// called by ISRs when a message is received
+void GCAN_onRX(CAN_HandleTypeDef* hcan);
+
+// called when an error message (EXT ID) is received
+void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id);
+```
+
+Event handlers allow modules to implement custom logic in reponse to an event. These are defined as `__weak` functions and meant to be overriden. The default definition does nothing.
+
 ### Callbacks
 
 Callback functions can be attached to both STD ID messages and commands.
 
+```c
+void attach_callback_std(U16 std_id, void (*func)());
+void attach_callback_cmd(GCAN_COMMAND_ID cmd_id, void (*func)(MODULE_ID, U8, U8, U8, U8));
+```
+
+When the specified STD ID or command ID is received, the corresponding callback function will be triggered.
+
+STD ID callbacks have no parameters. `std_id` must be a configured group ID.
+
+Command callbacks take the source module's ID and up to four arbitrary arguments.
+
 ### Routing
+
+Including `#define ENABLE_ROUTING` in `GopherCAN_config.h` enables message routing. When an EXT ID message is received on a bus different than the bus indicated by `DESTINATION`, the message will be retransmitted on the target bus.
+
+This is useful for passing messages between two modules that are not physically connected to the same bus.

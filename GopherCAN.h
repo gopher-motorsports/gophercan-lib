@@ -97,17 +97,6 @@ typedef enum {
 #define GET_ID_PARAM(id) (((id) & PARAM_MASK) >> (CAN_ID_SIZE - PARAM_POS - PARAM_SIZE))
 
 /*************************************************
- * EVENT HANDLERS
- * these functions are marked __weak, they should be redefined in application code
-*************************************************/
-
-// called by ISRs when a message is received
-void GCAN_onRX(CAN_HandleTypeDef* hcan);
-
-// called when an error message (EXT ID) is received
-void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id);
-
-/*************************************************
  * INITIALIZATION
 *************************************************/
 
@@ -119,6 +108,17 @@ void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id);
 // RETURNS:
 //  error codes specified in GopherCAN.h
 S8 init_can(CAN_HandleTypeDef* hcan, BUS_ID bus_id);
+
+/*************************************************
+ * EVENT HANDLERS
+ * these functions are marked __weak, they should be redefined in application code
+*************************************************/
+
+// called by ISRs when a message is received
+void GCAN_onRX(CAN_HandleTypeDef* hcan);
+
+// called when an error message (EXT ID) is received
+void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id);
 
 /*************************************************
  * BUFFER SERVICE
@@ -138,6 +138,7 @@ S8 service_can_rx_buffer(void);
 
 // attach_callback_std
 //  Configure a function to be called when a particular STD ID is received.
+//  Note that std_id must be a configured group ID.
 // PARAMS:
 //  U16 std_id: 11-bit CAN ID to trigger the callback
 //  void (*func)(): function pointer accepting no arguments
@@ -156,7 +157,7 @@ void attach_callback_cmd(GCAN_COMMAND_ID cmd_id, void (*func)(MODULE_ID, U8, U8,
 
 // send_parameter
 //  Sends the group containing a parameter.
-S8 send_parameter(CAN_INFO_STRUCT* param);
+S8 send_parameter(GCAN_PARAM_ID param_id);
 
 // send_group
 //  Encodes and transmits a group of parameters.
@@ -186,8 +187,7 @@ S8 request_parameter(PRIORITY priority, MODULE_ID dest_module, GCAN_PARAM_ID par
 *************************************************/
 
 // send_can_command
-//	This function will send a CAN message with a command specified
-//	by command_id to the specified module
+//	This function will send a CAN message with a command specified by command_id to the specified module
 // params:
 //  PRIORITY priority:          PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:      what module to send the command to
@@ -242,13 +242,6 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 
 // bxcan slave first filter bank starts at 14
 #define SLAVE_FIRST_FILTER 14
-
-// custom function data positions
-#define COMMAND_ID_POS 0
-#define COMMAND_A0 1
-#define COMMAND_A1 2
-#define COMMAND_A2 3
-#define COMMAND_A3 4
 
 // general defines
 #define BITS_IN_BYTE 8

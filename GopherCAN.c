@@ -9,10 +9,10 @@
  * STATIC FUNCTION PROTOTYPES
 *************************************************/
 
+static S8 init_filters(CAN_HandleTypeDef* hcan);
+
 static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
 static void service_can_tx_hardware(CAN_HandleTypeDef* hcan);
-
-static S8 init_filters(CAN_HandleTypeDef* hcan);
 
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length);
 static S8 tx_can_message(CAN_MSG* message);
@@ -25,7 +25,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id);
 
 static S8 run_can_command(CAN_MSG* message, CAN_ID* id);
 
-static S8 send_error_message(CAN_ID* id, U8 error_id);
+static S8 send_error_message(CAN_ID* id, GCAN_ERROR_ID error_id);
 
 static CAN_BUS* get_bus_from_hcan(CAN_HandleTypeDef* hcan);
 static void remove_from_front(CAN_BUFFER* buffer);
@@ -401,6 +401,7 @@ S8 service_can_rx_buffer(void)
 
 // attach_callback_std
 //  Configure a function to be called when a particular STD ID is received.
+//  Note that std_id must be a configured group ID.
 // PARAMS:
 //  U16 std_id: 11-bit CAN ID to trigger the callback
 //  void (*func)(): function pointer accepting no arguments
@@ -560,9 +561,9 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 
 // send_parameter
 //  Sends the group containing a parameter.
-S8 send_parameter(CAN_INFO_STRUCT* param)
+S8 send_parameter(GCAN_PARAM_ID param_id)
 {
-	return send_group(param->GROUP_ID);
+	return send_group(((CAN_INFO_STRUCT*)PARAMETERS[param_id])->GROUP_ID);
 }
 
 // send_group
@@ -833,8 +834,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// send the parameter data to the module that requested
-	CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id->parameter];
-	return send_parameter(param);
+	return send_parameter(id->parameter);
 }
 
 /*************************************************
@@ -842,8 +842,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 *************************************************/
 
 // send_can_command
-//	This function will send a CAN message with a command specified
-//	by command_id to the specified module
+//	This function will send a CAN message with a command specified by command_id to the specified module
 // params:
 //  PRIORITY priority:          PRIO_LOW or PRIO_HIGH
 //  MODULE_ID dest_module:      what module to send the command to
@@ -855,7 +854,7 @@ static S8 parameter_requested(CAN_MSG* message, CAN_ID* id)
 // returns:
 //  error codes specified in GopherCAN.h
 S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID command_id,
-	U8 a0, U8 a1, U8 a2, U8 a3)
+					U8 a0, U8 a1, U8 a2, U8 a3)
 {
 	CAN_MSG message;
 	CAN_ID id;
@@ -881,11 +880,11 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 	message.header.RTR = DATA_MESSAGE;
 	message.header.DLC = COMMAND_SIZE;
 
-	message.data[COMMAND_ID_POS] = command_id;
-	message.data[COMMAND_A0] = a0;
-	message.data[COMMAND_A1] = a1;
-	message.data[COMMAND_A2] = a2;
-	message.data[COMMAND_A3] = a3;
+	message.data[0] = command_id;
+	message.data[1] = a0;
+	message.data[2] = a1;
+	message.data[3] = a2;
+	message.data[4] = a3;
 
 	return tx_can_message(&message);
 }
@@ -909,7 +908,7 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 	}
 
 	// error checking on the command ID
-	GCAN_COMMAND_ID command_id = message->data[COMMAND_ID_POS];
+	GCAN_COMMAND_ID command_id = message->data[0];
 	if (command_id < 0 || command_id >= NUM_OF_COMMANDS)
 	{
 		send_error_message(id, COMMAND_ID_NOT_FOUND);
@@ -921,9 +920,7 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 	if (CALLBACKS_CMD[command_id] != NULL) {
 		(*CALLBACKS_CMD[command_id])(
 				id->source_module,
-				message->data[COMMAND_A0], message->data[COMMAND_A1],
-				message->data[COMMAND_A2], message->data[COMMAND_A3]
-			 );
+				message->data[1], message->data[1], message->data[3], message->data[4]);
 	}
 
 	return CAN_SUCCESS;
@@ -935,7 +932,7 @@ static S8 run_can_command(CAN_MSG* message, CAN_ID* id)
 
 // send_error_message
 //  Sends a return message to the original sender with the ID specified
-static S8 send_error_message(CAN_ID* rx_id, U8 error_id)
+static S8 send_error_message(CAN_ID* rx_id, GCAN_ERROR_ID error_id)
 {
 	CAN_MSG message;
 	CAN_ID tx_id;
@@ -1104,14 +1101,4 @@ static U32 build_message_id(CAN_ID* id)
 	msg_id |= temp;
 
 	return msg_id;
-}
-
-
-// do_nothing
-//  this exists to give a default function pointer to all of the CAN commands
-//  to avoid errors from bad function pointers
-void do_nothing(U8 sending_module, void* param,
-	U8 remote_param0, U8 remote_param1, U8 remote_param2, U8 remote_param3)
-{
-	// this function has successfully done nothing
 }
