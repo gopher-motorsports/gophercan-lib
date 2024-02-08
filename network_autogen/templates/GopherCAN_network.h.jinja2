@@ -3,9 +3,15 @@
 #ifndef GOPHERCAN_NETWORK_H
 #define GOPHERCAN_NETWORK_H
 
-#include "base_types.h"
+#include <stdint.h>
+#include "stm32f4xx_hal.h"
+#include "cmsis_os.h"
+#include "GopherCAN_config.h"
 
 #define CAN_DATA_BYTES 8
+#define MUTEX_TIMEOUT 5
+
+void GCAN_InitNetwork();
 
 // *** TYPES ***
 
@@ -36,17 +42,48 @@ typedef enum {
     FLOATING_SIZE = 4
 } DATATYPES_SIZE;
 
+// *** MESSAGE BUFFERS ***
+
+typedef struct {
+    CAN_TxHeaderTypeDef header;
+    uint8_t data[CAN_DATA_BYTES];
+    uint32_t rx_time;
+} CAN_MSG;
+
+typedef struct {
+    CAN_MSG* messages;
+    uint8_t size;
+    uint8_t fill;
+    uint8_t head;
+    osMutexId mutex;
+} CAN_BUFFER;
+
+#define IS_FULL(buffer) ((buffer)->fill >= (buffer)->size)
+#define IS_EMPTY(buffer) ((buffer)->fill == 0)
+#define GET_FROM_BUFFER(buffer, index) ((buffer)->messages + (((buffer)->head + index) % (buffer)->size))
+
+extern CAN_BUFFER RX_BUFF;
+
 // *** BUSES ***
 
-#define ALL_BUSSES 0xFF
-#define GCAN0 0
-#define GCAN1 1
-#define GCAN2 2
+typedef enum {
+    {% for bus_id in buses -%}
+    {{ bus_id }} = {{ loop.index - 1 }},
+    {% endfor %}
+    ALL_BUSSES
+} BUS_ID;
+
+typedef struct {
+    BUS_ID id;
+    CAN_HandleTypeDef* hcan;
+    CAN_BUFFER* tx_buffer;
+} CAN_BUS;
+
+extern CAN_BUS* BUSES[ALL_BUSSES];
 
 // *** MODULES ***
 
-typedef enum
-{
+typedef enum {
     ALL_MODULES_ID = 0,
     {% for key, value in modules.items() -%}
     {{ key }}_ID = {{ value.id }},
@@ -54,7 +91,7 @@ typedef enum
     NUM_OF_MODULES
 } MODULE_ID;
 
-extern U8 module_bus_number[NUM_OF_MODULES];
+extern BUS_ID module_bus_number[NUM_OF_MODULES];
 
 // *** PARAMETERS ***
 
@@ -73,56 +110,56 @@ typedef enum {
 
 typedef struct {
     GCAN_PARAM_ID ID;
-    U16 GROUP_ID;
+    uint16_t GROUP_ID;
     DATATYPES TYPE;
     DATATYPES_SIZE SIZE;
     ENCODING ENC;
-    U8 ENC_SIZE;
+    uint8_t ENC_SIZE;
     float SCALE;
     float OFFSET;
-    U32 last_tx;
-    U32 last_rx;
-    U8 pending_response;
+    uint32_t last_tx;
+    uint32_t last_rx;
+    uint8_t pending_response;
 } CAN_INFO_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U8 data;
+    uint8_t data;
 } U8_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U16 data;
+    uint16_t data;
 } U16_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U32 data;
+    uint32_t data;
 } U32_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    U64 data;
+    uint64_t data;
 } U64_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S8 data;
+    int8_t data;
 } S8_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S16 data;
+    int16_t data;
 } S16_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S32 data;
+    int32_t data;
 } S32_CAN_STRUCT;
 
 typedef struct {
     CAN_INFO_STRUCT info;
-    S64 data;
+    int64_t data;
 } S64_CAN_STRUCT;
 
 typedef struct {
@@ -141,7 +178,7 @@ extern void* PARAMETERS[NUM_OF_PARAMETERS];
 
 typedef struct
 {
-    U16 group_id;
+    uint16_t group_id;
     GCAN_PARAM_ID param_ids[CAN_DATA_BYTES];
 } PARAM_GROUP;
 
@@ -151,23 +188,20 @@ extern PARAM_GROUP GROUPS[NUM_OF_GROUPS];
 
 typedef enum
 {
-    {% for name, value in commands.items() -%}
-    {{ name.upper() }} = {{ value.id }},
+    {% for num, id in commands.items() -%}
+    {{ id.upper() }} = {{ num }},
     {% endfor %}
     NUM_OF_COMMANDS
 } GCAN_COMMAND_ID;
 
 // *** ERRORS ***
 
-{% for name, value in errors.items() -%}
-#define {{ name.upper() }} {{ value.id }}
-{% endfor %}
-typedef struct
+typedef enum
 {
-    U32 last_rx;
-    U8  source_module;
-    U16 parameter;
-    U8  error_id;
-} ERROR_MSG;
+    {% for num, id in errors.items() -%}
+    {{ id.upper() }} = {{ num }},
+    {% endfor %}
+    NUM_OF_ERRORS
+} GCAN_ERROR_ID;
 
 #endif /* GOPHERCAN_NETWORK_H */

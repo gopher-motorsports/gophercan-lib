@@ -4,14 +4,10 @@ import yaml
 from jinja2 import Template
 
 # This script imports a .yaml config file and generates resources for the GopherCAN library
-# see configs/example.yaml for an example configuration
-
 # Run: python autogen.py configs/[filename].yaml
 # Generates:
 # ../GopherCAN_network.h
 # ../GopherCAN_network.c
-# ../GopherCAN_names.h
-# ../GopherCAN_names.c
 
 param_structs = {
     "UNSIGNED8" : "U8_CAN_STRUCT",
@@ -39,9 +35,7 @@ type_names = {
 
 filenames = [
     'GopherCAN_network.h',
-    'GopherCAN_network.c',
-    'GopherCAN_names.h',
-    'GopherCAN_names.c'
+    'GopherCAN_network.c'
 ]
 
 config_path = sys.argv[1]
@@ -100,8 +94,7 @@ data = {
     'groups': groups,
     'commands': config['commands'],
     'errors': config['errors'],
-    'param_structs': param_structs,
-    'type_names': type_names
+    'param_structs': param_structs
 }
 
 for filename in filenames:

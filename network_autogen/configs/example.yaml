@@ -1,0 +1,72 @@
+buses:
+    - GCAN0
+    - GCAN1
+
+modules:
+    MOD1:
+        id: 1
+        buses:
+            - GCAN0
+            - GCAN1
+
+    MOD2:
+        id: 2
+        buses:
+            - GCAN0
+
+    MOD3:
+        id: 3
+        buses:
+            - GCAN1
+
+parameters:
+    engineRPM:
+        id: 1
+        motec_name: Engine RPM
+        unit: rpm
+        type: UNSIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    engineTemp:
+        id: 2
+        motec_name: Engine Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    oilPressure:
+        id: 3
+        motec_name: Eng Oil Pres
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+groups: [
+    {
+        id: 0x1,
+        parameters: [
+            {name: engineRPM, start: 0, length: 2}
+        ]
+    },
+    {
+        id: 0x2,
+        parameters: [
+            {name: engineTemp, start: 0, length: 4},
+            {name: oilPressure, start: 4, length: 4}
+        ]
+    }
+]
+
+commands:
+    0: SET_TIME # arguments: (hour, min, sec, _)
+
+errors:
+    0: ID_NOT_FOUND
+    1: COMMAND_ID_NOT_FOUND
+    2: SIZE_ERROR
