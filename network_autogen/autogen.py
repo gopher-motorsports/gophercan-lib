@@ -21,18 +21,6 @@ param_structs = {
     "FLOATING" : "FLOAT_CAN_STRUCT"
 }
 
-type_names = {
-    "UNSIGNED8" : "UINT_8",
-    "UNSIGNED16" : "UINT_16",
-    "UNSIGNED32" : "UINT_32",
-    "UNSIGNED64" : "UINT_64",
-    "SIGNED8" : "SINT_8",
-    "SIGNED16" : "SINT_16",
-    "SIGNED32" : "SINT_32",
-    "SIGNED64" : "SINT_64",
-    "FLOATING" : "FLOAT"
-}
-
 filenames = [
     'GopherCAN_network.h',
     'GopherCAN_network.c'

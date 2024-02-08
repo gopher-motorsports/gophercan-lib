@@ -49,7 +49,7 @@ Projects using `gophercan-lib` should include a `GopherCAN_config.h` header:
 
 // if defined, messages received with a different destination module (29-bit ID) will be retransmitted
 // this can be used to pass messages between unconnected modules
-#define ENABLE_ROUTING
+// #define ENABLE_ROUTING
 
 #endif
 ```

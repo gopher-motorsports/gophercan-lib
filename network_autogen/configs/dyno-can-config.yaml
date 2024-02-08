@@ -1,0 +1,642 @@
+buses:
+    - GCAN0
+    - GCAN1
+    - GCAN2
+
+modules:
+    # this is probably the 2022 DLM but this makes it work better with all the
+    # code that expects a PLM to be there
+    PLM:
+        id: 1
+        buses:
+            - GCAN0
+            - GCAN1
+            - GCAN2
+    DAM:
+        id: 2
+        buses:
+            - GCAN0
+    SH_TEMPS:
+        id: 3
+        buses:
+            - GCAN0
+    SH_PRESSURES:
+        id: 4
+        buses:
+            - GCAN0
+    # ECU is also on GCAN0, but is not a GCAN module
+
+parameters:
+    # ECU Sensors:
+    # all are sent on the bus as S16s (MSB) and encoded in GCAN as a float
+    engineRPM_rpm:
+        id: 1
+        motec_name: Engine RPM
+        unit: rpm
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    throttlePos_percent:
+        id: 2
+        motec_name: Throttle Pos
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+    
+    engineTemp_C:
+        id: 3
+        motec_name: Engine Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilTemp_C:
+        id: 4
+        motec_name: Eng Oil Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilPressure_kPa:
+        id: 5
+        motec_name: Eng Oil Pres
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    manifoldPressure_kPa:
+        id: 6
+        motec_name: Manifold Pres
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    manifoldTemp_C:
+        id: 7
+        motec_name: Air Temp Inlet
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    fuelPressure_kPa:
+        id: 8
+        motec_name: Fuel Pres
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    lambda1_LA:
+        id: 9
+        motec_name: Lambda 1
+        unit: LA
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+        
+    # User channel 1
+    waterFlowRate_LPerMin:
+        id: 10
+        motec_name: Water Flow Rate
+        unit: L/min
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    # User channel 2
+    fuelFlowRate_LPerMin:
+        id: 11
+        motec_name: Fuel Flow Rate
+        unit: L/min
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    # User channel 3
+    dynoTorque_V:
+        id: 12
+        motec_name: Dyno Torque
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    # Internal ECU Parameters:
+    batteryVoltage_V:
+        id: 13
+        motec_name: Battery Volts
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+        
+    ecu5VEng_V:
+        id: 14
+        motec_name: ECU 5V Eng Volts
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+        
+    ecu5VAux_V:
+        id: 15
+        motec_name: ECU 5V Aux Volts
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    ecuTemp_C:
+        id: 16
+        motec_name: ECU Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    aimLambda1_LA:
+        id: 17
+        motec_name: Aim Lambda 1
+        unit: LA
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+        
+    fuelCutLevel_percent:
+        id: 18
+        motec_name: Fuel Cut Level
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.392157
+        offset: 0
+    
+    ignCutLevel_percent:
+        id: 19
+        motec_name: Ign Cut Level
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.392157
+        offset: 0
+        
+    ignAdvance_degrees:
+        id: 20
+        motec_name: Ign Advance
+        unit: dBTDC
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    fuelInjDuty_percent:
+        id: 21
+        motec_name: Fuel Inj Duty
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+    
+    # Aux Output 5
+    oilFanDuty_percent:
+        id: 22
+        motec_name: Oil Fan Duty
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    # Aux Output 6
+    waterPumpDuty_percent:
+        id: 23
+        motec_name: Water Pump Duty
+        unit: "%"
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+        
+    # additional sensors
+    crankTorque_Nm:
+        id: 24
+        motec_name: Crank Torque
+        unit: Nm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilRadTemp1_C:
+        id: 25
+        motec_name: Oil Rad Temp 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+        
+    oilRadTemp2_C:
+        id: 26
+        motec_name: Oil Rad Temp 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    waterTempBeforeOil_C:
+        id: 27
+        motec_name: Water Temp Before Oil
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    waterTempAfterOil_C:
+        id: 28
+        motec_name: Water Temp After Oil
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    waterTempBeforeHeatExchanger_C:
+        id: 29
+        motec_name: Water Temp Before Heat Exchanger
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    waterTempAfterHeatExchanger_C:
+        id: 30
+        motec_name: Water Temp After Heat Exchanger
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Pressure Sensors
+    pressure1_psi:
+        id: 31
+        motec_name: Oil Cooler Outlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure2_psi:
+        id: 32
+        motec_name: Oil Cooler Inlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure3_psi:
+        id: 33
+        motec_name: Heat Exchanger Inlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure4_psi:
+        id: 34
+        motec_name: Manifold Air Pressure
+        unit: kPa
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure5_psi:
+        id: 35
+        motec_name: Header Tank Outlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure6_psi:
+        id: 36
+        motec_name: Heat Exchanger Outlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure7_psi:
+        id: 37
+        motec_name: Engine Inlet Pressure
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    pressure8_psi:
+        id: 38
+        motec_name: Unused Pressure Input
+        unit: psi
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Temperature Sensors
+    temp1_C:
+        id: 39
+        motec_name: Heat Exchanger Temp Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp2_C:
+        id: 40
+        motec_name: Heat Exchanger Temp In
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp3_C:
+        id: 41
+        motec_name: Engine Inlet Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp4_C:
+        id: 42
+        motec_name: Oil Cooler Water In Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp5_C:
+        id: 43
+        motec_name: Oil Cooler Water Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp6_C:
+        id: 44
+        motec_name: Oil Temp Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp7_C:
+        id: 45
+        motec_name: Engine Outlet Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    temp8_C:
+        id: 46
+        motec_name: Oil Temp In
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Flow Sensors
+    flowRate1_Hz:
+        id: 47
+        motec_name: Building Flow
+        unit: Hz
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    flowRate2_Hz:
+        id: 48
+        motec_name: Engine Flow
+        unit: Hz
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    # Other
+    lapBeacon_ul:
+        id: 49
+        motec_name: Lap Beacon (Placeholder)
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+    
+    loadcell_voltage:
+        id: 50
+        motec_name: Load Cell
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+
+
+groups: [
+    # High Frequency ECU (Custom Set 1)
+    {
+        id: 0x100,
+        parameters: [
+            {name: engineRPM_rpm,       start: 0, length: 2},
+            {name: throttlePos_percent, start: 2, length: 2},
+            {name: lambda1_LA,          start: 4, length: 2},
+            {name: dynoTorque_V,        start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x101,
+        parameters: [
+            {name: aimLambda1_LA,        start: 0, length: 2},
+            {name: fuelCutLevel_percent, start: 2, length: 2},
+            {name: ignCutLevel_percent,  start: 4, length: 2},
+            {name: ignAdvance_degrees,   start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x102,
+        parameters: [
+            {name: fuelInjDuty_percent, start: 0, length: 2}
+        ]
+    },
+    # Low Frequency ECU (Custom Set 2)
+    {
+        id: 0x200,
+        parameters: [
+            {name: engineTemp_C,         start: 0, length: 2},
+            {name: oilTemp_C,            start: 2, length: 2},
+            {name: oilPressure_kPa,      start: 4, length: 2},
+            {name: manifoldPressure_kPa, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x201,
+        parameters: [
+            {name: manifoldTemp_C,        start: 0, length: 2},
+            {name: fuelPressure_kPa,      start: 2, length: 2},
+            {name: waterFlowRate_LPerMin, start: 4, length: 2},
+            {name: fuelFlowRate_LPerMin,  start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x202,
+        parameters: [
+            {name: batteryVoltage_V, start: 0, length: 2},
+            {name: ecu5VEng_V,       start: 2, length: 2},
+            {name: ecu5VAux_V,       start: 4, length: 2},
+            {name: ecuTemp_C,        start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x203,
+        parameters: [
+            {name: oilFanDuty_percent,    start: 0, length: 2},
+            {name: waterPumpDuty_percent, start: 2, length: 2},
+            {name: crankTorque_Nm,        start: 4, length: 2},
+            {name: oilRadTemp1_C,         start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x204,
+        parameters: [
+            {name: oilRadTemp2_C, start: 0, length: 2}
+        ]
+    },
+    {
+        id: 0x600,
+        parameters: [
+            {name: waterTempBeforeOil_C, start: 0, length: 2},
+            {name: waterTempAfterOil_C, start: 2, length: 2},
+            {name: waterTempBeforeHeatExchanger_C, start: 4, length: 2},
+            {name: waterTempAfterHeatExchanger_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x601,
+        parameters: [
+            {name: pressure1_psi, start: 0, length: 2},
+            {name: pressure2_psi, start: 2, length: 2},
+            {name: pressure3_psi, start: 4, length: 2},
+            {name: pressure4_psi, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x602,
+        parameters: [
+            {name: pressure5_psi, start: 0, length: 2},
+            {name: pressure6_psi, start: 2, length: 2},
+            {name: flowRate2_Hz, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x613,
+        parameters: [
+            {name: pressure7_psi, start: 0, length: 2},
+            {name: pressure8_psi, start: 2, length: 2},
+            {name: loadcell_voltage, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x603,
+        parameters: [
+            {name: temp1_C,       start: 0, length: 2},
+            {name: temp2_C,       start: 2, length: 2}
+        ]
+    },
+    {
+        id: 0x604,
+        parameters: [
+            {name: temp3_C, start: 0, length: 2},
+            {name: temp4_C, start: 2, length: 2},
+            {name: temp5_C, start: 4, length: 2},
+            {name: temp6_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x605,
+        parameters: [
+            {name: temp7_C,           start: 0, length: 2},
+            {name: temp8_C,           start: 2, length: 2},
+            {name: flowRate1_Hz, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x700,
+        parameters: [
+            {name: lapBeacon_ul, start: 0, length: 2}
+        ]
+    }
+]
+
+commands:
+    0: SET_LED_STATE # args: (LED state, _, _, _)
+    1: SET_RTC_TIME # args: (hour, min, sec, _)
+    2: SET_RTC_DATE # args: (year, month, day, weekday)
+    3: LOG_COMPLETE # args: (_, _, _, _)
+
+errors:
+    0: ID_NOT_FOUND
+    1: COMMAND_ID_NOT_FOUND
+    2: PARAM_NOT_ENABLED
+    3: SIZE_ERROR
+    4: DATATYPE_NOT_FOUND
+    5: COMMAND_NOT_ENABLED

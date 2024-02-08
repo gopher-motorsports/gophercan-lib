@@ -19,6 +19,7 @@ modules:
         buses:
             - GCAN1
 
+# parameter types: UNSIGNED[8/16/32/64], SIGNED[8/16/32/64], FLOATING
 parameters:
     engineRPM:
         id: 1
@@ -63,8 +64,10 @@ groups: [
     }
 ]
 
+# each command accepts up to four arguments
+# document expected arguments here for reference
 commands:
-    0: SET_TIME # arguments: (hour, min, sec, _)
+    0: SET_TIME # args: (hour, min, sec, _)
 
 errors:
     0: ID_NOT_FOUND
