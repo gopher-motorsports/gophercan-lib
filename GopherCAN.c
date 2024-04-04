@@ -95,6 +95,9 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 	CAN_FilterTypeDef filter;
 	U8 banknum = 0;
 
+	// starting banknum for CAN2 in dual CAN mode
+	if (hcan->Instance == CAN2) banknum = SLAVE_FIRST_FILTER;
+
 	filter.FilterActivation = CAN_FILTER_ENABLE;
     filter.FilterMode = CAN_FILTERMODE_IDMASK; // use mask mode to filter
     filter.SlaveStartFilterBank = SLAVE_FIRST_FILTER;
