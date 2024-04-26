@@ -409,7 +409,20 @@ S8 service_can_rx_buffer(void)
 //  U16 std_id: 11-bit CAN ID to trigger the callback
 //  void (*func)(): function pointer accepting no arguments
 void attach_callback_std(U16 std_id, void (*func)()) {
-	CALLBACKS_STD[std_id] = func;
+	PARAM_GROUP* group = NULL;
+	size_t group_index = 0;
+
+	for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
+		if (GROUPS[i].group_id == std_id) {
+			group = &GROUPS[i];
+			group_index = i;
+			break;
+		}
+	}
+
+	if (group != NULL) {
+		CALLBACKS_STD[group_index] = func;
+	}
 }
 
 // attach_callback_cmd
@@ -469,11 +482,13 @@ static S8 tx_can_message(CAN_MSG* message)
 static S8 service_can_rx_message_std(CAN_MSG* message)
 {
     PARAM_GROUP* group = NULL;
+    size_t group_index = 0;
 
     // find the specified parameter group
     for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
         if (GROUPS[i].group_id == message->header.StdId) {
             group = &GROUPS[i];
+            group_index = i;
             break;
         }
     }
@@ -500,8 +515,8 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     }
 
     // trigger callback for this group if one has been attached
-    if (CALLBACKS_STD[group->group_id] != NULL) {
-    	(*CALLBACKS_STD[group->group_id])();
+    if (CALLBACKS_STD[group_index] != NULL) {
+    	(*CALLBACKS_STD[group_index])();
     }
 
     return CAN_SUCCESS;
