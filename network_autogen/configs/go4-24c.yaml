@@ -964,6 +964,214 @@ parameters:
         scale: 0.0019609375 # [0-8.032] -> [0-4096]
         offset: 0
 
+    Overcurrent_Event:
+        id: 99
+        motec_name: OVER CURRENT EVENT
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_0_Overcurrent:
+        id: 99
+        motec_name: 12V Channel 0 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_1_Overcurrent:
+        id: 99
+        motec_name: 12V Channel 1 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_2_Overcurrent:
+        id: 99
+        motec_name: 12V Channel 2 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_3_Overcurrent:
+        id: 99
+        motec_name: 12V Channel 3 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_4_Overcurrent:
+        id: 99
+        motec_name: 12V Channel 4 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_5_Overcurrent:
+        id: 99
+        motec_name: 12V Channel 5 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_6_Overcurrent:
+        id: 99
+        motec_name: 12V Channel 6 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_0_Overcurrent:
+        id: 99
+        motec_name: 5V Channel 0 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_1_Overcurrent:
+        id: 99
+        motec_name: 5V Channel 1 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_2_Overcurrent:
+        id: 99
+        motec_name: 5V Channel 2 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_3_Overcurrent:
+        id: 99
+        motec_name: 5V Channel 3 Overcurrent Event
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_0_Overcurrent_Count:
+        id: 99
+        motec_name: 12V Channel 0 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_1_Overcurrent_Count:
+        id: 99
+        motec_name: 12V Channel 1 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_2_Overcurrent_Count:
+        id: 99
+        motec_name: 12V Channel 2 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_3_Overcurrent_Count:
+        id: 99
+        motec_name: 12V Channel 3 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_4_Overcurrent_Count:
+        id: 99
+        motec_name: 12V Channel 4 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_5_Overcurrent_Count:
+        id: 99
+        motec_name: 12V Channel 5 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Twelve_Volt_6_Overcurrent_Count:
+        id: 99
+        motec_name: 12V Channel 6 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_0_Overcurrent_Count:
+        id: 99
+        motec_name: 5V Channel 0 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_1_Overcurrent_Count:
+        id: 99
+        motec_name: 5V Channel 1 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_2_Overcurrent_Count:
+        id: 99
+        motec_name: 5V Channel 2 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    Five_Volt_3_Overcurrent_Count:
+        id: 99
+        motec_name: 5V Channel 3 Overcurrent Count
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+        samples_buffered: 10    
+
     PLM_Temp_degrees:
         id: 99
         motec_name: PLM Temperature
@@ -1533,7 +1741,44 @@ groups: [
             {name: PLM_Humidity_percent, start: 2, length: 2}
         ]
     },
-    
+    {
+        id: 0x006,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
+        ]
+    },
+    {
+        id: 0x006,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent_Count, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent_Count, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent_Count, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent_Count, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent_Count, start: 6, length: 1},
+        ]
+    }
+    {
+        id: 0x006,
+        parameters: [
+            {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Five_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Five_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Five_Volt_0_Overcurrent_Count, start: 4, length: 1},
+            {name: Five_Volt_0_Overcurrent_Count, start: 5, length: 1},
+            {name: Five_Volt_0_Overcurrent_Count, start: 6, length: 1},
+            {name: Five_Volt_0_Overcurrent_Count, start: 7, length: 1},
+
+        ]
+    }
     # IMU Messages (No control over these IDs)
     {
         id: 0x174,
