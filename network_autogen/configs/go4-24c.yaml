@@ -968,209 +968,208 @@ parameters:
         id: 99
         motec_name: OVER CURRENT EVENT
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_0_Overcurrent:
         id: 100
         motec_name: 12V Channel 0 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_1_Overcurrent:
         id: 101
         motec_name: 12V Channel 1 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_2_Overcurrent:
         id: 102
         motec_name: 12V Channel 2 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_3_Overcurrent:
         id: 103
         motec_name: 12V Channel 3 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_4_Overcurrent:
         id: 104
         motec_name: 12V Channel 4 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_5_Overcurrent:
         id: 105
         motec_name: 12V Channel 5 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_6_Overcurrent:
         id: 106
         motec_name: 12V Channel 6 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_0_Overcurrent:
         id: 107
         motec_name: 5V Channel 0 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_1_Overcurrent:
         id: 108
         motec_name: 5V Channel 1 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_2_Overcurrent:
         id: 109
         motec_name: 5V Channel 2 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_3_Overcurrent:
         id: 110
         motec_name: 5V Channel 3 Overcurrent Event
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_0_Overcurrent_Count:
         id: 111
         motec_name: 12V Channel 0 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_1_Overcurrent_Count:
         id: 112
         motec_name: 12V Channel 1 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_2_Overcurrent_Count:
         id: 113
         motec_name: 12V Channel 2 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_3_Overcurrent_Count:
         id: 114
         motec_name: 12V Channel 3 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_4_Overcurrent_Count:
         id: 115
         motec_name: 12V Channel 4 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_5_Overcurrent_Count:
         id: 116
         motec_name: 12V Channel 5 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Twelve_Volt_6_Overcurrent_Count:
         id: 117
         motec_name: 12V Channel 6 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_0_Overcurrent_Count:
         id: 118
         motec_name: 5V Channel 0 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_1_Overcurrent_Count:
         id: 119
         motec_name: 5V Channel 1 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_2_Overcurrent_Count:
         id: 120
         motec_name: 5V Channel 2 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 1
+        offset: 0
 
     Five_Volt_3_Overcurrent_Count:
         id: 121
         motec_name: 5V Channel 3 Overcurrent Count
         unit: ''
-        type: FLOATING
+        type: UNSIGNED8
         encoding: MSB
-        scale: 0.1
-        offset: -40
-        samples_buffered: 10
+        scale: 1
+        offset: 0
 
     PLM_Temp_degrees:
         id: 122
