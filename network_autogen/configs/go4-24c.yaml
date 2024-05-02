@@ -1742,7 +1742,7 @@ groups: [
         ]
     },
     {
-        id: 0x006,
+        id: 0x007,
         parameters: [
             {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
             {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
@@ -1755,7 +1755,7 @@ groups: [
         ]
     },
     {
-        id: 0x006,
+        id: 0x008,
         parameters: [
             {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
             {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
@@ -1767,7 +1767,7 @@ groups: [
         ]
     },
     {
-        id: 0x006,
+        id: 0x010,
         parameters: [
             {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
             {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
