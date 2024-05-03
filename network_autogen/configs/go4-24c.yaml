@@ -43,6 +43,11 @@ modules:
         id: 9
         buses:
             - GCAN0
+    Telemetry:
+        id: 10
+        buses:
+            - GCAN0
+            - GCAN1
 
 parameters:
     # ECU Sensors:
@@ -1206,6 +1211,89 @@ parameters:
         scale: 0.1
         offset: 0
     # END DATA LOGGING
+
+    # TELEMETRY METRICS
+    tm_CAN1Util_percent:
+        id: 125
+        motec_name: CAN1 Utilization (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_CAN2Util_percent:
+        id: 126
+        motec_name: CAN2 Utilization (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_SDBufferFill_percent:
+        id: 127
+        motec_name: SD Buffer Fill (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_RadioBufferFill_percent:
+        id: 128
+        motec_name: Radio Buffer Fill (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_SDBytesTransferred_bytes:
+        id: 129
+        motec_name: SD Bytes Transferred (Telemetry)
+        unit: 'bytes'
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_RadioBytesTransferred_bytes:
+        id: 130
+        motec_name: Radio Bytes Transferred (Telemetry)
+        unit: 'bytes'
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_SDPacketsDropped_ul:
+        id: 131
+        motec_name: SD Packets Dropped (Telemetry)
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_RadioPacketsDropped_ul:
+        id: 132
+        motec_name: Radio Packets Dropped (Telemetry)
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_CoinBattery_V:
+        id: 133
+        motec_name: Coin Cell Battery Voltage (Telemetry)
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+    # END TELEMETRY METRICS
 
 
 
