@@ -1642,7 +1642,38 @@ groups: [
         parameters: [
             {name: verticalAccel_G, start: 4, length: 2}
         ]
-    }
+    },
+
+    # Telemetry
+    {
+        id: 0x900,
+        parameters: [
+            {name: tm_CAN1Util_percent, start: 0, length: 2},
+            {name: tm_CAN2Util_percent, start: 2, length: 2},
+            {name: tm_SDBufferFill_percent, start: 4, length: 2},
+            {name: tm_RadioBufferFill_percent, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x901,
+        parameters: [
+            {name: tm_SDBytesTransferred_bytes, start: 0, length: 4},
+            {name: tm_RadioBytesTransferred_bytes, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x902,
+        parameters: [
+            {name: tm_SDPacketsDropped_ul, start: 0, length: 4},
+            {name: tm_RadioPacketsDropped_ul, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x903,
+        parameters: [
+            {name: tm_CoinBattery_V, start: 0, length: 2},
+        ]
+    },
 ]
 
 commands:
