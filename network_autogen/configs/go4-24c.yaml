@@ -429,7 +429,7 @@ parameters:
         encoding: MSB
         scale: 0.007412109375 # [0-30.36] -> [0-4096]
         offset: 0
-    
+
 
     # Transmission Controller Internal:
     tcmTargetRPM_rpm:
@@ -969,8 +969,215 @@ parameters:
         scale: 0.0019609375 # [0-8.032] -> [0-4096]
         offset: 0
 
-    PLM_Temp_degrees:
+    Overcurrent_Event:
         id: 99
+        motec_name: OVER CURRENT EVENT
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_0_Overcurrent:
+        id: 100
+        motec_name: 12V Channel 0 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_1_Overcurrent:
+        id: 101
+        motec_name: 12V Channel 1 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_2_Overcurrent:
+        id: 102
+        motec_name: 12V Channel 2 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_3_Overcurrent:
+        id: 103
+        motec_name: 12V Channel 3 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_4_Overcurrent:
+        id: 104
+        motec_name: 12V Channel 4 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_5_Overcurrent:
+        id: 105
+        motec_name: 12V Channel 5 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_6_Overcurrent:
+        id: 106
+        motec_name: 12V Channel 6 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_0_Overcurrent:
+        id: 107
+        motec_name: 5V Channel 0 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_1_Overcurrent:
+        id: 108
+        motec_name: 5V Channel 1 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_2_Overcurrent:
+        id: 109
+        motec_name: 5V Channel 2 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_3_Overcurrent:
+        id: 110
+        motec_name: 5V Channel 3 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_0_Overcurrent_Count:
+        id: 111
+        motec_name: 12V Channel 0 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_1_Overcurrent_Count:
+        id: 112
+        motec_name: 12V Channel 1 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_2_Overcurrent_Count:
+        id: 113
+        motec_name: 12V Channel 2 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_3_Overcurrent_Count:
+        id: 114
+        motec_name: 12V Channel 3 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_4_Overcurrent_Count:
+        id: 115
+        motec_name: 12V Channel 4 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_5_Overcurrent_Count:
+        id: 116
+        motec_name: 12V Channel 5 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_6_Overcurrent_Count:
+        id: 117
+        motec_name: 12V Channel 6 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_0_Overcurrent_Count:
+        id: 118
+        motec_name: 5V Channel 0 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_1_Overcurrent_Count:
+        id: 119
+        motec_name: 5V Channel 1 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_2_Overcurrent_Count:
+        id: 120
+        motec_name: 5V Channel 2 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_3_Overcurrent_Count:
+        id: 121
+        motec_name: 5V Channel 3 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    PLM_Temp_degrees:
+        id: 122
         motec_name: PLM Temperature
         unit: degrees
         type: FLOATING
@@ -979,8 +1186,17 @@ parameters:
         offset: -40
 
     PLM_Humidity_percent:
-        id: 100
+        id: 123
         motec_name: PLM Humidity
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.024414 # [0-100] -> [0-4096]
+        offset: 0
+
+    PLM_Micro_Temp:
+        id: 124
+        motec_name: PLM Microcontroller Temperature
         unit: '%'
         type: FLOATING
         encoding: MSB
@@ -989,7 +1205,7 @@ parameters:
 
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 101
+        id: 125
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -998,7 +1214,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 102
+        id: 126
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -1007,7 +1223,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 103
+        id: 127
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -1017,7 +1233,7 @@ parameters:
     # END PLM
     # Steering Wheel Module
     swUpshift_state:
-        id: 104
+        id: 128
         motec_name: Wheel Upshift Paddle Pos
         unit: ''
         type: UNSIGNED8
@@ -1026,7 +1242,7 @@ parameters:
         offset: 0
 
     swDownshift_state:
-        id: 105
+        id: 129
         motec_name: Wheel Downshift Paddle Pos
         unit: ''
         type: UNSIGNED8
@@ -1035,7 +1251,7 @@ parameters:
         offset: 0
 
     swSlowClutch_state:
-        id: 106
+        id: 130
         motec_name: Wheel Slow Clutch
         unit: ''
         type: UNSIGNED8
@@ -1044,7 +1260,7 @@ parameters:
         offset: 0
 
     swFastClutch_state:
-        id: 107
+        id: 131
         motec_name: Wheel Fast Clutch
         unit: ''
         type: UNSIGNED8
@@ -1053,7 +1269,7 @@ parameters:
         offset: 0
 
     swButon0_state:
-        id: 108
+        id: 132
         motec_name: Wheel Button 0
         unit: ''
         type: UNSIGNED8
@@ -1062,7 +1278,7 @@ parameters:
         offset: 0
 
     swButon1_state:
-        id: 109
+        id: 133
         motec_name: Wheel Button 1
         unit: ''
         type: UNSIGNED8
@@ -1071,7 +1287,7 @@ parameters:
         offset: 0
 
     swButon2_state:
-        id: 110
+        id: 134
         motec_name: Wheel Button 2
         unit: ''
         type: UNSIGNED8
@@ -1080,7 +1296,7 @@ parameters:
         offset: 0
 
     swButon3_state:
-        id: 111
+        id: 135
         motec_name: Wheel Button 3
         unit: ''
         type: UNSIGNED8
@@ -1089,7 +1305,7 @@ parameters:
         offset: 0
 
     displayPage_state:
-        id: 112
+        id: 136
         motec_name: Display Page
         unit: ''
         type: UNSIGNED8
@@ -1098,7 +1314,7 @@ parameters:
         offset: 0
 
     swDial_a_ul:
-        id: 113
+        id: 137
         motec_name: Wheel Dial A
         unit: ''
         type: UNSIGNED8
@@ -1107,7 +1323,7 @@ parameters:
         offset: 0
 
     swDial_b_ul:
-        id: 114
+        id: 138
         motec_name: Wheel Dial B
         unit: ''
         type: UNSIGNED8
@@ -1118,7 +1334,7 @@ parameters:
     # END SWM
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 115
+        id: 139
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -1127,7 +1343,7 @@ parameters:
         offset: -163.84
 
     rollRate_degPerSec:
-        id: 116
+        id: 140
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -1136,7 +1352,7 @@ parameters:
         offset: -163.84
 
     lateralAccel_G:
-        id: 117
+        id: 141
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -1145,7 +1361,7 @@ parameters:
         offset: -4.1746432
 
     longitudinalAccel_G:
-        id: 118
+        id: 142
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -1154,7 +1370,7 @@ parameters:
         offset: -4.1746432
 
     verticalAccel_G:
-        id: 119
+        id: 143
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -1165,7 +1381,7 @@ parameters:
     # LAP BEACON (sent with ECU)
     # pretty sure i2 just looks for the channel named "beacon" and works with that
     lapBeacon_ul:
-        id: 120
+        id: 144
         motec_name: Beacon
         unit: ''
         type: SIGNED16
@@ -1176,7 +1392,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-        id: 121
+        id: 145
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -1185,7 +1401,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-        id: 122
+        id: 146
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -1194,7 +1410,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-        id: 123
+        id: 147
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -1203,7 +1419,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-        id: 124
+        id: 148
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -1618,10 +1834,49 @@ groups: [
         id: 0x006,
         parameters: [
             {name: PLM_Temp_degrees, start: 0, length: 2},
-            {name: PLM_Humidity_percent, start: 2, length: 2}
+            {name: PLM_Humidity_percent, start: 2, length: 2},
+            {name: PLM_Micro_Temp, start: 4, length: 2}
         ]
     },
-    
+    {
+        id: 0x007,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
+            {name: Overcurrent_Event, start: 6, length: 1},
+        ]
+    },
+    {
+        id: 0x008,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent_Count, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent_Count, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent_Count, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent_Count, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent_Count, start: 6, length: 1},
+        ]
+    },
+    {
+        id: 0x010,
+        parameters: [
+            {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Five_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Five_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Five_Volt_0_Overcurrent_Count, start: 4, length: 1},
+            {name: Five_Volt_1_Overcurrent_Count, start: 5, length: 1},
+            {name: Five_Volt_2_Overcurrent_Count, start: 6, length: 1},
+            {name: Five_Volt_3_Overcurrent_Count, start: 7, length: 1},
+
+        ]
+    },
     # IMU Messages (No control over these IDs)
     {
         id: 0x174,
