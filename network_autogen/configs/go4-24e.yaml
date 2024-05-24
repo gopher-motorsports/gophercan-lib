@@ -58,9 +58,9 @@ parameters:
         id: 2
         motec_name: Duty Cycle %
         unit: '%'
-        type: SIGNED16
+        type: FLOATING
         encoding: MSB
-        scale: 10
+        scale: 0.1
         offset: 0
 
     inputInverterVoltage_V:
@@ -77,18 +77,18 @@ parameters:
         id: 4
         motec_name: Motor Current (AC Peak to Peak)
         unit: A
-        type: SIGNED16
+        type: FLOATING
         encoding: MSB
-        scale: 10
+        scale: 0.1
         offset: 0
 
     batteryCurrent_A:
         id: 5
         motec_name: Battery Current (DC)
         unit: A
-        type: SIGNED16
+        type: FLOATING
         encoding: MSB
-        scale: 10
+        scale: 0.1
         offset: 0
 
     #General data 3
@@ -96,18 +96,18 @@ parameters:
         id: 6
         motec_name: Controller Temperature
         unit: C
-        type: SIGNED16
+        type: FLOATING
         encoding: MSB
-        scale: 10
+        scale: 0.1
         offset: 0
 
     motorTemp_C:
         id: 7
         motec_name: Motor Temp
         unit: C
-        type: SIGNED16
+        type: FLOATING
         encoding: MSB
-        scale: 10
+        scale: 0.1
         offset: 0
 
     faultCode:
@@ -124,18 +124,18 @@ parameters:
         id: 9
         motec_name: Id Component
         unit: A
-        type: SIGNED32
+        type: FLOATING
         encoding: MSB
-        scale: 100
+        scale: .01
         offset: 0
 
     iqPeakToPeak_A:
         id: 10
         motec_name: Iq Component
         unit: A
-        type: SIGNED32
+        type: FLOATING
         encoding: MSB
-        scale: 100
+        scale: .01
         offset: 0
 
     #General data 5
@@ -207,18 +207,18 @@ parameters:
         id: 18
         motec_name: Desired Inverter Current (AC Peak to Peak)
         unit: A
-        type: SIGNED16
+        type: FLOATING
         encoding: MSB
-        scale: 10
+        scale: 0.1
         offset: 0
 
     maxCurrentLimitPeakToPeak_A:
         id: 19
         motec_name: Max Current Limit (AC Peak to Peak)
         unit: A
-        type: SIGNED16
+        type: FLOATING
         encoding: MSB
-        scale: 10
+        scale: 0.1
         offset: 0
 
     driveEnable_state:
@@ -5569,6 +5569,62 @@ parameters:
         offset: -1000
 
     # END BMS
+    # Steering Wheel 
+
+    swButon0_state:
+        id: 132
+        motec_name: Wheel Button 0
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon1_state:
+        id: 133
+        motec_name: Wheel Button 1
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon2_state:
+        id: 134
+        motec_name: Wheel Button 2
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon3_state:
+        id: 135
+        motec_name: Wheel Button 3
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    displayPage_state:
+        id: 110
+        motec_name: Display Page
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swDial_ul:
+        id: 111
+        motec_name: Wheel Dial
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # End Steering Wheel
     # Sensor Hub Front
     brakePressureRear_psi:
         id: 605
@@ -6381,7 +6437,20 @@ groups: [
         ]
     },
     # END VCU
+    # Steering Wheel
+     {
+        id: 0x208,
+        parameters: [
+            {name: swButon0_state, start: 0, length: 1},
+            {name: swButon1_state, start: 1, length: 1},
+            {name: swButon2_state, start: 2, length: 1},
+            {name: swButon3_state, start: 3, length: 1},
+            {name: displayPage_state, start: 4, length: 1},
+            {name: swDial_ul,      start: 5, length: 1}
+        ]
+    },
 
+    # END Steering Wheel
     # Battery Management System
     # Segment 1
     {
@@ -7382,7 +7451,7 @@ groups: [
     },
 
     # END BMS
-    
+
     # Sensor Hub Front
     {
         id: 0x400,
