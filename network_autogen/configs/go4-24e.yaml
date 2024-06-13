@@ -5609,17 +5609,17 @@ groups: [
         id: 0x101,
         parameters: [
             {name: bspdBrakePressureSensorFault_state,         start: 0, length: 1},
-            {name: bspdTractiveSystemCurrentSensorFault_state, start: 1, length: 1},
-            {name: bspdTractiveSystemBrakingFault_state,       start: 2, length: 1}
+            {name: bspdTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
+            {name: bspdTractiveSystemBrakingFault_state,       start: 4, length: 1}
         ]
     },
     {
         id: 0x102,
         parameters: [
-            {name: pedalPosition1_percent,      start: 0, length: 2},
-            {name: pedalPosition2_percent,      start: 2, length: 2},
-            {name: vcuCurrentRequested_A,       start: 4, length: 1},
-            {name: vcuMaxCurrentLimit_A,        start: 5, length: 1}
+            {name: vcuCurrentRequested_A,       start: 0, length: 2},
+            {name: vcuMaxCurrentLimit_A,        start: 2, length: 2}
+            {name: pedalPosition1_percent,      start: 4, length: 2},
+            {name: pedalPosition2_percent,      start: 6, length: 2},
         ]
     },
     {
