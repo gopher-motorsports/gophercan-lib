@@ -5510,14 +5510,14 @@ parameters:
         scale: 1
         offset: 0
 
-    lapBeacon_ul:
-        id: 598
-        motec_name: Beacon
-        unit: ''
-        type: FLOATING
-        encoding: MSB
-        scale: 1
-        offset: 0
+    # lapBeacon_ul:
+    #     id: 598
+    #     motec_name: Beacon
+    #     unit: ''
+    #     type: FLOATING
+    #     encoding: MSB
+    #     scale: 1
+    #     offset: 0
     # END MISC
 
 groups: [
