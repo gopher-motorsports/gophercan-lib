@@ -5267,9 +5267,243 @@ parameters:
         scale: 0.00196141636 # [0-8.032] -> [0-4095]
         offset: 0
 
+    Overcurrent_Event:
+        id: 572
+        motec_name: OVER CURRENT EVENT
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_0_Overcurrent:
+        id: 573
+        motec_name: 12V Channel 0 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_1_Overcurrent:
+        id: 574
+        motec_name: 12V Channel 1 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_2_Overcurrent:
+        id: 575
+        motec_name: 12V Channel 2 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_3_Overcurrent:
+        id: 576
+        motec_name: 12V Channel 3 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_4_Overcurrent:
+        id: 577
+        motec_name: 12V Channel 4 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_5_Overcurrent:
+        id: 578
+        motec_name: 12V Channel 5 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_6_Overcurrent:
+        id: 579
+        motec_name: 12V Channel 6 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_0_Overcurrent:
+        id: 580
+        motec_name: 5V Channel 0 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_1_Overcurrent:
+        id: 581
+        motec_name: 5V Channel 1 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_2_Overcurrent:
+        id: 582
+        motec_name: 5V Channel 2 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_3_Overcurrent:
+        id: 583
+        motec_name: 5V Channel 3 Overcurrent Event
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_0_Overcurrent_Count:
+        id: 584
+        motec_name: 12V Channel 0 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_1_Overcurrent_Count:
+        id: 585
+        motec_name: 12V Channel 1 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_2_Overcurrent_Count:
+        id: 586
+        motec_name: 12V Channel 2 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_3_Overcurrent_Count:
+        id: 587
+        motec_name: 12V Channel 3 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_4_Overcurrent_Count:
+        id: 588
+        motec_name: 12V Channel 4 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_5_Overcurrent_Count:
+        id: 589
+        motec_name: 12V Channel 5 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Twelve_Volt_6_Overcurrent_Count:
+        id: 590
+        motec_name: 12V Channel 6 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_0_Overcurrent_Count:
+        id: 591
+        motec_name: 5V Channel 0 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_1_Overcurrent_Count:
+        id: 592
+        motec_name: 5V Channel 1 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_2_Overcurrent_Count:
+        id: 593
+        motec_name: 5V Channel 2 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    Five_Volt_3_Overcurrent_Count:
+        id: 594
+        motec_name: 5V Channel 3 Overcurrent Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    PLM_Temp_degrees:
+        id: 595
+        motec_name: PLM Temperature
+        unit: degrees
+        type: FLOATING
+        encoding: MSB
+        scale: 0.002518 # [(-)40 - (+)125] -> [0-4096]
+        offset: -40
+
+    PLM_Humidity_percent:
+        id: 596
+        motec_name: PLM Humidity
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.024414 # [0-100] -> [0-4096]
+        offset: 0
+
+    PLM_Micro_Temp:
+        id: 597
+        motec_name: PLM Microcontroller Temperature
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.024414 # [0-100] -> [0-4096]
+        offset: 0
+
     # Power and Logging Module Internal
     can0Utilization_percent:
-        id: 572
+        id: 598
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -5278,7 +5512,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 573
+        id: 599
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -5287,7 +5521,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 574
+        id: 600
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -5298,7 +5532,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 575
+        id: 601
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -5307,7 +5541,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 576
+        id: 602
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -5316,7 +5550,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 577
+        id: 603
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -5325,7 +5559,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 578
+        id: 604
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -5334,7 +5568,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 579
+        id: 605
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -5343,7 +5577,7 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 580
+        id: 606
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -5352,7 +5586,7 @@ parameters:
         offset: 0
 
     gpsValid_ul:
-        id: 581
+        id: 607
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -5361,7 +5595,7 @@ parameters:
         offset: 0
 
     gpsYearUTC_ul:
-        id: 582
+        id: 608
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -5370,7 +5604,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 583
+        id: 609
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -5379,7 +5613,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 584
+        id: 610
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -5388,7 +5622,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 585
+        id: 611
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -5397,7 +5631,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 586
+        id: 612
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -5406,7 +5640,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 587
+        id: 613
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -5417,7 +5651,7 @@ parameters:
     # END DISPLAY
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 588
+        id: 614
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -5426,7 +5660,7 @@ parameters:
         offset: -163.84
 
     rollRate_degPerSec:
-        id: 589
+        id: 615
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -5435,7 +5669,7 @@ parameters:
         offset: -163.84
 
     lateralAccel_G:
-        id: 590
+        id: 616
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -5444,7 +5678,7 @@ parameters:
         offset: -4.1746432
 
     longitudinalAccel_G:
-        id: 591
+        id: 617
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -5453,7 +5687,7 @@ parameters:
         offset: -4.1746432
 
     verticalAccel_G:
-        id: 592
+        id: 618
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -5464,7 +5698,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-        id: 593
+        id: 619
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -5473,7 +5707,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-        id: 594
+        id: 620
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -5482,7 +5716,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-        id: 595
+        id: 621
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5491,7 +5725,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-        id: 596
+        id: 622
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5502,7 +5736,7 @@ parameters:
 
     # MISC
     lapBeaconRaw_ul:
-        id: 597
+        id: 623
         motec_name: Lap Beacon Raw Message
         unit: ''
         type: FLOATING
@@ -5511,7 +5745,7 @@ parameters:
         offset: 0
 
     lapBeacon_ul:
-        id: 598
+        id: 624
         motec_name: Beacon
         unit: ''
         type: FLOATING
@@ -5519,6 +5753,91 @@ parameters:
         scale: 1
         offset: 0
     # END MISC
+
+
+    # TELEMETRY METRICS
+    tm_CAN1Util_percent:
+        id: 625
+        motec_name: CAN1 Utilization (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_CAN2Util_percent:
+        id: 626
+        motec_name: CAN2 Utilization (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_SDBufferFill_percent:
+        id: 627
+        motec_name: SD Buffer Fill (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_RadioBufferFill_percent:
+        id: 628
+        motec_name: Radio Buffer Fill (Telemetry)
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    tm_SDBytesTransferred_bytes:
+        id: 629
+        motec_name: SD Bytes Transferred (Telemetry)
+        unit: bytes
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_RadioBytesTransferred_bytes:
+        id: 630
+        motec_name: Radio Bytes Transferred (Telemetry)
+        unit: bytes
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_SDPacketsDropped_ul:
+        id: 631
+        motec_name: SD Packets Dropped (Telemetry)
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_RadioPacketsDropped_ul:
+        id: 632
+        motec_name: Radio Packets Dropped (Telemetry)
+        unit: ''
+        type: UNSIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    tm_CoinBattery_V:
+        id: 633
+        motec_name: Coin Cell Battery Voltage (Telemetry)
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.01
+        offset: 0
+    # END TELEMETRY METRICS
+
 
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
@@ -6797,6 +7116,54 @@ groups: [
             {name: telemetryBufferFill_percent, start: 2, length: 2}
         ]
     },
+
+    {
+        id: 0x006,
+        parameters: [
+            {name: PLM_Temp_degrees, start: 0, length: 2},
+            {name: PLM_Humidity_percent, start: 2, length: 2},
+            {name: PLM_Micro_Temp, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x007,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
+            {name: Overcurrent_Event, start: 6, length: 1},
+        ]
+    },
+    {
+        id: 0x008,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent_Count, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent_Count, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent_Count, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent_Count, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent_Count, start: 6, length: 1},
+        ]
+    },
+    {
+        id: 0x010,
+        parameters: [
+            {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Five_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Five_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Five_Volt_0_Overcurrent_Count, start: 4, length: 1},
+            {name: Five_Volt_1_Overcurrent_Count, start: 5, length: 1},
+            {name: Five_Volt_2_Overcurrent_Count, start: 6, length: 1},
+            {name: Five_Volt_3_Overcurrent_Count, start: 7, length: 1},
+
+        ]
+    },
     # END PLM
     
     # Display GPS
@@ -6829,6 +7196,37 @@ groups: [
         ]
     },
     # END DISPLAY
+
+    # Telemetry
+    {
+        id: 0x750,
+        parameters: [
+            {name: tm_CAN1Util_percent, start: 0, length: 2},
+            {name: tm_CAN2Util_percent, start: 2, length: 2},
+            {name: tm_SDBufferFill_percent, start: 4, length: 2},
+            {name: tm_RadioBufferFill_percent, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x751,
+        parameters: [
+            {name: tm_SDBytesTransferred_bytes, start: 0, length: 4},
+            {name: tm_RadioBytesTransferred_bytes, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x752,
+        parameters: [
+            {name: tm_SDPacketsDropped_ul, start: 0, length: 4},
+            {name: tm_RadioPacketsDropped_ul, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x753,
+        parameters: [
+            {name: tm_CoinBattery_V, start: 0, length: 2},
+        ]
+    },
     
     # IMU Messages (No control over these IDs)
     {
@@ -6859,13 +7257,13 @@ groups: [
         parameters: [
             {name: lapBeaconRaw_ul,  start: 0, length: 3}
         ]
+    },
+    {
+        id: 0x109,
+        parameters: [
+            {name: lapBeacon_ul,  start: 0, length: 1}
+        ]
     }
-    # {
-    #     id: 0x100,
-    #     parameters: [
-    #         {name: lapBeacon_ul,  start: 0, length: 1}
-    #     ]
-    # }
     # END MISC
 ]
 
