@@ -5617,9 +5617,9 @@ groups: [
         id: 0x102,
         parameters: [
             {name: vcuCurrentRequested_A,       start: 0, length: 2},
-            {name: vcuMaxCurrentLimit_A,        start: 2, length: 2}
+            {name: vcuMaxCurrentLimit_A,        start: 2, length: 2},
             {name: pedalPosition1_percent,      start: 4, length: 2},
-            {name: pedalPosition2_percent,      start: 6, length: 2},
+            {name: pedalPosition2_percent,      start: 6, length: 2}
         ]
     },
     {
@@ -5631,7 +5631,7 @@ groups: [
             {name: vcuTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
             {name: vcuPedalPositionCorrelationFault_state,    start: 4, length: 1},
             {name: vcuPedalPositionBrakingFault_state,        start: 5, length: 1},
-            {name: vcuBrakingClampingCurrent_state,           start: 6, length: 1},
+            {name: vcuBrakingClampingCurrent_state,           start: 6, length: 1}
         ]
     },
     {
@@ -5640,7 +5640,7 @@ groups: [
             {name: coolantPumpPressure_psi,           start: 0, length: 2},
             {name: coolantFanPower_percent,           start: 2, length: 1},
             {name: coolantPumpPower_percent,          start: 3, length: 1},
-            {name: accumulatorFanPower_percent,       start: 4, length: 1},
+            {name: accumulatorFanPower_percent,       start: 4, length: 1}
         ]
     },
     {
@@ -5649,7 +5649,7 @@ groups: [
             {name: coolantPumpPressure_psi,           start: 0, length: 1},
             {name: coolantFanPower_percent,           start: 1, length: 1},
             {name: coolantPumpPower_percent,          start: 2, length: 1},
-            {name: accumulatorFanPower_percent,       start: 3, length: 1},
+            {name: accumulatorFanPower_percent,       start: 3, length: 1}
         ]
     },
     {
@@ -5661,7 +5661,7 @@ groups: [
             {name: gpio2_state,                start: 4, length: 1},
             {name: vehicleBuzzerOn_state,      start: 5, length: 1},
             {name: brakeLightOn_state,         start: 6, length: 1},
-            {name: readyToDriveButton_state,   start: 7, length: 1},
+            {name: readyToDriveButton_state,   start: 7, length: 1}
         ]
     },
     {
@@ -5673,7 +5673,7 @@ groups: [
             {name: vcuMcuStatus_state,        start: 4, length: 1},
             {name: currentlyMoving_state,     start: 5, length: 1},
             {name: vcuGSenseStatus_state,     start: 6, length: 1},
-            {name: displayFaultStatus_state,  start: 7, length: 1},
+            {name: displayFaultStatus_state,  start: 7, length: 1}
         ]
     },
     # END VCU
@@ -6859,13 +6859,13 @@ groups: [
         parameters: [
             {name: lapBeaconRaw_ul,  start: 0, length: 3}
         ]
-    },
-    {
-        id: 0x100,
-        parameters: [
-            {name: lapBeacon_ul,  start: 0, length: 1}
-        ]
     }
+    # {
+    #     id: 0x100,
+    #     parameters: [
+    #         {name: lapBeacon_ul,  start: 0, length: 1}
+    #     ]
+    # }
     # END MISC
 ]
 
