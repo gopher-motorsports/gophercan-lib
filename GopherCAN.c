@@ -9,6 +9,9 @@
  * STATIC FUNCTION PROTOTYPES
 *************************************************/
 
+#define CHARGER_TX_CAN_ID 0x1806E5F4
+#define CHARGER_RX_CAN_ID 0x18FF50E5
+
 static S8 init_filters(CAN_HandleTypeDef* hcan);
 
 static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
@@ -526,6 +529,45 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 // handle extended ID CAN messages (commands/errors)
 static S8 service_can_rx_message_ext(CAN_MSG* message)
 {
+	// Charger handler
+	if(message->header.ExtId == CHARGER_RX_CAN_ID)
+	{
+		PARAM_GROUP* group = NULL;
+		size_t group_index = 0;
+
+		// find the specified parameter group
+		for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
+			if (GROUPS[i].group_id == 0x444) {
+				group = &GROUPS[i];
+				group_index = i;
+				break;
+			}
+		}
+
+		if (group == NULL) return NOT_FOUND_ERR;
+
+		// decode parameters
+		S8 err;
+
+		for (U8 i = 0; i < CAN_DATA_BYTES; i++)
+		{
+			GCAN_PARAM_ID id = group->param_ids[i];
+			if (id == EMPTY_ID) continue;
+
+			// check to make sure this is a good id. We are down bad if it is not
+			if (id < EMPTY_ID || id >= NUM_OF_PARAMETERS) return BAD_PARAMETER_ID;
+
+			// decode this parameters data from the message
+			// update last_rx if there was no error decoding
+			CAN_INFO_STRUCT* param = (CAN_INFO_STRUCT*) PARAMETERS[id];
+
+			err = decode_parameter(param, message->data, i, param->ENC_SIZE);
+			if (!err) param->last_rx = message->rx_time;
+		}
+
+		return CAN_SUCCESS;	
+	}
+
 	CAN_ID id;
 	id.priority = GET_ID_PRIO(message->header.ExtId);
 	id.dest_module = GET_ID_DEST(message->header.ExtId);
