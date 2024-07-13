@@ -4982,7 +4982,7 @@ parameters:
         offset: 0
 
     # END BMS
-    # Steering Wheel 
+    # Steering Wheel
 
     swButon0_state:
         id: 541
@@ -5539,7 +5539,11 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
+<<<<<<< HEAD
         id: 602
+=======
+        id: 576
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -5548,7 +5552,11 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
+<<<<<<< HEAD
         id: 603
+=======
+        id: 577
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -5559,7 +5567,11 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
+<<<<<<< HEAD
         id: 604
+=======
+        id: 578
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -5568,7 +5580,11 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
+<<<<<<< HEAD
         id: 605
+=======
+        id: 579
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -5577,7 +5593,11 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
+<<<<<<< HEAD
         id: 606
+=======
+        id: 580
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -5586,7 +5606,11 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
+<<<<<<< HEAD
         id: 607
+=======
+        id: 581
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -5595,7 +5619,11 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
+<<<<<<< HEAD
         id: 608
+=======
+        id: 582
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -5604,7 +5632,11 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
+<<<<<<< HEAD
         id: 609
+=======
+        id: 583
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -5613,7 +5645,11 @@ parameters:
         offset: 0
 
     gpsValid_ul:
+<<<<<<< HEAD
         id: 610
+=======
+        id: 584
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -5622,7 +5658,11 @@ parameters:
         offset: 0
 
     gpsYearUTC_ul:
+<<<<<<< HEAD
         id: 611
+=======
+        id: 585
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -5631,7 +5671,11 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
+<<<<<<< HEAD
         id: 612
+=======
+        id: 586
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -5640,7 +5684,11 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
+<<<<<<< HEAD
         id: 613
+=======
+        id: 587
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -5649,7 +5697,11 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
+<<<<<<< HEAD
         id: 614
+=======
+        id: 588
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -5658,7 +5710,11 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
+<<<<<<< HEAD
         id: 615
+=======
+        id: 589
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -5667,7 +5723,11 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
+<<<<<<< HEAD
         id: 616
+=======
+        id: 590
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -5678,7 +5738,11 @@ parameters:
     # END DISPLAY
     # Inertail Measurement Unit
     yawRate_degPerSec:
+<<<<<<< HEAD
         id: 617
+=======
+        id: 591
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -5687,7 +5751,11 @@ parameters:
         offset: -163.84
 
     rollRate_degPerSec:
+<<<<<<< HEAD
         id: 618
+=======
+        id: 592
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -5696,7 +5764,11 @@ parameters:
         offset: -163.84
 
     lateralAccel_G:
+<<<<<<< HEAD
         id: 619
+=======
+        id: 593
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -5705,7 +5777,11 @@ parameters:
         offset: -4.1746432
 
     longitudinalAccel_G:
+<<<<<<< HEAD
         id: 620
+=======
+        id: 594
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -5714,7 +5790,11 @@ parameters:
         offset: -4.1746432
 
     verticalAccel_G:
+<<<<<<< HEAD
         id: 621
+=======
+        id: 595
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -5725,7 +5805,11 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
+<<<<<<< HEAD
         id: 622
+=======
+        id: 596
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -5734,7 +5818,11 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
+<<<<<<< HEAD
         id: 623
+=======
+        id: 597
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -5743,7 +5831,11 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
+<<<<<<< HEAD
         id: 624
+=======
+        id: 598
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5752,7 +5844,11 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
+<<<<<<< HEAD
         id: 625
+=======
+        id: 599
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5763,7 +5859,11 @@ parameters:
 
     # MISC
     lapBeaconRaw_ul:
+<<<<<<< HEAD
         id: 626
+=======
+        id: 600
+>>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Lap Beacon Raw Message
         unit: ''
         type: FLOATING
@@ -5771,14 +5871,14 @@ parameters:
         scale: 1
         offset: 0
 
-    # lapBeacon_ul:
-    #     id: 598
-    #     motec_name: Beacon
-    #     unit: ''
-    #     type: FLOATING
-    #     encoding: MSB
-    #     scale: 1
-    #     offset: 0
+    lapBeacon_ul:
+        id: 601
+        motec_name: Beacon
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
     # END MISC
 
 
@@ -5870,7 +5970,7 @@ groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
     # Inverter Low Frequency
     # NOTE: No control over these adresses
-    
+   
     #2024 Inverter
     {
       id: 0x40E,
@@ -5940,7 +6040,7 @@ groups: [
       ]
     },
     # END INVERTER
-    
+   
     # Vehicle Control Unit Sensors
     {
         id: 0x100,
@@ -5955,17 +6055,17 @@ groups: [
         id: 0x101,
         parameters: [
             {name: bspdBrakePressureSensorFault_state,         start: 0, length: 1},
-            {name: bspdTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
-            {name: bspdTractiveSystemBrakingFault_state,       start: 4, length: 1}
+            {name: bspdTractiveSystemCurrentSensorFault_state, start: 1, length: 1},
+            {name: bspdTractiveSystemBrakingFault_state,       start: 2, length: 1}
         ]
     },
     {
         id: 0x102,
         parameters: [
-            {name: vcuCurrentRequested_A,       start: 0, length: 2},
-            {name: vcuMaxCurrentLimit_A,        start: 2, length: 2},
-            {name: pedalPosition1_percent,      start: 4, length: 2},
-            {name: pedalPosition2_percent,      start: 6, length: 2}
+            {name: pedalPosition1_percent,      start: 0, length: 2},
+            {name: pedalPosition2_percent,      start: 2, length: 2},
+            {name: vcuCurrentRequested_A,       start: 4, length: 1},
+            {name: vcuMaxCurrentLimit_A,        start: 5, length: 1}
         ]
     },
     {
@@ -5977,7 +6077,7 @@ groups: [
             {name: vcuTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
             {name: vcuPedalPositionCorrelationFault_state,    start: 4, length: 1},
             {name: vcuPedalPositionBrakingFault_state,        start: 5, length: 1},
-            {name: vcuBrakingClampingCurrent_state,           start: 6, length: 1}
+            {name: vcuBrakingClampingCurrent_state,           start: 6, length: 1},
         ]
     },
     {
@@ -5986,7 +6086,7 @@ groups: [
             {name: coolantPumpPressure_psi,           start: 0, length: 2},
             {name: coolantFanPower_percent,           start: 2, length: 1},
             {name: coolantPumpPower_percent,          start: 3, length: 1},
-            {name: accumulatorFanPower_percent,       start: 4, length: 1}
+            {name: accumulatorFanPower_percent,       start: 4, length: 1},
         ]
     },
     {
@@ -5995,7 +6095,7 @@ groups: [
             {name: coolantPumpPressure_psi,           start: 0, length: 1},
             {name: coolantFanPower_percent,           start: 1, length: 1},
             {name: coolantPumpPower_percent,          start: 2, length: 1},
-            {name: accumulatorFanPower_percent,       start: 3, length: 1}
+            {name: accumulatorFanPower_percent,       start: 3, length: 1},
         ]
     },
     {
@@ -6007,7 +6107,7 @@ groups: [
             {name: gpio2_state,                start: 4, length: 1},
             {name: vehicleBuzzerOn_state,      start: 5, length: 1},
             {name: brakeLightOn_state,         start: 6, length: 1},
-            {name: readyToDriveButton_state,   start: 7, length: 1}
+            {name: readyToDriveButton_state,   start: 7, length: 1},
         ]
     },
     {
@@ -6019,7 +6119,7 @@ groups: [
             {name: vcuMcuStatus_state,        start: 4, length: 1},
             {name: currentlyMoving_state,     start: 5, length: 1},
             {name: vcuGSenseStatus_state,     start: 6, length: 1},
-            {name: displayFaultStatus_state,  start: 7, length: 1}
+            {name: displayFaultStatus_state,  start: 7, length: 1},
         ]
     },
     # END VCU
@@ -7080,7 +7180,7 @@ groups: [
         ]
     },
     # END SH_F
-    
+   
     # Sensor Hub Rear
     {
         id: 0x500,
@@ -7099,7 +7199,7 @@ groups: [
         ]
     },
     # END SH_R
-    
+   
     # Power and Logging Module (Not contiunously sent)
     {
         id: 0x000,
@@ -7151,56 +7251,8 @@ groups: [
             {name: telemetryBufferFill_percent, start: 2, length: 2}
         ]
     },
-
-    {
-        id: 0x006,
-        parameters: [
-            {name: PLM_Temp_degrees, start: 0, length: 2},
-            {name: PLM_Humidity_percent, start: 2, length: 2},
-            {name: PLM_Micro_Temp, start: 4, length: 2}
-        ]
-    },
-    {
-        id: 0x007,
-        parameters: [
-            {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
-            {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
-            {name: Twelve_Volt_2_Overcurrent, start: 2, length: 1},
-            {name: Twelve_Volt_3_Overcurrent, start: 3, length: 1},
-            {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
-            {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
-            {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
-            {name: Overcurrent_Event, start: 6, length: 1},
-        ]
-    },
-    {
-        id: 0x008,
-        parameters: [
-            {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
-            {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
-            {name: Twelve_Volt_2_Overcurrent_Count, start: 2, length: 1},
-            {name: Twelve_Volt_3_Overcurrent_Count, start: 3, length: 1},
-            {name: Twelve_Volt_4_Overcurrent_Count, start: 4, length: 1},
-            {name: Twelve_Volt_5_Overcurrent_Count, start: 5, length: 1},
-            {name: Twelve_Volt_6_Overcurrent_Count, start: 6, length: 1},
-        ]
-    },
-    {
-        id: 0x010,
-        parameters: [
-            {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
-            {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
-            {name: Five_Volt_2_Overcurrent, start: 2, length: 1},
-            {name: Five_Volt_3_Overcurrent, start: 3, length: 1},
-            {name: Five_Volt_0_Overcurrent_Count, start: 4, length: 1},
-            {name: Five_Volt_1_Overcurrent_Count, start: 5, length: 1},
-            {name: Five_Volt_2_Overcurrent_Count, start: 6, length: 1},
-            {name: Five_Volt_3_Overcurrent_Count, start: 7, length: 1},
-
-        ]
-    },
     # END PLM
-    
+   
     # Display GPS
     {
         id: 0x700,
@@ -7231,38 +7283,7 @@ groups: [
         ]
     },
     # END DISPLAY
-
-    # Telemetry
-    {
-        id: 0x750,
-        parameters: [
-            {name: tm_CAN1Util_percent, start: 0, length: 2},
-            {name: tm_CAN2Util_percent, start: 2, length: 2},
-            {name: tm_SDBufferFill_percent, start: 4, length: 2},
-            {name: tm_RadioBufferFill_percent, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x751,
-        parameters: [
-            {name: tm_SDBytesTransferred_bytes, start: 0, length: 4},
-            {name: tm_RadioBytesTransferred_bytes, start: 4, length: 4}
-        ]
-    },
-    {
-        id: 0x752,
-        parameters: [
-            {name: tm_SDPacketsDropped_ul, start: 0, length: 4},
-            {name: tm_RadioPacketsDropped_ul, start: 4, length: 4}
-        ]
-    },
-    {
-        id: 0x753,
-        parameters: [
-            {name: tm_CoinBattery_V, start: 0, length: 2},
-        ]
-    },
-    
+   
     # IMU Messages (No control over these IDs)
     {
         id: 0x174,
@@ -7294,7 +7315,7 @@ groups: [
         ]
     },
     {
-        id: 0x109,
+        id: 0x100,
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
