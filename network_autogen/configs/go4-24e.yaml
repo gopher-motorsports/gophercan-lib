@@ -5294,6 +5294,7 @@ parameters:
         scale: 0.00196141636 # [0-8.032] -> [0-4095]
         offset: 0
 
+
     Overcurrent_Event:
         id: 575
         motec_name: OVER CURRENT EVENT
@@ -5539,11 +5540,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-<<<<<<< HEAD
         id: 602
-=======
-        id: 576
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -5552,11 +5549,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-<<<<<<< HEAD
         id: 603
-=======
-        id: 577
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -5567,11 +5560,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-<<<<<<< HEAD
         id: 604
-=======
-        id: 578
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -5580,11 +5569,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-<<<<<<< HEAD
         id: 605
-=======
-        id: 579
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -5593,11 +5578,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-<<<<<<< HEAD
         id: 606
-=======
-        id: 580
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -5606,11 +5587,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-<<<<<<< HEAD
         id: 607
-=======
-        id: 581
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -5619,11 +5596,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-<<<<<<< HEAD
         id: 608
-=======
-        id: 582
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -5632,11 +5605,7 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-<<<<<<< HEAD
         id: 609
-=======
-        id: 583
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -5645,11 +5614,7 @@ parameters:
         offset: 0
 
     gpsValid_ul:
-<<<<<<< HEAD
         id: 610
-=======
-        id: 584
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Satellite Count
         unit: ''
         type: UNSIGNED8
@@ -5658,11 +5623,7 @@ parameters:
         offset: 0
 
     gpsYearUTC_ul:
-<<<<<<< HEAD
         id: 611
-=======
-        id: 585
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -5671,11 +5632,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-<<<<<<< HEAD
         id: 612
-=======
-        id: 586
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -5684,11 +5641,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-<<<<<<< HEAD
         id: 613
-=======
-        id: 587
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -5697,11 +5650,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-<<<<<<< HEAD
         id: 614
-=======
-        id: 588
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -5710,11 +5659,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-<<<<<<< HEAD
         id: 615
-=======
-        id: 589
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -5723,11 +5668,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-<<<<<<< HEAD
         id: 616
-=======
-        id: 590
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -5738,11 +5679,7 @@ parameters:
     # END DISPLAY
     # Inertail Measurement Unit
     yawRate_degPerSec:
-<<<<<<< HEAD
         id: 617
-=======
-        id: 591
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -5751,11 +5688,7 @@ parameters:
         offset: -163.84
 
     rollRate_degPerSec:
-<<<<<<< HEAD
         id: 618
-=======
-        id: 592
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -5764,11 +5697,7 @@ parameters:
         offset: -163.84
 
     lateralAccel_G:
-<<<<<<< HEAD
         id: 619
-=======
-        id: 593
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -5777,11 +5706,7 @@ parameters:
         offset: -4.1746432
 
     longitudinalAccel_G:
-<<<<<<< HEAD
         id: 620
-=======
-        id: 594
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -5790,11 +5715,7 @@ parameters:
         offset: -4.1746432
 
     verticalAccel_G:
-<<<<<<< HEAD
         id: 621
-=======
-        id: 595
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -5805,11 +5726,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-<<<<<<< HEAD
         id: 622
-=======
-        id: 596
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -5818,11 +5735,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-<<<<<<< HEAD
         id: 623
-=======
-        id: 597
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -5831,11 +5744,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-<<<<<<< HEAD
         id: 624
-=======
-        id: 598
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5844,11 +5753,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-<<<<<<< HEAD
         id: 625
-=======
-        id: 599
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -5859,11 +5764,7 @@ parameters:
 
     # MISC
     lapBeaconRaw_ul:
-<<<<<<< HEAD
         id: 626
-=======
-        id: 600
->>>>>>> 104a135 (Isaiah emailed me these on track)
         motec_name: Lap Beacon Raw Message
         unit: ''
         type: FLOATING
@@ -5872,7 +5773,7 @@ parameters:
         offset: 0
 
     lapBeacon_ul:
-        id: 601
+        id: 627
         motec_name: Beacon
         unit: ''
         type: FLOATING
@@ -5881,10 +5782,9 @@ parameters:
         offset: 0
     # END MISC
 
-
     # TELEMETRY METRICS
     tm_CAN1Util_percent:
-        id: 627
+        id: 628
         motec_name: CAN1 Utilization (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5893,7 +5793,7 @@ parameters:
         offset: 0
 
     tm_CAN2Util_percent:
-        id: 628
+        id: 629
         motec_name: CAN2 Utilization (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5902,7 +5802,7 @@ parameters:
         offset: 0
 
     tm_SDBufferFill_percent:
-        id: 629
+        id: 630
         motec_name: SD Buffer Fill (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5911,7 +5811,7 @@ parameters:
         offset: 0
 
     tm_RadioBufferFill_percent:
-        id: 630
+        id: 631
         motec_name: Radio Buffer Fill (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5920,7 +5820,7 @@ parameters:
         offset: 0
 
     tm_SDBytesTransferred_bytes:
-        id: 631
+        id: 632
         motec_name: SD Bytes Transferred (Telemetry)
         unit: bytes
         type: UNSIGNED32
@@ -5929,7 +5829,7 @@ parameters:
         offset: 0
 
     tm_RadioBytesTransferred_bytes:
-        id: 632
+        id: 633
         motec_name: Radio Bytes Transferred (Telemetry)
         unit: bytes
         type: UNSIGNED32
@@ -5938,7 +5838,7 @@ parameters:
         offset: 0
 
     tm_SDPacketsDropped_ul:
-        id: 633
+        id: 634
         motec_name: SD Packets Dropped (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -5947,7 +5847,7 @@ parameters:
         offset: 0
 
     tm_RadioPacketsDropped_ul:
-        id: 634
+        id: 635
         motec_name: Radio Packets Dropped (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -5956,7 +5856,7 @@ parameters:
         offset: 0
 
     tm_CoinBattery_V:
-        id: 635
+        id: 636
         motec_name: Coin Cell Battery Voltage (Telemetry)
         unit: V
         type: FLOATING
@@ -5964,7 +5864,6 @@ parameters:
         scale: 0.01
         offset: 0
     # END TELEMETRY METRICS
-
 
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
@@ -7251,6 +7150,53 @@ groups: [
             {name: telemetryBufferFill_percent, start: 2, length: 2}
         ]
     },
+    {
+        id: 0x006,
+        parameters: [
+            {name: PLM_Temp_degrees, start: 0, length: 2},
+            {name: PLM_Humidity_percent, start: 2, length: 2},
+            {name: PLM_Micro_Temp, start: 4, length: 2}
+        ]
+    },
+    {
+        id: 0x007,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
+            {name: Overcurrent_Event, start: 6, length: 1},
+        ]
+    },
+    {
+        id: 0x008,
+        parameters: [
+            {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
+            {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
+            {name: Twelve_Volt_2_Overcurrent_Count, start: 2, length: 1},
+            {name: Twelve_Volt_3_Overcurrent_Count, start: 3, length: 1},
+            {name: Twelve_Volt_4_Overcurrent_Count, start: 4, length: 1},
+            {name: Twelve_Volt_5_Overcurrent_Count, start: 5, length: 1},
+            {name: Twelve_Volt_6_Overcurrent_Count, start: 6, length: 1},
+        ]
+    },
+    {
+        id: 0x010,
+        parameters: [
+            {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: Five_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: Five_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: Five_Volt_0_Overcurrent_Count, start: 4, length: 1},
+            {name: Five_Volt_1_Overcurrent_Count, start: 5, length: 1},
+            {name: Five_Volt_2_Overcurrent_Count, start: 6, length: 1},
+            {name: Five_Volt_3_Overcurrent_Count, start: 7, length: 1},
+
+        ]
+    },
     # END PLM
    
     # Display GPS
@@ -7319,8 +7265,39 @@ groups: [
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
-    }
+    },
     # END MISC
+
+    # Telemetry
+    {
+        id: 0x750,
+        parameters: [
+            {name: tm_CAN1Util_percent, start: 0, length: 2},
+            {name: tm_CAN2Util_percent, start: 2, length: 2},
+            {name: tm_SDBufferFill_percent, start: 4, length: 2},
+            {name: tm_RadioBufferFill_percent, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x751,
+        parameters: [
+            {name: tm_SDBytesTransferred_bytes, start: 0, length: 4},
+            {name: tm_RadioBytesTransferred_bytes, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x752,
+        parameters: [
+            {name: tm_SDPacketsDropped_ul, start: 0, length: 4},
+            {name: tm_RadioPacketsDropped_ul, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x753,
+        parameters: [
+            {name: tm_CoinBattery_V, start: 0, length: 2},
+        ]
+    },
 ]
 
 commands:
