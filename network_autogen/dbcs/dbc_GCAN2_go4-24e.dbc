@@ -1,0 +1,100 @@
+VERSION ""
+
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+BO_ 46 46: 8 Vector__XXX
+ SG_ _desiredInvCurrentPeakToPeak_A_2 : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 0 0: 8 Vector__XXX
+ SG_ _vbatChan0Current_A_2 : 7|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan1Current_A_2 : 23|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan2Current_A_2 : 39|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan3Current_A_2 : 55|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 1 1: 8 Vector__XXX
+ SG_ _vbatChan4Current_A_2 : 7|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan5Current_A_2 : 23|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan6Current_A_2 : 39|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan0Current_A_2 : 55|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 2 2: 8 Vector__XXX
+ SG_ _fiveVChan1Current_A_2 : 7|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan2Current_A_2 : 23|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan3Current_A_2 : 39|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _can0Utilization_percent_2 : 55|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 3 3: 8 Vector__XXX
+ SG_ _can1Utilization_percent_2 : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _can2Utilization_percent_2 : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _plmVbatVoltage_V_2 : 39|16@0- (0.00506178266,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _plm5VVoltage_V_2 : 55|16@0- (0.00195457875,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 4 4: 8 Vector__XXX
+ SG_ _packetsLogged_ul_2 : 7|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _packetsDropped_ul_2 : 39|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 5 5: 8 Vector__XXX
+ SG_ _storageBufferFill_percent_2 : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _telemetryBufferFill_percent_2 : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 6 6: 8 Vector__XXX
+ SG_ _PLM_Temp_degrees_2 : 7|16@0- (0.002518,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _PLM_Humidity_percent_2 : 23|16@0- (0.024414,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _PLM_Micro_Temp_2 : 39|16@0- (0.024414,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 7 7: 8 Vector__XXX
+ SG_ _Twelve_Volt_0_Overcurrent_2 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_1_Overcurrent_2 : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_2_Overcurrent_2 : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_3_Overcurrent_2 : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_4_Overcurrent_2 : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_5_Overcurrent_2 : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_6_Overcurrent_2 : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Overcurrent_Event_2 : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 8 8: 8 Vector__XXX
+ SG_ _Twelve_Volt_0_Overcurrent_Count_2 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_1_Overcurrent_Count_2 : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_2_Overcurrent_Count_2 : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_3_Overcurrent_Count_2 : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_4_Overcurrent_Count_2 : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_5_Overcurrent_Count_2 : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_6_Overcurrent_Count_2 : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 229 229: 8 Vector__XXX
+ SG_ _lapBeaconRaw_ul_2 : 7|24@0- (1,0) [0|0] "unitless:" Vector__XXX
+
