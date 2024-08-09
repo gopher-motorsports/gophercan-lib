@@ -17,23 +17,23 @@ modules:
     VCU:
         id: 3
         buses:
-            - GCAN1
+            - GCAN0
     BMS:
         id: 4
         buses:
-            - GCAN2
+            - GCAN1
     SH_F:
         id: 5
         buses:
-            - GCAN0
+            - GCAN1
     SH_R:
         id: 6
         buses:
-            - GCAN2
+            - GCAN1
     IMU:
         id: 7
         buses:
-            - GCAN0
+            - GCAN1
     Display:
         id: 8
         buses:
@@ -44,7 +44,7 @@ parameters:
     soeByOCV_percent:
         id: 1
         motec_name: SOE by OCV
-        uint: '%'
+        unit: '%'
         type: FLOATING
         encoding: MSB
         scale: 0.01
@@ -53,7 +53,7 @@ parameters:
     soeByCoulombCounting_percent:
         id: 2
         motec_name: SOE by Coulomb Counting
-        uint: '%'
+        unit: '%'
         type: FLOATING
         encoding: MSB
         scale: 0.01
@@ -65,7 +65,7 @@ parameters:
     electricalRPM_erpm:
         id: 3
         motec_name: Electrical RPM
-        unit: erpm
+        unit: rpm
         type: SIGNED32
         encoding: MSB
         scale: 1
@@ -5505,7 +5505,7 @@ parameters:
     PLM_Temp_degrees:
         id: 598
         motec_name: PLM Temperature
-        unit: degrees
+        unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.002518 # [(-)40 - (+)125] -> [0-4096]
@@ -5822,7 +5822,7 @@ parameters:
     tm_SDBytesTransferred_bytes:
         id: 632
         motec_name: SD Bytes Transferred (Telemetry)
-        unit: bytes
+        unit: ''
         type: UNSIGNED32
         encoding: MSB
         scale: 1
@@ -5831,7 +5831,7 @@ parameters:
     tm_RadioBytesTransferred_bytes:
         id: 633
         motec_name: Radio Bytes Transferred (Telemetry)
-        unit: bytes
+        unit: ''
         type: UNSIGNED32
         encoding: MSB
         scale: 1
@@ -7168,7 +7168,7 @@ groups: [
             {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
             {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
             {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
-            {name: Overcurrent_Event, start: 6, length: 1},
+            {name: Overcurrent_Event, start: 7, length: 1},
         ]
     },
     {
@@ -7261,7 +7261,7 @@ groups: [
         ]
     },
     {
-        id: 0x100,
+        id: 0x110,
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
