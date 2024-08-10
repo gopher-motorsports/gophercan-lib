@@ -1,0 +1,183 @@
+VERSION ""
+
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+BO_ 46 46: 8 Vector__XXX
+ SG_ _desiredInvCurrentPeakToPeak_A_0 : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 270 270: 8 Vector__XXX
+ SG_ _maxCurrentLimitPeakToPeak_A : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 398 398: 8 Vector__XXX
+ SG_ _driveEnable_state : 7|8@0+ (1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 256 256: 8 Vector__XXX
+ SG_ _pedalPosition1_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _pedalPosition2_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _brakePressureFront_psi : 39|16@0- (0.488400488,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _vcuTractiveSystemCurrent_A : 55|16@0- (0.00914627595,-18.727) [0|0] "current:A" Vector__XXX
+
+BO_ 257 257: 8 Vector__XXX
+ SG_ _bspdBrakePressureSensorFault_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bspdTractiveSystemCurrentSensorFault_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bspdTractiveSystemBrakingFault_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 258 258: 8 Vector__XXX
+ SG_ _pedalPosition1_percent : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _pedalPosition2_percent : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _vcuCurrentRequested_A : 39|8@0- (1,0) [0|0] "torque:N.m" Vector__XXX
+ SG_ _vcuMaxCurrentLimit_A : 47|8@0- (1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 259 259: 8 Vector__XXX
+ SG_ _vcuBrakePressureSensorFault_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuPedalPosition1Fault_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuPedalPosition2Fault_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuTractiveSystemCurrentSensorFault_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuPedalPositionCorrelationFault_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuPedalPositionBrakingFault_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuBrakingClampingCurrent_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 260 260: 8 Vector__XXX
+ SG_ _coolantPumpPressure_psi : 7|16@0- (0.0244200244,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _coolantFanPower_percent : 23|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _coolantPumpPower_percent : 31|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _accumulatorFanPower_percent : 39|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 261 261: 8 Vector__XXX
+ SG_ _coolantPumpPressure_psi : 7|8@0- (0.0244200244,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _coolantFanPower_percent : 15|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _coolantPumpPower_percent : 23|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _accumulatorFanPower_percent : 31|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 262 262: 8 Vector__XXX
+ SG_ _switch1On_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _switch2On_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpio1_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpio2_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vehicleBuzzerOn_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _brakeLightOn_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _readyToDriveButton_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 263 263: 8 Vector__XXX
+ SG_ _vcuTemp_C : 7|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _vehicleState_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuState_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuMcuStatus_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _currentlyMoving_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vcuGSenseStatus_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _displayFaultStatus_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 512 512: 8 Vector__XXX
+ SG_ _swButon0_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swButon1_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _displayPage_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 513 513: 8 Vector__XXX
+ SG_ _swButon2_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swButon3_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swDial_ul : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 0 0: 8 Vector__XXX
+ SG_ _vbatChan0Current_A_0 : 7|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan1Current_A_0 : 23|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan2Current_A_0 : 39|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan3Current_A_0 : 55|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 1 1: 8 Vector__XXX
+ SG_ _vbatChan4Current_A_0 : 7|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan5Current_A_0 : 23|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan6Current_A_0 : 39|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan0Current_A_0 : 55|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 2 2: 8 Vector__XXX
+ SG_ _fiveVChan1Current_A_0 : 7|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan2Current_A_0 : 23|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan3Current_A_0 : 39|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _can0Utilization_percent_0 : 55|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 3 3: 8 Vector__XXX
+ SG_ _can1Utilization_percent_0 : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _can2Utilization_percent_0 : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _plmVbatVoltage_V_0 : 39|16@0- (0.00506178266,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _plm5VVoltage_V_0 : 55|16@0- (0.00195457875,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 4 4: 8 Vector__XXX
+ SG_ _packetsLogged_ul_0 : 7|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _packetsDropped_ul_0 : 39|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 5 5: 8 Vector__XXX
+ SG_ _storageBufferFill_percent_0 : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _telemetryBufferFill_percent_0 : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 6 6: 8 Vector__XXX
+ SG_ _PLM_Temp_degrees_0 : 7|16@0- (0.002518,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _PLM_Humidity_percent_0 : 23|16@0- (0.024414,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _PLM_Micro_Temp_0 : 39|16@0- (0.024414,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 7 7: 8 Vector__XXX
+ SG_ _Twelve_Volt_0_Overcurrent_0 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_1_Overcurrent_0 : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_2_Overcurrent_0 : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_3_Overcurrent_0 : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_4_Overcurrent_0 : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_5_Overcurrent_0 : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_6_Overcurrent_0 : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Overcurrent_Event_0 : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 8 8: 8 Vector__XXX
+ SG_ _Twelve_Volt_0_Overcurrent_Count_0 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_1_Overcurrent_Count_0 : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_2_Overcurrent_Count_0 : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_3_Overcurrent_Count_0 : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_4_Overcurrent_Count_0 : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_5_Overcurrent_Count_0 : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_6_Overcurrent_Count_0 : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 372 372: 8 Vector__XXX
+ SG_ _yawRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _lateralAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+
+BO_ 376 376: 8 Vector__XXX
+ SG_ _rollRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _longitudinalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+
+BO_ 380 380: 8 Vector__XXX
+ SG_ _verticalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+
+BO_ 229 229: 8 Vector__XXX
+ SG_ _lapBeaconRaw_ul_0 : 7|24@0- (1,0) [0|0] "unitless:" Vector__XXX
+

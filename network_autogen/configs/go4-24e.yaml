@@ -17,23 +17,23 @@ modules:
     VCU:
         id: 3
         buses:
-            - GCAN1
+            - GCAN0
     BMS:
         id: 4
         buses:
-            - GCAN2
+            - GCAN1
     SH_F:
         id: 5
         buses:
-            - GCAN0
+            - GCAN1
     SH_R:
         id: 6
         buses:
-            - GCAN2
+            - GCAN1
     IMU:
         id: 7
         buses:
-            - GCAN0
+            - GCAN1
     Display:
         id: 8
         buses:
@@ -44,7 +44,7 @@ parameters:
     soeByOCV_percent:
         id: 1
         motec_name: SOE by OCV
-        uint: '%'
+        unit: '%'
         type: FLOATING
         encoding: MSB
         scale: 0.01
@@ -53,7 +53,7 @@ parameters:
     soeByCoulombCounting_percent:
         id: 2
         motec_name: SOE by Coulomb Counting
-        uint: '%'
+        unit: '%'
         type: FLOATING
         encoding: MSB
         scale: 0.01
@@ -65,7 +65,7 @@ parameters:
     electricalRPM_erpm:
         id: 3
         motec_name: Electrical RPM
-        unit: erpm
+        unit: rpm
         type: SIGNED32
         encoding: MSB
         scale: 1
@@ -4982,7 +4982,7 @@ parameters:
         offset: 0
 
     # END BMS
-    # Steering Wheel 
+    # Steering Wheel
 
     swButon0_state:
         id: 541
@@ -5294,6 +5294,7 @@ parameters:
         scale: 0.00196141636 # [0-8.032] -> [0-4095]
         offset: 0
 
+
     Overcurrent_Event:
         id: 575
         motec_name: OVER CURRENT EVENT
@@ -5504,7 +5505,7 @@ parameters:
     PLM_Temp_degrees:
         id: 598
         motec_name: PLM Temperature
-        unit: degrees
+        unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.002518 # [(-)40 - (+)125] -> [0-4096]
@@ -5771,20 +5772,19 @@ parameters:
         scale: 1
         offset: 0
 
-    # lapBeacon_ul:
-    #     id: 598
-    #     motec_name: Beacon
-    #     unit: ''
-    #     type: FLOATING
-    #     encoding: MSB
-    #     scale: 1
-    #     offset: 0
+    lapBeacon_ul:
+        id: 627
+        motec_name: Beacon
+        unit: ''
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
     # END MISC
-
 
     # TELEMETRY METRICS
     tm_CAN1Util_percent:
-        id: 627
+        id: 628
         motec_name: CAN1 Utilization (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5793,7 +5793,7 @@ parameters:
         offset: 0
 
     tm_CAN2Util_percent:
-        id: 628
+        id: 629
         motec_name: CAN2 Utilization (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5802,7 +5802,7 @@ parameters:
         offset: 0
 
     tm_SDBufferFill_percent:
-        id: 629
+        id: 630
         motec_name: SD Buffer Fill (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5811,7 +5811,7 @@ parameters:
         offset: 0
 
     tm_RadioBufferFill_percent:
-        id: 630
+        id: 631
         motec_name: Radio Buffer Fill (Telemetry)
         unit: '%'
         type: FLOATING
@@ -5820,25 +5820,25 @@ parameters:
         offset: 0
 
     tm_SDBytesTransferred_bytes:
-        id: 631
+        id: 632
         motec_name: SD Bytes Transferred (Telemetry)
-        unit: bytes
+        unit: ''
         type: UNSIGNED32
         encoding: MSB
         scale: 1
         offset: 0
 
     tm_RadioBytesTransferred_bytes:
-        id: 632
+        id: 633
         motec_name: Radio Bytes Transferred (Telemetry)
-        unit: bytes
+        unit: ''
         type: UNSIGNED32
         encoding: MSB
         scale: 1
         offset: 0
 
     tm_SDPacketsDropped_ul:
-        id: 633
+        id: 634
         motec_name: SD Packets Dropped (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -5847,7 +5847,7 @@ parameters:
         offset: 0
 
     tm_RadioPacketsDropped_ul:
-        id: 634
+        id: 635
         motec_name: Radio Packets Dropped (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -5856,7 +5856,7 @@ parameters:
         offset: 0
 
     tm_CoinBattery_V:
-        id: 635
+        id: 636
         motec_name: Coin Cell Battery Voltage (Telemetry)
         unit: V
         type: FLOATING
@@ -5865,12 +5865,11 @@ parameters:
         offset: 0
     # END TELEMETRY METRICS
 
-
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
     # Inverter Low Frequency
     # NOTE: No control over these adresses
-    
+   
     #2024 Inverter
     {
       id: 0x40E,
@@ -5940,7 +5939,7 @@ groups: [
       ]
     },
     # END INVERTER
-    
+   
     # Vehicle Control Unit Sensors
     {
         id: 0x100,
@@ -5955,17 +5954,17 @@ groups: [
         id: 0x101,
         parameters: [
             {name: bspdBrakePressureSensorFault_state,         start: 0, length: 1},
-            {name: bspdTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
-            {name: bspdTractiveSystemBrakingFault_state,       start: 4, length: 1}
+            {name: bspdTractiveSystemCurrentSensorFault_state, start: 1, length: 1},
+            {name: bspdTractiveSystemBrakingFault_state,       start: 2, length: 1}
         ]
     },
     {
         id: 0x102,
         parameters: [
-            {name: vcuCurrentRequested_A,       start: 0, length: 2},
-            {name: vcuMaxCurrentLimit_A,        start: 2, length: 2},
-            {name: pedalPosition1_percent,      start: 4, length: 2},
-            {name: pedalPosition2_percent,      start: 6, length: 2}
+            {name: pedalPosition1_percent,      start: 0, length: 2},
+            {name: pedalPosition2_percent,      start: 2, length: 2},
+            {name: vcuCurrentRequested_A,       start: 4, length: 1},
+            {name: vcuMaxCurrentLimit_A,        start: 5, length: 1}
         ]
     },
     {
@@ -5977,7 +5976,7 @@ groups: [
             {name: vcuTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
             {name: vcuPedalPositionCorrelationFault_state,    start: 4, length: 1},
             {name: vcuPedalPositionBrakingFault_state,        start: 5, length: 1},
-            {name: vcuBrakingClampingCurrent_state,           start: 6, length: 1}
+            {name: vcuBrakingClampingCurrent_state,           start: 6, length: 1},
         ]
     },
     {
@@ -5986,7 +5985,7 @@ groups: [
             {name: coolantPumpPressure_psi,           start: 0, length: 2},
             {name: coolantFanPower_percent,           start: 2, length: 1},
             {name: coolantPumpPower_percent,          start: 3, length: 1},
-            {name: accumulatorFanPower_percent,       start: 4, length: 1}
+            {name: accumulatorFanPower_percent,       start: 4, length: 1},
         ]
     },
     {
@@ -5995,7 +5994,7 @@ groups: [
             {name: coolantPumpPressure_psi,           start: 0, length: 1},
             {name: coolantFanPower_percent,           start: 1, length: 1},
             {name: coolantPumpPower_percent,          start: 2, length: 1},
-            {name: accumulatorFanPower_percent,       start: 3, length: 1}
+            {name: accumulatorFanPower_percent,       start: 3, length: 1},
         ]
     },
     {
@@ -6007,7 +6006,7 @@ groups: [
             {name: gpio2_state,                start: 4, length: 1},
             {name: vehicleBuzzerOn_state,      start: 5, length: 1},
             {name: brakeLightOn_state,         start: 6, length: 1},
-            {name: readyToDriveButton_state,   start: 7, length: 1}
+            {name: readyToDriveButton_state,   start: 7, length: 1},
         ]
     },
     {
@@ -6019,7 +6018,7 @@ groups: [
             {name: vcuMcuStatus_state,        start: 4, length: 1},
             {name: currentlyMoving_state,     start: 5, length: 1},
             {name: vcuGSenseStatus_state,     start: 6, length: 1},
-            {name: displayFaultStatus_state,  start: 7, length: 1}
+            {name: displayFaultStatus_state,  start: 7, length: 1},
         ]
     },
     # END VCU
@@ -7080,7 +7079,7 @@ groups: [
         ]
     },
     # END SH_F
-    
+   
     # Sensor Hub Rear
     {
         id: 0x500,
@@ -7099,7 +7098,7 @@ groups: [
         ]
     },
     # END SH_R
-    
+   
     # Power and Logging Module (Not contiunously sent)
     {
         id: 0x000,
@@ -7151,7 +7150,6 @@ groups: [
             {name: telemetryBufferFill_percent, start: 2, length: 2}
         ]
     },
-
     {
         id: 0x006,
         parameters: [
@@ -7170,7 +7168,7 @@ groups: [
             {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
             {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
             {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
-            {name: Overcurrent_Event, start: 6, length: 1},
+            {name: Overcurrent_Event, start: 7, length: 1},
         ]
     },
     {
@@ -7200,7 +7198,7 @@ groups: [
         ]
     },
     # END PLM
-    
+   
     # Display GPS
     {
         id: 0x700,
@@ -7231,38 +7229,7 @@ groups: [
         ]
     },
     # END DISPLAY
-
-    # Telemetry
-    {
-        id: 0x750,
-        parameters: [
-            {name: tm_CAN1Util_percent, start: 0, length: 2},
-            {name: tm_CAN2Util_percent, start: 2, length: 2},
-            {name: tm_SDBufferFill_percent, start: 4, length: 2},
-            {name: tm_RadioBufferFill_percent, start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x751,
-        parameters: [
-            {name: tm_SDBytesTransferred_bytes, start: 0, length: 4},
-            {name: tm_RadioBytesTransferred_bytes, start: 4, length: 4}
-        ]
-    },
-    {
-        id: 0x752,
-        parameters: [
-            {name: tm_SDPacketsDropped_ul, start: 0, length: 4},
-            {name: tm_RadioPacketsDropped_ul, start: 4, length: 4}
-        ]
-    },
-    {
-        id: 0x753,
-        parameters: [
-            {name: tm_CoinBattery_V, start: 0, length: 2},
-        ]
-    },
-    
+   
     # IMU Messages (No control over these IDs)
     {
         id: 0x174,
@@ -7294,12 +7261,43 @@ groups: [
         ]
     },
     {
-        id: 0x109,
+        id: 0x110,
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
-    }
+    },
     # END MISC
+
+    # Telemetry
+    {
+        id: 0x750,
+        parameters: [
+            {name: tm_CAN1Util_percent, start: 0, length: 2},
+            {name: tm_CAN2Util_percent, start: 2, length: 2},
+            {name: tm_SDBufferFill_percent, start: 4, length: 2},
+            {name: tm_RadioBufferFill_percent, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x751,
+        parameters: [
+            {name: tm_SDBytesTransferred_bytes, start: 0, length: 4},
+            {name: tm_RadioBytesTransferred_bytes, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x752,
+        parameters: [
+            {name: tm_SDPacketsDropped_ul, start: 0, length: 4},
+            {name: tm_RadioPacketsDropped_ul, start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x753,
+        parameters: [
+            {name: tm_CoinBattery_V, start: 0, length: 2},
+        ]
+    },
 ]
 
 commands:

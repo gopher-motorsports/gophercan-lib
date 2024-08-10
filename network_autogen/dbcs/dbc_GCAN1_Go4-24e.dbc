@@ -1,0 +1,882 @@
+VERSION ""
+
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+BO_ 1038 1038: 8 Vector__XXX
+ SG_ _electricalRPM_erpm : 7|32@0+ (1,0) [0|0] "angular_speed:rpm" Vector__XXX
+ SG_ _dutyCycle_percent : 39|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _inputInverterVoltage_V : 55|16@0- (1,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 1070 1070: 8 Vector__XXX
+ SG_ _motorCurrentPeakToPeak_A : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+ SG_ _batteryCurrent_A : 23|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 1102 1102: 8 Vector__XXX
+ SG_ _ControllerTemp_C : 7|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _motorTemp_C : 23|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _faultCode : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1134 1134: 8 Vector__XXX
+ SG_ _idPeakToPeak_A : 7|32@0- (0.01,0) [0|0] "current:A" Vector__XXX
+ SG_ _iqPeakToPeak_A : 39|32@0- (0.01,0) [0|0] "current:A" Vector__XXX
+
+BO_ 1166 1166: 8 Vector__XXX
+ SG_ _throttleSignal_percent : 7|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _brakeSignal_percent : 15|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _digitalIO_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _driveEnableInvStatus_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _generalLimitConfigBits_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _powerLimitConfigBits_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _canMapVersion : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 46 46: 8 Vector__XXX
+ SG_ _desiredInvCurrentPeakToPeak_A_1 : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 784 784: 8 Vector__XXX
+ SG_ _seg1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1AveCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1MaxCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1MinCellVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 785 785: 8 Vector__XXX
+ SG_ _seg1Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell2Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell3Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell4Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 786 786: 8 Vector__XXX
+ SG_ _seg1Cell5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell6Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell7Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell8Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 787 787: 8 Vector__XXX
+ SG_ _seg1Cell9Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell10Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell11Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg1Cell12Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 788 788: 8 Vector__XXX
+ SG_ _seg1Cell1Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell2Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell3Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell4Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 789 789: 8 Vector__XXX
+ SG_ _seg1Cell5Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell6Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell7Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell8Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 790 790: 8 Vector__XXX
+ SG_ _seg1Cell9Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell10Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell11Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1Cell12Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 791 791: 8 Vector__XXX
+ SG_ _seg1BMBBoardTemp1_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1BMBBoardTemp2_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1BMBBoardTemp3_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1BMBBoardTemp4_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 792 792: 8 Vector__XXX
+ SG_ _seg1Cell1VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell2VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell3VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell4VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell5VoltageStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell6VoltageStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell7VoltageStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell8VoltageStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 793 793: 8 Vector__XXX
+ SG_ _seg1Cell9VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell10VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell11VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell12VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell1TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell2TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell3TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell4TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 794 794: 8 Vector__XXX
+ SG_ _seg1Cell5TempStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell6TempStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell7TempStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell8TempStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell9TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell10TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell11TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg1Cell12TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 800 800: 8 Vector__XXX
+ SG_ _seg2Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2AveCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2MaxCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2MinCellVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 801 801: 8 Vector__XXX
+ SG_ _seg2Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell2Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell3Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell4Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 802 802: 8 Vector__XXX
+ SG_ _seg2Cell5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell6Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell7Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell8Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 803 803: 8 Vector__XXX
+ SG_ _seg2Cell9Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell10Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell11Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg2Cell12Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 804 804: 8 Vector__XXX
+ SG_ _seg2Cell1Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell2Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell3Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell4Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 805 805: 8 Vector__XXX
+ SG_ _seg2Cell5Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell6Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell7Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell8Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 806 806: 8 Vector__XXX
+ SG_ _seg2Cell9Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell10Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell11Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2Cell12Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 807 807: 8 Vector__XXX
+ SG_ _seg2BMBBoardTemp1_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2BMBBoardTemp2_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2BMBBoardTemp3_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2BMBBoardTemp4_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 808 808: 8 Vector__XXX
+ SG_ _seg2Cell1VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell2VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell3VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell4VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell5VoltageStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell6VoltageStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell7VoltageStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell8VoltageStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 809 809: 8 Vector__XXX
+ SG_ _seg2Cell9VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell10VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell11VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell12VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell1TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell2TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell3TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell4TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 810 810: 8 Vector__XXX
+ SG_ _seg2Cell5TempStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell6TempStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell7TempStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell8TempStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell9TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell10TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell11TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg2Cell12TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 816 816: 8 Vector__XXX
+ SG_ _seg3Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3AveCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3MaxCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3MinCellVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 817 817: 8 Vector__XXX
+ SG_ _seg3Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell2Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell3Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell4Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 818 818: 8 Vector__XXX
+ SG_ _seg3Cell5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell6Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell7Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell8Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 819 819: 8 Vector__XXX
+ SG_ _seg3Cell9Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell10Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell11Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg3Cell12Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 820 820: 8 Vector__XXX
+ SG_ _seg3Cell1Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell2Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell3Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell4Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 821 821: 8 Vector__XXX
+ SG_ _seg3Cell5Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell6Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell7Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell8Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 822 822: 8 Vector__XXX
+ SG_ _seg3Cell9Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell10Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell11Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3Cell12Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 823 823: 8 Vector__XXX
+ SG_ _seg3BMBBoardTemp1_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3BMBBoardTemp2_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3BMBBoardTemp3_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3BMBBoardTemp4_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 824 824: 8 Vector__XXX
+ SG_ _seg3Cell1VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell2VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell3VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell4VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell5VoltageStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell6VoltageStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell7VoltageStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell8VoltageStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 825 825: 8 Vector__XXX
+ SG_ _seg3Cell9VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell10VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell11VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell12VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell1TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell2TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell3TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell4TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 826 826: 8 Vector__XXX
+ SG_ _seg3Cell5TempStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell6TempStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell7TempStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell8TempStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell9TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell10TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell11TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg3Cell12TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 832 832: 8 Vector__XXX
+ SG_ _seg4Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4AveCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4MaxCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4MinCellVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 833 833: 8 Vector__XXX
+ SG_ _seg4Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell2Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell3Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell4Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 834 834: 8 Vector__XXX
+ SG_ _seg4Cell5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell6Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell7Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell8Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 835 835: 8 Vector__XXX
+ SG_ _seg4Cell9Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell10Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell11Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg4Cell12Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 836 836: 8 Vector__XXX
+ SG_ _seg4Cell1Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell2Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell3Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell4Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 837 837: 8 Vector__XXX
+ SG_ _seg4Cell5Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell6Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell7Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell8Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 838 838: 8 Vector__XXX
+ SG_ _seg4Cell9Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell10Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell11Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4Cell12Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 839 839: 8 Vector__XXX
+ SG_ _seg4BMBBoardTemp1_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4BMBBoardTemp2_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4BMBBoardTemp3_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4BMBBoardTemp4_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 840 840: 8 Vector__XXX
+ SG_ _seg4Cell1VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell2VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell3VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell4VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell5VoltageStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell6VoltageStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell7VoltageStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell8VoltageStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 841 841: 8 Vector__XXX
+ SG_ _seg4Cell9VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell10VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell11VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell12VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell1TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell2TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell3TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell4TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 842 842: 8 Vector__XXX
+ SG_ _seg4Cell5TempStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell6TempStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell7TempStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell8TempStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell9TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell10TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell11TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg4Cell12TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 848 848: 8 Vector__XXX
+ SG_ _seg5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5AveCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5MaxCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5MinCellVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 849 849: 8 Vector__XXX
+ SG_ _seg5Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell2Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell3Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell4Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 850 850: 8 Vector__XXX
+ SG_ _seg5Cell5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell6Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell7Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell8Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 851 851: 8 Vector__XXX
+ SG_ _seg5Cell9Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell10Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell11Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg5Cell12Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 852 852: 8 Vector__XXX
+ SG_ _seg5Cell1Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell2Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell3Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell4Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 853 853: 8 Vector__XXX
+ SG_ _seg5Cell5Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell6Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell7Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell8Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 854 854: 8 Vector__XXX
+ SG_ _seg5Cell9Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell10Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell11Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5Cell12Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 855 855: 8 Vector__XXX
+ SG_ _seg5BMBBoardTemp1_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5BMBBoardTemp2_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5BMBBoardTemp3_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5BMBBoardTemp4_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 856 856: 8 Vector__XXX
+ SG_ _seg5Cell1VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell2VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell3VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell4VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell5VoltageStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell6VoltageStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell7VoltageStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell8VoltageStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 857 857: 8 Vector__XXX
+ SG_ _seg5Cell9VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell10VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell11VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell12VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell1TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell2TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell3TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell4TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 858 858: 8 Vector__XXX
+ SG_ _seg5Cell5TempStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell6TempStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell7TempStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell8TempStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell9TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell10TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell11TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg5Cell12TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 864 864: 8 Vector__XXX
+ SG_ _seg6Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6AveCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6MaxCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6MinCellVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 865 865: 8 Vector__XXX
+ SG_ _seg6Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell2Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell3Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell4Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 866 866: 8 Vector__XXX
+ SG_ _seg6Cell5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell6Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell7Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell8Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 867 867: 8 Vector__XXX
+ SG_ _seg6Cell9Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell10Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell11Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg6Cell12Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 868 868: 8 Vector__XXX
+ SG_ _seg6Cell1Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell2Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell3Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell4Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 869 869: 8 Vector__XXX
+ SG_ _seg6Cell5Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell6Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell7Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell8Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 870 870: 8 Vector__XXX
+ SG_ _seg6Cell9Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell10Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell11Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6Cell12Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 871 871: 8 Vector__XXX
+ SG_ _seg6BMBBoardTemp1_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6BMBBoardTemp2_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6BMBBoardTemp3_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6BMBBoardTemp4_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 872 872: 8 Vector__XXX
+ SG_ _seg6Cell1VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell2VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell3VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell4VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell5VoltageStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell6VoltageStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell7VoltageStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell8VoltageStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 873 873: 8 Vector__XXX
+ SG_ _seg6Cell9VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell10VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell11VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell12VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell1TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell2TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell3TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell4TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 874 874: 8 Vector__XXX
+ SG_ _seg6Cell5TempStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell6TempStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell7TempStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell8TempStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell9TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell10TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell11TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg6Cell12TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 880 880: 8 Vector__XXX
+ SG_ _seg7Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7AveCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7MaxCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7MinCellVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 881 881: 8 Vector__XXX
+ SG_ _seg7Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell2Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell3Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell4Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 882 882: 8 Vector__XXX
+ SG_ _seg7Cell5Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell6Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell7Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell8Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 883 883: 8 Vector__XXX
+ SG_ _seg7Cell9Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell10Voltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell11Voltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _seg7Cell12Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 884 884: 8 Vector__XXX
+ SG_ _seg7Cell1Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell2Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell3Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell4Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 885 885: 8 Vector__XXX
+ SG_ _seg7Cell5Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell6Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell7Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell8Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 886 886: 8 Vector__XXX
+ SG_ _seg7Cell9Temp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell10Temp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell11Temp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7Cell12Temp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 887 887: 8 Vector__XXX
+ SG_ _seg7BMBBoardTemp1_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7BMBBoardTemp2_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7BMBBoardTemp3_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7BMBBoardTemp4_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 888 888: 8 Vector__XXX
+ SG_ _seg7Cell1VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell2VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell3VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell4VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell5VoltageStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell6VoltageStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell7VoltageStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell8VoltageStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 889 889: 8 Vector__XXX
+ SG_ _seg7Cell9VoltageStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell10VoltageStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell11VoltageStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell12VoltageStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell1TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell2TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell3TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell4TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 890 890: 8 Vector__XXX
+ SG_ _seg7Cell5TempStatus : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell6TempStatus : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell7TempStatus : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell8TempStatus : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell9TempStatus : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell10TempStatus : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell11TempStatus : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _seg7Cell12TempStatus : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 896 896: 8 Vector__XXX
+ SG_ _seg1AveCellTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1MaxCellTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1MinCellTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2AveCellTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 897 897: 8 Vector__XXX
+ SG_ _seg2MaxCellTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2MinCellTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3AveCellTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3MaxCellTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 898 898: 8 Vector__XXX
+ SG_ _seg3MinCellTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4AveCellTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4MaxCellTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4MinCellTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 899 899: 8 Vector__XXX
+ SG_ _seg5AveCellTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5MaxCellTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5MinCellTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6AveCellTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 900 900: 8 Vector__XXX
+ SG_ _seg6MaxCellTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6MinCellTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7AveCellTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7MaxCellTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 901 901: 8 Vector__XXX
+ SG_ _seg7MinCellTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 902 902: 8 Vector__XXX
+ SG_ _amsFault_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bspdFault_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 912 912: 8 Vector__XXX
+ SG_ _seg1BMBAveBoardTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1BMBMaxBoardTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg1BMBMinBoardTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2BMBAveBoardTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 913 913: 8 Vector__XXX
+ SG_ _seg2BMBMaxBoardTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg2BMBMinBoardTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3BMBAveBoardTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg3BMBMaxBoardTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 914 914: 8 Vector__XXX
+ SG_ _seg3BMBMinBoardTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4BMBAveBoardTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4BMBMaxBoardTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg4BMBMinBoardTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 915 915: 8 Vector__XXX
+ SG_ _seg5BMBAveBoardTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5BMBMaxBoardTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg5BMBMinBoardTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6BMBAveBoardTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 916 916: 8 Vector__XXX
+ SG_ _seg6BMBMaxBoardTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg6BMBMinBoardTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7BMBAveBoardTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _seg7BMBMaxBoardTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 917 917: 8 Vector__XXX
+ SG_ _seg7BMBMinBoardTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 918 918: 8 Vector__XXX
+ SG_ _imdFault_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _imdFaultInfo_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 935 935: 8 Vector__XXX
+ SG_ _soeByOCV_percent : 39|16@0- (0.01,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _soeByCoulombCounting_percent : 55|16@0- (0.01,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 944 944: 8 Vector__XXX
+ SG_ _bmsTractiveSystemCurrentLow_A : 7|16@0- (0.01,-100) [0|0] "current:A" Vector__XXX
+ SG_ _bmsTractiveSystemCurrentHigh_A : 23|16@0- (0.1,-1000) [0|0] "current:A" Vector__XXX
+
+BO_ 960 960: 8 Vector__XXX
+ SG_ _bmsNumActiveAlerts_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsCurrAlertIndex_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsAlertMessage_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerBatteryNotDetectedErrorAlert_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerCommunicationErrorAlert_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsCurrAlertIsLatched_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsAveBrickVoltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 961 961: 8 Vector__XXX
+ SG_ _bmsMaxBrickVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _bmsMinBrickVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _bmsAveBrickTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _bmsMaxBrickTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 962 962: 8 Vector__XXX
+ SG_ _bmsMinBrickTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _bmsAveBoardTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _bmsMaxBoardTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _bmsMinBoardTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 963 963: 8 Vector__XXX
+ SG_ _bmsOvervoltageFaultAlert_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsUndervoltageFaultAlert_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsOvertempFaultAlert_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsBmbCommunicationFailureAlert_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsBadVoltageSenseStatusAlert_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsInsufficientTempSensorsAlert_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerOverVoltageAlert_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerOverCurrentAlert_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 964 964: 8 Vector__XXX
+ SG_ _bmsChargerVoltageMismatchAlert_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerCurrentMismatchAlert_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerHardwareFailureAlert_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerOverTempAlert_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsOvervoltageWarningAlert_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsUndervoltageWarningAlert_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsCellImbalanceAlert_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsOvertempWarningAlert_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 965 965: 8 Vector__XXX
+ SG_ _bmsAmsSdcFaultAlert_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsBspdSdcFaultAlert_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsImdSdcFaultAlert_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsCurrentSensorErrorAlert_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsBadBrickTempSenseStatusAlert_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsBadBoardTempSenseStatusAlert_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsStackVsSegmentImbalanceAlert_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsChargerInputVoltageErrorAlert_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1092 1092: 8 Vector__XXX
+ SG_ _chargerVoltageSetPoint_V : 7|16@0- (0.1,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _chargerCurrentSetPoint_A : 23|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+ SG_ _chargerStatusByte : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1024 1024: 8 Vector__XXX
+ SG_ _brakePressureRear_psi : 7|16@0- (0.488400488,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _steeringAngle_deg : 23|16@0- (0.0879120879,0) [0|0] "angle:deg" Vector__XXX
+ SG_ _brakeTempFrontRight_C : 39|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _brakeTempFrontLeft_C : 55|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1104 1104: 8 Vector__XXX
+ SG_ _shockPosFrontLeft_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosFrontRight_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _wheelSpeedFrontLeft_mph : 39|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+ SG_ _wheelSpeedFrontRight_mph : 55|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+
+BO_ 1105 1105: 8 Vector__XXX
+ SG_ _pittoTubePressure_psi : 7|16@0- (0.01,0) [0|0] "pressure:psi" Vector__XXX
+
+BO_ 1280 1280: 8 Vector__XXX
+ SG_ _radWaterTempIn_C : 7|16@0- (0.0488400488,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _radWaterTempOut_C : 23|16@0- (0.0488400488,0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1360 1360: 8 Vector__XXX
+ SG_ _shockPosRearLeft_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosRearRight_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _wheelSpeedRearLeft_mph : 39|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+ SG_ _wheelSpeedRearRight_mph : 55|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+
+BO_ 0 0: 8 Vector__XXX
+ SG_ _vbatChan0Current_A_1 : 7|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan1Current_A_1 : 23|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan2Current_A_1 : 39|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan3Current_A_1 : 55|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 1 1: 8 Vector__XXX
+ SG_ _vbatChan4Current_A_1 : 7|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan5Current_A_1 : 23|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _vbatChan6Current_A_1 : 39|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan0Current_A_1 : 55|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 2 2: 8 Vector__XXX
+ SG_ _fiveVChan1Current_A_1 : 7|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan2Current_A_1 : 23|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _fiveVChan3Current_A_1 : 39|16@0- (0.00196141636,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _can0Utilization_percent_1 : 55|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 3 3: 8 Vector__XXX
+ SG_ _can1Utilization_percent_1 : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _can2Utilization_percent_1 : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _plmVbatVoltage_V_1 : 39|16@0- (0.00506178266,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _plm5VVoltage_V_1 : 55|16@0- (0.00195457875,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 4 4: 8 Vector__XXX
+ SG_ _packetsLogged_ul_1 : 7|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _packetsDropped_ul_1 : 39|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 5 5: 8 Vector__XXX
+ SG_ _storageBufferFill_percent_1 : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _telemetryBufferFill_percent_1 : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 6 6: 8 Vector__XXX
+ SG_ _PLM_Temp_degrees_1 : 7|16@0- (0.002518,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _PLM_Humidity_percent_1 : 23|16@0- (0.024414,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _PLM_Micro_Temp_1 : 39|16@0- (0.024414,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 7 7: 8 Vector__XXX
+ SG_ _Twelve_Volt_0_Overcurrent_1 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_1_Overcurrent_1 : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_2_Overcurrent_1 : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_3_Overcurrent_1 : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_4_Overcurrent_1 : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_5_Overcurrent_1 : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_6_Overcurrent_1 : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Overcurrent_Event_1 : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 8 8: 8 Vector__XXX
+ SG_ _Twelve_Volt_0_Overcurrent_Count_1 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_1_Overcurrent_Count_1 : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_2_Overcurrent_Count_1 : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_3_Overcurrent_Count_1 : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_4_Overcurrent_Count_1 : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_5_Overcurrent_Count_1 : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Twelve_Volt_6_Overcurrent_Count_1 : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 16 16: 8 Vector__XXX
+ SG_ _Five_Volt_0_Overcurrent : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Five_Volt_1_Overcurrent : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Five_Volt_2_Overcurrent : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Five_Volt_3_Overcurrent : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Five_Volt_0_Overcurrent_Count : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Five_Volt_1_Overcurrent_Count : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Five_Volt_2_Overcurrent_Count : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _Five_Volt_3_Overcurrent_Count : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1792 1792: 8 Vector__XXX
+ SG_ _gpsLatitude_deg : 7|32@0- (2.1457672119140625e-05,0) [0|0] "angle:deg" Vector__XXX
+ SG_ _gpsLongitude_deg : 39|32@0- (2.1457672119140625e-05,0) [0|0] "angle:deg" Vector__XXX
+
+BO_ 1793 1793: 8 Vector__XXX
+ SG_ _gpsSpeed_mph : 7|16@0+ (0.01,0) [0|0] "speed:mph" Vector__XXX
+ SG_ _gpsAltitude_ft : 23|16@0- (1,0) [0|0] "distance:ft" Vector__XXX
+ SG_ _gpsCourse_deg : 39|16@0+ (0.01,0) [0|0] "angle:deg" Vector__XXX
+ SG_ _gpsSatelliteCount_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1794 1794: 8 Vector__XXX
+ SG_ _gpsValid_ul : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpsYearUTC_ul : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpsMonthUTC_ul : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpsDayUTC_ul : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpsHoursUTC_ul : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpsMinutesUTC_ul : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpsSecondsUTC_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 229 229: 8 Vector__XXX
+ SG_ _lapBeaconRaw_ul_1 : 7|24@0- (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1872 1872: 8 Vector__XXX
+ SG_ _tm_CAN1Util_percent : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _tm_CAN2Util_percent : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _tm_SDBufferFill_percent : 39|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _tm_RadioBufferFill_percent : 55|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 1873 1873: 8 Vector__XXX
+ SG_ _tm_SDBytesTransferred_bytes : 7|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _tm_RadioBytesTransferred_bytes : 39|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1874 1874: 8 Vector__XXX
+ SG_ _tm_SDPacketsDropped_ul : 7|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _tm_RadioPacketsDropped_ul : 39|32@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1875 1875: 8 Vector__XXX
+ SG_ _tm_CoinBattery_V : 7|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
+
