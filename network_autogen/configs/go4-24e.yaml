@@ -5700,7 +5700,7 @@ parameters:
         id: 619
         motec_name: Yaw Rate
         unit: deg/s
-        type: FLOATING
+        type: UNSIGNED16
         encoding: LSB
         scale: 0.005
         offset: -163.84
@@ -5709,7 +5709,7 @@ parameters:
         id: 620
         motec_name: Roll Rate
         unit: deg/s
-        type: FLOATING
+        type: UNSIGNED16
         encoding: LSB
         scale: 0.005
         offset: -163.84
@@ -5718,7 +5718,7 @@ parameters:
         id: 621
         motec_name: G Force Lat
         unit: G
-        type: FLOATING
+        type: UNSIGNED16
         encoding: LSB
         scale: 0.0001274
         offset: -4.1746432
@@ -5727,7 +5727,7 @@ parameters:
         id: 622
         motec_name: G Force Long
         unit: G
-        type: FLOATING
+        type: UNSIGNED16
         encoding: LSB
         scale: 0.0001274
         offset: -4.1746432
@@ -5736,7 +5736,7 @@ parameters:
         id: 623
         motec_name: G Force Vert
         unit: G
-        type: FLOATING
+        type: UNSIGNED16
         encoding: LSB
         scale: 0.0001274
         offset: -4.1746432

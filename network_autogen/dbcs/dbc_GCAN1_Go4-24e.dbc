@@ -816,15 +816,15 @@ BO_ 1794 1794: 8 Vector__XXX
  SG_ _gpsSecondsUTC_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 372 372: 8 Vector__XXX
- SG_ _yawRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
- SG_ _lateralAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+ SG_ _yawRate_degPerSec : 0|16@1+ (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _lateralAccel_G : 32|16@1+ (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
 
 BO_ 376 376: 8 Vector__XXX
- SG_ _rollRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
- SG_ _longitudinalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+ SG_ _rollRate_degPerSec : 0|16@1+ (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _longitudinalAccel_G : 32|16@1+ (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
 
 BO_ 380 380: 8 Vector__XXX
- SG_ _verticalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+ SG_ _verticalAccel_G : 32|16@1+ (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
 
 BO_ 229 229: 8 Vector__XXX
  SG_ _lapBeaconRaw_ul_1 : 7|24@0- (1,0) [0|0] "unitless:" Vector__XXX
