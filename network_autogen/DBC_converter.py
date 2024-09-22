@@ -79,7 +79,7 @@ with open(arg) as f:
 	for a in groups: 
 		id=str(a["id"])
 		if int(id) >= 372 and int(id) <= 380:
-			buses = "GCAN0"
+			buses = "GCAN1"
 		elif int(id) == 16:
 			buses = "GCAN1"
 		elif int(id) >= 160 and int(id) <= 193:

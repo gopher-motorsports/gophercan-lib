@@ -36,6 +36,33 @@ BS_:
 BU_:
 
 
+BO_ 1038 1038: 8 Vector__XXX
+ SG_ _electricalRPM_erpm : 7|32@0+ (1,0) [0|0] "angular_speed:rpm" Vector__XXX
+ SG_ _dutyCycle_percent : 39|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _inputInverterVoltage_V : 55|16@0- (1,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 1070 1070: 8 Vector__XXX
+ SG_ _motorCurrentPeakToPeak_A : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+ SG_ _batteryCurrent_A : 23|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 1102 1102: 8 Vector__XXX
+ SG_ _ControllerTemp_C : 7|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _motorTemp_C : 23|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _faultCode : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1134 1134: 8 Vector__XXX
+ SG_ _idPeakToPeak_A : 7|32@0- (0.01,0) [0|0] "current:A" Vector__XXX
+ SG_ _iqPeakToPeak_A : 39|32@0- (0.01,0) [0|0] "current:A" Vector__XXX
+
+BO_ 1166 1166: 8 Vector__XXX
+ SG_ _throttleSignal_percent : 7|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _brakeSignal_percent : 15|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _digitalIO_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _driveEnableInvStatus_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _generalLimitConfigBits_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _powerLimitConfigBits_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _canMapVersion : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
 BO_ 46 46: 8 Vector__XXX
  SG_ _desiredInvCurrentPeakToPeak_A_0 : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
 
@@ -111,6 +138,26 @@ BO_ 513 513: 8 Vector__XXX
  SG_ _swButon3_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _swDial_ul : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
+BO_ 1092 1092: 8 Vector__XXX
+ SG_ _chargerVoltageSetPoint_V : 7|16@0- (0.1,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _chargerCurrentSetPoint_A : 23|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+ SG_ _chargerStatusByte : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1024 1024: 8 Vector__XXX
+ SG_ _brakePressureRear_psi : 7|16@0- (0.488400488,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _steeringAngle_deg : 23|16@0- (0.0879120879,0) [0|0] "angle:deg" Vector__XXX
+ SG_ _brakeTempFrontRight_C : 39|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _brakeTempFrontLeft_C : 55|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1104 1104: 8 Vector__XXX
+ SG_ _shockPosFrontLeft_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosFrontRight_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _wheelSpeedFrontLeft_mph : 39|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+ SG_ _wheelSpeedFrontRight_mph : 55|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+
+BO_ 1105 1105: 8 Vector__XXX
+ SG_ _pittoTubePressure_psi : 7|16@0- (0.01,0) [0|0] "pressure:psi" Vector__XXX
+
 BO_ 0 0: 8 Vector__XXX
  SG_ _vbatChan0Current_A_0 : 7|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
  SG_ _vbatChan1Current_A_0 : 23|16@0- (0.00741391941,0) [0|0] "voltage:V" Vector__XXX
@@ -167,17 +214,9 @@ BO_ 8 8: 8 Vector__XXX
  SG_ _Twelve_Volt_5_Overcurrent_Count_0 : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _Twelve_Volt_6_Overcurrent_Count_0 : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
-BO_ 372 372: 8 Vector__XXX
- SG_ _yawRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
- SG_ _lateralAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
-
-BO_ 376 376: 8 Vector__XXX
- SG_ _rollRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
- SG_ _longitudinalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
-
-BO_ 380 380: 8 Vector__XXX
- SG_ _verticalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
-
 BO_ 229 229: 8 Vector__XXX
  SG_ _lapBeaconRaw_ul_0 : 7|24@0- (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 272 272: 8 Vector__XXX
+ SG_ _lapBeacon_ul : 7|8@0- (1,0) [0|0] "unitless:" Vector__XXX
 
