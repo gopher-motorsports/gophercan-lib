@@ -12,6 +12,8 @@
 #define CHARGER_TX_CAN_ID 0x1806E5F4
 #define CHARGER_RX_CAN_ID 0x18FF50E5
 
+#define BEACON_PRESENT (lapBeaconRaw_ul != NULL)
+
 static S8 init_filters(CAN_HandleTypeDef* hcan);
 
 static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox);
@@ -479,6 +481,11 @@ static S8 tx_can_message(CAN_MSG* message)
  * RX MESSAGE
 *************************************************/
 
+#ifdef BEACON_PRESENT
+static uint16_t beacon_success_counter = 0;
+static uint32_t lastHitTick = 0;
+#endif
+
 // service_can_rx_message_std
 // handle standard ID CAN messages (data messages)
 // finds the specified group and decodes parameters
@@ -497,6 +504,25 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     }
 
     if (group == NULL) return NOT_FOUND_ERR;
+
+#ifdef BEACON_PRESENT
+    if (group->group_id == BEACON_ID) {
+    		if (HAL_GetTick() - lastHitTick > 100) {
+
+    			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
+    			if (beaconData == BEACON_DATA_CHECK) {
+    			if (beaconData <= (BEACON_DATA_CHECK*1.01) && beaconData >= (BEACON_DATA_CHECK*0.99)) {
+    				lapBeacon_ul.data = 1;
+    				beacon_success_counter++;
+    				lastHitTick = HAL_GetTick();
+    			} else {
+    				lapBeacon_ul.data = 0;
+    			}
+    			lapBeacon_ul.info.last_rx = message->rx_time;
+    		}
+    	}
+    }
+#endif
 
     // decode parameters
     S8 err;
