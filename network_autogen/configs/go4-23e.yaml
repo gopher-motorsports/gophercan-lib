@@ -6004,6 +6004,33 @@ parameters:
         offset: 0
     # END MISC
 
+    electricalRPM_erpm:
+        id: 650
+        motec_name: Electrical RPM
+        unit: rpm
+        type: SIGNED32
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    dutyCycle_percent:
+        id: 651
+        motec_name: Duty Cycle %
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: 0
+
+    inputInverterVoltage_V:
+        id: 652
+        motec_name: Input DC Voltage
+        unit: V
+        type: SIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
     # Inverter Low Frequency
@@ -7425,8 +7452,16 @@ groups: [
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
-    }
+    },
     # END MISC
+    {
+      id: 0x40E,
+      parameters: [
+        {name: electricalRPM_erpm,      start: 0, length: 4},
+        {name: dutyCycle_percent,      start: 4, length: 2},
+        {name: inputInverterVoltage_V, start: 6, length: 2},
+      ]
+    },
 ]
 
 commands:
