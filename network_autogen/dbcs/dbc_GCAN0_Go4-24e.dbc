@@ -134,9 +134,12 @@ BO_ 512 512: 8 Vector__XXX
  SG_ _displayPage_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 513 513: 8 Vector__XXX
- SG_ _swButon2_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
- SG_ _swButon3_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
- SG_ _swDial_ul : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swButon2_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swButon3_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swButon4_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swButon5_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swDial_a_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swDial_b_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 1092 1092: 8 Vector__XXX
  SG_ _chargerVoltageSetPoint_V : 7|16@0- (0.1,0) [0|0] "voltage:V" Vector__XXX

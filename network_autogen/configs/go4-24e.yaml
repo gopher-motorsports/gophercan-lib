@@ -1253,7 +1253,7 @@ parameters:
         scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
         offset: 0
 
-    inverterWaterTempIn_psi:
+    inverterWaterTempIn_C:
         id: 131
         motec_name: Inverter Water Temp In
         unit: C
@@ -1262,7 +1262,7 @@ parameters:
         scale: 0.0488400488 # [0-200] -> [0-4095]
         offset: 0
 
-    upperWaterTemp_psi:
+    upperWaterTemp_C:
         id: 132
         motec_name: Upper Water Temp
         unit: C
@@ -1272,9 +1272,8 @@ parameters:
         offset: 0
 
     leftFlowRateFreq_hz:
-        id: 133
         motec_name: Left Flow Rate Frequency
-        unit: hz
+        unit: Hz
         type: FLOATING
         encoding: MSB
         scale: 0.1
@@ -1283,7 +1282,7 @@ parameters:
     rightFlowRateFreq_hz:
         id: 134
         motec_name: Right Flow Rate Frequency
-        unit: hz
+        unit: Hz
         type: FLOATING
         encoding: MSB
         scale: 0.1
@@ -1318,7 +1317,7 @@ parameters:
         scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
         offset: 0
 
-    motorWaterTempIn_psi:
+    motorWaterTempIn_C:
         id: 138
         motec_name: Motor Water Temp In
         unit: C
@@ -1327,7 +1326,7 @@ parameters:
         scale: 0.0488400488 # [0-200] -> [0-4095]
         offset: 0
 
-    motorWaterTempOut_psi:
+    motorWaterTempOut_C:
         id: 139
         motec_name: Motor Water Temp Out
         unit: C
@@ -7221,8 +7220,8 @@ groups: [
     id: 0x501,
         parameters: [
             {name: brakeTempRearLeft_C,  start: 0, length: 2},
-            {name: inverterWaterTempIn_psi,  start: 2, length: 2},
-            {name: upperWaterTemp_psi,  start: 4, length: 2},
+            {name: inverterWaterTempIn_C,  start: 2, length: 2},
+            {name: upperWaterTemp_C,  start: 4, length: 2},
             {name: leftFlowRateFreq_hz,  start: 6, length: 2}
         ]
     },
@@ -7248,8 +7247,8 @@ groups: [
     {
         id: 0x551,
         parameters: [
-            {name: motorWaterTempIn_psi,     start: 0, length: 2},
-            {name: motorWaterTempOut_psi,    start: 2, length: 2},
+            {name: motorWaterTempIn_C,     start: 0, length: 2},
+            {name: motorWaterTempOut_C,    start: 2, length: 2},
             {name: motorWaterPressure1_psi,  start: 4, length: 2}
         ]
     },
