@@ -1272,6 +1272,7 @@ parameters:
         offset: 0
 
     leftFlowRateFreq_hz:
+        id: 133
         motec_name: Left Flow Rate Frequency
         unit: Hz
         type: FLOATING

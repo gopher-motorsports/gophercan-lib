@@ -559,13 +559,13 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
     if(message->header.ExtId == CHARGER_RX_CAN_ID)
     {
         PARAM_GROUP* group = NULL;
-        size_t group_index = 0;
+//        size_t group_index = 0;
 
         // find the specified parameter group
         for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
             if (GROUPS[i].group_id == 0x444) {
                 group = &GROUPS[i];
-                group_index = i;
+//                group_index = i;
                 break;
             }
         }
