@@ -56,33 +56,53 @@ if result == 1:
     print("Failed to start GCAN bootloader, aborting!")
     sys.exit()
 
-# Define CAN bootloader parameters
-firmware_file = os.path.join(proj_dir,'build', 'Debug', dir_name + '.bin')
+sys.exit()
 
-# Construct CLI command
-cmd = [
-    "STM32_Programmer_CLI",
-    "-c", 
-    "port=CAN",
-    "-d", 
-    firmware_file
-]
+# Uncomment this section to auto run STM32_Programmer_CLI
 
-# Use Popen to stream real-time output
-process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1)
+# # Construct CLI command
+# firmware_file = os.path.join(proj_dir, 'build', 'Debug', dir_name + '.bin')
 
-# # Print output line-by-line as it comes
-for line in process.stdout:
-    print(line, end="")  # Print in real-time
+# cmd = [
+#     "STM32_Programmer_CLI",
+#     "-c", 
+#     "port=CAN",
+#     "br=1000",
+#     "-d", 
+#     firmware_file,
+#     "0x08000000"
+# ]
 
-# Wait for process to complete
-process.wait()
+# # Set correct console encoding before running the CLI
+# os.system("chcp 850 > nul")  # Change to Windows CP850 (or try 437)
 
-# Check exit code
-if process.returncode == 0:
-    print("Bootloading successful!")
-else:
-    print("Bootloading failed!")
+# process = subprocess.Popen(
+#     cmd,
+#     stdout=subprocess.PIPE,
+#     stderr=subprocess.STDOUT,
+#     text=True,
+#     bufsize=1,
+#     encoding="cp850",  # Adjust to match `chcp` output
+#     errors="replace"
+# )
+
+# while True:
+#     output = process.stdout.read(1)  # Read one character at a time
+#     if output == "" and process.poll() is not None:
+#         break
+#     sys.stdout.write(output)
+#     sys.stdout.flush()  # Ensure real-time updates
+
+# sys.stdout.write("\n")  # Ensure a newline after completion
+# sys.stdout.flush()
+
+# process.wait()
+
+# # Check exit code
+# if process.returncode == 0:
+#     print("Bootloading successful!")
+# else:
+#     print("Bootloading failed!")
 
 
 

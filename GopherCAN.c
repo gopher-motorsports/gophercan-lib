@@ -505,6 +505,22 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 
     if (group == NULL) return NOT_FOUND_ERR;
 
+    if(group->group_id == BOOTLOADER_ID) {
+        U32 moduleId = message->data[0];
+
+        if(moduleId == THIS_MODULE_ID) {
+            // Disable interrupts
+            __disable_irq();
+
+            // Jump to bootloader
+            U32 bootloaderStack = *((volatile uint32_t *) (STM32F446_BOOTLOADER_ADDR + 0));
+            U32 bootloaderEntry = *((volatile uint32_t *) (STM32F446_BOOTLOADER_ADDR + 4));
+            bootloader_entry_t bootloaderResetHandler = (bootloader_entry_t) bootloaderEntry;
+            __set_MSP(bootloaderStack);
+            bootloaderResetHandler();
+        }
+    }
+
 #ifdef BEACON_PRESENT
     if (group->group_id == BEACON_ID) {
     		if (HAL_GetTick() - lastHitTick > 100) {
