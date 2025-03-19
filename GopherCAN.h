@@ -249,10 +249,6 @@ S8 send_can_command(PRIORITY priority, MODULE_ID dest_module, GCAN_COMMAND_ID co
 #define BEACON_ID 0xE5
 #define BEACON_DATA_CHECK 0x0055AA03
 
-#define STM32F446_BOOTLOADER_ADDR  0x1FFF0000U
-#define BOOTLOADER_ID 0x069
-typedef void (*bootloader_entry_t)(void);
-
 // Macro function for dealing with the stupid BxCAN filter config
 #define GET_ID_HIGH(id) ((((id) << 3) >> 16) & 0xffff)
 #define GET_ID_LOW(id) ((((id) << 3) & 0xffff) | CAN_ID_EXT)
