@@ -305,44 +305,8 @@ parameters:
         scale: 0.488400488 # [0-2000] -> [0-4095]
         offset: 0
 
-    vcuTractiveSystemCurrent_A:
-        id: 28
-        motec_name: Tractive System Current (VCU)
-        unit: A
-        type: FLOATING
-        encoding: MSB
-        scale: 0.00914627595 # [-18.727-18.727] -> [0-4095]
-        offset: -18.727
 
-    # BSPD Check stuff
-    bspdBrakePressureSensorFault_state:
-        id: 29
-        motec_name: BSPD Brake Pres Fault
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    bspdTractiveSystemCurrentSensorFault_state:
-        id: 30
-        motec_name: BSPD Tractive System Current Fault
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    bspdTractiveSystemBrakingFault_state:
-        id: 31
-        motec_name: BSPD Check Fault
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    # VSC Faults
+    # FVC Faults
 
     vcuBrakePressureSensorFault_state:
         id: 32
@@ -398,7 +362,8 @@ parameters:
         scale: 1
         offset: 0
 
-    # Vehicle Control Tractive Miscellaneous
+
+    # Front Vehicle Control Tractive Miscellaneous
 
     vcuBrakingClampingCurrent_state:
         id: 38
@@ -427,42 +392,157 @@ parameters:
         scale: 1
         offset: 0
 
-    # Vehicle Control Unit Cooling
-    coolantPumpPressure_psi:
-        id: 41
-        motec_name: Coolant Pump Pres
+    # Rear Vehicle Control Unit
+
+    # -- BSPD Check stuff
+    bspdBrakePressureSensorFault_state:
+        id: 29
+        motec_name: BSPD Brake Pres Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bspdTractiveSystemCurrentSensorFault_state:
+        id: 30
+        motec_name: BSPD Tractive System Current Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    bspdTractiveSystemBrakingFault_state:
+        id: 31
+        motec_name: BSPD Check Fault
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0'
+        
+    # Rear Vehicle Control Unit Sensors
+
+    brakePressureRear_psi:
+        id: 116
+        motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
         encoding: MSB
-        scale: 0.0244200244 # [0-100] -> [0-4095]
+        scale: 0.488400488 # [0-2000] -> [0-4095]
         offset: 0
 
-    coolantFanPower_percent:
-        id: 42
-        motec_name: Radiator Fan Control Duty
-        unit: '%'
-        type: UNSIGNED8
+    currentSensorHigh_V:
+        id: 28
+        motec_name: Current Sensor High Channel
+        unit: V
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 1 # TODO Figure out from datasheet
         offset: 0
 
-    coolantPumpPower_percent:
-        id: 43
-        motec_name: Pump Control Duty
-        unit: '%'
-        type: UNSIGNED8
+    currentSensorLow_V:
+        id: 28
+        motec_name: Current Sensor Low Channel
+        unit: V
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 1 # TODO Figure out from datasheet
         offset: 0
 
-    accumulatorFanPower_percent:
-        id: 44
-        motec_name: Accumulator Fan Control Duty
-        unit: '%'
-        type: UNSIGNED8
+    currentSensor_A:
+        id: 28
+        motec_name: Tractive System Current (VCU)
+        unit: A
+        type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 1 # TODO Seems wrong
         offset: 0
+
+    rearRideHeight_mm:
+        id: 125
+        motec_name: Rear Ride Height
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 1 # TODO Figure out from datasheet
+        offset: 0
+
+    brakeTempRearRight_C:
+        id: 125
+        motec_name: Brake Temp RR
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.195360195 # [0-800] -> [0-4095]
+        offset: 0
+
+    brakeTempRearLeft_C:
+        id: 126
+        motec_name: Brake Temp RL
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.195360195 # [0-800] -> [0-4095]
+        offset: 0
+
+    radWaterTempIn_C:
+        id: 127
+        motec_name: Rad Water Temp In
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0488400488 # [0-200] -> [0-4095]
+        offset: 0
+
+    radWaterTempOut_C:
+        id: 128
+        motec_name: Rad Water Temp Out
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0488400488 # [0-200] -> [0-4095]
+        offset: 0
+
+    shockPosRearLeft_mm:
+        id: 129
+        motec_name: Susp Pos RL
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.00610500611 # [0-25] -> [0-4095]
+        offset: 0
+
+    shockPosRearRight_mm:
+        id: 135
+        motec_name: Susp Pos RR
+        unit: mm
+        type: FLOATING
+        encoding: MSB
+        scale: 0.00610500611 # [0-25] -> [0-4095]
+        offset: 0
+
+    wheelSpeedRearLeft_mph:
+        id: 130
+        motec_name: Wheel Speed RL
+        unit: mph
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        offset: 0
+
+    wheelSpeedRearRight_mph:
+        id: 137
+        motec_name: Wheel Speed RR
+        unit: mph
+        type: FLOATING
+        encoding: MSB
+        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        offset: 0
+
+    # End Rear Vehicle Control Unit
+
 
     # Vehicle Control Unit I/O
 
@@ -520,14 +600,34 @@ parameters:
         scale: 1
         offset: 0
 
-    readyToDriveButton_state:
-        id: 51
-        motec_name: Ready to Drive Button
-        unit: ''
+    coolantPumpPower_percent:
+        id: 43
+        motec_name: Pump Control Duty
+        unit: '%'
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
+
+    ambientTemp_C:
+        id: 43
+        motec_name: Ambient Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 1 #TBD based on sensor datasheet
+        offset: 0
+
+    ambientHumidity_percent:
+        id: 43
+        motec_name: Ambient Humidity
+        unit: '%'
+        type: FLOATING
+        encoding: MSB
+        scale: 0.00152590218 # [0-100] -> [0-65535]
+        offset: 0
+
+    # TODO add DRS
 
     # VCU Internal
 
@@ -594,7 +694,6 @@ parameters:
         scale: 1
         offset: 0
     # END VCU
-
 
     # Display Info
     bmsAveBrickVoltage_V:
@@ -1120,15 +1219,6 @@ parameters:
 
     # End Steering Wheel
     # Sensor Hub Front
-    brakePressureRear_psi:
-        id: 116
-        motec_name: Brake Pres Rear
-        unit: psi
-        type: FLOATING
-        encoding: MSB
-        scale: 0.488400488 # [0-2000] -> [0-4095]
-        offset: 0
-
 
     brakeTempFrontLeft_C:
         id: 117
@@ -1202,154 +1292,7 @@ parameters:
         scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
         offset: 0
     # END SH_F
-    # Sensor Hub Rear Left
-    brakeTempRearRight_C:
-        id: 125
-        motec_name: Brake Temp RR
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.195360195 # [0-800] -> [0-4095]
-        offset: 0
 
-    brakeTempRearLeft_C:
-        id: 126
-        motec_name: Brake Temp RL
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.195360195 # [0-800] -> [0-4095]
-        offset: 0
-
-    radWaterTempIn_C:
-        id: 127
-        motec_name: Rad Water Temp In
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0488400488 # [0-200] -> [0-4095]
-        offset: 0
-
-    radWaterTempOut_C:
-        id: 128
-        motec_name: Rad Water Temp Out
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0488400488 # [0-200] -> [0-4095]
-        offset: 0
-
-    shockPosRearLeft_mm:
-        id: 129
-        motec_name: Susp Pos RL
-        unit: mm
-        type: FLOATING
-        encoding: MSB
-        scale: 0.00610500611 # [0-25] -> [0-4095]
-        offset: 0
-
-    wheelSpeedRearLeft_mph:
-        id: 130
-        motec_name: Wheel Speed RL
-        unit: mph
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
-        offset: 0
-
-    inverterWaterTempIn_C:
-        id: 131
-        motec_name: Inverter Water Temp In
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0488400488 # [0-200] -> [0-4095]
-        offset: 0
-
-    upperWaterTemp_C:
-        id: 132
-        motec_name: Upper Water Temp
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0488400488 # [0-200] -> [0-4095]
-        offset: 0
-
-    leftFlowRateFreq_hz:
-        id: 133
-        motec_name: Left Flow Rate Frequency
-        unit: Hz
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: 0
-
-    rightFlowRateFreq_hz:
-        id: 134
-        motec_name: Right Flow Rate Frequency
-        unit: Hz
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: 0
-    # END SH_RL
-
-    # Sensor Hub Rear Right
-    shockPosRearRight_mm:
-        id: 135
-        motec_name: Susp Pos RR
-        unit: mm
-        type: FLOATING
-        encoding: MSB
-        scale: 0.00610500611 # [0-25] -> [0-4095]
-        offset: 0
-
-    shockPosRearRight_V:
-        id: 136
-        motec_name: Susp Pos RR Volts
-        unit: V
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0008058608 # [0-3.3] -> [0-4095]
-        offset: 0
-
-    wheelSpeedRearRight_mph:
-        id: 137
-        motec_name: Wheel Speed RR
-        unit: mph
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
-        offset: 0
-
-    motorWaterTempIn_C:
-        id: 138
-        motec_name: Motor Water Temp In
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0488400488 # [0-200] -> [0-4095]
-        offset: 0
-
-    motorWaterTempOut_C:
-        id: 139
-        motec_name: Motor Water Temp Out
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0488400488 # [0-200] -> [0-4095]
-        offset: 0
-
-    motorWaterPressure1_psi:
-        id: 140
-        motec_name: Motor Water Pressure
-        unit: psi
-        type: FLOATING
-        encoding: MSB
-        scale: 0.0244140625 # [0-100] -> [0-4096]
-        offset: 0
-
-    # END SH_R
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
         id: 141
