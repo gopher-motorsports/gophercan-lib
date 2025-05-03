@@ -228,7 +228,7 @@ parameters:
         offset: 0
 
     #Sending
-    desiredInvCurrentPeakToPeak_A:
+    desiredInvCurrentPeak_A:
         id: 20
         motec_name: Desired Inverter Current (AC Peak)
         unit: A
@@ -237,7 +237,7 @@ parameters:
         scale: 0.1
         offset: 0
 
-    maxCurrentLimitPeakToPeak_A:
+    maxCurrentLimitPeak_A:
         id: 21
         motec_name: Max Current Limit (AC Peak)
         unit: A
@@ -6133,14 +6133,14 @@ groups: [
     {
       id: 0x02E,
       parameters: [
-        {name: desiredInvCurrentPeakToPeak_A, start: 0, length: 2}
+        {name: desiredInvCurrentPeak_A, start: 0, length: 2}
 
       ]
     },
     {
       id: 0x10E,
       parameters: [
-        {name: maxCurrentLimitPeakToPeak_A, start: 0, length: 2}
+        {name: maxCurrentLimitPeak_A, start: 0, length: 2}
 
       ]
     },
