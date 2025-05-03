@@ -6153,8 +6153,7 @@ groups: [
         parameters: [
             {name: pedalPosition1_percent,      start: 0, length: 2},
             {name: pedalPosition2_percent,      start: 2, length: 2},
-            {name: fvcMaxCurrentLimit_A,        start: 4, length: 1},
-            {name: rideHeightFront_mm,          start: 5, length: 2}
+            {name: rideHeightFront_mm,          start: 4, length: 2}
         ]
     },
     {
