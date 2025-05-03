@@ -14,7 +14,7 @@ modules:
         id: 2
         buses:
             - GCAN0
-    VCU:
+    FVC:
         id: 3
         buses:
             - GCAN0
@@ -323,9 +323,9 @@ parameters:
         scale: 1
         offset: 0
 
-    vcuTractiveSystemCurrent_A:
+    fvcTractiveSystemCurrent_A:
         id: 30
-        motec_name: Tractive System Current (VCU)
+        motec_name: Tractive System Current (FVC)
         unit: A
         type: FLOATING
         encoding: MSB
@@ -360,87 +360,58 @@ parameters:
         scale: 1
         offset: 0
 
-    # VSC Faults
+    # VSC Faults 
 
-    vcuBrakePressureSensorFault_state:
+    fvcBrakePressureSensorFault_state:
         id: 34
-        motec_name: VCU Brake Pres Fault
+        motec_name: FVC Brake Pres Fault
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
 
-    vcuPedalPosition1Fault_state:
+    fvcPedalPosition1Fault_state:
         id: 35
-        motec_name: VCU Pedal 1 Fault
+        motec_name: FVC Pedal 1 Fault
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
 
-    vcuPedalPosition2Fault_state:
+    fvcPedalPosition2Fault_state:
         id: 36
-        motec_name: VCU Pedal 2 Fault
+        motec_name: FVC Pedal 2 Fault
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
 
-    vcuTractiveSystemCurrentSensorFault_state:
+    fvcTractiveSystemCurrentSensorFault_state:
         id: 37
-        motec_name: VCU Tractive System Current Fault
+        motec_name: FVC Tractive System Current Fault
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
 
-    vcuPedalPositionCorrelationFault_state:
+    fvcPedalPositionCorrelationFault_state:
         id: 38
-        motec_name: VCU APPS Correlation Fault
+        motec_name: FVC APPS Correlation Fault
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
 
-    vcuPedalPositionBrakingFault_state:
+    fvcPedalPositionBrakingFault_state:
         id: 39
-        motec_name: VCU Accelerator and Braking Fault
+        motec_name: FVC Accelerator and Braking Fault
         unit: ''
         type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    # Front Vehicle Control Tractive Miscellaneous
-
-    vcuBrakingClampingCurrent_state:
-        id: 40
-        motec_name: VCU Current Clamping
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    vcuCurrentRequested_A:
-        id: 41
-        motec_name: VCU Current Requested
-        unit: Nm
-        type: FLOATING
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    vcuMaxCurrentLimit_A:
-        id: 42
-        motec_name: VCU Max Current Limit
-        unit: A
-        type: FLOATING
         encoding: MSB
         scale: 1
         offset: 0
@@ -547,11 +518,11 @@ parameters:
         scale: 1
         offset: 0
 
-    # VCU Internal
+    # FVC Internal
 
-    vcuTemp_C:
+    fvcTemp_C:
         id: 54
-        motec_name: VCU Temperature
+        motec_name: FVC Temperature
         unit: C
         type: FLOATING
         encoding: MSB
@@ -567,18 +538,18 @@ parameters:
         scale: 1
         offset: 0
 
-    vcuState_state:
+    fvcState_state:
         id: 56
-        motec_name: VCU State
+        motec_name: FVC State
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
 
-    vcuMcuStatus_state:
+    fvcMcuStatus_state:
         id: 57
-        motec_name: VCU MCU State
+        motec_name: FVC MCU State
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -594,9 +565,9 @@ parameters:
         scale: 1
         offset: 0
 
-    vcuGSenseStatus_state:
+    fvcGSenseStatus_state:
         id: 59
-        motec_name: VCU GopherSense Status
+        motec_name: FVC GopherSense Status
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -611,7 +582,7 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
-    # END VCU
+    # END FVC
 
 
     # Display Info
@@ -6166,7 +6137,7 @@ groups: [
             {name: pedalPosition1_mm,          start: 0, length: 2},
             {name: pedalPosition2_mm,          start: 2, length: 2},
             {name: brakePressureFront_psi,     start: 4, length: 2},
-            {name: vcuTractiveSystemCurrent_A, start: 6, length: 2}
+            {name: fvcTractiveSystemCurrent_A, start: 6, length: 2}
         ]
     },
     {
@@ -6182,21 +6153,20 @@ groups: [
         parameters: [
             {name: pedalPosition1_percent,      start: 0, length: 2},
             {name: pedalPosition2_percent,      start: 2, length: 2},
-            {name: vcuCurrentRequested_A,       start: 4, length: 1},
-            {name: vcuMaxCurrentLimit_A,        start: 5, length: 1},
+            {name: fvcCurrentRequested_A,       start: 4, length: 1},
+            {name: fvcMaxCurrentLimit_A,        start: 5, length: 1},
             {name: rideHeightFront_mm,          start: 6, length: 2}
         ]
     },
     {
         id: 0x103,
         parameters: [
-            {name: vcuBrakePressureSensorFault_state,         start: 0, length: 1},
-            {name: vcuPedalPosition1Fault_state,              start: 1, length: 1},
-            {name: vcuPedalPosition2Fault_state,              start: 2, length: 1},
-            {name: vcuTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
-            {name: vcuPedalPositionCorrelationFault_state,    start: 4, length: 1},
-            {name: vcuPedalPositionBrakingFault_state,        start: 5, length: 1},
-            {name: vcuBrakingClampingCurrent_state,           start: 6, length: 1},
+            {name: fvcBrakePressureSensorFault_state,         start: 0, length: 1},
+            {name: fvcPedalPosition1Fault_state,              start: 1, length: 1},
+            {name: fvcPedalPosition2Fault_state,              start: 2, length: 1},
+            {name: fvcTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
+            {name: fvcPedalPositionCorrelationFault_state,    start: 4, length: 1},
+            {name: fvcPedalPositionBrakingFault_state,        start: 5, length: 1},
         ]
     },
     {
@@ -6232,12 +6202,12 @@ groups: [
     {
         id: 0x107,
         parameters: [
-            {name: vcuTemp_C,                 start: 0, length: 2},
+            {name: fvcTemp_C,                 start: 0, length: 2},
             {name: vehicleState_state,        start: 2, length: 1},
-            {name: vcuState_state,            start: 3, length: 1},
-            {name: vcuMcuStatus_state,        start: 4, length: 1},
+            {name: fvcState_state,            start: 3, length: 1},
+            {name: fvcMcuStatus_state,        start: 4, length: 1},
             {name: currentlyMoving_state,     start: 5, length: 1},
-            {name: vcuGSenseStatus_state,     start: 6, length: 1},
+            {name: fvcGSenseStatus_state,     start: 6, length: 1},
             {name: displayFaultStatus_state,  start: 7, length: 1}
         ]
     },
@@ -6248,7 +6218,7 @@ groups: [
             {name: FVC_SDC_Fault_2_state,   start: 1, length: 2},
         ]
     },
-    # END VCU
+    # END FVC
     # Steering Wheel
     {
         id: 0x200,
