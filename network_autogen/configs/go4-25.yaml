@@ -323,7 +323,7 @@ parameters:
         scale: 1
         offset: 0
 
-    fvcTractiveSystemCurrent_A:
+    rvcTractiveSystemCurrent_A:
         id: 30
         motec_name: Tractive System Current (FVC)
         unit: A
@@ -417,6 +417,15 @@ parameters:
         offset: 0
 
     # Rear Vehicle Control Unit Cooling
+    fvcBrakingClampingCurrent_state:
+        id: 40
+        motec_name: FVC Current Clamping
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
     coolantPumpPressure_psi:
         id: 43
         motec_name: Coolant Pump Pres
@@ -6137,7 +6146,7 @@ groups: [
             {name: pedalPosition1_mm,          start: 0, length: 2},
             {name: pedalPosition2_mm,          start: 2, length: 2},
             {name: brakePressureFront_psi,     start: 4, length: 2},
-            {name: fvcTractiveSystemCurrent_A, start: 6, length: 2}
+            {name: rvcTractiveSystemCurrent_A, start: 6, length: 2}
         ]
     },
     {
@@ -6165,6 +6174,8 @@ groups: [
             {name: fvcTractiveSystemCurrentSensorFault_state, start: 3, length: 1},
             {name: fvcPedalPositionCorrelationFault_state,    start: 4, length: 1},
             {name: fvcPedalPositionBrakingFault_state,        start: 5, length: 1},
+            {name: fvcBrakingClampingCurrent_state,           start: 6, length: 1},
+
         ]
     },
     {
