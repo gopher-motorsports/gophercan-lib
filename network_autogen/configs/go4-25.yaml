@@ -46,7 +46,7 @@ modules:
     CCB:
         id: 10
         buses:
-            - GCAN2
+            - GCAN0
 
 parameters:
 
