@@ -4814,8 +4814,8 @@ groups: [
     {
         id: 0x108,
         parameters: [
-            {name: FVC_SDC_Fault_1_state,   start: 0, length: 1},
-            {name: FVC_SDC_Fault_2_state,   start: 1, length: 2},
+            {name: sdcStatus3,   start: 0, length: 1},
+            {name: sdcStatus4,   start: 1, length: 2},
         ]
     },
     # END FVC
