@@ -574,25 +574,25 @@ parameters:
         encoding: MSB
         scale: 1
         offset: 0
-    # END FVC
 
-    FVC_SDC_Fault_1_state:
+    sdcStatus3:
         id: 57
-        motec_name: FVC SDC Fault 1 State
+        motec_name: sdcStatus3
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
 
-    FVC_SDC_Fault_2_state:
+    sdcStatus4: 
         id: 58
-        motec_name: FVC SDC Fault 2 State
+        motec_name: sdcStatus4
         unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
         offset: 0
+    # END FVC
 
     # END Error States
 
