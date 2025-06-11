@@ -819,8 +819,8 @@ static S8 tx_can_message(CAN_MSG* message)
     return CAN_SUCCESS;
 }
 
-static uint16_t beacon_success_counter = 0;
-static uint32_t lastHitTick = 0;
+//static uint16_t beacon_success_counter = 0;
+//static uint32_t lastHitTick = 0;
 
 // service_can_rx_message_std
 // handle standard ID CAN messages (data messages)
@@ -838,21 +838,21 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
     }
 
     if (group == NULL) return NOT_FOUND_ERR;
-
-	if (group->group_id == BEACON_ID) {
-		if (HAL_GetTick() - lastHitTick > 100) {
-
-			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
-			if (beaconData <= (BEACON_DATA_CHECK*1.01) && beaconData >= (BEACON_DATA_CHECK*0.99)) {
-				lapBeacon_ul.data = 1;
-				beacon_success_counter++;
-				lastHitTick = HAL_GetTick();
-			} else {
-				lapBeacon_ul.data = 0;
-			}
-			lapBeacon_ul.info.last_rx = message->rx_time;
-		}
-	}
+//
+//	if (group->group_id == BEACON_ID) {
+//		if (HAL_GetTick() - lastHitTick > 100) {
+//
+//			U32 beaconData = message->data[0]  << 16 | message->data[1] << 8 | message->data[2];
+//			if (beaconData <= (BEACON_DATA_CHECK*1.01) && beaconData >= (BEACON_DATA_CHECK*0.99)) {
+//				//lapBeacon_ul.data = 1;
+//				beacon_success_counter++;
+//				lastHitTick = HAL_GetTick();
+//			} else {
+//				//lapBeacon_ul.data = 0;
+//			}
+//			//lapBeacon_ul.info.last_rx = message->rx_time;
+//		}
+//	}
 
     // decode parameters
     S8 err;
