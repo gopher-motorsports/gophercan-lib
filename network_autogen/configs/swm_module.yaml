@@ -1,0 +1,173 @@
+buses:
+    bus_0:
+        name: GCAN0
+        baud_rate: 1000000
+        motec_name: Front Bus
+    bus_1:
+        name: GCAN1
+        baud_rate: 1000000
+        motec_name: Middle Bus
+    bus_2:
+        name: GCAN2
+        baud_rate: 1000000
+        motec_name: Rear Bus
+
+modules:
+    PLM:
+        id: 1
+        buses:
+            - GCAN0
+            - GCAN1
+            - GCAN2
+    Inverter:
+        id: 2
+        buses:
+            - GCAN0
+    FVC:
+        id: 3
+        buses:
+            - GCAN0
+            - GCAN1
+    RVC:
+        id: 4
+        buses:
+            - GCAN1
+    BMS:
+        id: 5
+        buses:
+            - GCAN1
+            - GCAN2
+    IMU:
+        id: 6
+        buses:
+            - GCAN1
+    Display:
+        id: 7
+        buses:
+            - GCAN1
+    SWM:
+        id: 8
+        buses:
+            - GCAN1
+    CCB:
+        id: 9
+        buses:
+            - GCAN1
+
+parameters:
+    # Steering Wheel
+    swButon0_state:
+        id: 1
+        motec_name: Wheel Button 0
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon1_state:
+        id: 2
+        motec_name: Wheel Button 1
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon2_state:
+        id: 3
+        motec_name: Wheel Button 2
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon3_state:
+        id: 4
+        motec_name: Wheel Button 3
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon4_state:
+        id: 5
+        motec_name: Wheel Button 2
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swButon5_state:
+        id: 6
+        motec_name: Wheel Button 3
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    displayPage_state:
+        id: 7
+        motec_name: Display Page
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swDial_a_ul:
+        id: 8
+        motec_name: Wheel Dial A
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    swDial_b_ul:
+        id: 9
+        motec_name: Wheel Dial B
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    readyToDriveButton_state:
+        id: 10
+        motec_name: Ready to Drive Button
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+    # End Steering Wheel
+
+groups: [
+# Steering Wheel
+    {
+        id: 0x200,
+        parameters: [
+            {name: swButon0_state,     start: 4, length: 1},
+            {name: swButon1_state,     start: 5, length: 1},
+            {name: displayPage_state,  start: 6, length: 1}
+        ]
+    },
+    {
+        id: 0x201,
+        parameters: [
+            {name: swButon2_state, start: 2, length: 1},
+            {name: swButon3_state, start: 3, length: 1},
+            {name: swButon4_state, start: 4, length: 1},
+            {name: swButon5_state, start: 5, length: 1},
+            {name: swDial_a_ul,    start: 6, length: 1},
+            {name: swDial_b_ul,    start: 6, length: 1}
+        ]
+    }
+    # END Steering Wheel
+]
+    
