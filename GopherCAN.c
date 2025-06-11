@@ -563,7 +563,7 @@ static S8 service_can_rx_message_ext(CAN_MSG* message)
 
         // find the specified parameter group
         for (U8 i = 0; i < NUM_OF_GROUPS; i++) {
-            if (GROUPS[i].group_id == 0x444) {
+            if (GROUPS[i].group_id == chargerStatusByte.info.GROUP_ID) {
                 group = &GROUPS[i];
 //                group_index = i;
                 break;
