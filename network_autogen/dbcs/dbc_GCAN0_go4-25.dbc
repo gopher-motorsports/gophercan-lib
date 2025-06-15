@@ -1,0 +1,149 @@
+VERSION ""
+
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+BO_ 1038 1038: 8 Vector__XXX
+ SG_ _electricalRPM_erpm : 7|32@0+ (1,0) [0|0] "angular_speed:rpm" Vector__XXX
+ SG_ _dutyCycle_percent : 39|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _inputInverterVoltage_V : 55|16@0- (1,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 1070 1070: 8 Vector__XXX
+ SG_ _motorCurrentPeakToPeak_A : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+ SG_ _batteryCurrent_A : 23|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 1102 1102: 8 Vector__XXX
+ SG_ _ControllerTemp_C : 7|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _motorTemp_C : 23|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _faultCode : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1134 1134: 8 Vector__XXX
+ SG_ _idPeakToPeak_A : 7|32@0- (0.01,0) [0|0] "current:A" Vector__XXX
+ SG_ _iqPeakToPeak_A : 39|32@0- (0.01,0) [0|0] "current:A" Vector__XXX
+
+BO_ 1166 1166: 8 Vector__XXX
+ SG_ _throttleSignal_percent : 7|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _brakeSignal_percent : 15|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _digitalIO_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _driveEnableInvStatus_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _generalLimitConfigBits_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _powerLimitConfigBits_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _canMapVersion : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 46 46: 8 Vector__XXX
+ SG_ _desiredInvCurrentPeak_A : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 270 270: 8 Vector__XXX
+ SG_ _maxCurrentLimitPeak_A : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 334 334: 8 Vector__XXX
+ SG_ _maxDCCurrentLimit_A : 7|16@0- (0.1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 398 398: 8 Vector__XXX
+ SG_ _driveEnable_state : 7|8@0+ (1,0) [0|0] "current:A" Vector__XXX
+
+BO_ 256 256: 8 Vector__XXX
+ SG_ _pedalPosition1_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _pedalPosition2_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _brakePressureFront_psi : 39|16@0- (0.488400488,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _rvcTractiveSystemCurrent_A : 55|16@0- (0.00914627595,-18.727) [0|0] "current:A" Vector__XXX
+
+BO_ 257 257: 8 Vector__XXX
+ SG_ _bspdBrakePressureSensorFault_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bspdTractiveSystemCurrentSensorFault_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bspdTractiveSystemBrakingFault_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bspdInputFault_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bspdFault_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 258 258: 8 Vector__XXX
+ SG_ _pedalPosition1_percent : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _pedalPosition2_percent : 23|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _rideHeightFront_mm : 39|16@0- (1,0) [0|0] "distance:mm" Vector__XXX
+
+BO_ 259 259: 8 Vector__XXX
+ SG_ _fvcBrakePressureSensorFault_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcPedalPosition1Fault_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcPedalPosition2Fault_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcTractiveSystemCurrentSensorFault_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcPedalPositionCorrelationFault_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcPedalPositionBrakingFault_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcBrakingClampingCurrent_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 260 260: 8 Vector__XXX
+ SG_ _coolantPumpPressure_psi : 7|16@0- (0.0244200244,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _coolantFanPower_percent : 23|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+ SG_ _coolantPumpPower_percent : 31|8@0+ (1,0) [0|0] "fraction:%" Vector__XXX
+
+BO_ 262 262: 8 Vector__XXX
+ SG_ _switch1On_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _switch2On_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpio1_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _gpio2_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _vehicleBuzzerOn_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _brakeLightOn_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _readyToDriveButton_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 263 263: 8 Vector__XXX
+ SG_ _fvcTemp_C : 7|16@0- (0.1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _vehicleState_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcState_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcMcuStatus_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _currentlyMoving_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcGSenseStatus_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _displayFaultStatus_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 264 264: 8 Vector__XXX
+ SG_ _sdcStatus3 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _sdcStatus4 : 15|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 265 265: 8 Vector__XXX
+ SG_ _brakePressureRear_psi : 7|16@0- (0.488400488,0) [0|0] "pressure:psi" Vector__XXX
+ SG_ _steeringAngle_deg : 23|16@0- (0.0879120879,0) [0|0] "angle:deg" Vector__XXX
+ SG_ _brakeTempFrontRight_C : 39|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _brakeTempFrontLeft_C : 55|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 272 272: 8 Vector__XXX
+ SG_ _shockPosFrontLeft_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosFrontRight_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _wheelSpeedFrontLeft_mph : 39|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+ SG_ _wheelSpeedFrontRight_mph : 55|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
+
+BO_ 273 273: 8 Vector__XXX
+ SG_ _pittoTubePressure_psi : 7|16@0- (0.01,0) [0|0] "pressure:psi" Vector__XXX
+
+BO_ 272 272: 8 Vector__XXX
+ SG_ _lapBeacon_ul : 7|8@0- (1,0) [0|0] "unitless:" Vector__XXX
+
