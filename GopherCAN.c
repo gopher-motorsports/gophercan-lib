@@ -12,6 +12,14 @@
 #define CHARGER_TX_CAN_ID 0x1806E5F4
 #define CHARGER_RX_CAN_ID 0x18FF50E5
 
+#ifdef ENABLE_BOOTLOADER
+// Bootloader support
+#define STM32F446_BOOTLOADER_ADDR  0x1FFF0000U
+#define BOOTLOADER_ID 0x069
+typedef void (*bootloader_entry_t)(void);
+
+#endif
+
 #define BEACON_PRESENT (lapBeaconRaw_ul != NULL)
 
 static S8 init_filters(CAN_HandleTypeDef* hcan);
@@ -349,6 +357,55 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
             }
         }
 #endif
+
+#ifdef ENABLE_BOOTLOADER
+        if(message->header.StdId == BOOTLOADER_ID) {
+            U32 moduleId = message->data[0];
+
+            if(moduleId == THIS_MODULE_ID) {
+                // Disable interrupts
+                __disable_irq();
+
+                // Jump to bootloader
+                U32 bootloaderStack = *((volatile uint32_t *) (STM32F446_BOOTLOADER_ADDR + 0));
+                U32 bootloaderEntry = *((volatile uint32_t *) (STM32F446_BOOTLOADER_ADDR + 4));
+                bootloader_entry_t bootloaderResetHandler = (bootloader_entry_t) bootloaderEntry;
+                __set_MSP(bootloaderStack);
+                bootloaderResetHandler();
+            }
+            // else {
+            //     // Stop CAN
+
+            //     // Disable CAN RX & TX interrupts
+            //     HAL_CAN_DeactivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+            //     HAL_CAN_DeactivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
+            //     HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+
+            //     // Put CAN in Silent Mode (listen-only, no transmission)
+            //     hcan->Instance->BTR |= CAN_BTR_SILM; // Set SILM bit
+
+            //     // Stop CAN peripheral
+            //     HAL_CAN_Stop(hcan);
+
+            //     // Delay task for 5 seconds
+            //     vTaskDelay(5000);
+
+            //     // Restart CAN
+
+            //     // Clear Silent Mode (normal TX/RX)
+            //     hcan->Instance->BTR &= ~CAN_BTR_SILM; // Clear SILM bit
+
+            //     // Restart CAN peripheral
+            //     HAL_CAN_Start(hcan);
+
+            //     // Re-enable RX & TX notifications for both FIFOs
+            //     HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+            //     HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
+            //     HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+            // }
+        }
+#endif
+
     }
 }
 
