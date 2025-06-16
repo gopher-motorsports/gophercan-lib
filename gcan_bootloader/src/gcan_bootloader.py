@@ -6,7 +6,7 @@ import subprocess
 # Verify car was selected by user
 if (len(sys.argv) < 2):
     print('Need to provide a vehicle config from the network_autogen folder of gophercan-lib')
-    print('Example: python select_car.py go4-23e')
+    print('Example: python select_car.py go4-25')
     sys.exit()
 
 # Get current working directory and workspace dir

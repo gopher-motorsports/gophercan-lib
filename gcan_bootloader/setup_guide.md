@@ -102,7 +102,7 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 #                   - Run the following command from your project directory to run the bootloader, replacing "go4-25e" with the 
 #                   - correct car path
 
-python ../gophercan-lib/gcan_bootloader/src/gcan_bootloader.py go4-25e
+python ../gophercan-lib/gcan_bootloader/src/gcan_bootloader.py go4-25
 
 
 
