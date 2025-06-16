@@ -373,36 +373,36 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
                 __set_MSP(bootloaderStack);
                 bootloaderResetHandler();
             }
-            else {
-                // Stop CAN
+            // else {
+            //     // Stop CAN
 
-                // Disable CAN RX & TX interrupts
-                HAL_CAN_DeactivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
-                HAL_CAN_DeactivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
-                HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+            //     // Disable CAN RX & TX interrupts
+            //     HAL_CAN_DeactivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+            //     HAL_CAN_DeactivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
+            //     HAL_CAN_DeactivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
 
-                // Put CAN in Silent Mode (listen-only, no transmission)
-                hcan->Instance->BTR |= CAN_BTR_SILM; // Set SILM bit
+            //     // Put CAN in Silent Mode (listen-only, no transmission)
+            //     hcan->Instance->BTR |= CAN_BTR_SILM; // Set SILM bit
 
-                // Stop CAN peripheral
-                HAL_CAN_Stop(hcan);
+            //     // Stop CAN peripheral
+            //     HAL_CAN_Stop(hcan);
 
-                // Delay task for 5 seconds
-                vTaskDelay(5000);
+            //     // Delay task for 5 seconds
+            //     vTaskDelay(5000);
 
-                // Restart CAN
+            //     // Restart CAN
 
-                // Clear Silent Mode (normal TX/RX)
-                hcan->Instance->BTR &= ~CAN_BTR_SILM; // Clear SILM bit
+            //     // Clear Silent Mode (normal TX/RX)
+            //     hcan->Instance->BTR &= ~CAN_BTR_SILM; // Clear SILM bit
 
-                // Restart CAN peripheral
-                HAL_CAN_Start(hcan);
+            //     // Restart CAN peripheral
+            //     HAL_CAN_Start(hcan);
 
-                // Re-enable RX & TX notifications for both FIFOs
-                HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
-                HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
-                HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
-            }
+            //     // Re-enable RX & TX notifications for both FIFOs
+            //     HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+            //     HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
+            //     HAL_CAN_ActivateNotification(hcan, CAN_IT_TX_MAILBOX_EMPTY);
+            // }
         }
 #endif
 
