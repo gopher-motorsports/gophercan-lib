@@ -357,7 +357,7 @@ parameters:
     sdcBreakPoint:
         id: 34
         motec_name: SDC Break Point
-        unit: ' '
+        unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
@@ -4989,7 +4989,7 @@ groups: [
     {
       id: 0x14E,
       parameters: [
-            {name: maxDCCurrentLimit_A, start: 0, length: 2}
+        {name: maxDCCurrentLimit_A, start: 0, length: 2}
 
       ]
     },

@@ -1,4 +1,4 @@
-print('???')
+print('Running DBC_converter script...')
 import re
 import yaml
 from yaml import SafeLoader
@@ -36,7 +36,7 @@ def stopp():
 	print("[-] Exiting...")
 	exit()
 if os.path.isfile(arg):
-	chk=re.search("\.yaml$",arg)
+	chk=re.search(".yaml$",arg)
 	if not chk:
 		print("[-] \'"+arg+"\' isn't a yaml file dumbass")
 		stopp()
@@ -77,17 +77,41 @@ with open(arg) as f:
 	out3.write('VERSION ""\n\n\nNS_ :\n\tNS_DESC_\n\tCM_\n\tBA_DEF_\n\tBA_\n\tVAL_\n\tCAT_DEF_\n\tCAT_\n\tFILTER\n\tBA_DEF_DEF_\n\tEV_DATA_\n\tENVVAR_DATA_\n\tSGTYPE_\n\tSGTYPE_VAL_\n\tBA_DEF_SGTYPE_\n\tBA_SGTYPE_\n\tSIG_TYPE_REF_\n\tVAL_TABLE_\n\tSIG_GROUP_\n\tSIG_VALTYPE_\n\tSIGTYPE_VALTYPE_\n\tBO_TX_BU_\n\tBA_DEF_REL_\n\tBA_REL_\n\tBA_DEF_DEF_REL_\n\tBU_SG_REL_\n\tBU_EV_REL_\n\tBU_BO_REL_\n\tSG_MUL_VAL_\n\nBS_:\n\nBU_:\n\n\n')
 		
 	for a in groups: 
+		# id=str(a["id"])
+		# if int(id) >= 372 and int(id) <= 380:
+		# 	buses = "GCAN1"
+		# elif int(id) == 16:
+		# 	buses = "GCAN1"
+		# elif int(id) >= 160 and int(id) <= 193:
+		# 	buses = "GCAN1"
+		# else:
+		# 	temp_id = math.floor(int(id)/256) 
+		# 	#print(temp_id)
+		# 	buses = id_arr[temp_id]["buses"]
 		id=str(a["id"])
-		if int(id) >= 372 and int(id) <= 380:
-			buses = "GCAN1"
-		elif int(id) == 16:
-			buses = "GCAN1"
-		elif int(id) >= 160 and int(id) <= 193:
-			buses = "GCAN1"
+		if(int(id) >= 0x100 and int(id) <= 0x111):
+			buses = "GCAN0"
+		elif(int(id) == 0x02E):
+			buses = "GCAN0"
+		elif(int(id) == 0x10E):
+			buses = "GCAN0"
+		elif(int(id) == 0x14E):
+			buses = "GCAN0"
+		elif(int(id) == 0x18E):
+			buses = "GCAN0"
+		elif(int(id) == 0x40E):
+			buses = "GCAN0"
+		elif(int(id) == 0x42E):
+			buses = "GCAN0"
+		elif(int(id) == 0x44E):
+			buses = "GCAN0"
+		elif(int(id) == 0x46E):
+			buses = "GCAN0"
+		elif(int(id) == 0x48E):
+			buses = "GCAN0"
 		else:
-			temp_id = math.floor(int(id)/256) 
-			#print(temp_id)
-			buses = id_arr[temp_id]["buses"]
+			buses = "GCAN1"
+		
 			
 		### all of the following would be deleted for two can buses
 		if "GCAN0" in buses and "GCAN1" in buses and "GCAN2" in buses:
