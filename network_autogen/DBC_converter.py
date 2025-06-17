@@ -13,7 +13,7 @@ def file_out_mult_bus(out, a, params, id, nums):
 		sign='+'
 		if type in ('SIGNED16','FLOATING'):
 			sign='-'
-		units={"Nm":"torque:N.m","psi":"pressure:psi","mph":"speed:mph","rpm":"angular_speed:rpm","%":"fraction:%","LA":"afr:LA","dBTDC":"unitless:","C":"temperature:C","kPa":"pressure:kPa","V":"voltage:V","":"unitless:","deg":"angle:deg","ft":"distance:ft","mm":"distance:mm","inH2O":"pressure:inH2O","L/min":"volume_flow:L/min","deg/s":"angular_speed:deg/s","G":"acceleration:G","Hz":"frequency:Hz","kHz":"frequency:kHz","A":"current:A","Wb":"flux:Wb","state":"current_state:state", "s":"time:s","unit":"unit:unit"}
+		units={"Nm":"torque:N.m","psi":"pressure:psi","mph":"speed:mph","rpm":"angular_speed:rpm","%":"fraction:%","LA":"afr:LA","dBTDC":"unitless:","C":"temperature:C","kPa":"pressure:kPa","V":"voltage:V","mV":"voltage:mV","":"unitless:","deg":"angle:deg","ft":"distance:ft","mm":"distance:mm","inH2O":"pressure:inH2O","L/min":"volume_flow:L/min","deg/s":"angular_speed:deg/s","G":"acceleration:G","Hz":"frequency:Hz","kHz":"frequency:kHz","A":"current:A","Wb":"flux:Wb","state":"current_state:state", "s":"time:s","unit":"unit:unit"}
 		aemunit=units[params[b['name']]['unit']]
 		bit=1
 		start=b['start']*8

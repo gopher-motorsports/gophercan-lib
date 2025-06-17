@@ -80,26 +80,59 @@ BO_ 513 513: 8 Vector__XXX
 
 BO_ 768 768: 8 Vector__XXX
  SG_ _bmsBatteryCurrent_A : 7|16@0- (0.01,-300) [0|0] "current:A" Vector__XXX
- SG_ _bmsBatteryVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _bmsTractiveSystemVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _bmsBatteryVoltage_V : 23|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _bmsTractiveSystemVoltage_V : 39|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _imdFault_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _amsFault_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 769 769: 8 Vector__XXX
  SG_ _soeByOCV_percent : 7|16@0- (0.01,0) [0|0] "fraction:%" Vector__XXX
  SG_ _soeByCoulombCounting_percent : 23|16@0- (0.01,0) [0|0] "fraction:%" Vector__XXX
- SG_ _imdFault_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
- SG_ _amsFault_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _maxCellVoltage_V : 39|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _minCellVoltage_V : 55|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
+
+BO_ 770 770: 8 Vector__XXX
+ SG_ _avgCellVoltage_V : 7|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _cellImbalance_mV : 23|16@0- (0.1,0) [0|0] "voltage:mV" Vector__XXX
+ SG_ _maxCellTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _minCellTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 771 771: 8 Vector__XXX
+ SG_ _avgCellTemp_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _maxBoardTemp_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _minBoardTemp_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _avgBoardTemp_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+
+BO_ 772 772: 8 Vector__XXX
+ SG_ _bmsNumActiveAlerts_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsCurrAlertIndex_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _overvoltageWarningAlert_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _undervoltageWarningAlert_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _overvoltageFaultAlert_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _undervoltageFaultAlert_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _cellImbalanceAlert_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _overtempWarningAlert_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 773 773: 8 Vector__XXX
+ SG_ _overtempFaultAlert_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _badVoltageSenseStatusAlert_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _badBrickTempSenseStatusAlert_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _badBoardTempSenseStatusAlert_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _insufficientTempSensorsAlert_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _telemetryCommunicationAlert_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _packOvercurrentFaultAlert_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 784 784: 8 Vector__XXX
  SG_ _segment1MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment1MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment1AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment1DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 785 785: 8 Vector__XXX
- SG_ _segment1MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 786 786: 8 Vector__XXX
  SG_ _segment1Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -126,40 +159,40 @@ BO_ 789 789: 8 Vector__XXX
  SG_ _segment1Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 790 790: 8 Vector__XXX
- SG_ _segment1Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 791 791: 8 Vector__XXX
- SG_ _segment1Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 792 792: 8 Vector__XXX
- SG_ _segment1Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 793 793: 8 Vector__XXX
- SG_ _segment1Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment1Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment1Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 800 800: 8 Vector__XXX
  SG_ _segment2MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment2MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment2AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment2DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 801 801: 8 Vector__XXX
- SG_ _segment2MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 802 802: 8 Vector__XXX
  SG_ _segment2Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -186,40 +219,40 @@ BO_ 805 805: 8 Vector__XXX
  SG_ _segment2Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 806 806: 8 Vector__XXX
- SG_ _segment2Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 807 807: 8 Vector__XXX
- SG_ _segment2Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 808 808: 8 Vector__XXX
- SG_ _segment2Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 809 809: 8 Vector__XXX
- SG_ _segment2Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment2Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment2Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 816 816: 8 Vector__XXX
  SG_ _segment3MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment3MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment3AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment3DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 817 817: 8 Vector__XXX
- SG_ _segment3MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 818 818: 8 Vector__XXX
  SG_ _segment3Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -246,40 +279,40 @@ BO_ 821 821: 8 Vector__XXX
  SG_ _segment3Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 822 822: 8 Vector__XXX
- SG_ _segment3Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 823 823: 8 Vector__XXX
- SG_ _segment3Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 824 824: 8 Vector__XXX
- SG_ _segment3Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 825 825: 8 Vector__XXX
- SG_ _segment3Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment3Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment3Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 832 832: 8 Vector__XXX
  SG_ _segment4MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment4MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment4AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment4DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 833 833: 8 Vector__XXX
- SG_ _segment4MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 834 834: 8 Vector__XXX
  SG_ _segment4Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -306,40 +339,40 @@ BO_ 837 837: 8 Vector__XXX
  SG_ _segment4Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 838 838: 8 Vector__XXX
- SG_ _segment4Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 839 839: 8 Vector__XXX
- SG_ _segment4Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 840 840: 8 Vector__XXX
- SG_ _segment4Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 841 841: 8 Vector__XXX
- SG_ _segment4Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment4Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment4Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 848 848: 8 Vector__XXX
  SG_ _segment5MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment5MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment5AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment5DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 849 849: 8 Vector__XXX
- SG_ _segment5MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 850 850: 8 Vector__XXX
  SG_ _segment5Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -366,40 +399,40 @@ BO_ 853 853: 8 Vector__XXX
  SG_ _segment5Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 854 854: 8 Vector__XXX
- SG_ _segment5Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 855 855: 8 Vector__XXX
- SG_ _segment5Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 856 856: 8 Vector__XXX
- SG_ _segment5Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 857 857: 8 Vector__XXX
- SG_ _segment5Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment5Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment5Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 864 864: 8 Vector__XXX
  SG_ _segment6MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment6MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment6AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment6DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 865 865: 8 Vector__XXX
- SG_ _segment6MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 866 866: 8 Vector__XXX
  SG_ _segment6Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -426,40 +459,40 @@ BO_ 869 869: 8 Vector__XXX
  SG_ _segment6Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 870 870: 8 Vector__XXX
- SG_ _segment6Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 871 871: 8 Vector__XXX
- SG_ _segment6Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 872 872: 8 Vector__XXX
- SG_ _segment6Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 873 873: 8 Vector__XXX
- SG_ _segment6Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment6Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment6Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 880 880: 8 Vector__XXX
  SG_ _segment7MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment7MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment7AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment7DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 881 881: 8 Vector__XXX
- SG_ _segment7MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 882 882: 8 Vector__XXX
  SG_ _segment7Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -486,40 +519,40 @@ BO_ 885 885: 8 Vector__XXX
  SG_ _segment7Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 886 886: 8 Vector__XXX
- SG_ _segment7Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 887 887: 8 Vector__XXX
- SG_ _segment7Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 888 888: 8 Vector__XXX
- SG_ _segment7Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 889 889: 8 Vector__XXX
- SG_ _segment7Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment7Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment7Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 896 896: 8 Vector__XXX
  SG_ _segment8MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment8MinCellVoltage_V : 23|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
  SG_ _segment8AvgCellVoltage_V : 39|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
- SG_ _segment8DieTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8DieTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 897 897: 8 Vector__XXX
- SG_ _segment8MaxCellTemperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8MinCellTemperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8AvgCellTemperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8BoardTemperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8MaxCellTemperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8MinCellTemperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8AvgCellTemperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8BoardTemperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 898 898: 8 Vector__XXX
  SG_ _segment8Cell1Voltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -546,28 +579,28 @@ BO_ 901 901: 8 Vector__XXX
  SG_ _segment8Cell16Voltage_V : 55|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
 
 BO_ 902 902: 8 Vector__XXX
- SG_ _segment8Cell1Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell2Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell3Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell4Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell1Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell2Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell3Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell4Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 903 903: 8 Vector__XXX
- SG_ _segment8Cell5Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell6Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell7Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell8Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell5Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell6Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell7Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell8Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 904 904: 8 Vector__XXX
- SG_ _segment8Cell9Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell10Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell11Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell12Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell9Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell10Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell11Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell12Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 905 905: 8 Vector__XXX
- SG_ _segment8Cell13Temperature_C : 7|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell14Temperature_C : 23|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell15Temperature_C : 39|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
- SG_ _segment8Cell16Temperature_C : 55|16@0- (0.001,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell13Temperature_C : 7|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell14Temperature_C : 23|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell15Temperature_C : 39|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
+ SG_ _segment8Cell16Temperature_C : 55|16@0- (0.1,-40) [0|0] "temperature:C" Vector__XXX
 
 BO_ 912 912: 8 Vector__XXX
  SG_ _chargerVoltageSetPoint_V : 7|16@0- (0.1,0) [0|0] "voltage:V" Vector__XXX
