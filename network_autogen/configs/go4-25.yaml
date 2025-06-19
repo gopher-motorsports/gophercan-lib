@@ -5088,7 +5088,7 @@ groups: [
         parameters: [
             {name: sdcStatus3,   start: 0, length: 1},
             {name: sdcStatus4,   start: 1, length: 2},
-            {name: driveSpeedMode_state,      start: 2, length: 1}
+            {name: driveSpeedMode_state,      start: 3, length: 1}
         ]
     },
     {
