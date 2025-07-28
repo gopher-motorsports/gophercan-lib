@@ -1688,7 +1688,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.01
+        scale: 0.1
         offset: 0
 
     bmsTractiveSystemVoltage_V:
@@ -1697,7 +1697,7 @@ parameters:
         unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.01
+        scale: 0.1
         offset: 0
 
     soeByOCV_percent:

@@ -80,8 +80,8 @@ BO_ 513 513: 8 Vector__XXX
 
 BO_ 768 768: 8 Vector__XXX
  SG_ _bmsBatteryCurrent_A : 7|16@0- (0.01,-300) [0|0] "current:A" Vector__XXX
- SG_ _bmsBatteryVoltage_V : 23|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
- SG_ _bmsTractiveSystemVoltage_V : 39|16@0- (0.01,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _bmsBatteryVoltage_V : 23|16@0- (0.1,0) [0|0] "voltage:V" Vector__XXX
+ SG_ _bmsTractiveSystemVoltage_V : 39|16@0- (0.1,0) [0|0] "voltage:V" Vector__XXX
  SG_ _imdFault_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _amsFault_state : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 

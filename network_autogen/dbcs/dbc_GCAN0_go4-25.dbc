@@ -128,6 +128,7 @@ BO_ 263 263: 8 Vector__XXX
 BO_ 264 264: 8 Vector__XXX
  SG_ _sdcStatus3 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _sdcStatus4 : 15|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _driveSpeedMode_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 265 265: 8 Vector__XXX
  SG_ _brakePressureRear_psi : 7|16@0- (0.488400488,0) [0|0] "pressure:psi" Vector__XXX
