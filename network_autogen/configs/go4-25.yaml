@@ -5182,7 +5182,7 @@ groups: [
             {name: swButon4_state, start: 4, length: 1},
             {name: swButon5_state, start: 5, length: 1},
             {name: swDial_a_ul,    start: 6, length: 1},
-            {name: swDial_b_ul,    start: 6, length: 1}
+            {name: swDial_b_ul,    start: 7, length: 1}
         ]
     },
 
