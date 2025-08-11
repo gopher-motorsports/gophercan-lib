@@ -65,6 +65,11 @@ BO_ 340 340: 8 Vector__XXX
  SG_ _shockPosRearRight_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
  SG_ _wheelSpeedRearRight_mph : 39|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
 
+BO_ 341 341: 8 Vector__XXX
+ SG_ _sdcStatus5 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _sdcStatus6 : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _sdcStatus7 : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
 BO_ 512 512: 8 Vector__XXX
  SG_ _swButon0_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _swButon1_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
@@ -76,7 +81,7 @@ BO_ 513 513: 8 Vector__XXX
  SG_ _swButon4_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _swButon5_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _swDial_a_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
- SG_ _swDial_b_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _swDial_b_ul : 63|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 768 768: 8 Vector__XXX
  SG_ _bmsBatteryCurrent_A : 7|16@0- (0.01,-300) [0|0] "current:A" Vector__XXX
@@ -121,6 +126,15 @@ BO_ 773 773: 8 Vector__XXX
  SG_ _insufficientTempSensorsAlert_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _telemetryCommunicationAlert_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _packOvercurrentFaultAlert_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 774 774: 8 Vector__XXX
+ SG_ _bmsShutdown1_state : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsShutdown2_state : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsShutdown3_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsShutdown4_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsShutdown5_state : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsShutdown6_state : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _bmsInhibitActive_state : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
 BO_ 784 784: 8 Vector__XXX
  SG_ _segment1MaxCellVoltage_V : 7|16@0- (0.001,0) [0|0] "voltage:V" Vector__XXX
@@ -730,4 +744,5 @@ BO_ 1876 1876: 8 Vector__XXX
 
 BO_ 1877 1877: 8 Vector__XXX
  SG_ _chargingPowerLimit : 7|16@0- (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _forceEnableBalancing_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
