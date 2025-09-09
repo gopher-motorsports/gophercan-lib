@@ -44,6 +44,11 @@ modules:
         id: 9
         buses:
             - GCAN1
+    Telemetry:
+        id: 10
+        buses:
+            - GCAN0
+            - GCAN1
 
 parameters:
     # Inverter 2024
