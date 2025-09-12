@@ -6305,7 +6305,7 @@ groups: [
         ]
     },
     {
-        id: 0x110,
+        id: 0xE6,
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
