@@ -9,7 +9,6 @@
 #define GOPHERCAN_H_
 
 #include "main.h"
-#include "stm32f4xx_hal.h"
 #include "GopherCAN_network.h"
 
 /*************************************************
@@ -18,11 +17,15 @@
 
 // modules should include a GopherCAN configuration named "GopherCAN_config.h"
 #include "GopherCAN_config.h"
-
 #ifndef GOPHERCAN_CONFIG_H
 #error "Problem with GopherCAN_config.h"
 #endif
 
+#ifdef USING_F7
+    #include "stm32f7xx_hal.h"
+#else
+    #include "stm32f4xx_hal.h"
+#endif
 /*************************************************
  * TYPES
 *************************************************/
