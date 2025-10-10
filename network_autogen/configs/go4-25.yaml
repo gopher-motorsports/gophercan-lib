@@ -852,6 +852,25 @@ parameters:
         encoding: MSB
         scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
         offset: 0
+    
+    fvcControllerTemp_C:
+        id: 88
+        motec_name: FVC Controller Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+
+    fvcMotorTemp_C:
+        id: 89
+        motec_name: FVC Motor Temp
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 1
+        offset: 0
     # END FVC
 
     # Steering Wheel
@@ -5193,7 +5212,9 @@ groups: [
         parameters: [
             {name: sdcStatus3,   start: 0, length: 1},
             {name: sdcStatus4,   start: 1, length: 2},
-            {name: driveSpeedMode_state,      start: 3, length: 1}
+            {name: driveSpeedMode_state,      start: 3, length: 1},
+            {name: fvcControllerTemp_C,     start: 4, length: 2},
+            {name: fvcMotorTemp_C,      start: 6, length: 2}
         ]
     },
     {
