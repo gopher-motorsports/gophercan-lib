@@ -511,7 +511,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.00610500611 # [0-25] -> [0-4095]
+        scale: 0.01221001221 # [0-50] -> [0-4095]
         offset: 0
 
     shockPosRearRight_mm:
@@ -520,7 +520,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.00610500611 # [0-25] -> [0-4095]
+        scale: 0.01221001221 # [0-50] -> [0-4095]
         offset: 0
 
     wheelSpeedRearLeft_mph:
@@ -814,7 +814,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.00610500611 # [0-25] -> [0-4095]
+        scale: 0.01221001221 # [0-50] -> [0-4095]
         offset: 0
 
     shockPosFrontRight_mm:
@@ -823,7 +823,7 @@ parameters:
         unit: mm
         type: FLOATING
         encoding: MSB
-        scale: 0.00610500611 # [0-25] -> [0-4095]
+        scale: 0.01221001221 # [0-50] -> [0-4095]
         offset: 0
 
     pittoTubePressure_psi:
