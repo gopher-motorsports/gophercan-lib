@@ -1497,7 +1497,7 @@ parameters:
         id: 158
         motec_name: Yaw Rate
         unit: deg/s
-        type: UNSIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 0.005
         offset: -163.84
@@ -1506,7 +1506,7 @@ parameters:
         id: 159
         motec_name: Roll Rate
         unit: deg/s
-        type: UNSIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 0.005
         offset: -163.84
@@ -1515,7 +1515,7 @@ parameters:
         id: 160
         motec_name: G Force Lat
         unit: G
-        type: UNSIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 0.0001274
         offset: -4.1746432
@@ -1524,7 +1524,7 @@ parameters:
         id: 161
         motec_name: G Force Long
         unit: G
-        type: UNSIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 0.0001274
         offset: -4.1746432
@@ -1533,7 +1533,7 @@ parameters:
         id: 162
         motec_name: G Force Vert
         unit: G
-        type: UNSIGNED16
+        type: FLOATING
         encoding: LSB
         scale: 0.0001274
         offset: -4.1746432
@@ -5052,6 +5052,152 @@ parameters:
 
     # END BMS
 
+    #Start Tire Temps
+
+    infraredTempCh1:
+        id: 545
+        motec_name: Tire Channel 1
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh2:
+        id: 546
+        motec_name: Tire Channel 2
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh3:
+        id: 547
+        motec_name: Tire Channel 3
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh4:
+        id: 548
+        motec_name: Tire Channel 4
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh5:
+        id: 549
+        motec_name: Tire Channel 5
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh6:
+        id: 550
+        motec_name: Tire Channel 6
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh7:
+        id: 551
+        motec_name: Tire Channel 7
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh8:
+        id: 552
+        motec_name: Tire Channel 8
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh9:
+        id: 553
+        motec_name: Tire Channel 9
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh10:
+        id: 554
+        motec_name: Tire Channel 10
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh11:
+        id: 555
+        motec_name: Tire Channel 11
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh12:
+        id: 556
+        motec_name: Tire Channel 12
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh13:
+        id: 557
+        motec_name: Tire Channel 13
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh14:
+        id: 558
+        motec_name: Tire Channel 14
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh15:
+        id: 559
+        motec_name: Tire Channel 15
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
+    infraredTempCh16:
+        id: 560
+        motec_name: Tire Channel 16
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -100.0
+
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
     # Inverter Low Frequency
@@ -6297,21 +6443,21 @@ groups: [
    
     # IMU Messages (No control over these IDs)
     {
-        id: 0x174,
+        id: 0x070,
         parameters: [
             {name: yawRate_degPerSec, start: 0, length: 2},
             {name: lateralAccel_G,    start: 4, length: 2}
         ]
     },
     {
-        id: 0x178,
+        id: 0x080,
         parameters: [
             {name: rollRate_degPerSec,  start: 0, length: 2},
             {name: longitudinalAccel_G, start: 4, length: 2}
         ]
     },
     {
-        id: 0x17C,
+        id: 0x576,
         parameters: [
             {name: verticalAccel_G, start: 4, length: 2}
         ]
@@ -6329,6 +6475,43 @@ groups: [
         id: 0xE6,
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
+        ]
+    },
+    #tire temps
+    {
+        id: 0x4B0,
+        parameters: [
+            {name: infraredTempCh1, start: 0, length: 2},
+            {name: infraredTempCh2, start: 2, length: 2},
+            {name: infraredTempCh3, start: 4, length: 2},
+            {name: infraredTempCh4, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x4B1,
+        parameters: [
+            {name: infraredTempCh5, start: 0, length: 2},
+            {name: infraredTempCh6, start: 2, length: 2},
+            {name: infraredTempCh7, start: 4, length: 2},
+            {name: infraredTempCh8, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x4B2,
+        parameters: [
+            {name: infraredTempCh9, start: 0, length: 2},
+            {name: infraredTempCh10, start: 2, length: 2},
+            {name: infraredTempCh11, start: 4, length: 2},
+            {name: infraredTempCh12, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x4B3,
+        parameters: [
+            {name: infraredTempCh13, start: 0, length: 2},
+            {name: infraredTempCh14, start: 2, length: 2},
+            {name: infraredTempCh15, start: 4, length: 2},
+            {name: infraredTempCh16, start: 6, length: 2}
         ]
     },
     # END MISC
