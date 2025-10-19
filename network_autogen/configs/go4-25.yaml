@@ -541,8 +541,34 @@ parameters:
         scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
         offset: 0
 
-    sdcStatus8:
+    sdcStatus5:
         id: 54
+        motec_name: Shut Down Circuit Break Point 5
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    sdcStatus6:
+        id: 55
+        motec_name: Shut Down Circuit Break Point 6
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+    sdcStatus7:
+        id: 56
+        motec_name: Shut Down Circuit Break Point 7
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    sdcStatus8:
+        id: 57
         motec_name: Shut Down Circuit Break Point 8
         unit: ''
         type: UNSIGNED8
@@ -551,7 +577,7 @@ parameters:
         offset: 0
 
     sdcStatus9:
-        id: 55
+        id: 58
         motec_name: Shut Down Circuit Break Point 9
         unit: ''
         type: UNSIGNED8
@@ -560,7 +586,7 @@ parameters:
         offset: 0
 
     ambientTemp_C:
-        id: 56
+        id: 59
         motec_name: Ambient Temperature
         unit: C
         type: FLOATING
@@ -569,7 +595,7 @@ parameters:
         offset: 0
 
     ambientHumidity_percent:
-        id: 57
+        id: 60
         motec_name: Ambient Humidity
         unit: '%'
         type: FLOATING
@@ -582,7 +608,7 @@ parameters:
 
     # Front Vehicle Controller 
     pedalPosition1_mm:
-        id: 58
+        id: 61
         motec_name: Accelerator Pedal Pos 1 MM
         unit: mm
         type: FLOATING
@@ -591,7 +617,7 @@ parameters:
         offset: 0
 
     pedalPosition2_mm:
-        id: 59
+        id: 62
         motec_name: Accelerator Pedal Pos 2 MM
         unit: mm
         type: FLOATING
@@ -600,7 +626,7 @@ parameters:
         offset: 0
 
     pedalPosition1_percent:
-        id: 60
+        id: 63
         motec_name: Accelerator Pedal Pos 1 Percent
         unit: '%'
         type: FLOATING
@@ -609,7 +635,7 @@ parameters:
         offset: 0
 
     pedalPosition2_percent:
-        id: 61
+        id: 64
         motec_name: Accelerator Pedal Pos 2 Percent
         unit: '%'
         type: FLOATING
@@ -618,7 +644,7 @@ parameters:
         offset: 0
 
     brakePressureFront_psi:
-        id: 62
+        id: 65
         motec_name: Brake Pres Front
         unit: psi
         type: FLOATING
@@ -627,7 +653,7 @@ parameters:
         offset: 0
 
     rideHeightFront_mm:
-        id: 63
+        id: 66
         motex_name: Ride Height Front
         unit: mm
         type: FLOATING
@@ -636,7 +662,7 @@ parameters:
         offset: 0
 
     fvcBrakePressureSensorFault_state:
-        id: 64
+        id: 67
         motec_name: FVC Brake Pres Fault
         unit: ''
         type: UNSIGNED8
@@ -645,7 +671,7 @@ parameters:
         offset: 0
 
     fvcPedalPosition1Fault_state:
-        id: 65
+        id: 68
         motec_name: FVC Pedal 1 Fault
         unit: ''
         type: UNSIGNED8
@@ -654,7 +680,7 @@ parameters:
         offset: 0
 
     fvcPedalPosition2Fault_state:
-        id: 66
+        id: 69
         motec_name: FVC Pedal 2 Fault
         unit: ''
         type: UNSIGNED8
@@ -663,7 +689,7 @@ parameters:
         offset: 0
 
     fvcTractiveSystemCurrentSensorFault_state:
-        id: 67
+        id: 70
         motec_name: FVC Tractive System Current Fault
         unit: ''
         type: UNSIGNED8
@@ -672,7 +698,7 @@ parameters:
         offset: 0
 
     fvcPedalPositionCorrelationFault_state:
-        id: 68
+        id: 71
         motec_name: FVC APPS Correlation Fault
         unit: ''
         type: UNSIGNED8
@@ -681,7 +707,7 @@ parameters:
         offset: 0
 
     fvcPedalPositionBrakingFault_state:
-        id: 69
+        id: 72
         motec_name: FVC Accelerator and Braking Fault
         unit: ''
         type: UNSIGNED8
@@ -691,7 +717,7 @@ parameters:
 
     # Internal
     fvcTemp_C:
-        id: 70
+        id: 73
         motec_name: FVC Temperature
         unit: C
         type: FLOATING
@@ -700,7 +726,7 @@ parameters:
         offset: 0
 
     vehicleState_state:
-        id: 71
+        id: 74
         motec_name: Vehicle State
         unit: ''
         type: UNSIGNED8
@@ -709,7 +735,7 @@ parameters:
         offset: 0
 
     fvcState_state:
-        id: 72
+        id: 75
         motec_name: FVC State
         unit: ''
         type: UNSIGNED8
@@ -718,7 +744,7 @@ parameters:
         offset: 0
 
     fvcMcuStatus_state:
-        id: 73
+        id: 76
         motec_name: FVC MCU State
         unit: ''
         type: UNSIGNED8
@@ -727,7 +753,7 @@ parameters:
         offset: 0
 
     currentlyMoving_state:
-        id: 74
+        id: 77
         motec_name: Currently Moving
         unit: ''
         type: UNSIGNED8
@@ -736,7 +762,7 @@ parameters:
         offset: 0
 
     fvcGSenseStatus_state:
-        id: 75
+        id: 78
         motec_name: FVC GopherSense Status
         unit: ''
         type: UNSIGNED8
@@ -745,7 +771,7 @@ parameters:
         offset: 0
 
     displayFaultStatus_state:
-        id: 76
+        id: 79
         motec_name: Display Fault Status Message
         unit: ''
         type: UNSIGNED8
@@ -754,7 +780,7 @@ parameters:
         offset: 0
 
     sdcStatus3:
-        id: 77
+        id: 80
         motec_name: sdcStatus3
         unit: ''
         type: UNSIGNED8
@@ -763,7 +789,7 @@ parameters:
         offset: 0
 
     sdcStatus4:
-        id: 78
+        id: 81
         motec_name: sdcStatus4
         unit: ''
         type: UNSIGNED8
@@ -773,7 +799,7 @@ parameters:
 
     # FVC Sensors
     brakePressureRear_psi:
-        id: 79
+        id: 82
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -782,7 +808,7 @@ parameters:
         offset: 0
 
     brakeTempFrontLeft_C:
-        id: 80
+        id: 83
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -791,7 +817,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 81
+        id: 84
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -800,7 +826,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 82
+        id: 85
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -809,7 +835,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 83
+        id: 86
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -818,7 +844,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 84
+        id: 87
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -827,7 +853,7 @@ parameters:
         offset: 0
 
     pittoTubePressure_psi:
-        id: 85
+        id: 88
         motec_name: Pitto Tube
         unit: psi
         type: FLOATING
@@ -836,7 +862,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 86
+        id: 89
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -845,7 +871,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 87
+        id: 90
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -854,7 +880,7 @@ parameters:
         offset: 0
 
     fvcControllerTemp_C:
-        id: 88
+        id: 91
         motec_name: FVC Controller Temp
         unit: C
         type: FLOATING
@@ -864,7 +890,7 @@ parameters:
 
 
     fvcMotorTemp_C:
-        id: 89
+        id: 92
         motec_name: FVC Motor Temp
         unit: C
         type: FLOATING
@@ -875,7 +901,7 @@ parameters:
 
     # Steering Wheel
     swButon0_state:
-        id: 90
+        id: 93
         motec_name: Wheel Button 0
         unit: ''
         type: UNSIGNED8
@@ -884,7 +910,7 @@ parameters:
         offset: 0
 
     swButon1_state:
-        id: 91
+        id: 94
         motec_name: Wheel Button 1
         unit: ''
         type: UNSIGNED8
@@ -893,7 +919,7 @@ parameters:
         offset: 0
 
     swButon2_state:
-        id: 92
+        id: 95
         motec_name: Wheel Button 2
         unit: ''
         type: UNSIGNED8
@@ -902,7 +928,7 @@ parameters:
         offset: 0
 
     swButon3_state:
-        id: 93
+        id: 96
         motec_name: Wheel Button 3
         unit: ''
         type: UNSIGNED8
@@ -911,7 +937,7 @@ parameters:
         offset: 0
 
     swButon4_state:
-        id: 94
+        id: 97
         motec_name: Wheel Button 2
         unit: ''
         type: UNSIGNED8
@@ -920,7 +946,7 @@ parameters:
         offset: 0
 
     swButon5_state:
-        id: 95
+        id: 98
         motec_name: Wheel Button 3
         unit: ''
         type: UNSIGNED8
@@ -929,7 +955,7 @@ parameters:
         offset: 0
 
     displayPage_state:
-        id: 96
+        id: 99
         motec_name: Display Page
         unit: ''
         type: UNSIGNED8
@@ -938,7 +964,7 @@ parameters:
         offset: 0
 
     swDial_a_ul:
-        id: 97
+        id: 100
         motec_name: Wheel Dial A
         unit: ''
         type: UNSIGNED8
@@ -947,7 +973,7 @@ parameters:
         offset: 0
 
     swDial_b_ul:
-        id: 98
+        id: 101
         motec_name: Wheel Dial B
         unit: ''
         type: UNSIGNED8
@@ -956,7 +982,7 @@ parameters:
         offset: 0
 
     readyToDriveButton_state:
-        id: 99
+        id: 102
         motec_name: Ready to Drive Button
         unit: ''
         type: UNSIGNED8
@@ -966,7 +992,7 @@ parameters:
     # End Steering Wheel
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
-        id: 100
+        id: 103
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -975,7 +1001,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 101
+        id: 104
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -984,7 +1010,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 102
+        id: 105
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -993,7 +1019,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 103
+        id: 106
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -1002,7 +1028,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 104
+        id: 107
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -1011,7 +1037,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 105
+        id: 108
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -1020,7 +1046,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 106
+        id: 109
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -1029,7 +1055,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 107
+        id: 110
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -1038,7 +1064,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 108
+        id: 111
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -1047,7 +1073,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 109
+        id: 112
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -1056,7 +1082,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 110
+        id: 113
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -1065,7 +1091,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 111
+        id: 114
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -1074,7 +1100,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 112
+        id: 115
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -1083,7 +1109,7 @@ parameters:
         offset: 0
 
     Overcurrent_Event:
-        id: 113
+        id: 116
         motec_name: OVER CURRENT EVENT
         unit: ''
         type: UNSIGNED8
@@ -1092,7 +1118,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_0_Overcurrent:
-        id: 114
+        id: 117
         motec_name: 12V Channel 0 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1101,7 +1127,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_1_Overcurrent:
-        id: 115
+        id: 118
         motec_name: 12V Channel 1 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1110,7 +1136,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_2_Overcurrent:
-        id: 116
+        id: 119
         motec_name: 12V Channel 2 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1119,7 +1145,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_3_Overcurrent:
-        id: 117
+        id: 120
         motec_name: 12V Channel 3 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1128,7 +1154,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_4_Overcurrent:
-        id: 118
+        id: 121
         motec_name: 12V Channel 4 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1137,7 +1163,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_5_Overcurrent:
-        id: 119
+        id: 122
         motec_name: 12V Channel 5 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1146,7 +1172,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_6_Overcurrent:
-        id: 120
+        id: 123
         motec_name: 12V Channel 6 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1155,7 +1181,7 @@ parameters:
         offset: 0
 
     Five_Volt_0_Overcurrent:
-        id: 121
+        id: 124
         motec_name: 5V Channel 0 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1164,7 +1190,7 @@ parameters:
         offset: 0
 
     Five_Volt_1_Overcurrent:
-        id: 122
+        id: 125
         motec_name: 5V Channel 1 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1173,7 +1199,7 @@ parameters:
         offset: 0
 
     Five_Volt_2_Overcurrent:
-        id: 123
+        id: 126
         motec_name: 5V Channel 2 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1182,7 +1208,7 @@ parameters:
         offset: 0
 
     Five_Volt_3_Overcurrent:
-        id: 124
+        id: 127
         motec_name: 5V Channel 3 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1191,7 +1217,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_0_Overcurrent_Count:
-        id: 125
+        id: 128
         motec_name: 12V Channel 0 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1200,7 +1226,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_1_Overcurrent_Count:
-        id: 126
+        id: 129
         motec_name: 12V Channel 1 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1209,7 +1235,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_2_Overcurrent_Count:
-        id: 127
+        id: 130
         motec_name: 12V Channel 2 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1218,7 +1244,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_3_Overcurrent_Count:
-        id: 128
+        id: 131
         motec_name: 12V Channel 3 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1227,7 +1253,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_4_Overcurrent_Count:
-        id: 129
+        id: 132
         motec_name: 12V Channel 4 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1236,7 +1262,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_5_Overcurrent_Count:
-        id: 130
+        id: 133
         motec_name: 12V Channel 5 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1245,7 +1271,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_6_Overcurrent_Count:
-        id: 131
+        id: 134
         motec_name: 12V Channel 6 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1254,7 +1280,7 @@ parameters:
         offset: 0
 
     Five_Volt_0_Overcurrent_Count:
-        id: 132
+        id: 135
         motec_name: 5V Channel 0 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1263,7 +1289,7 @@ parameters:
         offset: 0
 
     Five_Volt_1_Overcurrent_Count:
-        id: 133
+        id: 136
         motec_name: 5V Channel 1 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1272,7 +1298,7 @@ parameters:
         offset: 0
 
     Five_Volt_2_Overcurrent_Count:
-        id: 134
+        id: 137
         motec_name: 5V Channel 2 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1281,7 +1307,7 @@ parameters:
         offset: 0
 
     Five_Volt_3_Overcurrent_Count:
-        id: 135
+        id: 138
         motec_name: 5V Channel 3 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1290,7 +1316,7 @@ parameters:
         offset: 0
 
     PLM_Temp_degrees:
-        id: 136
+        id: 139
         motec_name: PLM Temperature
         unit: C
         type: FLOATING
@@ -1299,7 +1325,7 @@ parameters:
         offset: -40
 
     PLM_Humidity_percent:
-        id: 137
+        id: 140
         motec_name: PLM Humidity
         unit: '%'
         type: FLOATING
@@ -1308,7 +1334,7 @@ parameters:
         offset: 0
 
     PLM_Micro_Temp:
-        id: 138
+        id: 141
         motec_name: PLM Microcontroller Temperature
         unit: '%'
         type: FLOATING
@@ -1316,34 +1342,6 @@ parameters:
         scale: 0.024414 # [0-100] -> [0-4096]
         offset: 0
 
-    sdcStatus5:
-        id: 139
-        motec_name: SDC Status 5
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    sdcStatus6:
-        id: 140
-        motec_name: SDC Status 6
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    sdcStatus7:
-        id: 141
-        motec_name: SDC Status 7
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    # Power and Logging Module Internal
     can0Utilization_percent:
         id: 142
         motec_name: Bus0 Utilization
@@ -6561,6 +6559,16 @@ groups: [
         parameters: [
             {name: chargingPowerLimit, start: 0, length: 2},
             {name: forceEnableBalancing_state, start: 2, length: 1}
+        ]
+    },
+
+    #PLM SDC 
+    {
+        id: 0x756, 
+        parameters: [
+            {name: sdcStatus5, start: 0, length: 2},
+            {name: sdcStatus6, start: 2, length: 2},
+            {name: sdcStatus7, start: 4, length: 2}
         ]
     }
 ]
