@@ -1121,7 +1121,7 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.0000009313225748 #[-2000 -> 2000] -> [0 -> 4294967295]
+        scale: 0.00000186264514923095703125 #[-2000 -> 2000] -> [0 -> 2147483648]
         offset: -2000
 
     fvcGyroBodyY:
@@ -1130,7 +1130,7 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.0000009313225748    #[-2000 -> 2000] -> [0 -> 4294967295]
+        scale: 0.00000186264514923095703125    #[-2000 -> 2000] -> [0 -> 2147483648]
         offset: -2000
 
     fvcGyroBodyZ:
@@ -1139,7 +1139,7 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.0000009313225748    #[-2000 -> 2000] -> [0 -> 4294967295]
+        scale: 0.00000186264514923095703125   #[-2000 -> 2000] -> [0 -> 2147483648]
         offset: -2000
 
     fvcPowerCycleNeeded:
