@@ -6945,33 +6945,62 @@ groups: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
     },
+     #tire temps for sensor 03241
+    {
+        id: 0x4B0,
+        parameters: [
+            {name: rearRightTireTempCh1, start: 0, length: 2},
+        ]
+    },
+    {
+        id: 0x4B1,
+        parameters: [
+            {name: rearRightTireTempCh5, start: 0, length: 2},
+            {name: rearRightTireTempCh7, start: 4, length: 2},
+            {name: rearRightTireTempCh8, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x4B2,
+        parameters: [
+            {name: rearRightTireTempCh9, start: 0, length: 2},
+            {name: rearRightTireTempCh10, start: 2, length: 2},
+            {name: rearRightTireTempCh12, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x4B3,
+        parameters: [
+            {name: rearRightTireTempCh16, start: 6, length: 2}
+        ]
+    },
      #tire temps for sensor 03823
     {
         id: 0x4B8,
         parameters: [
-            {name: frontRightTempCh1, start: 0, length: 2}
+            {name: frontRightTireTempCh1, start: 0, length: 2}
         ]
     },
     {
         id: 0x4B9,
         parameters: [
-            {name: frontRightTempCh5, start: 0, length: 2},
-            {name: frontRightTempCh7, start: 4, length: 2},
-            {name: frontRightTempCh8, start: 6, length: 2}
+            {name: frontRightTireTempCh5, start: 0, length: 2},
+            {name: frontRightTireTempCh7, start: 4, length: 2},
+            {name: frontRightTireTempCh8, start: 6, length: 2}
         ]
     },
     {
         id: 0x4BA,
         parameters: [
-            {name: frontRightTempCh9, start: 0, length: 2},
-            {name: frontRightTempCh10, start: 2, length: 2},
-            {name: frontRightTempCh12, start: 6, length: 2}
+            {name: frontRightTireTempCh9, start: 0, length: 2},
+            {name: frontRightTireTempCh10, start: 2, length: 2},
+            {name: frontRightTireTempCh12, start: 6, length: 2}
         ]
     },
     {
         id: 0x4BB,
         parameters: [
-            {name: frontRightTempCh16, start: 6, length: 2}
+            {name: frontRightTireTempCh16, start: 6, length: 2}
         ]
     },
     #tire temps for sensor 03824
