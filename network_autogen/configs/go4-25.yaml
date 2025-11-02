@@ -1490,7 +1490,7 @@ parameters:
         offset: 0
     # END DISPLAY
 
-    # Inertail Measurement Unit
+    # Bosch Inertial Measurement Unit
     yawRate_degPerSec:
         id: 158
         motec_name: Yaw Rate
@@ -5061,15 +5061,6 @@ parameters:
         scale: 0.1
         offset: -100.0
 
-    rearRightTireTempCh3:
-        id: 546
-        motec_name: Rear Right Tire Temp Channel 3
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
     rearRightTireTempCh5:
         id: 547
         motec_name: Rear Right Tire Temp Channel 5
@@ -5124,15 +5115,6 @@ parameters:
         scale: 0.1
         offset: -100.0
 
-    rearRightTireTempCh14:
-        id: 553
-        motec_name: Rear Right Tire Temp Channel 14
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
     rearRightTireTempCh16:
         id: 554
         motec_name: Rear Right Tire Temp Channel 16
@@ -5145,15 +5127,6 @@ parameters:
     rearLeftTireTempCh1:
         id: 555
         motec_name: Rear Left Tire Temp Channel 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
-    rearLeftTireTempCh3:
-        id: 556
-        motec_name: Rear Left Tire Temp Channel 3
         unit: C
         type: FLOATING
         encoding: MSB
@@ -5214,15 +5187,6 @@ parameters:
         scale: 0.1
         offset: -100.0
 
-    rearLeftTireTempCh14:
-        id: 563
-        motec_name: Rear Left Tire Temp Channel 14
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
     rearLeftTireTempCh16:
         id: 564
         motec_name: Rear Left Tire Temp Channel 16
@@ -5235,15 +5199,6 @@ parameters:
     frontRightTireTempCh1:
         id: 565
         motec_name: Front Right Tire Temp Channel 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
-    frontRightTireTempCh3:
-        id: 566
-        motec_name: Front Right Tire Temp Channel 3
         unit: C
         type: FLOATING
         encoding: MSB
@@ -5304,15 +5259,6 @@ parameters:
         scale: 0.1
         offset: -100.0
 
-    frontRightTireTempCh14:
-        id: 573
-        motec_name: Front Right Tire Temp Channel 14
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
     frontRightTireTempCh16:
         id: 574
         motec_name: Front Right Tire Temp Channel 16
@@ -5325,15 +5271,6 @@ parameters:
     frontLeftTireTempCh1:
         id: 575
         motec_name: Front Left Tire Temp Channel 1
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
-    frontLeftTireTempCh3:
-        id: 576
-        motec_name: Front Left Tire Temp Channel 3
         unit: C
         type: FLOATING
         encoding: MSB
@@ -5388,15 +5325,6 @@ parameters:
     frontLeftTireTempCh12:
         id: 582
         motec_name: Front Left Tire Temp Channel 12
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -100.0
-
-    frontLeftTireTempCh14:
-        id: 583
-        motec_name: Front Left Tire Temp Channel 14
         unit: C
         type: FLOATING
         encoding: MSB
@@ -6696,7 +6624,6 @@ groups: [
         id: 0x4B0,
         parameters: [
             {name: rearRightTireTempCh1, start: 0, length: 2},
-            {name: rearRightTireTempCh3, start: 4, length: 2},
         ]
     },
     {
@@ -6718,7 +6645,6 @@ groups: [
     {
         id: 0x4B3,
         parameters: [
-            {name: rearRightTireTempCh14, start: 2, length: 2},
             {name: rearRightTireTempCh16, start: 6, length: 2}
         ]
     },
@@ -6726,39 +6652,36 @@ groups: [
     {
         id: 0x4B8,
         parameters: [
-            {name: rearLeftTireTempCh1, start: 0, length: 2},
-            {name: rearLeftTireTempCh3, start: 4, length: 2},
+            {name: frontRightTempCh1, start: 0, length: 2}
         ]
     },
     {
         id: 0x4B9,
         parameters: [
-            {name: rearLeftTireTempCh5, start: 0, length: 2},
-            {name: rearLeftTireTempCh7, start: 4, length: 2},
-            {name: rearLeftTireTempCh8, start: 6, length: 2}
+            {name: frontRightTempCh5, start: 0, length: 2},
+            {name: frontRightTempCh7, start: 4, length: 2},
+            {name: frontRightTempCh8, start: 6, length: 2}
         ]
     },
     {
         id: 0x4BA,
         parameters: [
-            {name: rearLeftTireTempCh9, start: 0, length: 2},
-            {name: rearLeftTireTempCh10, start: 2, length: 2},
-            {name: rearLeftTireTempCh12, start: 6, length: 2}
+            {name: frontRightTempCh9, start: 0, length: 2},
+            {name: frontRightTempCh10, start: 2, length: 2},
+            {name: frontRightTempCh12, start: 6, length: 2}
         ]
     },
     {
         id: 0x4BB,
         parameters: [
-            {name: rearLeftTireTempCh14, start: 2, length: 2},
-            {name: rearLeftTireTempCh16, start: 6, length: 2}
+            {name: frontRightTempCh16, start: 6, length: 2}
         ]
     },
     #tire temps for sensor 03824
     {
         id: 0x4BC,
         parameters: [
-            {name: frontLeftTireTempCh1, start: 0, length: 2},
-            {name: frontLeftTireTempCh3, start: 4, length: 2},
+            {name: frontLeftTireTempCh1, start: 0, length: 2}
         ]
     },
     {
@@ -6780,39 +6703,36 @@ groups: [
     {
         id: 0x4BF,
         parameters: [
-            {name: frontLeftTireTempCh14, start: 2, length: 2},
             {name: frontLeftTireTempCh16, start: 6, length: 2}
         ]
     },
-    #tire temps for sensor 03241
+    #tire temps for sensor 03242
     {
         id: 0x4B4,
         parameters: [
-            {name: frontRightTireTempCh1, start: 0, length: 2},
-            {name: frontRightTireTempCh3, start: 4, length: 2},
+            {name: rearLeftTireTempCh1, start: 0, length: 2},
         ]
     },
     {
         id: 0x4B5,
         parameters: [
-            {name: frontRightTireTempCh5, start: 0, length: 2},
-            {name: frontRightTireTempCh7, start: 4, length: 2},
-            {name: frontRightTireTempCh8, start: 6, length: 2}
+            {name: rearLeftTireTempCh5, start: 0, length: 2},
+            {name: rearLeftTireTempCh7, start: 4, length: 2},
+            {name: rearLeftTireTempCh8, start: 6, length: 2}
         ]
     },
     {
         id: 0x4B6,
         parameters: [
-            {name: frontRightTireTempCh9, start: 0, length: 2},
-            {name: frontRightTireTempCh10, start: 2, length: 2},
-            {name: frontRightTireTempCh12, start: 6, length: 2}
+            {name: rearLeftTireTempCh9, start: 0, length: 2},
+            {name: rearLeftTireTempCh10, start: 2, length: 2},
+            {name: rearLeftTireTempCh12, start: 6, length: 2}
         ]
     },
     {
         id: 0x4B7,
         parameters: [
-            {name: frontRightTireTempCh14, start: 2, length: 2},
-            {name: frontRightTireTempCh16, start: 6, length: 2}
+            {name: rearLeftTireTempCh16, start: 6, length: 2}
         ]
     },
     # END MISC
