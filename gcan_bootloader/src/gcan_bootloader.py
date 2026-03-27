@@ -57,8 +57,9 @@ result = subprocess.run([bootloader_start_path, str(module_id)], capture_output=
 print(result.stdout.strip())
 
 # Check return code
-if result == 1:
-    print("Failed to start GCAN bootloader, aborting!")
+if result.returncode != 0:
+    print(f"Failed to start GCAN bootloader (exit code {result.returncode}), aborting!")
+    print(result.stderr)
     sys.exit()
 
 ####### Uncomment this section to auto run STM32_Programmer_CLI #######
