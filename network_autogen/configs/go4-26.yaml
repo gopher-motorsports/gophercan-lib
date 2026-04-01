@@ -27,7 +27,7 @@ modules:
         id: 5
         buses:
             - GCAN1
-            - GCAN5
+            - GCAN2
     IMU:
         id: 6
         buses:
