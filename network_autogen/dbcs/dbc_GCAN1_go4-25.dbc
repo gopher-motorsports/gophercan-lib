@@ -36,6 +36,52 @@ BS_:
 BU_:
 
 
+BO_ 274 274: 8 Vector__XXX
+ SG_ _fvcINS_status : 7|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcVelBodyX : 23|16@0- (0.00427246,-70) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcVelBodyY : 39|16@0- (0.00427246,-70) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcVelBodyZ : 55|16@0- (0.00427246,-70) [0|0] "unitless:" Vector__XXX
+
+BO_ 275 275: 8 Vector__XXX
+ SG_ _fvcLatitude : 7|32@0- (0.00549324788,-90) [0|0] "angle:deg" Vector__XXX
+ SG_ _fvcLongitude : 39|32@0- (0.01098633,-180) [0|0] "angle:deg" Vector__XXX
+
+BO_ 276 276: 8 Vector__XXX
+ SG_ _fvcYaw : 7|32@0- (1.67638063e-07,-180) [0|0] "angle:deg" Vector__XXX
+ SG_ _fvcPitch : 39|16@0- (0.00549316406,-90) [0|0] "angle:deg" Vector__XXX
+ SG_ _fvcRoll : 55|16@0- (0.01098632812,-180) [0|0] "angle:deg" Vector__XXX
+
+BO_ 277 277: 8 Vector__XXX
+ SG_ _fvcQuatX : 7|16@0- (6.103515e-05,-1) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcQuatY : 23|16@0- (6.103515e-05,-1) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcQuatZ : 39|16@0- (6.103515e-05,-1) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcQuatS : 55|16@0- (6.103515e-05,-1) [0|0] "unitless:" Vector__XXX
+
+BO_ 278 278: 8 Vector__XXX
+ SG_ _fvcLinBodyAccX : 7|16@0- (0.00305175781,-50) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcLinBodyAccY : 23|16@0- (0.00305175781,-50) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcLinBodyAccZ : 39|16@0- (0.00305175781,-50) [0|0] "unitless:" Vector__XXX
+
+BO_ 279 279: 8 Vector__XXX
+ SG_ _fvcTimeUtcY : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcTimeUtcMonth : 15|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcTimeUtcD : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcTimeUtcH : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcTimeUtcMin : 39|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcTimeUtcS : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcTimeUtcF : 55|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 280 280: 8 Vector__XXX
+ SG_ _fvcGyroBodyX : 7|32@0- (1.862645149230957e-06,-2000) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _fvcGyroBodyY : 39|32@0- (1.862645149230957e-06,-2000) [0|0] "angular_speed:deg/s" Vector__XXX
+
+BO_ 281 281: 8 Vector__XXX
+ SG_ _fvcGyroBodyZ : 7|32@0- (1.862645149230957e-06,-2000) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _fvcAltitude : 47|16@0- (0.06103608758,-1000) [0|0] "unitless:" Vector__XXX
+
+BO_ 288 288: 8 Vector__XXX
+ SG_ _fvcPowerCycleNeeded : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
 BO_ 336 336: 8 Vector__XXX
  SG_ _currentSensorHigh_A : 7|16@0- (0.1,-1000) [0|0] "voltage:V" Vector__XXX
  SG_ _currentSensorLow_A : 23|16@0- (0.01,-100) [0|0] "voltage:V" Vector__XXX
@@ -49,7 +95,7 @@ BO_ 337 337: 8 Vector__XXX
  SG_ _currentSensorStatus_state : 55|8@0+ (1,0) [0|0] "current:A" Vector__XXX
 
 BO_ 338 338: 8 Vector__XXX
- SG_ _shockPosRearLeft_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosRearLeft_mm : 7|16@0- (0.01221001221,0) [0|0] "distance:mm" Vector__XXX
  SG_ _radWaterTempIn_C : 23|16@0- (0.0488400488,0) [0|0] "temperature:C" Vector__XXX
  SG_ _radWaterTempOut_C : 39|16@0- (0.0488400488,0) [0|0] "temperature:C" Vector__XXX
  SG_ _wheelSpeedRearLeft_mph : 55|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
@@ -62,7 +108,7 @@ BO_ 339 339: 8 Vector__XXX
 
 BO_ 340 340: 8 Vector__XXX
  SG_ _brakeTempRearRight_C : 7|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
- SG_ _shockPosRearRight_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosRearRight_mm : 23|16@0- (0.01221001221,0) [0|0] "distance:mm" Vector__XXX
  SG_ _wheelSpeedRearRight_mph : 39|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
 
 BO_ 341 341: 8 Vector__XXX
@@ -706,19 +752,86 @@ BO_ 1794 1794: 8 Vector__XXX
  SG_ _gpsMinutesUTC_ul : 47|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _gpsSecondsUTC_ul : 55|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
 
-BO_ 372 372: 8 Vector__XXX
- SG_ _yawRate_degPerSec : 0|16@1+ (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
- SG_ _lateralAccel_G : 32|16@1+ (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+BO_ 112 112: 8 Vector__XXX
+ SG_ _yawRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _lateralAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
 
-BO_ 376 376: 8 Vector__XXX
- SG_ _rollRate_degPerSec : 0|16@1+ (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
- SG_ _longitudinalAccel_G : 32|16@1+ (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+BO_ 128 128: 8 Vector__XXX
+ SG_ _rollRate_degPerSec : 0|16@1- (0.005,-163.84) [0|0] "angular_speed:deg/s" Vector__XXX
+ SG_ _longitudinalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
 
-BO_ 380 380: 8 Vector__XXX
- SG_ _verticalAccel_G : 32|16@1+ (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
+BO_ 1398 1398: 8 Vector__XXX
+ SG_ _verticalAccel_G : 32|16@1- (0.0001274,-4.1746432) [0|0] "acceleration:G" Vector__XXX
 
 BO_ 229 229: 8 Vector__XXX
  SG_ _lapBeaconRaw_ul : 7|24@0- (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 230 230: 8 Vector__XXX
+ SG_ _lapBeacon_ul : 7|8@0- (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1200 1200: 8 Vector__XXX
+ SG_ _rearRightTireTempCh1 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1201 1201: 8 Vector__XXX
+ SG_ _rearRightTireTempCh5 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearRightTireTempCh7 : 39|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearRightTireTempCh8 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1202 1202: 8 Vector__XXX
+ SG_ _rearRightTireTempCh9 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearRightTireTempCh10 : 23|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearRightTireTempCh12 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1203 1203: 8 Vector__XXX
+ SG_ _rearRightTireTempCh16 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1208 1208: 8 Vector__XXX
+ SG_ _frontRightTireTempCh1 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1209 1209: 8 Vector__XXX
+ SG_ _frontRightTireTempCh5 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontRightTireTempCh7 : 39|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontRightTireTempCh8 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1210 1210: 8 Vector__XXX
+ SG_ _frontRightTireTempCh9 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontRightTireTempCh10 : 23|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontRightTireTempCh12 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1211 1211: 8 Vector__XXX
+ SG_ _frontRightTireTempCh16 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1212 1212: 8 Vector__XXX
+ SG_ _frontLeftTireTempCh1 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1213 1213: 8 Vector__XXX
+ SG_ _frontLeftTireTempCh5 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontLeftTireTempCh7 : 39|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontLeftTireTempCh8 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1214 1214: 8 Vector__XXX
+ SG_ _frontLeftTireTempCh9 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontLeftTireTempCh10 : 23|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _frontLeftTireTempCh12 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1215 1215: 8 Vector__XXX
+ SG_ _frontLeftTireTempCh16 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1204 1204: 8 Vector__XXX
+ SG_ _rearLeftTireTempCh1 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1205 1205: 8 Vector__XXX
+ SG_ _rearLeftTireTempCh5 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearLeftTireTempCh7 : 39|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearLeftTireTempCh8 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1206 1206: 8 Vector__XXX
+ SG_ _rearLeftTireTempCh9 : 7|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearLeftTireTempCh10 : 23|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+ SG_ _rearLeftTireTempCh12 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
+
+BO_ 1207 1207: 8 Vector__XXX
+ SG_ _rearLeftTireTempCh16 : 55|16@0- (0.1,-100.0) [0|0] "temperature:C" Vector__XXX
 
 BO_ 1872 1872: 8 Vector__XXX
  SG_ _tm_CAN1Util_percent : 7|16@0- (0.1,0) [0|0] "fraction:%" Vector__XXX
@@ -745,4 +858,9 @@ BO_ 1876 1876: 8 Vector__XXX
 BO_ 1877 1877: 8 Vector__XXX
  SG_ _chargingPowerLimit : 7|16@0- (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _forceEnableBalancing_state : 23|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+
+BO_ 1878 1878: 8 Vector__XXX
+ SG_ _sdcStatus5 : 7|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _sdcStatus6 : 23|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _sdcStatus7 : 39|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
 

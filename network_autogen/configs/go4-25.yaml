@@ -902,7 +902,7 @@ parameters:
     fvcINS_status:
         id: 93
         motec_name: FVC INS Status
-        unit: none
+        unit: ''
         type: UNSIGNED16
         encoding: MSB
         scale: 1
@@ -929,7 +929,7 @@ parameters:
     fvcAltitude:
         id: 96
         motec_name: FVC Altitude
-        unit: m
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.06103608758     # [-1000 - 3000] -> [0-65535]
@@ -938,7 +938,7 @@ parameters:
     fvcVelBodyX:
         id: 97
         motec_name: FVC Velocity Body X
-        unit: m/s
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00427246    # [-70 - 70] -> [0-32768]
@@ -947,7 +947,7 @@ parameters:
     fvcVelBodyY:
         id: 98
         motec_name: FVC Velocity Body Y
-        unit: m/s
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00427246   # [-70 - 70] -> [0-32768]
@@ -956,7 +956,7 @@ parameters:
     fvcVelBodyZ:
         id: 99
         motec_name: FVC Velocity Body Z
-        unit: m/s
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00427246   # [-70 - 70] -> [0-32768]
@@ -992,7 +992,7 @@ parameters:
     fvcQuatX:
         id: 103
         motec_name: FVC Quaternion X
-        unit: none
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
@@ -1001,7 +1001,7 @@ parameters:
     fvcQuatY:
         id: 104
         motec_name: FVC Quaternion Y
-        unit: none
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
@@ -1010,7 +1010,7 @@ parameters:
     fvcQuatZ:
         id: 105
         motec_name: FVC Quaternion Z
-        unit: none
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
@@ -1019,7 +1019,7 @@ parameters:
     fvcQuatS:
         id: 106
         motec_name: FVC Quaternion Scalar
-        unit: none
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
@@ -1028,7 +1028,7 @@ parameters:
     fvcLinBodyAccX:
         id: 107
         motec_name: FVC Linear Acc Body X
-        unit: m/s^2
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00305175781   # [-50 - 50] -> [0 - 32768]
@@ -1037,7 +1037,7 @@ parameters:
     fvcLinBodyAccY:
         id: 108
         motec_name: FVC Linear Acc Body Y
-        unit: m/s^2
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00305175781  # [-50 - 50] -> [0 - 32768]
@@ -1046,7 +1046,7 @@ parameters:
     fvcLinBodyAccZ:
         id: 109
         motec_name: FVC Linear Acc Body Z
-        unit: m/s^2
+        unit: ''
         type: FLOATING
         encoding: MSB
         scale: 0.00305175781  # [-50 - 50] -> [0 - 32768]
@@ -1055,7 +1055,7 @@ parameters:
     fvcTimeUtcY:
         id: 110
         motec_name: FVC UTC Year
-        unit: none
+        unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
@@ -1064,7 +1064,7 @@ parameters:
     fvcTimeUtcMonth:
         id: 111
         motec_name: FVC UTC Month
-        unit: none
+        unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
@@ -1073,7 +1073,7 @@ parameters:
     fvcTimeUtcD:
         id: 112
         motec_name: FVC UTC Day
-        unit: none
+        unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
@@ -1082,7 +1082,7 @@ parameters:
     fvcTimeUtcH:
         id: 113
         motec_name: FVC UTC Hour
-        unit: none
+        unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
@@ -1091,7 +1091,7 @@ parameters:
     fvcTimeUtcMin:
         id: 114
         motec_name: FVC UTC Minute
-        unit: none
+        unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
@@ -1100,7 +1100,7 @@ parameters:
     fvcTimeUtcS:
         id: 115
         motec_name: FVC UTC Second
-        unit: none
+        unit: ''
         type: UNSIGNED8
         encoding: MSB
         scale: 1
@@ -1109,7 +1109,7 @@ parameters:
     fvcTimeUtcF:
         id: 116
         motec_name: FVC UTC Fraction
-        unit: none
+        unit: ''
         type: UNSIGNED16
         encoding: MSB
         scale: 1

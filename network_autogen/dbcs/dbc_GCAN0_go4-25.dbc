@@ -129,6 +129,8 @@ BO_ 264 264: 8 Vector__XXX
  SG_ _sdcStatus3 : 7|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _sdcStatus4 : 15|16@0+ (1,0) [0|0] "unitless:" Vector__XXX
  SG_ _driveSpeedMode_state : 31|8@0+ (1,0) [0|0] "unitless:" Vector__XXX
+ SG_ _fvcControllerTemp_C : 39|16@0- (1,0) [0|0] "temperature:C" Vector__XXX
+ SG_ _fvcMotorTemp_C : 55|16@0- (1,0) [0|0] "temperature:C" Vector__XXX
 
 BO_ 265 265: 8 Vector__XXX
  SG_ _brakePressureRear_psi : 7|16@0- (0.488400488,0) [0|0] "pressure:psi" Vector__XXX
@@ -137,14 +139,11 @@ BO_ 265 265: 8 Vector__XXX
  SG_ _brakeTempFrontLeft_C : 55|16@0- (0.195360195,0) [0|0] "temperature:C" Vector__XXX
 
 BO_ 272 272: 8 Vector__XXX
- SG_ _shockPosFrontLeft_mm : 7|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
- SG_ _shockPosFrontRight_mm : 23|16@0- (0.00610500611,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosFrontLeft_mm : 7|16@0- (0.01221001221,0) [0|0] "distance:mm" Vector__XXX
+ SG_ _shockPosFrontRight_mm : 23|16@0- (0.01221001221,0) [0|0] "distance:mm" Vector__XXX
  SG_ _wheelSpeedFrontLeft_mph : 39|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
  SG_ _wheelSpeedFrontRight_mph : 55|16@0- (0.002288853283971548,0) [0|0] "speed:mph" Vector__XXX
 
 BO_ 273 273: 8 Vector__XXX
  SG_ _pittoTubePressure_psi : 7|16@0- (0.01,0) [0|0] "pressure:psi" Vector__XXX
-
-BO_ 272 272: 8 Vector__XXX
- SG_ _lapBeacon_ul : 7|8@0- (1,0) [0|0] "unitless:" Vector__XXX
 
