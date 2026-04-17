@@ -2168,7 +2168,7 @@ parameters:
         motec_name: FVC INS Status
         unit: none
         type: UNSIGNED16
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2176,27 +2176,27 @@ parameters:
         id: 229
         motec_name: FVC Latitude
         unit: deg
-        type: FLOATING
-        encoding: MSB
-        scale: 0.00549324788    # [-90 - 90] -> [0-32768]
+        type: DOUBLE
+        encoding: LSB
+        scale: 0.00000000000000000975781955236954    # [-90 - 90] -> [0-18,446,744,073,709,551,615]
         offset: -90
 
     vnavLongitude:
         id: 230
         motec_name: FVC Longitude
         unit: deg
-        type: FLOATING
-        encoding: MSB
-        scale: 0.01098633    # [-180 - 180] -> [0-32768]
+        type: DOUBLE
+        encoding: LSB
+        scale: 0.00000000000000001951563910473908    # [-180 - 180] -> [0-18,446,744,073,709,551,615]
         offset: -180
 
     vnavAltitude:
         id: 231
         motec_name: FVC Altitude
         unit: m
-        type: FLOATING
-        encoding: MSB
-        scale: 0.06103608758     # [-1000 - 3000] -> [0-65535]
+        type: DOUBLE
+        encoding: LSB
+        scale: 0.0000000000000002710505431213761    # [-1000 - 4000] -> [0-18,446,744,073,709,551,615]
         offset: -1000
 
     vnavVelBodyX:
@@ -2204,8 +2204,8 @@ parameters:
         motec_name: FVC Velocity Body X
         unit: m/s
         type: FLOATING
-        encoding: MSB
-        scale: 0.00427246    # [-70 - 70] -> [0-32768]
+        encoding: LSB
+        scale: 0.000000032596290116    # [-70 - 70] -> [0-4,294,967,295]
         offset: -70
 
     vnavVelBodyY:
@@ -2213,8 +2213,8 @@ parameters:
         motec_name: FVC Velocity Body Y
         unit: m/s
         type: FLOATING
-        encoding: MSB
-        scale: 0.00427246   # [-70 - 70] -> [0-32768]
+        encoding: LSB
+        scale: 0.000000032596290116   # [-70 - 70] -> [0-4,294,967,295]
         offset: -70
 
     vnavVelBodyZ:
@@ -2222,8 +2222,8 @@ parameters:
         motec_name: FVC Velocity Body Z
         unit: m/s
         type: FLOATING
-        encoding: MSB
-        scale: 0.00427246   # [-70 - 70] -> [0-32768]
+        encoding: LSB
+        scale: 0.000000032596290116   # [-70 - 70] -> [0-4,294,967,295]
         offset: -70
 
     vnavYaw:
@@ -2231,8 +2231,8 @@ parameters:
         motec_name: FVC Yaw
         unit: deg
         type: FLOATING
-        encoding: MSB
-        scale: 0.000000167638063    # [-180 - 180] -> [0-65535]
+        encoding: LSB
+        scale: 0.000000083819031728    # [-180 - 180] -> [0-4,294,967,295]
         offset: -180
 
     vnavPitch:
@@ -2240,8 +2240,8 @@ parameters:
         motec_name: FVC Pitch
         unit: deg
         type: FLOATING
-        encoding: MSB
-        scale: 0.00549316406    # [-90 - 90] -> [0-65535]
+        encoding: LSB
+        scale: 0.000000041909515864    # [-90 - 90] -> [0-4,294,967,295]
         offset: -90
 
     vnavRoll:
@@ -2249,8 +2249,8 @@ parameters:
         motec_name: FVC Roll
         unit: deg
         type: FLOATING
-        encoding: MSB
-        scale: 0.01098632812    # [-180 - 180] -> [0-32768]
+        encoding: LSB
+        scale: 0.000000083819031728    # [-180 - 180] -> [0-4,294,967,295]
         offset: -180
 
     vnavQuatX:
@@ -2258,8 +2258,8 @@ parameters:
         motec_name: FVC Quaternion X
         unit: none
         type: FLOATING
-        encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        encoding: LSB
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     vnavQuatY:
@@ -2267,8 +2267,8 @@ parameters:
         motec_name: FVC Quaternion Y
         unit: none
         type: FLOATING
-        encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        encoding: LSB
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     vnavQuatZ:
@@ -2276,8 +2276,8 @@ parameters:
         motec_name: FVC Quaternion Z
         unit: none
         type: FLOATING
-        encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        encoding: LSB
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     vnavQuatS:
@@ -2285,8 +2285,8 @@ parameters:
         motec_name: FVC Quaternion Scalar
         unit: none
         type: FLOATING
-        encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        encoding: LSB
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     vnavLinBodyAccX:
@@ -2294,8 +2294,8 @@ parameters:
         motec_name: FVC Linear Acc Body X
         unit: m/s^2
         type: FLOATING
-        encoding: MSB
-        scale: 0.00305175781   # [-50 - 50] -> [0 - 32768]
+        encoding: LSB
+        scale: 0.000000023283064375   # [-50 - 50] -> [0 - 4,294,967,295]
         offset: -50
 
     vnavLinBodyAccY:
@@ -2303,8 +2303,8 @@ parameters:
         motec_name: FVC Linear Acc Body Y
         unit: m/s^2
         type: FLOATING
-        encoding: MSB
-        scale: 0.00305175781  # [-50 - 50] -> [0 - 32768]
+        encoding: LSB
+        scale: 0.000000023283064375  # [-50 - 50] -> [0 - 4,294,967,295]
         offset: -50
 
     vnavLinBodyAccZ:
@@ -2312,8 +2312,8 @@ parameters:
         motec_name: FVC Linear Acc Body Z
         unit: m/s^2
         type: FLOATING
-        encoding: MSB
-        scale: 0.00305175781  # [-50 - 50] -> [0 - 32768]
+        encoding: LSB
+        scale: 0.000000023283064375  # [-50 - 50] -> [0 - 4,294,967,295]
         offset: -50
 
     vnavTimeUtcY:
@@ -2321,7 +2321,7 @@ parameters:
         motec_name: FVC UTC Year
         unit: none
         type: UNSIGNED8
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2330,7 +2330,7 @@ parameters:
         motec_name: FVC UTC Month
         unit: none
         type: UNSIGNED8
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2339,7 +2339,7 @@ parameters:
         motec_name: FVC UTC Day
         unit: none
         type: UNSIGNED8
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2348,7 +2348,7 @@ parameters:
         motec_name: FVC UTC Hour
         unit: none
         type: UNSIGNED8
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2357,7 +2357,7 @@ parameters:
         motec_name: FVC UTC Minute
         unit: none
         type: UNSIGNED8
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2366,7 +2366,7 @@ parameters:
         motec_name: FVC UTC Second
         unit: none
         type: UNSIGNED8
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2375,7 +2375,7 @@ parameters:
         motec_name: FVC UTC Fraction
         unit: none
         type: UNSIGNED16
-        encoding: MSB
+        encoding: LSB
         scale: 1
         offset: 0
 
@@ -2384,8 +2384,8 @@ parameters:
         motec_name: FVC Gyro Body X
         unit: deg/s
         type: FLOATING
-        encoding: MSB
-        scale: 0.00000186264514923095703125 #[-2000 -> 2000] -> [0 -> 2147483648]
+        encoding: LSB
+        scale: 0.000000931322574847 #[-2000 -> 2000] -> [0 -> 4,294,967,295]
         offset: -2000
 
     vnavGyroBodyY:
@@ -2393,8 +2393,8 @@ parameters:
         motec_name: FVC Gyro Body Y
         unit: deg/s
         type: FLOATING
-        encoding: MSB
-        scale: 0.00000186264514923095703125    #[-2000 -> 2000] -> [0 -> 2147483648]
+        encoding: LSB
+        scale: 0.000000931322574847   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
         offset: -2000
 
     vnavGyroBodyZ:
@@ -2402,8 +2402,8 @@ parameters:
         motec_name: FVC Gyro Body Z
         unit: deg/s
         type: FLOATING
-        encoding: MSB
-        scale: 0.00000186264514923095703125   #[-2000 -> 2000] -> [0 -> 2147483648]
+        encoding: LSB
+        scale: 0.000000931322574847   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
         offset: -2000
     # END Vector NAV CAN Module
 
@@ -7545,49 +7545,69 @@ groups: [
     # END RVC
 
     # Vector NAV CAN Module
+    
     {
         id: 0x200,
         parameters: [
-            {name: vnavINS_status,     start: 0, length: 2},
-            {name: vnavVelBodyX,       start: 2, length: 2},
-            {name: vnavVelBodyY,       start: 4, length: 2},
-            {name: vnavVelBodyZ,       start: 6, length: 2}
+            {name: vnavLatitude,     start: 0, length: 8},
         ]
     },
     {
         id: 0x201,
         parameters: [
-            {name: vnavLatitude,     start: 0, length: 4},
-            {name: vnavLongitude,    start: 4, length: 4}
+            {name: vnavLongitude,    start: 0, length: 8}
         ]
     },
     {
         id: 0x202,
         parameters: [
-            {name: vnavYaw,     start: 0, length: 4},
-            {name: vnavPitch,   start: 4, length: 2},
-            {name: vnavRoll,    start: 6, length: 2}
+            {name: vnavAltitude,    start: 0, length: 8}
         ]
     },
     {
         id: 0x203,
         parameters: [
-            {name: vnavQuatX,    start: 0, length: 2},
-            {name: vnavQuatY,    start: 2, length: 2},
-            {name: vnavQuatZ,    start: 4, length: 2},
-            {name: vnavQuatS,    start: 6, length: 2}
+            {name: vnavVelBodyX,       start: 0, length: 4},
+            {name: vnavVelBodyY,       start: 4, length: 4},
         ]
     },
     {
         id: 0x204,
         parameters: [
-            {name: vnavLinBodyAccX,    start: 0, length: 2},
-            {name: vnavLinBodyAccY,    start: 2, length: 2},
-            {name: vnavLinBodyAccZ,    start: 4, length: 2}
+            {name: vnavYaw,     start: 0, length: 4},
+            {name: vnavPitch,   start: 4, length: 4}
         ]
     },
     {
         id: 0x205,
+        parameters: [
+            {name: vnavRoll,           start: 0, length: 4},
+            {name: vnavLinBodyAccZ,    start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x204,
+        parameters: [
+            {name: vnavLinBodyAccX,    start: 0, length: 4},
+            {name: vnavLinBodyAccY,    start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x204,
+        parameters: [
+            {name: vnavQuatX,    start: 0, length: 4},
+            {name: vnavQuatY,    start: 4, length: 4},
+        ]
+    },
+    {
+        id: 0x205,
+        parameters: [
+            {name: vnavQuatZ,    start: 0, length: 4},
+            {name: vnavQuatS,    start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x206,
         parameters: [
             {name: vnavTimeUtcY,     start: 0, length: 1},
             {name: vnavTimeUtcMonth, start: 1, length: 1},
@@ -7599,17 +7619,23 @@ groups: [
         ]
     },
     {
-        id: 0x206,
+        id: 0x207,
         parameters: [
             {name: vnavGyroBodyX,     start: 0, length: 4},
             {name: vnavGyroBodyY,     start: 4, length: 4},
         ]
     },
     {
-        id: 0x207,
+        id: 0x208,
         parameters: [
             {name: vnavGyroBodyZ,     start: 0, length: 4},
-            {name: vnavAltitude,     start: 5,     length: 2}
+            {name: vnavINS_status,    start: 4, length: 2},
+        ]
+    },
+    {
+        id: 0x209,
+        parameters: [
+            {name: vnavVelBodyZ,     start: 0, length: 4}
         ]
     },
 
