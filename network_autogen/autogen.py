@@ -18,7 +18,8 @@ param_structs = {
     "SIGNED16" : "S16_CAN_STRUCT",
     "SIGNED32" : "S32_CAN_STRUCT",
     "SIGNED64" : "S64_CAN_STRUCT",
-    "FLOATING" : "FLOAT_CAN_STRUCT"
+    "FLOATING" : "FLOAT_CAN_STRUCT",
+    "DOUBLE" : "DOUBLE_CAN_STRUCT"
 }
 
 filenames = [
