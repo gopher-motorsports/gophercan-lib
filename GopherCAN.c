@@ -841,21 +841,24 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     return CAN_SUCCESS;
 }
 
+double param_data_double = 0;
 // decode_parameter
 // extract and decode a parameter from CAN data field
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
     float value_fl = 0;
-
+    double value_double = 0;
     // reconstruct U64
     for (U8 i = 0; i < length; i++) {
-        if (param->ENC == LSB) {
-            value |= data[start + i] << (i * BITS_IN_BYTE);
-        } else if (param->ENC == MSB) {
-            value |= data[start + i] << ((length - 1 - i) * BITS_IN_BYTE);
-        } else return DECODING_ERR;
+    if (param->ENC == LSB) {
+        value |= ((U64)data[start + i]) << (i * BITS_IN_BYTE);
+    } else if (param->ENC == MSB) {
+        value |= ((U64)data[start + i]) << ((length - 1 - i) * BITS_IN_BYTE);
+    } else {
+        return DECODING_ERR;
     }
+}
 
     // restore original type
     switch (param->TYPE) {
@@ -905,10 +908,11 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
             else if (length == 4) value_fl = (U32)value;
             else value_fl = value;
 #endif
-            ((FLOAT_CAN_STRUCT*)param)->data = (float) (value_fl * param->SCALE) + param->OFFSET;
+            ((FLOAT_CAN_STRUCT*)param)->data = (float) ((value_fl * param->SCALE) + param->OFFSET);
             break;
         case DOUBLE:
-            ((DOUBLE_CAN_STRUCT*)param)->data = (double) (value_fl * param->SCALE) + param->OFFSET;
+            value_double = value;
+            ((DOUBLE_CAN_STRUCT*)param)->data = (double) ((value_double * param->SCALE) + param->OFFSET);
             break;
         default:
             return DECODING_ERR;
