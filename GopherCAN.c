@@ -147,7 +147,7 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
     filter.FilterScale = CAN_FILTERSCALE_16BIT;
     filter.FilterIdLow = 0;
     filter.FilterIdHigh = 0;
-    filter.FilterMaskIdLow = 0b00001000;
+    filter.FilterMaskIdLow = 0x08;
     filter.FilterMaskIdHigh = 0;
 
     if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
@@ -222,10 +222,17 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
 *************************************************/
 
 // called by ISRs when a message is received
-__weak void GCAN_onRX(CAN_HandleTypeDef* hcan) {}
+__weak void GCAN_onRX(CAN_HandleTypeDef* hcan) {
+    (void)hcan;
+}
 
 // called when an error message (EXT ID) is received
-__weak void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id) {}
+__weak void GCAN_onError(U32 rx_time, U8 source_module, U16 parameter, U8 error_id) {
+    (void)rx_time;
+    (void)source_module;
+    (void)parameter;
+    (void)error_id;
+}
 
 /*************************************************
  * ISRs
