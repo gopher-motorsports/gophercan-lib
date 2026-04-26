@@ -1389,8 +1389,7 @@ parameters:
 
     rvcBspdInputFault_state:
         id: 143
-        motec_name: BSPD Input Fault(current sensor/rear brake press out of 
-            range)
+        motec_name: BSPD Input Fault(current sensor/rear brake press out of range)
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -3236,7 +3235,7 @@ parameters:
 
     # END Charger Control Board
 
-    # START Battery Management System 25
+    # START Battery Management System 26
 
     # Pack sensors
 
@@ -3379,9 +3378,9 @@ parameters:
 
     # BMS faults
 
-    amsFault_state:
+    bmsFault_state:
         id: 360
-        motec_name: AMS Fault State
+        motec_name: BMS Fault State
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -3399,7 +3398,7 @@ parameters:
 
     # BMS alert info
 
-    bmsNumActiveAlerts_state:
+    bmsNumActiveAlerts_info:
         id: 362
         motec_name: BMS Num Active Alerts
         unit: ''
@@ -3408,128 +3407,18 @@ parameters:
         scale: 1
         offset: 0
 
-    bmsCurrAlertIndex_state:
+    cellMonitorAlerts_info:
         id: 363
-        motec_name: BMS Current Alert Index
+        motec_name: BMS Cell Monitor Alerts
         unit: ''
-        type: UNSIGNED8
+        type: UNSIGNED16
         encoding: MSB
         scale: 1
         offset: 0
 
-    # BMS alerts
-
-    overvoltageWarningAlert_state:
+    packMonitorAlerts_info:
         id: 364
-        motec_name: BMS Overvoltage Warning Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    undervoltageWarningAlert_state:
-        id: 365
-        motec_name: BMS Undervoltage Warning Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    overvoltageFaultAlert_state:
-        id: 366
-        motec_name: BMS Overvoltage Fault Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    undervoltageFaultAlert_state:
-        id: 367
-        motec_name: BMS Undervoltage Fault Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    cellImbalanceAlert_state:
-        id: 368
-        motec_name: BMS Cell Imbalance Alert Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    overtempWarningAlert_state:
-        id: 369
-        motec_name: BMS Overtemp Warning Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    overtempFaultAlert_state:
-        id: 370
-        motec_name: BMS Overtemp Fault Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    badVoltageSenseStatusAlert_state:
-        id: 371
-        motec_name: BMS Bad Voltage Sense Alert Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    badBrickTempSenseStatusAlert_state:
-        id: 372
-        motec_name: BMS Bad Temp Sense Alert Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    badBoardTempSenseStatusAlert_state:
-        id: 373
-        motec_name: BMS Bad Board Temp Sense Alert Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    insufficientTempSensorsAlert_state:
-        id: 374
-        motec_name: BMS Insuffieient Temp Sense Fault Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    telemetryCommunicationAlert_state:
-        id: 375
-        motec_name: BMS Communication Failure Fault Present
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    packOvercurrentFaultAlert_state:
-        id: 376
-        motec_name: BMS Overcurrent Fault Present
+        motec_name: BMS Pack Monitor Alerts
         unit: ''
         type: UNSIGNED8
         encoding: MSB
@@ -3537,7 +3426,7 @@ parameters:
         offset: 0
 
     forceEnableBalancing_state:
-        id: 377
+        id: 365
         motec_name: BMS Balance Override Enable
         unit: ''
         type: UNSIGNED8
@@ -3545,62 +3434,8 @@ parameters:
         scale: 1
         offset: 0
 
-    bmsShutdown1_state:
-        id: 378
-        motec_name: BMS Shutdown 1
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    bmsShutdown2_state:
-        id: 379
-        motec_name: BMS Shutdown 2
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    bmsShutdown3_state:
-        id: 380
-        motec_name: BMS Shutdown 3
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    bmsShutdown4_state:
-        id: 381
-        motec_name: BMS Shutdown 4
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    bmsShutdown5_state:
-        id: 382
-        motec_name: BMS Shutdown 5
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    bmsShutdown6_state:
-        id: 383
-        motec_name: BMS Shutdown 6
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
     bmsInhibitActive_state:
-        id: 384
+        id: 366
         motec_name: BMS Inhibit active
         unit: ''
         type: UNSIGNED8
@@ -3608,2929 +3443,3300 @@ parameters:
         scale: 1
         offset: 0
 
+    # Module 1 Statistics
 
-    # Segment 1 Statistics
+    module1MaxCellVoltage_V:
+        id: 367
+        motec_name: Module 1 Max Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
 
-    segment1MaxCellVoltage_V:
+    module1MinCellVoltage_V:
+        id: 368
+        motec_name: Module 1 Min Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1AvgCellVoltage_V:
+        id: 369
+        motec_name: Module 1 Average Cell Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1MaxCellTemperature_C:
+        id: 370
+        motec_name: Module 1 Max Cell Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module1MinCellTemperature_C:
+        id: 371
+        motec_name: Module 1 Min Cell Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module1AvgCellTemperature_C:
+        id: 372
+        motec_name: Module 1 Average Cell Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module1BoardTemperature_C:
+        id: 373
+        motec_name: Module 1 Board Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module1DieTemperature_C:
+        id: 374
+        motec_name: Module 1 Die Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    # Module 1 Cell Voltages
+
+    module1Cell1Voltage_V:
+        id: 375
+        motec_name: Module 1 Cell 1 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell2Voltage_V:
+        id: 376
+        motec_name: Module 1 Cell 2 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell3Voltage_V:
+        id: 377
+        motec_name: Module 1 Cell 3 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell4Voltage_V:
+        id: 378
+        motec_name: Module 1 Cell 4 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell5Voltage_V:
+        id: 379
+        motec_name: Module 1 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell6Voltage_V:
+        id: 380
+        motec_name: Module 1 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell7Voltage_V:
+        id: 381
+        motec_name: Module 1 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell8Voltage_V:
+        id: 382
+        motec_name: Module 1 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell9Voltage_V:
+        id: 383
+        motec_name: Module 1 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell10Voltage_V:
+        id: 384
+        motec_name: Module 1 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module1Cell11Voltage_V:
         id: 385
-        motec_name: Segment 1 Max Cell Voltage
+        motec_name: Module 1 Cell 11 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment1MinCellVoltage_V:
+    module1Cell12Voltage_V:
         id: 386
-        motec_name: Segment 1 Min Cell Voltage
+        motec_name: Module 1 Cell 12 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment1AvgCellVoltage_V:
+    module1Cell13Voltage_V:
         id: 387
-        motec_name: Segment 1 Average Cell Voltage
+        motec_name: Module 1 Cell 13 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment1MaxCellTemperature_C:
+    module1Cell14Voltage_V:
         id: 388
-        motec_name: Segment 1 Max Cell Temperature
-        unit: C
+        motec_name: Module 1 Cell 14 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1MinCellTemperature_C:
+    # Module 1 Cell Temps
+
+    module1Cell1Temperature_C:
         id: 389
-        motec_name: Segment 1 Min Cell Temperature
+        motec_name: Module 1 Cell 1 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment1AvgCellTemperature_C:
+    module1Cell2Temperature_C:
         id: 390
-        motec_name: Segment 1 Average Cell Temperature
+        motec_name: Module 1 Cell 2 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment1BoardTemperature_C:
+    module1Cell3Temperature_C:
         id: 391
-        motec_name: Segment 1 Board Temperature
+        motec_name: Module 1 Cell 3 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment1DieTemperature_C:
+    module1Cell4Temperature_C:
         id: 392
-        motec_name: Segment 1 Die Temperature
+        motec_name: Module 1 Cell 4 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 1 Cell Voltages
-
-    segment1Cell1Voltage_V:
+    module1Cell5Temperature_C:
         id: 393
-        motec_name: Segment 1 Cell 1 Voltage
-        unit: V
+        motec_name: Module 1 Cell 5 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell2Voltage_V:
+    module1Cell6Temperature_C:
         id: 394
-        motec_name: Segment 1 Cell 2 Voltage
-        unit: V
+        motec_name: Module 1 Cell 6 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell3Voltage_V:
+    module1Cell7Temperature_C:
         id: 395
-        motec_name: Segment 1 Cell 3 Voltage
-        unit: V
+        motec_name: Module 1 Cell 7 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell4Voltage_V:
+    module1Cell8Temperature_C:
         id: 396
-        motec_name: Segment 1 Cell 4 Voltage
-        unit: V
+        motec_name: Module 1 Cell 8 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell5Voltage_V:
+    module1Cell9Temperature_C:
         id: 397
-        motec_name: Segment 1 Cell 5 Voltage
-        unit: V
+        motec_name: Module 1 Cell 9 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell6Voltage_V:
+    module1Cell10Temperature_C:
         id: 398
-        motec_name: Segment 1 Cell 6 Voltage
-        unit: V
+        motec_name: Module 1 Cell 10 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell7Voltage_V:
+    module1Cell11Temperature_C:
         id: 399
-        motec_name: Segment 1 Cell 7 Voltage
-        unit: V
+        motec_name: Module 1 Cell 11 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell8Voltage_V:
+    module1Cell12Temperature_C:
         id: 400
-        motec_name: Segment 1 Cell 8 Voltage
-        unit: V
+        motec_name: Module 1 Cell 12 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell9Voltage_V:
+    module1Cell13Temperature_C:
         id: 401
-        motec_name: Segment 1 Cell 9 Voltage
-        unit: V
+        motec_name: Module 1 Cell 13 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell10Voltage_V:
+    module1Cell14Temperature_C:
         id: 402
-        motec_name: Segment 1 Cell 10 Voltage
-        unit: V
+        motec_name: Module 1 Cell 14 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell11Voltage_V:
+    # Module 2 Statistics
+
+    module2MaxCellVoltage_V:
         id: 403
-        motec_name: Segment 1 Cell 11 Voltage
+        motec_name: Module 2 Max Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment1Cell12Voltage_V:
+    module2MinCellVoltage_V:
         id: 404
-        motec_name: Segment 1 Cell 12 Voltage
+        motec_name: Module 2 Min Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment1Cell13Voltage_V:
+    module2AvgCellVoltage_V:
         id: 405
-        motec_name: Segment 1 Cell 13 Voltage
+        motec_name: Module 2 Average Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment1Cell14Voltage_V:
+    module2MaxCellTemperature_C:
         id: 406
-        motec_name: Segment 1 Cell 14 Voltage
-        unit: V
+        motec_name: Module 2 Max Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell15Voltage_V:
+    module2MinCellTemperature_C:
         id: 407
-        motec_name: Segment 1 Cell 15 Voltage
-        unit: V
+        motec_name: Module 2 Min Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment1Cell16Voltage_V:
+    module2AvgCellTemperature_C:
         id: 408
-        motec_name: Segment 1 Cell 16 Voltage
-        unit: V
+        motec_name: Module 2 Average Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    # Segment 1 Cell Temps
-
-    segment1Cell1Temperature_C:
+    module2BoardTemperature_C:
         id: 409
-        motec_name: Segment 1 Cell 1 Temperature
+        motec_name: Module 2 Board Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment1Cell2Temperature_C:
+    module2DieTemperature_C:
         id: 410
-        motec_name: Segment 1 Cell 2 Temperature
+        motec_name: Module 2 Die Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment1Cell3Temperature_C:
+    # Module 2 Cell Voltages
+
+    module2Cell1Voltage_V:
         id: 411
-        motec_name: Segment 1 Cell 3 Temperature
-        unit: C
+        motec_name: Module 2 Cell 1 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell4Temperature_C:
+    module2Cell2Voltage_V:
         id: 412
-        motec_name: Segment 1 Cell 4 Temperature
-        unit: C
+        motec_name: Module 2 Cell 2 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell5Temperature_C:
+    module2Cell3Voltage_V:
         id: 413
-        motec_name: Segment 1 Cell 5 Temperature
-        unit: C
+        motec_name: Module 2 Cell 3 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell6Temperature_C:
+    module2Cell4Voltage_V:
         id: 414
-        motec_name: Segment 1 Cell 6 Temperature
-        unit: C
+        motec_name: Module 2 Cell 4 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell7Temperature_C:
+    module2Cell5Voltage_V:
         id: 415
-        motec_name: Segment 1 Cell 7 Temperature
-        unit: C
+        motec_name: Module 2 Cell 5 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell8Temperature_C:
+    module2Cell6Voltage_V:
         id: 416
-        motec_name: Segment 1 Cell 8 Temperature
-        unit: C
+        motec_name: Module 2 Cell 6 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell9Temperature_C:
+    module2Cell7Voltage_V:
         id: 417
-        motec_name: Segment 1 Cell 9 Temperature
-        unit: C
+        motec_name: Module 2 Cell 7 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell10Temperature_C:
+    module2Cell8Voltage_V:
         id: 418
-        motec_name: Segment 1 Cell 10 Temperature
-        unit: C
+        motec_name: Module 2 Cell 8 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell11Temperature_C:
+    module2Cell9Voltage_V:
         id: 419
-        motec_name: Segment 1 Cell 11 Temperature
-        unit: C
+        motec_name: Module 2 Cell 9 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell12Temperature_C:
+    module2Cell10Voltage_V:
         id: 420
-        motec_name: Segment 1 Cell 12 Temperature
-        unit: C
+        motec_name: Module 2 Cell 10 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell13Temperature_C:
+    module2Cell11Voltage_V:
         id: 421
-        motec_name: Segment 1 Cell 13 Temperature
-        unit: C
+        motec_name: Module 2 Cell 11 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell14Temperature_C:
+    module2Cell12Voltage_V:
         id: 422
-        motec_name: Segment 1 Cell 14 Temperature
-        unit: C
+        motec_name: Module 2 Cell 12 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell15Temperature_C:
+    module2Cell13Voltage_V:
         id: 423
-        motec_name: Segment 1 Cell 15 Temperature
-        unit: C
+        motec_name: Module 2 Cell 13 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment1Cell16Temperature_C:
+    module2Cell14Voltage_V:
         id: 424
-        motec_name: Segment 1 Cell 16 Temperature
-        unit: C
+        motec_name: Module 2 Cell 14 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    # Segment 2 Statistics
+    # Module 2 Cell Temps
 
-    segment2MaxCellVoltage_V:
+    module2Cell1Temperature_C:
         id: 425
-        motec_name: Segment 2 Max Cell Voltage
-        unit: V
+        motec_name: Module 2 Cell 1 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2MinCellVoltage_V:
+    module2Cell2Temperature_C:
         id: 426
-        motec_name: Segment 2 Min Cell Voltage
-        unit: V
+        motec_name: Module 2 Cell 2 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2AvgCellVoltage_V:
+    module2Cell3Temperature_C:
         id: 427
-        motec_name: Segment 2 Average Cell Voltage
-        unit: V
+        motec_name: Module 2 Cell 3 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2MaxCellTemperature_C:
+    module2Cell4Temperature_C:
         id: 428
-        motec_name: Segment 2 Max Cell Temperature
+        motec_name: Module 2 Cell 4 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment2MinCellTemperature_C:
+    module2Cell5Temperature_C:
         id: 429
-        motec_name: Segment 2 Min Cell Temperature
+        motec_name: Module 2 Cell 5 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment2AvgCellTemperature_C:
+    module2Cell6Temperature_C:
         id: 430
-        motec_name: Segment 2 Average Cell Temperature
+        motec_name: Module 2 Cell 6 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment2BoardTemperature_C:
+    module2Cell7Temperature_C:
         id: 431
-        motec_name: Segment 2 Board Temperature
+        motec_name: Module 2 Cell 7 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment2DieTemperature_C:
+    module2Cell8Temperature_C:
         id: 432
-        motec_name: Segment 2 Die Temperature
+        motec_name: Module 2 Cell 8 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 2 Cell Voltages
-
-    segment2Cell1Voltage_V:
+    module2Cell9Temperature_C:
         id: 433
-        motec_name: Segment 2 Cell 1 Voltage
-        unit: V
+        motec_name: Module 2 Cell 9 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell2Voltage_V:
+    module2Cell10Temperature_C:
         id: 434
-        motec_name: Segment 2 Cell 2 Voltage
-        unit: V
+        motec_name: Module 2 Cell 10 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell3Voltage_V:
+    module2Cell11Temperature_C:
         id: 435
-        motec_name: Segment 2 Cell 3 Voltage
-        unit: V
+        motec_name: Module 2 Cell 11 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell4Voltage_V:
+    module2Cell12Temperature_C:
         id: 436
-        motec_name: Segment 2 Cell 4 Voltage
-        unit: V
+        motec_name: Module 2 Cell 12 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell5Voltage_V:
+    module2Cell13Temperature_C:
         id: 437
-        motec_name: Segment 2 Cell 5 Voltage
-        unit: V
+        motec_name: Module 2 Cell 13 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell6Voltage_V:
+    module2Cell14Temperature_C:
         id: 438
-        motec_name: Segment 2 Cell 6 Voltage
-        unit: V
+        motec_name: Module 2 Cell 14 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell7Voltage_V:
+    # Module 3 Statistics
+
+    module3MaxCellVoltage_V:
         id: 439
-        motec_name: Segment 2 Cell 7 Voltage
+        motec_name: Module 3 Max Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment2Cell8Voltage_V:
+    module3MinCellVoltage_V:
         id: 440
-        motec_name: Segment 2 Cell 8 Voltage
+        motec_name: Module 3 Min Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment2Cell9Voltage_V:
+    module3AvgCellVoltage_V:
         id: 441
-        motec_name: Segment 2 Cell 9 Voltage
+        motec_name: Module 3 Average Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment2Cell10Voltage_V:
+    module3MaxCellTemperature_C:
         id: 442
-        motec_name: Segment 2 Cell 10 Voltage
-        unit: V
+        motec_name: Module 3 Max Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell11Voltage_V:
+    module3MinCellTemperature_C:
         id: 443
-        motec_name: Segment 2 Cell 11 Voltage
-        unit: V
+        motec_name: Module 3 Min Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell12Voltage_V:
+    module3AvgCellTemperature_C:
         id: 444
-        motec_name: Segment 2 Cell 12 Voltage
-        unit: V
+        motec_name: Module 3 Average Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell13Voltage_V:
+    module3BoardTemperature_C:
         id: 445
-        motec_name: Segment 2 Cell 13 Voltage
-        unit: V
+        motec_name: Module 3 Board Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell14Voltage_V:
+    module3DieTemperature_C:
         id: 446
-        motec_name: Segment 2 Cell 14 Voltage
-        unit: V
+        motec_name: Module 3 Die Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment2Cell15Voltage_V:
+    # Module 3 Cell Voltages
+
+    module3Cell1Voltage_V:
         id: 447
-        motec_name: Segment 2 Cell 15 Voltage
+        motec_name: Module 3 Cell 1 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment2Cell16Voltage_V:
+    module3Cell2Voltage_V:
         id: 448
-        motec_name: Segment 2 Cell 16 Voltage
+        motec_name: Module 3 Cell 2 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    # Segment 2 Cell Temps
-
-    segment2Cell1Temperature_C:
+    module3Cell3Voltage_V:
         id: 449
-        motec_name: Segment 2 Cell 1 Temperature
-        unit: C
+        motec_name: Module 3 Cell 3 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell2Temperature_C:
+    module3Cell4Voltage_V:
         id: 450
-        motec_name: Segment 2 Cell 2 Temperature
-        unit: C
+        motec_name: Module 3 Cell 4 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell3Temperature_C:
+    module3Cell5Voltage_V:
         id: 451
-        motec_name: Segment 2 Cell 3 Temperature
-        unit: C
+        motec_name: Module 3 Cell 5 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell4Temperature_C:
+    module3Cell6Voltage_V:
         id: 452
-        motec_name: Segment 2 Cell 4 Temperature
-        unit: C
+        motec_name: Module 3 Cell 6 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell5Temperature_C:
+    module3Cell7Voltage_V:
         id: 453
-        motec_name: Segment 2 Cell 5 Temperature
-        unit: C
+        motec_name: Module 3 Cell 7 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell6Temperature_C:
+    module3Cell8Voltage_V:
         id: 454
-        motec_name: Segment 2 Cell 6 Temperature
-        unit: C
+        motec_name: Module 3 Cell 8 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell7Temperature_C:
+    module3Cell9Voltage_V:
         id: 455
-        motec_name: Segment 2 Cell 7 Temperature
-        unit: C
+        motec_name: Module 3 Cell 9 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell8Temperature_C:
+    module3Cell10Voltage_V:
         id: 456
-        motec_name: Segment 2 Cell 8 Temperature
-        unit: C
+        motec_name: Module 3 Cell 10 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell9Temperature_C:
+    module3Cell11Voltage_V:
         id: 457
-        motec_name: Segment 2 Cell 9 Temperature
-        unit: C
+        motec_name: Module 3 Cell 11 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell10Temperature_C:
+    module3Cell12Voltage_V:
         id: 458
-        motec_name: Segment 2 Cell 10 Temperature
-        unit: C
+        motec_name: Module 3 Cell 12 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell11Temperature_C:
+    module3Cell13Voltage_V:
         id: 459
-        motec_name: Segment 2 Cell 11 Temperature
-        unit: C
+        motec_name: Module 3 Cell 13 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell12Temperature_C:
+    module3Cell14Voltage_V:
         id: 460
-        motec_name: Segment 2 Cell 12 Temperature
-        unit: C
+        motec_name: Module 3 Cell 14 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment2Cell13Temperature_C:
+    # Module 3 Cell Temps
+
+    module3Cell1Temperature_C:
         id: 461
-        motec_name: Segment 2 Cell 13 Temperature
+        motec_name: Module 3 Cell 1 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment2Cell14Temperature_C:
+    module3Cell2Temperature_C:
         id: 462
-        motec_name: Segment 2 Cell 14 Temperature
+        motec_name: Module 3 Cell 2 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment2Cell15Temperature_C:
+    module3Cell3Temperature_C:
         id: 463
-        motec_name: Segment 2 Cell 15 Temperature
+        motec_name: Module 3 Cell 3 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment2Cell16Temperature_C:
+    module3Cell4Temperature_C:
         id: 464
-        motec_name: Segment 2 Cell 16 Temperature
+        motec_name: Module 3 Cell 4 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 3 Statistics
-
-    segment3MaxCellVoltage_V:
+    module3Cell5Temperature_C:
         id: 465
-        motec_name: Segment 3 Max Cell Voltage
-        unit: V
+        motec_name: Module 3 Cell 5 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3MinCellVoltage_V:
+    module3Cell6Temperature_C:
         id: 466
-        motec_name: Segment 3 Min Cell Voltage
-        unit: V
+        motec_name: Module 3 Cell 6 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3AvgCellVoltage_V:
+    module3Cell7Temperature_C:
         id: 467
-        motec_name: Segment 3 Average Cell Voltage
-        unit: V
+        motec_name: Module 3 Cell 7 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3MaxCellTemperature_C:
+    module3Cell8Temperature_C:
         id: 468
-        motec_name: Segment 3 Max Cell Temperature
+        motec_name: Module 3 Cell 8 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3MinCellTemperature_C:
+    module3Cell9Temperature_C:
         id: 469
-        motec_name: Segment 3 Min Cell Temperature
+        motec_name: Module 3 Cell 9 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3AvgCellTemperature_C:
+    module3Cell10Temperature_C:
         id: 470
-        motec_name: Segment 3 Average Cell Temperature
+        motec_name: Module 3 Cell 10 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3BoardTemperature_C:
+    module3Cell11Temperature_C:
         id: 471
-        motec_name: Segment 3 Board Temperature
+        motec_name: Module 3 Cell 11 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3DieTemperature_C:
+    module3Cell12Temperature_C:
         id: 472
-        motec_name: Segment 3 Die Temperature
+        motec_name: Module 3 Cell 12 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 3 Cell Voltages
-
-    segment3Cell1Voltage_V:
+    module3Cell13Temperature_C:
         id: 473
-        motec_name: Segment 3 Cell 1 Voltage
-        unit: V
+        motec_name: Module 3 Cell 13 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3Cell2Voltage_V:
+    module3Cell14Temperature_C:
         id: 474
-        motec_name: Segment 3 Cell 2 Voltage
-        unit: V
+        motec_name: Module 3 Cell 14 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3Cell3Voltage_V:
+    # Module 4 Statistics
+
+    module4MaxCellVoltage_V:
         id: 475
-        motec_name: Segment 3 Cell 3 Voltage
+        motec_name: Module 4 Max Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell4Voltage_V:
+    module4MinCellVoltage_V:
         id: 476
-        motec_name: Segment 3 Cell 4 Voltage
+        motec_name: Module 4 Min Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell5Voltage_V:
+    module4AvgCellVoltage_V:
         id: 477
-        motec_name: Segment 3 Cell 5 Voltage
+        motec_name: Module 4 Average Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell6Voltage_V:
+    module4MaxCellTemperature_C:
         id: 478
-        motec_name: Segment 3 Cell 6 Voltage
-        unit: V
+        motec_name: Module 4 Max Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3Cell7Voltage_V:
+    module4MinCellTemperature_C:
         id: 479
-        motec_name: Segment 3 Cell 7 Voltage
-        unit: V
+        motec_name: Module 4 Min Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3Cell8Voltage_V:
+    module4AvgCellTemperature_C:
         id: 480
-        motec_name: Segment 3 Cell 8 Voltage
-        unit: V
+        motec_name: Module 4 Average Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3Cell9Voltage_V:
+    module4BoardTemperature_C:
         id: 481
-        motec_name: Segment 3 Cell 9 Voltage
-        unit: V
+        motec_name: Module 4 Board Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3Cell10Voltage_V:
+    module4DieTemperature_C:
         id: 482
-        motec_name: Segment 3 Cell 10 Voltage
-        unit: V
+        motec_name: Module 4 Die Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment3Cell11Voltage_V:
+    # Module 4 Cell Voltages
+
+    module4Cell1Voltage_V:
         id: 483
-        motec_name: Segment 3 Cell 11 Voltage
+        motec_name: Module 4 Cell 1 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell12Voltage_V:
+    module4Cell2Voltage_V:
         id: 484
-        motec_name: Segment 3 Cell 12 Voltage
+        motec_name: Module 4 Cell 2 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell13Voltage_V:
+    module4Cell3Voltage_V:
         id: 485
-        motec_name: Segment 3 Cell 13 Voltage
+        motec_name: Module 4 Cell 3 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell14Voltage_V:
+    module4Cell4Voltage_V:
         id: 486
-        motec_name: Segment 3 Cell 14 Voltage
+        motec_name: Module 4 Cell 4 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell15Voltage_V:
+    module4Cell5Voltage_V:
         id: 487
-        motec_name: Segment 3 Cell 15 Voltage
+        motec_name: Module 4 Cell 5 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment3Cell16Voltage_V:
+    module4Cell6Voltage_V:
         id: 488
-        motec_name: Segment 3 Cell 16 Voltage
+        motec_name: Module 4 Cell 6 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    # Segment 3 Cell Temps
-
-    segment3Cell1Temperature_C:
+    module4Cell7Voltage_V:
         id: 489
-        motec_name: Segment 3 Cell 1 Temperature
-        unit: C
+        motec_name: Module 4 Cell 7 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell2Temperature_C:
+    module4Cell8Voltage_V:
         id: 490
-        motec_name: Segment 3 Cell 2 Temperature
-        unit: C
+        motec_name: Module 4 Cell 8 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell3Temperature_C:
+    module4Cell9Voltage_V:
         id: 491
-        motec_name: Segment 3 Cell 3 Temperature
-        unit: C
+        motec_name: Module 4 Cell 9 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell4Temperature_C:
+    module4Cell10Voltage_V:
         id: 492
-        motec_name: Segment 3 Cell 4 Temperature
-        unit: C
+        motec_name: Module 4 Cell 10 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell5Temperature_C:
+    module4Cell11Voltage_V:
         id: 493
-        motec_name: Segment 3 Cell 5 Temperature
-        unit: C
+        motec_name: Module 4 Cell 11 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell6Temperature_C:
+    module4Cell12Voltage_V:
         id: 494
-        motec_name: Segment 3 Cell 6 Temperature
-        unit: C
+        motec_name: Module 4 Cell 12 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell7Temperature_C:
+    module4Cell13Voltage_V:
         id: 495
-        motec_name: Segment 3 Cell 7 Temperature
-        unit: C
+        motec_name: Module 4 Cell 13 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell8Temperature_C:
+    module4Cell14Voltage_V:
         id: 496
-        motec_name: Segment 3 Cell 8 Temperature
-        unit: C
+        motec_name: Module 4 Cell 14 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment3Cell9Temperature_C:
+    # Module 4 Cell Temps
+
+    module4Cell1Temperature_C:
         id: 497
-        motec_name: Segment 3 Cell 9 Temperature
+        motec_name: Module 4 Cell 1 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3Cell10Temperature_C:
+    module4Cell2Temperature_C:
         id: 498
-        motec_name: Segment 3 Cell 10 Temperature
+        motec_name: Module 4 Cell 2 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3Cell11Temperature_C:
+    module4Cell3Temperature_C:
         id: 499
-        motec_name: Segment 3 Cell 11 Temperature
+        motec_name: Module 4 Cell 3 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3Cell12Temperature_C:
+    module4Cell4Temperature_C:
         id: 500
-        motec_name: Segment 3 Cell 12 Temperature
+        motec_name: Module 4 Cell 4 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3Cell13Temperature_C:
+    module4Cell5Temperature_C:
         id: 501
-        motec_name: Segment 3 Cell 13 Temperature
+        motec_name: Module 4 Cell 5 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3Cell14Temperature_C:
+    module4Cell6Temperature_C:
         id: 502
-        motec_name: Segment 3 Cell 14 Temperature
+        motec_name: Module 4 Cell 6 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3Cell15Temperature_C:
+    module4Cell7Temperature_C:
         id: 503
-        motec_name: Segment 3 Cell 15 Temperature
+        motec_name: Module 4 Cell 7 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment3Cell16Temperature_C:
+    module4Cell8Temperature_C:
         id: 504
-        motec_name: Segment 3 Cell 16 Temperature
+        motec_name: Module 4 Cell 8 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 4 Statistics
-
-    segment4MaxCellVoltage_V:
+    module4Cell9Temperature_C:
         id: 505
-        motec_name: Segment 4 Max Cell Voltage
-        unit: V
+        motec_name: Module 4 Cell 9 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4MinCellVoltage_V:
+    module4Cell10Temperature_C:
         id: 506
-        motec_name: Segment 4 Min Cell Voltage
-        unit: V
+        motec_name: Module 4 Cell 10 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4AvgCellVoltage_V:
+    module4Cell11Temperature_C:
         id: 507
-        motec_name: Segment 4 Average Cell Voltage
-        unit: V
+        motec_name: Module 4 Cell 11 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4MaxCellTemperature_C:
+    module4Cell12Temperature_C:
         id: 508
-        motec_name: Segment 4 Max Cell Temperature
+        motec_name: Module 4 Cell 12 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4MinCellTemperature_C:
+    module4Cell13Temperature_C:
         id: 509
-        motec_name: Segment 4 Min Cell Temperature
+        motec_name: Module 4 Cell 13 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4AvgCellTemperature_C:
+    module4Cell14Temperature_C:
         id: 510
-        motec_name: Segment 4 Average Cell Temperature
+        motec_name: Module 4 Cell 14 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4BoardTemperature_C:
+    # Module 5 Statistics
+
+    module5MaxCellVoltage_V:
         id: 511
-        motec_name: Segment 4 Board Temperature
-        unit: C
+        motec_name: Module 5 Max Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment4DieTemperature_C:
+    module5MinCellVoltage_V:
         id: 512
-        motec_name: Segment 4 Die Temperature
-        unit: C
+        motec_name: Module 5 Min Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    # Segment 4 Cell Voltages
-
-    segment4Cell1Voltage_V:
+    module5AvgCellVoltage_V:
         id: 513
-        motec_name: Segment 4 Cell 1 Voltage
+        motec_name: Module 5 Average Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell2Voltage_V:
+    module5MaxCellTemperature_C:
         id: 514
-        motec_name: Segment 4 Cell 2 Voltage
-        unit: V
+        motec_name: Module 5 Max Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4Cell3Voltage_V:
+    module5MinCellTemperature_C:
         id: 515
-        motec_name: Segment 4 Cell 3 Voltage
-        unit: V
+        motec_name: Module 5 Min Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4Cell4Voltage_V:
+    module5AvgCellTemperature_C:
         id: 516
-        motec_name: Segment 4 Cell 4 Voltage
-        unit: V
+        motec_name: Module 5 Average Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4Cell5Voltage_V:
+    module5BoardTemperature_C:
         id: 517
-        motec_name: Segment 4 Cell 5 Voltage
-        unit: V
+        motec_name: Module 5 Board Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4Cell6Voltage_V:
+    module5DieTemperature_C:
         id: 518
-        motec_name: Segment 4 Cell 6 Voltage
-        unit: V
+        motec_name: Module 5 Die Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment4Cell7Voltage_V:
+    # Module 5 Cell Voltages
+
+    module5Cell1Voltage_V:
         id: 519
-        motec_name: Segment 4 Cell 7 Voltage
+        motec_name: Module 5 Cell 1 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell8Voltage_V:
+    module5Cell2Voltage_V:
         id: 520
-        motec_name: Segment 4 Cell 8 Voltage
+        motec_name: Module 5 Cell 2 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell9Voltage_V:
+    module5Cell3Voltage_V:
         id: 521
-        motec_name: Segment 4 Cell 9 Voltage
+        motec_name: Module 5 Cell 3 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell10Voltage_V:
+    module5Cell4Voltage_V:
         id: 522
-        motec_name: Segment 4 Cell 10 Voltage
+        motec_name: Module 5 Cell 4 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell11Voltage_V:
+    module5Cell5Voltage_V:
         id: 523
-        motec_name: Segment 4 Cell 11 Voltage
+        motec_name: Module 5 Cell 5 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell12Voltage_V:
+    module5Cell6Voltage_V:
         id: 524
-        motec_name: Segment 4 Cell 12 Voltage
+        motec_name: Module 5 Cell 6 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell13Voltage_V:
+    module5Cell7Voltage_V:
         id: 525
-        motec_name: Segment 4 Cell 13 Voltage
+        motec_name: Module 5 Cell 7 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell14Voltage_V:
+    module5Cell8Voltage_V:
         id: 526
-        motec_name: Segment 4 Cell 14 Voltage
+        motec_name: Module 5 Cell 8 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell15Voltage_V:
+    module5Cell9Voltage_V:
         id: 527
-        motec_name: Segment 4 Cell 15 Voltage
+        motec_name: Module 5 Cell 9 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment4Cell16Voltage_V:
+    module5Cell10Voltage_V:
         id: 528
-        motec_name: Segment 4 Cell 16 Voltage
+        motec_name: Module 5 Cell 10 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    # Segment 4 Cell Temps
-
-    segment4Cell1Temperature_C:
+    module5Cell11Voltage_V:
         id: 529
-        motec_name: Segment 4 Cell 1 Temperature
-        unit: C
+        motec_name: Module 5 Cell 11 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment4Cell2Temperature_C:
+    module5Cell12Voltage_V:
         id: 530
-        motec_name: Segment 4 Cell 2 Temperature
-        unit: C
+        motec_name: Module 5 Cell 12 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment4Cell3Temperature_C:
+    module5Cell13Voltage_V:
         id: 531
-        motec_name: Segment 4 Cell 3 Temperature
-        unit: C
+        motec_name: Module 5 Cell 13 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment4Cell4Temperature_C:
+    module5Cell14Voltage_V:
         id: 532
-        motec_name: Segment 4 Cell 4 Temperature
-        unit: C
+        motec_name: Module 5 Cell 14 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment4Cell5Temperature_C:
+    # Module 5 Cell Temps
+
+    module5Cell1Temperature_C:
         id: 533
-        motec_name: Segment 4 Cell 5 Temperature
+        motec_name: Module 5 Cell 1 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell6Temperature_C:
+    module5Cell2Temperature_C:
         id: 534
-        motec_name: Segment 4 Cell 6 Temperature
+        motec_name: Module 5 Cell 2 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell7Temperature_C:
+    module5Cell3Temperature_C:
         id: 535
-        motec_name: Segment 4 Cell 7 Temperature
+        motec_name: Module 5 Cell 3 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell8Temperature_C:
+    module5Cell4Temperature_C:
         id: 536
-        motec_name: Segment 4 Cell 8 Temperature
+        motec_name: Module 5 Cell 4 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell9Temperature_C:
+    module5Cell5Temperature_C:
         id: 537
-        motec_name: Segment 4 Cell 9 Temperature
+        motec_name: Module 5 Cell 5 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell10Temperature_C:
+    module5Cell6Temperature_C:
         id: 538
-        motec_name: Segment 4 Cell 10 Temperature
+        motec_name: Module 5 Cell 6 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell11Temperature_C:
+    module5Cell7Temperature_C:
         id: 539
-        motec_name: Segment 4 Cell 11 Temperature
+        motec_name: Module 5 Cell 7 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell12Temperature_C:
+    module5Cell8Temperature_C:
         id: 540
-        motec_name: Segment 4 Cell 12 Temperature
+        motec_name: Module 5 Cell 8 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell13Temperature_C:
+    module5Cell9Temperature_C:
         id: 541
-        motec_name: Segment 4 Cell 13 Temperature
+        motec_name: Module 5 Cell 9 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell14Temperature_C:
+    module5Cell10Temperature_C:
         id: 542
-        motec_name: Segment 4 Cell 14 Temperature
+        motec_name: Module 5 Cell 10 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell15Temperature_C:
+    module5Cell11Temperature_C:
         id: 543
-        motec_name: Segment 4 Cell 15 Temperature
+        motec_name: Module 5 Cell 11 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment4Cell16Temperature_C:
+    module5Cell12Temperature_C:
         id: 544
-        motec_name: Segment 4 Cell 16 Temperature
+        motec_name: Module 5 Cell 12 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 5 Statistics
-
-    segment5MaxCellVoltage_V:
+    module5Cell13Temperature_C:
         id: 545
-        motec_name: Segment 5 Max Cell Voltage
-        unit: V
+        motec_name: Module 5 Cell 13 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment5MinCellVoltage_V:
+    module5Cell14Temperature_C:
         id: 546
-        motec_name: Segment 5 Min Cell Voltage
-        unit: V
+        motec_name: Module 5 Cell 14 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment5AvgCellVoltage_V:
+    # Module 6 Statistics
+
+    module6MaxCellVoltage_V:
         id: 547
-        motec_name: Segment 5 Average Cell Voltage
+        motec_name: Module 6 Max Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5MaxCellTemperature_C:
+    module6MinCellVoltage_V:
         id: 548
-        motec_name: Segment 5 Max Cell Temperature
-        unit: C
+        motec_name: Module 6 Min Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment5MinCellTemperature_C:
+    module6AvgCellVoltage_V:
         id: 549
-        motec_name: Segment 5 Min Cell Temperature
-        unit: C
+        motec_name: Module 6 Average Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment5AvgCellTemperature_C:
+    module6MaxCellTemperature_C:
         id: 550
-        motec_name: Segment 5 Average Cell Temperature
+        motec_name: Module 6 Max Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5BoardTemperature_C:
+    module6MinCellTemperature_C:
         id: 551
-        motec_name: Segment 5 Board Temperature
+        motec_name: Module 6 Min Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5DieTemperature_C:
+    module6AvgCellTemperature_C:
         id: 552
-        motec_name: Segment 5 Die Temperature
+        motec_name: Module 6 Average Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 5 Cell Voltages
-
-    segment5Cell1Voltage_V:
+    module6BoardTemperature_C:
         id: 553
-        motec_name: Segment 5 Cell 1 Voltage
-        unit: V
+        motec_name: Module 6 Board Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment5Cell2Voltage_V:
+    module6DieTemperature_C:
         id: 554
-        motec_name: Segment 5 Cell 2 Voltage
-        unit: V
+        motec_name: Module 6 Die Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment5Cell3Voltage_V:
+    # Module 6 Cell Voltages
+
+    module6Cell1Voltage_V:
         id: 555
-        motec_name: Segment 5 Cell 3 Voltage
+        motec_name: Module 6 Cell 1 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell4Voltage_V:
+    module6Cell2Voltage_V:
         id: 556
-        motec_name: Segment 5 Cell 4 Voltage
+        motec_name: Module 6 Cell 2 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell5Voltage_V:
+    module6Cell3Voltage_V:
         id: 557
-        motec_name: Segment 5 Cell 5 Voltage
+        motec_name: Module 6 Cell 3 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell6Voltage_V:
+    module6Cell4Voltage_V:
         id: 558
-        motec_name: Segment 5 Cell 6 Voltage
+        motec_name: Module 6 Cell 4 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell7Voltage_V:
+    module6Cell5Voltage_V:
         id: 559
-        motec_name: Segment 5 Cell 7 Voltage
+        motec_name: Module 6 Cell 5 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell8Voltage_V:
+    module6Cell6Voltage_V:
         id: 560
-        motec_name: Segment 5 Cell 8 Voltage
+        motec_name: Module 6 Cell 6 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell9Voltage_V:
+    module6Cell7Voltage_V:
         id: 561
-        motec_name: Segment 5 Cell 9 Voltage
+        motec_name: Module 6 Cell 7 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell10Voltage_V:
+    module6Cell8Voltage_V:
         id: 562
-        motec_name: Segment 5 Cell 10 Voltage
+        motec_name: Module 6 Cell 8 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell11Voltage_V:
+    module6Cell9Voltage_V:
         id: 563
-        motec_name: Segment 5 Cell 11 Voltage
+        motec_name: Module 6 Cell 9 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell12Voltage_V:
+    module6Cell10Voltage_V:
         id: 564
-        motec_name: Segment 5 Cell 12 Voltage
+        motec_name: Module 6 Cell 10 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell13Voltage_V:
+    module6Cell11Voltage_V:
         id: 565
-        motec_name: Segment 5 Cell 13 Voltage
+        motec_name: Module 6 Cell 11 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell14Voltage_V:
+    module6Cell12Voltage_V:
         id: 566
-        motec_name: Segment 5 Cell 14 Voltage
+        motec_name: Module 6 Cell 12 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell15Voltage_V:
+    module6Cell13Voltage_V:
         id: 567
-        motec_name: Segment 5 Cell 15 Voltage
+        motec_name: Module 6 Cell 13 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment5Cell16Voltage_V:
+    module6Cell14Voltage_V:
         id: 568
-        motec_name: Segment 5 Cell 16 Voltage
+        motec_name: Module 6 Cell 14 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    # Segment 5 Cell Temps
+    # Module 6 Cell Temps
 
-    segment5Cell1Temperature_C:
+    module6Cell1Temperature_C:
         id: 569
-        motec_name: Segment 5 Cell 1 Temperature
+        motec_name: Module 6 Cell 1 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell2Temperature_C:
+    module6Cell2Temperature_C:
         id: 570
-        motec_name: Segment 5 Cell 2 Temperature
+        motec_name: Module 6 Cell 2 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell3Temperature_C:
+    module6Cell3Temperature_C:
         id: 571
-        motec_name: Segment 5 Cell 3 Temperature
+        motec_name: Module 6 Cell 3 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell4Temperature_C:
+    module6Cell4Temperature_C:
         id: 572
-        motec_name: Segment 5 Cell 4 Temperature
+        motec_name: Module 6 Cell 4 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell5Temperature_C:
+    module6Cell5Temperature_C:
         id: 573
-        motec_name: Segment 5 Cell 5 Temperature
+        motec_name: Module 6 Cell 5 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell6Temperature_C:
+    module6Cell6Temperature_C:
         id: 574
-        motec_name: Segment 5 Cell 6 Temperature
+        motec_name: Module 6 Cell 6 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell7Temperature_C:
+    module6Cell7Temperature_C:
         id: 575
-        motec_name: Segment 5 Cell 7 Temperature
+        motec_name: Module 6 Cell 7 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell8Temperature_C:
+    module6Cell8Temperature_C:
         id: 576
-        motec_name: Segment 5 Cell 8 Temperature
+        motec_name: Module 6 Cell 8 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell9Temperature_C:
+    module6Cell9Temperature_C:
         id: 577
-        motec_name: Segment 5 Cell 9 Temperature
+        motec_name: Module 6 Cell 9 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell10Temperature_C:
+    module6Cell10Temperature_C:
         id: 578
-        motec_name: Segment 5 Cell 10 Temperature
+        motec_name: Module 6 Cell 10 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell11Temperature_C:
+    module6Cell11Temperature_C:
         id: 579
-        motec_name: Segment 5 Cell 11 Temperature
+        motec_name: Module 6 Cell 11 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell12Temperature_C:
+    module6Cell12Temperature_C:
         id: 580
-        motec_name: Segment 5 Cell 12 Temperature
+        motec_name: Module 6 Cell 12 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell13Temperature_C:
+    module6Cell13Temperature_C:
         id: 581
-        motec_name: Segment 5 Cell 13 Temperature
+        motec_name: Module 6 Cell 13 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell14Temperature_C:
+    module6Cell14Temperature_C:
         id: 582
-        motec_name: Segment 5 Cell 14 Temperature
+        motec_name: Module 6 Cell 14 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment5Cell15Temperature_C:
+    # Module 7 Statistics
+
+    module7MaxCellVoltage_V:
         id: 583
-        motec_name: Segment 5 Cell 15 Temperature
-        unit: C
+        motec_name: Module 7 Max Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment5Cell16Temperature_C:
+    module7MinCellVoltage_V:
         id: 584
-        motec_name: Segment 5 Cell 16 Temperature
-        unit: C
+        motec_name: Module 7 Min Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    # Segment 6 Statistics
-
-    segment6MaxCellVoltage_V:
+    module7AvgCellVoltage_V:
         id: 585
-        motec_name: Segment 6 Max Cell Voltage
+        motec_name: Module 7 Average Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6MinCellVoltage_V:
+    module7MaxCellTemperature_C:
         id: 586
-        motec_name: Segment 6 Min Cell Voltage
-        unit: V
+        motec_name: Module 7 Max Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment6AvgCellVoltage_V:
+    module7MinCellTemperature_C:
         id: 587
-        motec_name: Segment 6 Average Cell Voltage
-        unit: V
+        motec_name: Module 7 Min Cell Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment6MaxCellTemperature_C:
+    module7AvgCellTemperature_C:
         id: 588
-        motec_name: Segment 6 Max Cell Temperature
+        motec_name: Module 7 Average Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6MinCellTemperature_C:
+    module7BoardTemperature_C:
         id: 589
-        motec_name: Segment 6 Min Cell Temperature
+        motec_name: Module 7 Board Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6AvgCellTemperature_C:
+    module7DieTemperature_C:
         id: 590
-        motec_name: Segment 6 Average Cell Temperature
+        motec_name: Module 7 Die Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6BoardTemperature_C:
+    # Module 7 Cell Voltages
+
+    module7Cell1Voltage_V:
         id: 591
-        motec_name: Segment 6 Board Temperature
-        unit: C
+        motec_name: Module 7 Cell 1 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment6DieTemperature_C:
+    module7Cell2Voltage_V:
         id: 592
-        motec_name: Segment 6 Die Temperature
-        unit: C
+        motec_name: Module 7 Cell 2 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    # Segment 6 Cell Voltages
-
-    segment6Cell1Voltage_V:
+    module7Cell3Voltage_V:
         id: 593
-        motec_name: Segment 6 Cell 1 Voltage
+        motec_name: Module 7 Cell 3 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell2Voltage_V:
+    module7Cell4Voltage_V:
         id: 594
-        motec_name: Segment 6 Cell 2 Voltage
+        motec_name: Module 7 Cell 4 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell3Voltage_V:
+    module7Cell5Voltage_V:
         id: 595
-        motec_name: Segment 6 Cell 3 Voltage
+        motec_name: Module 7 Cell 5 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell4Voltage_V:
+    module7Cell6Voltage_V:
         id: 596
-        motec_name: Segment 6 Cell 4 Voltage
+        motec_name: Module 7 Cell 6 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell5Voltage_V:
+    module7Cell7Voltage_V:
         id: 597
-        motec_name: Segment 6 Cell 5 Voltage
+        motec_name: Module 7 Cell 7 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell6Voltage_V:
+    module7Cell8Voltage_V:
         id: 598
-        motec_name: Segment 6 Cell 6 Voltage
+        motec_name: Module 7 Cell 8 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell7Voltage_V:
+    module7Cell9Voltage_V:
         id: 599
-        motec_name: Segment 6 Cell 7 Voltage
+        motec_name: Module 7 Cell 9 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell8Voltage_V:
+    module7Cell10Voltage_V:
         id: 600
-        motec_name: Segment 6 Cell 8 Voltage
+        motec_name: Module 7 Cell 10 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell9Voltage_V:
+    module7Cell11Voltage_V:
         id: 601
-        motec_name: Segment 6 Cell 9 Voltage
+        motec_name: Module 7 Cell 11 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell10Voltage_V:
+    module7Cell12Voltage_V:
         id: 602
-        motec_name: Segment 6 Cell 10 Voltage
+        motec_name: Module 7 Cell 12 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell11Voltage_V:
+    module7Cell13Voltage_V:
         id: 603
-        motec_name: Segment 6 Cell 11 Voltage
+        motec_name: Module 7 Cell 13 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell12Voltage_V:
+    module7Cell14Voltage_V:
         id: 604
-        motec_name: Segment 6 Cell 12 Voltage
+        motec_name: Module 7 Cell 14 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment6Cell13Voltage_V:
+    # Module 7 Cell Temps
+
+    module7Cell1Temperature_C:
         id: 605
-        motec_name: Segment 6 Cell 13 Voltage
-        unit: V
+        motec_name: Module 7 Cell 1 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment6Cell14Voltage_V:
+    module7Cell2Temperature_C:
         id: 606
-        motec_name: Segment 6 Cell 14 Voltage
-        unit: V
+        motec_name: Module 7 Cell 2 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment6Cell15Voltage_V:
+    module7Cell3Temperature_C:
         id: 607
-        motec_name: Segment 6 Cell 15 Voltage
-        unit: V
+        motec_name: Module 7 Cell 3 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment6Cell16Voltage_V:
+    module7Cell4Temperature_C:
         id: 608
-        motec_name: Segment 6 Cell 16 Voltage
-        unit: V
+        motec_name: Module 7 Cell 4 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    # Segment 6 Cell Temps
-
-    segment6Cell1Temperature_C:
+    module7Cell5Temperature_C:
         id: 609
-        motec_name: Segment 6 Cell 1 Temperature
+        motec_name: Module 7 Cell 5 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell2Temperature_C:
+    module7Cell6Temperature_C:
         id: 610
-        motec_name: Segment 6 Cell 2 Temperature
+        motec_name: Module 7 Cell 6 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell3Temperature_C:
+    module7Cell7Temperature_C:
         id: 611
-        motec_name: Segment 6 Cell 3 Temperature
+        motec_name: Module 7 Cell 7 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell4Temperature_C:
+    module7Cell8Temperature_C:
         id: 612
-        motec_name: Segment 6 Cell 4 Temperature
+        motec_name: Module 7 Cell 8 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell5Temperature_C:
+    module7Cell9Temperature_C:
         id: 613
-        motec_name: Segment 6 Cell 5 Temperature
+        motec_name: Module 7 Cell 9 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell6Temperature_C:
+    module7Cell10Temperature_C:
         id: 614
-        motec_name: Segment 6 Cell 6 Temperature
+        motec_name: Module 7 Cell 10 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell7Temperature_C:
+    module7Cell11Temperature_C:
         id: 615
-        motec_name: Segment 6 Cell 7 Temperature
+        motec_name: Module 7 Cell 11 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell8Temperature_C:
+    module7Cell12Temperature_C:
         id: 616
-        motec_name: Segment 6 Cell 8 Temperature
+        motec_name: Module 7 Cell 12 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell9Temperature_C:
+    module7Cell13Temperature_C:
         id: 617
-        motec_name: Segment 6 Cell 9 Temperature
+        motec_name: Module 7 Cell 13 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell10Temperature_C:
+    module7Cell14Temperature_C:
         id: 618
-        motec_name: Segment 6 Cell 10 Temperature
+        motec_name: Module 7 Cell 14 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell11Temperature_C:
+    # Module 8 Statistics
+
+    module8MaxCellVoltage_V:
         id: 619
-        motec_name: Segment 6 Cell 11 Temperature
-        unit: C
+        motec_name: Module 8 Max Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment6Cell12Temperature_C:
+    module8MinCellVoltage_V:
         id: 620
-        motec_name: Segment 6 Cell 12 Temperature
-        unit: C
+        motec_name: Module 8 Min Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment6Cell13Temperature_C:
+    module8AvgCellVoltage_V:
         id: 621
-        motec_name: Segment 6 Cell 13 Temperature
-        unit: C
+        motec_name: Module 8 Average Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment6Cell14Temperature_C:
+    module8MaxCellTemperature_C:
         id: 622
-        motec_name: Segment 6 Cell 14 Temperature
+        motec_name: Module 8 Max Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell15Temperature_C:
+    module8MinCellTemperature_C:
         id: 623
-        motec_name: Segment 6 Cell 15 Temperature
+        motec_name: Module 8 Min Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment6Cell16Temperature_C:
+    module8AvgCellTemperature_C:
         id: 624
-        motec_name: Segment 6 Cell 16 Temperature
+        motec_name: Module 8 Average Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    # Segment 7 Statistics
-
-    segment7MaxCellVoltage_V:
+    module8BoardTemperature_C:
         id: 625
-        motec_name: Segment 7 Max Cell Voltage
-        unit: V
+        motec_name: Module 8 Board Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7MinCellVoltage_V:
+    module8DieTemperature_C:
         id: 626
-        motec_name: Segment 7 Min Cell Voltage
-        unit: V
+        motec_name: Module 8 Die Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7AvgCellVoltage_V:
+    # Module 8 Cell Voltages
+
+    module8Cell1Voltage_V:
         id: 627
-        motec_name: Segment 7 Average Cell Voltage
+        motec_name: Module 8 Cell 1 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7MaxCellTemperature_C:
+    module8Cell2Voltage_V:
         id: 628
-        motec_name: Segment 7 Max Cell Temperature
-        unit: C
+        motec_name: Module 8 Cell 2 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7MinCellTemperature_C:
+    module8Cell3Voltage_V:
         id: 629
-        motec_name: Segment 7 Min Cell Temperature
-        unit: C
+        motec_name: Module 8 Cell 3 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7AvgCellTemperature_C:
+    module8Cell4Voltage_V:
         id: 630
-        motec_name: Segment 7 Average Cell Temperature
-        unit: C
+        motec_name: Module 8 Cell 4 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7BoardTemperature_C:
+    module8Cell5Voltage_V:
         id: 631
-        motec_name: Segment 7 Board Temperature
-        unit: C
+        motec_name: Module 8 Cell 5 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7DieTemperature_C:
+    module8Cell6Voltage_V:
         id: 632
-        motec_name: Segment 7 Die Temperature
-        unit: C
+        motec_name: Module 8 Cell 6 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    # Segment 7 Cell Voltages
-
-    segment7Cell1Voltage_V:
+    module8Cell7Voltage_V:
         id: 633
-        motec_name: Segment 7 Cell 1 Voltage
+        motec_name: Module 8 Cell 7 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell2Voltage_V:
+    module8Cell8Voltage_V:
         id: 634
-        motec_name: Segment 7 Cell 2 Voltage
+        motec_name: Module 8 Cell 8 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell3Voltage_V:
+    module8Cell9Voltage_V:
         id: 635
-        motec_name: Segment 7 Cell 3 Voltage
+        motec_name: Module 8 Cell 9 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell4Voltage_V:
+    module8Cell10Voltage_V:
         id: 636
-        motec_name: Segment 7 Cell 4 Voltage
+        motec_name: Module 8 Cell 10 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell5Voltage_V:
+    module8Cell11Voltage_V:
         id: 637
-        motec_name: Segment 7 Cell 5 Voltage
+        motec_name: Module 8 Cell 11 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell6Voltage_V:
+    module8Cell12Voltage_V:
         id: 638
-        motec_name: Segment 7 Cell 6 Voltage
+        motec_name: Module 8 Cell 12 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell7Voltage_V:
+    module8Cell13Voltage_V:
         id: 639
-        motec_name: Segment 7 Cell 7 Voltage
+        motec_name: Module 8 Cell 13 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell8Voltage_V:
+    module8Cell14Voltage_V:
         id: 640
-        motec_name: Segment 7 Cell 8 Voltage
+        motec_name: Module 8 Cell 14 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment7Cell9Voltage_V:
+    # Module 8 Cell Temps
+
+    module8Cell1Temperature_C:
         id: 641
-        motec_name: Segment 7 Cell 9 Voltage
-        unit: V
+        motec_name: Module 8 Cell 1 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7Cell10Voltage_V:
+    module8Cell2Temperature_C:
         id: 642
-        motec_name: Segment 7 Cell 10 Voltage
-        unit: V
+        motec_name: Module 8 Cell 2 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7Cell11Voltage_V:
+    module8Cell3Temperature_C:
         id: 643
-        motec_name: Segment 7 Cell 11 Voltage
-        unit: V
+        motec_name: Module 8 Cell 3 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7Cell12Voltage_V:
+    module8Cell4Temperature_C:
         id: 644
-        motec_name: Segment 7 Cell 12 Voltage
-        unit: V
+        motec_name: Module 8 Cell 4 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7Cell13Voltage_V:
+    module8Cell5Temperature_C:
         id: 645
-        motec_name: Segment 7 Cell 13 Voltage
-        unit: V
+        motec_name: Module 8 Cell 5 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7Cell14Voltage_V:
+    module8Cell6Temperature_C:
         id: 646
-        motec_name: Segment 7 Cell 14 Voltage
-        unit: V
+        motec_name: Module 8 Cell 6 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7Cell15Voltage_V:
+    module8Cell7Temperature_C:
         id: 647
-        motec_name: Segment 7 Cell 15 Voltage
-        unit: V
+        motec_name: Module 8 Cell 7 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment7Cell16Voltage_V:
+    module8Cell8Temperature_C:
         id: 648
-        motec_name: Segment 7 Cell 16 Voltage
-        unit: V
+        motec_name: Module 8 Cell 8 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    # Segment 7 Cell Temps
-
-    segment7Cell1Temperature_C:
+    module8Cell9Temperature_C:
         id: 649
-        motec_name: Segment 7 Cell 1 Temperature
+        motec_name: Module 8 Cell 9 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell2Temperature_C:
+    module8Cell10Temperature_C:
         id: 650
-        motec_name: Segment 7 Cell 2 Temperature
+        motec_name: Module 8 Cell 10 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell3Temperature_C:
+    module8Cell11Temperature_C:
         id: 651
-        motec_name: Segment 7 Cell 3 Temperature
+        motec_name: Module 8 Cell 11 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell4Temperature_C:
+    module8Cell12Temperature_C:
         id: 652
-        motec_name: Segment 7 Cell 4 Temperature
+        motec_name: Module 8 Cell 12 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell5Temperature_C:
+    module8Cell13Temperature_C:
         id: 653
-        motec_name: Segment 7 Cell 5 Temperature
+        motec_name: Module 8 Cell 13 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell6Temperature_C:
+    module8Cell14Temperature_C:
         id: 654
-        motec_name: Segment 7 Cell 6 Temperature
+        motec_name: Module 8 Cell 14 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell7Temperature_C:
+    # Module 9 Statistics
+
+    module9MaxCellVoltage_V:
         id: 655
-        motec_name: Segment 7 Cell 7 Temperature
-        unit: C
+        motec_name: Module 9 Max Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7Cell8Temperature_C:
+    module9MinCellVoltage_V:
         id: 656
-        motec_name: Segment 7 Cell 8 Temperature
-        unit: C
+        motec_name: Module 9 Min Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7Cell9Temperature_C:
+    module9AvgCellVoltage_V:
         id: 657
-        motec_name: Segment 7 Cell 9 Temperature
-        unit: C
+        motec_name: Module 9 Average Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7Cell10Temperature_C:
+    module9MaxCellTemperature_C:
         id: 658
-        motec_name: Segment 7 Cell 10 Temperature
+        motec_name: Module 9 Max Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell11Temperature_C:
+    module9MinCellTemperature_C:
         id: 659
-        motec_name: Segment 7 Cell 11 Temperature
+        motec_name: Module 9 Min Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell12Temperature_C:
+    module9AvgCellTemperature_C:
         id: 660
-        motec_name: Segment 7 Cell 12 Temperature
+        motec_name: Module 9 Average Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell13Temperature_C:
+    module9BoardTemperature_C:
         id: 661
-        motec_name: Segment 7 Cell 13 Temperature
+        motec_name: Module 9 Board Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell14Temperature_C:
+    module9DieTemperature_C:
         id: 662
-        motec_name: Segment 7 Cell 14 Temperature
+        motec_name: Module 9 Die Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment7Cell15Temperature_C:
+    # Module 9 Cell Voltages
+
+    module9Cell1Voltage_V:
         id: 663
-        motec_name: Segment 7 Cell 15 Temperature
-        unit: C
+        motec_name: Module 9 Cell 1 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment7Cell16Temperature_C:
+    module9Cell2Voltage_V:
         id: 664
-        motec_name: Segment 7 Cell 16 Temperature
-        unit: C
+        motec_name: Module 9 Cell 2 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    # Segment 8 Statistics
-
-    segment8MaxCellVoltage_V:
+    module9Cell3Voltage_V:
         id: 665
-        motec_name: Segment 8 Max Cell Voltage
+        motec_name: Module 9 Cell 3 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment8MinCellVoltage_V:
+    module9Cell4Voltage_V:
         id: 666
-        motec_name: Segment 8 Min Cell Voltage
+        motec_name: Module 9 Cell 4 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment8AvgCellVoltage_V:
+    module9Cell5Voltage_V:
         id: 667
-        motec_name: Segment 8 Average Cell Voltage
+        motec_name: Module 9 Cell 5 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment8MaxCellTemperature_C:
+    module9Cell6Voltage_V:
         id: 668
-        motec_name: Segment 8 Max Cell Temperature
-        unit: C
+        motec_name: Module 9 Cell 6 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8MinCellTemperature_C:
+    module9Cell7Voltage_V:
         id: 669
-        motec_name: Segment 8 Min Cell Temperature
-        unit: C
+        motec_name: Module 9 Cell 7 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8AvgCellTemperature_C:
+    module9Cell8Voltage_V:
         id: 670
-        motec_name: Segment 8 Average Cell Temperature
-        unit: C
+        motec_name: Module 9 Cell 8 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8BoardTemperature_C:
+    module9Cell9Voltage_V:
         id: 671
-        motec_name: Segment 8 Board Temperature
-        unit: C
+        motec_name: Module 9 Cell 9 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8DieTemperature_C:
+    module9Cell10Voltage_V:
         id: 672
-        motec_name: Segment 8 Die Temperature
-        unit: C
+        motec_name: Module 9 Cell 10 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    # Segment 8 Cell Voltages
-
-    segment8Cell1Voltage_V:
+    module9Cell11Voltage_V:
         id: 673
-        motec_name: Segment 8 Cell 1 Voltage
+        motec_name: Module 9 Cell 11 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment8Cell2Voltage_V:
+    module9Cell12Voltage_V:
         id: 674
-        motec_name: Segment 8 Cell 2 Voltage
+        motec_name: Module 9 Cell 12 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment8Cell3Voltage_V:
+    module9Cell13Voltage_V:
         id: 675
-        motec_name: Segment 8 Cell 3 Voltage
+        motec_name: Module 9 Cell 13 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment8Cell4Voltage_V:
+    module9Cell14Voltage_V:
         id: 676
-        motec_name: Segment 8 Cell 4 Voltage
+        motec_name: Module 9 Cell 14 Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    segment8Cell5Voltage_V:
+    # Module 9 Cell Temps
+
+    module9Cell1Temperature_C:
         id: 677
-        motec_name: Segment 8 Cell 5 Voltage
-        unit: V
+        motec_name: Module 9 Cell 1 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell6Voltage_V:
+    module9Cell2Temperature_C:
         id: 678
-        motec_name: Segment 8 Cell 6 Voltage
-        unit: V
+        motec_name: Module 9 Cell 2 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell7Voltage_V:
+    module9Cell3Temperature_C:
         id: 679
-        motec_name: Segment 8 Cell 7 Voltage
-        unit: V
+        motec_name: Module 9 Cell 3 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell8Voltage_V:
+    module9Cell4Temperature_C:
         id: 680
-        motec_name: Segment 8 Cell 8 Voltage
-        unit: V
+        motec_name: Module 9 Cell 4 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell9Voltage_V:
+    module9Cell5Temperature_C:
         id: 681
-        motec_name: Segment 8 Cell 9 Voltage
-        unit: V
+        motec_name: Module 9 Cell 5 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell10Voltage_V:
+    module9Cell6Temperature_C:
         id: 682
-        motec_name: Segment 8 Cell 10 Voltage
-        unit: V
+        motec_name: Module 9 Cell 6 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell11Voltage_V:
+    module9Cell7Temperature_C:
         id: 683
-        motec_name: Segment 8 Cell 11 Voltage
-        unit: V
+        motec_name: Module 9 Cell 7 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell12Voltage_V:
+    module9Cell8Temperature_C:
         id: 684
-        motec_name: Segment 8 Cell 12 Voltage
-        unit: V
+        motec_name: Module 9 Cell 8 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell13Voltage_V:
+    module9Cell9Temperature_C:
         id: 685
-        motec_name: Segment 8 Cell 13 Voltage
-        unit: V
+        motec_name: Module 9 Cell 9 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell14Voltage_V:
+    module9Cell10Temperature_C:
         id: 686
-        motec_name: Segment 8 Cell 14 Voltage
-        unit: V
+        motec_name: Module 9 Cell 10 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell15Voltage_V:
+    module9Cell11Temperature_C:
         id: 687
-        motec_name: Segment 8 Cell 15 Voltage
-        unit: V
+        motec_name: Module 9 Cell 11 Temperature
+        unit: C
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.1
+        offset: -40
 
-    segment8Cell16Voltage_V:
+    module9Cell12Temperature_C:
         id: 688
-        motec_name: Segment 8 Cell 16 Voltage
+        motec_name: Module 9 Cell 12 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module9Cell13Temperature_C:
+        id: 689
+        motec_name: Module 9 Cell 13 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module9Cell14Temperature_C:
+        id: 690
+        motec_name: Module 9 Cell 14 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    # Module 10 Statistics
+
+    module10MaxCellVoltage_V:
+        id: 691
+        motec_name: Module 10 Max Cell Voltage
         unit: V
         type: FLOATING
         encoding: MSB
         scale: 0.001
         offset: 0
 
-    # Segment 8 Cell Temps
-
-    segment8Cell1Temperature_C:
-        id: 689
-        motec_name: Segment 8 Cell 1 Temperature
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -40
-
-    segment8Cell2Temperature_C:
-        id: 690
-        motec_name: Segment 8 Cell 2 Temperature
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -40
-
-    segment8Cell3Temperature_C:
-        id: 691
-        motec_name: Segment 8 Cell 3 Temperature
-        unit: C
-        type: FLOATING
-        encoding: MSB
-        scale: 0.1
-        offset: -40
-
-    segment8Cell4Temperature_C:
+    module10MinCellVoltage_V:
         id: 692
-        motec_name: Segment 8 Cell 4 Temperature
-        unit: C
+        motec_name: Module 10 Min Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8Cell5Temperature_C:
+    module10AvgCellVoltage_V:
         id: 693
-        motec_name: Segment 8 Cell 5 Temperature
-        unit: C
+        motec_name: Module 10 Average Cell Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8Cell6Temperature_C:
+    module10MaxCellTemperature_C:
         id: 694
-        motec_name: Segment 8 Cell 6 Temperature
+        motec_name: Module 10 Max Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment8Cell7Temperature_C:
+    module10MinCellTemperature_C:
         id: 695
-        motec_name: Segment 8 Cell 7 Temperature
+        motec_name: Module 10 Min Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment8Cell8Temperature_C:
+    module10AvgCellTemperature_C:
         id: 696
-        motec_name: Segment 8 Cell 8 Temperature
+        motec_name: Module 10 Average Cell Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment8Cell9Temperature_C:
+    module10BoardTemperature_C:
         id: 697
-        motec_name: Segment 8 Cell 9 Temperature
+        motec_name: Module 10 Board Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment8Cell10Temperature_C:
+    module10DieTemperature_C:
         id: 698
-        motec_name: Segment 8 Cell 10 Temperature
+        motec_name: Module 10 Die Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment8Cell11Temperature_C:
+    # Module 10 Cell Voltages
+
+    module10Cell1Voltage_V:
         id: 699
-        motec_name: Segment 8 Cell 11 Temperature
-        unit: C
+        motec_name: Module 10 Cell 1 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8Cell12Temperature_C:
+    module10Cell2Voltage_V:
         id: 700
-        motec_name: Segment 8 Cell 12 Temperature
-        unit: C
+        motec_name: Module 10 Cell 2 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8Cell13Temperature_C:
+    module10Cell3Voltage_V:
         id: 701
-        motec_name: Segment 8 Cell 13 Temperature
-        unit: C
+        motec_name: Module 10 Cell 3 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8Cell14Temperature_C:
+    module10Cell4Voltage_V:
         id: 702
-        motec_name: Segment 8 Cell 14 Temperature
-        unit: C
+        motec_name: Module 10 Cell 4 Voltage
+        unit: V
         type: FLOATING
         encoding: MSB
-        scale: 0.1
-        offset: -40
+        scale: 0.001
+        offset: 0
 
-    segment8Cell15Temperature_C:
+    module10Cell5Voltage_V:
         id: 703
-        motec_name: Segment 8 Cell 15 Temperature
+        motec_name: Module 10 Cell 5 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell6Voltage_V:
+        id: 704
+        motec_name: Module 10 Cell 6 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell7Voltage_V:
+        id: 705
+        motec_name: Module 10 Cell 7 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell8Voltage_V:
+        id: 706
+        motec_name: Module 10 Cell 8 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell9Voltage_V:
+        id: 707
+        motec_name: Module 10 Cell 9 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell10Voltage_V:
+        id: 708
+        motec_name: Module 10 Cell 10 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell11Voltage_V:
+        id: 709
+        motec_name: Module 10 Cell 11 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell12Voltage_V:
+        id: 710
+        motec_name: Module 10 Cell 12 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell13Voltage_V:
+        id: 711
+        motec_name: Module 10 Cell 13 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    module10Cell14Voltage_V:
+        id: 712
+        motec_name: Module 10 Cell 14 Voltage
+        unit: V
+        type: FLOATING
+        encoding: MSB
+        scale: 0.001
+        offset: 0
+
+    # Module 10 Cell Temps
+
+    module10Cell1Temperature_C:
+        id: 713
+        motec_name: Module 10 Cell 1 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
         scale: 0.1
         offset: -40
 
-    segment8Cell16Temperature_C:
-        id: 704
-        motec_name: Segment 8 Cell 16 Temperature
+    module10Cell2Temperature_C:
+        id: 714
+        motec_name: Module 10 Cell 2 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell3Temperature_C:
+        id: 715
+        motec_name: Module 10 Cell 3 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell4Temperature_C:
+        id: 716
+        motec_name: Module 10 Cell 4 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell5Temperature_C:
+        id: 717
+        motec_name: Module 10 Cell 5 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell6Temperature_C:
+        id: 718
+        motec_name: Module 10 Cell 6 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell7Temperature_C:
+        id: 719
+        motec_name: Module 10 Cell 7 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell8Temperature_C:
+        id: 720
+        motec_name: Module 10 Cell 8 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell9Temperature_C:
+        id: 721
+        motec_name: Module 10 Cell 9 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell10Temperature_C:
+        id: 722
+        motec_name: Module 10 Cell 10 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell11Temperature_C:
+        id: 723
+        motec_name: Module 10 Cell 11 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell12Temperature_C:
+        id: 724
+        motec_name: Module 10 Cell 12 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell13Temperature_C:
+        id: 725
+        motec_name: Module 10 Cell 13 Temperature
+        unit: C
+        type: FLOATING
+        encoding: MSB
+        scale: 0.1
+        offset: -40
+
+    module10Cell14Temperature_C:
+        id: 726
+        motec_name: Module 10 Cell 14 Temperature
         unit: C
         type: FLOATING
         encoding: MSB
@@ -6540,7 +6746,7 @@ parameters:
     # Elcon charger
 
     chargerVoltageSetPoint_V:
-        id: 705
+        id: 727
         motec_name: Charger Voltage Set Point (Charger)
         unit: V
         type: FLOATING
@@ -6549,7 +6755,7 @@ parameters:
         offset: 0
 
     chargerCurrentSetPoint_A:
-        id: 706
+        id: 728
         motec_name: Charger Current Set Point (Charger)
         unit: A
         type: FLOATING
@@ -6558,7 +6764,7 @@ parameters:
         offset: 0
 
     chargerStatusByte:
-        id: 707
+        id: 729
         motec_name: Charger Status Byte (Charger)
         unit: ''
         type: UNSIGNED8
@@ -6571,7 +6777,7 @@ parameters:
     #Start Tire Temps
 
     rearRightTireTempCh1:
-        id: 708
+        id: 730
         motec_name: Rear Right Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -6580,7 +6786,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh5:
-        id: 709
+        id: 731
         motec_name: Rear Right Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -6589,7 +6795,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh7:
-        id: 710
+        id: 732
         motec_name: Rear Right Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -6598,7 +6804,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh8:
-        id: 711
+        id: 733
         motec_name: Rear Right Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -6607,7 +6813,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh9:
-        id: 712
+        id: 734
         motec_name: Rear Right Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -6616,7 +6822,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh10:
-        id: 713
+        id: 735
         motec_name: Rear Right Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -6625,7 +6831,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh12:
-        id: 714
+        id: 736
         motec_name: Rear Right Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -6634,7 +6840,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh16:
-        id: 715
+        id: 737
         motec_name: Rear Right Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -6643,7 +6849,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh1:
-        id: 716
+        id: 738
         motec_name: Rear Left Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -6652,7 +6858,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh5:
-        id: 717
+        id: 739
         motec_name: Rear Left Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -6661,7 +6867,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh7:
-        id: 718
+        id: 740
         motec_name: Rear Left Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -6670,7 +6876,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh8:
-        id: 719
+        id: 741
         motec_name: Rear Left Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -6679,7 +6885,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh9:
-        id: 720
+        id: 742
         motec_name: Rear Left Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -6688,7 +6894,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh10:
-        id: 721
+        id: 743
         motec_name: Rear Left Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -6697,7 +6903,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh12:
-        id: 722
+        id: 744
         motec_name: Rear Left Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -6706,7 +6912,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh16:
-        id: 723
+        id: 745
         motec_name: Rear Left Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -6715,7 +6921,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh1:
-        id: 724
+        id: 746
         motec_name: Front Right Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -6724,7 +6930,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh5:
-        id: 725
+        id: 747
         motec_name: Front Right Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -6733,7 +6939,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh7:
-        id: 726
+        id: 748
         motec_name: Front Right Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -6742,7 +6948,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh8:
-        id: 727
+        id: 749
         motec_name: Front Right Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -6751,7 +6957,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh9:
-        id: 728
+        id: 750
         motec_name: Front Right Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -6760,7 +6966,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh10:
-        id: 729
+        id: 751
         motec_name: Front Right Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -6769,7 +6975,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh12:
-        id: 730
+        id: 752
         motec_name: Front Right Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -6778,7 +6984,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh16:
-        id: 731
+        id: 753
         motec_name: Front Right Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -6787,7 +6993,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh1:
-        id: 732
+        id: 754
         motec_name: Front Left Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -6796,7 +7002,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh5:
-        id: 733
+        id: 755
         motec_name: Front Left Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -6805,7 +7011,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh7:
-        id: 734
+        id: 756
         motec_name: Front Left Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -6814,7 +7020,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh8:
-        id: 735
+        id: 757
         motec_name: Front Left Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -6823,7 +7029,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh9:
-        id: 736
+        id: 758
         motec_name: Front Left Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -6832,7 +7038,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh10:
-        id: 737
+        id: 759
         motec_name: Front Left Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -6841,7 +7047,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh12:
-        id: 738
+        id: 760
         motec_name: Front Left Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -6850,7 +7056,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh16:
-        id: 739
+        id: 761
         motec_name: Front Left Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -7638,7 +7844,7 @@ groups: [
             {name: bmsBatteryVoltage_V, start: 2, length: 2},
             {name: bmsTractiveSystemVoltage_V, start: 4, length: 2},
             {name: imdFault_state, start: 6, length: 1},
-            {name: amsFault_state, start: 7, length: 1}
+            {name: bmsFault_state, start: 7, length: 1}
         ]
     },
 
@@ -7675,786 +7881,854 @@ groups: [
     {
         id: 0x304,
         parameters: [
-            {name: bmsNumActiveAlerts_state, start: 0, length: 1},
-            {name: bmsCurrAlertIndex_state, start: 1, length: 1},
-            {name: overvoltageWarningAlert_state, start: 2, length: 1},
-            {name: undervoltageWarningAlert_state, start: 3, length: 1},
-            {name: overvoltageFaultAlert_state, start: 4, length: 1},
-            {name: undervoltageFaultAlert_state, start: 5, length: 1},
-            {name: cellImbalanceAlert_state, start: 6, length: 1},
-            {name: overtempWarningAlert_state, start: 7, length: 1}
+            {name: bmsNumActiveAlerts_info, start: 0, length: 1},
+            {name: cellMonitorAlerts_info, start: 1, length: 2},
+            {name: packMonitorAlerts_info, start: 3, length: 1},
+            {name: forceEnableBalancing_state, start: 4, length: 1},
+            {name: bmsInhibitActive_state, start: 5, length: 1}
         ]
     },
 
-    {
-        id: 0x305,
-        parameters: [
-            {name: overtempFaultAlert_state, start: 0, length: 1},
-            {name: badVoltageSenseStatusAlert_state, start: 1, length: 1},
-            {name: badBrickTempSenseStatusAlert_state, start: 2, length: 1},
-            {name: badBoardTempSenseStatusAlert_state, start: 3, length: 1},
-            {name: insufficientTempSensorsAlert_state, start: 4, length: 1},
-            {name: telemetryCommunicationAlert_state, start: 5, length: 1},
-            {name: packOvercurrentFaultAlert_state, start: 6, length: 1}
-        ]
-    },
-
-    {
-        id: 0x306,
-        parameters: [
-            {name: bmsShutdown1_state, start: 0, length: 1},
-            {name: bmsShutdown2_state, start: 1, length: 1},
-            {name: bmsShutdown3_state, start: 2, length: 1},
-            {name: bmsShutdown4_state, start: 3, length: 1},
-            {name: bmsShutdown5_state, start: 4, length: 1},
-            {name: bmsShutdown6_state, start: 5, length: 1},
-            {name: bmsInhibitActive_state, start: 6, length: 1}
-        ]
-    },
-
-    # START Segment 1
+    # START Module 1
     {
         id: 0x310,
         parameters: [
-            {name: segment1MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment1MinCellVoltage_V, start: 2, length: 2},
-            {name: segment1AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment1DieTemperature_C, start: 6, length: 2}
+            {name: module1MaxCellVoltage_V, start: 0, length: 2},
+            {name: module1MinCellVoltage_V, start: 2, length: 2},
+            {name: module1AvgCellVoltage_V, start: 4, length: 2},
+            {name: module1DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x311,
         parameters: [
-            {name: segment1MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment1MinCellTemperature_C, start: 2, length: 2},
-            {name: segment1AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment1BoardTemperature_C, start: 6, length: 2}
+            {name: module1MaxCellTemperature_C, start: 0, length: 2},
+            {name: module1MinCellTemperature_C, start: 2, length: 2},
+            {name: module1AvgCellTemperature_C, start: 4, length: 2},
+            {name: module1BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x312,
         parameters: [
-            {name: segment1Cell1Voltage_V, start: 0, length: 2},
-            {name: segment1Cell2Voltage_V, start: 2, length: 2},
-            {name: segment1Cell3Voltage_V, start: 4, length: 2},
-            {name: segment1Cell4Voltage_V, start: 6, length: 2}
+            {name: module1Cell1Voltage_V, start: 0, length: 2},
+            {name: module1Cell2Voltage_V, start: 2, length: 2},
+            {name: module1Cell3Voltage_V, start: 4, length: 2},
+            {name: module1Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x313,
         parameters: [
-            {name: segment1Cell5Voltage_V, start: 0, length: 2},
-            {name: segment1Cell6Voltage_V, start: 2, length: 2},
-            {name: segment1Cell7Voltage_V, start: 4, length: 2},
-            {name: segment1Cell8Voltage_V, start: 6, length: 2}
+            {name: module1Cell5Voltage_V, start: 0, length: 2},
+            {name: module1Cell6Voltage_V, start: 2, length: 2},
+            {name: module1Cell7Voltage_V, start: 4, length: 2},
+            {name: module1Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x314,
         parameters: [
-            {name: segment1Cell9Voltage_V, start: 0, length: 2},
-            {name: segment1Cell10Voltage_V, start: 2, length: 2},
-            {name: segment1Cell11Voltage_V, start: 4, length: 2},
-            {name: segment1Cell12Voltage_V, start: 6, length: 2}
+            {name: module1Cell9Voltage_V, start: 0, length: 2},
+            {name: module1Cell10Voltage_V, start: 2, length: 2},
+            {name: module1Cell11Voltage_V, start: 4, length: 2},
+            {name: module1Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x315,
         parameters: [
-            {name: segment1Cell13Voltage_V, start: 0, length: 2},
-            {name: segment1Cell14Voltage_V, start: 2, length: 2},
-            {name: segment1Cell15Voltage_V, start: 4, length: 2},
-            {name: segment1Cell16Voltage_V, start: 6, length: 2}
+            {name: module1Cell13Voltage_V, start: 0, length: 2},
+            {name: module1Cell14Voltage_V, start: 2, length: 2},
+            {name: module1Cell1Temperature_C, start: 4, length: 2},
+            {name: module1Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x316,
         parameters: [
-            {name: segment1Cell1Temperature_C, start: 0, length: 2},
-            {name: segment1Cell2Temperature_C, start: 2, length: 2},
-            {name: segment1Cell3Temperature_C, start: 4, length: 2},
-            {name: segment1Cell4Temperature_C, start: 6, length: 2}
+            {name: module1Cell3Temperature_C, start: 0, length: 2},
+            {name: module1Cell4Temperature_C, start: 2, length: 2},
+            {name: module1Cell5Temperature_C, start: 4, length: 2},
+            {name: module1Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x317,
         parameters: [
-            {name: segment1Cell5Temperature_C, start: 0, length: 2},
-            {name: segment1Cell6Temperature_C, start: 2, length: 2},
-            {name: segment1Cell7Temperature_C, start: 4, length: 2},
-            {name: segment1Cell8Temperature_C, start: 6, length: 2}
+            {name: module1Cell7Temperature_C, start: 0, length: 2},
+            {name: module1Cell8Temperature_C, start: 2, length: 2},
+            {name: module1Cell9Temperature_C, start: 4, length: 2},
+            {name: module1Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x318,
         parameters: [
-            {name: segment1Cell9Temperature_C, start: 0, length: 2},
-            {name: segment1Cell10Temperature_C, start: 2, length: 2},
-            {name: segment1Cell11Temperature_C, start: 4, length: 2},
-            {name: segment1Cell12Temperature_C, start: 6, length: 2}
+            {name: module1Cell11Temperature_C, start: 0, length: 2},
+            {name: module1Cell12Temperature_C, start: 2, length: 2},
+            {name: module1Cell13Temperature_C, start: 4, length: 2},
+            {name: module1Cell14Temperature_C, start: 6, length: 2},
         ]
     },
-    {
-        id: 0x319,
-        parameters: [
-            {name: segment1Cell13Temperature_C, start: 0, length: 2},
-            {name: segment1Cell14Temperature_C, start: 2, length: 2},
-            {name: segment1Cell15Temperature_C, start: 4, length: 2},
-            {name: segment1Cell16Temperature_C, start: 6, length: 2}
-        ]
-    },
-    # END Segment 1
 
-    # START Segment 2
+    # END Module 1
+
+    # START Module 2
     {
         id: 0x320,
         parameters: [
-            {name: segment2MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment2MinCellVoltage_V, start: 2, length: 2},
-            {name: segment2AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment2DieTemperature_C, start: 6, length: 2}
+            {name: module2MaxCellVoltage_V, start: 0, length: 2},
+            {name: module2MinCellVoltage_V, start: 2, length: 2},
+            {name: module2AvgCellVoltage_V, start: 4, length: 2},
+            {name: module2DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x321,
         parameters: [
-            {name: segment2MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment2MinCellTemperature_C, start: 2, length: 2},
-            {name: segment2AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment2BoardTemperature_C, start: 6, length: 2}
+            {name: module2MaxCellTemperature_C, start: 0, length: 2},
+            {name: module2MinCellTemperature_C, start: 2, length: 2},
+            {name: module2AvgCellTemperature_C, start: 4, length: 2},
+            {name: module2BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x322,
         parameters: [
-            {name: segment2Cell1Voltage_V, start: 0, length: 2},
-            {name: segment2Cell2Voltage_V, start: 2, length: 2},
-            {name: segment2Cell3Voltage_V, start: 4, length: 2},
-            {name: segment2Cell4Voltage_V, start: 6, length: 2}
+            {name: module2Cell1Voltage_V, start: 0, length: 2},
+            {name: module2Cell2Voltage_V, start: 2, length: 2},
+            {name: module2Cell3Voltage_V, start: 4, length: 2},
+            {name: module2Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x323,
         parameters: [
-            {name: segment2Cell5Voltage_V, start: 0, length: 2},
-            {name: segment2Cell6Voltage_V, start: 2, length: 2},
-            {name: segment2Cell7Voltage_V, start: 4, length: 2},
-            {name: segment2Cell8Voltage_V, start: 6, length: 2}
+            {name: module2Cell5Voltage_V, start: 0, length: 2},
+            {name: module2Cell6Voltage_V, start: 2, length: 2},
+            {name: module2Cell7Voltage_V, start: 4, length: 2},
+            {name: module2Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x324,
         parameters: [
-            {name: segment2Cell9Voltage_V, start: 0, length: 2},
-            {name: segment2Cell10Voltage_V, start: 2, length: 2},
-            {name: segment2Cell11Voltage_V, start: 4, length: 2},
-            {name: segment2Cell12Voltage_V, start: 6, length: 2}
+            {name: module2Cell9Voltage_V, start: 0, length: 2},
+            {name: module2Cell10Voltage_V, start: 2, length: 2},
+            {name: module2Cell11Voltage_V, start: 4, length: 2},
+            {name: module2Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x325,
         parameters: [
-            {name: segment2Cell13Voltage_V, start: 0, length: 2},
-            {name: segment2Cell14Voltage_V, start: 2, length: 2},
-            {name: segment2Cell15Voltage_V, start: 4, length: 2},
-            {name: segment2Cell16Voltage_V, start: 6, length: 2}
+            {name: module2Cell13Voltage_V, start: 0, length: 2},
+            {name: module2Cell14Voltage_V, start: 2, length: 2},
+            {name: module2Cell1Temperature_C, start: 4, length: 2},
+            {name: module2Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x326,
         parameters: [
-            {name: segment2Cell1Temperature_C, start: 0, length: 2},
-            {name: segment2Cell2Temperature_C, start: 2, length: 2},
-            {name: segment2Cell3Temperature_C, start: 4, length: 2},
-            {name: segment2Cell4Temperature_C, start: 6, length: 2}
+            {name: module2Cell3Temperature_C, start: 0, length: 2},
+            {name: module2Cell4Temperature_C, start: 2, length: 2},
+            {name: module2Cell5Temperature_C, start: 4, length: 2},
+            {name: module2Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x327,
         parameters: [
-            {name: segment2Cell5Temperature_C, start: 0, length: 2},
-            {name: segment2Cell6Temperature_C, start: 2, length: 2},
-            {name: segment2Cell7Temperature_C, start: 4, length: 2},
-            {name: segment2Cell8Temperature_C, start: 6, length: 2}
+            {name: module2Cell7Temperature_C, start: 0, length: 2},
+            {name: module2Cell8Temperature_C, start: 2, length: 2},
+            {name: module2Cell9Temperature_C, start: 4, length: 2},
+            {name: module2Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x328,
         parameters: [
-            {name: segment2Cell9Temperature_C, start: 0, length: 2},
-            {name: segment2Cell10Temperature_C, start: 2, length: 2},
-            {name: segment2Cell11Temperature_C, start: 4, length: 2},
-            {name: segment2Cell12Temperature_C, start: 6, length: 2}
+            {name: module2Cell11Temperature_C, start: 0, length: 2},
+            {name: module2Cell12Temperature_C, start: 2, length: 2},
+            {name: module2Cell13Temperature_C, start: 4, length: 2},
+            {name: module2Cell14Temperature_C, start: 6, length: 2},
         ]
     },
-    {
-        id: 0x329,
-        parameters: [
-            {name: segment2Cell13Temperature_C, start: 0, length: 2},
-            {name: segment2Cell14Temperature_C, start: 2, length: 2},
-            {name: segment2Cell15Temperature_C, start: 4, length: 2},
-            {name: segment2Cell16Temperature_C, start: 6, length: 2}
-        ]
-    },
-    # END Segment 2
+    # END Module 2
 
-    # START Segment 3
+    # START Module 3
     {
         id: 0x330,
         parameters: [
-            {name: segment3MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment3MinCellVoltage_V, start: 2, length: 2},
-            {name: segment3AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment3DieTemperature_C, start: 6, length: 2}
+            {name: module3MaxCellVoltage_V, start: 0, length: 2},
+            {name: module3MinCellVoltage_V, start: 2, length: 2},
+            {name: module3AvgCellVoltage_V, start: 4, length: 2},
+            {name: module3DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x331,
         parameters: [
-            {name: segment3MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment3MinCellTemperature_C, start: 2, length: 2},
-            {name: segment3AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment3BoardTemperature_C, start: 6, length: 2}
+            {name: module3MaxCellTemperature_C, start: 0, length: 2},
+            {name: module3MinCellTemperature_C, start: 2, length: 2},
+            {name: module3AvgCellTemperature_C, start: 4, length: 2},
+            {name: module3BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x332,
         parameters: [
-            {name: segment3Cell1Voltage_V, start: 0, length: 2},
-            {name: segment3Cell2Voltage_V, start: 2, length: 2},
-            {name: segment3Cell3Voltage_V, start: 4, length: 2},
-            {name: segment3Cell4Voltage_V, start: 6, length: 2}
+            {name: module3Cell1Voltage_V, start: 0, length: 2},
+            {name: module3Cell2Voltage_V, start: 2, length: 2},
+            {name: module3Cell3Voltage_V, start: 4, length: 2},
+            {name: module3Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x333,
         parameters: [
-            {name: segment3Cell5Voltage_V, start: 0, length: 2},
-            {name: segment3Cell6Voltage_V, start: 2, length: 2},
-            {name: segment3Cell7Voltage_V, start: 4, length: 2},
-            {name: segment3Cell8Voltage_V, start: 6, length: 2}
+            {name: module3Cell5Voltage_V, start: 0, length: 2},
+            {name: module3Cell6Voltage_V, start: 2, length: 2},
+            {name: module3Cell7Voltage_V, start: 4, length: 2},
+            {name: module3Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x334,
         parameters: [
-            {name: segment3Cell9Voltage_V, start: 0, length: 2},
-            {name: segment3Cell10Voltage_V, start: 2, length: 2},
-            {name: segment3Cell11Voltage_V, start: 4, length: 2},
-            {name: segment3Cell12Voltage_V, start: 6, length: 2}
+            {name: module3Cell9Voltage_V, start: 0, length: 2},
+            {name: module3Cell10Voltage_V, start: 2, length: 2},
+            {name: module3Cell11Voltage_V, start: 4, length: 2},
+            {name: module3Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x335,
         parameters: [
-            {name: segment3Cell13Voltage_V, start: 0, length: 2},
-            {name: segment3Cell14Voltage_V, start: 2, length: 2},
-            {name: segment3Cell15Voltage_V, start: 4, length: 2},
-            {name: segment3Cell16Voltage_V, start: 6, length: 2}
+            {name: module3Cell13Voltage_V, start: 0, length: 2},
+            {name: module3Cell14Voltage_V, start: 2, length: 2},
+            {name: module3Cell1Temperature_C, start: 4, length: 2},
+            {name: module3Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x336,
         parameters: [
-            {name: segment3Cell1Temperature_C, start: 0, length: 2},
-            {name: segment3Cell2Temperature_C, start: 2, length: 2},
-            {name: segment3Cell3Temperature_C, start: 4, length: 2},
-            {name: segment3Cell4Temperature_C, start: 6, length: 2}
+            {name: module3Cell3Temperature_C, start: 0, length: 2},
+            {name: module3Cell4Temperature_C, start: 2, length: 2},
+            {name: module3Cell5Temperature_C, start: 4, length: 2},
+            {name: module3Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x337,
         parameters: [
-            {name: segment3Cell5Temperature_C, start: 0, length: 2},
-            {name: segment3Cell6Temperature_C, start: 2, length: 2},
-            {name: segment3Cell7Temperature_C, start: 4, length: 2},
-            {name: segment3Cell8Temperature_C, start: 6, length: 2}
+            {name: module3Cell7Temperature_C, start: 0, length: 2},
+            {name: module3Cell8Temperature_C, start: 2, length: 2},
+            {name: module3Cell9Temperature_C, start: 4, length: 2},
+            {name: module3Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x338,
         parameters: [
-            {name: segment3Cell9Temperature_C, start: 0, length: 2},
-            {name: segment3Cell10Temperature_C, start: 2, length: 2},
-            {name: segment3Cell11Temperature_C, start: 4, length: 2},
-            {name: segment3Cell12Temperature_C, start: 6, length: 2}
+            {name: module3Cell11Temperature_C, start: 0, length: 2},
+            {name: module3Cell12Temperature_C, start: 2, length: 2},
+            {name: module3Cell13Temperature_C, start: 4, length: 2},
+            {name: module3Cell14Temperature_C, start: 6, length: 2},
         ]
     },
-    {
-        id: 0x339,
-        parameters: [
-            {name: segment3Cell13Temperature_C, start: 0, length: 2},
-            {name: segment3Cell14Temperature_C, start: 2, length: 2},
-            {name: segment3Cell15Temperature_C, start: 4, length: 2},
-            {name: segment3Cell16Temperature_C, start: 6, length: 2}
-        ]
-    },
-    # END Segment 3
+    # END Module 3
 
-    # START Segment 4
+    # START Module 4
     {
         id: 0x340,
         parameters: [
-            {name: segment4MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment4MinCellVoltage_V, start: 2, length: 2},
-            {name: segment4AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment4DieTemperature_C, start: 6, length: 2}
+            {name: module4MaxCellVoltage_V, start: 0, length: 2},
+            {name: module4MinCellVoltage_V, start: 2, length: 2},
+            {name: module4AvgCellVoltage_V, start: 4, length: 2},
+            {name: module4DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x341,
         parameters: [
-            {name: segment4MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment4MinCellTemperature_C, start: 2, length: 2},
-            {name: segment4AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment4BoardTemperature_C, start: 6, length: 2}
+            {name: module4MaxCellTemperature_C, start: 0, length: 2},
+            {name: module4MinCellTemperature_C, start: 2, length: 2},
+            {name: module4AvgCellTemperature_C, start: 4, length: 2},
+            {name: module4BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x342,
         parameters: [
-            {name: segment4Cell1Voltage_V, start: 0, length: 2},
-            {name: segment4Cell2Voltage_V, start: 2, length: 2},
-            {name: segment4Cell3Voltage_V, start: 4, length: 2},
-            {name: segment4Cell4Voltage_V, start: 6, length: 2}
+            {name: module4Cell1Voltage_V, start: 0, length: 2},
+            {name: module4Cell2Voltage_V, start: 2, length: 2},
+            {name: module4Cell3Voltage_V, start: 4, length: 2},
+            {name: module4Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x343,
         parameters: [
-            {name: segment4Cell5Voltage_V, start: 0, length: 2},
-            {name: segment4Cell6Voltage_V, start: 2, length: 2},
-            {name: segment4Cell7Voltage_V, start: 4, length: 2},
-            {name: segment4Cell8Voltage_V, start: 6, length: 2}
+            {name: module4Cell5Voltage_V, start: 0, length: 2},
+            {name: module4Cell6Voltage_V, start: 2, length: 2},
+            {name: module4Cell7Voltage_V, start: 4, length: 2},
+            {name: module4Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x344,
         parameters: [
-            {name: segment4Cell9Voltage_V, start: 0, length: 2},
-            {name: segment4Cell10Voltage_V, start: 2, length: 2},
-            {name: segment4Cell11Voltage_V, start: 4, length: 2},
-            {name: segment4Cell12Voltage_V, start: 6, length: 2}
+            {name: module4Cell9Voltage_V, start: 0, length: 2},
+            {name: module4Cell10Voltage_V, start: 2, length: 2},
+            {name: module4Cell11Voltage_V, start: 4, length: 2},
+            {name: module4Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x345,
         parameters: [
-            {name: segment4Cell13Voltage_V, start: 0, length: 2},
-            {name: segment4Cell14Voltage_V, start: 2, length: 2},
-            {name: segment4Cell15Voltage_V, start: 4, length: 2},
-            {name: segment4Cell16Voltage_V, start: 6, length: 2}
+            {name: module4Cell13Voltage_V, start: 0, length: 2},
+            {name: module4Cell14Voltage_V, start: 2, length: 2},
+            {name: module4Cell1Temperature_C, start: 4, length: 2},
+            {name: module4Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x346,
         parameters: [
-            {name: segment4Cell1Temperature_C, start: 0, length: 2},
-            {name: segment4Cell2Temperature_C, start: 2, length: 2},
-            {name: segment4Cell3Temperature_C, start: 4, length: 2},
-            {name: segment4Cell4Temperature_C, start: 6, length: 2}
+            {name: module4Cell3Temperature_C, start: 0, length: 2},
+            {name: module4Cell4Temperature_C, start: 2, length: 2},
+            {name: module4Cell5Temperature_C, start: 4, length: 2},
+            {name: module4Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x347,
         parameters: [
-            {name: segment4Cell5Temperature_C, start: 0, length: 2},
-            {name: segment4Cell6Temperature_C, start: 2, length: 2},
-            {name: segment4Cell7Temperature_C, start: 4, length: 2},
-            {name: segment4Cell8Temperature_C, start: 6, length: 2}
+            {name: module4Cell7Temperature_C, start: 0, length: 2},
+            {name: module4Cell8Temperature_C, start: 2, length: 2},
+            {name: module4Cell9Temperature_C, start: 4, length: 2},
+            {name: module4Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x348,
         parameters: [
-            {name: segment4Cell9Temperature_C, start: 0, length: 2},
-            {name: segment4Cell10Temperature_C, start: 2, length: 2},
-            {name: segment4Cell11Temperature_C, start: 4, length: 2},
-            {name: segment4Cell12Temperature_C, start: 6, length: 2}
+            {name: module4Cell11Temperature_C, start: 0, length: 2},
+            {name: module4Cell12Temperature_C, start: 2, length: 2},
+            {name: module4Cell13Temperature_C, start: 4, length: 2},
+            {name: module4Cell14Temperature_C, start: 6, length: 2},
         ]
     },
-    {
-        id: 0x349,
-        parameters: [
-            {name: segment4Cell13Temperature_C, start: 0, length: 2},
-            {name: segment4Cell14Temperature_C, start: 2, length: 2},
-            {name: segment4Cell15Temperature_C, start: 4, length: 2},
-            {name: segment4Cell16Temperature_C, start: 6, length: 2}
-        ]
-    },
-    # END Segment 4
+    # END Module 4
 
-    # START Segment 5
+    # START Module 5
     {
         id: 0x350,
         parameters: [
-            {name: segment5MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment5MinCellVoltage_V, start: 2, length: 2},
-            {name: segment5AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment5DieTemperature_C, start: 6, length: 2}
+            {name: module5MaxCellVoltage_V, start: 0, length: 2},
+            {name: module5MinCellVoltage_V, start: 2, length: 2},
+            {name: module5AvgCellVoltage_V, start: 4, length: 2},
+            {name: module5DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x351,
         parameters: [
-            {name: segment5MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment5MinCellTemperature_C, start: 2, length: 2},
-            {name: segment5AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment5BoardTemperature_C, start: 6, length: 2}
+            {name: module5MaxCellTemperature_C, start: 0, length: 2},
+            {name: module5MinCellTemperature_C, start: 2, length: 2},
+            {name: module5AvgCellTemperature_C, start: 4, length: 2},
+            {name: module5BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x352,
         parameters: [
-            {name: segment5Cell1Voltage_V, start: 0, length: 2},
-            {name: segment5Cell2Voltage_V, start: 2, length: 2},
-            {name: segment5Cell3Voltage_V, start: 4, length: 2},
-            {name: segment5Cell4Voltage_V, start: 6, length: 2}
+            {name: module5Cell1Voltage_V, start: 0, length: 2},
+            {name: module5Cell2Voltage_V, start: 2, length: 2},
+            {name: module5Cell3Voltage_V, start: 4, length: 2},
+            {name: module5Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x353,
         parameters: [
-            {name: segment5Cell5Voltage_V, start: 0, length: 2},
-            {name: segment5Cell6Voltage_V, start: 2, length: 2},
-            {name: segment5Cell7Voltage_V, start: 4, length: 2},
-            {name: segment5Cell8Voltage_V, start: 6, length: 2}
+            {name: module5Cell5Voltage_V, start: 0, length: 2},
+            {name: module5Cell6Voltage_V, start: 2, length: 2},
+            {name: module5Cell7Voltage_V, start: 4, length: 2},
+            {name: module5Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x354,
         parameters: [
-            {name: segment5Cell9Voltage_V, start: 0, length: 2},
-            {name: segment5Cell10Voltage_V, start: 2, length: 2},
-            {name: segment5Cell11Voltage_V, start: 4, length: 2},
-            {name: segment5Cell12Voltage_V, start: 6, length: 2}
+            {name: module5Cell9Voltage_V, start: 0, length: 2},
+            {name: module5Cell10Voltage_V, start: 2, length: 2},
+            {name: module5Cell11Voltage_V, start: 4, length: 2},
+            {name: module5Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x355,
         parameters: [
-            {name: segment5Cell13Voltage_V, start: 0, length: 2},
-            {name: segment5Cell14Voltage_V, start: 2, length: 2},
-            {name: segment5Cell15Voltage_V, start: 4, length: 2},
-            {name: segment5Cell16Voltage_V, start: 6, length: 2}
+            {name: module5Cell13Voltage_V, start: 0, length: 2},
+            {name: module5Cell14Voltage_V, start: 2, length: 2},
+            {name: module5Cell1Temperature_C, start: 4, length: 2},
+            {name: module5Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x356,
         parameters: [
-            {name: segment5Cell1Temperature_C, start: 0, length: 2},
-            {name: segment5Cell2Temperature_C, start: 2, length: 2},
-            {name: segment5Cell3Temperature_C, start: 4, length: 2},
-            {name: segment5Cell4Temperature_C, start: 6, length: 2}
+            {name: module5Cell3Temperature_C, start: 0, length: 2},
+            {name: module5Cell4Temperature_C, start: 2, length: 2},
+            {name: module5Cell5Temperature_C, start: 4, length: 2},
+            {name: module5Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x357,
         parameters: [
-            {name: segment5Cell5Temperature_C, start: 0, length: 2},
-            {name: segment5Cell6Temperature_C, start: 2, length: 2},
-            {name: segment5Cell7Temperature_C, start: 4, length: 2},
-            {name: segment5Cell8Temperature_C, start: 6, length: 2}
+            {name: module5Cell7Temperature_C, start: 0, length: 2},
+            {name: module5Cell8Temperature_C, start: 2, length: 2},
+            {name: module5Cell9Temperature_C, start: 4, length: 2},
+            {name: module5Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x358,
         parameters: [
-            {name: segment5Cell9Temperature_C, start: 0, length: 2},
-            {name: segment5Cell10Temperature_C, start: 2, length: 2},
-            {name: segment5Cell11Temperature_C, start: 4, length: 2},
-            {name: segment5Cell12Temperature_C, start: 6, length: 2}
+            {name: module5Cell11Temperature_C, start: 0, length: 2},
+            {name: module5Cell12Temperature_C, start: 2, length: 2},
+            {name: module5Cell13Temperature_C, start: 4, length: 2},
+            {name: module5Cell14Temperature_C, start: 6, length: 2},
         ]
     },
-    {
-        id: 0x359,
-        parameters: [
-            {name: segment5Cell13Temperature_C, start: 0, length: 2},
-            {name: segment5Cell14Temperature_C, start: 2, length: 2},
-            {name: segment5Cell15Temperature_C, start: 4, length: 2},
-            {name: segment5Cell16Temperature_C, start: 6, length: 2}
-        ]
-    },
-    # END Segment 5
+    # END Module 5
 
-    # START Segment 6
+    # START Module 6
     {
         id: 0x360,
         parameters: [
-            {name: segment6MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment6MinCellVoltage_V, start: 2, length: 2},
-            {name: segment6AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment6DieTemperature_C, start: 6, length: 2}
+            {name: module6MaxCellVoltage_V, start: 0, length: 2},
+            {name: module6MinCellVoltage_V, start: 2, length: 2},
+            {name: module6AvgCellVoltage_V, start: 4, length: 2},
+            {name: module6DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x361,
         parameters: [
-            {name: segment6MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment6MinCellTemperature_C, start: 2, length: 2},
-            {name: segment6AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment6BoardTemperature_C, start: 6, length: 2}
+            {name: module6MaxCellTemperature_C, start: 0, length: 2},
+            {name: module6MinCellTemperature_C, start: 2, length: 2},
+            {name: module6AvgCellTemperature_C, start: 4, length: 2},
+            {name: module6BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x362,
         parameters: [
-            {name: segment6Cell1Voltage_V, start: 0, length: 2},
-            {name: segment6Cell2Voltage_V, start: 2, length: 2},
-            {name: segment6Cell3Voltage_V, start: 4, length: 2},
-            {name: segment6Cell4Voltage_V, start: 6, length: 2}
+            {name: module6Cell1Voltage_V, start: 0, length: 2},
+            {name: module6Cell2Voltage_V, start: 2, length: 2},
+            {name: module6Cell3Voltage_V, start: 4, length: 2},
+            {name: module6Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x363,
         parameters: [
-            {name: segment6Cell5Voltage_V, start: 0, length: 2},
-            {name: segment6Cell6Voltage_V, start: 2, length: 2},
-            {name: segment6Cell7Voltage_V, start: 4, length: 2},
-            {name: segment6Cell8Voltage_V, start: 6, length: 2}
+            {name: module6Cell5Voltage_V, start: 0, length: 2},
+            {name: module6Cell6Voltage_V, start: 2, length: 2},
+            {name: module6Cell7Voltage_V, start: 4, length: 2},
+            {name: module6Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x364,
         parameters: [
-            {name: segment6Cell9Voltage_V, start: 0, length: 2},
-            {name: segment6Cell10Voltage_V, start: 2, length: 2},
-            {name: segment6Cell11Voltage_V, start: 4, length: 2},
-            {name: segment6Cell12Voltage_V, start: 6, length: 2}
+            {name: module6Cell9Voltage_V, start: 0, length: 2},
+            {name: module6Cell10Voltage_V, start: 2, length: 2},
+            {name: module6Cell11Voltage_V, start: 4, length: 2},
+            {name: module6Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x365,
         parameters: [
-            {name: segment6Cell13Voltage_V, start: 0, length: 2},
-            {name: segment6Cell14Voltage_V, start: 2, length: 2},
-            {name: segment6Cell15Voltage_V, start: 4, length: 2},
-            {name: segment6Cell16Voltage_V, start: 6, length: 2}
+            {name: module6Cell13Voltage_V, start: 0, length: 2},
+            {name: module6Cell14Voltage_V, start: 2, length: 2},
+            {name: module6Cell1Temperature_C, start: 4, length: 2},
+            {name: module6Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x366,
         parameters: [
-            {name: segment6Cell1Temperature_C, start: 0, length: 2},
-            {name: segment6Cell2Temperature_C, start: 2, length: 2},
-            {name: segment6Cell3Temperature_C, start: 4, length: 2},
-            {name: segment6Cell4Temperature_C, start: 6, length: 2}
+            {name: module6Cell3Temperature_C, start: 0, length: 2},
+            {name: module6Cell4Temperature_C, start: 2, length: 2},
+            {name: module6Cell5Temperature_C, start: 4, length: 2},
+            {name: module6Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x367,
         parameters: [
-            {name: segment6Cell5Temperature_C, start: 0, length: 2},
-            {name: segment6Cell6Temperature_C, start: 2, length: 2},
-            {name: segment6Cell7Temperature_C, start: 4, length: 2},
-            {name: segment6Cell8Temperature_C, start: 6, length: 2}
+            {name: module6Cell7Temperature_C, start: 0, length: 2},
+            {name: module6Cell8Temperature_C, start: 2, length: 2},
+            {name: module6Cell9Temperature_C, start: 4, length: 2},
+            {name: module6Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x368,
         parameters: [
-            {name: segment6Cell9Temperature_C, start: 0, length: 2},
-            {name: segment6Cell10Temperature_C, start: 2, length: 2},
-            {name: segment6Cell11Temperature_C, start: 4, length: 2},
-            {name: segment6Cell12Temperature_C, start: 6, length: 2}
+            {name: module6Cell11Temperature_C, start: 0, length: 2},
+            {name: module6Cell12Temperature_C, start: 2, length: 2},
+            {name: module6Cell13Temperature_C, start: 4, length: 2},
+            {name: module6Cell14Temperature_C, start: 6, length: 2},
         ]
     },
-    {
-        id: 0x369,
-        parameters: [
-            {name: segment6Cell13Temperature_C, start: 0, length: 2},
-            {name: segment6Cell14Temperature_C, start: 2, length: 2},
-            {name: segment6Cell15Temperature_C, start: 4, length: 2},
-            {name: segment6Cell16Temperature_C, start: 6, length: 2}
-        ]
-    },
-    # END Segment 6
+    # END Module 6
 
-    # START Segment 7
+    # START Module 7
     {
         id: 0x370,
         parameters: [
-            {name: segment7MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment7MinCellVoltage_V, start: 2, length: 2},
-            {name: segment7AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment7DieTemperature_C, start: 6, length: 2}
+            {name: module7MaxCellVoltage_V, start: 0, length: 2},
+            {name: module7MinCellVoltage_V, start: 2, length: 2},
+            {name: module7AvgCellVoltage_V, start: 4, length: 2},
+            {name: module7DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x371,
         parameters: [
-            {name: segment7MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment7MinCellTemperature_C, start: 2, length: 2},
-            {name: segment7AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment7BoardTemperature_C, start: 6, length: 2}
+            {name: module7MaxCellTemperature_C, start: 0, length: 2},
+            {name: module7MinCellTemperature_C, start: 2, length: 2},
+            {name: module7AvgCellTemperature_C, start: 4, length: 2},
+            {name: module7BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x372,
         parameters: [
-            {name: segment7Cell1Voltage_V, start: 0, length: 2},
-            {name: segment7Cell2Voltage_V, start: 2, length: 2},
-            {name: segment7Cell3Voltage_V, start: 4, length: 2},
-            {name: segment7Cell4Voltage_V, start: 6, length: 2}
+            {name: module7Cell1Voltage_V, start: 0, length: 2},
+            {name: module7Cell2Voltage_V, start: 2, length: 2},
+            {name: module7Cell3Voltage_V, start: 4, length: 2},
+            {name: module7Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x373,
         parameters: [
-            {name: segment7Cell5Voltage_V, start: 0, length: 2},
-            {name: segment7Cell6Voltage_V, start: 2, length: 2},
-            {name: segment7Cell7Voltage_V, start: 4, length: 2},
-            {name: segment7Cell8Voltage_V, start: 6, length: 2}
+            {name: module7Cell5Voltage_V, start: 0, length: 2},
+            {name: module7Cell6Voltage_V, start: 2, length: 2},
+            {name: module7Cell7Voltage_V, start: 4, length: 2},
+            {name: module7Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x374,
         parameters: [
-            {name: segment7Cell9Voltage_V, start: 0, length: 2},
-            {name: segment7Cell10Voltage_V, start: 2, length: 2},
-            {name: segment7Cell11Voltage_V, start: 4, length: 2},
-            {name: segment7Cell12Voltage_V, start: 6, length: 2}
+            {name: module7Cell9Voltage_V, start: 0, length: 2},
+            {name: module7Cell10Voltage_V, start: 2, length: 2},
+            {name: module7Cell11Voltage_V, start: 4, length: 2},
+            {name: module7Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x375,
         parameters: [
-            {name: segment7Cell13Voltage_V, start: 0, length: 2},
-            {name: segment7Cell14Voltage_V, start: 2, length: 2},
-            {name: segment7Cell15Voltage_V, start: 4, length: 2},
-            {name: segment7Cell16Voltage_V, start: 6, length: 2}
+            {name: module7Cell13Voltage_V, start: 0, length: 2},
+            {name: module7Cell14Voltage_V, start: 2, length: 2},
+            {name: module7Cell1Temperature_C, start: 4, length: 2},
+            {name: module7Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x376,
         parameters: [
-            {name: segment7Cell1Temperature_C, start: 0, length: 2},
-            {name: segment7Cell2Temperature_C, start: 2, length: 2},
-            {name: segment7Cell3Temperature_C, start: 4, length: 2},
-            {name: segment7Cell4Temperature_C, start: 6, length: 2}
+            {name: module7Cell3Temperature_C, start: 0, length: 2},
+            {name: module7Cell4Temperature_C, start: 2, length: 2},
+            {name: module7Cell5Temperature_C, start: 4, length: 2},
+            {name: module7Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x377,
         parameters: [
-            {name: segment7Cell5Temperature_C, start: 0, length: 2},
-            {name: segment7Cell6Temperature_C, start: 2, length: 2},
-            {name: segment7Cell7Temperature_C, start: 4, length: 2},
-            {name: segment7Cell8Temperature_C, start: 6, length: 2}
+            {name: module7Cell7Temperature_C, start: 0, length: 2},
+            {name: module7Cell8Temperature_C, start: 2, length: 2},
+            {name: module7Cell9Temperature_C, start: 4, length: 2},
+            {name: module7Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x378,
         parameters: [
-            {name: segment7Cell9Temperature_C, start: 0, length: 2},
-            {name: segment7Cell10Temperature_C, start: 2, length: 2},
-            {name: segment7Cell11Temperature_C, start: 4, length: 2},
-            {name: segment7Cell12Temperature_C, start: 6, length: 2}
+            {name: module7Cell11Temperature_C, start: 0, length: 2},
+            {name: module7Cell12Temperature_C, start: 2, length: 2},
+            {name: module7Cell13Temperature_C, start: 4, length: 2},
+            {name: module7Cell14Temperature_C, start: 6, length: 2},
         ]
     },
-    {
-        id: 0x379,
-        parameters: [
-            {name: segment7Cell13Temperature_C, start: 0, length: 2},
-            {name: segment7Cell14Temperature_C, start: 2, length: 2},
-            {name: segment7Cell15Temperature_C, start: 4, length: 2},
-            {name: segment7Cell16Temperature_C, start: 6, length: 2}
-        ]
-    },
-    # END Segment 7
+    # END Module 7
 
-    # START Segment 8
+    # START Module 8
     {
         id: 0x380,
         parameters: [
-            {name: segment8MaxCellVoltage_V, start: 0, length: 2},
-            {name: segment8MinCellVoltage_V, start: 2, length: 2},
-            {name: segment8AvgCellVoltage_V, start: 4, length: 2},
-            {name: segment8DieTemperature_C, start: 6, length: 2}
+            {name: module8MaxCellVoltage_V, start: 0, length: 2},
+            {name: module8MinCellVoltage_V, start: 2, length: 2},
+            {name: module8AvgCellVoltage_V, start: 4, length: 2},
+            {name: module8DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x381,
         parameters: [
-            {name: segment8MaxCellTemperature_C, start: 0, length: 2},
-            {name: segment8MinCellTemperature_C, start: 2, length: 2},
-            {name: segment8AvgCellTemperature_C, start: 4, length: 2},
-            {name: segment8BoardTemperature_C, start: 6, length: 2}
+            {name: module8MaxCellTemperature_C, start: 0, length: 2},
+            {name: module8MinCellTemperature_C, start: 2, length: 2},
+            {name: module8AvgCellTemperature_C, start: 4, length: 2},
+            {name: module8BoardTemperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x382,
         parameters: [
-            {name: segment8Cell1Voltage_V, start: 0, length: 2},
-            {name: segment8Cell2Voltage_V, start: 2, length: 2},
-            {name: segment8Cell3Voltage_V, start: 4, length: 2},
-            {name: segment8Cell4Voltage_V, start: 6, length: 2}
+            {name: module8Cell1Voltage_V, start: 0, length: 2},
+            {name: module8Cell2Voltage_V, start: 2, length: 2},
+            {name: module8Cell3Voltage_V, start: 4, length: 2},
+            {name: module8Cell4Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x383,
         parameters: [
-            {name: segment8Cell5Voltage_V, start: 0, length: 2},
-            {name: segment8Cell6Voltage_V, start: 2, length: 2},
-            {name: segment8Cell7Voltage_V, start: 4, length: 2},
-            {name: segment8Cell8Voltage_V, start: 6, length: 2}
+            {name: module8Cell5Voltage_V, start: 0, length: 2},
+            {name: module8Cell6Voltage_V, start: 2, length: 2},
+            {name: module8Cell7Voltage_V, start: 4, length: 2},
+            {name: module8Cell8Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x384,
         parameters: [
-            {name: segment8Cell9Voltage_V, start: 0, length: 2},
-            {name: segment8Cell10Voltage_V, start: 2, length: 2},
-            {name: segment8Cell11Voltage_V, start: 4, length: 2},
-            {name: segment8Cell12Voltage_V, start: 6, length: 2}
+            {name: module8Cell9Voltage_V, start: 0, length: 2},
+            {name: module8Cell10Voltage_V, start: 2, length: 2},
+            {name: module8Cell11Voltage_V, start: 4, length: 2},
+            {name: module8Cell12Voltage_V, start: 6, length: 2}
         ]
     },
     {
         id: 0x385,
         parameters: [
-            {name: segment8Cell13Voltage_V, start: 0, length: 2},
-            {name: segment8Cell14Voltage_V, start: 2, length: 2},
-            {name: segment8Cell15Voltage_V, start: 4, length: 2},
-            {name: segment8Cell16Voltage_V, start: 6, length: 2}
+            {name: module8Cell13Voltage_V, start: 0, length: 2},
+            {name: module8Cell14Voltage_V, start: 2, length: 2},
+            {name: module8Cell1Temperature_C, start: 4, length: 2},
+            {name: module8Cell2Temperature_C, start: 6, length: 2}
         ]
     },
     {
         id: 0x386,
         parameters: [
-            {name: segment8Cell1Temperature_C, start: 0, length: 2},
-            {name: segment8Cell2Temperature_C, start: 2, length: 2},
-            {name: segment8Cell3Temperature_C, start: 4, length: 2},
-            {name: segment8Cell4Temperature_C, start: 6, length: 2}
+            {name: module8Cell3Temperature_C, start: 0, length: 2},
+            {name: module8Cell4Temperature_C, start: 2, length: 2},
+            {name: module8Cell5Temperature_C, start: 4, length: 2},
+            {name: module8Cell6Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x387,
         parameters: [
-            {name: segment8Cell5Temperature_C, start: 0, length: 2},
-            {name: segment8Cell6Temperature_C, start: 2, length: 2},
-            {name: segment8Cell7Temperature_C, start: 4, length: 2},
-            {name: segment8Cell8Temperature_C, start: 6, length: 2}
+            {name: module8Cell7Temperature_C, start: 0, length: 2},
+            {name: module8Cell8Temperature_C, start: 2, length: 2},
+            {name: module8Cell9Temperature_C, start: 4, length: 2},
+            {name: module8Cell10Temperature_C, start: 6, length: 2},            
         ]
     },
     {
         id: 0x388,
         parameters: [
-            {name: segment8Cell9Temperature_C, start: 0, length: 2},
-            {name: segment8Cell10Temperature_C, start: 2, length: 2},
-            {name: segment8Cell11Temperature_C, start: 4, length: 2},
-            {name: segment8Cell12Temperature_C, start: 6, length: 2}
+            {name: module8Cell11Temperature_C, start: 0, length: 2},
+            {name: module8Cell12Temperature_C, start: 2, length: 2},
+            {name: module8Cell13Temperature_C, start: 4, length: 2},
+            {name: module8Cell14Temperature_C, start: 6, length: 2},
+        ]
+    },
+    # END Module 8
+
+    # START Module 9
+    {
+        id: 0x390,
+        parameters: [
+            {name: module9MaxCellVoltage_V, start: 0, length: 2},
+            {name: module9MinCellVoltage_V, start: 2, length: 2},
+            {name: module9AvgCellVoltage_V, start: 4, length: 2},
+            {name: module9DieTemperature_C, start: 6, length: 2}
         ]
     },
     {
-        id: 0x389,
+        id: 0x391,
         parameters: [
-            {name: segment8Cell13Temperature_C, start: 0, length: 2},
-            {name: segment8Cell14Temperature_C, start: 2, length: 2},
-            {name: segment8Cell15Temperature_C, start: 4, length: 2},
-            {name: segment8Cell16Temperature_C, start: 6, length: 2}
+            {name: module9MaxCellTemperature_C, start: 0, length: 2},
+            {name: module9MinCellTemperature_C, start: 2, length: 2},
+            {name: module9AvgCellTemperature_C, start: 4, length: 2},
+            {name: module9BoardTemperature_C, start: 6, length: 2}
         ]
     },
-    # END Segment 8
+    {
+        id: 0x392,
+        parameters: [
+            {name: module9Cell1Voltage_V, start: 0, length: 2},
+            {name: module9Cell2Voltage_V, start: 2, length: 2},
+            {name: module9Cell3Voltage_V, start: 4, length: 2},
+            {name: module9Cell4Voltage_V, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x393,
+        parameters: [
+            {name: module9Cell5Voltage_V, start: 0, length: 2},
+            {name: module9Cell6Voltage_V, start: 2, length: 2},
+            {name: module9Cell7Voltage_V, start: 4, length: 2},
+            {name: module9Cell8Voltage_V, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x394,
+        parameters: [
+            {name: module9Cell9Voltage_V, start: 0, length: 2},
+            {name: module9Cell10Voltage_V, start: 2, length: 2},
+            {name: module9Cell11Voltage_V, start: 4, length: 2},
+            {name: module9Cell12Voltage_V, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x395,
+        parameters: [
+            {name: module9Cell13Voltage_V, start: 0, length: 2},
+            {name: module9Cell14Voltage_V, start: 2, length: 2},
+            {name: module9Cell1Temperature_C, start: 4, length: 2},
+            {name: module9Cell2Temperature_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x396,
+        parameters: [
+            {name: module9Cell3Temperature_C, start: 0, length: 2},
+            {name: module9Cell4Temperature_C, start: 2, length: 2},
+            {name: module9Cell5Temperature_C, start: 4, length: 2},
+            {name: module9Cell6Temperature_C, start: 6, length: 2},            
+        ]
+    },
+    {
+        id: 0x397,
+        parameters: [
+            {name: module9Cell7Temperature_C, start: 0, length: 2},
+            {name: module9Cell8Temperature_C, start: 2, length: 2},
+            {name: module9Cell9Temperature_C, start: 4, length: 2},
+            {name: module9Cell10Temperature_C, start: 6, length: 2},            
+        ]
+    },
+    {
+        id: 0x398,
+        parameters: [
+            {name: module9Cell11Temperature_C, start: 0, length: 2},
+            {name: module9Cell12Temperature_C, start: 2, length: 2},
+            {name: module9Cell13Temperature_C, start: 4, length: 2},
+            {name: module9Cell14Temperature_C, start: 6, length: 2},
+        ]
+    },
+    # END Module 9
+
+    # START Module 10
+    {
+        id: 0x400,
+        parameters: [
+            {name: module10MaxCellVoltage_V, start: 0, length: 2},
+            {name: module10MinCellVoltage_V, start: 2, length: 2},
+            {name: module10AvgCellVoltage_V, start: 4, length: 2},
+            {name: module10DieTemperature_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x401,
+        parameters: [
+            {name: module10MaxCellTemperature_C, start: 0, length: 2},
+            {name: module10MinCellTemperature_C, start: 2, length: 2},
+            {name: module10AvgCellTemperature_C, start: 4, length: 2},
+            {name: module10BoardTemperature_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x402,
+        parameters: [
+            {name: module10Cell1Voltage_V, start: 0, length: 2},
+            {name: module10Cell2Voltage_V, start: 2, length: 2},
+            {name: module10Cell3Voltage_V, start: 4, length: 2},
+            {name: module10Cell4Voltage_V, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x403,
+        parameters: [
+            {name: module10Cell5Voltage_V, start: 0, length: 2},
+            {name: module10Cell6Voltage_V, start: 2, length: 2},
+            {name: module10Cell7Voltage_V, start: 4, length: 2},
+            {name: module10Cell8Voltage_V, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x404,
+        parameters: [
+            {name: module10Cell9Voltage_V, start: 0, length: 2},
+            {name: module10Cell10Voltage_V, start: 2, length: 2},
+            {name: module10Cell11Voltage_V, start: 4, length: 2},
+            {name: module10Cell12Voltage_V, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x405,
+        parameters: [
+            {name: module10Cell13Voltage_V, start: 0, length: 2},
+            {name: module10Cell14Voltage_V, start: 2, length: 2},
+            {name: module10Cell1Temperature_C, start: 4, length: 2},
+            {name: module10Cell2Temperature_C, start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x406,
+        parameters: [
+            {name: module10Cell3Temperature_C, start: 0, length: 2},
+            {name: module10Cell4Temperature_C, start: 2, length: 2},
+            {name: module10Cell5Temperature_C, start: 4, length: 2},
+            {name: module10Cell6Temperature_C, start: 6, length: 2},            
+        ]
+    },
+    {
+        id: 0x407,
+        parameters: [
+            {name: module10Cell7Temperature_C, start: 0, length: 2},
+            {name: module10Cell8Temperature_C, start: 2, length: 2},
+            {name: module10Cell9Temperature_C, start: 4, length: 2},
+            {name: module10Cell10Temperature_C, start: 6, length: 2},            
+        ]
+    },
+    {
+        id: 0x408,
+        parameters: [
+            {name: module10Cell11Temperature_C, start: 0, length: 2},
+            {name: module10Cell12Temperature_C, start: 2, length: 2},
+            {name: module10Cell13Temperature_C, start: 4, length: 2},
+            {name: module10Cell14Temperature_C, start: 6, length: 2},
+        ]
+    },
+    # END Module 10
 
     # Elcon Charger 
     {
