@@ -2491,7 +2491,7 @@ parameters:
     # Power and Logging Module Sensing
     pdmVbatVoltage_V:
         id: 264
-        motec_name: PLM Battery Volts
+        motec_name: PDM Battery Volts
         unit: V
         type: FLOATING
         encoding: MSB
@@ -8415,7 +8415,7 @@ groups: [
    
     # Power and Logging Module (Not contiunously sent)
     {
-        id: 0x000,
+        id: 0x500,
         parameters: [
             {name: vbatChan0Current_A, start: 0, length: 2},
             {name: vbatChan1Current_A, start: 2, length: 2},
@@ -8424,90 +8424,84 @@ groups: [
         ]
     },
     {
-        id: 0x001,
+        id: 0x501,
         parameters: [
             {name: vbatChan4Current_A, start: 0, length: 2},
             {name: vbatChan5Current_A, start: 2, length: 2},
             {name: vbatChan6Current_A, start: 4, length: 2},
-            {name: fiveVChan0Current_A, start: 6, length: 2}
+            {name: vbatChan7Current_A, start: 6, length: 2}
         ]
     },
     {
-        id: 0x002,
+        id: 0x502,
         parameters: [
-            {name: fiveVChan1Current_A,     start: 0, length: 2},
-            {name: fiveVChan2Current_A,     start: 2, length: 2},
-            {name: fiveVChan3Current_A,     start: 4, length: 2},
-            {name: can0Utilization_percent, start: 6, length: 2}
+            {name: vbatChan8Current_A,     start: 0, length: 2},
+            {name: pdmVbatVoltage_V,     start: 2, length: 2},
+            {name: Overcurrent_Event,     start: 4, length: 1},
+            {name: can0Utilization_percent, start: 5, length: 2}
         ]
     },
     {
-        id: 0x003,
+        id: 0x503,
         parameters: [
             {name: can1Utilization_percent, start: 0, length: 2},
             {name: can2Utilization_percent, start: 2, length: 2},
-            {name: plmVbatVoltage_V,        start: 4, length: 2},
-            {name: plm5VVoltage_V,          start: 6, length: 2}
+            {name: pdmVbatVoltage_V,        start: 4, length: 2}
         ]
     },
     {
-        id: 0x004,
+        id: 0x504,
         parameters: [
             {name: packetsLogged_ul, start: 0, length: 4},
             {name: packetsDropped_ul, start: 4, length: 4}
         ]
     },
     {
-        id: 0x005,
+        id: 0x505,
         parameters: [
             {name: storageBufferFill_percent, start: 0, length: 2},
             {name: telemetryBufferFill_percent, start: 2, length: 2}
         ]
     },
     {
-        id: 0x006,
+        id: 0x506,
         parameters: [
-            {name: PLM_Temp_degrees, start: 0, length: 2},
-            {name: PLM_Humidity_percent, start: 2, length: 2},
-            {name: PLM_Micro_Temp, start: 4, length: 2}
+            {name: PDM_Temp_degrees, start: 0, length: 2},
+            {name: PDM_Humidity_percent, start: 2, length: 2},
+            {name: PDM_Micro_Temp, start: 4, length: 2}
         ]
     },
     {
-        id: 0x007,
+        id: 0x507,
         parameters: [
-            {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
-            {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
-            {name: Twelve_Volt_2_Overcurrent, start: 2, length: 1},
-            {name: Twelve_Volt_3_Overcurrent, start: 3, length: 1},
-            {name: Twelve_Volt_4_Overcurrent, start: 4, length: 1},
-            {name: Twelve_Volt_5_Overcurrent, start: 5, length: 1},
-            {name: Twelve_Volt_6_Overcurrent, start: 6, length: 1},
-            {name: Overcurrent_Event, start: 7, length: 1},
+            {name: TwentyFour_Volt_0_Overcurrent, start: 0, length: 1},
+            {name: TwentyFour_Volt_1_Overcurrent, start: 1, length: 1},
+            {name: TwentyFour_Volt_2_Overcurrent, start: 2, length: 1},
+            {name: TwentyFour_Volt_3_Overcurrent, start: 3, length: 1},
+            {name: TwentyFour_Volt_4_Overcurrent, start: 4, length: 1},
+            {name: TwentyFour_Volt_5_Overcurrent, start: 5, length: 1},
+            {name: TwentyFour_Volt_6_Overcurrent, start: 6, length: 1},
+            {name: TwentyFour_Volt_7_Overcurrent, start: 7, length: 1},
         ]
     },
     {
-        id: 0x008,
+        id: 0x508,
         parameters: [
-            {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
-            {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
-            {name: Twelve_Volt_2_Overcurrent_Count, start: 2, length: 1},
-            {name: Twelve_Volt_3_Overcurrent_Count, start: 3, length: 1},
-            {name: Twelve_Volt_4_Overcurrent_Count, start: 4, length: 1},
-            {name: Twelve_Volt_5_Overcurrent_Count, start: 5, length: 1},
-            {name: Twelve_Volt_6_Overcurrent_Count, start: 6, length: 1},
+            {name: TwentyFour_Volt_8_Overcurrent, start: 0, length: 1},
+            {name: TwentyFour_Volt_0_Overcurrent_Count, start: 1, length: 1},
+            {name: TwentyFour_Volt_1_Overcurrent_Count, start: 2, length: 1},
+            {name: TwentyFour_Volt_2_Overcurrent_Count, start: 3, length: 1},
+            {name: TwentyFour_Volt_3_Overcurrent_Count, start: 4, length: 1},
+            {name: TwentyFour_Volt_4_Overcurrent_Count, start: 5, length: 1},
+            {name: TwentyFour_Volt_5_Overcurrent_Count, start: 6, length: 1},
+            {name: TwentyFour_Volt_6_Overcurrent_Count, start: 7, length: 1},
         ]
     },
     {
         id: 0x010,
         parameters: [
-            {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
-            {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
-            {name: Five_Volt_2_Overcurrent, start: 2, length: 1},
-            {name: Five_Volt_3_Overcurrent, start: 3, length: 1},
-            {name: Five_Volt_0_Overcurrent_Count, start: 4, length: 1},
-            {name: Five_Volt_1_Overcurrent_Count, start: 5, length: 1},
-            {name: Five_Volt_2_Overcurrent_Count, start: 6, length: 1},
-            {name: Five_Volt_3_Overcurrent_Count, start: 7, length: 1},
+            {name: TwentyFour_Volt_7_Overcurrent_Count, start: 0, length: 1},
+            {name: TwentyFour_Volt_8_Overcurrent_Count, start: 1, length: 1},
 
         ]
     },
