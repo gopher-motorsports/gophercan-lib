@@ -8498,7 +8498,7 @@ groups: [
         ]
     },
     {
-        id: 0x010,
+        id: 0x510,
         parameters: [
             {name: TwentyFour_Volt_7_Overcurrent_Count, start: 0, length: 1},
             {name: TwentyFour_Volt_8_Overcurrent_Count, start: 1, length: 1},
