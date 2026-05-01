@@ -192,6 +192,7 @@ typedef struct
 {
     uint16_t group_id;
     GCAN_PARAM_ID param_ids[CAN_DATA_BYTES];
+    BUS_ID bus;
 } PARAM_GROUP;
 
 extern PARAM_GROUP GROUPS[NUM_OF_GROUPS];

@@ -74,7 +74,10 @@ for group in config['groups']:
         # fill parameter ids at starting position
         param_ids[param['start']] = parameter['name'].upper() + "_ID"
 
-    groups[group['id']] = param_ids
+    groups[group['id']] = {
+        'param_ids': param_ids,
+        'bus': group['bus']
+    }
 
 data = {
     'buses': config['buses'],

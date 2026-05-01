@@ -87,7 +87,8 @@ PARAM_GROUP GROUPS[NUM_OF_GROUPS] = {
     {
         .group_id = {{ id }},
         .param_ids = {
-            {%- for name in group %}{{ name }}, {% endfor -%}}
+            {%- for name in group.param_ids %}{{ name }}, {% endfor -%}},
+        .bus = {{ group.bus }}
     },
     {% endfor %}
 };

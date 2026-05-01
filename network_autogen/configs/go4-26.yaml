@@ -7081,6 +7081,7 @@ groups: [
     # General Data 1 (FL)
     {
       id: 0x401,
+      bus: GCAN1,
       parameters: [
         {name: electricalRPM_FL_erpm,     start: 0, length: 4},
         {name: dutyCycle_FL_percent,      start: 4, length: 2},
@@ -7092,6 +7093,7 @@ groups: [
     # General Data 2 (FL)
     {
       id: 0x421,
+      bus: GCAN1,
       parameters: [
         {name: motorCurrent_FL_Apk,  start: 0, length: 2},
         {name: batteryCurrent_FL_A,  start: 2, length: 2}
@@ -7102,6 +7104,7 @@ groups: [
     # General Data 3 (FL)
     {
       id: 0x441,
+      bus: GCAN1,
       parameters: [
         {name: controllerTemp_FL_C,    start: 0, length: 2},
         {name: motorTemp_FL_C,         start: 2, length: 2},
@@ -7113,6 +7116,7 @@ groups: [
     # General Data 4 (FL)
     {
       id: 0x461,
+      bus: GCAN1,
       parameters: [
         {name: idPeak_FL_A, start: 0, length: 4},
         {name: iqPeak_FL_A, start: 4, length: 4}
@@ -7123,6 +7127,7 @@ groups: [
     # General Data 5 (FL)
     {
       id: 0x481,
+      bus: GCAN1,
       parameters: [
         {name: throttleSignal_FL_percent,       start: 0, length: 1},
         {name: brakeSignal_FL_percent,          start: 1, length: 1},
@@ -7137,6 +7142,7 @@ groups: [
     # General Data 6 (FL)
     {
       id: 0x3E1,
+      bus: GCAN1,
       parameters: [
         {name: controlMode_FL,          start: 0, length: 1},
         {name: targetIq_FL_Apk,         start: 1, length: 2},
@@ -7148,6 +7154,7 @@ groups: [
     # Configured & Available AC Currents
     {
       id: 0x4A1,
+      bus: GCAN1,
       parameters: [
         {name: maxCurrentConfigured_FL_Apk,       start: 0, length: 2},
         {name: availableMaxCurrent_FL_Apk,        start: 2, length: 2},
@@ -7159,6 +7166,7 @@ groups: [
     # Configured & Available DC Currents
     {
       id: 0x4C1,
+      bus: GCAN1,
       parameters: [
         {name: maxCurrentConfigured_FL_A,       start: 0, length: 2},
         {name: availableMaxCurrent_FL_A,        start: 2, length: 2},
@@ -7170,6 +7178,7 @@ groups: [
     #Sending
     {
       id: 0x021,
+      bus: GCAN1,
       parameters: [
         {name: invCurrentCmd_FL_Apk, start: 0, length: 2}
 
@@ -7177,6 +7186,7 @@ groups: [
     },
     {
       id: 0x101,
+      bus: GCAN1,
       parameters: [
         {name: invMaxCurrentLimitCmd_FL_Apk, start: 0, length: 2}
 
@@ -7184,6 +7194,7 @@ groups: [
     },
     {
       id: 0x141,
+      bus: GCAN1,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_FL_A, start: 0, length: 2}
 
@@ -7191,6 +7202,7 @@ groups: [
     },
     {
       id: 0x181,
+      bus: GCAN1,
       parameters: [
         {name: invDriveEnable_FL_state, start: 0, length: 1}
       ]
@@ -7201,6 +7213,7 @@ groups: [
     # General Data 1 (FR)
     {
       id: 0x402,
+      bus: GCAN1,
       parameters: [
         {name: electricalRPM_FR_erpm,     start: 0, length: 4},
         {name: dutyCycle_FR_percent,      start: 4, length: 2},
@@ -7211,6 +7224,7 @@ groups: [
     # General Data 2 (FR)
     {
       id: 0x422,
+      bus: GCAN1,
       parameters: [
         {name: motorCurrent_FR_Apk,  start: 0, length: 2},
         {name: batteryCurrent_FR_A,  start: 2, length: 2}
@@ -7220,6 +7234,7 @@ groups: [
     # General Data 3 (FR)
     {
       id: 0x442,
+      bus: GCAN1,
       parameters: [
         {name: controllerTemp_FR_C, start: 0, length: 2},
         {name: motorTemp_FR_C,      start: 2, length: 2},
@@ -7230,6 +7245,7 @@ groups: [
     # General Data 4 (FR)
     {
       id: 0x462,
+      bus: GCAN1,
       parameters: [
         {name: idPeak_FR_A, start: 0, length: 4},
         {name: iqPeak_FR_A, start: 4, length: 4}
@@ -7239,6 +7255,7 @@ groups: [
     # General Data 5 (FR)
     {
       id: 0x482,
+      bus: GCAN1,
       parameters: [
         {name: throttleSignal_FR_percent,     start: 0, length: 1},
         {name: brakeSignal_FR_percent,        start: 1, length: 1},
@@ -7253,6 +7270,7 @@ groups: [
     #General Data 6 (FR)
     {
       id: 0x3E2,
+      bus: GCAN1,
       parameters: [
         {name: controlMode_FR,        start: 0, length: 1},
         {name: targetIq_FR_Apk,       start: 1, length: 2},
@@ -7264,6 +7282,7 @@ groups: [
         # Configured & Available AC Currents
     {
       id: 0x4A2,
+      bus: GCAN1,
       parameters: [
         {name: maxCurrentConfigured_FR_Apk, start: 0, length: 2},
         {name: availableMaxCurrent_FR_Apk,  start: 2, length: 2},
@@ -7275,6 +7294,7 @@ groups: [
     # Configured & Available DC Currents
     {
       id: 0x4C2,
+      bus: GCAN1,
       parameters: [
         {name: maxCurrentConfigured_FR_A, start: 0, length: 2},
         {name: availableMaxCurrent_FR_A,  start: 2, length: 2},
@@ -7286,24 +7306,28 @@ groups: [
     # Sending (FR)
     {
       id: 0x022,
+      bus: GCAN1,
       parameters: [
         {name: invCurrentCmd_FR_Apk, start: 0, length: 2}
       ]
     },
     {
       id: 0x102,
+      bus: GCAN1,
       parameters: [
         {name: invMaxCurrentLimitCmd_FR_Apk, start: 0, length: 2}
       ]
     },
     {
       id: 0x142,
+      bus: GCAN1,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_FR_A, start: 0, length: 2}
       ]
     },
     {
       id: 0x182,
+      bus: GCAN1,
       parameters: [
         {name: invDriveEnable_FR_state, start: 0, length: 1}
       ]
@@ -7314,6 +7338,7 @@ groups: [
     # General Data 1 (RL)
     {
       id: 0x403,
+      bus: GCAN2,
       parameters: [
         {name: electricalRPM_RL_erpm, start: 0, length: 4},
         {name: dutyCycle_RL_percent,  start: 4, length: 2},
@@ -7324,6 +7349,7 @@ groups: [
     # General Data 2 (RL)
     {
       id: 0x423,
+      bus: GCAN2,
       parameters: [
         {name: motorCurrent_RL_Apk, start: 0, length: 2},
         {name: batteryCurrent_RL_A, start: 2, length: 2}
@@ -7333,6 +7359,7 @@ groups: [
     # General Data 3 (RL)
     {
       id: 0x443,
+      bus: GCAN2,
       parameters: [
         {name: controllerTemp_RL_C, start: 0, length: 2},
         {name: motorTemp_RL_C,      start: 2, length: 2},
@@ -7343,6 +7370,7 @@ groups: [
     # General Data 4 (RL)
     {
       id: 0x463,
+      bus: GCAN2,
       parameters: [
         {name: idPeak_RL_A, start: 0, length: 4},
         {name: iqPeak_RL_A, start: 4, length: 4}
@@ -7352,6 +7380,7 @@ groups: [
     # General Data 5 (RL)
     {
       id: 0x483,
+      bus: GCAN2,
       parameters: [
         {name: throttleSignal_RL_percent,     start: 0, length: 1},
         {name: brakeSignal_RL_percent,        start: 1, length: 1},
@@ -7366,6 +7395,7 @@ groups: [
     # General Data 6 (RL)
     {
       id: 0x3E3,
+      bus: GCAN2,
       parameters: [
         {name: controlMode_RL,        start: 0, length: 1},
         {name: targetIq_RL_Apk,       start: 1, length: 2},
@@ -7377,6 +7407,7 @@ groups: [
     # Configured & Available AC Currents
     {
       id: 0x4A3,
+      bus: GCAN2,
       parameters: [
         {name: maxCurrentConfigured_RL_Apk, start: 0, length: 2},
         {name: availableMaxCurrent_RL_Apk,  start: 2, length: 2},
@@ -7388,6 +7419,7 @@ groups: [
     # Configured & Available DC Currents
     {
       id: 0x4C3,
+      bus: GCAN2,
       parameters: [
         {name: maxCurrentConfigured_RL_A, start: 0, length: 2},
         {name: availableMaxCurrent_RL_A,  start: 2, length: 2},
@@ -7399,24 +7431,28 @@ groups: [
     # Sending
     {
       id: 0x023,
+      bus: GCAN2,
       parameters: [
         {name: invCurrentCmd_RL_Apk, start: 0, length: 2}
       ]
     },
     {
       id: 0x103,
+      bus: GCAN2,
       parameters: [
         {name: invMaxCurrentLimitCmd_RL_Apk, start: 0, length: 2}
       ]
     },
     {
       id: 0x143,
+      bus: GCAN2,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_RL_A, start: 0, length: 2}
       ]
     },
     {
       id: 0x183,
+      bus: GCAN2,
       parameters: [
         {name: invDriveEnable_RL_state, start: 0, length: 1}
       ]
@@ -7427,6 +7463,7 @@ groups: [
     # General Data 1 (RR)
     {
       id: 0x404,
+      bus: GCAN2,
       parameters: [
         {name: electricalRPM_RR_erpm, start: 0, length: 4},
         {name: dutyCycle_RR_percent,  start: 4, length: 2},
@@ -7437,6 +7474,7 @@ groups: [
     # General Data 2 (RR)
     {
       id: 0x424,
+      bus: GCAN2,
       parameters: [
         {name: motorCurrent_RR_Apk, start: 0, length: 2},
         {name: batteryCurrent_RR_A, start: 2, length: 2}
@@ -7446,6 +7484,7 @@ groups: [
     # General Data 3 (RR)
     {
       id: 0x444,
+      bus: GCAN2,
       parameters: [
         {name: controllerTemp_RR_C, start: 0, length: 2},
         {name: motorTemp_RR_C,      start: 2, length: 2},
@@ -7456,6 +7495,7 @@ groups: [
     # General Data 4 (RR)
     {
       id: 0x464,
+      bus: GCAN2,
       parameters: [
         {name: idPeak_RR_A, start: 0, length: 4},
         {name: iqPeak_RR_A, start: 4, length: 4}
@@ -7465,6 +7505,7 @@ groups: [
     # General Data 5 (RR)
     {
       id: 0x484,
+      bus: GCAN2,
       parameters: [
         {name: throttleSignal_RR_percent,     start: 0, length: 1},
         {name: brakeSignal_RR_percent,        start: 1, length: 1},
@@ -7479,6 +7520,7 @@ groups: [
     # General Data 6 (RR)
     {
       id: 0x3E4,
+      bus: GCAN2,
       parameters: [
         {name: controlMode_RR,        start: 0, length: 1},
         {name: targetIq_RR_Apk,       start: 1, length: 2},
@@ -7490,6 +7532,7 @@ groups: [
     # Configured & Available AC Currents
     {
       id: 0x4A4,
+      bus: GCAN2,
       parameters: [
         {name: maxCurrentConfigured_RR_Apk, start: 0, length: 2},
         {name: availableMaxCurrent_RR_Apk,  start: 2, length: 2},
@@ -7501,6 +7544,7 @@ groups: [
     # Configured & Available DC Currents
     {
       id: 0x4C4,
+      bus: GCAN2,
       parameters: [
         {name: maxCurrentConfigured_RR_A, start: 0, length: 2},
         {name: availableMaxCurrent_RR_A,  start: 2, length: 2},
@@ -7512,24 +7556,28 @@ groups: [
     # Sending
     {
       id: 0x024,
+      bus: GCAN2,
       parameters: [
         {name: invCurrentCmd_RR_Apk, start: 0, length: 2}
       ]
     },
     {
       id: 0x104,
+      bus: GCAN2,
       parameters: [
         {name: invMaxCurrentLimitCmd_RR_Apk, start: 0, length: 2}
       ]
     },
     {
       id: 0x144,
+      bus: GCAN2,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_RR_A, start: 0, length: 2}
       ]
     },
     {
       id: 0x184,
+      bus: GCAN2,
       parameters: [
         {name: invDriveEnable_RR_state, start: 0, length: 1}
       ]
@@ -7539,6 +7587,7 @@ groups: [
     # Front Vehicle Controller
     {
         id: 0x100,
+        bus: GCAN0,
         parameters: [
             {name: fvcPedalPosition1_mm,          start: 0, length: 2},
             {name: fvcPedalPosition2_mm,          start: 2, length: 2},
@@ -7548,6 +7597,7 @@ groups: [
     },
     {
         id: 0x102,
+        bus: GCAN0,
         parameters: [
             {name: fvcBrakePressureFront_psi,      start: 0, length: 2},
             {name: fvcBrakeTempFrontLeft_C,        start: 2, length: 2},
@@ -7556,6 +7606,7 @@ groups: [
     },
     {
         id: 0x103,
+        bus: GCAN0,
         parameters: [
             {name: fvcPedalPosition1RangeFault_state,         start: 0, length: 1},
             {name: fvcPedalPosition2RangeFault_state,         start: 1, length: 1},
@@ -7569,6 +7620,7 @@ groups: [
     },
     {
         id: 0x104,
+        bus: GCAN0,
         parameters: [
             {name: fvcDriveSpeedMode_state,      start: 1, length: 1},
             {name: fvcMcuStatus_state,           start: 2, length: 1},
@@ -7582,6 +7634,7 @@ groups: [
     },
     {
         id: 0x105,
+        bus: GCAN0,
         parameters: [
             {name: fvcShockPosFrontLeft_mm,     start: 0, length: 2},
             {name: fvcShockPosFrontRight_mm,    start: 2, length: 2},
@@ -7591,6 +7644,7 @@ groups: [
     },
     {
         id: 0x106,
+        bus: GCAN0,
         parameters: [
             {name: fvcControllerTemp_FL_C,     start: 0, length: 2},
             {name: fvcControllerTemp_FR_C,     start: 2, length: 2},
@@ -7600,6 +7654,7 @@ groups: [
     },
     {
         id: 0x107,
+        bus: GCAN0,
         parameters: [
             {name: fvcMotorTemp_FL_C,          start: 0, length: 2},
             {name: fvcMotorTemp_FR_C,          start: 2, length: 2},
@@ -7609,6 +7664,7 @@ groups: [
     },
     {
         id: 0x108,
+        bus: GCAN0,
         parameters: [
             {name: fvcWheelSpeedFrontLeft_m_per_s,  start: 0, length: 4},
             {name: fvcWheelSpeedFrontRight_m_per_s, start: 4, length: 4}
@@ -7616,6 +7672,7 @@ groups: [
     },
     {
         id: 0x109,
+        bus: GCAN0,
         parameters: [
             {name: fvcWheelSpeedRearLeft_m_per_s,  start: 0, length: 4},
             {name: fvcWheelSpeedRearRight_m_per_s, start: 4, length: 4}
@@ -7623,6 +7680,7 @@ groups: [
     },
     {
         id: 0x10A,
+        bus: GCAN0,
         parameters: [
             {name: fvcDriveControlTickStart_ms,      start: 0, length: 4},
             {name: fvcDriveControlTickEnd_ms,        start: 4, length: 4}
@@ -7630,6 +7688,7 @@ groups: [
     },
     {
         id: 0x10B,
+        bus: GCAN0,
         parameters: [
             {name: fvcSlip_FL_percent,     start: 0, length: 2},
             {name: fvcSlip_FR_percent,     start: 2, length: 2},
@@ -7639,6 +7698,7 @@ groups: [
     },
     {
         id: 0x10C,
+        bus: GCAN0,
         parameters: [
             {name: fvcSlipStatus_FL_state,     start: 0, length: 1},
             {name: fvcSlipStatus_FR_state,     start: 1, length: 1},
@@ -7650,6 +7710,7 @@ groups: [
     },
     {
         id: 0x10D,
+        bus: GCAN0,
         parameters: [
             {name: fvcTau_FL_Nm,     start: 0, length: 2},
             {name: fvcTau_FR_Nm,     start: 2, length: 2},
@@ -7659,6 +7720,7 @@ groups: [
     },
     {
         id: 0x10E,
+        bus: GCAN0,
         parameters: [
             {name: fvcSlipTractionLimit_percent,   start: 0, length: 2},
             {name: fvcVehicleState_state,          start: 2, length: 1},
@@ -7666,6 +7728,7 @@ groups: [
     },
     {
         id: 0x10F,
+        bus: GCAN0,
         parameters: [
             {name: fvcEfuse12VDispCurrent_A,   start: 0, length: 2},
             {name: fvcEfuse12VSNSCurrent_A,    start: 2, length: 2},
@@ -7673,6 +7736,7 @@ groups: [
     },
     {
         id: 0x110,
+        bus: GCAN0,
         parameters: [
             {name: fvcGitBranchName,   start: 0, length: 1},
             {name: fvcGitHash_decimal, start: 1, length: 4},
@@ -7686,6 +7750,7 @@ groups: [
     # Rear Vehicle Control Unit
     {
         id: 0x150,
+        bus: GCAN0,
         parameters: [
             {name: rvcBspdRunawayFault_state,       start: 0, length: 1},
             {name: rvcBspdInputFault_state,         start: 1, length: 1},
@@ -7699,6 +7764,7 @@ groups: [
     },
     {
         id: 0x151,
+        bus: GCAN0,
         parameters: [
             {name: rvcCurrentSensorHigh_A,  start: 0, length: 2},
             {name: rvcCurrentSensorLow_A,   start: 2, length: 2},
@@ -7708,6 +7774,7 @@ groups: [
     },
     {
         id: 0x152,
+        bus: GCAN0,
         parameters: [
             {name: rvcBrakePressureRear_psi,    start: 0, length: 2},
             {name: rvcBrakeTempRearLeft_C,      start: 2, length: 2},
@@ -7717,6 +7784,7 @@ groups: [
     },
     {
         id: 0x153,
+        bus: GCAN0,
         parameters: [
             {name: rvcShockPosRearLeft_mm,  start: 0, length: 2},
             {name: rvcShockPosRearRight_mm, start: 2, length: 2},
@@ -7726,6 +7794,7 @@ groups: [
     },
     {
         id: 0x154,
+        bus: GCAN0,
         parameters: [
             {name: rvcCoolantPumpPressure_psi,     start: 0, length: 2},
             {name: rvcCoolantFanPowerR_percent,    start: 2, length: 1},
@@ -7736,6 +7805,7 @@ groups: [
     },
     {
         id: 0x155,
+        bus: GCAN0,
         parameters: [
             {name: rvcEfuse12VCurrent_A,           start: 0, length: 2},
             {name: rvcEfuse5V1Fault_state,         start: 2, length: 1},
@@ -7753,24 +7823,28 @@ groups: [
     
     {
         id: 0x200,
+        bus: GCAN0,
         parameters: [
             {name: vnavLatitude,     start: 0, length: 8},
         ]
     },
     {
         id: 0x201,
+        bus: GCAN0,
         parameters: [
             {name: vnavLongitude,    start: 0, length: 8}
         ]
     },
     {
         id: 0x202,
+        bus: GCAN0,
         parameters: [
             {name: vnavAltitude,    start: 0, length: 8}
         ]
     },
     {
         id: 0x203,
+        bus: GCAN0,
         parameters: [
             {name: vnavVelBodyX,       start: 0, length: 4},
             {name: vnavVelBodyY,       start: 4, length: 4},
@@ -7778,6 +7852,7 @@ groups: [
     },
     {
         id: 0x204,
+        bus: GCAN0,
         parameters: [
             {name: vnavYaw,     start: 0, length: 4},
             {name: vnavPitch,   start: 4, length: 4}
@@ -7785,6 +7860,7 @@ groups: [
     },
     {
         id: 0x205,
+        bus: GCAN0,
         parameters: [
             {name: vnavRoll,           start: 0, length: 4},
             {name: vnavLinBodyAccZ,    start: 4, length: 4}
@@ -7825,6 +7901,7 @@ groups: [
     },
     {
         id: 0x20A,
+        bus: GCAN0,
         parameters: [
             {name: vnavGyroBodyX,     start: 0, length: 4},
             {name: vnavGyroBodyY,     start: 4, length: 4},
@@ -7832,6 +7909,7 @@ groups: [
     },
     {
         id: 0x20B,
+        bus: GCAN0,
         parameters: [
             {name: vnavGyroBodyZ,     start: 0, length: 4},
             {name: vnavINS_status,    start: 4, length: 2},
@@ -7849,6 +7927,7 @@ groups: [
     # Steering Wheel
     {
         id: 0x250,
+        bus: GCAN0,
         parameters: [
             {name: swButon0_state,     start: 4, length: 1},
             {name: swButon1_state,     start: 5, length: 1},
@@ -7857,6 +7936,7 @@ groups: [
     },
     {
         id: 0x251,
+        bus: GCAN0,
         parameters: [
             {name: swButon2_state, start: 2, length: 1},
             {name: swButon3_state, start: 3, length: 1},
@@ -7874,6 +7954,7 @@ groups: [
     # START Pack variables
     {
         id: 0x300,
+        bus: GCAN0,
         parameters: [
             {name: bmsBatteryCurrent_A, start: 0, length: 2},
             {name: bmsBatteryVoltage_V, start: 2, length: 2},
@@ -7885,6 +7966,7 @@ groups: [
 
     {
         id: 0x301,
+        bus: GCAN0,
         parameters: [
             {name: soeByOCV_percent, start: 0, length: 2},
             {name: soeByCoulombCounting_percent, start: 2, length: 2},
@@ -7895,6 +7977,7 @@ groups: [
 
     {
         id: 0x302,
+        bus: GCAN0,
         parameters: [
             {name: avgCellVoltage_V, start: 0, length: 2},
             {name: cellImbalance_mV, start: 2, length: 2},
@@ -7905,6 +7988,7 @@ groups: [
 
     {
         id: 0x303,
+        bus: GCAN0,
         parameters: [
             {name: avgCellTemp_C, start: 0, length: 2},
             {name: maxBoardTemp_C, start: 2, length: 2},
@@ -7915,6 +7999,7 @@ groups: [
 
     {
         id: 0x304,
+        bus: GCAN0,
         parameters: [
             {name: bmsNumActiveAlerts_info, start: 0, length: 1},
             {name: cellMonitorAlerts_info, start: 1, length: 2},
@@ -7927,6 +8012,7 @@ groups: [
     # START Module 1
     {
         id: 0x310,
+        bus: GCAN0,
         parameters: [
             {name: module1MaxCellVoltage_V, start: 0, length: 2},
             {name: module1MinCellVoltage_V, start: 2, length: 2},
@@ -7936,6 +8022,7 @@ groups: [
     },
     {
         id: 0x311,
+        bus: GCAN0,
         parameters: [
             {name: module1MaxCellTemperature_C, start: 0, length: 2},
             {name: module1MinCellTemperature_C, start: 2, length: 2},
@@ -7945,6 +8032,7 @@ groups: [
     },
     {
         id: 0x312,
+        bus: GCAN0,
         parameters: [
             {name: module1Cell1Voltage_V, start: 0, length: 2},
             {name: module1Cell2Voltage_V, start: 2, length: 2},
@@ -7954,6 +8042,7 @@ groups: [
     },
     {
         id: 0x313,
+        bus: GCAN0,
         parameters: [
             {name: module1Cell5Voltage_V, start: 0, length: 2},
             {name: module1Cell6Voltage_V, start: 2, length: 2},
@@ -7963,6 +8052,7 @@ groups: [
     },
     {
         id: 0x314,
+        bus: GCAN0,
         parameters: [
             {name: module1Cell9Voltage_V, start: 0, length: 2},
             {name: module1Cell10Voltage_V, start: 2, length: 2},
@@ -7972,6 +8062,7 @@ groups: [
     },
     {
         id: 0x315,
+        bus: GCAN0,
         parameters: [
             {name: module1Cell13Voltage_V, start: 0, length: 2},
             {name: module1Cell14Voltage_V, start: 2, length: 2},
@@ -7981,6 +8072,7 @@ groups: [
     },
     {
         id: 0x316,
+        bus: GCAN0,
         parameters: [
             {name: module1Cell3Temperature_C, start: 0, length: 2},
             {name: module1Cell4Temperature_C, start: 2, length: 2},
@@ -7990,6 +8082,7 @@ groups: [
     },
     {
         id: 0x317,
+        bus: GCAN0,
         parameters: [
             {name: module1Cell7Temperature_C, start: 0, length: 2},
             {name: module1Cell8Temperature_C, start: 2, length: 2},
@@ -7999,6 +8092,7 @@ groups: [
     },
     {
         id: 0x318,
+        bus: GCAN0,
         parameters: [
             {name: module1Cell11Temperature_C, start: 0, length: 2},
             {name: module1Cell12Temperature_C, start: 2, length: 2},
@@ -8012,6 +8106,7 @@ groups: [
     # START Module 2
     {
         id: 0x320,
+        bus: GCAN0,
         parameters: [
             {name: module2MaxCellVoltage_V, start: 0, length: 2},
             {name: module2MinCellVoltage_V, start: 2, length: 2},
@@ -8021,6 +8116,7 @@ groups: [
     },
     {
         id: 0x321,
+        bus: GCAN0,
         parameters: [
             {name: module2MaxCellTemperature_C, start: 0, length: 2},
             {name: module2MinCellTemperature_C, start: 2, length: 2},
@@ -8030,6 +8126,7 @@ groups: [
     },
     {
         id: 0x322,
+        bus: GCAN0,
         parameters: [
             {name: module2Cell1Voltage_V, start: 0, length: 2},
             {name: module2Cell2Voltage_V, start: 2, length: 2},
@@ -8039,6 +8136,7 @@ groups: [
     },
     {
         id: 0x323,
+        bus: GCAN0,
         parameters: [
             {name: module2Cell5Voltage_V, start: 0, length: 2},
             {name: module2Cell6Voltage_V, start: 2, length: 2},
@@ -8048,6 +8146,7 @@ groups: [
     },
     {
         id: 0x324,
+        bus: GCAN0,
         parameters: [
             {name: module2Cell9Voltage_V, start: 0, length: 2},
             {name: module2Cell10Voltage_V, start: 2, length: 2},
@@ -8057,6 +8156,7 @@ groups: [
     },
     {
         id: 0x325,
+        bus: GCAN0,
         parameters: [
             {name: module2Cell13Voltage_V, start: 0, length: 2},
             {name: module2Cell14Voltage_V, start: 2, length: 2},
@@ -8066,6 +8166,7 @@ groups: [
     },
     {
         id: 0x326,
+        bus: GCAN0,
         parameters: [
             {name: module2Cell3Temperature_C, start: 0, length: 2},
             {name: module2Cell4Temperature_C, start: 2, length: 2},
@@ -8075,6 +8176,7 @@ groups: [
     },
     {
         id: 0x327,
+        bus: GCAN0,
         parameters: [
             {name: module2Cell7Temperature_C, start: 0, length: 2},
             {name: module2Cell8Temperature_C, start: 2, length: 2},
@@ -8084,6 +8186,7 @@ groups: [
     },
     {
         id: 0x328,
+        bus: GCAN0,
         parameters: [
             {name: module2Cell11Temperature_C, start: 0, length: 2},
             {name: module2Cell12Temperature_C, start: 2, length: 2},
@@ -8096,6 +8199,7 @@ groups: [
     # START Module 3
     {
         id: 0x330,
+        bus: GCAN0,
         parameters: [
             {name: module3MaxCellVoltage_V, start: 0, length: 2},
             {name: module3MinCellVoltage_V, start: 2, length: 2},
@@ -8105,6 +8209,7 @@ groups: [
     },
     {
         id: 0x331,
+        bus: GCAN0,
         parameters: [
             {name: module3MaxCellTemperature_C, start: 0, length: 2},
             {name: module3MinCellTemperature_C, start: 2, length: 2},
@@ -8114,6 +8219,7 @@ groups: [
     },
     {
         id: 0x332,
+        bus: GCAN0,
         parameters: [
             {name: module3Cell1Voltage_V, start: 0, length: 2},
             {name: module3Cell2Voltage_V, start: 2, length: 2},
@@ -8123,6 +8229,7 @@ groups: [
     },
     {
         id: 0x333,
+        bus: GCAN0,
         parameters: [
             {name: module3Cell5Voltage_V, start: 0, length: 2},
             {name: module3Cell6Voltage_V, start: 2, length: 2},
@@ -8132,6 +8239,7 @@ groups: [
     },
     {
         id: 0x334,
+        bus: GCAN0,
         parameters: [
             {name: module3Cell9Voltage_V, start: 0, length: 2},
             {name: module3Cell10Voltage_V, start: 2, length: 2},
@@ -8141,6 +8249,7 @@ groups: [
     },
     {
         id: 0x335,
+        bus: GCAN0,
         parameters: [
             {name: module3Cell13Voltage_V, start: 0, length: 2},
             {name: module3Cell14Voltage_V, start: 2, length: 2},
@@ -8150,6 +8259,7 @@ groups: [
     },
     {
         id: 0x336,
+        bus: GCAN0,
         parameters: [
             {name: module3Cell3Temperature_C, start: 0, length: 2},
             {name: module3Cell4Temperature_C, start: 2, length: 2},
@@ -8159,6 +8269,7 @@ groups: [
     },
     {
         id: 0x337,
+        bus: GCAN0,
         parameters: [
             {name: module3Cell7Temperature_C, start: 0, length: 2},
             {name: module3Cell8Temperature_C, start: 2, length: 2},
@@ -8168,6 +8279,7 @@ groups: [
     },
     {
         id: 0x338,
+        bus: GCAN0,
         parameters: [
             {name: module3Cell11Temperature_C, start: 0, length: 2},
             {name: module3Cell12Temperature_C, start: 2, length: 2},
@@ -8180,6 +8292,7 @@ groups: [
     # START Module 4
     {
         id: 0x340,
+        bus: GCAN0,
         parameters: [
             {name: module4MaxCellVoltage_V, start: 0, length: 2},
             {name: module4MinCellVoltage_V, start: 2, length: 2},
@@ -8189,6 +8302,7 @@ groups: [
     },
     {
         id: 0x341,
+        bus: GCAN0,
         parameters: [
             {name: module4MaxCellTemperature_C, start: 0, length: 2},
             {name: module4MinCellTemperature_C, start: 2, length: 2},
@@ -8198,6 +8312,7 @@ groups: [
     },
     {
         id: 0x342,
+        bus: GCAN0,
         parameters: [
             {name: module4Cell1Voltage_V, start: 0, length: 2},
             {name: module4Cell2Voltage_V, start: 2, length: 2},
@@ -8207,6 +8322,7 @@ groups: [
     },
     {
         id: 0x343,
+        bus: GCAN0,
         parameters: [
             {name: module4Cell5Voltage_V, start: 0, length: 2},
             {name: module4Cell6Voltage_V, start: 2, length: 2},
@@ -8216,6 +8332,7 @@ groups: [
     },
     {
         id: 0x344,
+        bus: GCAN0,
         parameters: [
             {name: module4Cell9Voltage_V, start: 0, length: 2},
             {name: module4Cell10Voltage_V, start: 2, length: 2},
@@ -8225,6 +8342,7 @@ groups: [
     },
     {
         id: 0x345,
+        bus: GCAN0,
         parameters: [
             {name: module4Cell13Voltage_V, start: 0, length: 2},
             {name: module4Cell14Voltage_V, start: 2, length: 2},
@@ -8234,6 +8352,7 @@ groups: [
     },
     {
         id: 0x346,
+        bus: GCAN0,
         parameters: [
             {name: module4Cell3Temperature_C, start: 0, length: 2},
             {name: module4Cell4Temperature_C, start: 2, length: 2},
@@ -8243,6 +8362,7 @@ groups: [
     },
     {
         id: 0x347,
+        bus: GCAN0,
         parameters: [
             {name: module4Cell7Temperature_C, start: 0, length: 2},
             {name: module4Cell8Temperature_C, start: 2, length: 2},
@@ -8252,6 +8372,7 @@ groups: [
     },
     {
         id: 0x348,
+        bus: GCAN0,
         parameters: [
             {name: module4Cell11Temperature_C, start: 0, length: 2},
             {name: module4Cell12Temperature_C, start: 2, length: 2},
@@ -8264,6 +8385,7 @@ groups: [
     # START Module 5
     {
         id: 0x350,
+        bus: GCAN0,
         parameters: [
             {name: module5MaxCellVoltage_V, start: 0, length: 2},
             {name: module5MinCellVoltage_V, start: 2, length: 2},
@@ -8273,6 +8395,7 @@ groups: [
     },
     {
         id: 0x351,
+        bus: GCAN0,
         parameters: [
             {name: module5MaxCellTemperature_C, start: 0, length: 2},
             {name: module5MinCellTemperature_C, start: 2, length: 2},
@@ -8282,6 +8405,7 @@ groups: [
     },
     {
         id: 0x352,
+        bus: GCAN0,
         parameters: [
             {name: module5Cell1Voltage_V, start: 0, length: 2},
             {name: module5Cell2Voltage_V, start: 2, length: 2},
@@ -8291,6 +8415,7 @@ groups: [
     },
     {
         id: 0x353,
+        bus: GCAN0,
         parameters: [
             {name: module5Cell5Voltage_V, start: 0, length: 2},
             {name: module5Cell6Voltage_V, start: 2, length: 2},
@@ -8300,6 +8425,7 @@ groups: [
     },
     {
         id: 0x354,
+        bus: GCAN0,
         parameters: [
             {name: module5Cell9Voltage_V, start: 0, length: 2},
             {name: module5Cell10Voltage_V, start: 2, length: 2},
@@ -8309,6 +8435,7 @@ groups: [
     },
     {
         id: 0x355,
+        bus: GCAN0,
         parameters: [
             {name: module5Cell13Voltage_V, start: 0, length: 2},
             {name: module5Cell14Voltage_V, start: 2, length: 2},
@@ -8318,6 +8445,7 @@ groups: [
     },
     {
         id: 0x356,
+        bus: GCAN0,
         parameters: [
             {name: module5Cell3Temperature_C, start: 0, length: 2},
             {name: module5Cell4Temperature_C, start: 2, length: 2},
@@ -8327,6 +8455,7 @@ groups: [
     },
     {
         id: 0x357,
+        bus: GCAN0,
         parameters: [
             {name: module5Cell7Temperature_C, start: 0, length: 2},
             {name: module5Cell8Temperature_C, start: 2, length: 2},
@@ -8336,6 +8465,7 @@ groups: [
     },
     {
         id: 0x358,
+        bus: GCAN0,
         parameters: [
             {name: module5Cell11Temperature_C, start: 0, length: 2},
             {name: module5Cell12Temperature_C, start: 2, length: 2},
@@ -8348,6 +8478,7 @@ groups: [
     # START Module 6
     {
         id: 0x360,
+        bus: GCAN0,
         parameters: [
             {name: module6MaxCellVoltage_V, start: 0, length: 2},
             {name: module6MinCellVoltage_V, start: 2, length: 2},
@@ -8357,6 +8488,7 @@ groups: [
     },
     {
         id: 0x361,
+        bus: GCAN0,
         parameters: [
             {name: module6MaxCellTemperature_C, start: 0, length: 2},
             {name: module6MinCellTemperature_C, start: 2, length: 2},
@@ -8366,6 +8498,7 @@ groups: [
     },
     {
         id: 0x362,
+        bus: GCAN0,
         parameters: [
             {name: module6Cell1Voltage_V, start: 0, length: 2},
             {name: module6Cell2Voltage_V, start: 2, length: 2},
@@ -8375,6 +8508,7 @@ groups: [
     },
     {
         id: 0x363,
+        bus: GCAN0,
         parameters: [
             {name: module6Cell5Voltage_V, start: 0, length: 2},
             {name: module6Cell6Voltage_V, start: 2, length: 2},
@@ -8384,6 +8518,7 @@ groups: [
     },
     {
         id: 0x364,
+        bus: GCAN0,
         parameters: [
             {name: module6Cell9Voltage_V, start: 0, length: 2},
             {name: module6Cell10Voltage_V, start: 2, length: 2},
@@ -8393,6 +8528,7 @@ groups: [
     },
     {
         id: 0x365,
+        bus: GCAN0,
         parameters: [
             {name: module6Cell13Voltage_V, start: 0, length: 2},
             {name: module6Cell14Voltage_V, start: 2, length: 2},
@@ -8402,6 +8538,7 @@ groups: [
     },
     {
         id: 0x366,
+        bus: GCAN0,
         parameters: [
             {name: module6Cell3Temperature_C, start: 0, length: 2},
             {name: module6Cell4Temperature_C, start: 2, length: 2},
@@ -8411,6 +8548,7 @@ groups: [
     },
     {
         id: 0x367,
+        bus: GCAN0,
         parameters: [
             {name: module6Cell7Temperature_C, start: 0, length: 2},
             {name: module6Cell8Temperature_C, start: 2, length: 2},
@@ -8420,6 +8558,7 @@ groups: [
     },
     {
         id: 0x368,
+        bus: GCAN0,
         parameters: [
             {name: module6Cell11Temperature_C, start: 0, length: 2},
             {name: module6Cell12Temperature_C, start: 2, length: 2},
@@ -8432,6 +8571,7 @@ groups: [
     # START Module 7
     {
         id: 0x370,
+        bus: GCAN0,
         parameters: [
             {name: module7MaxCellVoltage_V, start: 0, length: 2},
             {name: module7MinCellVoltage_V, start: 2, length: 2},
@@ -8441,6 +8581,7 @@ groups: [
     },
     {
         id: 0x371,
+        bus: GCAN0,
         parameters: [
             {name: module7MaxCellTemperature_C, start: 0, length: 2},
             {name: module7MinCellTemperature_C, start: 2, length: 2},
@@ -8450,6 +8591,7 @@ groups: [
     },
     {
         id: 0x372,
+        bus: GCAN0,
         parameters: [
             {name: module7Cell1Voltage_V, start: 0, length: 2},
             {name: module7Cell2Voltage_V, start: 2, length: 2},
@@ -8459,6 +8601,7 @@ groups: [
     },
     {
         id: 0x373,
+        bus: GCAN0,
         parameters: [
             {name: module7Cell5Voltage_V, start: 0, length: 2},
             {name: module7Cell6Voltage_V, start: 2, length: 2},
@@ -8468,6 +8611,7 @@ groups: [
     },
     {
         id: 0x374,
+        bus: GCAN0,
         parameters: [
             {name: module7Cell9Voltage_V, start: 0, length: 2},
             {name: module7Cell10Voltage_V, start: 2, length: 2},
@@ -8477,6 +8621,7 @@ groups: [
     },
     {
         id: 0x375,
+        bus: GCAN0,
         parameters: [
             {name: module7Cell13Voltage_V, start: 0, length: 2},
             {name: module7Cell14Voltage_V, start: 2, length: 2},
@@ -8486,6 +8631,7 @@ groups: [
     },
     {
         id: 0x376,
+        bus: GCAN0,
         parameters: [
             {name: module7Cell3Temperature_C, start: 0, length: 2},
             {name: module7Cell4Temperature_C, start: 2, length: 2},
@@ -8495,6 +8641,7 @@ groups: [
     },
     {
         id: 0x377,
+        bus: GCAN0,
         parameters: [
             {name: module7Cell7Temperature_C, start: 0, length: 2},
             {name: module7Cell8Temperature_C, start: 2, length: 2},
@@ -8504,6 +8651,7 @@ groups: [
     },
     {
         id: 0x378,
+        bus: GCAN0,
         parameters: [
             {name: module7Cell11Temperature_C, start: 0, length: 2},
             {name: module7Cell12Temperature_C, start: 2, length: 2},
@@ -8516,6 +8664,7 @@ groups: [
     # START Module 8
     {
         id: 0x380,
+        bus: GCAN0,
         parameters: [
             {name: module8MaxCellVoltage_V, start: 0, length: 2},
             {name: module8MinCellVoltage_V, start: 2, length: 2},
@@ -8525,6 +8674,7 @@ groups: [
     },
     {
         id: 0x381,
+        bus: GCAN0,
         parameters: [
             {name: module8MaxCellTemperature_C, start: 0, length: 2},
             {name: module8MinCellTemperature_C, start: 2, length: 2},
@@ -8534,6 +8684,7 @@ groups: [
     },
     {
         id: 0x382,
+        bus: GCAN0,
         parameters: [
             {name: module8Cell1Voltage_V, start: 0, length: 2},
             {name: module8Cell2Voltage_V, start: 2, length: 2},
@@ -8543,6 +8694,7 @@ groups: [
     },
     {
         id: 0x383,
+        bus: GCAN0,
         parameters: [
             {name: module8Cell5Voltage_V, start: 0, length: 2},
             {name: module8Cell6Voltage_V, start: 2, length: 2},
@@ -8552,6 +8704,7 @@ groups: [
     },
     {
         id: 0x384,
+        bus: GCAN0,
         parameters: [
             {name: module8Cell9Voltage_V, start: 0, length: 2},
             {name: module8Cell10Voltage_V, start: 2, length: 2},
@@ -8561,6 +8714,7 @@ groups: [
     },
     {
         id: 0x385,
+        bus: GCAN0,
         parameters: [
             {name: module8Cell13Voltage_V, start: 0, length: 2},
             {name: module8Cell14Voltage_V, start: 2, length: 2},
@@ -8570,6 +8724,7 @@ groups: [
     },
     {
         id: 0x386,
+        bus: GCAN0,
         parameters: [
             {name: module8Cell3Temperature_C, start: 0, length: 2},
             {name: module8Cell4Temperature_C, start: 2, length: 2},
@@ -8579,6 +8734,7 @@ groups: [
     },
     {
         id: 0x387,
+        bus: GCAN0,
         parameters: [
             {name: module8Cell7Temperature_C, start: 0, length: 2},
             {name: module8Cell8Temperature_C, start: 2, length: 2},
@@ -8588,6 +8744,7 @@ groups: [
     },
     {
         id: 0x388,
+        bus: GCAN0,
         parameters: [
             {name: module8Cell11Temperature_C, start: 0, length: 2},
             {name: module8Cell12Temperature_C, start: 2, length: 2},
@@ -8600,6 +8757,7 @@ groups: [
     # START Module 9
     {
         id: 0x390,
+        bus: GCAN0,
         parameters: [
             {name: module9MaxCellVoltage_V, start: 0, length: 2},
             {name: module9MinCellVoltage_V, start: 2, length: 2},
@@ -8609,6 +8767,7 @@ groups: [
     },
     {
         id: 0x391,
+        bus: GCAN0,
         parameters: [
             {name: module9MaxCellTemperature_C, start: 0, length: 2},
             {name: module9MinCellTemperature_C, start: 2, length: 2},
@@ -8618,6 +8777,7 @@ groups: [
     },
     {
         id: 0x392,
+        bus: GCAN0,
         parameters: [
             {name: module9Cell1Voltage_V, start: 0, length: 2},
             {name: module9Cell2Voltage_V, start: 2, length: 2},
@@ -8627,6 +8787,7 @@ groups: [
     },
     {
         id: 0x393,
+        bus: GCAN0,
         parameters: [
             {name: module9Cell5Voltage_V, start: 0, length: 2},
             {name: module9Cell6Voltage_V, start: 2, length: 2},
@@ -8636,6 +8797,7 @@ groups: [
     },
     {
         id: 0x394,
+        bus: GCAN0,
         parameters: [
             {name: module9Cell9Voltage_V, start: 0, length: 2},
             {name: module9Cell10Voltage_V, start: 2, length: 2},
@@ -8645,6 +8807,7 @@ groups: [
     },
     {
         id: 0x395,
+        bus: GCAN0,
         parameters: [
             {name: module9Cell13Voltage_V, start: 0, length: 2},
             {name: module9Cell14Voltage_V, start: 2, length: 2},
@@ -8654,6 +8817,7 @@ groups: [
     },
     {
         id: 0x396,
+        bus: GCAN0,
         parameters: [
             {name: module9Cell3Temperature_C, start: 0, length: 2},
             {name: module9Cell4Temperature_C, start: 2, length: 2},
@@ -8663,6 +8827,7 @@ groups: [
     },
     {
         id: 0x397,
+        bus: GCAN0,
         parameters: [
             {name: module9Cell7Temperature_C, start: 0, length: 2},
             {name: module9Cell8Temperature_C, start: 2, length: 2},
@@ -8672,6 +8837,7 @@ groups: [
     },
     {
         id: 0x398,
+        bus: GCAN0,
         parameters: [
             {name: module9Cell11Temperature_C, start: 0, length: 2},
             {name: module9Cell12Temperature_C, start: 2, length: 2},
@@ -8684,6 +8850,7 @@ groups: [
     # START Module 10
     {
         id: 0x400,
+        bus: GCAN0,
         parameters: [
             {name: module10MaxCellVoltage_V, start: 0, length: 2},
             {name: module10MinCellVoltage_V, start: 2, length: 2},
@@ -8693,6 +8860,7 @@ groups: [
     },
     {
         id: 0x401,
+        bus: GCAN0,
         parameters: [
             {name: module10MaxCellTemperature_C, start: 0, length: 2},
             {name: module10MinCellTemperature_C, start: 2, length: 2},
@@ -8702,6 +8870,7 @@ groups: [
     },
     {
         id: 0x402,
+        bus: GCAN0,
         parameters: [
             {name: module10Cell1Voltage_V, start: 0, length: 2},
             {name: module10Cell2Voltage_V, start: 2, length: 2},
@@ -8711,6 +8880,7 @@ groups: [
     },
     {
         id: 0x403,
+        bus: GCAN0,
         parameters: [
             {name: module10Cell5Voltage_V, start: 0, length: 2},
             {name: module10Cell6Voltage_V, start: 2, length: 2},
@@ -8720,6 +8890,7 @@ groups: [
     },
     {
         id: 0x404,
+        bus: GCAN0,
         parameters: [
             {name: module10Cell9Voltage_V, start: 0, length: 2},
             {name: module10Cell10Voltage_V, start: 2, length: 2},
@@ -8729,6 +8900,7 @@ groups: [
     },
     {
         id: 0x405,
+        bus: GCAN0,
         parameters: [
             {name: module10Cell13Voltage_V, start: 0, length: 2},
             {name: module10Cell14Voltage_V, start: 2, length: 2},
@@ -8738,6 +8910,7 @@ groups: [
     },
     {
         id: 0x406,
+        bus: GCAN0,
         parameters: [
             {name: module10Cell3Temperature_C, start: 0, length: 2},
             {name: module10Cell4Temperature_C, start: 2, length: 2},
@@ -8747,6 +8920,7 @@ groups: [
     },
     {
         id: 0x407,
+        bus: GCAN0,
         parameters: [
             {name: module10Cell7Temperature_C, start: 0, length: 2},
             {name: module10Cell8Temperature_C, start: 2, length: 2},
@@ -8756,6 +8930,7 @@ groups: [
     },
     {
         id: 0x408,
+        bus: GCAN0,
         parameters: [
             {name: module10Cell11Temperature_C, start: 0, length: 2},
             {name: module10Cell12Temperature_C, start: 2, length: 2},
@@ -8768,6 +8943,7 @@ groups: [
     # Elcon Charger 
     {
         id: 0x390,
+        bus: GCAN0,
         parameters: [
             {name: chargerVoltageSetPoint_V, start: 0, length: 2},
             {name: chargerCurrentSetPoint_A, start: 2, length: 2},
@@ -8780,6 +8956,7 @@ groups: [
     # Power and Logging Module (Not contiunously sent)
     {
         id: 0x000,
+        bus: GCAN0,
         parameters: [
             {name: vbatChan0Current_A, start: 0, length: 2},
             {name: vbatChan1Current_A, start: 2, length: 2},
@@ -8789,6 +8966,7 @@ groups: [
     },
     {
         id: 0x001,
+        bus: GCAN0,
         parameters: [
             {name: vbatChan4Current_A, start: 0, length: 2},
             {name: vbatChan5Current_A, start: 2, length: 2},
@@ -8798,6 +8976,7 @@ groups: [
     },
     {
         id: 0x002,
+        bus: GCAN0,
         parameters: [
             {name: fiveVChan1Current_A,     start: 0, length: 2},
             {name: fiveVChan2Current_A,     start: 2, length: 2},
@@ -8807,6 +8986,7 @@ groups: [
     },
     {
         id: 0x003,
+        bus: GCAN0,
         parameters: [
             {name: can1Utilization_percent, start: 0, length: 2},
             {name: can2Utilization_percent, start: 2, length: 2},
@@ -8816,6 +8996,7 @@ groups: [
     },
     {
         id: 0x004,
+        bus: GCAN0,
         parameters: [
             {name: packetsLogged_ul, start: 0, length: 4},
             {name: packetsDropped_ul, start: 4, length: 4}
@@ -8823,6 +9004,7 @@ groups: [
     },
     {
         id: 0x005,
+        bus: GCAN0,
         parameters: [
             {name: storageBufferFill_percent, start: 0, length: 2},
             {name: telemetryBufferFill_percent, start: 2, length: 2}
@@ -8830,6 +9012,7 @@ groups: [
     },
     {
         id: 0x006,
+        bus: GCAN0,
         parameters: [
             {name: PLM_Temp_degrees, start: 0, length: 2},
             {name: PLM_Humidity_percent, start: 2, length: 2},
@@ -8838,6 +9021,7 @@ groups: [
     },
     {
         id: 0x007,
+        bus: GCAN0,
         parameters: [
             {name: Twelve_Volt_0_Overcurrent, start: 0, length: 1},
             {name: Twelve_Volt_1_Overcurrent, start: 1, length: 1},
@@ -8851,6 +9035,7 @@ groups: [
     },
     {
         id: 0x008,
+        bus: GCAN0,
         parameters: [
             {name: Twelve_Volt_0_Overcurrent_Count, start: 0, length: 1},
             {name: Twelve_Volt_1_Overcurrent_Count, start: 1, length: 1},
@@ -8863,6 +9048,7 @@ groups: [
     },
     {
         id: 0x010,
+        bus: GCAN0,
         parameters: [
             {name: Five_Volt_0_Overcurrent, start: 0, length: 1},
             {name: Five_Volt_1_Overcurrent, start: 1, length: 1},
@@ -8878,6 +9064,7 @@ groups: [
     # PLM SDC
     {
         id: 0x011,
+        bus: GCAN0,
         parameters: [
             {name: sdcStatus5, start: 0, length: 1},
             {name: sdcStatus6, start: 1, length: 1},
@@ -8889,6 +9076,7 @@ groups: [
     # Display GPS
     {
         id: 0x700,
+        bus: GCAN0,
         parameters: [
             {name: gpsLatitude_deg,  start: 0, length: 4},
             {name: gpsLongitude_deg, start: 4, length: 4}
@@ -8896,6 +9084,7 @@ groups: [
     },
         {
         id: 0x701,
+        bus: GCAN0,
         parameters: [
             {name: gpsSpeed_mph,  start: 0, length: 2},
             {name: gpsAltitude_ft, start: 2, length: 2},
@@ -8905,6 +9094,7 @@ groups: [
     },
     {
         id: 0x702,
+        bus: GCAN0,
         parameters: [
             {name: gpsValid_ul,  start: 0, length: 1},
             {name: gpsYearUTC_ul, start: 1, length: 1},
@@ -8920,6 +9110,7 @@ groups: [
     # IMU Messages (No control over these IDs)
     {
         id: 0x070,
+        bus: GCAN0,
         parameters: [
             {name: yawRate_degPerSec, start: 0, length: 2},
             {name: lateralAccel_G,    start: 4, length: 2}
@@ -8927,6 +9118,7 @@ groups: [
     },
     {
         id: 0x080,
+        bus: GCAN0,
         parameters: [
             {name: rollRate_degPerSec,  start: 0, length: 2},
             {name: longitudinalAccel_G, start: 4, length: 2}
@@ -8934,6 +9126,7 @@ groups: [
     },
     {
         id: 0x576,
+        bus: GCAN0,
         parameters: [
             {name: verticalAccel_G, start: 4, length: 2}
         ]
@@ -8943,12 +9136,14 @@ groups: [
     # MISC
     {
         id: 0xE5,
+        bus: GCAN0,
         parameters: [
             {name: lapBeaconRaw_ul,  start: 0, length: 3}
         ]
     },
     {
         id: 0xE6,
+        bus: GCAN0,
         parameters: [
             {name: lapBeacon_ul,  start: 0, length: 1}
         ]
@@ -8956,12 +9151,14 @@ groups: [
      #tire temps for sensor 03241
     {
         id: 0x4B0,
+        bus: GCAN0,
         parameters: [
             {name: rearRightTireTempCh1, start: 0, length: 2},
         ]
     },
     {
         id: 0x4B1,
+        bus: GCAN0,
         parameters: [
             {name: rearRightTireTempCh5, start: 0, length: 2},
             {name: rearRightTireTempCh7, start: 4, length: 2},
@@ -8970,6 +9167,7 @@ groups: [
     },
     {
         id: 0x4B2,
+        bus: GCAN0,
         parameters: [
             {name: rearRightTireTempCh9, start: 0, length: 2},
             {name: rearRightTireTempCh10, start: 2, length: 2},
@@ -8978,6 +9176,7 @@ groups: [
     },
     {
         id: 0x4B3,
+        bus: GCAN0,
         parameters: [
             {name: rearRightTireTempCh16, start: 6, length: 2}
         ]
@@ -8985,12 +9184,14 @@ groups: [
      #tire temps for sensor 03823
     {
         id: 0x4B8,
+        bus: GCAN0,
         parameters: [
             {name: frontRightTireTempCh1, start: 0, length: 2}
         ]
     },
     {
         id: 0x4B9,
+        bus: GCAN0,
         parameters: [
             {name: frontRightTireTempCh5, start: 0, length: 2},
             {name: frontRightTireTempCh7, start: 4, length: 2},
@@ -8999,6 +9200,7 @@ groups: [
     },
     {
         id: 0x4BA,
+        bus: GCAN0,
         parameters: [
             {name: frontRightTireTempCh9, start: 0, length: 2},
             {name: frontRightTireTempCh10, start: 2, length: 2},
@@ -9007,6 +9209,7 @@ groups: [
     },
     {
         id: 0x4BB,
+        bus: GCAN0,
         parameters: [
             {name: frontRightTireTempCh16, start: 6, length: 2}
         ]
@@ -9014,12 +9217,14 @@ groups: [
     #tire temps for sensor 03824
     {
         id: 0x4BC,
+        bus: GCAN0,
         parameters: [
             {name: frontLeftTireTempCh1, start: 0, length: 2}
         ]
     },
     {
         id: 0x4BD,
+        bus: GCAN0,
         parameters: [
             {name: frontLeftTireTempCh5, start: 0, length: 2},
             {name: frontLeftTireTempCh7, start: 4, length: 2},
@@ -9028,6 +9233,7 @@ groups: [
     },
     {
         id: 0x4BE,
+        bus: GCAN0,
         parameters: [
             {name: frontLeftTireTempCh9, start: 0, length: 2},
             {name: frontLeftTireTempCh10, start: 2, length: 2},
@@ -9036,6 +9242,7 @@ groups: [
     },
     {
         id: 0x4BF,
+        bus: GCAN0,
         parameters: [
             {name: frontLeftTireTempCh16, start: 6, length: 2}
         ]
@@ -9043,12 +9250,14 @@ groups: [
     #tire temps for sensor 03242
     {
         id: 0x4B4,
+        bus: GCAN0,
         parameters: [
             {name: rearLeftTireTempCh1, start: 0, length: 2},
         ]
     },
     {
         id: 0x4B5,
+        bus: GCAN0,
         parameters: [
             {name: rearLeftTireTempCh5, start: 0, length: 2},
             {name: rearLeftTireTempCh7, start: 4, length: 2},
@@ -9057,6 +9266,7 @@ groups: [
     },
     {
         id: 0x4B6,
+        bus: GCAN0,
         parameters: [
             {name: rearLeftTireTempCh9, start: 0, length: 2},
             {name: rearLeftTireTempCh10, start: 2, length: 2},
@@ -9065,6 +9275,7 @@ groups: [
     },
     {
         id: 0x4B7,
+        bus: GCAN0,
         parameters: [
             {name: rearLeftTireTempCh16, start: 6, length: 2}
         ]
@@ -9074,6 +9285,7 @@ groups: [
     # Telemetry
     {
         id: 0x750,
+        bus: GCAN0,
         parameters: [
             {name: tm_CAN1Util_percent, start: 0, length: 2},
             {name: tm_CAN2Util_percent, start: 2, length: 2},
@@ -9083,6 +9295,7 @@ groups: [
     },
     {
         id: 0x751,
+        bus: GCAN0,
         parameters: [
             {name: tm_SDBytesTransferred_bytes, start: 0, length: 4},
             {name: tm_RadioBytesTransferred_bytes, start: 4, length: 4}
@@ -9090,6 +9303,7 @@ groups: [
     },
     {
         id: 0x752,
+        bus: GCAN0,
         parameters: [
             {name: tm_SDPacketsDropped_ul, start: 0, length: 4},
             {name: tm_RadioPacketsDropped_ul, start: 4, length: 4}
@@ -9097,6 +9311,7 @@ groups: [
     },
     {
         id: 0x753,
+        bus: GCAN0,
         parameters: [
             {name: tm_CoinBattery_V, start: 0, length: 2},
         ]
@@ -9105,6 +9320,7 @@ groups: [
     # Charger Control Board
     {
         id: 0x754,
+        bus: GCAN0,
         parameters: [
             {name: sdcStatus17, start: 0, length: 1},
             {name: sdcStatus18, start: 1, length: 1},
@@ -9113,6 +9329,7 @@ groups: [
     },
     {
         id: 0x755,
+        bus: GCAN0,
         parameters: [
             {name: chargingPowerLimit, start: 0, length: 2},
             {name: forceEnableBalancing_state, start: 2, length: 1}
