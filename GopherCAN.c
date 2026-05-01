@@ -4,7 +4,7 @@
 
 #include "GopherCAN.h"
 #include "GopherCAN_network.h"
-
+#include <math.h>
 /*************************************************
  * STATIC FUNCTION PROTOTYPES
 *************************************************/
@@ -788,7 +788,7 @@ S8 send_group(U16 group_id)
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
-
+    float raw_encoding = 0;
     // apply quantization and store in U64
     // use scale = 1 if necessary to avoid divide by 0 due to truncation
     switch (param->TYPE) {
@@ -826,8 +826,12 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
             break;
         case FLOATING:
             // send floats as signed values
-            value = (S64)( (((FLOAT_CAN_STRUCT*)param)->data - param->OFFSET) / param->SCALE );
+            raw_encoding = ( ((FLOAT_CAN_STRUCT*)param)->data - param->OFFSET ) / param->SCALE;
+            value = (U64)llround(raw_encoding);
             break;
+        case DOUBLE:
+            raw_encoding = ( ((DOUBLE_CAN_STRUCT*)param)->data - param->OFFSET ) / param->SCALE;
+            value = (U64)llround(raw_encoding);
         default:
             return ENCODING_ERR;
     }
@@ -844,21 +848,24 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
     return CAN_SUCCESS;
 }
 
+double param_data_double = 0;
 // decode_parameter
 // extract and decode a parameter from CAN data field
 static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
     float value_fl = 0;
-
+    double value_double = 0;
     // reconstruct U64
     for (U8 i = 0; i < length; i++) {
-        if (param->ENC == LSB) {
-            value |= data[start + i] << (i * BITS_IN_BYTE);
-        } else if (param->ENC == MSB) {
-            value |= data[start + i] << ((length - 1 - i) * BITS_IN_BYTE);
-        } else return DECODING_ERR;
+    if (param->ENC == LSB) {
+        value |= ((U64)data[start + i]) << (i * BITS_IN_BYTE);
+    } else if (param->ENC == MSB) {
+        value |= ((U64)data[start + i]) << ((length - 1 - i) * BITS_IN_BYTE);
+    } else {
+        return DECODING_ERR;
     }
+}
 
     // restore original type
     switch (param->TYPE) {
@@ -903,13 +910,16 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
                 else value_fl = value;
             }
 #else
-            if (length == 1) value_fl = (S8)value;
-            else if (length == 2) value_fl = (S16)value;
-            else if (length == 4) value_fl = (S32)value;
-            else if (length == 8) value_fl = (S64)value;
+            if (length == 1) value_fl = (U8)value;
+            else if (length == 2) value_fl = (U16)value;
+            else if (length == 4) value_fl = (U32)value;
             else value_fl = value;
 #endif
-            ((FLOAT_CAN_STRUCT*)param)->data = (value_fl * param->SCALE) + param->OFFSET;
+            ((FLOAT_CAN_STRUCT*)param)->data = (float) ((value_fl * param->SCALE) + param->OFFSET);
+            break;
+        case DOUBLE:
+            value_double = value;
+            ((DOUBLE_CAN_STRUCT*)param)->data = (double) ((value_double * param->SCALE) + param->OFFSET);
             break;
         default:
             return DECODING_ERR;

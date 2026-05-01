@@ -30,7 +30,8 @@ typedef enum {
     SIGNED16 = 6,
     SIGNED32 = 7,
     SIGNED64 = 8,
-    FLOATING = 9
+    FLOATING = 9,
+    DOUBLE   = 10
 } DATATYPES;
 
 typedef enum {
@@ -44,7 +45,8 @@ typedef enum {
     SIGNED16_SIZE = 2,
     SIGNED32_SIZE = 4,
     SIGNED64_SIZE = 8,
-    FLOATING_SIZE = 4
+    FLOATING_SIZE = 4,
+    DOUBLE_SIZE   = 8
 } DATATYPES_SIZE;
 
 // *** MESSAGE BUFFERS ***
@@ -171,6 +173,11 @@ typedef struct {
     CAN_INFO_STRUCT info;
     float data;
 } FLOAT_CAN_STRUCT;
+
+typedef struct {
+    CAN_INFO_STRUCT info;
+    double data;
+} DOUBLE_CAN_STRUCT;
 
 {% for id, value in parameters.items() -%}
 extern {{ param_structs[value.type] }} {{ value.name }};
