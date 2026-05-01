@@ -7868,6 +7868,7 @@ groups: [
     },
     {
         id: 0x206,
+        bus: GCAN0,
         parameters: [
             {name: vnavLinBodyAccX,    start: 0, length: 4},
             {name: vnavLinBodyAccY,    start: 4, length: 4}
@@ -7875,6 +7876,7 @@ groups: [
     },
     {
         id: 0x207,
+        bus: GCAN0,
         parameters: [
             {name: vnavQuatX,    start: 0, length: 4},
             {name: vnavQuatY,    start: 4, length: 4},
@@ -7882,6 +7884,7 @@ groups: [
     },
     {
         id: 0x208,
+        bus: GCAN0,
         parameters: [
             {name: vnavQuatZ,    start: 0, length: 4},
             {name: vnavQuatS,    start: 4, length: 4}
@@ -7889,6 +7892,7 @@ groups: [
     },
     {
         id: 0x209,
+        bus: GCAN0,
         parameters: [
             {name: vnavTimeUtcY,     start: 0, length: 1},
             {name: vnavTimeUtcMonth, start: 1, length: 1},
@@ -7917,6 +7921,7 @@ groups: [
     },
     {
         id: 0x20C,
+        bus: GCAN0,
         parameters: [
             {name: vnavVelBodyZ,     start: 0, length: 4}
         ]
