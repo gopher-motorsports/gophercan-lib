@@ -7791,28 +7791,28 @@ groups: [
         ]
     },
     {
-        id: 0x204,
+        id: 0x206,
         parameters: [
             {name: vnavLinBodyAccX,    start: 0, length: 4},
             {name: vnavLinBodyAccY,    start: 4, length: 4}
         ]
     },
     {
-        id: 0x204,
+        id: 0x207,
         parameters: [
             {name: vnavQuatX,    start: 0, length: 4},
             {name: vnavQuatY,    start: 4, length: 4},
         ]
     },
     {
-        id: 0x205,
+        id: 0x208,
         parameters: [
             {name: vnavQuatZ,    start: 0, length: 4},
             {name: vnavQuatS,    start: 4, length: 4}
         ]
     },
     {
-        id: 0x206,
+        id: 0x209,
         parameters: [
             {name: vnavTimeUtcY,     start: 0, length: 1},
             {name: vnavTimeUtcMonth, start: 1, length: 1},
@@ -7824,21 +7824,21 @@ groups: [
         ]
     },
     {
-        id: 0x207,
+        id: 0x20A,
         parameters: [
             {name: vnavGyroBodyX,     start: 0, length: 4},
             {name: vnavGyroBodyY,     start: 4, length: 4},
         ]
     },
     {
-        id: 0x208,
+        id: 0x20B,
         parameters: [
             {name: vnavGyroBodyZ,     start: 0, length: 4},
             {name: vnavINS_status,    start: 4, length: 2},
         ]
     },
     {
-        id: 0x209,
+        id: 0x20C,
         parameters: [
             {name: vnavVelBodyZ,     start: 0, length: 4}
         ]
