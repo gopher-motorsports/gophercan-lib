@@ -654,7 +654,7 @@ parameters:
 
     rideHeightFront_mm:
         id: 66
-        motex_name: Ride Height Front
+        motec_name: Ride Height Front
         unit: mm
         type: FLOATING
         encoding: MSB
@@ -912,27 +912,27 @@ parameters:
         id: 94
         motec_name: FVC Latitude
         unit: deg
-        type: FLOATING
+        type: DOUBLE
         encoding: MSB
-        scale: 0.00549324788    # [-90 - 90] -> [0-32768]
+        scale: 0.00000000000000000975781955236954    # [-90 - 90] -> [0-18,446,744,073,709,551,615]
         offset: -90
 
     fvcLongitude:
         id: 95
         motec_name: FVC Longitude
         unit: deg
-        type: FLOATING
+        type: DOUBLE
         encoding: MSB
-        scale: 0.01098633    # [-180 - 180] -> [0-32768]
+        scale: 0.00000000000000001951563910473908    # [-180 - 180] -> [0-18,446,744,073,709,551,615]
         offset: -180
 
     fvcAltitude:
         id: 96
         motec_name: FVC Altitude
         unit: m
-        type: FLOATING
+        type: DOUBLE
         encoding: MSB
-        scale: 0.06103608758     # [-1000 - 3000] -> [0-65535]
+        scale: 0.0000000000000002710505431213761    # [-1000 - 4000] -> [0-18,446,744,073,709,551,615]
         offset: -1000
 
     fvcVelBodyX:
@@ -941,7 +941,7 @@ parameters:
         unit: m/s
         type: FLOATING
         encoding: MSB
-        scale: 0.00427246    # [-70 - 70] -> [0-32768]
+        scale: 0.000000032596290116    # [-70 - 70] -> [0-4,294,967,295]
         offset: -70
 
     fvcVelBodyY:
@@ -950,7 +950,7 @@ parameters:
         unit: m/s
         type: FLOATING
         encoding: MSB
-        scale: 0.00427246   # [-70 - 70] -> [0-32768]
+        scale: 0.000000032596290116   # [-70 - 70] -> [0-4,294,967,295]
         offset: -70
 
     fvcVelBodyZ:
@@ -959,7 +959,7 @@ parameters:
         unit: m/s
         type: FLOATING
         encoding: MSB
-        scale: 0.00427246   # [-70 - 70] -> [0-32768]
+        scale: 0.000000032596290116   # [-70 - 70] -> [0-4,294,967,295]
         offset: -70
 
     fvcYaw:
@@ -968,7 +968,7 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.000000167638063    # [-180 - 180] -> [0-65535]
+        scale: 0.000000083819031728    # [-180 - 180] -> [0-4,294,967,295]
         offset: -180
 
     fvcPitch:
@@ -977,7 +977,7 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.00549316406    # [-90 - 90] -> [0-65535]
+        scale: 0.000000041909515864    # [-90 - 90] -> [0-4,294,967,295]
         offset: -90
 
     fvcRoll:
@@ -986,7 +986,7 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.01098632812    # [-180 - 180] -> [0-32768]
+        scale: 0.000000083819031728    # [-180 - 180] -> [0-4,294,967,295]
         offset: -180
 
     fvcQuatX:
@@ -995,7 +995,7 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     fvcQuatY:
@@ -1004,7 +1004,7 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     fvcQuatZ:
@@ -1013,7 +1013,7 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     fvcQuatS:
@@ -1022,7 +1022,7 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.00006103515    # [-1 -> 1] -> [0 -> 32768]
+        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
         offset: -1
 
     fvcLinBodyAccX:
@@ -1031,7 +1031,7 @@ parameters:
         unit: m/s^2
         type: FLOATING
         encoding: MSB
-        scale: 0.00305175781   # [-50 - 50] -> [0 - 32768]
+        scale: 0.000000023283064375   # [-50 - 50] -> [0 - 4,294,967,295]
         offset: -50
 
     fvcLinBodyAccY:
@@ -1040,7 +1040,7 @@ parameters:
         unit: m/s^2
         type: FLOATING
         encoding: MSB
-        scale: 0.00305175781  # [-50 - 50] -> [0 - 32768]
+        scale: 0.000000023283064375  # [-50 - 50] -> [0 - 4,294,967,295]
         offset: -50
 
     fvcLinBodyAccZ:
@@ -1049,7 +1049,7 @@ parameters:
         unit: m/s^2
         type: FLOATING
         encoding: MSB
-        scale: 0.00305175781  # [-50 - 50] -> [0 - 32768]
+        scale: 0.000000023283064375  # [-50 - 50] -> [0 - 4,294,967,295]
         offset: -50
 
     fvcTimeUtcY:
@@ -1121,7 +1121,7 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.00000186264514923095703125 #[-2000 -> 2000] -> [0 -> 2147483648]
+        scale: 0.000000931322574847 #[-2000 -> 2000] -> [0 -> 4,294,967,295]
         offset: -2000
 
     fvcGyroBodyY:
@@ -1130,7 +1130,7 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.00000186264514923095703125    #[-2000 -> 2000] -> [0 -> 2147483648]
+        scale: 0.000000931322574847   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
         offset: -2000
 
     fvcGyroBodyZ:
@@ -1139,7 +1139,7 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.00000186264514923095703125   #[-2000 -> 2000] -> [0 -> 2147483648]
+        scale: 0.000000931322574847   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
         offset: -2000
 
     fvcPowerCycleNeeded:
@@ -5783,73 +5783,6 @@ groups: [
         ]
     },
     {
-        id: 0x112,
-        parameters: [
-            {name: fvcINS_status,     start: 0, length: 2},
-            {name: fvcVelBodyX,     start: 2, length: 2},
-            {name: fvcVelBodyY,     start: 4, length: 2},
-            {name: fvcVelBodyZ,     start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x113,
-        parameters: [
-            {name: fvcLatitude,     start: 0, length: 4},
-            {name: fvcLongitude,    start: 4, length: 4}
-        ]
-    },
-    {
-        id: 0x114,
-        parameters: [
-            {name: fvcYaw,     start: 0, length: 4},
-            {name: fvcPitch,   start: 4, length: 2},
-            {name: fvcRoll,    start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x115,
-        parameters: [
-            {name: fvcQuatX,    start: 0, length: 2},
-            {name: fvcQuatY,    start: 2, length: 2},
-            {name: fvcQuatZ,    start: 4, length: 2},
-            {name: fvcQuatS,    start: 6, length: 2}
-        ]
-    },
-    {
-        id: 0x116,
-        parameters: [
-            {name: fvcLinBodyAccX,    start: 0, length: 2},
-            {name: fvcLinBodyAccY,    start: 2, length: 2},
-            {name: fvcLinBodyAccZ,    start: 4, length: 2}
-        ]
-    },
-    {
-        id: 0x117,
-        parameters: [
-            {name: fvcTimeUtcY,     start: 0, length: 1},
-            {name: fvcTimeUtcMonth, start: 1, length: 1},
-            {name: fvcTimeUtcD,     start: 2, length: 1},
-            {name: fvcTimeUtcH,     start: 3, length: 1},
-            {name: fvcTimeUtcMin,   start: 4, length: 1},
-            {name: fvcTimeUtcS,     start: 5, length: 1},
-            {name: fvcTimeUtcF,     start: 6, length: 2},
-        ]
-    },
-    {
-        id: 0x118,
-        parameters: [
-            {name: fvcGyroBodyX,     start: 0, length: 4},
-            {name: fvcGyroBodyY,     start: 4, length: 4},
-        ]
-    },
-    {
-        id: 0x119,
-        parameters: [
-            {name: fvcGyroBodyZ,     start: 0, length: 4},
-            {name: fvcAltitude,     start: 5,     length: 2}
-        ]
-    },
-    {
         id: 0x120,
         parameters: [
             {name: fvcPowerCycleNeeded, start: 0, length: 1}
@@ -5937,6 +5870,103 @@ groups: [
     },
 
     # END Steering Wheel
+
+    # Vector NAV CAN Module
+
+    {
+        id: 0x250,
+        parameters: [
+            {name: fvcLatitude,     start: 0, length: 8},
+        ]
+    },
+    {
+        id: 0x251,
+        parameters: [
+            {name: fvcLongitude,    start: 0, length: 8}
+        ]
+    },
+    {
+        id: 0x252,
+        parameters: [
+            {name: fvcAltitude,    start: 0, length: 8}
+        ]
+    },
+    {
+        id: 0x253,
+        parameters: [
+            {name: fvcVelBodyX,       start: 0, length: 4},
+            {name: fvcVelBodyY,       start: 4, length: 4},
+        ]
+    },
+    {
+        id: 0x254,
+        parameters: [
+            {name: fvcYaw,     start: 0, length: 4},
+            {name: fvcPitch,   start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x255,
+        parameters: [
+            {name: fvcRoll,           start: 0, length: 4},
+            {name: fvcLinBodyAccZ,    start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x256,
+        parameters: [
+            {name: fvcLinBodyAccX,    start: 0, length: 4},
+            {name: fvcLinBodyAccY,    start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x257,
+        parameters: [
+            {name: fvcQuatX,    start: 0, length: 4},
+            {name: fvcQuatY,    start: 4, length: 4},
+        ]
+    },
+    {
+        id: 0x258,
+        parameters: [
+            {name: fvcQuatZ,    start: 0, length: 4},
+            {name: fvcQuatS,    start: 4, length: 4}
+        ]
+    },
+    {
+        id: 0x259,
+        parameters: [
+            {name: fvcTimeUtcY,     start: 0, length: 1},
+            {name: fvcTimeUtcMonth, start: 1, length: 1},
+            {name: fvcTimeUtcD,     start: 2, length: 1},
+            {name: fvcTimeUtcH,     start: 3, length: 1},
+            {name: fvcTimeUtcMin,   start: 4, length: 1},
+            {name: fvcTimeUtcS,     start: 5, length: 1},
+            {name: fvcTimeUtcF,     start: 6, length: 2}
+        ]
+    },
+    {
+        id: 0x25A,
+        parameters: [
+            {name: fvcGyroBodyX,     start: 0, length: 4},
+            {name: fvcGyroBodyY,     start: 4, length: 4},
+        ]
+    },
+    {
+        id: 0x25B,
+        parameters: [
+            {name: fvcGyroBodyZ,     start: 0, length: 4},
+            {name: fvcINS_status,    start: 4, length: 2},
+        ]
+    },
+    {
+        id: 0x25C,
+        parameters: [
+            {name: fvcVelBodyZ,     start: 0, length: 4}
+        ]
+    },
+
+    # END Vector NAV CAN Module
 
     # START Battery Management System
 
