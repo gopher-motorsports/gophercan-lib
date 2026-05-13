@@ -4,51 +4,48 @@ buses:
     - GCAN2
 
 modules:
-    PLM:
+    INV1:
         id: 1
         buses:
             - GCAN0
-            - GCAN1
-            - GCAN2
-    Inverter:
+    INV2:
         id: 2
         buses:
-            - GCAN0
+            - GCAN1
     FVC:
         id: 3
         buses:
             - GCAN0
             - GCAN1
+            - GCAN2
     RVC:
         id: 4
         buses:
-            - GCAN1
+            - GCAN2
     BMS:
         id: 5
         buses:
-            - GCAN1
             - GCAN2
     IMU:
         id: 6
         buses:
-            - GCAN1
+            - GCAN2
     Display:
         id: 7
         buses:
-            - GCAN1
+            - GCAN2
     SWM:
         id: 8
         buses:
-            - GCAN1
+            - GCAN2
     CCB:
         id: 9
         buses:
-            - GCAN1
+            - GCAN2
     Telemetry:
         id: 10
         buses:
-            - GCAN0
-            - GCAN1
+            - GCAN2
 
 parameters:
     # Front Left Inverter 2026
