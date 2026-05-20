@@ -1795,20 +1795,20 @@ parameters:
 
     fvcEfuse12VDispCurrent_A:
         id: 188
-        motec_name: FVC Efuse Display 12V Fault State
+        motec_name: FVC Efuse Display Current 12V
         unit: ms
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.00123028083 # [0-5.038] -> [0-4095]
         offset: 0
 
     fvcEfuse12VSNSCurrent_A:
         id: 189
-        motec_name: FVC Efuse Display 12V Fault State
+        motec_name: FVC Efuse SNS Current 12V
         unit: ms
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.00019780219 # [0-0.81] -> [0-4095]
         offset: 0
 
     # Drive Inputs (FVC Only)
