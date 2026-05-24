@@ -8,12 +8,8 @@ import math
 
 def calc_min_max(signal_type, length_bits, scale, offset):
     # Determine raw integer range
-    if signal_type in ("SIGNED16", "FLOATING"):
-        raw_min = -(2 ** (length_bits - 1))
-        raw_max = (2 ** (length_bits - 1)) - 1
-    else:
-        raw_min = 0
-        raw_max = (2 ** length_bits) - 1
+    raw_min = 0
+    raw_max = (2 ** length_bits) - 1
 
     physical_min = raw_min * scale + offset
     physical_max = raw_max * scale + offset
@@ -21,14 +17,12 @@ def calc_min_max(signal_type, length_bits, scale, offset):
     return physical_min, physical_max
 
 def file_out_mult_bus(out, a, params, id, nums):
-	out.write('BO_ '+id+' '+id+': 8 Vector__XXX\n')
+	msg_id = int(str(id), 0)
+	msg_name = f"ID_{msg_id}"
+	out.write(f"BO_ {msg_id} {msg_name}: 8 Vector__XXX\n")
 	for b in a['parameters']:
 		type=params[b['name']]['type']
 		sign='+'
-		if type == 'SIGNED16':
-			sign = '-'
-		else:
-			sign = '+'
 		aemunit=str(params[b['name']]['unit'])
 		bit=1
 		start=b['start']*8
