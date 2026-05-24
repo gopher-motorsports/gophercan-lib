@@ -8764,7 +8764,7 @@ groups: [
 
     # Elcon Charger 
     {
-        id: 0x390,
+        id: 0x409,
         parameters: [
             {name: chargerVoltageSetPoint_V, start: 0, length: 2},
             {name: chargerCurrentSetPoint_A, start: 2, length: 2},
