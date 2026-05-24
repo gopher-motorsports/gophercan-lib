@@ -1,0 +1,145 @@
+VERSION ""
+
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+BO_ 257 257: 8 Vector__XXX
+ SG_ invMaxCurrentLimitCmd_FL_Apk : 7|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "A" Vector__XXX
+
+BO_ 258 258: 8 Vector__XXX
+ SG_ invMaxCurrentLimitCmd_FR_Apk : 7|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "A" Vector__XXX
+
+BO_ 259 259: 8 Vector__XXX
+ SG_ invMaxCurrentLimitCmd_RL_Apk : 7|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "A" Vector__XXX
+
+BO_ 260 260: 8 Vector__XXX
+ SG_ invMaxCurrentLimitCmd_RR_Apk : 7|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "A" Vector__XXX
+
+BO_ 256 256: 8 Vector__XXX
+ SG_ fvcPedalPosition1_mm : 7|16@0+ (0.00610500611,0) [-200.04884021248|200.04273520637] "mm" Vector__XXX
+ SG_ fvcPedalPosition2_mm : 23|16@0+ (0.00610500611,0) [-200.04884021248|200.04273520637] "mm" Vector__XXX
+ SG_ fvcPedalPosition1_percent : 39|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "%" Vector__XXX
+ SG_ fvcPedalPosition2_percent : 55|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "%" Vector__XXX
+
+BO_ 258 258: 8 Vector__XXX
+ SG_ fvcBrakePressureFront_psi : 7|16@0+ (0.488400488,0) [-16003.907190784|16003.418790296] "psi" Vector__XXX
+ SG_ fvcBrakeTempFrontLeft_C : 23|16@0+ (0.195360195,0) [-6401.56286976|6401.367509565] "C" Vector__XXX
+ SG_ fvcBrakeTempFrontRight_C : 39|16@0+ (0.195360195,0) [-6401.56286976|6401.367509565] "C" Vector__XXX
+
+BO_ 259 259: 8 Vector__XXX
+ SG_ fvcPedalPosition1RangeFault_state : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcPedalPosition2RangeFault_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcPedalPositionCorrelationFault_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcBothPedalsPressedFault_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcBrakingClampingCurrent_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcEfuse3V3SNSFault_state : 47|8@0+ (1,0) [0|255] "ms" Vector__XXX
+ SG_ fvcEfuse5VSNSFault1_state : 55|8@0+ (1,0) [0|255] "ms" Vector__XXX
+ SG_ fvcEfuse5VSNSFault2_state : 63|8@0+ (1,0) [0|255] "ms" Vector__XXX
+
+BO_ 260 260: 8 Vector__XXX
+ SG_ fvcDriveSpeedMode_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcMcuStatus_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcDisplayFaultStatus_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcSdcStatus3 : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcSdcStatus4 : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcEfuse5VSWMFault_state : 47|8@0+ (1,0) [0|255] "ms" Vector__XXX
+ SG_ fvcEfuse12VSNSFault_state : 55|8@0+ (1,0) [0|255] "ms" Vector__XXX
+ SG_ fvcEfuse12VDispFault_state : 63|8@0+ (1,0) [0|255] "ms" Vector__XXX
+
+BO_ 261 261: 8 Vector__XXX
+ SG_ fvcShockPosFrontLeft_mm : 7|16@0+ (0.01221001221,0) [-400.09768009728|400.08547008506997] "mm" Vector__XXX
+ SG_ fvcShockPosFrontRight_mm : 23|16@0+ (0.01221001221,0) [-400.09768009728|400.08547008506997] "mm" Vector__XXX
+ SG_ fvcSteeringAngle_deg : 39|16@0+ (0.0879120879,0) [-2880.7032963072|2880.6153842193003] "deg" Vector__XXX
+ SG_ fvcFrontRideHeight_mm : 55|16@0+ (1,0) [-32768|32767] "mm" Vector__XXX
+
+BO_ 262 262: 8 Vector__XXX
+ SG_ fvcControllerTemp_FL_C : 7|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "C" Vector__XXX
+ SG_ fvcControllerTemp_FR_C : 23|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "C" Vector__XXX
+ SG_ fvcControllerTemp_RL_C : 39|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "C" Vector__XXX
+ SG_ fvcControllerTemp_RR_C : 55|16@0+ (0.1,0) [-3276.8|3276.7000000000003] "C" Vector__XXX
+
+BO_ 263 263: 8 Vector__XXX
+ SG_ fvcMotorTemp_FL_C : 7|16@0+ (1,0) [-32768|32767] "C" Vector__XXX
+ SG_ fvcMotorTemp_FR_C : 23|16@0+ (1,0) [-32768|32767] "C" Vector__XXX
+ SG_ fvcMotorTemp_RL_C : 39|16@0+ (1,0) [-32768|32767] "C" Vector__XXX
+ SG_ fvcMotorTemp_RR_C : 55|16@0+ (1,0) [-32768|32767] "C" Vector__XXX
+
+BO_ 264 264: 8 Vector__XXX
+ SG_ fvcWheelSpeedFrontLeft_m_per_s : 7|32@0+ (0.001,0) [-2147483.648|2147483.647] "mph" Vector__XXX
+ SG_ fvcWheelSpeedFrontRight_m_per_s : 39|32@0+ (0.001,0) [-2147483.648|2147483.647] "mph" Vector__XXX
+
+BO_ 265 265: 8 Vector__XXX
+ SG_ fvcWheelSpeedRearLeft_m_per_s : 7|32@0+ (0.001,0) [-2147483.648|2147483.647] "mph" Vector__XXX
+ SG_ fvcWheelSpeedRearRight_m_per_s : 39|32@0+ (0.001,0) [-2147483.648|2147483.647] "mph" Vector__XXX
+
+BO_ 266 266: 8 Vector__XXX
+ SG_ fvcDriveControlTickStart_ms : 7|32@0+ (1,0) [0|4294967295] "ms" Vector__XXX
+ SG_ fvcDriveControlTickEnd_ms : 39|32@0+ (1,0) [0|4294967295] "ms" Vector__XXX
+
+BO_ 267 267: 8 Vector__XXX
+ SG_ fvcSlip_FL_percent : 7|16@0+ (1,0) [-32768|32767] "%" Vector__XXX
+ SG_ fvcSlip_FR_percent : 23|16@0+ (1,0) [-32768|32767] "%" Vector__XXX
+ SG_ fvcSlip_RL_percent : 39|16@0+ (1,0) [-32768|32767] "%" Vector__XXX
+ SG_ fvcSlip_RR_percent : 55|16@0+ (1,0) [-32768|32767] "%" Vector__XXX
+
+BO_ 268 268: 8 Vector__XXX
+ SG_ fvcSlipStatus_FL_state : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcSlipStatus_FR_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcSlipStatus_RL_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcSlipStatus_RR_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcTauTotalCMD_Nm : 39|16@0+ (1,0) [-32768|32767] "" Vector__XXX
+ SG_ fvcCurrentTotalCMD_Apk : 55|16@0+ (1,0) [-32768|32767] "" Vector__XXX
+
+BO_ 269 269: 8 Vector__XXX
+ SG_ fvcTau_FL_Nm : 7|16@0+ (1,0) [-32768|32767] "" Vector__XXX
+ SG_ fvcTau_FR_Nm : 23|16@0+ (1,0) [-32768|32767] "" Vector__XXX
+ SG_ fvcTau_RL_Nm : 39|16@0+ (1,0) [-32768|32767] "" Vector__XXX
+ SG_ fvcTau_RR_Nm : 55|16@0+ (1,0) [-32768|32767] "" Vector__XXX
+
+BO_ 270 270: 8 Vector__XXX
+ SG_ fvcSlipTractionLimit_percent : 7|16@0+ (1,0) [-32768|32767] "ms" Vector__XXX
+ SG_ fvcVehicleState_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 271 271: 8 Vector__XXX
+ SG_ fvcEfuse12VDispCurrent_A : 7|16@0+ (0.00123028083,0) [-40.31384223744|40.31261195661] "ms" Vector__XXX
+ SG_ fvcEfuse12VSNSCurrent_A : 23|16@0+ (0.00019780219,0) [-6.48158216192|6.48138435973] "ms" Vector__XXX
+
+BO_ 272 272: 8 Vector__XXX
+ SG_ fvcGitBranchName : 7|8@0+ (1,0) [0|255] "ms" Vector__XXX
+ SG_ fvcGitHash_decimal : 15|32@0+ (1,0) [0|4294967295] "ms" Vector__XXX
+ SG_ fvcGitHasUncommitedChanges : 47|8@0+ (1,0) [0|255] "ms" Vector__XXX
+ SG_ fvcGitTotalUncommitedChanges : 55|16@0+ (1,0) [0|65535] "ms" Vector__XXX
+

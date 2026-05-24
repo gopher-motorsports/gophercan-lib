@@ -6,26 +6,44 @@ import sys
 import os
 import math
 
+def calc_min_max(signal_type, length_bits, scale, offset):
+    # Determine raw integer range
+    if signal_type in ("SIGNED16", "FLOATING"):
+        raw_min = -(2 ** (length_bits - 1))
+        raw_max = (2 ** (length_bits - 1)) - 1
+    else:
+        raw_min = 0
+        raw_max = (2 ** length_bits) - 1
+
+    physical_min = raw_min * scale + offset
+    physical_max = raw_max * scale + offset
+
+    return physical_min, physical_max
+
 def file_out_mult_bus(out, a, params, id, nums):
 	out.write('BO_ '+id+' '+id+': 8 Vector__XXX\n')
 	for b in a['parameters']:
 		type=params[b['name']]['type']
 		sign='+'
-		if type in ('SIGNED16','FLOATING'):
-			sign='-'
-		units={"Nm":"torque:N.m","psi":"pressure:psi","mph":"speed:mph","rpm":"angular_speed:rpm","%":"fraction:%","LA":"afr:LA","dBTDC":"unitless:","C":"temperature:C","kPa":"pressure:kPa","V":"voltage:V","mV":"voltage:mV","":"unitless:","deg":"angle:deg","ft":"distance:ft","mm":"distance:mm","inH2O":"pressure:inH2O","L/min":"volume_flow:L/min","deg/s":"angular_speed:deg/s","G":"acceleration:G","Hz":"frequency:Hz","kHz":"frequency:kHz","A":"current:A","Wb":"flux:Wb","state":"current_state:state", "s":"time:s","unit":"unit:unit"}
-		aemunit=units[params[b['name']]['unit']]
+		if type == 'SIGNED16':
+			sign = '-'
+		else:
+			sign = '+'
+		aemunit=str(params[b['name']]['unit'])
 		bit=1
 		start=b['start']*8
 		length=b['length']*8
+		scale = params[b['name']]['scale']
+		offset = params[b['name']]['offset']
+		min_val, max_val = calc_min_max(type, length, scale, offset)
 		if params[b['name']]['encoding']=="MSB":
 			bit=0
 			#if length>8:
 			start=start+7
 		if nums != None: 
-			out.write(' SG_ _'+b["name"]+"_"+str(nums)+' : '+str(start)+'|'+str(length)+'@'+str(bit)+sign+' ('+str(params[b['name']]['scale'])+','+str(params[b['name']]['offset'])+') [0|0] "'+aemunit+'" Vector__XXX\n')
+			out.write(' SG_ '+b["name"]+"_"+str(nums)+' : '+str(start)+'|'+str(length)+'@'+str(bit)+sign+' ('+str(params[b['name']]['scale'])+','+str(params[b['name']]['offset'])+') ['+str(min_val)+'|'+str(max_val)+'] "'+aemunit+'" Vector__XXX\n')
 		else: 
-			out.write(' SG_ _'+b["name"]+' : '+str(start)+'|'+str(length)+'@'+str(bit)+sign+' ('+str(params[b['name']]['scale'])+','+str(params[b['name']]['offset'])+') [0|0] "'+aemunit+'" Vector__XXX\n')
+			out.write(' SG_ '+b["name"]+' : '+str(start)+'|'+str(length)+'@'+str(bit)+sign+' ('+str(params[b['name']]['scale'])+','+str(params[b['name']]['offset'])+') ['+str(min_val)+'|'+str(max_val)+'] "'+aemunit+'" Vector__XXX\n')
 	out.write('\n')
 
 	
