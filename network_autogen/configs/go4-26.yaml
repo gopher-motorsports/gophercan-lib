@@ -7483,11 +7483,11 @@ groups: [
     {
         id: 0x104,
         parameters: [
-            {name: fvcDriveSpeedMode_state,      start: 1, length: 1},
-            {name: fvcMcuStatus_state,           start: 2, length: 1},
-            {name: fvcDisplayFaultStatus_state,  start: 3, length: 1},
-            {name: fvcSdcStatus3,                start: 4, length: 1},
-            {name: fvcSdcStatus4,                start: 5, length: 1},
+            {name: fvcDriveSpeedMode_state,      start: 0, length: 1},
+            {name: fvcMcuStatus_state,           start: 1, length: 1},
+            {name: fvcDisplayFaultStatus_state,  start: 2, length: 1},
+            {name: fvcSdcStatus3,                start: 3, length: 1},
+            {name: fvcSdcStatus4,                start: 4, length: 1},
             {name: fvcEfuse5VSWMFault_state,     start: 5, length: 1},
             {name: fvcEfuse12VSNSFault_state,    start: 6, length: 1},
             {name: fvcEfuse12VDispFault_state,   start: 7, length: 1}
