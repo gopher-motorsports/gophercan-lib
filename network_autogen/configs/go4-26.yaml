@@ -6993,7 +6993,7 @@ groups: [
     # 2026 Front Left Inverter
     # General Data 1 (FL)
     {
-      id: 0x401,
+      id: 0x40A,
       parameters: [
         {name: electricalRPM_FL_erpm,     start: 0, length: 4},
         {name: dutyCycle_FL_percent,      start: 4, length: 2},
@@ -7004,7 +7004,7 @@ groups: [
 
     # General Data 2 (FL)
     {
-      id: 0x421,
+      id: 0x42A,
       parameters: [
         {name: motorCurrent_FL_Apk,  start: 0, length: 2},
         {name: batteryCurrent_FL_A,  start: 2, length: 2}
@@ -7014,7 +7014,7 @@ groups: [
 
     # General Data 3 (FL)
     {
-      id: 0x441,
+      id: 0x44A,
       parameters: [
         {name: controllerTemp_FL_C,    start: 0, length: 2},
         {name: motorTemp_FL_C,         start: 2, length: 2},
@@ -7025,7 +7025,7 @@ groups: [
 
     # General Data 4 (FL)
     {
-      id: 0x461,
+      id: 0x46A,
       parameters: [
         {name: idPeak_FL_A, start: 0, length: 4},
         {name: iqPeak_FL_A, start: 4, length: 4}
@@ -7035,7 +7035,7 @@ groups: [
 
     # General Data 5 (FL)
     {
-      id: 0x481,
+      id: 0x48A,
       parameters: [
         {name: throttleSignal_FL_percent,       start: 0, length: 1},
         {name: brakeSignal_FL_percent,          start: 1, length: 1},
@@ -7049,7 +7049,7 @@ groups: [
 
     # General Data 6 (FL)
     {
-      id: 0x3E1,
+      id: 0x3EA,
       parameters: [
         {name: controlMode_FL,          start: 0, length: 1},
         {name: targetIq_FL_Apk,         start: 1, length: 2},
@@ -7060,7 +7060,7 @@ groups: [
 
     # Configured & Available AC Currents
     {
-      id: 0x4A1,
+      id: 0x4AA,
       parameters: [
         {name: maxCurrentConfigured_FL_Apk,       start: 0, length: 2},
         {name: availableMaxCurrent_FL_Apk,        start: 2, length: 2},
@@ -7071,7 +7071,7 @@ groups: [
 
     # Configured & Available DC Currents
     {
-      id: 0x4C1,
+      id: 0x4CA,
       parameters: [
         {name: maxCurrentConfigured_FL_A,       start: 0, length: 2},
         {name: availableMaxCurrent_FL_A,        start: 2, length: 2},
@@ -7082,28 +7082,28 @@ groups: [
 
     #Sending
     {
-      id: 0x021,
+      id: 0x02A,
       parameters: [
         {name: invCurrentCmd_FL_Apk, start: 0, length: 2}
 
       ]
     },
     {
-      id: 0x101,
+      id: 0x10A,
       parameters: [
         {name: invMaxCurrentLimitCmd_FL_Apk, start: 0, length: 2}
 
       ]
     },
     {
-      id: 0x141,
+      id: 0x14A,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_FL_A, start: 0, length: 2}
 
       ]
     },
     {
-      id: 0x181,
+      id: 0x18A,
       parameters: [
         {name: invDriveEnable_FL_state, start: 0, length: 1}
       ]
@@ -7113,7 +7113,7 @@ groups: [
     #2026 Front Right Inverter
     # General Data 1 (FR)
     {
-      id: 0x402,
+      id: 0x40B,
       parameters: [
         {name: electricalRPM_FR_erpm,     start: 0, length: 4},
         {name: dutyCycle_FR_percent,      start: 4, length: 2},
@@ -7123,7 +7123,7 @@ groups: [
 
     # General Data 2 (FR)
     {
-      id: 0x422,
+      id: 0x42B,
       parameters: [
         {name: motorCurrent_FR_Apk,  start: 0, length: 2},
         {name: batteryCurrent_FR_A,  start: 2, length: 2}
@@ -7132,7 +7132,7 @@ groups: [
 
     # General Data 3 (FR)
     {
-      id: 0x442,
+      id: 0x44B,
       parameters: [
         {name: controllerTemp_FR_C, start: 0, length: 2},
         {name: motorTemp_FR_C,      start: 2, length: 2},
@@ -7142,7 +7142,7 @@ groups: [
 
     # General Data 4 (FR)
     {
-      id: 0x462,
+      id: 0x46B,
       parameters: [
         {name: idPeak_FR_A, start: 0, length: 4},
         {name: iqPeak_FR_A, start: 4, length: 4}
@@ -7151,7 +7151,7 @@ groups: [
 
     # General Data 5 (FR)
     {
-      id: 0x482,
+      id: 0x48B,
       parameters: [
         {name: throttleSignal_FR_percent,     start: 0, length: 1},
         {name: brakeSignal_FR_percent,        start: 1, length: 1},
@@ -7165,7 +7165,7 @@ groups: [
 
     #General Data 6 (FR)
     {
-      id: 0x3E2,
+      id: 0x3EB,
       parameters: [
         {name: controlMode_FR,        start: 0, length: 1},
         {name: targetIq_FR_Apk,       start: 1, length: 2},
@@ -7176,7 +7176,7 @@ groups: [
 
         # Configured & Available AC Currents
     {
-      id: 0x4A2,
+      id: 0x4AB,
       parameters: [
         {name: maxCurrentConfigured_FR_Apk, start: 0, length: 2},
         {name: availableMaxCurrent_FR_Apk,  start: 2, length: 2},
@@ -7187,7 +7187,7 @@ groups: [
 
     # Configured & Available DC Currents
     {
-      id: 0x4C2,
+      id: 0x4CB,
       parameters: [
         {name: maxCurrentConfigured_FR_A, start: 0, length: 2},
         {name: availableMaxCurrent_FR_A,  start: 2, length: 2},
@@ -7198,25 +7198,25 @@ groups: [
 
     # Sending (FR)
     {
-      id: 0x022,
+      id: 0x02B,
       parameters: [
         {name: invCurrentCmd_FR_Apk, start: 0, length: 2}
       ]
     },
     {
-      id: 0x102,
+      id: 0x10B,
       parameters: [
         {name: invMaxCurrentLimitCmd_FR_Apk, start: 0, length: 2}
       ]
     },
     {
-      id: 0x142,
+      id: 0x14B,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_FR_A, start: 0, length: 2}
       ]
     },
     {
-      id: 0x182,
+      id: 0x18B,
       parameters: [
         {name: invDriveEnable_FR_state, start: 0, length: 1}
       ]
@@ -7226,7 +7226,7 @@ groups: [
     # 2026 Rear Left Inverter
     # General Data 1 (RL)
     {
-      id: 0x403,
+      id: 0x40C,
       parameters: [
         {name: electricalRPM_RL_erpm, start: 0, length: 4},
         {name: dutyCycle_RL_percent,  start: 4, length: 2},
@@ -7236,7 +7236,7 @@ groups: [
 
     # General Data 2 (RL)
     {
-      id: 0x423,
+      id: 0x42C,
       parameters: [
         {name: motorCurrent_RL_Apk, start: 0, length: 2},
         {name: batteryCurrent_RL_A, start: 2, length: 2}
@@ -7245,7 +7245,7 @@ groups: [
 
     # General Data 3 (RL)
     {
-      id: 0x443,
+      id: 0x44C,
       parameters: [
         {name: controllerTemp_RL_C, start: 0, length: 2},
         {name: motorTemp_RL_C,      start: 2, length: 2},
@@ -7255,7 +7255,7 @@ groups: [
 
     # General Data 4 (RL)
     {
-      id: 0x463,
+      id: 0x46C,
       parameters: [
         {name: idPeak_RL_A, start: 0, length: 4},
         {name: iqPeak_RL_A, start: 4, length: 4}
@@ -7264,7 +7264,7 @@ groups: [
 
     # General Data 5 (RL)
     {
-      id: 0x483,
+      id: 0x48C,
       parameters: [
         {name: throttleSignal_RL_percent,     start: 0, length: 1},
         {name: brakeSignal_RL_percent,        start: 1, length: 1},
@@ -7278,7 +7278,7 @@ groups: [
 
     # General Data 6 (RL)
     {
-      id: 0x3E3,
+      id: 0x3EC,
       parameters: [
         {name: controlMode_RL,        start: 0, length: 1},
         {name: targetIq_RL_Apk,       start: 1, length: 2},
@@ -7289,7 +7289,7 @@ groups: [
 
     # Configured & Available AC Currents
     {
-      id: 0x4A3,
+      id: 0x4AC,
       parameters: [
         {name: maxCurrentConfigured_RL_Apk, start: 0, length: 2},
         {name: availableMaxCurrent_RL_Apk,  start: 2, length: 2},
@@ -7300,7 +7300,7 @@ groups: [
 
     # Configured & Available DC Currents
     {
-      id: 0x4C3,
+      id: 0x4CC,
       parameters: [
         {name: maxCurrentConfigured_RL_A, start: 0, length: 2},
         {name: availableMaxCurrent_RL_A,  start: 2, length: 2},
@@ -7311,25 +7311,25 @@ groups: [
 
     # Sending
     {
-      id: 0x023,
+      id: 0x02C,
       parameters: [
         {name: invCurrentCmd_RL_Apk, start: 0, length: 2}
       ]
     },
     {
-      id: 0x103,
+      id: 0x10C,
       parameters: [
         {name: invMaxCurrentLimitCmd_RL_Apk, start: 0, length: 2}
       ]
     },
     {
-      id: 0x143,
+      id: 0x14C,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_RL_A, start: 0, length: 2}
       ]
     },
     {
-      id: 0x183,
+      id: 0x18C,
       parameters: [
         {name: invDriveEnable_RL_state, start: 0, length: 1}
       ]
@@ -7339,7 +7339,7 @@ groups: [
     #2026 Rear Right Inverter
     # General Data 1 (RR)
     {
-      id: 0x404,
+      id: 0x40D,
       parameters: [
         {name: electricalRPM_RR_erpm, start: 0, length: 4},
         {name: dutyCycle_RR_percent,  start: 4, length: 2},
@@ -7349,7 +7349,7 @@ groups: [
 
     # General Data 2 (RR)
     {
-      id: 0x424,
+      id: 0x42D,
       parameters: [
         {name: motorCurrent_RR_Apk, start: 0, length: 2},
         {name: batteryCurrent_RR_A, start: 2, length: 2}
@@ -7358,7 +7358,7 @@ groups: [
 
     # General Data 3 (RR)
     {
-      id: 0x444,
+      id: 0x44D,
       parameters: [
         {name: controllerTemp_RR_C, start: 0, length: 2},
         {name: motorTemp_RR_C,      start: 2, length: 2},
@@ -7368,7 +7368,7 @@ groups: [
 
     # General Data 4 (RR)
     {
-      id: 0x464,
+      id: 0x46D,
       parameters: [
         {name: idPeak_RR_A, start: 0, length: 4},
         {name: iqPeak_RR_A, start: 4, length: 4}
@@ -7377,7 +7377,7 @@ groups: [
 
     # General Data 5 (RR)
     {
-      id: 0x484,
+      id: 0x48D,
       parameters: [
         {name: throttleSignal_RR_percent,     start: 0, length: 1},
         {name: brakeSignal_RR_percent,        start: 1, length: 1},
@@ -7391,7 +7391,7 @@ groups: [
 
     # General Data 6 (RR)
     {
-      id: 0x3E4,
+      id: 0x3ED,
       parameters: [
         {name: controlMode_RR,        start: 0, length: 1},
         {name: targetIq_RR_Apk,       start: 1, length: 2},
@@ -7402,7 +7402,7 @@ groups: [
 
     # Configured & Available AC Currents
     {
-      id: 0x4A4,
+      id: 0x4AD,
       parameters: [
         {name: maxCurrentConfigured_RR_Apk, start: 0, length: 2},
         {name: availableMaxCurrent_RR_Apk,  start: 2, length: 2},
@@ -7413,7 +7413,7 @@ groups: [
 
     # Configured & Available DC Currents
     {
-      id: 0x4C4,
+      id: 0x4CD,
       parameters: [
         {name: maxCurrentConfigured_RR_A, start: 0, length: 2},
         {name: availableMaxCurrent_RR_A,  start: 2, length: 2},
@@ -7424,25 +7424,25 @@ groups: [
 
     # Sending
     {
-      id: 0x024,
+      id: 0x02D,
       parameters: [
         {name: invCurrentCmd_RR_Apk, start: 0, length: 2}
       ]
     },
     {
-      id: 0x104,
+      id: 0x10D,
       parameters: [
         {name: invMaxCurrentLimitCmd_RR_Apk, start: 0, length: 2}
       ]
     },
     {
-      id: 0x144,
+      id: 0x14D,
       parameters: [
         {name: invMaxDCCurrentLimitCmd_RR_A, start: 0, length: 2}
       ]
     },
     {
-      id: 0x184,
+      id: 0x18D,
       parameters: [
         {name: invDriveEnable_RR_state, start: 0, length: 1}
       ]
@@ -7535,14 +7535,14 @@ groups: [
         ]
     },
     {
-        id: 0x10A,
+        id: 0x120,
         parameters: [
             {name: fvcDriveControlTickStart_ms,      start: 0, length: 4},
             {name: fvcDriveControlTickEnd_ms,        start: 4, length: 4}
         ]
     },
     {
-        id: 0x10B,
+        id: 0x121,
         parameters: [
             {name: fvcSlip_FL_percent,     start: 0, length: 2},
             {name: fvcSlip_FR_percent,     start: 2, length: 2},
@@ -7551,7 +7551,7 @@ groups: [
         ]
     },
     {
-        id: 0x10C,
+        id: 0x122,
         parameters: [
             {name: fvcSlipStatus_FL_state,     start: 0, length: 1},
             {name: fvcSlipStatus_FR_state,     start: 1, length: 1},
@@ -7562,7 +7562,7 @@ groups: [
         ]
     },
     {
-        id: 0x10D,
+        id: 0x123,
         parameters: [
             {name: fvcTau_FL_Nm,     start: 0, length: 2},
             {name: fvcTau_FR_Nm,     start: 2, length: 2},
