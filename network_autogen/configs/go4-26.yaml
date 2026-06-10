@@ -8693,7 +8693,7 @@ groups: [
    
     # Power and Logging Module (Not contiunously sent)
     {
-        id: 0x800,
+        id: 0x790,
         parameters: [
             {name: vbatChan0Current_A, start: 0, length: 2},
             {name: vbatChan1Current_A, start: 2, length: 2},
@@ -8702,7 +8702,7 @@ groups: [
         ]
     },
     {
-        id: 0x801,
+        id: 0x791,
         parameters: [
             {name: vbatChan4Current_A, start: 0, length: 2},
             {name: vbatChan5Current_A, start: 2, length: 2},
@@ -8711,7 +8711,7 @@ groups: [
         ]
     },
     {
-        id: 0x802,
+        id: 0x792,
         parameters: [
             {name: vbatChan8Current_A, start: 0, length: 2},
             {name: TwentyFour_Volt_0_Overcurrent, start: 2, length: 1},
@@ -8723,7 +8723,7 @@ groups: [
         ]
     },
     {
-        id: 0x803,
+        id: 0x793,
         parameters: [
             {name: TwentyFour_Volt_6_Overcurrent, start: 0, length: 1},
             {name: TwentyFour_Volt_7_Overcurrent, start: 1, length: 1},
@@ -8731,14 +8731,14 @@ groups: [
         ]
     },
     {
-        id: 0x804,
+        id: 0x794,
         parameters: [
             {name: pdmVbatVoltage_V,  start: 0, length: 2},
             {name: Overcurrent_Event, start: 2, length: 1}
         ]
     },
     {
-        id: 0x805,
+        id: 0x795,
         parameters: [
             {name: TwentyFour_Volt_0_Overcurrent_Count, start: 0, length: 1},
             {name: TwentyFour_Volt_1_Overcurrent_Count, start: 1, length: 1},
@@ -8751,7 +8751,7 @@ groups: [
         ]
     },
     {
-        id: 0x806,
+        id: 0x796,
         parameters: [
             {name: TwentyFour_Volt_8_Overcurrent_Count, start: 0, length: 1},
             {name: sdcStatus5, start: 1, length: 1},
@@ -8761,14 +8761,14 @@ groups: [
         ]
     },
         {
-        id: 0x807,
+        id: 0x797,
         parameters: [
             {name: packetsLogged_ul, start: 0, length: 4},
             {name: packetsDropped_ul, start: 4, length: 4}
         ]
     },
     {
-        id: 0x808,
+        id: 0x798,
         parameters: [
             {name: storageBufferFill_percent, start: 0, length: 2},
             {name: telemetryBufferFill_percent, start: 2, length: 2},
