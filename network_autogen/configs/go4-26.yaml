@@ -2147,7 +2147,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     fvcMotorTemp_FR_C:
@@ -2156,7 +2156,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     fvcMotorTemp_RL_C:
@@ -2165,7 +2165,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
 
     fvcMotorTemp_RR_C:
@@ -2174,7 +2174,7 @@ parameters:
         unit: C
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.1
         offset: 0
     # END FVC
 
