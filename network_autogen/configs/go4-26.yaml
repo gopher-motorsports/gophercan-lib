@@ -1830,7 +1830,7 @@ parameters:
         unit: ms
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     #Drive Outputs (FVC Only)
@@ -1840,7 +1840,7 @@ parameters:
         unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcSlip_FR_percent:
@@ -1849,7 +1849,7 @@ parameters:
         unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcSlip_RL_percent:
@@ -1858,7 +1858,7 @@ parameters:
         unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcSlip_RR_percent:
@@ -1867,7 +1867,7 @@ parameters:
         unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcSlipStatus_FL_state:
@@ -1912,7 +1912,7 @@ parameters:
         unit: ''
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcTau_FR_Nm:
@@ -1921,7 +1921,7 @@ parameters:
         unit: ''
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcTau_RL_Nm:
@@ -1930,7 +1930,7 @@ parameters:
         unit: ''
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcTau_RR_Nm:
@@ -1939,7 +1939,7 @@ parameters:
         unit: ''
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcTauTotalCMD_Nm:
@@ -1948,7 +1948,7 @@ parameters:
         unit: ''
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     fvcCurrentTotalCMD_Apk:
@@ -1957,7 +1957,7 @@ parameters:
         unit: ''
         type: FLOATING
         encoding: MSB
-        scale: 1
+        scale: 0.01
         offset: 0
 
     # FVC Sensors
@@ -1985,7 +1985,7 @@ parameters:
         unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 0.1
+        scale: 0.01
         offset: 0
 
     fvcPedalPosition2_percent:
@@ -1994,7 +1994,7 @@ parameters:
         unit: '%'
         type: FLOATING
         encoding: MSB
-        scale: 0.1
+        scale: 0.01
         offset: 0
 
     fvcBrakePressureFront_psi:
@@ -2039,8 +2039,8 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.0879120879 # [0-360] -> [0-4095]
-        offset: 0
+        scale: 0.0879120879 # [-105.4-105.4] -> [0-4095]
+        offset: -105.4
 
     fvcSteeringAngleFilt_deg:
         id: 215
@@ -2048,8 +2048,8 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.001
-        offset: 0
+        scale: 0.0879120879 # [-105.4-105.4] -> [0-4095]
+        offset: -105.4
 
     fvcShockPosFrontLeft_mm:
         id: 216
