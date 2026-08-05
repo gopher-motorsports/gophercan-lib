@@ -831,7 +831,7 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.0879120879 # [0-360] -> [0-4095]
+        scale: 0.01
         offset: 0
 
     shockPosFrontLeft_mm:
@@ -867,7 +867,7 @@ parameters:
         unit: mph
         type: FLOATING
         encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        scale: 0.01
         offset: 0
 
     wheelSpeedFrontRight_mph:
@@ -876,7 +876,7 @@ parameters:
         unit: mph
         type: FLOATING
         encoding: MSB
-        scale: 0.0022888532839715480804443359375 # [0-150] -> [0-65535]
+        scale: 0.01 
         offset: 0
 
     fvcControllerTemp_C:
@@ -915,7 +915,7 @@ parameters:
         type: DOUBLE
         encoding: MSB
         scale: 0.00000000000000000975781955236954    # [-90 - 90] -> [0-18,446,744,073,709,551,615]
-        offset: -90
+        offset: 0
 
     fvcLongitude:
         id: 95
@@ -924,7 +924,7 @@ parameters:
         type: DOUBLE
         encoding: MSB
         scale: 0.00000000000000001951563910473908    # [-180 - 180] -> [0-18,446,744,073,709,551,615]
-        offset: -180
+        offset: 0
 
     fvcAltitude:
         id: 96
@@ -932,8 +932,8 @@ parameters:
         unit: m
         type: DOUBLE
         encoding: MSB
-        scale: 0.0000000000000002710505431213761    # [-1000 - 4000] -> [0-18,446,744,073,709,551,615]
-        offset: -1000
+        scale: 0.000001    # [-1000 - 4000] -> [0-18,446,744,073,709,551,615]
+        offset: 0
 
     fvcVelBodyX:
         id: 97
@@ -941,8 +941,8 @@ parameters:
         unit: m/s
         type: FLOATING
         encoding: MSB
-        scale: 0.000000032596290116    # [-70 - 70] -> [0-4,294,967,295]
-        offset: -70
+        scale: 0.001    # [-70 - 70] -> [0-4,294,967,295]
+        offset: 0
 
     fvcVelBodyY:
         id: 98
@@ -950,8 +950,8 @@ parameters:
         unit: m/s
         type: FLOATING
         encoding: MSB
-        scale: 0.000000032596290116   # [-70 - 70] -> [0-4,294,967,295]
-        offset: -70
+        scale: 0.001   # [-70 - 70] -> [0-4,294,967,295]
+        offset: 0
 
     fvcVelBodyZ:
         id: 99
@@ -959,8 +959,8 @@ parameters:
         unit: m/s
         type: FLOATING
         encoding: MSB
-        scale: 0.000000032596290116   # [-70 - 70] -> [0-4,294,967,295]
-        offset: -70
+        scale: 0.001   # [-70 - 70] -> [0-4,294,967,295]
+        offset: 0
 
     fvcYaw:
         id: 100
@@ -968,8 +968,8 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.000000083819031728    # [-180 - 180] -> [0-4,294,967,295]
-        offset: -180
+        scale: 0.001    # [-180 - 180] -> [0-4,294,967,295]
+        offset: 0
 
     fvcPitch:
         id: 101
@@ -977,8 +977,8 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.000000041909515864    # [-90 - 90] -> [0-4,294,967,295]
-        offset: -90
+        scale: 0.001    # [-90 - 90] -> [0-4,294,967,295]
+        offset: 0
 
     fvcRoll:
         id: 102
@@ -986,8 +986,8 @@ parameters:
         unit: deg
         type: FLOATING
         encoding: MSB
-        scale: 0.000000083819031728    # [-180 - 180] -> [0-4,294,967,295]
-        offset: -180
+        scale: 0.001    # [-180 - 180] -> [0-4,294,967,295]
+        offset: 0
 
     fvcQuatX:
         id: 103
@@ -995,8 +995,8 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
-        offset: -1
+        scale: 0.00001    # [-1 -> 1] -> [0 -> 4,294,967,295]
+        offset: 0
 
     fvcQuatY:
         id: 104
@@ -1004,8 +1004,8 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
-        offset: -1
+        scale: 0.00001    # [-1 -> 1] -> [0 -> 4,294,967,295]
+        offset: 0
 
     fvcQuatZ:
         id: 105
@@ -1013,8 +1013,8 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
-        offset: -1
+        scale: 0.00001    # [-1 -> 1] -> [0 -> 4,294,967,295]
+        offset: 0
 
     fvcQuatS:
         id: 106
@@ -1022,8 +1022,8 @@ parameters:
         unit: none
         type: FLOATING
         encoding: MSB
-        scale: 0.000000000465661287524    # [-1 -> 1] -> [0 -> 4,294,967,295]
-        offset: -1
+        scale: 0.00001    # [-1 -> 1] -> [0 -> 4,294,967,295]
+        offset: 0
 
     fvcLinBodyAccX:
         id: 107
@@ -1031,8 +1031,8 @@ parameters:
         unit: m/s^2
         type: FLOATING
         encoding: MSB
-        scale: 0.000000023283064375   # [-50 - 50] -> [0 - 4,294,967,295]
-        offset: -50
+        scale: 0.001  # [-50 - 50] -> [0 - 4,294,967,295]
+        offset: 0
 
     fvcLinBodyAccY:
         id: 108
@@ -1040,8 +1040,8 @@ parameters:
         unit: m/s^2
         type: FLOATING
         encoding: MSB
-        scale: 0.000000023283064375  # [-50 - 50] -> [0 - 4,294,967,295]
-        offset: -50
+        scale: 0.001  # [-50 - 50] -> [0 - 4,294,967,295]
+        offset: 0
 
     fvcLinBodyAccZ:
         id: 109
@@ -1049,8 +1049,8 @@ parameters:
         unit: m/s^2
         type: FLOATING
         encoding: MSB
-        scale: 0.000000023283064375  # [-50 - 50] -> [0 - 4,294,967,295]
-        offset: -50
+        scale: 0.001  # [-50 - 50] -> [0 - 4,294,967,295]
+        offset: 0
 
     fvcTimeUtcY:
         id: 110
@@ -1121,8 +1121,8 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.000000931322574847 #[-2000 -> 2000] -> [0 -> 4,294,967,295]
-        offset: -2000
+        scale: 0.001 #[-2000 -> 2000] -> [0 -> 4,294,967,295]
+        offset: 0
 
     fvcGyroBodyY:
         id: 118
@@ -1130,8 +1130,8 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.000000931322574847   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
-        offset: -2000
+        scale: 0.001   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
+        offset: 0
 
     fvcGyroBodyZ:
         id: 119
@@ -1139,8 +1139,8 @@ parameters:
         unit: deg/s
         type: FLOATING
         encoding: MSB
-        scale: 0.000000931322574847   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
-        offset: -2000
+        scale: 0.001   #[-2000 -> 2000] -> [0 -> 4,294,967,295]
+        offset: 0
 
     fvcPowerCycleNeeded:
         id: 120
