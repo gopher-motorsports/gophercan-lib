@@ -788,7 +788,7 @@ S8 send_group(U16 group_id)
 static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length)
 {
     U64 value = 0;
-    float raw_encoding = 0;
+    double raw_encoding = 0;
     // apply quantization and store in U64
     // use scale = 1 if necessary to avoid divide by 0 due to truncation
     switch (param->TYPE) {
@@ -827,11 +827,12 @@ static S8 encode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
         case FLOATING:
             // send floats as signed values
             raw_encoding = ( ((FLOAT_CAN_STRUCT*)param)->data - param->OFFSET ) / param->SCALE;
-            value = (U64)llround(raw_encoding);
+            value = (S64)llround(raw_encoding);
             break;
         case DOUBLE:
             raw_encoding = ( ((DOUBLE_CAN_STRUCT*)param)->data - param->OFFSET ) / param->SCALE;
-            value = (U64)llround(raw_encoding);
+            value = (S64)llround(raw_encoding);
+            break;
         default:
             return ENCODING_ERR;
     }
