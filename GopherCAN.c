@@ -911,15 +911,20 @@ static S8 decode_parameter(CAN_INFO_STRUCT* param, U8* data, U8 start, U8 length
                 else value_fl = value;
             }
 #else
-            if (length == 1) value_fl = (U8)value;
-            else if (length == 2) value_fl = (U16)value;
-            else if (length == 4) value_fl = (U32)value;
-            else value_fl = value;
+            if      (length == 1) value_fl = (S8)value;
+            else if (length == 2) value_fl = (S16)value;
+            else if (length == 4) value_fl = (S32)value;
+            else return DECODING_ERR;
 #endif
             ((FLOAT_CAN_STRUCT*)param)->data = (float) ((value_fl * param->SCALE) + param->OFFSET);
             break;
         case DOUBLE:
-            value_double = value;
+            if      (length == 1) value_double = (S8)value;
+            else if (length == 2) value_double = (S16)value;
+            else if (length == 4) value_double = (S32)value;
+            else if (length == 8) value_double = (S64)value;
+            else return DECODING_ERR;
+
             ((DOUBLE_CAN_STRUCT*)param)->data = (double) ((value_double * param->SCALE) + param->OFFSET);
             break;
         default:
