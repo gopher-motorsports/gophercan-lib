@@ -1,0 +1,1622 @@
+VERSION ""
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    EV_DATA_
+    ENVVAR_DATA_
+    SGTYPE_
+    SGTYPE_VAL_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+    BO_TX_BU_
+    BA_DEF_REL_
+    BA_REL_
+    BA_DEF_DEF_REL_
+    BU_SG_REL_
+    BU_EV_REL_
+    BU_BO_REL_
+    SG_MUL_VAL_
+
+BS_:
+
+BU_: PLM Inverter FVC RVC BMS IMU Display SWM CCB Telemetry TireTemp Vector__XXX
+
+BO_ 1038 Inverter_40E: 8 Inverter
+ SG_ electricalRPM_erpm : 7|32@0- (1,0) [-2147483648|2147483647] "rpm" Vector__XXX
+ SG_ dutyCycle_percent : 39|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ inputInverterVoltage_V : 55|16@0- (1,0) [-32768|32767] "V" Vector__XXX
+
+BO_ 1070 Inverter_42E: 4 Inverter
+ SG_ motorCurrentPeakToPeak_A : 7|16@0+ (0.1,0) [0.0|6553.5] "A" Vector__XXX
+ SG_ batteryCurrent_A : 23|16@0+ (0.1,0) [0.0|6553.5] "A" Vector__XXX
+
+BO_ 1102 Inverter_44E: 5 Inverter
+ SG_ ControllerTemp_C : 7|16@0+ (0.1,0) [0.0|6553.5] "C" Vector__XXX
+ SG_ motorTemp_C : 23|16@0+ (0.1,0) [0.0|6553.5] "C" Vector__XXX
+ SG_ faultCode : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1134 Inverter_46E: 8 Inverter
+ SG_ idPeakToPeak_A : 7|32@0+ (0.01,0) [0.0|42949672.95] "A" Vector__XXX
+ SG_ iqPeakToPeak_A : 39|32@0+ (0.01,0) [0.0|42949672.95] "A" Vector__XXX
+
+BO_ 1166 Inverter_48E: 8 Inverter
+ SG_ throttleSignal_percent : 7|8@0- (1,0) [-128|127] "%" Vector__XXX
+ SG_ brakeSignal_percent : 15|8@0- (1,0) [-128|127] "%" Vector__XXX
+ SG_ digitalIO_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ driveEnableInvStatus_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ generalLimitConfigBits_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ powerLimitConfigBits_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ canMapVersion : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 46 Inverter_02E: 2 Inverter
+ SG_ desiredInvCurrentPeak_A : 7|16@0+ (0.1,0) [0.0|6553.5] "A" Vector__XXX
+
+BO_ 270 Inverter_10E: 2 Inverter
+ SG_ maxCurrentLimitPeak_A : 7|16@0+ (0.1,0) [0.0|6553.5] "A" Vector__XXX
+
+BO_ 334 Inverter_14E: 2 Inverter
+ SG_ maxDCCurrentLimit_A : 7|16@0+ (0.1,0) [0.0|6553.5] "A" Vector__XXX
+
+BO_ 398 Inverter_18E: 1 Inverter
+ SG_ driveEnable_state : 7|8@0+ (1,0) [0|255] "A" Vector__XXX
+
+BO_ 256 FVC_100: 8 FVC
+ SG_ pedalPosition1_mm : 7|16@0+ (0.00610500611,0) [0.0|400.09157541885] "mm" Vector__XXX
+ SG_ pedalPosition2_mm : 23|16@0+ (0.00610500611,0) [0.0|400.09157541885] "mm" Vector__XXX
+ SG_ brakePressureFront_psi : 39|16@0+ (0.488400488,0) [0.0|32007.32598108] "psi" Vector__XXX
+ SG_ rvcTractiveSystemCurrent_A : 55|16@0+ (0.00914627595,-18.727) [-18.727|580.67419438325] "A" Vector__XXX
+
+BO_ 257 RVC_101: 5 RVC
+ SG_ bspdBrakePressureSensorFault_state : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bspdTractiveSystemCurrentSensorFault_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bspdTractiveSystemBrakingFault_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bspdInputFault_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bspdFault_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 258 FVC_102: 6 FVC
+ SG_ pedalPosition1_percent : 7|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ pedalPosition2_percent : 23|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ rideHeightFront_mm : 39|16@0+ (1,0) [0|65535] "mm" Vector__XXX
+
+BO_ 259 FVC_103: 7 FVC
+ SG_ fvcBrakePressureSensorFault_state : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcPedalPosition1Fault_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcPedalPosition2Fault_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcTractiveSystemCurrentSensorFault_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcPedalPositionCorrelationFault_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcPedalPositionBrakingFault_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcBrakingClampingCurrent_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 260 RVC_104: 4 RVC
+ SG_ coolantPumpPressure_psi : 7|16@0+ (0.0244200244,0) [0.0|1600.3662990540001] "psi" Vector__XXX
+ SG_ coolantFanPower_percent : 23|8@0+ (1,0) [0|255] "%" Vector__XXX
+ SG_ coolantPumpPower_percent : 31|8@0+ (1,0) [0|255] "%" Vector__XXX
+
+BO_ 262 SWM_106: 8 SWM
+ SG_ switch1On_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ switch2On_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpio1_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpio2_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ vehicleBuzzerOn_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ brakeLightOn_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ readyToDriveButton_state : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 263 FVC_107: 8 FVC
+ SG_ fvcTemp_C : 7|16@0+ (0.1,0) [0.0|6553.5] "C" Vector__XXX
+ SG_ vehicleState_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcState_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcMcuStatus_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ currentlyMoving_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcGSenseStatus_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ displayFaultStatus_state : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 264 FVC_108: 8 FVC
+ SG_ sdcStatus3 : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ sdcStatus4 : 15|16@0+ (1,0) [0|65535] "" Vector__XXX
+ SG_ driveSpeedMode_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ fvcControllerTemp_C : 39|16@0+ (1,0) [0|65535] "C" Vector__XXX
+ SG_ fvcMotorTemp_C : 55|16@0+ (1,0) [0|65535] "C" Vector__XXX
+
+BO_ 265 FVC_109: 8 FVC
+ SG_ brakePressureRear_psi : 7|16@0+ (0.488400488,0) [0.0|32007.32598108] "psi" Vector__XXX
+ SG_ steeringAngle_deg : 23|16@0- (0.01,0) [-327.68|327.67] "deg" Vector__XXX
+ SG_ brakeTempFrontRight_C : 39|16@0+ (0.195360195,0) [0.0|12802.930379324998] "C" Vector__XXX
+ SG_ brakeTempFrontLeft_C : 55|16@0+ (0.195360195,0) [0.0|12802.930379324998] "C" Vector__XXX
+
+BO_ 272 FVC_110: 8 FVC
+ SG_ shockPosFrontLeft_mm : 7|16@0+ (0.01221001221,0) [0.0|800.18315018235] "mm" Vector__XXX
+ SG_ shockPosFrontRight_mm : 23|16@0+ (0.01221001221,0) [0.0|800.18315018235] "mm" Vector__XXX
+ SG_ wheelSpeedFrontLeft_mph : 39|16@0+ (0.01,0) [0.0|655.35] "mph" Vector__XXX
+ SG_ wheelSpeedFrontRight_mph : 55|16@0+ (0.01,0) [0.0|655.35] "mph" Vector__XXX
+
+BO_ 273 FVC_111: 2 FVC
+ SG_ pittoTubePressure_psi : 7|16@0+ (0.01,0) [0.0|655.35] "psi" Vector__XXX
+
+BO_ 288 FVC_120: 1 FVC
+ SG_ fvcPowerCycleNeeded : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 336 RVC_150: 8 RVC
+ SG_ currentSensorHigh_A : 7|16@0+ (0.1,-1000) [-1000.0|5553.5] "V" Vector__XXX
+ SG_ currentSensorLow_A : 23|16@0+ (0.01,-100) [-100.0|555.35] "V" Vector__XXX
+ SG_ rearRideHeight_mm : 39|16@0+ (1,0) [0|65535] "mm" Vector__XXX
+ SG_ ambientTemp_C : 55|16@0+ (1,0) [0|65535] "C" Vector__XXX
+
+BO_ 337 RVC_151: 7 RVC
+ SG_ ambientHumidity_percent : 7|16@0+ (0.00152590218,0) [0.0|99.99999936629999] "%" Vector__XXX
+ SG_ currentSensor_A : 23|16@0+ (0.01414511329,75) [75.0|1001.99999946015] "A" Vector__XXX
+ SG_ brakeTempRearLeft_C : 39|16@0+ (0.195360195,0) [0.0|12802.930379324998] "C" Vector__XXX
+ SG_ currentSensorStatus_state : 55|8@0+ (1,0) [0|255] "A" Vector__XXX
+
+BO_ 338 RVC_152: 8 RVC
+ SG_ shockPosRearLeft_mm : 7|16@0+ (0.01221001221,0) [0.0|800.18315018235] "mm" Vector__XXX
+ SG_ radWaterTempIn_C : 23|16@0+ (0.0488400488,0) [0.0|3200.7325981080003] "C" Vector__XXX
+ SG_ radWaterTempOut_C : 39|16@0+ (0.0488400488,0) [0.0|3200.7325981080003] "C" Vector__XXX
+ SG_ wheelSpeedRearLeft_mph : 55|16@0+ (0.002288853283971548,0) [0.0|149.9999999650754] "mph" Vector__XXX
+
+BO_ 339 RVC_153: 5 RVC
+ SG_ sdcStatus8 : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ sdcStatus9 : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ brakeBias_percent : 23|16@0+ (1,0) [0|65535] "" Vector__XXX
+ SG_ sdcBreakPoint : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 340 RVC_154: 6 RVC
+ SG_ brakeTempRearRight_C : 7|16@0+ (0.195360195,0) [0.0|12802.930379324998] "C" Vector__XXX
+ SG_ shockPosRearRight_mm : 23|16@0+ (0.01221001221,0) [0.0|800.18315018235] "mm" Vector__XXX
+ SG_ wheelSpeedRearRight_mph : 39|16@0+ (0.002288853283971548,0) [0.0|149.9999999650754] "mph" Vector__XXX
+
+BO_ 341 RVC_155: 3 RVC
+ SG_ sdcStatus5 : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ sdcStatus6 : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ sdcStatus7 : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 512 SWM_200: 7 SWM
+ SG_ swButon0_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ swButon1_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ displayPage_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 513 SWM_201: 8 SWM
+ SG_ swButon2_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ swButon3_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ swButon4_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ swButon5_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ swDial_a_ul : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ swDial_b_ul : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 592 FVC_250: 8 FVC
+ SG_ fvcLatitude : 7|64@0+ (9.75781955236954e-18,0) [0.0|180.0] "deg" Vector__XXX
+
+BO_ 593 FVC_251: 8 FVC
+ SG_ fvcLongitude : 7|64@0+ (1.951563910473908e-17,0) [0.0|360.0] "deg" Vector__XXX
+
+BO_ 594 FVC_252: 8 FVC
+ SG_ fvcAltitude : 7|64@0+ (1e-06,0) [0.0|18446744073709.55] "m" Vector__XXX
+
+BO_ 595 FVC_253: 8 FVC
+ SG_ fvcVelBodyX : 7|32@0+ (0.001,0) [0.0|4294967.295] "m/s" Vector__XXX
+ SG_ fvcVelBodyY : 39|32@0+ (0.001,0) [0.0|4294967.295] "m/s" Vector__XXX
+
+BO_ 596 FVC_254: 8 FVC
+ SG_ fvcYaw : 7|32@0+ (0.001,0) [0.0|4294967.295] "deg" Vector__XXX
+ SG_ fvcPitch : 39|32@0+ (0.001,0) [0.0|4294967.295] "deg" Vector__XXX
+
+BO_ 597 FVC_255: 8 FVC
+ SG_ fvcRoll : 7|32@0+ (0.001,0) [0.0|4294967.295] "deg" Vector__XXX
+ SG_ fvcLinBodyAccZ : 39|32@0+ (0.001,0) [0.0|4294967.295] "m/s^2" Vector__XXX
+
+BO_ 598 FVC_256: 8 FVC
+ SG_ fvcLinBodyAccX : 7|32@0+ (0.001,0) [0.0|4294967.295] "m/s^2" Vector__XXX
+ SG_ fvcLinBodyAccY : 39|32@0+ (0.001,0) [0.0|4294967.295] "m/s^2" Vector__XXX
+
+BO_ 599 FVC_257: 8 FVC
+ SG_ fvcQuatX : 7|32@0+ (1e-05,0) [0.0|42949.67295] "none" Vector__XXX
+ SG_ fvcQuatY : 39|32@0+ (1e-05,0) [0.0|42949.67295] "none" Vector__XXX
+
+BO_ 600 FVC_258: 8 FVC
+ SG_ fvcQuatZ : 7|32@0+ (1e-05,0) [0.0|42949.67295] "none" Vector__XXX
+ SG_ fvcQuatS : 39|32@0+ (1e-05,0) [0.0|42949.67295] "none" Vector__XXX
+
+BO_ 601 FVC_259: 8 FVC
+ SG_ fvcTimeUtcY : 7|8@0+ (1,0) [0|255] "none" Vector__XXX
+ SG_ fvcTimeUtcMonth : 15|8@0+ (1,0) [0|255] "none" Vector__XXX
+ SG_ fvcTimeUtcD : 23|8@0+ (1,0) [0|255] "none" Vector__XXX
+ SG_ fvcTimeUtcH : 31|8@0+ (1,0) [0|255] "none" Vector__XXX
+ SG_ fvcTimeUtcMin : 39|8@0+ (1,0) [0|255] "none" Vector__XXX
+ SG_ fvcTimeUtcS : 47|8@0+ (1,0) [0|255] "none" Vector__XXX
+ SG_ fvcTimeUtcF : 55|16@0+ (1,0) [0|65535] "none" Vector__XXX
+
+BO_ 602 FVC_25A: 8 FVC
+ SG_ fvcGyroBodyX : 7|32@0+ (0.001,0) [0.0|4294967.295] "deg/s" Vector__XXX
+ SG_ fvcGyroBodyY : 39|32@0+ (0.001,0) [0.0|4294967.295] "deg/s" Vector__XXX
+
+BO_ 603 FVC_25B: 6 FVC
+ SG_ fvcGyroBodyZ : 7|32@0+ (0.001,0) [0.0|4294967.295] "deg/s" Vector__XXX
+ SG_ fvcINS_status : 39|16@0+ (1,0) [0|65535] "none" Vector__XXX
+
+BO_ 604 FVC_25C: 8 FVC
+ SG_ vnavSlipAngle_FL : 7|16@0- (0.001,0) [-32.768|32.767] "deg" Vector__XXX
+ SG_ vnavSlipAngle_FR : 23|16@0- (0.001,0) [-32.768|32.767] "deg" Vector__XXX
+ SG_ vnavSlipAngle_RL : 39|16@0- (0.001,0) [-32.768|32.767] "deg" Vector__XXX
+ SG_ vnavSlipAngle_RR : 55|16@0- (0.001,0) [-32.768|32.767] "deg" Vector__XXX
+
+BO_ 768 BMS_300: 8 BMS
+ SG_ bmsBatteryCurrent_A : 7|16@0+ (0.01,-300) [-300.0|355.35] "A" Vector__XXX
+ SG_ bmsBatteryVoltage_V : 23|16@0+ (0.1,0) [0.0|6553.5] "V" Vector__XXX
+ SG_ bmsTractiveSystemVoltage_V : 39|16@0+ (0.1,0) [0.0|6553.5] "V" Vector__XXX
+ SG_ imdFault_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ amsFault_state : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 769 BMS_301: 8 BMS
+ SG_ soeByOCV_percent : 7|16@0+ (0.01,0) [0.0|655.35] "%" Vector__XXX
+ SG_ soeByCoulombCounting_percent : 23|16@0+ (0.01,0) [0.0|655.35] "%" Vector__XXX
+ SG_ maxCellVoltage_V : 39|16@0+ (0.01,0) [0.0|655.35] "V" Vector__XXX
+ SG_ minCellVoltage_V : 55|16@0+ (0.01,0) [0.0|655.35] "V" Vector__XXX
+
+BO_ 770 BMS_302: 8 BMS
+ SG_ avgCellVoltage_V : 7|16@0+ (0.01,0) [0.0|655.35] "V" Vector__XXX
+ SG_ cellImbalance_mV : 23|16@0+ (0.1,0) [0.0|6553.5] "mV" Vector__XXX
+ SG_ maxCellTemp_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ minCellTemp_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 771 BMS_303: 8 BMS
+ SG_ avgCellTemp_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ maxBoardTemp_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ minBoardTemp_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ avgBoardTemp_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 772 BMS_304: 8 BMS
+ SG_ bmsNumActiveAlerts_state : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bmsCurrAlertIndex_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ overvoltageWarningAlert_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ undervoltageWarningAlert_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ overvoltageFaultAlert_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ undervoltageFaultAlert_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ cellImbalanceAlert_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ overtempWarningAlert_state : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 773 BMS_305: 7 BMS
+ SG_ overtempFaultAlert_state : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ badVoltageSenseStatusAlert_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ badBrickTempSenseStatusAlert_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ badBoardTempSenseStatusAlert_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ insufficientTempSensorsAlert_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ telemetryCommunicationAlert_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ packOvercurrentFaultAlert_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 774 BMS_306: 7 BMS
+ SG_ bmsShutdown1_state : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bmsShutdown2_state : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bmsShutdown3_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bmsShutdown4_state : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bmsShutdown5_state : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bmsShutdown6_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ bmsInhibitActive_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 778 BMS_30A: 8 BMS
+ SG_ flowSenseDistance_Left : 0|16@1+ (1,0) [0|65535] "mm" Vector__XXX
+ SG_ flowSenseFx_Left : 16|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX
+ SG_ flowSenseFy_Left : 32|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX
+ SG_ flowSenseStrength_Left : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ flowSenseFlowQuality_Left : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 779 BMS_30B: 8 BMS
+ SG_ flowSenseDistance_Right : 0|16@1+ (1,0) [0|65535] "mm" Vector__XXX
+ SG_ flowSenseFx_Right : 16|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX
+ SG_ flowSenseFy_Right : 32|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX
+ SG_ flowSenseStrength_Right : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ flowSenseFlowQuality_Right : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 784 BMS_310: 8 BMS
+ SG_ segment1MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 785 BMS_311: 8 BMS
+ SG_ segment1MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 786 BMS_312: 8 BMS
+ SG_ segment1Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 787 BMS_313: 8 BMS
+ SG_ segment1Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 788 BMS_314: 8 BMS
+ SG_ segment1Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 789 BMS_315: 8 BMS
+ SG_ segment1Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment1Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 790 BMS_316: 8 BMS
+ SG_ segment1Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 791 BMS_317: 8 BMS
+ SG_ segment1Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 792 BMS_318: 8 BMS
+ SG_ segment1Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 793 BMS_319: 8 BMS
+ SG_ segment1Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment1Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 800 BMS_320: 8 BMS
+ SG_ segment2MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 801 BMS_321: 8 BMS
+ SG_ segment2MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 802 BMS_322: 8 BMS
+ SG_ segment2Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 803 BMS_323: 8 BMS
+ SG_ segment2Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 804 BMS_324: 8 BMS
+ SG_ segment2Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 805 BMS_325: 8 BMS
+ SG_ segment2Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment2Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 806 BMS_326: 8 BMS
+ SG_ segment2Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 807 BMS_327: 8 BMS
+ SG_ segment2Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 808 BMS_328: 8 BMS
+ SG_ segment2Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 809 BMS_329: 8 BMS
+ SG_ segment2Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment2Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 816 BMS_330: 8 BMS
+ SG_ segment3MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 817 BMS_331: 8 BMS
+ SG_ segment3MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 818 BMS_332: 8 BMS
+ SG_ segment3Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 819 BMS_333: 8 BMS
+ SG_ segment3Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 820 BMS_334: 8 BMS
+ SG_ segment3Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 821 BMS_335: 8 BMS
+ SG_ segment3Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment3Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 822 BMS_336: 8 BMS
+ SG_ segment3Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 823 BMS_337: 8 BMS
+ SG_ segment3Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 824 BMS_338: 8 BMS
+ SG_ segment3Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 825 BMS_339: 8 BMS
+ SG_ segment3Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment3Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 832 BMS_340: 8 BMS
+ SG_ segment4MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 833 BMS_341: 8 BMS
+ SG_ segment4MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 834 BMS_342: 8 BMS
+ SG_ segment4Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 835 BMS_343: 8 BMS
+ SG_ segment4Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 836 BMS_344: 8 BMS
+ SG_ segment4Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 837 BMS_345: 8 BMS
+ SG_ segment4Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment4Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 838 BMS_346: 8 BMS
+ SG_ segment4Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 839 BMS_347: 8 BMS
+ SG_ segment4Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 840 BMS_348: 8 BMS
+ SG_ segment4Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 841 BMS_349: 8 BMS
+ SG_ segment4Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment4Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 848 BMS_350: 8 BMS
+ SG_ segment5MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 849 BMS_351: 8 BMS
+ SG_ segment5MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 850 BMS_352: 8 BMS
+ SG_ segment5Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 851 BMS_353: 8 BMS
+ SG_ segment5Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 852 BMS_354: 8 BMS
+ SG_ segment5Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 853 BMS_355: 8 BMS
+ SG_ segment5Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment5Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 854 BMS_356: 8 BMS
+ SG_ segment5Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 855 BMS_357: 8 BMS
+ SG_ segment5Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 856 BMS_358: 8 BMS
+ SG_ segment5Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 857 BMS_359: 8 BMS
+ SG_ segment5Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment5Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 864 BMS_360: 8 BMS
+ SG_ segment6MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 865 BMS_361: 8 BMS
+ SG_ segment6MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 866 BMS_362: 8 BMS
+ SG_ segment6Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 867 BMS_363: 8 BMS
+ SG_ segment6Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 868 BMS_364: 8 BMS
+ SG_ segment6Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 869 BMS_365: 8 BMS
+ SG_ segment6Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment6Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 870 BMS_366: 8 BMS
+ SG_ segment6Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 871 BMS_367: 8 BMS
+ SG_ segment6Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 872 BMS_368: 8 BMS
+ SG_ segment6Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 873 BMS_369: 8 BMS
+ SG_ segment6Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment6Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 880 BMS_370: 8 BMS
+ SG_ segment7MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 881 BMS_371: 8 BMS
+ SG_ segment7MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 882 BMS_372: 8 BMS
+ SG_ segment7Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 883 BMS_373: 8 BMS
+ SG_ segment7Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 884 BMS_374: 8 BMS
+ SG_ segment7Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 885 BMS_375: 8 BMS
+ SG_ segment7Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment7Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 886 BMS_376: 8 BMS
+ SG_ segment7Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 887 BMS_377: 8 BMS
+ SG_ segment7Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 888 BMS_378: 8 BMS
+ SG_ segment7Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 889 BMS_379: 8 BMS
+ SG_ segment7Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment7Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 896 BMS_380: 8 BMS
+ SG_ segment8MaxCellVoltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8MinCellVoltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8AvgCellVoltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8DieTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 897 BMS_381: 8 BMS
+ SG_ segment8MaxCellTemperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8MinCellTemperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8AvgCellTemperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8BoardTemperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 898 BMS_382: 8 BMS
+ SG_ segment8Cell1Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell2Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell3Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell4Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 899 BMS_383: 8 BMS
+ SG_ segment8Cell5Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell6Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell7Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell8Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 900 BMS_384: 8 BMS
+ SG_ segment8Cell9Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell10Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell11Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell12Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 901 BMS_385: 8 BMS
+ SG_ segment8Cell13Voltage_V : 7|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell14Voltage_V : 23|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell15Voltage_V : 39|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+ SG_ segment8Cell16Voltage_V : 55|16@0+ (0.001,0) [0.0|65.535] "V" Vector__XXX
+
+BO_ 902 BMS_386: 8 BMS
+ SG_ segment8Cell1Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell2Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell3Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell4Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 903 BMS_387: 8 BMS
+ SG_ segment8Cell5Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell6Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell7Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell8Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 904 BMS_388: 8 BMS
+ SG_ segment8Cell9Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell10Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell11Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell12Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 905 BMS_389: 8 BMS
+ SG_ segment8Cell13Temperature_C : 7|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell14Temperature_C : 23|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell15Temperature_C : 39|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+ SG_ segment8Cell16Temperature_C : 55|16@0+ (0.1,-40) [-40.0|6513.5] "C" Vector__XXX
+
+BO_ 912 BMS_390: 5 BMS
+ SG_ chargerVoltageSetPoint_V : 7|16@0+ (0.1,0) [0.0|6553.5] "V" Vector__XXX
+ SG_ chargerCurrentSetPoint_A : 23|16@0+ (0.1,0) [0.0|6553.5] "A" Vector__XXX
+ SG_ chargerStatusByte : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 0 PLM_000: 8 PLM
+ SG_ vbatChan0Current_A : 7|16@0+ (0.00741391941,0) [0.0|485.87120853435] "V" Vector__XXX
+ SG_ vbatChan1Current_A : 23|16@0+ (0.00741391941,0) [0.0|485.87120853435] "V" Vector__XXX
+ SG_ vbatChan2Current_A : 39|16@0+ (0.00741391941,0) [0.0|485.87120853435] "V" Vector__XXX
+ SG_ vbatChan3Current_A : 55|16@0+ (0.00741391941,0) [0.0|485.87120853435] "V" Vector__XXX
+
+BO_ 1 PLM_001: 8 PLM
+ SG_ vbatChan4Current_A : 7|16@0+ (0.00741391941,0) [0.0|485.87120853435] "V" Vector__XXX
+ SG_ vbatChan5Current_A : 23|16@0+ (0.00741391941,0) [0.0|485.87120853435] "V" Vector__XXX
+ SG_ vbatChan6Current_A : 39|16@0+ (0.00741391941,0) [0.0|485.87120853435] "V" Vector__XXX
+ SG_ fiveVChan0Current_A : 55|16@0+ (0.00196141636,0) [0.0|128.5414211526] "V" Vector__XXX
+
+BO_ 2 PLM_002: 8 PLM
+ SG_ fiveVChan1Current_A : 7|16@0+ (0.00196141636,0) [0.0|128.5414211526] "V" Vector__XXX
+ SG_ fiveVChan2Current_A : 23|16@0+ (0.00196141636,0) [0.0|128.5414211526] "V" Vector__XXX
+ SG_ fiveVChan3Current_A : 39|16@0+ (0.00196141636,0) [0.0|128.5414211526] "V" Vector__XXX
+ SG_ can0Utilization_percent : 55|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+
+BO_ 3 PLM_003: 8 PLM
+ SG_ can1Utilization_percent : 7|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ can2Utilization_percent : 23|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ plmVbatVoltage_V : 39|16@0+ (0.00506178266,0) [0.0|331.7239266231] "V" Vector__XXX
+ SG_ plm5VVoltage_V : 55|16@0+ (0.00195457875,0) [0.0|128.09331838125] "V" Vector__XXX
+
+BO_ 4 Telemetry_004: 8 Telemetry
+ SG_ packetsLogged_ul : 7|32@0+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ packetsDropped_ul : 39|32@0+ (1,0) [0|4294967295] "" Vector__XXX
+
+BO_ 5 Telemetry_005: 4 Telemetry
+ SG_ storageBufferFill_percent : 7|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ telemetryBufferFill_percent : 23|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+
+BO_ 6 PLM_006: 6 PLM
+ SG_ PLM_Temp_degrees : 7|16@0+ (0.002518,-40) [-40.0|125.01712999999998] "C" Vector__XXX
+ SG_ PLM_Humidity_percent : 23|16@0+ (0.024414,0) [0.0|1599.9714900000001] "%" Vector__XXX
+ SG_ PLM_Micro_Temp : 39|16@0+ (0.024414,0) [0.0|1599.9714900000001] "%" Vector__XXX
+
+BO_ 7 PLM_007: 8 PLM
+ SG_ Twelve_Volt_0_Overcurrent : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_1_Overcurrent : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_2_Overcurrent : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_3_Overcurrent : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_4_Overcurrent : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_5_Overcurrent : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_6_Overcurrent : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Overcurrent_Event : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 8 PLM_008: 7 PLM
+ SG_ Twelve_Volt_0_Overcurrent_Count : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_1_Overcurrent_Count : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_2_Overcurrent_Count : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_3_Overcurrent_Count : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_4_Overcurrent_Count : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_5_Overcurrent_Count : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Twelve_Volt_6_Overcurrent_Count : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 16 PLM_010: 8 PLM
+ SG_ Five_Volt_0_Overcurrent : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Five_Volt_1_Overcurrent : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Five_Volt_2_Overcurrent : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Five_Volt_3_Overcurrent : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Five_Volt_0_Overcurrent_Count : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Five_Volt_1_Overcurrent_Count : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Five_Volt_2_Overcurrent_Count : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ Five_Volt_3_Overcurrent_Count : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1792 Display_700: 8 Display
+ SG_ gpsLatitude_deg : 7|32@0+ (2.1457672119140625e-05,0) [0.0|92159.99997854233] "deg" Vector__XXX
+ SG_ gpsLongitude_deg : 39|32@0+ (2.1457672119140625e-05,0) [0.0|92159.99997854233] "deg" Vector__XXX
+
+BO_ 1793 Display_701: 7 Display
+ SG_ gpsSpeed_mph : 7|16@0+ (0.01,0) [0.0|655.35] "mph" Vector__XXX
+ SG_ gpsAltitude_ft : 23|16@0- (1,0) [-32768|32767] "ft" Vector__XXX
+ SG_ gpsCourse_deg : 39|16@0+ (0.01,0) [0.0|655.35] "deg" Vector__XXX
+ SG_ gpsSatelliteCount_ul : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1794 Display_702: 7 Display
+ SG_ gpsValid_ul : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpsYearUTC_ul : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpsMonthUTC_ul : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpsDayUTC_ul : 31|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpsHoursUTC_ul : 39|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpsMinutesUTC_ul : 47|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ gpsSecondsUTC_ul : 55|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 112 IMU_070: 6 IMU
+ SG_ yawRate_degPerSec : 0|16@1+ (0.005,-163.84) [-163.84|163.835] "deg/s" Vector__XXX
+ SG_ lateralAccel_G : 32|16@1+ (0.0001274,-4.1746432) [-4.1746432|4.1745158] "G" Vector__XXX
+
+BO_ 128 IMU_080: 6 IMU
+ SG_ rollRate_degPerSec : 0|16@1+ (0.005,-163.84) [-163.84|163.835] "deg/s" Vector__XXX
+ SG_ longitudinalAccel_G : 32|16@1+ (0.0001274,-4.1746432) [-4.1746432|4.1745158] "G" Vector__XXX
+
+BO_ 1398 IMU_576: 6 IMU
+ SG_ verticalAccel_G : 32|16@1+ (0.0001274,-4.1746432) [-4.1746432|4.1745158] "G" Vector__XXX
+
+BO_ 229 Telemetry_0E5: 3 Telemetry
+ SG_ lapBeaconRaw_ul : 7|24@0+ (1,0) [0|16777215] "" Vector__XXX
+
+BO_ 230 Telemetry_0E6: 1 Telemetry
+ SG_ lapBeacon_ul : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1200 TireTemp_4B0: 2 TireTemp
+ SG_ rearRightTireTempCh1 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1201 TireTemp_4B1: 8 TireTemp
+ SG_ rearRightTireTempCh5 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearRightTireTempCh7 : 39|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearRightTireTempCh8 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1202 TireTemp_4B2: 8 TireTemp
+ SG_ rearRightTireTempCh9 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearRightTireTempCh10 : 23|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearRightTireTempCh12 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1203 TireTemp_4B3: 8 TireTemp
+ SG_ rearRightTireTempCh16 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1208 TireTemp_4B8: 2 TireTemp
+ SG_ frontRightTireTempCh1 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1209 TireTemp_4B9: 8 TireTemp
+ SG_ frontRightTireTempCh5 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontRightTireTempCh7 : 39|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontRightTireTempCh8 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1210 TireTemp_4BA: 8 TireTemp
+ SG_ frontRightTireTempCh9 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontRightTireTempCh10 : 23|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontRightTireTempCh12 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1211 TireTemp_4BB: 8 TireTemp
+ SG_ frontRightTireTempCh16 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1212 TireTemp_4BC: 2 TireTemp
+ SG_ frontLeftTireTempCh1 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1213 TireTemp_4BD: 8 TireTemp
+ SG_ frontLeftTireTempCh5 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontLeftTireTempCh7 : 39|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontLeftTireTempCh8 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1214 TireTemp_4BE: 8 TireTemp
+ SG_ frontLeftTireTempCh9 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontLeftTireTempCh10 : 23|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ frontLeftTireTempCh12 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1215 TireTemp_4BF: 8 TireTemp
+ SG_ frontLeftTireTempCh16 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1204 TireTemp_4B4: 2 TireTemp
+ SG_ rearLeftTireTempCh1 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1205 TireTemp_4B5: 8 TireTemp
+ SG_ rearLeftTireTempCh5 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearLeftTireTempCh7 : 39|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearLeftTireTempCh8 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1206 TireTemp_4B6: 8 TireTemp
+ SG_ rearLeftTireTempCh9 : 7|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearLeftTireTempCh10 : 23|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+ SG_ rearLeftTireTempCh12 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1207 TireTemp_4B7: 8 TireTemp
+ SG_ rearLeftTireTempCh16 : 55|16@0+ (0.1,-100.0) [-100.0|6453.5] "C" Vector__XXX
+
+BO_ 1872 Telemetry_750: 8 Telemetry
+ SG_ tm_CAN1Util_percent : 7|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ tm_CAN2Util_percent : 23|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ tm_SDBufferFill_percent : 39|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+ SG_ tm_RadioBufferFill_percent : 55|16@0+ (0.1,0) [0.0|6553.5] "%" Vector__XXX
+
+BO_ 1873 Telemetry_751: 8 Telemetry
+ SG_ tm_SDBytesTransferred_bytes : 7|32@0+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ tm_RadioBytesTransferred_bytes : 39|32@0+ (1,0) [0|4294967295] "" Vector__XXX
+
+BO_ 1874 Telemetry_752: 8 Telemetry
+ SG_ tm_SDPacketsDropped_ul : 7|32@0+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ tm_RadioPacketsDropped_ul : 39|32@0+ (1,0) [0|4294967295] "" Vector__XXX
+
+BO_ 1875 Telemetry_753: 2 Telemetry
+ SG_ tm_CoinBattery_V : 7|16@0+ (0.01,0) [0.0|655.35] "V" Vector__XXX
+
+BO_ 1876 CCB_754: 3 CCB
+ SG_ sdcStatus17 : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ sdcStatus18 : 15|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ sdcStatus19 : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1877 CCB_755: 3 CCB
+ SG_ chargingPowerLimit : 7|16@0+ (1,0) [0|65535] "" Vector__XXX
+ SG_ forceEnableBalancing_state : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1878 RVC_756: 6 RVC
+ SG_ sdcStatus5 : 7|16@0+ (1,0) [0|65535] "" Vector__XXX
+ SG_ sdcStatus6 : 23|16@0+ (1,0) [0|65535] "" Vector__XXX
+ SG_ sdcStatus7 : 39|16@0+ (1,0) [0|65535] "" Vector__XXX
+
+CM_ SG_ 1038 electricalRPM_erpm "Electrical RPM";
+CM_ SG_ 1038 dutyCycle_percent "Duty Cycle %";
+CM_ SG_ 1038 inputInverterVoltage_V "Input DC Voltage";
+CM_ SG_ 1070 motorCurrentPeakToPeak_A "Motor Current (AC Peak to Peak)";
+CM_ SG_ 1070 batteryCurrent_A "Battery Current (DC)";
+CM_ SG_ 1102 ControllerTemp_C "Controller Temperature";
+CM_ SG_ 1102 motorTemp_C "Motor Temp";
+CM_ SG_ 1102 faultCode "Fault Code";
+CM_ SG_ 1134 idPeakToPeak_A "Id Component";
+CM_ SG_ 1134 iqPeakToPeak_A "Iq Component";
+CM_ SG_ 1166 throttleSignal_percent "Throttle Signal";
+CM_ SG_ 1166 brakeSignal_percent "Brake Signal";
+CM_ SG_ 1166 digitalIO_state "Digital IO";
+CM_ SG_ 1166 driveEnableInvStatus_state "Drive Enable State Status Inverter Side";
+CM_ SG_ 1166 generalLimitConfigBits_state "General Limit Configration Bits";
+CM_ SG_ 1166 powerLimitConfigBits_state "Power Limit Configration Bits";
+CM_ SG_ 1166 canMapVersion "CAN Map Version";
+CM_ SG_ 46 desiredInvCurrentPeak_A "Desired Inverter Current (AC Peak)";
+CM_ SG_ 270 maxCurrentLimitPeak_A "Max Current Limit (AC Peak)";
+CM_ SG_ 334 maxDCCurrentLimit_A "Max Current Limit";
+CM_ SG_ 398 driveEnable_state "Drive Enable State";
+CM_ SG_ 256 pedalPosition1_mm "Accelerator Pedal Pos 1 MM";
+CM_ SG_ 256 pedalPosition2_mm "Accelerator Pedal Pos 2 MM";
+CM_ SG_ 256 brakePressureFront_psi "Brake Pres Front";
+CM_ SG_ 256 rvcTractiveSystemCurrent_A "Tractive System Current (FVC)";
+CM_ SG_ 257 bspdBrakePressureSensorFault_state "BSPD Brake Pres Fault";
+CM_ SG_ 257 bspdTractiveSystemCurrentSensorFault_state "BSPD Tractive System Current Fault";
+CM_ SG_ 257 bspdTractiveSystemBrakingFault_state "BSPD Check Fault";
+CM_ SG_ 257 bspdInputFault_state "BSPD Input Fault(current sensor/rear brake press out of range)";
+CM_ SG_ 257 bspdFault_state "Overall BSPD Hardware Fault(Tracked in Software)";
+CM_ SG_ 258 pedalPosition1_percent "Accelerator Pedal Pos 1 Percent";
+CM_ SG_ 258 pedalPosition2_percent "Accelerator Pedal Pos 2 Percent";
+CM_ SG_ 258 rideHeightFront_mm "Ride Height Front";
+CM_ SG_ 259 fvcBrakePressureSensorFault_state "FVC Brake Pres Fault";
+CM_ SG_ 259 fvcPedalPosition1Fault_state "FVC Pedal 1 Fault";
+CM_ SG_ 259 fvcPedalPosition2Fault_state "FVC Pedal 2 Fault";
+CM_ SG_ 259 fvcTractiveSystemCurrentSensorFault_state "FVC Tractive System Current Fault";
+CM_ SG_ 259 fvcPedalPositionCorrelationFault_state "FVC APPS Correlation Fault";
+CM_ SG_ 259 fvcPedalPositionBrakingFault_state "FVC Accelerator and Braking Fault";
+CM_ SG_ 259 fvcBrakingClampingCurrent_state "FVC Current Clamping";
+CM_ SG_ 260 coolantPumpPressure_psi "Coolant Pump Pres";
+CM_ SG_ 260 coolantFanPower_percent "Radiator Fan Control Duty";
+CM_ SG_ 260 coolantPumpPower_percent "Pump Control Duty";
+CM_ SG_ 262 switch1On_state "Switch 1";
+CM_ SG_ 262 switch2On_state "Switch 2";
+CM_ SG_ 262 gpio1_state "General Purpose IO 1";
+CM_ SG_ 262 gpio2_state "General Purpose IO 2";
+CM_ SG_ 262 vehicleBuzzerOn_state "Ready to Drive Buzzer";
+CM_ SG_ 262 brakeLightOn_state "Brake Light";
+CM_ SG_ 262 readyToDriveButton_state "Ready to Drive Button";
+CM_ SG_ 263 fvcTemp_C "FVC Temperature";
+CM_ SG_ 263 vehicleState_state "Vehicle State";
+CM_ SG_ 263 fvcState_state "FVC State";
+CM_ SG_ 263 fvcMcuStatus_state "FVC MCU State";
+CM_ SG_ 263 currentlyMoving_state "Currently Moving";
+CM_ SG_ 263 fvcGSenseStatus_state "FVC GopherSense Status";
+CM_ SG_ 263 displayFaultStatus_state "Display Fault Status Message";
+CM_ SG_ 264 sdcStatus3 "sdcStatus3";
+CM_ SG_ 264 sdcStatus4 "sdcStatus4";
+CM_ SG_ 264 driveSpeedMode_state "Drive Mode State(Slow/Normal)";
+CM_ SG_ 264 fvcControllerTemp_C "FVC Controller Temp";
+CM_ SG_ 264 fvcMotorTemp_C "FVC Motor Temp";
+CM_ SG_ 265 brakePressureRear_psi "Brake Pres Rear";
+CM_ SG_ 265 steeringAngle_deg "Steered Angle";
+CM_ SG_ 265 brakeTempFrontRight_C "Brake Temp FR";
+CM_ SG_ 265 brakeTempFrontLeft_C "Brake Temp FL";
+CM_ SG_ 272 shockPosFrontLeft_mm "Susp Pos FL";
+CM_ SG_ 272 shockPosFrontRight_mm "Susp Pos FR";
+CM_ SG_ 272 wheelSpeedFrontLeft_mph "Wheel Speed FL";
+CM_ SG_ 272 wheelSpeedFrontRight_mph "Wheel Speed FR";
+CM_ SG_ 273 pittoTubePressure_psi "Pitto Tube";
+CM_ SG_ 288 fvcPowerCycleNeeded "VN300 Power Cycle Needed";
+CM_ SG_ 336 currentSensorHigh_A "Current Sensor High Channel";
+CM_ SG_ 336 currentSensorLow_A "Current Sensor Low Channel";
+CM_ SG_ 336 rearRideHeight_mm "Rear Ride Height";
+CM_ SG_ 336 ambientTemp_C "Ambient Temperature";
+CM_ SG_ 337 ambientHumidity_percent "Ambient Humidity";
+CM_ SG_ 337 currentSensor_A "Tractive System Current (RVC)";
+CM_ SG_ 337 brakeTempRearLeft_C "Brake Temp RL";
+CM_ SG_ 337 currentSensorStatus_state "Tractive System Current (RVC)";
+CM_ SG_ 338 shockPosRearLeft_mm "Susp Pos RL";
+CM_ SG_ 338 radWaterTempIn_C "Rad Water Temp In";
+CM_ SG_ 338 radWaterTempOut_C "Rad Water Temp Out";
+CM_ SG_ 338 wheelSpeedRearLeft_mph "Wheel Speed RL";
+CM_ SG_ 339 sdcStatus8 "Shut Down Circuit Break Point 8";
+CM_ SG_ 339 sdcStatus9 "Shut Down Circuit Break Point 9";
+CM_ SG_ 339 brakeBias_percent "Ready to Drive Buzzer";
+CM_ SG_ 339 sdcBreakPoint "SDC Break Point";
+CM_ SG_ 340 brakeTempRearRight_C "Brake Temp RR";
+CM_ SG_ 340 shockPosRearRight_mm "Susp Pos RR";
+CM_ SG_ 340 wheelSpeedRearRight_mph "Wheel Speed RR";
+CM_ SG_ 341 sdcStatus5 "Shut Down Circuit Break Point 5";
+CM_ SG_ 341 sdcStatus6 "Shut Down Circuit Break Point 6";
+CM_ SG_ 341 sdcStatus7 "Shut Down Circuit Break Point 7";
+CM_ SG_ 512 swButon0_state "Wheel Button 0";
+CM_ SG_ 512 swButon1_state "Wheel Button 1";
+CM_ SG_ 512 displayPage_state "Display Page";
+CM_ SG_ 513 swButon2_state "Wheel Button 2";
+CM_ SG_ 513 swButon3_state "Wheel Button 3";
+CM_ SG_ 513 swButon4_state "Wheel Button 2";
+CM_ SG_ 513 swButon5_state "Wheel Button 3";
+CM_ SG_ 513 swDial_a_ul "Wheel Dial A";
+CM_ SG_ 513 swDial_b_ul "Wheel Dial B";
+CM_ SG_ 592 fvcLatitude "FVC Latitude";
+CM_ SG_ 593 fvcLongitude "FVC Longitude";
+CM_ SG_ 594 fvcAltitude "FVC Altitude";
+CM_ SG_ 595 fvcVelBodyX "FVC Velocity Body X";
+CM_ SG_ 595 fvcVelBodyY "FVC Velocity Body Y";
+CM_ SG_ 596 fvcYaw "FVC Yaw";
+CM_ SG_ 596 fvcPitch "FVC Pitch";
+CM_ SG_ 597 fvcRoll "FVC Roll";
+CM_ SG_ 597 fvcLinBodyAccZ "FVC Linear Acc Body Z";
+CM_ SG_ 598 fvcLinBodyAccX "FVC Linear Acc Body X";
+CM_ SG_ 598 fvcLinBodyAccY "FVC Linear Acc Body Y";
+CM_ SG_ 599 fvcQuatX "FVC Quaternion X";
+CM_ SG_ 599 fvcQuatY "FVC Quaternion Y";
+CM_ SG_ 600 fvcQuatZ "FVC Quaternion Z";
+CM_ SG_ 600 fvcQuatS "FVC Quaternion Scalar";
+CM_ SG_ 601 fvcTimeUtcY "FVC UTC Year";
+CM_ SG_ 601 fvcTimeUtcMonth "FVC UTC Month";
+CM_ SG_ 601 fvcTimeUtcD "FVC UTC Day";
+CM_ SG_ 601 fvcTimeUtcH "FVC UTC Hour";
+CM_ SG_ 601 fvcTimeUtcMin "FVC UTC Minute";
+CM_ SG_ 601 fvcTimeUtcS "FVC UTC Second";
+CM_ SG_ 601 fvcTimeUtcF "FVC UTC Fraction";
+CM_ SG_ 602 fvcGyroBodyX "FVC Gyro Body X";
+CM_ SG_ 602 fvcGyroBodyY "FVC Gyro Body Y";
+CM_ SG_ 603 fvcGyroBodyZ "FVC Gyro Body Z";
+CM_ SG_ 603 fvcINS_status "FVC INS Status";
+CM_ SG_ 604 vnavSlipAngle_FL "FVC Slip Angle FL";
+CM_ SG_ 604 vnavSlipAngle_FR "FVC Slip Angle FR";
+CM_ SG_ 604 vnavSlipAngle_RL "FVC Slip Angle RL";
+CM_ SG_ 604 vnavSlipAngle_RR "FVC Slip Angle RR";
+CM_ SG_ 768 bmsBatteryCurrent_A "Battery Pack Current (BMS)";
+CM_ SG_ 768 bmsBatteryVoltage_V "Battery Pack Voltage (BMS)";
+CM_ SG_ 768 bmsTractiveSystemVoltage_V "Tractive System Voltage (BMS)";
+CM_ SG_ 768 imdFault_state "IMD Fault State";
+CM_ SG_ 768 amsFault_state "AMS Fault State";
+CM_ SG_ 769 soeByOCV_percent "SOE by OCV";
+CM_ SG_ 769 soeByCoulombCounting_percent "SOE by Coulomb Counting";
+CM_ SG_ 769 maxCellVoltage_V "Max Cell Voltage";
+CM_ SG_ 769 minCellVoltage_V "Min Cell Voltage";
+CM_ SG_ 770 avgCellVoltage_V "Average Cell Voltage";
+CM_ SG_ 770 cellImbalance_mV "Cell Imbalance";
+CM_ SG_ 770 maxCellTemp_C "Max Cell Temperature";
+CM_ SG_ 770 minCellTemp_C "Min Cell Temperature";
+CM_ SG_ 771 avgCellTemp_C "Average Cell Temperature";
+CM_ SG_ 771 maxBoardTemp_C "Max Board Temperature";
+CM_ SG_ 771 minBoardTemp_C "Min Board Temperature";
+CM_ SG_ 771 avgBoardTemp_C "Average Board Temperature";
+CM_ SG_ 772 bmsNumActiveAlerts_state "BMS Num Active Alerts";
+CM_ SG_ 772 bmsCurrAlertIndex_state "BMS Current Alert Index";
+CM_ SG_ 772 overvoltageWarningAlert_state "BMS Overvoltage Warning Present";
+CM_ SG_ 772 undervoltageWarningAlert_state "BMS Undervoltage Warning Present";
+CM_ SG_ 772 overvoltageFaultAlert_state "BMS Overvoltage Fault Present";
+CM_ SG_ 772 undervoltageFaultAlert_state "BMS Undervoltage Fault Present";
+CM_ SG_ 772 cellImbalanceAlert_state "BMS Cell Imbalance Alert Present";
+CM_ SG_ 772 overtempWarningAlert_state "BMS Overtemp Warning Present";
+CM_ SG_ 773 overtempFaultAlert_state "BMS Overtemp Fault Present";
+CM_ SG_ 773 badVoltageSenseStatusAlert_state "BMS Bad Voltage Sense Alert Present";
+CM_ SG_ 773 badBrickTempSenseStatusAlert_state "BMS Bad Temp Sense Alert Present";
+CM_ SG_ 773 badBoardTempSenseStatusAlert_state "BMS Bad Board Temp Sense Alert Present";
+CM_ SG_ 773 insufficientTempSensorsAlert_state "BMS Insuffieient Temp Sense Fault Present";
+CM_ SG_ 773 telemetryCommunicationAlert_state "BMS Communication Failure Fault Present";
+CM_ SG_ 773 packOvercurrentFaultAlert_state "BMS Overcurrent Fault Present";
+CM_ SG_ 774 bmsShutdown1_state "BMS Shutdown 1";
+CM_ SG_ 774 bmsShutdown2_state "BMS Shutdown 2";
+CM_ SG_ 774 bmsShutdown3_state "BMS Shutdown 3";
+CM_ SG_ 774 bmsShutdown4_state "BMS Shutdown 4";
+CM_ SG_ 774 bmsShutdown5_state "BMS Shutdown 5";
+CM_ SG_ 774 bmsShutdown6_state "BMS Shutdown 6";
+CM_ SG_ 774 bmsInhibitActive_state "BMS Inhibit active";
+CM_ SG_ 778 flowSenseDistance_Left "Flow Sensor Distance Left";
+CM_ SG_ 778 flowSenseFx_Left "Flow Sensor Fx Left";
+CM_ SG_ 778 flowSenseFy_Left "Flow Sensor Fy Left";
+CM_ SG_ 778 flowSenseStrength_Left "Flow Sensor Strength Left";
+CM_ SG_ 778 flowSenseFlowQuality_Left "Flow Sensor Quality Left";
+CM_ SG_ 779 flowSenseDistance_Right "Flow Sensor Distance Right";
+CM_ SG_ 779 flowSenseFx_Right "Flow Sensor Fx Right";
+CM_ SG_ 779 flowSenseFy_Right "Flow Sensor Fy Right";
+CM_ SG_ 779 flowSenseStrength_Right "Flow Sensor Strength Right";
+CM_ SG_ 779 flowSenseFlowQuality_Right "Flow Sensor Quality Right";
+CM_ SG_ 784 segment1MaxCellVoltage_V "Segment 1 Max Cell Voltage";
+CM_ SG_ 784 segment1MinCellVoltage_V "Segment 1 Min Cell Voltage";
+CM_ SG_ 784 segment1AvgCellVoltage_V "Segment 1 Average Cell Voltage";
+CM_ SG_ 784 segment1DieTemperature_C "Segment 1 Die Temperature";
+CM_ SG_ 785 segment1MaxCellTemperature_C "Segment 1 Max Cell Temperature";
+CM_ SG_ 785 segment1MinCellTemperature_C "Segment 1 Min Cell Temperature";
+CM_ SG_ 785 segment1AvgCellTemperature_C "Segment 1 Average Cell Temperature";
+CM_ SG_ 785 segment1BoardTemperature_C "Segment 1 Board Temperature";
+CM_ SG_ 786 segment1Cell1Voltage_V "Segment 1 Cell 1 Voltage";
+CM_ SG_ 786 segment1Cell2Voltage_V "Segment 1 Cell 2 Voltage";
+CM_ SG_ 786 segment1Cell3Voltage_V "Segment 1 Cell 3 Voltage";
+CM_ SG_ 786 segment1Cell4Voltage_V "Segment 1 Cell 4 Voltage";
+CM_ SG_ 787 segment1Cell5Voltage_V "Segment 1 Cell 5 Voltage";
+CM_ SG_ 787 segment1Cell6Voltage_V "Segment 1 Cell 6 Voltage";
+CM_ SG_ 787 segment1Cell7Voltage_V "Segment 1 Cell 7 Voltage";
+CM_ SG_ 787 segment1Cell8Voltage_V "Segment 1 Cell 8 Voltage";
+CM_ SG_ 788 segment1Cell9Voltage_V "Segment 1 Cell 9 Voltage";
+CM_ SG_ 788 segment1Cell10Voltage_V "Segment 1 Cell 10 Voltage";
+CM_ SG_ 788 segment1Cell11Voltage_V "Segment 1 Cell 11 Voltage";
+CM_ SG_ 788 segment1Cell12Voltage_V "Segment 1 Cell 12 Voltage";
+CM_ SG_ 789 segment1Cell13Voltage_V "Segment 1 Cell 13 Voltage";
+CM_ SG_ 789 segment1Cell14Voltage_V "Segment 1 Cell 14 Voltage";
+CM_ SG_ 789 segment1Cell15Voltage_V "Segment 1 Cell 15 Voltage";
+CM_ SG_ 789 segment1Cell16Voltage_V "Segment 1 Cell 16 Voltage";
+CM_ SG_ 790 segment1Cell1Temperature_C "Segment 1 Cell 1 Temperature";
+CM_ SG_ 790 segment1Cell2Temperature_C "Segment 1 Cell 2 Temperature";
+CM_ SG_ 790 segment1Cell3Temperature_C "Segment 1 Cell 3 Temperature";
+CM_ SG_ 790 segment1Cell4Temperature_C "Segment 1 Cell 4 Temperature";
+CM_ SG_ 791 segment1Cell5Temperature_C "Segment 1 Cell 5 Temperature";
+CM_ SG_ 791 segment1Cell6Temperature_C "Segment 1 Cell 6 Temperature";
+CM_ SG_ 791 segment1Cell7Temperature_C "Segment 1 Cell 7 Temperature";
+CM_ SG_ 791 segment1Cell8Temperature_C "Segment 1 Cell 8 Temperature";
+CM_ SG_ 792 segment1Cell9Temperature_C "Segment 1 Cell 9 Temperature";
+CM_ SG_ 792 segment1Cell10Temperature_C "Segment 1 Cell 10 Temperature";
+CM_ SG_ 792 segment1Cell11Temperature_C "Segment 1 Cell 11 Temperature";
+CM_ SG_ 792 segment1Cell12Temperature_C "Segment 1 Cell 12 Temperature";
+CM_ SG_ 793 segment1Cell13Temperature_C "Segment 1 Cell 13 Temperature";
+CM_ SG_ 793 segment1Cell14Temperature_C "Segment 1 Cell 14 Temperature";
+CM_ SG_ 793 segment1Cell15Temperature_C "Segment 1 Cell 15 Temperature";
+CM_ SG_ 793 segment1Cell16Temperature_C "Segment 1 Cell 16 Temperature";
+CM_ SG_ 800 segment2MaxCellVoltage_V "Segment 2 Max Cell Voltage";
+CM_ SG_ 800 segment2MinCellVoltage_V "Segment 2 Min Cell Voltage";
+CM_ SG_ 800 segment2AvgCellVoltage_V "Segment 2 Average Cell Voltage";
+CM_ SG_ 800 segment2DieTemperature_C "Segment 2 Die Temperature";
+CM_ SG_ 801 segment2MaxCellTemperature_C "Segment 2 Max Cell Temperature";
+CM_ SG_ 801 segment2MinCellTemperature_C "Segment 2 Min Cell Temperature";
+CM_ SG_ 801 segment2AvgCellTemperature_C "Segment 2 Average Cell Temperature";
+CM_ SG_ 801 segment2BoardTemperature_C "Segment 2 Board Temperature";
+CM_ SG_ 802 segment2Cell1Voltage_V "Segment 2 Cell 1 Voltage";
+CM_ SG_ 802 segment2Cell2Voltage_V "Segment 2 Cell 2 Voltage";
+CM_ SG_ 802 segment2Cell3Voltage_V "Segment 2 Cell 3 Voltage";
+CM_ SG_ 802 segment2Cell4Voltage_V "Segment 2 Cell 4 Voltage";
+CM_ SG_ 803 segment2Cell5Voltage_V "Segment 2 Cell 5 Voltage";
+CM_ SG_ 803 segment2Cell6Voltage_V "Segment 2 Cell 6 Voltage";
+CM_ SG_ 803 segment2Cell7Voltage_V "Segment 2 Cell 7 Voltage";
+CM_ SG_ 803 segment2Cell8Voltage_V "Segment 2 Cell 8 Voltage";
+CM_ SG_ 804 segment2Cell9Voltage_V "Segment 2 Cell 9 Voltage";
+CM_ SG_ 804 segment2Cell10Voltage_V "Segment 2 Cell 10 Voltage";
+CM_ SG_ 804 segment2Cell11Voltage_V "Segment 2 Cell 11 Voltage";
+CM_ SG_ 804 segment2Cell12Voltage_V "Segment 2 Cell 12 Voltage";
+CM_ SG_ 805 segment2Cell13Voltage_V "Segment 2 Cell 13 Voltage";
+CM_ SG_ 805 segment2Cell14Voltage_V "Segment 2 Cell 14 Voltage";
+CM_ SG_ 805 segment2Cell15Voltage_V "Segment 2 Cell 15 Voltage";
+CM_ SG_ 805 segment2Cell16Voltage_V "Segment 2 Cell 16 Voltage";
+CM_ SG_ 806 segment2Cell1Temperature_C "Segment 2 Cell 1 Temperature";
+CM_ SG_ 806 segment2Cell2Temperature_C "Segment 2 Cell 2 Temperature";
+CM_ SG_ 806 segment2Cell3Temperature_C "Segment 2 Cell 3 Temperature";
+CM_ SG_ 806 segment2Cell4Temperature_C "Segment 2 Cell 4 Temperature";
+CM_ SG_ 807 segment2Cell5Temperature_C "Segment 2 Cell 5 Temperature";
+CM_ SG_ 807 segment2Cell6Temperature_C "Segment 2 Cell 6 Temperature";
+CM_ SG_ 807 segment2Cell7Temperature_C "Segment 2 Cell 7 Temperature";
+CM_ SG_ 807 segment2Cell8Temperature_C "Segment 2 Cell 8 Temperature";
+CM_ SG_ 808 segment2Cell9Temperature_C "Segment 2 Cell 9 Temperature";
+CM_ SG_ 808 segment2Cell10Temperature_C "Segment 2 Cell 10 Temperature";
+CM_ SG_ 808 segment2Cell11Temperature_C "Segment 2 Cell 11 Temperature";
+CM_ SG_ 808 segment2Cell12Temperature_C "Segment 2 Cell 12 Temperature";
+CM_ SG_ 809 segment2Cell13Temperature_C "Segment 2 Cell 13 Temperature";
+CM_ SG_ 809 segment2Cell14Temperature_C "Segment 2 Cell 14 Temperature";
+CM_ SG_ 809 segment2Cell15Temperature_C "Segment 2 Cell 15 Temperature";
+CM_ SG_ 809 segment2Cell16Temperature_C "Segment 2 Cell 16 Temperature";
+CM_ SG_ 816 segment3MaxCellVoltage_V "Segment 3 Max Cell Voltage";
+CM_ SG_ 816 segment3MinCellVoltage_V "Segment 3 Min Cell Voltage";
+CM_ SG_ 816 segment3AvgCellVoltage_V "Segment 3 Average Cell Voltage";
+CM_ SG_ 816 segment3DieTemperature_C "Segment 3 Die Temperature";
+CM_ SG_ 817 segment3MaxCellTemperature_C "Segment 3 Max Cell Temperature";
+CM_ SG_ 817 segment3MinCellTemperature_C "Segment 3 Min Cell Temperature";
+CM_ SG_ 817 segment3AvgCellTemperature_C "Segment 3 Average Cell Temperature";
+CM_ SG_ 817 segment3BoardTemperature_C "Segment 3 Board Temperature";
+CM_ SG_ 818 segment3Cell1Voltage_V "Segment 3 Cell 1 Voltage";
+CM_ SG_ 818 segment3Cell2Voltage_V "Segment 3 Cell 2 Voltage";
+CM_ SG_ 818 segment3Cell3Voltage_V "Segment 3 Cell 3 Voltage";
+CM_ SG_ 818 segment3Cell4Voltage_V "Segment 3 Cell 4 Voltage";
+CM_ SG_ 819 segment3Cell5Voltage_V "Segment 3 Cell 5 Voltage";
+CM_ SG_ 819 segment3Cell6Voltage_V "Segment 3 Cell 6 Voltage";
+CM_ SG_ 819 segment3Cell7Voltage_V "Segment 3 Cell 7 Voltage";
+CM_ SG_ 819 segment3Cell8Voltage_V "Segment 3 Cell 8 Voltage";
+CM_ SG_ 820 segment3Cell9Voltage_V "Segment 3 Cell 9 Voltage";
+CM_ SG_ 820 segment3Cell10Voltage_V "Segment 3 Cell 10 Voltage";
+CM_ SG_ 820 segment3Cell11Voltage_V "Segment 3 Cell 11 Voltage";
+CM_ SG_ 820 segment3Cell12Voltage_V "Segment 3 Cell 12 Voltage";
+CM_ SG_ 821 segment3Cell13Voltage_V "Segment 3 Cell 13 Voltage";
+CM_ SG_ 821 segment3Cell14Voltage_V "Segment 3 Cell 14 Voltage";
+CM_ SG_ 821 segment3Cell15Voltage_V "Segment 3 Cell 15 Voltage";
+CM_ SG_ 821 segment3Cell16Voltage_V "Segment 3 Cell 16 Voltage";
+CM_ SG_ 822 segment3Cell1Temperature_C "Segment 3 Cell 1 Temperature";
+CM_ SG_ 822 segment3Cell2Temperature_C "Segment 3 Cell 2 Temperature";
+CM_ SG_ 822 segment3Cell3Temperature_C "Segment 3 Cell 3 Temperature";
+CM_ SG_ 822 segment3Cell4Temperature_C "Segment 3 Cell 4 Temperature";
+CM_ SG_ 823 segment3Cell5Temperature_C "Segment 3 Cell 5 Temperature";
+CM_ SG_ 823 segment3Cell6Temperature_C "Segment 3 Cell 6 Temperature";
+CM_ SG_ 823 segment3Cell7Temperature_C "Segment 3 Cell 7 Temperature";
+CM_ SG_ 823 segment3Cell8Temperature_C "Segment 3 Cell 8 Temperature";
+CM_ SG_ 824 segment3Cell9Temperature_C "Segment 3 Cell 9 Temperature";
+CM_ SG_ 824 segment3Cell10Temperature_C "Segment 3 Cell 10 Temperature";
+CM_ SG_ 824 segment3Cell11Temperature_C "Segment 3 Cell 11 Temperature";
+CM_ SG_ 824 segment3Cell12Temperature_C "Segment 3 Cell 12 Temperature";
+CM_ SG_ 825 segment3Cell13Temperature_C "Segment 3 Cell 13 Temperature";
+CM_ SG_ 825 segment3Cell14Temperature_C "Segment 3 Cell 14 Temperature";
+CM_ SG_ 825 segment3Cell15Temperature_C "Segment 3 Cell 15 Temperature";
+CM_ SG_ 825 segment3Cell16Temperature_C "Segment 3 Cell 16 Temperature";
+CM_ SG_ 832 segment4MaxCellVoltage_V "Segment 4 Max Cell Voltage";
+CM_ SG_ 832 segment4MinCellVoltage_V "Segment 4 Min Cell Voltage";
+CM_ SG_ 832 segment4AvgCellVoltage_V "Segment 4 Average Cell Voltage";
+CM_ SG_ 832 segment4DieTemperature_C "Segment 4 Die Temperature";
+CM_ SG_ 833 segment4MaxCellTemperature_C "Segment 4 Max Cell Temperature";
+CM_ SG_ 833 segment4MinCellTemperature_C "Segment 4 Min Cell Temperature";
+CM_ SG_ 833 segment4AvgCellTemperature_C "Segment 4 Average Cell Temperature";
+CM_ SG_ 833 segment4BoardTemperature_C "Segment 4 Board Temperature";
+CM_ SG_ 834 segment4Cell1Voltage_V "Segment 4 Cell 1 Voltage";
+CM_ SG_ 834 segment4Cell2Voltage_V "Segment 4 Cell 2 Voltage";
+CM_ SG_ 834 segment4Cell3Voltage_V "Segment 4 Cell 3 Voltage";
+CM_ SG_ 834 segment4Cell4Voltage_V "Segment 4 Cell 4 Voltage";
+CM_ SG_ 835 segment4Cell5Voltage_V "Segment 4 Cell 5 Voltage";
+CM_ SG_ 835 segment4Cell6Voltage_V "Segment 4 Cell 6 Voltage";
+CM_ SG_ 835 segment4Cell7Voltage_V "Segment 4 Cell 7 Voltage";
+CM_ SG_ 835 segment4Cell8Voltage_V "Segment 4 Cell 8 Voltage";
+CM_ SG_ 836 segment4Cell9Voltage_V "Segment 4 Cell 9 Voltage";
+CM_ SG_ 836 segment4Cell10Voltage_V "Segment 4 Cell 10 Voltage";
+CM_ SG_ 836 segment4Cell11Voltage_V "Segment 4 Cell 11 Voltage";
+CM_ SG_ 836 segment4Cell12Voltage_V "Segment 4 Cell 12 Voltage";
+CM_ SG_ 837 segment4Cell13Voltage_V "Segment 4 Cell 13 Voltage";
+CM_ SG_ 837 segment4Cell14Voltage_V "Segment 4 Cell 14 Voltage";
+CM_ SG_ 837 segment4Cell15Voltage_V "Segment 4 Cell 15 Voltage";
+CM_ SG_ 837 segment4Cell16Voltage_V "Segment 4 Cell 16 Voltage";
+CM_ SG_ 838 segment4Cell1Temperature_C "Segment 4 Cell 1 Temperature";
+CM_ SG_ 838 segment4Cell2Temperature_C "Segment 4 Cell 2 Temperature";
+CM_ SG_ 838 segment4Cell3Temperature_C "Segment 4 Cell 3 Temperature";
+CM_ SG_ 838 segment4Cell4Temperature_C "Segment 4 Cell 4 Temperature";
+CM_ SG_ 839 segment4Cell5Temperature_C "Segment 4 Cell 5 Temperature";
+CM_ SG_ 839 segment4Cell6Temperature_C "Segment 4 Cell 6 Temperature";
+CM_ SG_ 839 segment4Cell7Temperature_C "Segment 4 Cell 7 Temperature";
+CM_ SG_ 839 segment4Cell8Temperature_C "Segment 4 Cell 8 Temperature";
+CM_ SG_ 840 segment4Cell9Temperature_C "Segment 4 Cell 9 Temperature";
+CM_ SG_ 840 segment4Cell10Temperature_C "Segment 4 Cell 10 Temperature";
+CM_ SG_ 840 segment4Cell11Temperature_C "Segment 4 Cell 11 Temperature";
+CM_ SG_ 840 segment4Cell12Temperature_C "Segment 4 Cell 12 Temperature";
+CM_ SG_ 841 segment4Cell13Temperature_C "Segment 4 Cell 13 Temperature";
+CM_ SG_ 841 segment4Cell14Temperature_C "Segment 4 Cell 14 Temperature";
+CM_ SG_ 841 segment4Cell15Temperature_C "Segment 4 Cell 15 Temperature";
+CM_ SG_ 841 segment4Cell16Temperature_C "Segment 4 Cell 16 Temperature";
+CM_ SG_ 848 segment5MaxCellVoltage_V "Segment 5 Max Cell Voltage";
+CM_ SG_ 848 segment5MinCellVoltage_V "Segment 5 Min Cell Voltage";
+CM_ SG_ 848 segment5AvgCellVoltage_V "Segment 5 Average Cell Voltage";
+CM_ SG_ 848 segment5DieTemperature_C "Segment 5 Die Temperature";
+CM_ SG_ 849 segment5MaxCellTemperature_C "Segment 5 Max Cell Temperature";
+CM_ SG_ 849 segment5MinCellTemperature_C "Segment 5 Min Cell Temperature";
+CM_ SG_ 849 segment5AvgCellTemperature_C "Segment 5 Average Cell Temperature";
+CM_ SG_ 849 segment5BoardTemperature_C "Segment 5 Board Temperature";
+CM_ SG_ 850 segment5Cell1Voltage_V "Segment 5 Cell 1 Voltage";
+CM_ SG_ 850 segment5Cell2Voltage_V "Segment 5 Cell 2 Voltage";
+CM_ SG_ 850 segment5Cell3Voltage_V "Segment 5 Cell 3 Voltage";
+CM_ SG_ 850 segment5Cell4Voltage_V "Segment 5 Cell 4 Voltage";
+CM_ SG_ 851 segment5Cell5Voltage_V "Segment 5 Cell 5 Voltage";
+CM_ SG_ 851 segment5Cell6Voltage_V "Segment 5 Cell 6 Voltage";
+CM_ SG_ 851 segment5Cell7Voltage_V "Segment 5 Cell 7 Voltage";
+CM_ SG_ 851 segment5Cell8Voltage_V "Segment 5 Cell 8 Voltage";
+CM_ SG_ 852 segment5Cell9Voltage_V "Segment 5 Cell 9 Voltage";
+CM_ SG_ 852 segment5Cell10Voltage_V "Segment 5 Cell 10 Voltage";
+CM_ SG_ 852 segment5Cell11Voltage_V "Segment 5 Cell 11 Voltage";
+CM_ SG_ 852 segment5Cell12Voltage_V "Segment 5 Cell 12 Voltage";
+CM_ SG_ 853 segment5Cell13Voltage_V "Segment 5 Cell 13 Voltage";
+CM_ SG_ 853 segment5Cell14Voltage_V "Segment 5 Cell 14 Voltage";
+CM_ SG_ 853 segment5Cell15Voltage_V "Segment 5 Cell 15 Voltage";
+CM_ SG_ 853 segment5Cell16Voltage_V "Segment 5 Cell 16 Voltage";
+CM_ SG_ 854 segment5Cell1Temperature_C "Segment 5 Cell 1 Temperature";
+CM_ SG_ 854 segment5Cell2Temperature_C "Segment 5 Cell 2 Temperature";
+CM_ SG_ 854 segment5Cell3Temperature_C "Segment 5 Cell 3 Temperature";
+CM_ SG_ 854 segment5Cell4Temperature_C "Segment 5 Cell 4 Temperature";
+CM_ SG_ 855 segment5Cell5Temperature_C "Segment 5 Cell 5 Temperature";
+CM_ SG_ 855 segment5Cell6Temperature_C "Segment 5 Cell 6 Temperature";
+CM_ SG_ 855 segment5Cell7Temperature_C "Segment 5 Cell 7 Temperature";
+CM_ SG_ 855 segment5Cell8Temperature_C "Segment 5 Cell 8 Temperature";
+CM_ SG_ 856 segment5Cell9Temperature_C "Segment 5 Cell 9 Temperature";
+CM_ SG_ 856 segment5Cell10Temperature_C "Segment 5 Cell 10 Temperature";
+CM_ SG_ 856 segment5Cell11Temperature_C "Segment 5 Cell 11 Temperature";
+CM_ SG_ 856 segment5Cell12Temperature_C "Segment 5 Cell 12 Temperature";
+CM_ SG_ 857 segment5Cell13Temperature_C "Segment 5 Cell 13 Temperature";
+CM_ SG_ 857 segment5Cell14Temperature_C "Segment 5 Cell 14 Temperature";
+CM_ SG_ 857 segment5Cell15Temperature_C "Segment 5 Cell 15 Temperature";
+CM_ SG_ 857 segment5Cell16Temperature_C "Segment 5 Cell 16 Temperature";
+CM_ SG_ 864 segment6MaxCellVoltage_V "Segment 6 Max Cell Voltage";
+CM_ SG_ 864 segment6MinCellVoltage_V "Segment 6 Min Cell Voltage";
+CM_ SG_ 864 segment6AvgCellVoltage_V "Segment 6 Average Cell Voltage";
+CM_ SG_ 864 segment6DieTemperature_C "Segment 6 Die Temperature";
+CM_ SG_ 865 segment6MaxCellTemperature_C "Segment 6 Max Cell Temperature";
+CM_ SG_ 865 segment6MinCellTemperature_C "Segment 6 Min Cell Temperature";
+CM_ SG_ 865 segment6AvgCellTemperature_C "Segment 6 Average Cell Temperature";
+CM_ SG_ 865 segment6BoardTemperature_C "Segment 6 Board Temperature";
+CM_ SG_ 866 segment6Cell1Voltage_V "Segment 6 Cell 1 Voltage";
+CM_ SG_ 866 segment6Cell2Voltage_V "Segment 6 Cell 2 Voltage";
+CM_ SG_ 866 segment6Cell3Voltage_V "Segment 6 Cell 3 Voltage";
+CM_ SG_ 866 segment6Cell4Voltage_V "Segment 6 Cell 4 Voltage";
+CM_ SG_ 867 segment6Cell5Voltage_V "Segment 6 Cell 5 Voltage";
+CM_ SG_ 867 segment6Cell6Voltage_V "Segment 6 Cell 6 Voltage";
+CM_ SG_ 867 segment6Cell7Voltage_V "Segment 6 Cell 7 Voltage";
+CM_ SG_ 867 segment6Cell8Voltage_V "Segment 6 Cell 8 Voltage";
+CM_ SG_ 868 segment6Cell9Voltage_V "Segment 6 Cell 9 Voltage";
+CM_ SG_ 868 segment6Cell10Voltage_V "Segment 6 Cell 10 Voltage";
+CM_ SG_ 868 segment6Cell11Voltage_V "Segment 6 Cell 11 Voltage";
+CM_ SG_ 868 segment6Cell12Voltage_V "Segment 6 Cell 12 Voltage";
+CM_ SG_ 869 segment6Cell13Voltage_V "Segment 6 Cell 13 Voltage";
+CM_ SG_ 869 segment6Cell14Voltage_V "Segment 6 Cell 14 Voltage";
+CM_ SG_ 869 segment6Cell15Voltage_V "Segment 6 Cell 15 Voltage";
+CM_ SG_ 869 segment6Cell16Voltage_V "Segment 6 Cell 16 Voltage";
+CM_ SG_ 870 segment6Cell1Temperature_C "Segment 6 Cell 1 Temperature";
+CM_ SG_ 870 segment6Cell2Temperature_C "Segment 6 Cell 2 Temperature";
+CM_ SG_ 870 segment6Cell3Temperature_C "Segment 6 Cell 3 Temperature";
+CM_ SG_ 870 segment6Cell4Temperature_C "Segment 6 Cell 4 Temperature";
+CM_ SG_ 871 segment6Cell5Temperature_C "Segment 6 Cell 5 Temperature";
+CM_ SG_ 871 segment6Cell6Temperature_C "Segment 6 Cell 6 Temperature";
+CM_ SG_ 871 segment6Cell7Temperature_C "Segment 6 Cell 7 Temperature";
+CM_ SG_ 871 segment6Cell8Temperature_C "Segment 6 Cell 8 Temperature";
+CM_ SG_ 872 segment6Cell9Temperature_C "Segment 6 Cell 9 Temperature";
+CM_ SG_ 872 segment6Cell10Temperature_C "Segment 6 Cell 10 Temperature";
+CM_ SG_ 872 segment6Cell11Temperature_C "Segment 6 Cell 11 Temperature";
+CM_ SG_ 872 segment6Cell12Temperature_C "Segment 6 Cell 12 Temperature";
+CM_ SG_ 873 segment6Cell13Temperature_C "Segment 6 Cell 13 Temperature";
+CM_ SG_ 873 segment6Cell14Temperature_C "Segment 6 Cell 14 Temperature";
+CM_ SG_ 873 segment6Cell15Temperature_C "Segment 6 Cell 15 Temperature";
+CM_ SG_ 873 segment6Cell16Temperature_C "Segment 6 Cell 16 Temperature";
+CM_ SG_ 880 segment7MaxCellVoltage_V "Segment 7 Max Cell Voltage";
+CM_ SG_ 880 segment7MinCellVoltage_V "Segment 7 Min Cell Voltage";
+CM_ SG_ 880 segment7AvgCellVoltage_V "Segment 7 Average Cell Voltage";
+CM_ SG_ 880 segment7DieTemperature_C "Segment 7 Die Temperature";
+CM_ SG_ 881 segment7MaxCellTemperature_C "Segment 7 Max Cell Temperature";
+CM_ SG_ 881 segment7MinCellTemperature_C "Segment 7 Min Cell Temperature";
+CM_ SG_ 881 segment7AvgCellTemperature_C "Segment 7 Average Cell Temperature";
+CM_ SG_ 881 segment7BoardTemperature_C "Segment 7 Board Temperature";
+CM_ SG_ 882 segment7Cell1Voltage_V "Segment 7 Cell 1 Voltage";
+CM_ SG_ 882 segment7Cell2Voltage_V "Segment 7 Cell 2 Voltage";
+CM_ SG_ 882 segment7Cell3Voltage_V "Segment 7 Cell 3 Voltage";
+CM_ SG_ 882 segment7Cell4Voltage_V "Segment 7 Cell 4 Voltage";
+CM_ SG_ 883 segment7Cell5Voltage_V "Segment 7 Cell 5 Voltage";
+CM_ SG_ 883 segment7Cell6Voltage_V "Segment 7 Cell 6 Voltage";
+CM_ SG_ 883 segment7Cell7Voltage_V "Segment 7 Cell 7 Voltage";
+CM_ SG_ 883 segment7Cell8Voltage_V "Segment 7 Cell 8 Voltage";
+CM_ SG_ 884 segment7Cell9Voltage_V "Segment 7 Cell 9 Voltage";
+CM_ SG_ 884 segment7Cell10Voltage_V "Segment 7 Cell 10 Voltage";
+CM_ SG_ 884 segment7Cell11Voltage_V "Segment 7 Cell 11 Voltage";
+CM_ SG_ 884 segment7Cell12Voltage_V "Segment 7 Cell 12 Voltage";
+CM_ SG_ 885 segment7Cell13Voltage_V "Segment 7 Cell 13 Voltage";
+CM_ SG_ 885 segment7Cell14Voltage_V "Segment 7 Cell 14 Voltage";
+CM_ SG_ 885 segment7Cell15Voltage_V "Segment 7 Cell 15 Voltage";
+CM_ SG_ 885 segment7Cell16Voltage_V "Segment 7 Cell 16 Voltage";
+CM_ SG_ 886 segment7Cell1Temperature_C "Segment 7 Cell 1 Temperature";
+CM_ SG_ 886 segment7Cell2Temperature_C "Segment 7 Cell 2 Temperature";
+CM_ SG_ 886 segment7Cell3Temperature_C "Segment 7 Cell 3 Temperature";
+CM_ SG_ 886 segment7Cell4Temperature_C "Segment 7 Cell 4 Temperature";
+CM_ SG_ 887 segment7Cell5Temperature_C "Segment 7 Cell 5 Temperature";
+CM_ SG_ 887 segment7Cell6Temperature_C "Segment 7 Cell 6 Temperature";
+CM_ SG_ 887 segment7Cell7Temperature_C "Segment 7 Cell 7 Temperature";
+CM_ SG_ 887 segment7Cell8Temperature_C "Segment 7 Cell 8 Temperature";
+CM_ SG_ 888 segment7Cell9Temperature_C "Segment 7 Cell 9 Temperature";
+CM_ SG_ 888 segment7Cell10Temperature_C "Segment 7 Cell 10 Temperature";
+CM_ SG_ 888 segment7Cell11Temperature_C "Segment 7 Cell 11 Temperature";
+CM_ SG_ 888 segment7Cell12Temperature_C "Segment 7 Cell 12 Temperature";
+CM_ SG_ 889 segment7Cell13Temperature_C "Segment 7 Cell 13 Temperature";
+CM_ SG_ 889 segment7Cell14Temperature_C "Segment 7 Cell 14 Temperature";
+CM_ SG_ 889 segment7Cell15Temperature_C "Segment 7 Cell 15 Temperature";
+CM_ SG_ 889 segment7Cell16Temperature_C "Segment 7 Cell 16 Temperature";
+CM_ SG_ 896 segment8MaxCellVoltage_V "Segment 8 Max Cell Voltage";
+CM_ SG_ 896 segment8MinCellVoltage_V "Segment 8 Min Cell Voltage";
+CM_ SG_ 896 segment8AvgCellVoltage_V "Segment 8 Average Cell Voltage";
+CM_ SG_ 896 segment8DieTemperature_C "Segment 8 Die Temperature";
+CM_ SG_ 897 segment8MaxCellTemperature_C "Segment 8 Max Cell Temperature";
+CM_ SG_ 897 segment8MinCellTemperature_C "Segment 8 Min Cell Temperature";
+CM_ SG_ 897 segment8AvgCellTemperature_C "Segment 8 Average Cell Temperature";
+CM_ SG_ 897 segment8BoardTemperature_C "Segment 8 Board Temperature";
+CM_ SG_ 898 segment8Cell1Voltage_V "Segment 8 Cell 1 Voltage";
+CM_ SG_ 898 segment8Cell2Voltage_V "Segment 8 Cell 2 Voltage";
+CM_ SG_ 898 segment8Cell3Voltage_V "Segment 8 Cell 3 Voltage";
+CM_ SG_ 898 segment8Cell4Voltage_V "Segment 8 Cell 4 Voltage";
+CM_ SG_ 899 segment8Cell5Voltage_V "Segment 8 Cell 5 Voltage";
+CM_ SG_ 899 segment8Cell6Voltage_V "Segment 8 Cell 6 Voltage";
+CM_ SG_ 899 segment8Cell7Voltage_V "Segment 8 Cell 7 Voltage";
+CM_ SG_ 899 segment8Cell8Voltage_V "Segment 8 Cell 8 Voltage";
+CM_ SG_ 900 segment8Cell9Voltage_V "Segment 8 Cell 9 Voltage";
+CM_ SG_ 900 segment8Cell10Voltage_V "Segment 8 Cell 10 Voltage";
+CM_ SG_ 900 segment8Cell11Voltage_V "Segment 8 Cell 11 Voltage";
+CM_ SG_ 900 segment8Cell12Voltage_V "Segment 8 Cell 12 Voltage";
+CM_ SG_ 901 segment8Cell13Voltage_V "Segment 8 Cell 13 Voltage";
+CM_ SG_ 901 segment8Cell14Voltage_V "Segment 8 Cell 14 Voltage";
+CM_ SG_ 901 segment8Cell15Voltage_V "Segment 8 Cell 15 Voltage";
+CM_ SG_ 901 segment8Cell16Voltage_V "Segment 8 Cell 16 Voltage";
+CM_ SG_ 902 segment8Cell1Temperature_C "Segment 8 Cell 1 Temperature";
+CM_ SG_ 902 segment8Cell2Temperature_C "Segment 8 Cell 2 Temperature";
+CM_ SG_ 902 segment8Cell3Temperature_C "Segment 8 Cell 3 Temperature";
+CM_ SG_ 902 segment8Cell4Temperature_C "Segment 8 Cell 4 Temperature";
+CM_ SG_ 903 segment8Cell5Temperature_C "Segment 8 Cell 5 Temperature";
+CM_ SG_ 903 segment8Cell6Temperature_C "Segment 8 Cell 6 Temperature";
+CM_ SG_ 903 segment8Cell7Temperature_C "Segment 8 Cell 7 Temperature";
+CM_ SG_ 903 segment8Cell8Temperature_C "Segment 8 Cell 8 Temperature";
+CM_ SG_ 904 segment8Cell9Temperature_C "Segment 8 Cell 9 Temperature";
+CM_ SG_ 904 segment8Cell10Temperature_C "Segment 8 Cell 10 Temperature";
+CM_ SG_ 904 segment8Cell11Temperature_C "Segment 8 Cell 11 Temperature";
+CM_ SG_ 904 segment8Cell12Temperature_C "Segment 8 Cell 12 Temperature";
+CM_ SG_ 905 segment8Cell13Temperature_C "Segment 8 Cell 13 Temperature";
+CM_ SG_ 905 segment8Cell14Temperature_C "Segment 8 Cell 14 Temperature";
+CM_ SG_ 905 segment8Cell15Temperature_C "Segment 8 Cell 15 Temperature";
+CM_ SG_ 905 segment8Cell16Temperature_C "Segment 8 Cell 16 Temperature";
+CM_ SG_ 912 chargerVoltageSetPoint_V "Charger Voltage Set Point (Charger)";
+CM_ SG_ 912 chargerCurrentSetPoint_A "Charger Current Set Point (Charger)";
+CM_ SG_ 912 chargerStatusByte "Charger Status Byte (Charger)";
+CM_ SG_ 0 vbatChan0Current_A "VBat Channel 0 Current";
+CM_ SG_ 0 vbatChan1Current_A "VBat Channel 1 Current";
+CM_ SG_ 0 vbatChan2Current_A "VBat Channel 2 Current";
+CM_ SG_ 0 vbatChan3Current_A "VBat Channel 3 Current";
+CM_ SG_ 1 vbatChan4Current_A "VBat Channel 4 Current";
+CM_ SG_ 1 vbatChan5Current_A "VBat Channel 5 Current";
+CM_ SG_ 1 vbatChan6Current_A "VBat Channel 6 Current";
+CM_ SG_ 1 fiveVChan0Current_A "Five Volts Channel 0 Current";
+CM_ SG_ 2 fiveVChan1Current_A "Five Volts Channel 1 Current";
+CM_ SG_ 2 fiveVChan2Current_A "Five Volts Channel 2 Current";
+CM_ SG_ 2 fiveVChan3Current_A "Five Volts Channel 3 Current";
+CM_ SG_ 2 can0Utilization_percent "Bus0 Utilization";
+CM_ SG_ 3 can1Utilization_percent "Bus1 Utilization";
+CM_ SG_ 3 can2Utilization_percent "Bus2 Utilization";
+CM_ SG_ 3 plmVbatVoltage_V "PLM Battery Volts";
+CM_ SG_ 3 plm5VVoltage_V "PLM 5V Voltage";
+CM_ SG_ 4 packetsLogged_ul "Packets Logged";
+CM_ SG_ 4 packetsDropped_ul "Packets Dropped";
+CM_ SG_ 5 storageBufferFill_percent "Storage Buffer Fill";
+CM_ SG_ 5 telemetryBufferFill_percent "Telemetry Buffer Fill";
+CM_ SG_ 6 PLM_Temp_degrees "PLM Temperature";
+CM_ SG_ 6 PLM_Humidity_percent "PLM Humidity";
+CM_ SG_ 6 PLM_Micro_Temp "PLM Microcontroller Temperature";
+CM_ SG_ 7 Twelve_Volt_0_Overcurrent "12V Channel 0 Overcurrent Event";
+CM_ SG_ 7 Twelve_Volt_1_Overcurrent "12V Channel 1 Overcurrent Event";
+CM_ SG_ 7 Twelve_Volt_2_Overcurrent "12V Channel 2 Overcurrent Event";
+CM_ SG_ 7 Twelve_Volt_3_Overcurrent "12V Channel 3 Overcurrent Event";
+CM_ SG_ 7 Twelve_Volt_4_Overcurrent "12V Channel 4 Overcurrent Event";
+CM_ SG_ 7 Twelve_Volt_5_Overcurrent "12V Channel 5 Overcurrent Event";
+CM_ SG_ 7 Twelve_Volt_6_Overcurrent "12V Channel 6 Overcurrent Event";
+CM_ SG_ 7 Overcurrent_Event "OVER CURRENT EVENT";
+CM_ SG_ 8 Twelve_Volt_0_Overcurrent_Count "12V Channel 0 Overcurrent Count";
+CM_ SG_ 8 Twelve_Volt_1_Overcurrent_Count "12V Channel 1 Overcurrent Count";
+CM_ SG_ 8 Twelve_Volt_2_Overcurrent_Count "12V Channel 2 Overcurrent Count";
+CM_ SG_ 8 Twelve_Volt_3_Overcurrent_Count "12V Channel 3 Overcurrent Count";
+CM_ SG_ 8 Twelve_Volt_4_Overcurrent_Count "12V Channel 4 Overcurrent Count";
+CM_ SG_ 8 Twelve_Volt_5_Overcurrent_Count "12V Channel 5 Overcurrent Count";
+CM_ SG_ 8 Twelve_Volt_6_Overcurrent_Count "12V Channel 6 Overcurrent Count";
+CM_ SG_ 16 Five_Volt_0_Overcurrent "5V Channel 0 Overcurrent Event";
+CM_ SG_ 16 Five_Volt_1_Overcurrent "5V Channel 1 Overcurrent Event";
+CM_ SG_ 16 Five_Volt_2_Overcurrent "5V Channel 2 Overcurrent Event";
+CM_ SG_ 16 Five_Volt_3_Overcurrent "5V Channel 3 Overcurrent Event";
+CM_ SG_ 16 Five_Volt_0_Overcurrent_Count "5V Channel 0 Overcurrent Count";
+CM_ SG_ 16 Five_Volt_1_Overcurrent_Count "5V Channel 1 Overcurrent Count";
+CM_ SG_ 16 Five_Volt_2_Overcurrent_Count "5V Channel 2 Overcurrent Count";
+CM_ SG_ 16 Five_Volt_3_Overcurrent_Count "5V Channel 3 Overcurrent Count";
+CM_ SG_ 1792 gpsLatitude_deg "GPS Latitude";
+CM_ SG_ 1792 gpsLongitude_deg "GPS Longitude";
+CM_ SG_ 1793 gpsSpeed_mph "GPS Velocity";
+CM_ SG_ 1793 gpsAltitude_ft "GPS Altitude";
+CM_ SG_ 1793 gpsCourse_deg "GPS Course";
+CM_ SG_ 1793 gpsSatelliteCount_ul "GPS Satellite Count";
+CM_ SG_ 1794 gpsValid_ul "GPS Satellite Count";
+CM_ SG_ 1794 gpsYearUTC_ul "GPS Year UTC";
+CM_ SG_ 1794 gpsMonthUTC_ul "GPS Month UTC";
+CM_ SG_ 1794 gpsDayUTC_ul "GPS Day UTC";
+CM_ SG_ 1794 gpsHoursUTC_ul "GPS Hours UTC";
+CM_ SG_ 1794 gpsMinutesUTC_ul "GPS Minutes UTC";
+CM_ SG_ 1794 gpsSecondsUTC_ul "GPS Seconds UTC";
+CM_ SG_ 112 yawRate_degPerSec "Yaw Rate";
+CM_ SG_ 112 lateralAccel_G "G Force Lat";
+CM_ SG_ 128 rollRate_degPerSec "Roll Rate";
+CM_ SG_ 128 longitudinalAccel_G "G Force Long";
+CM_ SG_ 1398 verticalAccel_G "G Force Vert";
+CM_ SG_ 229 lapBeaconRaw_ul "Lap Beacon Raw Message";
+CM_ SG_ 230 lapBeacon_ul "Beacon";
+CM_ SG_ 1200 rearRightTireTempCh1 "Rear Right Tire Temp Channel 1";
+CM_ SG_ 1201 rearRightTireTempCh5 "Rear Right Tire Temp Channel 5";
+CM_ SG_ 1201 rearRightTireTempCh7 "Rear Right Tire Temp Channel 7";
+CM_ SG_ 1201 rearRightTireTempCh8 "Rear Right Tire Temp Channel 8";
+CM_ SG_ 1202 rearRightTireTempCh9 "Rear Right Tire Temp Channel 9";
+CM_ SG_ 1202 rearRightTireTempCh10 "Rear Right Tire Temp Channel 10";
+CM_ SG_ 1202 rearRightTireTempCh12 "Rear Right Tire Temp Channel 12";
+CM_ SG_ 1203 rearRightTireTempCh16 "Rear Right Tire Temp Channel 16";
+CM_ SG_ 1208 frontRightTireTempCh1 "Front Right Tire Temp Channel 1";
+CM_ SG_ 1209 frontRightTireTempCh5 "Front Right Tire Temp Channel 5";
+CM_ SG_ 1209 frontRightTireTempCh7 "Front Right Tire Temp Channel 7";
+CM_ SG_ 1209 frontRightTireTempCh8 "Front Right Tire Temp Channel 8";
+CM_ SG_ 1210 frontRightTireTempCh9 "Front Right Tire Temp Channel 9";
+CM_ SG_ 1210 frontRightTireTempCh10 "Front Right Tire Temp Channel 10";
+CM_ SG_ 1210 frontRightTireTempCh12 "Front Right Tire Temp Channel 12";
+CM_ SG_ 1211 frontRightTireTempCh16 "Front Right Tire Temp Channel 16";
+CM_ SG_ 1212 frontLeftTireTempCh1 "Front Left Tire Temp Channel 1";
+CM_ SG_ 1213 frontLeftTireTempCh5 "Front Left Tire Temp Channel 5";
+CM_ SG_ 1213 frontLeftTireTempCh7 "Front Left Tire Temp Channel 7";
+CM_ SG_ 1213 frontLeftTireTempCh8 "Front Left Tire Temp Channel 8";
+CM_ SG_ 1214 frontLeftTireTempCh9 "Front Left Tire Temp Channel 9";
+CM_ SG_ 1214 frontLeftTireTempCh10 "Front Left Tire Temp Channel 10";
+CM_ SG_ 1214 frontLeftTireTempCh12 "Front Left Tire Temp Channel 12";
+CM_ SG_ 1215 frontLeftTireTempCh16 "Front Left Tire Temp Channel 16";
+CM_ SG_ 1204 rearLeftTireTempCh1 "Rear Left Tire Temp Channel 1";
+CM_ SG_ 1205 rearLeftTireTempCh5 "Rear Left Tire Temp Channel 5";
+CM_ SG_ 1205 rearLeftTireTempCh7 "Rear Left Tire Temp Channel 7";
+CM_ SG_ 1205 rearLeftTireTempCh8 "Rear Left Tire Temp Channel 8";
+CM_ SG_ 1206 rearLeftTireTempCh9 "Rear Left Tire Temp Channel 9";
+CM_ SG_ 1206 rearLeftTireTempCh10 "Rear Left Tire Temp Channel 10";
+CM_ SG_ 1206 rearLeftTireTempCh12 "Rear Left Tire Temp Channel 12";
+CM_ SG_ 1207 rearLeftTireTempCh16 "Rear Left Tire Temp Channel 16";
+CM_ SG_ 1872 tm_CAN1Util_percent "CAN1 Utilization (Telemetry)";
+CM_ SG_ 1872 tm_CAN2Util_percent "CAN2 Utilization (Telemetry)";
+CM_ SG_ 1872 tm_SDBufferFill_percent "SD Buffer Fill (Telemetry)";
+CM_ SG_ 1872 tm_RadioBufferFill_percent "Radio Buffer Fill (Telemetry)";
+CM_ SG_ 1873 tm_SDBytesTransferred_bytes "SD Bytes Transferred (Telemetry)";
+CM_ SG_ 1873 tm_RadioBytesTransferred_bytes "Radio Bytes Transferred (Telemetry)";
+CM_ SG_ 1874 tm_SDPacketsDropped_ul "SD Packets Dropped (Telemetry)";
+CM_ SG_ 1874 tm_RadioPacketsDropped_ul "Radio Packets Dropped (Telemetry)";
+CM_ SG_ 1875 tm_CoinBattery_V "Coin Cell Battery Voltage (Telemetry)";
+CM_ SG_ 1876 sdcStatus17 "SDC Status 17";
+CM_ SG_ 1876 sdcStatus18 "SDC Status 18";
+CM_ SG_ 1876 sdcStatus19 "SDC Status 19";
+CM_ SG_ 1877 chargingPowerLimit "Charging Power Limit";
+CM_ SG_ 1877 forceEnableBalancing_state "BMS Balance Override Enable";
+CM_ SG_ 1878 sdcStatus5 "Shut Down Circuit Break Point 5";
+CM_ SG_ 1878 sdcStatus6 "Shut Down Circuit Break Point 6";
+CM_ SG_ 1878 sdcStatus7 "Shut Down Circuit Break Point 7";

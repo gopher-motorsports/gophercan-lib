@@ -18,7 +18,21 @@ import yaml
 
 
 EXPLICIT_SIGNED_TYPES = {"SIGNED8", "SIGNED16", "SIGNED32", "SIGNED64"}
-FORCED_SIGNED_SIGNALS = {"steeringAngle_deg"}
+FORCED_SIGNED_SIGNALS = {
+    "steeringAngle_deg",
+    "vnavSlipAngle_FL",
+    "vnavSlipAngle_FR",
+    "vnavSlipAngle_RL",
+    "vnavSlipAngle_RR",
+}
+
+# New groups whose signals do not exist in the golden DBC cannot have their
+# transmitter inferred. Keep those intentional additions explicit here.
+EXPLICIT_GROUP_OWNERS = {
+    0x25C: "FVC",
+    0x30A: "BMS",
+    0x30B: "BMS",
+}
 
 
 DBC_HEADER = '''VERSION ""
@@ -99,10 +113,14 @@ def parse_golden(path):
 
 
 def choose_owner(group, signal_owner):
+    message_id = int(group["id"])
+    if message_id in EXPLICIT_GROUP_OWNERS:
+        return EXPLICIT_GROUP_OWNERS[message_id]
+
     owners = [signal_owner[p["name"]] for p in group["parameters"] if p["name"] in signal_owner]
     if not owners:
         raise ValueError(
-            f"Cannot determine transmitter for group {int(group['id']):#x}; "
+            f"Cannot determine transmitter for group {message_id:#x}; "
             "none of its signals exist in the golden DBC"
         )
 
