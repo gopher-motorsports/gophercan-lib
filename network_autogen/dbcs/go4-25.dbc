@@ -32,7 +32,7 @@ NS_ :
 
 BS_:
 
-BU_: PLM Inverter FVC RVC BMS IMU Display SWM CCB Telemetry TireTemp Vector__XXX
+BU_: PLM Inverter FVC RVC BMS IMU Display SWM CCB Telemetry OPTFLOW TireTemp Vector__XXX
 
 BO_ 1038 Inverter_40E: 8 Inverter
  SG_ electricalRPM_erpm : 7|32@0- (1,0) [-2147483648|2147483647] "rpm" Vector__XXX
@@ -304,14 +304,14 @@ BO_ 774 BMS_306: 7 BMS
  SG_ bmsShutdown6_state : 47|8@0+ (1,0) [0|255] "" Vector__XXX
  SG_ bmsInhibitActive_state : 55|8@0+ (1,0) [0|255] "" Vector__XXX
 
-BO_ 778 BMS_30A: 8 BMS
+BO_ 778 OPTFLOW_30A: 8 OPTFLOW
  SG_ flowSenseDistance_Left : 0|16@1+ (1,0) [0|65535] "mm" Vector__XXX
  SG_ flowSenseFx_Left : 16|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX
  SG_ flowSenseFy_Left : 32|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX
  SG_ flowSenseStrength_Left : 48|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ flowSenseFlowQuality_Left : 56|8@1+ (1,0) [0|255] "" Vector__XXX
 
-BO_ 779 BMS_30B: 8 BMS
+BO_ 779 OPTFLOW_30B: 8 OPTFLOW
  SG_ flowSenseDistance_Right : 0|16@1+ (1,0) [0|65535] "mm" Vector__XXX
  SG_ flowSenseFx_Right : 16|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX
  SG_ flowSenseFy_Right : 32|16@1- (1,0) [-32768|32767] "cm/s" Vector__XXX

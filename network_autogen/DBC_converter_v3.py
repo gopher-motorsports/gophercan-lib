@@ -30,8 +30,8 @@ FORCED_SIGNED_SIGNALS = {
 # transmitter inferred. Keep those intentional additions explicit here.
 EXPLICIT_GROUP_OWNERS = {
     0x25C: "FVC",
-    0x30A: "BMS",
-    0x30B: "BMS",
+    0x30A: "OPTFLOW",
+    0x30B: "OPTFLOW",
 }
 
 
