@@ -6168,10 +6168,9 @@ groups: [
     {
         id: 0x109,
         parameters: [
-            {name: brakePressureRear_psi, start: 0, length: 2},
-            {name: steeringAngle_deg,     start: 2, length: 2},
-            {name: brakeTempFrontRight_C, start: 4, length: 2},
-            {name: brakeTempFrontLeft_C,  start: 6, length: 2}
+            {name: steeringAngle_deg,     start: 0, length: 2},
+            {name: brakeTempFrontRight_C, start: 2, length: 2},
+            {name: brakeTempFrontLeft_C,  start: 4, length: 2}
         ]
     },
     {
@@ -6232,7 +6231,8 @@ groups: [
             {name: sdcStatus8, start: 0, length: 1},
             {name: sdcStatus9, start: 1, length: 1},
             {name: brakeBias_percent, start: 2, length: 2},
-            {name: sdcBreakPoint, start: 4, length: 1}
+            {name: sdcBreakPoint, start: 4, length: 1},
+            {name: brakePressureRear_psi, start: 5, length: 2},
         ]
     },
     {
