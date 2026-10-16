@@ -5,65 +5,70 @@ from ruamel.yaml import YAML
 # This script imports a .yaml config file and fills in parameter IDs
 # starting with 1 and incrementing by 1 for each parameter
 
-# Run: python fill_ids.py configs/[filename].yaml
+def fill_IDs(config_path):
+    if not Path(config_path).exists():
+        print('ERROR: Invalid configuration path')
+        sys.exit()
 
-config_path = sys.argv[1]
+    yaml = YAML()
+    yaml.indent(mapping=4, sequence=4, offset=4)
+    yaml.allow_duplicate_keys = True
 
-if not Path(config_path).exists():
-    print('ERROR: Invalid configuration path')
-    sys.exit()
+    print('Loading configuration...')
+    with open(config_path, 'r') as config_file:
+        rawTxtConfig = config_file.readlines()
 
-yaml = YAML()
-yaml.indent(mapping=4, sequence=4, offset=4)
-yaml.allow_duplicate_keys = True
+    #store groups data in a list with nice formatting
+    data_after_groups_formatted = [] 
+    groupsNotFound = False
+    for line in rawTxtConfig:
+            if line.startswith("groups: ["):
+                groupsNotFound = True
+            if groupsNotFound == True:
+                data_after_groups_formatted.append(line)
 
-print('Loading configuration...')
-with open(config_path, 'r') as config_file:
-    rawTxtConfig = config_file.readlines()
+    #run yaml script
+    with open(config_path, 'r') as config_file:
+        config = yaml.load(config_file)
 
-#store groups data in a list with nice formatting
-data_after_groups_formatted = [] 
-groupsNotFound = False
-for line in rawTxtConfig:
-        if line.startswith("groups: ["):
-             groupsNotFound = True
-        if groupsNotFound == True:
-            data_after_groups_formatted.append(line)
+    print('Filling IDs...')
+    id = 1
+    for name in config['parameters']:
+        config['parameters'][name]['id'] = id
+        id += 1
 
-#run yaml script
-with open(config_path, 'r') as config_file:
-     config = yaml.load(config_file)
+    #dump config with new IDs and bad groups formatting
+    with open(config_path, 'w') as config_file:
+        yaml.dump(config, config_file)
 
-print('Filling IDs...')
-id = 1
-for name in config['parameters']:
-    config['parameters'][name]['id'] = id
-    id += 1
+    #open up the manipulated yaml 
+    with open(config_path, 'r') as config_file_after_script:
+        raw_txt_after_script = config_file_after_script.readlines()
 
-#dump config with new IDs and bad groups formatting
-with open(config_path, 'w') as config_file:
-    yaml.dump(config, config_file)
+    #store data with new ID's before groups in a list
+    data_before_groups = []
+    groupsFound = False
+    for line in raw_txt_after_script:
+            if line.startswith("groups: ["):
+                groupsFound = True
+            if groupsFound == False:
+                data_before_groups.append(line)
 
-#open up the manipulated yaml 
-with open(config_path, 'r') as config_file_after_script:
-    raw_txt_after_script = config_file_after_script.readlines()
+    #stich together good scripted data with well formatted groups 
+    print('Reformatting Groups')
+    with open(config_path, 'w') as config_file:
+        for line in data_before_groups:
+            config_file.write(line)
+        
+        for line in data_after_groups_formatted:
+            config_file.write(line) 
 
-#store data with new ID's before groups in a list
-data_before_groups = []
-groupsFound = False
-for line in raw_txt_after_script:
-        if line.startswith("groups: ["):
-            groupsFound = True
-        if groupsFound == False:
-            data_before_groups.append(line)
+    print('Done')
 
-#stich together good scripted data with well formatted groups 
-print('Reformatting Groups')
-with open(config_path, 'w') as config_file:
-    for line in data_before_groups:
-         config_file.write(line)
-    
-    for line in data_after_groups_formatted:
-         config_file.write(line) 
-
-print('Done')
+# Only runs if fill_ids.py is directly executed in the terminal
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python fill_ids.py configs/[filename].yaml")
+        sys.exit()
+    terminal_input = sys.argv[1]
+    fill_IDs(terminal_input)

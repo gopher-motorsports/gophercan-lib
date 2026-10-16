@@ -407,7 +407,8 @@ parameters:
 
     bspdInputFault_state:
         id: 39
-        motec_name: BSPD Input Fault(current sensor/rear brake press out of range)
+        motec_name: BSPD Input Fault(current sensor/rear brake press out of 
+            range)
         unit: ''
         type: UNSIGNED8
         encoding: MSB

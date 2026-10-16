@@ -3,6 +3,9 @@ from pathlib import Path
 import yaml
 from jinja2 import Template
 
+# UPDATE: Import new fill_IDs function
+from fill_ids import fill_IDs
+
 # This script imports a .yaml config file and generates resources for the GopherCAN library
 # Run: python autogen.py configs/[filename].yaml
 # Generates:
@@ -28,6 +31,9 @@ filenames = [
 ]
 
 config_path = sys.argv[1]
+
+# UPDATE: Fill all parameter IDs before autogen reads the YAML
+fill_IDs(config_path)
 
 if not Path(config_path).exists():
     print('ERROR: Invalid configuration path')
@@ -92,6 +98,7 @@ for filename in filenames:
     with open(template_path) as template_file:
         template = Template(template_file.read())
         output = template.render(data)
+        # Relative addressing: save .h and .c files exactly one folder up in parent network directory
         output_path = Path(f'../{filename}')
         with open(output_path, "w") as output_file:
             output_file.write(output)
