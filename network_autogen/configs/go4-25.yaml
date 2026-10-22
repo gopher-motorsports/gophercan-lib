@@ -716,9 +716,18 @@ parameters:
         scale: 1
         offset: 0
 
+    fvcInputInverterVoltage_V:
+        id: 73
+        motec_name: Input DC Voltage (FVC)
+        unit: V
+        type: SIGNED16
+        encoding: MSB
+        scale: 1
+        offset: 0
+
     # Internal
     fvcTemp_C:
-        id: 73
+        id: 74
         motec_name: FVC Temperature
         unit: C
         type: FLOATING
@@ -727,7 +736,7 @@ parameters:
         offset: 0
 
     vehicleState_state:
-        id: 74
+        id: 75
         motec_name: Vehicle State
         unit: ''
         type: UNSIGNED8
@@ -736,7 +745,7 @@ parameters:
         offset: 0
 
     fvcState_state:
-        id: 75
+        id: 76
         motec_name: FVC State
         unit: ''
         type: UNSIGNED8
@@ -745,7 +754,7 @@ parameters:
         offset: 0
 
     fvcMcuStatus_state:
-        id: 76
+        id: 77
         motec_name: FVC MCU State
         unit: ''
         type: UNSIGNED8
@@ -754,7 +763,7 @@ parameters:
         offset: 0
 
     currentlyMoving_state:
-        id: 77
+        id: 78
         motec_name: Currently Moving
         unit: ''
         type: UNSIGNED8
@@ -763,7 +772,7 @@ parameters:
         offset: 0
 
     fvcGSenseStatus_state:
-        id: 78
+        id: 79
         motec_name: FVC GopherSense Status
         unit: ''
         type: UNSIGNED8
@@ -772,7 +781,7 @@ parameters:
         offset: 0
 
     displayFaultStatus_state:
-        id: 79
+        id: 80
         motec_name: Display Fault Status Message
         unit: ''
         type: UNSIGNED8
@@ -781,7 +790,7 @@ parameters:
         offset: 0
 
     sdcStatus3:
-        id: 80
+        id: 81
         motec_name: sdcStatus3
         unit: ''
         type: UNSIGNED8
@@ -790,7 +799,7 @@ parameters:
         offset: 0
 
     sdcStatus4:
-        id: 81
+        id: 82
         motec_name: sdcStatus4
         unit: ''
         type: UNSIGNED8
@@ -800,7 +809,7 @@ parameters:
 
     # FVC Sensors
     brakePressureRear_psi:
-        id: 82
+        id: 83
         motec_name: Brake Pres Rear
         unit: psi
         type: FLOATING
@@ -809,7 +818,7 @@ parameters:
         offset: 0
 
     brakeTempFrontLeft_C:
-        id: 83
+        id: 84
         motec_name: Brake Temp FL
         unit: C
         type: FLOATING
@@ -818,7 +827,7 @@ parameters:
         offset: 0
 
     brakeTempFrontRight_C:
-        id: 84
+        id: 85
         motec_name: Brake Temp FR
         unit: C
         type: FLOATING
@@ -827,7 +836,7 @@ parameters:
         offset: 0
 
     steeringAngle_deg:
-        id: 85
+        id: 86
         motec_name: Steered Angle
         unit: deg
         type: FLOATING
@@ -836,7 +845,7 @@ parameters:
         offset: 0
 
     shockPosFrontLeft_mm:
-        id: 86
+        id: 87
         motec_name: Susp Pos FL
         unit: mm
         type: FLOATING
@@ -845,7 +854,7 @@ parameters:
         offset: 0
 
     shockPosFrontRight_mm:
-        id: 87
+        id: 88
         motec_name: Susp Pos FR
         unit: mm
         type: FLOATING
@@ -854,7 +863,7 @@ parameters:
         offset: 0
 
     pittoTubePressure_psi:
-        id: 88
+        id: 89
         motec_name: Pitto Tube
         unit: psi
         type: FLOATING
@@ -863,7 +872,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontLeft_mph:
-        id: 89
+        id: 90
         motec_name: Wheel Speed FL
         unit: mph
         type: FLOATING
@@ -872,7 +881,7 @@ parameters:
         offset: 0
 
     wheelSpeedFrontRight_mph:
-        id: 90
+        id: 91
         motec_name: Wheel Speed FR
         unit: mph
         type: FLOATING
@@ -881,7 +890,7 @@ parameters:
         offset: 0
 
     fvcControllerTemp_C:
-        id: 91
+        id: 92
         motec_name: FVC Controller Temp
         unit: C
         type: FLOATING
@@ -891,7 +900,7 @@ parameters:
 
 
     fvcMotorTemp_C:
-        id: 92
+        id: 93
         motec_name: FVC Motor Temp
         unit: C
         type: FLOATING
@@ -901,7 +910,7 @@ parameters:
 
     #VectorNav Params:
     fvcINS_status:
-        id: 93
+        id: 94
         motec_name: FVC INS Status
         unit: none
         type: UNSIGNED16
@@ -910,7 +919,7 @@ parameters:
         offset: 0
 
     fvcLatitude:
-        id: 94
+        id: 95
         motec_name: FVC Latitude
         unit: deg
         type: DOUBLE
@@ -919,7 +928,7 @@ parameters:
         offset: 0
 
     fvcLongitude:
-        id: 95
+        id: 96
         motec_name: FVC Longitude
         unit: deg
         type: DOUBLE
@@ -928,7 +937,7 @@ parameters:
         offset: 0
 
     fvcAltitude:
-        id: 96
+        id: 97
         motec_name: FVC Altitude
         unit: m
         type: DOUBLE
@@ -937,7 +946,7 @@ parameters:
         offset: 0
 
     fvcVelBodyX:
-        id: 97
+        id: 98
         motec_name: FVC Velocity Body X
         unit: m/s
         type: FLOATING
@@ -946,7 +955,7 @@ parameters:
         offset: 0
 
     fvcVelBodyY:
-        id: 98
+        id: 99
         motec_name: FVC Velocity Body Y
         unit: m/s
         type: FLOATING
@@ -955,7 +964,7 @@ parameters:
         offset: 0
 
     vnavSlipAngle_FL:
-        id: 99
+        id: 100
         motec_name: FVC Slip Angle FL
         unit: deg
         type: FLOATING
@@ -964,7 +973,7 @@ parameters:
         offset: 0
 
     vnavSlipAngle_FR:
-        id: 100
+        id: 101
         motec_name: FVC Slip Angle FR
         unit: deg
         type: FLOATING
@@ -973,7 +982,7 @@ parameters:
         offset: 0
 
     vnavSlipAngle_RL:
-        id: 101
+        id: 102
         motec_name: FVC Slip Angle RL
         unit: deg
         type: FLOATING
@@ -982,7 +991,7 @@ parameters:
         offset: 0
 
     vnavSlipAngle_RR:
-        id: 102
+        id: 103
         motec_name: FVC Slip Angle RR
         unit: deg
         type: FLOATING
@@ -991,7 +1000,7 @@ parameters:
         offset: 0
 
     flowSenseDistance_Left:
-        id: 103
+        id: 104
         motec_name: Flow Sensor Distance Left
         unit: mm
         type: UNSIGNED16
@@ -1000,7 +1009,7 @@ parameters:
         offset: 0
 
     flowSenseFx_Left:
-        id: 104
+        id: 105
         motec_name: Flow Sensor Fx Left
         unit: cm/s
         type: SIGNED16
@@ -1009,7 +1018,7 @@ parameters:
         offset: 0
 
     flowSenseFy_Left:
-        id: 105
+        id: 106
         motec_name: Flow Sensor Fy Left
         unit: cm/s
         type: SIGNED16
@@ -1018,7 +1027,7 @@ parameters:
         offset: 0
 
     flowSenseStrength_Left:
-        id: 106
+        id: 107
         motec_name: Flow Sensor Strength Left
         unit: ''
         type: UNSIGNED8
@@ -1027,7 +1036,7 @@ parameters:
         offset: 0
 
     flowSenseFlowQuality_Left:
-        id: 107
+        id: 108
         motec_name: Flow Sensor Quality Left
         unit: ''
         type: UNSIGNED8
@@ -1036,7 +1045,7 @@ parameters:
         offset: 0
 
     flowSenseDistance_Right:
-        id: 108
+        id: 109
         motec_name: Flow Sensor Distance Right
         unit: mm
         type: UNSIGNED16
@@ -1045,7 +1054,7 @@ parameters:
         offset: 0
 
     flowSenseFx_Right:
-        id: 109
+        id: 110
         motec_name: Flow Sensor Fx Right
         unit: cm/s
         type: SIGNED16
@@ -1054,7 +1063,7 @@ parameters:
         offset: 0
 
     flowSenseFy_Right:
-        id: 110
+        id: 111
         motec_name: Flow Sensor Fy Right
         unit: cm/s
         type: SIGNED16
@@ -1063,7 +1072,7 @@ parameters:
         offset: 0
 
     flowSenseStrength_Right:
-        id: 111
+        id: 112
         motec_name: Flow Sensor Strength Right
         unit: ''
         type: UNSIGNED8
@@ -1072,7 +1081,7 @@ parameters:
         offset: 0
 
     flowSenseFlowQuality_Right:
-        id: 112
+        id: 113
         motec_name: Flow Sensor Quality Right
         unit: ''
         type: UNSIGNED8
@@ -1081,7 +1090,7 @@ parameters:
         offset: 0
 
     fvcYaw:
-        id: 113
+        id: 114
         motec_name: FVC Yaw
         unit: deg
         type: FLOATING
@@ -1090,7 +1099,7 @@ parameters:
         offset: 0
 
     fvcPitch:
-        id: 114
+        id: 115
         motec_name: FVC Pitch
         unit: deg
         type: FLOATING
@@ -1099,7 +1108,7 @@ parameters:
         offset: 0
 
     fvcRoll:
-        id: 115
+        id: 116
         motec_name: FVC Roll
         unit: deg
         type: FLOATING
@@ -1108,7 +1117,7 @@ parameters:
         offset: 0
 
     fvcQuatX:
-        id: 116
+        id: 117
         motec_name: FVC Quaternion X
         unit: none
         type: FLOATING
@@ -1117,7 +1126,7 @@ parameters:
         offset: 0
 
     fvcQuatY:
-        id: 117
+        id: 118
         motec_name: FVC Quaternion Y
         unit: none
         type: FLOATING
@@ -1126,7 +1135,7 @@ parameters:
         offset: 0
 
     fvcQuatZ:
-        id: 118
+        id: 119
         motec_name: FVC Quaternion Z
         unit: none
         type: FLOATING
@@ -1135,7 +1144,7 @@ parameters:
         offset: 0
 
     fvcQuatS:
-        id: 119
+        id: 120
         motec_name: FVC Quaternion Scalar
         unit: none
         type: FLOATING
@@ -1144,7 +1153,7 @@ parameters:
         offset: 0
 
     fvcLinBodyAccX:
-        id: 120
+        id: 121
         motec_name: FVC Linear Acc Body X
         unit: m/s^2
         type: FLOATING
@@ -1153,7 +1162,7 @@ parameters:
         offset: 0
 
     fvcLinBodyAccY:
-        id: 121
+        id: 122
         motec_name: FVC Linear Acc Body Y
         unit: m/s^2
         type: FLOATING
@@ -1162,7 +1171,7 @@ parameters:
         offset: 0
 
     fvcLinBodyAccZ:
-        id: 122
+        id: 123
         motec_name: FVC Linear Acc Body Z
         unit: m/s^2
         type: FLOATING
@@ -1171,7 +1180,7 @@ parameters:
         offset: 0
 
     fvcTimeUtcY:
-        id: 123
+        id: 124
         motec_name: FVC UTC Year
         unit: none
         type: UNSIGNED8
@@ -1180,7 +1189,7 @@ parameters:
         offset: 0
 
     fvcTimeUtcMonth:
-        id: 124
+        id: 125
         motec_name: FVC UTC Month
         unit: none
         type: UNSIGNED8
@@ -1189,7 +1198,7 @@ parameters:
         offset: 0
 
     fvcTimeUtcD:
-        id: 125
+        id: 126
         motec_name: FVC UTC Day
         unit: none
         type: UNSIGNED8
@@ -1198,7 +1207,7 @@ parameters:
         offset: 0
 
     fvcTimeUtcH:
-        id: 126
+        id: 127
         motec_name: FVC UTC Hour
         unit: none
         type: UNSIGNED8
@@ -1207,7 +1216,7 @@ parameters:
         offset: 0
 
     fvcTimeUtcMin:
-        id: 127
+        id: 128
         motec_name: FVC UTC Minute
         unit: none
         type: UNSIGNED8
@@ -1216,7 +1225,7 @@ parameters:
         offset: 0
 
     fvcTimeUtcS:
-        id: 128
+        id: 129
         motec_name: FVC UTC Second
         unit: none
         type: UNSIGNED8
@@ -1225,7 +1234,7 @@ parameters:
         offset: 0
 
     fvcTimeUtcF:
-        id: 129
+        id: 130
         motec_name: FVC UTC Fraction
         unit: none
         type: UNSIGNED16
@@ -1234,7 +1243,7 @@ parameters:
         offset: 0
 
     fvcGyroBodyX:
-        id: 130
+        id: 131
         motec_name: FVC Gyro Body X
         unit: deg/s
         type: FLOATING
@@ -1243,7 +1252,7 @@ parameters:
         offset: 0
 
     fvcGyroBodyY:
-        id: 131
+        id: 132
         motec_name: FVC Gyro Body Y
         unit: deg/s
         type: FLOATING
@@ -1252,7 +1261,7 @@ parameters:
         offset: 0
 
     fvcGyroBodyZ:
-        id: 132
+        id: 133
         motec_name: FVC Gyro Body Z
         unit: deg/s
         type: FLOATING
@@ -1261,7 +1270,7 @@ parameters:
         offset: 0
 
     fvcPowerCycleNeeded:
-        id: 133
+        id: 134
         motec_name: VN300 Power Cycle Needed
         unit: ''
         type: UNSIGNED8
@@ -1272,7 +1281,7 @@ parameters:
 
     # Steering Wheel
     swButon0_state:
-        id: 134
+        id: 135
         motec_name: Wheel Button 0
         unit: ''
         type: UNSIGNED8
@@ -1281,7 +1290,7 @@ parameters:
         offset: 0
 
     swButon1_state:
-        id: 135
+        id: 136
         motec_name: Wheel Button 1
         unit: ''
         type: UNSIGNED8
@@ -1290,7 +1299,7 @@ parameters:
         offset: 0
 
     swButon2_state:
-        id: 136
+        id: 137
         motec_name: Wheel Button 2
         unit: ''
         type: UNSIGNED8
@@ -1299,7 +1308,7 @@ parameters:
         offset: 0
 
     swButon3_state:
-        id: 137
+        id: 138
         motec_name: Wheel Button 3
         unit: ''
         type: UNSIGNED8
@@ -1308,7 +1317,7 @@ parameters:
         offset: 0
 
     swButon4_state:
-        id: 138
+        id: 139
         motec_name: Wheel Button 2
         unit: ''
         type: UNSIGNED8
@@ -1317,7 +1326,7 @@ parameters:
         offset: 0
 
     swButon5_state:
-        id: 139
+        id: 140
         motec_name: Wheel Button 3
         unit: ''
         type: UNSIGNED8
@@ -1326,7 +1335,7 @@ parameters:
         offset: 0
 
     displayPage_state:
-        id: 140
+        id: 141
         motec_name: Display Page
         unit: ''
         type: UNSIGNED8
@@ -1335,7 +1344,7 @@ parameters:
         offset: 0
 
     swDial_a_ul:
-        id: 141
+        id: 142
         motec_name: Wheel Dial A
         unit: ''
         type: UNSIGNED8
@@ -1344,7 +1353,7 @@ parameters:
         offset: 0
 
     swDial_b_ul:
-        id: 142
+        id: 143
         motec_name: Wheel Dial B
         unit: ''
         type: UNSIGNED8
@@ -1353,7 +1362,7 @@ parameters:
         offset: 0
 
     readyToDriveButton_state:
-        id: 143
+        id: 144
         motec_name: Ready to Drive Button
         unit: ''
         type: UNSIGNED8
@@ -1363,7 +1372,7 @@ parameters:
     # End Steering Wheel
     # Power and Logging Module Sensing
     plmVbatVoltage_V:
-        id: 144
+        id: 145
         motec_name: PLM Battery Volts
         unit: V
         type: FLOATING
@@ -1372,7 +1381,7 @@ parameters:
         offset: 0
 
     plm5VVoltage_V:
-        id: 145
+        id: 146
         motec_name: PLM 5V Voltage
         unit: V
         type: FLOATING
@@ -1381,7 +1390,7 @@ parameters:
         offset: 0
 
     vbatChan0Current_A:
-        id: 146
+        id: 147
         motec_name: VBat Channel 0 Current
         unit: V
         type: FLOATING
@@ -1390,7 +1399,7 @@ parameters:
         offset: 0
 
     vbatChan1Current_A:
-        id: 147
+        id: 148
         motec_name: VBat Channel 1 Current
         unit: V
         type: FLOATING
@@ -1399,7 +1408,7 @@ parameters:
         offset: 0
 
     vbatChan2Current_A:
-        id: 148
+        id: 149
         motec_name: VBat Channel 2 Current
         unit: V
         type: FLOATING
@@ -1408,7 +1417,7 @@ parameters:
         offset: 0
 
     vbatChan3Current_A:
-        id: 149
+        id: 150
         motec_name: VBat Channel 3 Current
         unit: V
         type: FLOATING
@@ -1417,7 +1426,7 @@ parameters:
         offset: 0
 
     vbatChan4Current_A:
-        id: 150
+        id: 151
         motec_name: VBat Channel 4 Current
         unit: V
         type: FLOATING
@@ -1426,7 +1435,7 @@ parameters:
         offset: 0
 
     vbatChan5Current_A:
-        id: 151
+        id: 152
         motec_name: VBat Channel 5 Current
         unit: V
         type: FLOATING
@@ -1435,7 +1444,7 @@ parameters:
         offset: 0
 
     vbatChan6Current_A:
-        id: 152
+        id: 153
         motec_name: VBat Channel 6 Current
         unit: V
         type: FLOATING
@@ -1444,7 +1453,7 @@ parameters:
         offset: 0
 
     fiveVChan0Current_A:
-        id: 153
+        id: 154
         motec_name: Five Volts Channel 0 Current
         unit: V
         type: FLOATING
@@ -1453,7 +1462,7 @@ parameters:
         offset: 0
 
     fiveVChan1Current_A:
-        id: 154
+        id: 155
         motec_name: Five Volts Channel 1 Current
         unit: V
         type: FLOATING
@@ -1462,7 +1471,7 @@ parameters:
         offset: 0
 
     fiveVChan2Current_A:
-        id: 155
+        id: 156
         motec_name: Five Volts Channel 2 Current
         unit: V
         type: FLOATING
@@ -1471,7 +1480,7 @@ parameters:
         offset: 0
 
     fiveVChan3Current_A:
-        id: 156
+        id: 157
         motec_name: Five Volts Channel 3 Current
         unit: V
         type: FLOATING
@@ -1480,7 +1489,7 @@ parameters:
         offset: 0
 
     Overcurrent_Event:
-        id: 157
+        id: 158
         motec_name: OVER CURRENT EVENT
         unit: ''
         type: UNSIGNED8
@@ -1489,7 +1498,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_0_Overcurrent:
-        id: 158
+        id: 159
         motec_name: 12V Channel 0 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1498,7 +1507,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_1_Overcurrent:
-        id: 159
+        id: 160
         motec_name: 12V Channel 1 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1507,7 +1516,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_2_Overcurrent:
-        id: 160
+        id: 161
         motec_name: 12V Channel 2 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1516,7 +1525,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_3_Overcurrent:
-        id: 161
+        id: 162
         motec_name: 12V Channel 3 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1525,7 +1534,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_4_Overcurrent:
-        id: 162
+        id: 163
         motec_name: 12V Channel 4 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1534,7 +1543,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_5_Overcurrent:
-        id: 163
+        id: 164
         motec_name: 12V Channel 5 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1543,7 +1552,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_6_Overcurrent:
-        id: 164
+        id: 165
         motec_name: 12V Channel 6 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1552,7 +1561,7 @@ parameters:
         offset: 0
 
     Five_Volt_0_Overcurrent:
-        id: 165
+        id: 166
         motec_name: 5V Channel 0 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1561,7 +1570,7 @@ parameters:
         offset: 0
 
     Five_Volt_1_Overcurrent:
-        id: 166
+        id: 167
         motec_name: 5V Channel 1 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1570,7 +1579,7 @@ parameters:
         offset: 0
 
     Five_Volt_2_Overcurrent:
-        id: 167
+        id: 168
         motec_name: 5V Channel 2 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1579,7 +1588,7 @@ parameters:
         offset: 0
 
     Five_Volt_3_Overcurrent:
-        id: 168
+        id: 169
         motec_name: 5V Channel 3 Overcurrent Event
         unit: ''
         type: UNSIGNED8
@@ -1588,7 +1597,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_0_Overcurrent_Count:
-        id: 169
+        id: 170
         motec_name: 12V Channel 0 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1597,7 +1606,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_1_Overcurrent_Count:
-        id: 170
+        id: 171
         motec_name: 12V Channel 1 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1606,7 +1615,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_2_Overcurrent_Count:
-        id: 171
+        id: 172
         motec_name: 12V Channel 2 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1615,7 +1624,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_3_Overcurrent_Count:
-        id: 172
+        id: 173
         motec_name: 12V Channel 3 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1624,7 +1633,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_4_Overcurrent_Count:
-        id: 173
+        id: 174
         motec_name: 12V Channel 4 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1633,7 +1642,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_5_Overcurrent_Count:
-        id: 174
+        id: 175
         motec_name: 12V Channel 5 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1642,7 +1651,7 @@ parameters:
         offset: 0
 
     Twelve_Volt_6_Overcurrent_Count:
-        id: 175
+        id: 176
         motec_name: 12V Channel 6 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1651,7 +1660,7 @@ parameters:
         offset: 0
 
     Five_Volt_0_Overcurrent_Count:
-        id: 176
+        id: 177
         motec_name: 5V Channel 0 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1660,7 +1669,7 @@ parameters:
         offset: 0
 
     Five_Volt_1_Overcurrent_Count:
-        id: 177
+        id: 178
         motec_name: 5V Channel 1 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1669,7 +1678,7 @@ parameters:
         offset: 0
 
     Five_Volt_2_Overcurrent_Count:
-        id: 178
+        id: 179
         motec_name: 5V Channel 2 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1678,7 +1687,7 @@ parameters:
         offset: 0
 
     Five_Volt_3_Overcurrent_Count:
-        id: 179
+        id: 180
         motec_name: 5V Channel 3 Overcurrent Count
         unit: ''
         type: UNSIGNED8
@@ -1687,7 +1696,7 @@ parameters:
         offset: 0
 
     PLM_Temp_degrees:
-        id: 180
+        id: 181
         motec_name: PLM Temperature
         unit: C
         type: FLOATING
@@ -1696,7 +1705,7 @@ parameters:
         offset: -40
 
     PLM_Humidity_percent:
-        id: 181
+        id: 182
         motec_name: PLM Humidity
         unit: '%'
         type: FLOATING
@@ -1705,7 +1714,7 @@ parameters:
         offset: 0
 
     PLM_Micro_Temp:
-        id: 182
+        id: 183
         motec_name: PLM Microcontroller Temperature
         unit: '%'
         type: FLOATING
@@ -1714,7 +1723,7 @@ parameters:
         offset: 0
 
     can0Utilization_percent:
-        id: 183
+        id: 184
         motec_name: Bus0 Utilization
         unit: '%'
         type: FLOATING
@@ -1723,7 +1732,7 @@ parameters:
         offset: 0
 
     can1Utilization_percent:
-        id: 184
+        id: 185
         motec_name: Bus1 Utilization
         unit: '%'
         type: FLOATING
@@ -1732,7 +1741,7 @@ parameters:
         offset: 0
 
     can2Utilization_percent:
-        id: 185
+        id: 186
         motec_name: Bus2 Utilization
         unit: '%'
         type: FLOATING
@@ -1744,7 +1753,7 @@ parameters:
     # Display
     # sent over 0x700, latitude than longitude, each 32bit
     gpsLatitude_deg:
-        id: 186
+        id: 187
         motec_name: GPS Latitude
         unit: deg
         type: FLOATING
@@ -1753,7 +1762,7 @@ parameters:
         offset: 0
 
     gpsLongitude_deg:
-        id: 187
+        id: 188
         motec_name: GPS Longitude
         unit: deg
         type: FLOATING
@@ -1762,7 +1771,7 @@ parameters:
         offset: 0
 
     gpsSpeed_mph:
-        id: 188
+        id: 189
         motec_name: GPS Velocity
         unit: mph
         type: UNSIGNED16
@@ -1771,7 +1780,7 @@ parameters:
         offset: 0
 
     gpsAltitude_ft:
-        id: 189
+        id: 190
         motec_name: GPS Altitude
         unit: ft
         type: SIGNED16
@@ -1780,7 +1789,7 @@ parameters:
         offset: 0
 
     gpsCourse_deg:
-        id: 190
+        id: 191
         motec_name: GPS Course
         unit: deg
         type: UNSIGNED16
@@ -1789,15 +1798,6 @@ parameters:
         offset: 0
 
     gpsSatelliteCount_ul:
-        id: 191
-        motec_name: GPS Satellite Count
-        unit: ''
-        type: UNSIGNED8
-        encoding: MSB
-        scale: 1
-        offset: 0
-
-    gpsValid_ul:
         id: 192
         motec_name: GPS Satellite Count
         unit: ''
@@ -1806,8 +1806,17 @@ parameters:
         scale: 1
         offset: 0
 
-    gpsYearUTC_ul:
+    gpsValid_ul:
         id: 193
+        motec_name: GPS Satellite Count
+        unit: ''
+        type: UNSIGNED8
+        encoding: MSB
+        scale: 1
+        offset: 0
+
+    gpsYearUTC_ul:
+        id: 194
         motec_name: GPS Year UTC
         unit: ''
         type: UNSIGNED8
@@ -1816,7 +1825,7 @@ parameters:
         offset: 0
 
     gpsMonthUTC_ul:
-        id: 194
+        id: 195
         motec_name: GPS Month UTC
         unit: ''
         type: UNSIGNED8
@@ -1825,7 +1834,7 @@ parameters:
         offset: 0
 
     gpsDayUTC_ul:
-        id: 195
+        id: 196
         motec_name: GPS Day UTC
         unit: ''
         type: UNSIGNED8
@@ -1834,7 +1843,7 @@ parameters:
         offset: 0
 
     gpsHoursUTC_ul:
-        id: 196
+        id: 197
         motec_name: GPS Hours UTC
         unit: ''
         type: UNSIGNED8
@@ -1843,7 +1852,7 @@ parameters:
         offset: 0
 
     gpsMinutesUTC_ul:
-        id: 197
+        id: 198
         motec_name: GPS Minutes UTC
         unit: ''
         type: UNSIGNED8
@@ -1852,7 +1861,7 @@ parameters:
         offset: 0
 
     gpsSecondsUTC_ul:
-        id: 198
+        id: 199
         motec_name: GPS Seconds UTC
         unit: ''
         type: UNSIGNED8
@@ -1863,7 +1872,7 @@ parameters:
 
     # Inertail Measurement Unit
     yawRate_degPerSec:
-        id: 199
+        id: 200
         motec_name: Yaw Rate
         unit: deg/s
         type: FLOATING
@@ -1872,7 +1881,7 @@ parameters:
         offset: -163.84
 
     rollRate_degPerSec:
-        id: 200
+        id: 201
         motec_name: Roll Rate
         unit: deg/s
         type: FLOATING
@@ -1881,7 +1890,7 @@ parameters:
         offset: -163.84
 
     lateralAccel_G:
-        id: 201
+        id: 202
         motec_name: G Force Lat
         unit: G
         type: FLOATING
@@ -1890,7 +1899,7 @@ parameters:
         offset: -4.1746432
 
     longitudinalAccel_G:
-        id: 202
+        id: 203
         motec_name: G Force Long
         unit: G
         type: FLOATING
@@ -1899,7 +1908,7 @@ parameters:
         offset: -4.1746432
 
     verticalAccel_G:
-        id: 203
+        id: 204
         motec_name: G Force Vert
         unit: G
         type: FLOATING
@@ -1910,7 +1919,7 @@ parameters:
 
     # DATA LOGGING
     packetsLogged_ul:
-        id: 204
+        id: 205
         motec_name: Packets Logged
         unit: ''
         type: UNSIGNED32
@@ -1919,7 +1928,7 @@ parameters:
         offset: 0
 
     packetsDropped_ul:
-        id: 205
+        id: 206
         motec_name: Packets Dropped
         unit: ''
         type: UNSIGNED32
@@ -1928,7 +1937,7 @@ parameters:
         offset: 0
 
     storageBufferFill_percent:
-        id: 206
+        id: 207
         motec_name: Storage Buffer Fill
         unit: '%'
         type: FLOATING
@@ -1937,7 +1946,7 @@ parameters:
         offset: 0
 
     telemetryBufferFill_percent:
-        id: 207
+        id: 208
         motec_name: Telemetry Buffer Fill
         unit: '%'
         type: FLOATING
@@ -1948,7 +1957,7 @@ parameters:
 
     # MISC
     lapBeaconRaw_ul:
-        id: 208
+        id: 209
         motec_name: Lap Beacon Raw Message
         unit: ''
         type: FLOATING
@@ -1957,7 +1966,7 @@ parameters:
         offset: 0
 
     lapBeacon_ul:
-        id: 209
+        id: 210
         motec_name: Beacon
         unit: ''
         type: FLOATING
@@ -1968,7 +1977,7 @@ parameters:
 
     # TELEMETRY METRICS
     tm_CAN1Util_percent:
-        id: 210
+        id: 211
         motec_name: CAN1 Utilization (Telemetry)
         unit: '%'
         type: FLOATING
@@ -1977,7 +1986,7 @@ parameters:
         offset: 0
 
     tm_CAN2Util_percent:
-        id: 211
+        id: 212
         motec_name: CAN2 Utilization (Telemetry)
         unit: '%'
         type: FLOATING
@@ -1986,7 +1995,7 @@ parameters:
         offset: 0
 
     tm_SDBufferFill_percent:
-        id: 212
+        id: 213
         motec_name: SD Buffer Fill (Telemetry)
         unit: '%'
         type: FLOATING
@@ -1995,7 +2004,7 @@ parameters:
         offset: 0
 
     tm_RadioBufferFill_percent:
-        id: 213
+        id: 214
         motec_name: Radio Buffer Fill (Telemetry)
         unit: '%'
         type: FLOATING
@@ -2004,7 +2013,7 @@ parameters:
         offset: 0
 
     tm_SDBytesTransferred_bytes:
-        id: 214
+        id: 215
         motec_name: SD Bytes Transferred (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -2013,7 +2022,7 @@ parameters:
         offset: 0
 
     tm_RadioBytesTransferred_bytes:
-        id: 215
+        id: 216
         motec_name: Radio Bytes Transferred (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -2022,7 +2031,7 @@ parameters:
         offset: 0
 
     tm_SDPacketsDropped_ul:
-        id: 216
+        id: 217
         motec_name: SD Packets Dropped (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -2031,7 +2040,7 @@ parameters:
         offset: 0
 
     tm_RadioPacketsDropped_ul:
-        id: 217
+        id: 218
         motec_name: Radio Packets Dropped (Telemetry)
         unit: ''
         type: UNSIGNED32
@@ -2040,7 +2049,7 @@ parameters:
         offset: 0
 
     tm_CoinBattery_V:
-        id: 218
+        id: 219
         motec_name: Coin Cell Battery Voltage (Telemetry)
         unit: V
         type: FLOATING
@@ -2052,7 +2061,7 @@ parameters:
     # Charger Control Board
 
     sdcStatus17:
-        id: 219
+        id: 220
         motec_name: SDC Status 17
         unit: ''
         type: UNSIGNED8
@@ -2061,7 +2070,7 @@ parameters:
         offset: 0
 
     sdcStatus18:
-        id: 220
+        id: 221
         motec_name: SDC Status 18
         unit: ''
         type: UNSIGNED8
@@ -2070,7 +2079,7 @@ parameters:
         offset: 0
 
     sdcStatus19:
-        id: 221
+        id: 222
         motec_name: SDC Status 19
         unit: ''
         type: UNSIGNED8
@@ -2079,7 +2088,7 @@ parameters:
         offset: 0
 
     chargingPowerLimit:
-        id: 222
+        id: 223
         motec_name: Charging Power Limit
         unit: ''
         type: FLOATING
@@ -2094,7 +2103,7 @@ parameters:
     # Pack sensors
 
     bmsBatteryCurrent_A:
-        id: 223
+        id: 224
         motec_name: Battery Pack Current (BMS)
         unit: A
         type: FLOATING
@@ -2103,7 +2112,7 @@ parameters:
         offset: -300
 
     bmsBatteryVoltage_V:
-        id: 224
+        id: 225
         motec_name: Battery Pack Voltage (BMS)
         unit: V
         type: FLOATING
@@ -2112,7 +2121,7 @@ parameters:
         offset: 0
 
     bmsTractiveSystemVoltage_V:
-        id: 225
+        id: 226
         motec_name: Tractive System Voltage (BMS)
         unit: V
         type: FLOATING
@@ -2121,7 +2130,7 @@ parameters:
         offset: 0
 
     soeByOCV_percent:
-        id: 226
+        id: 227
         motec_name: SOE by OCV
         unit: '%'
         type: FLOATING
@@ -2130,7 +2139,7 @@ parameters:
         offset: 0
 
     soeByCoulombCounting_percent:
-        id: 227
+        id: 228
         motec_name: SOE by Coulomb Counting
         unit: '%'
         type: FLOATING
@@ -2141,7 +2150,7 @@ parameters:
     # Pack statistics
 
     maxCellVoltage_V:
-        id: 228
+        id: 229
         motec_name: Max Cell Voltage
         unit: V
         type: FLOATING
@@ -2150,7 +2159,7 @@ parameters:
         offset: 0
 
     minCellVoltage_V:
-        id: 229
+        id: 230
         motec_name: Min Cell Voltage
         unit: V
         type: FLOATING
@@ -2159,7 +2168,7 @@ parameters:
         offset: 0
 
     avgCellVoltage_V:
-        id: 230
+        id: 231
         motec_name: Average Cell Voltage
         unit: V
         type: FLOATING
@@ -2168,7 +2177,7 @@ parameters:
         offset: 0
 
     cellImbalance_mV:
-        id: 231
+        id: 232
         motec_name: Cell Imbalance
         unit: mV
         type: FLOATING
@@ -2177,7 +2186,7 @@ parameters:
         offset: 0
 
     maxCellTemp_C:
-        id: 232
+        id: 233
         motec_name: Max Cell Temperature
         unit: C
         type: FLOATING
@@ -2186,7 +2195,7 @@ parameters:
         offset: -40
 
     minCellTemp_C:
-        id: 233
+        id: 234
         motec_name: Min Cell Temperature
         unit: C
         type: FLOATING
@@ -2195,7 +2204,7 @@ parameters:
         offset: -40
 
     avgCellTemp_C:
-        id: 234
+        id: 235
         motec_name: Average Cell Temperature
         unit: C
         type: FLOATING
@@ -2204,7 +2213,7 @@ parameters:
         offset: -40
 
     maxBoardTemp_C:
-        id: 235
+        id: 236
         motec_name: Max Board Temperature
         unit: C
         type: FLOATING
@@ -2213,7 +2222,7 @@ parameters:
         offset: -40
 
     minBoardTemp_C:
-        id: 236
+        id: 237
         motec_name: Min Board Temperature
         unit: C
         type: FLOATING
@@ -2222,7 +2231,7 @@ parameters:
         offset: -40
 
     avgBoardTemp_C:
-        id: 237
+        id: 238
         motec_name: Average Board Temperature
         unit: C
         type: FLOATING
@@ -2233,7 +2242,7 @@ parameters:
     # BMS faults
 
     amsFault_state:
-        id: 238
+        id: 239
         motec_name: AMS Fault State
         unit: ''
         type: UNSIGNED8
@@ -2242,7 +2251,7 @@ parameters:
         offset: 0
 
     imdFault_state:
-        id: 239
+        id: 240
         motec_name: IMD Fault State
         unit: ''
         type: UNSIGNED8
@@ -2253,7 +2262,7 @@ parameters:
     # BMS alert info
 
     bmsNumActiveAlerts_state:
-        id: 240
+        id: 241
         motec_name: BMS Num Active Alerts
         unit: ''
         type: UNSIGNED8
@@ -2262,7 +2271,7 @@ parameters:
         offset: 0
 
     bmsCurrAlertIndex_state:
-        id: 241
+        id: 242
         motec_name: BMS Current Alert Index
         unit: ''
         type: UNSIGNED8
@@ -2273,7 +2282,7 @@ parameters:
     # BMS alerts
 
     overvoltageWarningAlert_state:
-        id: 242
+        id: 243
         motec_name: BMS Overvoltage Warning Present
         unit: ''
         type: UNSIGNED8
@@ -2282,7 +2291,7 @@ parameters:
         offset: 0
 
     undervoltageWarningAlert_state:
-        id: 243
+        id: 244
         motec_name: BMS Undervoltage Warning Present
         unit: ''
         type: UNSIGNED8
@@ -2291,7 +2300,7 @@ parameters:
         offset: 0
 
     overvoltageFaultAlert_state:
-        id: 244
+        id: 245
         motec_name: BMS Overvoltage Fault Present
         unit: ''
         type: UNSIGNED8
@@ -2300,7 +2309,7 @@ parameters:
         offset: 0
 
     undervoltageFaultAlert_state:
-        id: 245
+        id: 246
         motec_name: BMS Undervoltage Fault Present
         unit: ''
         type: UNSIGNED8
@@ -2309,7 +2318,7 @@ parameters:
         offset: 0
 
     cellImbalanceAlert_state:
-        id: 246
+        id: 247
         motec_name: BMS Cell Imbalance Alert Present
         unit: ''
         type: UNSIGNED8
@@ -2318,7 +2327,7 @@ parameters:
         offset: 0
 
     overtempWarningAlert_state:
-        id: 247
+        id: 248
         motec_name: BMS Overtemp Warning Present
         unit: ''
         type: UNSIGNED8
@@ -2327,7 +2336,7 @@ parameters:
         offset: 0
 
     overtempFaultAlert_state:
-        id: 248
+        id: 249
         motec_name: BMS Overtemp Fault Present
         unit: ''
         type: UNSIGNED8
@@ -2336,7 +2345,7 @@ parameters:
         offset: 0
 
     badVoltageSenseStatusAlert_state:
-        id: 249
+        id: 250
         motec_name: BMS Bad Voltage Sense Alert Present
         unit: ''
         type: UNSIGNED8
@@ -2345,7 +2354,7 @@ parameters:
         offset: 0
 
     badBrickTempSenseStatusAlert_state:
-        id: 250
+        id: 251
         motec_name: BMS Bad Temp Sense Alert Present
         unit: ''
         type: UNSIGNED8
@@ -2354,7 +2363,7 @@ parameters:
         offset: 0
 
     badBoardTempSenseStatusAlert_state:
-        id: 251
+        id: 252
         motec_name: BMS Bad Board Temp Sense Alert Present
         unit: ''
         type: UNSIGNED8
@@ -2363,7 +2372,7 @@ parameters:
         offset: 0
 
     insufficientTempSensorsAlert_state:
-        id: 252
+        id: 253
         motec_name: BMS Insuffieient Temp Sense Fault Present
         unit: ''
         type: UNSIGNED8
@@ -2372,7 +2381,7 @@ parameters:
         offset: 0
 
     telemetryCommunicationAlert_state:
-        id: 253
+        id: 254
         motec_name: BMS Communication Failure Fault Present
         unit: ''
         type: UNSIGNED8
@@ -2381,7 +2390,7 @@ parameters:
         offset: 0
 
     packOvercurrentFaultAlert_state:
-        id: 254
+        id: 255
         motec_name: BMS Overcurrent Fault Present
         unit: ''
         type: UNSIGNED8
@@ -2390,7 +2399,7 @@ parameters:
         offset: 0
 
     forceEnableBalancing_state:
-        id: 255
+        id: 256
         motec_name: BMS Balance Override Enable
         unit: ''
         type: UNSIGNED8
@@ -2399,7 +2408,7 @@ parameters:
         offset: 0
 
     bmsShutdown1_state:
-        id: 256
+        id: 257
         motec_name: BMS Shutdown 1
         unit: ''
         type: UNSIGNED8
@@ -2408,7 +2417,7 @@ parameters:
         offset: 0
 
     bmsShutdown2_state:
-        id: 257
+        id: 258
         motec_name: BMS Shutdown 2
         unit: ''
         type: UNSIGNED8
@@ -2417,7 +2426,7 @@ parameters:
         offset: 0
 
     bmsShutdown3_state:
-        id: 258
+        id: 259
         motec_name: BMS Shutdown 3
         unit: ''
         type: UNSIGNED8
@@ -2426,7 +2435,7 @@ parameters:
         offset: 0
 
     bmsShutdown4_state:
-        id: 259
+        id: 260
         motec_name: BMS Shutdown 4
         unit: ''
         type: UNSIGNED8
@@ -2435,7 +2444,7 @@ parameters:
         offset: 0
 
     bmsShutdown5_state:
-        id: 260
+        id: 261
         motec_name: BMS Shutdown 5
         unit: ''
         type: UNSIGNED8
@@ -2444,7 +2453,7 @@ parameters:
         offset: 0
 
     bmsShutdown6_state:
-        id: 261
+        id: 262
         motec_name: BMS Shutdown 6
         unit: ''
         type: UNSIGNED8
@@ -2453,7 +2462,7 @@ parameters:
         offset: 0
 
     bmsInhibitActive_state:
-        id: 262
+        id: 263
         motec_name: BMS Inhibit active
         unit: ''
         type: UNSIGNED8
@@ -5393,7 +5402,7 @@ parameters:
     # Elcon charger
 
     chargerVoltageSetPoint_V:
-        id: 263
+        id: 264
         motec_name: Charger Voltage Set Point (Charger)
         unit: V
         type: FLOATING
@@ -5402,7 +5411,7 @@ parameters:
         offset: 0
 
     chargerCurrentSetPoint_A:
-        id: 264
+        id: 265
         motec_name: Charger Current Set Point (Charger)
         unit: A
         type: FLOATING
@@ -5411,7 +5420,7 @@ parameters:
         offset: 0
 
     chargerStatusByte:
-        id: 265
+        id: 266
         motec_name: Charger Status Byte (Charger)
         unit: ''
         type: UNSIGNED8
@@ -5424,7 +5433,7 @@ parameters:
     #Start Tire Temps
 
     rearRightTireTempCh1:
-        id: 266
+        id: 267
         motec_name: Rear Right Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -5433,7 +5442,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh2:
-        id: 267
+        id: 268
         motec_name: Rear Right Tire Temp Channel 2
         unit: C
         type: FLOATING
@@ -5442,7 +5451,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh3:
-        id: 268
+        id: 269
         motec_name: Rear Right Tire Temp Channel 3
         unit: C
         type: FLOATING
@@ -5451,7 +5460,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh4:
-        id: 269
+        id: 270
         motec_name: Rear Right Tire Temp Channel 4
         unit: C
         type: FLOATING
@@ -5460,7 +5469,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh5:
-        id: 270
+        id: 271
         motec_name: Rear Right Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -5469,7 +5478,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh6:
-        id: 271
+        id: 272
         motec_name: Rear Right Tire Temp Channel 6
         unit: C
         type: FLOATING
@@ -5479,7 +5488,7 @@ parameters:
 
 
     rearRightTireTempCh7:
-        id: 272
+        id: 273
         motec_name: Rear Right Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -5488,7 +5497,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh8:
-        id: 273
+        id: 274
         motec_name: Rear Right Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -5497,7 +5506,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh9:
-        id: 274
+        id: 275
         motec_name: Rear Right Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -5506,7 +5515,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh10:
-        id: 275
+        id: 276
         motec_name: Rear Right Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -5515,7 +5524,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh11:
-        id: 276
+        id: 277
         motec_name: Rear Right Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -5524,7 +5533,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh12:
-        id: 277
+        id: 278
         motec_name: Rear Right Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -5533,7 +5542,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh13:
-        id: 278
+        id: 279
         motec_name: Rear Right Tire Temp Channel 13
         unit: C
         type: FLOATING
@@ -5542,7 +5551,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh14:
-        id: 279
+        id: 280
         motec_name: Rear Right Tire Temp Channel 14
         unit: C
         type: FLOATING
@@ -5551,7 +5560,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh15:
-        id: 280
+        id: 281
         motec_name: Rear Right Tire Temp Channel 15
         unit: C
         type: FLOATING
@@ -5560,7 +5569,7 @@ parameters:
         offset: -100.0
 
     rearRightTireTempCh16:
-        id: 281
+        id: 282
         motec_name: Rear Right Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -5569,7 +5578,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh1:
-        id: 282
+        id: 283
         motec_name: Rear Left Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -5578,7 +5587,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh2:
-        id: 283
+        id: 284
         motec_name: Rear Left Tire Temp Channel 2
         unit: C
         type: FLOATING
@@ -5587,7 +5596,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh3:
-        id: 284
+        id: 285
         motec_name: Rear Left Tire Temp Channel 3
         unit: C
         type: FLOATING
@@ -5596,7 +5605,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh4:
-        id: 285
+        id: 286
         motec_name: Rear Left Tire Temp Channel 4
         unit: C
         type: FLOATING
@@ -5605,7 +5614,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh5:
-        id: 286
+        id: 287
         motec_name: Rear Left Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -5614,7 +5623,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh6:
-        id: 287
+        id: 288
         motec_name: Rear Left Tire Temp Channel 6
         unit: C
         type: FLOATING
@@ -5623,7 +5632,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh7:
-        id: 288
+        id: 289
         motec_name: Rear Left Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -5632,7 +5641,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh8:
-        id: 289
+        id: 290
         motec_name: Rear Left Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -5641,7 +5650,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh9:
-        id: 290
+        id: 291
         motec_name: Rear Left Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -5650,7 +5659,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh10:
-        id: 291
+        id: 292
         motec_name: Rear Left Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -5659,7 +5668,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh11:
-        id: 292
+        id: 293
         motec_name: Rear Left Tire Temp Channel 11
         unit: C
         type: FLOATING
@@ -5668,7 +5677,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh12:
-        id: 293
+        id: 294
         motec_name: Rear Left Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -5677,7 +5686,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh13:
-        id: 294
+        id: 295
         motec_name: Rear Left Tire Temp Channel 13
         unit: C
         type: FLOATING
@@ -5686,7 +5695,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh14:
-        id: 295
+        id: 296
         motec_name: Rear Left Tire Temp Channel 14
         unit: C
         type: FLOATING
@@ -5695,7 +5704,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh15:
-        id: 296
+        id: 297
         motec_name: Rear Left Tire Temp Channel 15
         unit: C
         type: FLOATING
@@ -5704,7 +5713,7 @@ parameters:
         offset: -100.0
 
     rearLeftTireTempCh16:
-        id: 297
+        id: 298
         motec_name: Rear Left Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -5713,7 +5722,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh1:
-        id: 298
+        id: 299
         motec_name: Front Right Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -5722,7 +5731,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh2:
-        id: 299
+        id: 300
         motec_name: Front Right Tire Temp Channel 2
         unit: C
         type: FLOATING
@@ -5731,7 +5740,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh3:
-        id: 300
+        id: 301
         motec_name: Front Right Tire Temp Channel 3
         unit: C
         type: FLOATING
@@ -5740,7 +5749,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh4:
-        id: 301
+        id: 302
         motec_name: Front Right Tire Temp Channel 4
         unit: C
         type: FLOATING
@@ -5749,7 +5758,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh5:
-        id: 302
+        id: 303
         motec_name: Front Right Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -5758,7 +5767,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh6:
-        id: 303
+        id: 304
         motec_name: Front Right Tire Temp Channel 6
         unit: C
         type: FLOATING
@@ -5767,7 +5776,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh7:
-        id: 304
+        id: 305
         motec_name: Front Right Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -5776,7 +5785,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh8:
-        id: 305
+        id: 306
         motec_name: Front Right Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -5785,7 +5794,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh9:
-        id: 306
+        id: 307
         motec_name: Front Right Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -5794,7 +5803,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh10:
-        id: 307
+        id: 308
         motec_name: Front Right Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -5803,7 +5812,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh11:
-        id: 308
+        id: 309
         motec_name: Front Right Tire Temp Channel 11
         unit: C
         type: FLOATING
@@ -5812,7 +5821,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh12:
-        id: 309
+        id: 310
         motec_name: Front Right Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -5821,7 +5830,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh13:
-        id: 310
+        id: 311
         motec_name: Front Right Tire Temp Channel 13
         unit: C
         type: FLOATING
@@ -5830,7 +5839,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh14:
-        id: 311
+        id: 312
         motec_name: Front Right Tire Temp Channel 14
         unit: C
         type: FLOATING
@@ -5839,7 +5848,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh15:
-        id: 312
+        id: 313
         motec_name: Front Right Tire Temp Channel 15
         unit: C
         type: FLOATING
@@ -5848,7 +5857,7 @@ parameters:
         offset: -100.0
 
     frontRightTireTempCh16:
-        id: 313
+        id: 314
         motec_name: Front Right Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -5857,7 +5866,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh1:
-        id: 314
+        id: 315
         motec_name: Front Left Tire Temp Channel 1
         unit: C
         type: FLOATING
@@ -5866,7 +5875,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh2:
-        id: 315
+        id: 316
         motec_name: Front Left Tire Temp Channel 2
         unit: C
         type: FLOATING
@@ -5875,7 +5884,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh3:
-        id: 316
+        id: 317
         motec_name: Front Left Tire Temp Channel 3
         unit: C
         type: FLOATING
@@ -5884,7 +5893,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh4:
-        id: 317
+        id: 318
         motec_name: Front Left Tire Temp Channel 4
         unit: C
         type: FLOATING
@@ -5893,7 +5902,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh5:
-        id: 318
+        id: 319
         motec_name: Front Left Tire Temp Channel 5
         unit: C
         type: FLOATING
@@ -5902,7 +5911,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh6:
-        id: 319
+        id: 320
         motec_name: Front Left Tire Temp Channel 6
         unit: C
         type: FLOATING
@@ -5911,7 +5920,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh7:
-        id: 320
+        id: 321
         motec_name: Front Left Tire Temp Channel 7
         unit: C
         type: FLOATING
@@ -5920,7 +5929,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh8:
-        id: 321
+        id: 322
         motec_name: Front Left Tire Temp Channel 8
         unit: C
         type: FLOATING
@@ -5929,7 +5938,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh9:
-        id: 322
+        id: 323
         motec_name: Front Left Tire Temp Channel 9
         unit: C
         type: FLOATING
@@ -5938,7 +5947,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh10:
-        id: 323
+        id: 324
         motec_name: Front Left Tire Temp Channel 10
         unit: C
         type: FLOATING
@@ -5947,7 +5956,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh11:
-        id: 324
+        id: 325
         motec_name: Front Left Tire Temp Channel 11
         unit: C
         type: FLOATING
@@ -5956,7 +5965,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh12:
-        id: 325
+        id: 326
         motec_name: Front Left Tire Temp Channel 12
         unit: C
         type: FLOATING
@@ -5965,7 +5974,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh13:
-        id: 326
+        id: 327
         motec_name: Front Left Tire Temp Channel 13
         unit: C
         type: FLOATING
@@ -5974,7 +5983,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh14:
-        id: 327
+        id: 328
         motec_name: Front Left Tire Temp Channel 14
         unit: C
         type: FLOATING
@@ -5983,7 +5992,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh15:
-        id: 328
+        id: 329
         motec_name: Front Left Tire Temp Channel 15
         unit: C
         type: FLOATING
@@ -5992,7 +6001,7 @@ parameters:
         offset: -100.0
 
     frontLeftTireTempCh16:
-        id: 329
+        id: 330
         motec_name: Front Left Tire Temp Channel 16
         unit: C
         type: FLOATING
@@ -6107,7 +6116,8 @@ groups: [
         parameters: [
             {name: pedalPosition1_percent,      start: 0, length: 2},
             {name: pedalPosition2_percent,      start: 2, length: 2},
-            {name: rideHeightFront_mm,          start: 4, length: 2}
+            {name: rideHeightFront_mm,          start: 4, length: 2},
+            {name: fvcInputInverterVoltage_V,   start: 6, length: 2}
         ]
     },
     {
