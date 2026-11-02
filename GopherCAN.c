@@ -568,18 +568,6 @@ static S8 tx_can_message(CAN_MSG* message)
     return CAN_SUCCESS;
 }
 
-// tx_can_message_raw
-//  Queues a frame on one specific bus without interpreting its ID as a GopherCAN ID.
-//  Use for non-GopherCAN devices (e.g. IMD) since trailing zeros are kept.
-//  Could activate DISABLE_TRIM_ZEROS in tx_can_message, but not sure how that will mess
-//   with other current requests
-S8 tx_can_message_raw(CAN_MSG* message, BUS_ID bus_id)
-{
-     // safety check for valid busses
-    if (bus_id >= ALL_BUSSES || BUSES[bus_id]->hcan == NULL) return NOT_FOUND_ERR;    
-    add_message_by_highest_prio(BUSES[bus_id], message);
-    return CAN_SUCCESS;
-}
 
 /*************************************************
  * RX MESSAGE
@@ -659,7 +647,7 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 // handle extended ID CAN messages (commands/errors)
 static S8 service_can_rx_message_ext(CAN_MSG* message)
 {
-    
+
     #ifdef FILTER_ACCEPT_IMD_J1939
     // IMD (J1939) info message -> decode with YAML group 0x37..0x3A
     if ((message->header.ExtId & IMD_J1939_INFO_MASK) == IMD_J1939_INFO_BASE)
