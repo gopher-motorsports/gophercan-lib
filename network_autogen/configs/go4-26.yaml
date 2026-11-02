@@ -7002,6 +7002,176 @@ parameters:
         scale: 0.1
         offset: -100.0
 
+
+    # IMD Data
+
+    # General
+    isoCorrected:
+        id: 755
+        motec_name: Isolation Corrected
+        unit: 'kOhm'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    isoStatus:
+        id: 756
+        motec_name: Isolation Status
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    isoCounter:
+        id: 757
+        motec_name: Isolation Measurement Counter
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    statusWarning: 
+        id: 758
+        motec_name: Status Warnings and Alarms
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    deviceActivity:
+        id: 759
+        motec_name: Device Activity
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0    
+            
+    # Isolation Detail
+    isoNeg:
+        id: 760
+        motec_name: Isolation Negative
+        unit: 'kOhm'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    isoPos:
+        id: 761
+        motec_name: Isolation Positive
+        unit: 'kOhm'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    isoOriginal:
+        id: 762
+        motec_name: Isolation Original
+        unit: 'kOhm'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    isoDetailCounter:
+        id: 763
+        motec_name: Isolation Detail Measurement Counter
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    isoQuality:
+        id: 764
+        motec_name: Isolation Quality
+        unit: '%'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    # Voltage
+    HVSystem:
+        id: 765
+        motec_name: HV System
+        unit: 'raw'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    HVNeg:
+        id: 766
+        motec_name: HV Negative to Earth
+        unit: 'raw'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    HVPos:
+        id: 767
+        motec_name: HV Positive to Earth
+        unit: 'raw'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    voltCounter:
+        id: 768
+        motec_name: Voltage Measurement Counter
+        unit: V
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    # IT-System
+    capacityVal:
+        id: 769
+        motec_name: Capacity Measure Value
+        unit: 'raw'
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    capacityCounter:
+        id: 770
+        motec_name: Capacity Measurement Counter
+        unit: ''
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    unbalanceVal:
+        id: 771
+        motec_name: Unbalance Measure Value
+        unit: F
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+    unbalanceCounter:
+        id: 772
+        motec_name: Unbalance Measurement Counter
+        unit: F
+        type: UNSIGNED16
+        encoding: LSB
+        scale: 1
+        offset: 0
+
+
 groups: [
     # NOTE: CAN IDs are set as (moduleID-1)*0x100 + (0x50*FrqGroup) + (Message)
     # Inverter Low Frequency
@@ -9027,6 +9197,52 @@ groups: [
         parameters: [
             {name: chargingPowerLimit, start: 0, length: 2},
             {name: forceEnableBalancing_state, start: 2, length: 1}
+        ]
+    },
+
+    # IMD Info General
+    {
+        id: 0x37,
+        parameters: [
+            {name: isoCorrected, start: 0, length: 2},
+            {name: isoStatus, start: 2, length: 1},
+            {name: isoCounter, start: 3, length: 1},
+            {name: statusWarning, start: 4, length: 2},
+            {name: deviceActivity, start: 6, length: 1},
+        ]
+    },
+
+    # IMD Info Isolation Detail
+    {
+        id: 0x38,
+        parameters: [
+            {name: isoNeg, start: 0, length: 2},
+            {name: isoPos, start: 2, length: 2},
+            {name: isoOriginal, start: 4, length: 2},
+            {name: isoDetailCounter, start: 6, length: 1},
+            {name: isoQuality, start: 7, length: 1},
+        ]
+    },
+
+    # IMD Info Voltage
+    {
+        id: 0x39,
+        parameters: [
+            {name: HVSystem, start: 0, length: 2},
+            {name: HVNeg, start: 2, length: 2},
+            {name: HVPos, start: 4, length: 2},
+            {name: voltCounter, start: 6, length: 1},
+        ]
+    },
+
+    # IMD Info IT-System
+    {
+        id: 0x3A,
+        parameters: [
+            {name: capacityVal, start: 0, length: 2},
+            {name: capacityCounter, start: 2, length: 1},
+            {name: unbalanceVal, start: 3, length: 1},
+            {name: unbalanceCounter, start: 4, length: 1},
         ]
     },
 ]
