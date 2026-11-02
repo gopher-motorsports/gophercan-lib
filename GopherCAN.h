@@ -135,6 +135,8 @@ void service_can_tx(CAN_HandleTypeDef* hcan);
 //  Processes messages in the RX buffer. Designed to be called frequently (1ms).
 S8 service_can_rx_buffer(void);
 
+// like tx_can_message() but include trailing zeros for non-gophercan ids
+S8 tx_can_message_raw(CAN_MSG* message, BUS_ID bus_id);
 /*************************************************
  * CALLBACKS
 *************************************************/

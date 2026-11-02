@@ -11,6 +11,9 @@
 
 #define CHARGER_TX_CAN_ID 0x1806E5F4
 #define CHARGER_RX_CAN_ID 0x18FF50E5
+#define IMD_J1939_INFO_BASE  0x18FF00F4   // IMD Info ID, 0 - 4 for each params
+#define IMD_J1939_INFO_MASK  0x1FFFF8FF   // To check matching with BASE, except for the 0 - 4
+#define IMD_INFO_GROUP_BASE  0x36         // The changing digit in IMD Info ID
 
 #ifdef ENABLE_BOOTLOADER
 // Bootloader support
@@ -213,6 +216,30 @@ static S8 init_filters(CAN_HandleTypeDef* hcan)
     }
 #endif
 
+#ifdef FILTER_ACCEPT_IMD_J1939 // accept iso175 J1939 info messages 0x18FF01F4..0x18FF04F4
+    filter.FilterBank = banknum++;
+    filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+    filter.FilterScale = CAN_FILTERSCALE_32BIT;
+    filter.FilterIdLow = GET_ID_LOW(IMD_J1939_INFO_BASE);
+    filter.FilterIdHigh = GET_ID_HIGH(IMD_J1939_INFO_BASE);
+    filter.FilterMaskIdLow = GET_ID_LOW(IMD_J1939_INFO_MASK);
+    filter.FilterMaskIdHigh = GET_ID_HIGH(IMD_J1939_INFO_MASK);
+
+    if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
+    {
+        return FILTER_SET_FAILED;
+    }
+
+    // apply same filter to FIFO1
+    filter.FilterBank = banknum++;
+    filter.FilterFIFOAssignment = CAN_FILTER_FIFO1;
+
+    if (HAL_CAN_ConfigFilter(hcan, &filter) != HAL_OK)
+    {
+        return FILTER_SET_FAILED;
+    }
+#endif
+
     return CAN_SUCCESS;
 }
 
@@ -366,7 +393,7 @@ static void service_can_rx_hardware(CAN_HandleTypeDef* hcan, U32 rx_mailbox)
 #endif
 
 #ifdef ENABLE_BOOTLOADER
-        if(message->header.StdId == BOOTLOADER_ID) {
+        if(message->header.IDE == CAN_ID_STD && message->header.StdId == BOOTLOADER_ID) {
             U32 moduleId = message->data[0];
 
             if(moduleId == THIS_MODULE_ID) {
@@ -541,6 +568,19 @@ static S8 tx_can_message(CAN_MSG* message)
     return CAN_SUCCESS;
 }
 
+// tx_can_message_raw
+//  Queues a frame on one specific bus without interpreting its ID as a GopherCAN ID.
+//  Use for non-GopherCAN devices (e.g. IMD) since trailing zeros are kept.
+//  Could activate DISABLE_TRIM_ZEROS in tx_can_message, but not sure how that will mess
+//   with other current requests
+S8 tx_can_message_raw(CAN_MSG* message, BUS_ID bus_id)
+{
+     // safety check for valid busses
+    if (bus_id >= ALL_BUSSES || BUSES[bus_id]->hcan == NULL) return NOT_FOUND_ERR;    
+    add_message_by_highest_prio(BUSES[bus_id], message);
+    return CAN_SUCCESS;
+}
+
 /*************************************************
  * RX MESSAGE
 *************************************************/
@@ -619,6 +659,19 @@ static S8 service_can_rx_message_std(CAN_MSG* message)
 // handle extended ID CAN messages (commands/errors)
 static S8 service_can_rx_message_ext(CAN_MSG* message)
 {
+    
+    #ifdef FILTER_ACCEPT_IMD_J1939
+    // IMD (J1939) info message -> decode with YAML group 0x37..0x3A
+    if ((message->header.ExtId & IMD_J1939_INFO_MASK) == IMD_J1939_INFO_BASE)
+    {
+        U8 info_index = (message->header.ExtId >> 8) & 0x07; // 1 = General ... 4 = IT-System
+        if (info_index < 1 || info_index > 4) return NOT_FOUND_ERR;    // check for any not 1-4
+
+        message->header.StdId = IMD_INFO_GROUP_BASE + info_index;      //relabel frames as 0x37-0x3A
+        return service_can_rx_message_std(message);
+    }
+    #endif
+
     // Charger handler
     if(message->header.ExtId == CHARGER_RX_CAN_ID)
     {
