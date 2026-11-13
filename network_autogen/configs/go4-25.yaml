@@ -2451,15 +2451,14 @@ parameters:
         scale: 1
         offset: 0
 
-    bmsInhibitActive_state:
+    bmsShuntTemp_C:
         id: 262
-        motec_name: BMS Inhibit active
-        unit: ''
-        type: UNSIGNED8
+        motec_name: BMS Shunt Temp
+        unit: C
+        type: FLOATING
         encoding: MSB
-        scale: 1
-        offset: 0
-
+        scale: 0.1
+        offset: -40
 
     # Segment 1 Statistics
 
@@ -6168,7 +6167,7 @@ groups: [
             {name: bmsShutdown4_state, start: 3, length: 1},
             {name: bmsShutdown5_state, start: 4, length: 1},
             {name: bmsShutdown6_state, start: 5, length: 1},
-            {name: bmsInhibitActive_state, start: 6, length: 1}
+            {name: bmsShuntTemp_C, start: 6, length: 2}
         ]
     },
 
